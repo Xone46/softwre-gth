@@ -1,6 +1,6 @@
 <template>
     <div class="dashboard">
-        <h1>this is a Dashboard</h1>
+      <button @click="deconnexion">Déconnexion</button>
     </div>
   </template>
   
@@ -9,6 +9,11 @@
   export default {
     name: 'DashboardView',
     components: {
+    },
+    methods : {
+      deconnexion() {
+        this.$router.push("/")
+      }
     }
   }
   </script>
