@@ -94,11 +94,8 @@ export default {
 
 
     }
-  },
-
-  created() {
-
   }
+
 
 }
 </script>

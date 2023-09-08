@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import DashboardView from '../views/DashboardView.vue'
+import InterventionsView from '../views/InterventionsView.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     name: 'dashboard',
     component: DashboardView
   },
+  {
+    path: '/interventions',
+    name: 'interventions',
+    component: InterventionsView
+  }
 ]
 
 const router = new VueRouter({

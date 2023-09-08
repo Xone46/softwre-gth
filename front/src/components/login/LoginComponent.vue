@@ -55,8 +55,10 @@ export default {
 
                   if(result) {
 
-                    console.log(result.data.case)
+                        this.flagSpinner = false;
+                        this.flagForm = true;
 
+                        
                         if(result.data.case === true) {
                             sessionStorage.setItem("id", result.data.id);
                             sessionStorage.setItem("nom", result.data.nom);
@@ -69,7 +71,7 @@ export default {
                             this.message = result.data.msg;
                         }
 
-                        this.flagSpinner = false;
+
 
                   }
 
@@ -84,14 +86,7 @@ export default {
 
         }, 8000);
 
-
-
-
-
       }
-    },
-
-    created() {
     }
 }
 </script>
