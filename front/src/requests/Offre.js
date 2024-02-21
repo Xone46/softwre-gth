@@ -19,7 +19,6 @@ class Offre {
             });
         })
     }
-
 }
 
 export default Offre;

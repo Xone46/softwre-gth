@@ -1,19 +1,14 @@
 <template>
   <div class="home">
 
-      <img src="@/assets/logo.png" alt="">
+    <img src="@/assets/logo.png" alt="">
 
-      <div v-if="flagSpinner" class="spinner">
-        <Spinner message="Veuillez patienter, logiciel se connectera aux serveurs GTHCONSULT" />
-      </div>
+    <div v-if="flagSpinner" class="spinner">
+      <Spinner message="Veuillez patienter, logiciel se connectera aux serveurs GTHCONSULT" />
+    </div>
 
-      <button class="ressayer" v-if="flagDemarrer" @click="demarrer">Démarrer</button>
-
-      <button class="ressayer" v-if="counter == 3" @click="demarrerOffline">Démarrer Offline</button>
-
-      <button class="ressayer" v-if="flagReessayer && counter != 3" @click="ressayer">Réessayer</button>
-
-      <Login v-if="falgAuth" @quitter="quitter" />
+    <button class="ressayer" v-if="flagDemarrer" @click="demarrer">Démarrer</button>
+    <Login v-if="falgAuth" @quitter="quitter()" />
 
   </div>
 </template>
@@ -21,18 +16,18 @@
 <script>
 // @ is an alias to /src
 import Login from '@/components/login/LoginComponent.vue'
-import Checkin from "@/requests/Checkin"
+import Chekin from "@/requests/Chekin"
 import Spinner from 'vue-simple-spinner'
 
 export default {
   name: 'HomeView',
   data() {
     return {
-      flagSpinner : false,
-      flagReessayer : false,
+      flagSpinner: false,
+      flagReessayer: false,
       flagDemarrer: true,
-      falgAuth : false,
-      counter : 0,
+      falgAuth: false,
+      counter: 0,
     }
   },
   components: {
@@ -40,60 +35,66 @@ export default {
     Spinner
   },
 
-  methods : {
+  methods: {
 
     quitter() {
-      this.counter = 0;
       this.flagDemarrer = true;
       this.flagSpinner = false;
-      this.flagReessayer = false;
       this.falgAuth = false;
     },
 
-    demarrerOffline() {
-      this.counter = 0;
-      this.flagDemarrer = false;
-      this.flagSpinner = false;
-      this.flagReessayer = false;
-      this.falgAuth = true;
-      sessionStorage.setItem("online", false);
-    },
 
     ressayer() {
-        return this.demarrer();
+      return this.demarrer();
     },
 
-    demarrer() {
+    async demarrer() {
 
       this.flagSpinner = true;
       this.flagDemarrer = false;
       this.flagReessayer = false;
 
-      setTimeout(() => {
+      //ckeck connecte internet exist or not
+      var online = navigator.onLine;
 
-          Checkin.check()
+      if (online) {
+
+        const response = await fetch("https://api.ipify.org/?format=json");
+        const adresse = await response.json();
+
+        Chekin.status(adresse.ip)
           .then((result) => {
-              if(result.data === true) {
-                this.flagDemarrer = false;
-                this.flagSpinner = false;
-                this.falgAuth = true;
-                sessionStorage.setItem("online", true);
-              } 
+
+            if (result.data) {
+              this.flagDemarrer = false;
+              this.flagSpinner = false;
+              this.falgAuth = true;
+              sessionStorage.setItem("connection", true);
+            }
+
           })
           .catch((error) => {
-                if(error.message) {
-                    this.flagReessayer = true;
-                    this.flagDemarrer = false;
-                    this.flagSpinner = false;
-                    this.falgAuth = false;
-                    this.counter = this.counter + 1;
-                }
+            if (error.message) {
+              this.flagDemarrer = false;
+              this.flagSpinner = false;
+              this.falgAuth = false;
+            }
           });
 
-      }, 10000);
+      } else {
+        this.flagDemarrer = false;
+        this.flagSpinner = false;
+        this.falgAuth = true;
+        sessionStorage.setItem("connection", false);
+      }
+
+
+
 
 
     }
+
+
   }
 
 
@@ -101,19 +102,20 @@ export default {
 </script>
 
 <style scoped>
-  .home {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  .home img {
-    height: 60px;
-  }
+.home {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home img {
+  height: 60px;
+}
 
 .ressayer {
   background-image: linear-gradient(-180deg, #37AEE2 0%, #1E96C8 100%);
@@ -142,6 +144,4 @@ export default {
     padding: 1rem 2rem;
   }
 }
-
-
 </style>

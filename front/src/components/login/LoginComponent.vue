@@ -1,113 +1,176 @@
 <template>
   <div class="login">
 
-      <div class="form" v-if="flagForm">
-        <p v-if="flagMessage">{{ message }}</p>
-        <input type="text" v-model="email">
-        <input type="password" v-model="password">
-        <button @click="connexion">Connexion</button>
-        <button @click="quitter">Quitter</button>
-      </div>
+    <div class="form" v-if="flagForm">
 
-      <div class="spinner" v-if="flagSpinner">
-        <Spinner />
-      </div>
+      <!-- start errors -->
+      <ul v-if="flagMessage">
+        <li v-for="error in errors" :key="error">{{ error }}</li>
+      </ul>
+      <!-- Fin errors -->
+
+      <!-- Start Form -->
+      <label for="E-mail">
+        <h3>E-mail : <span class="start" v-if="email.length == 0">*</span></h3>
+        <input type="text" v-model="email">
+      </label>
+
+      <label for="E-mail">
+        <h3>Mot de pass <span class="start" v-if="password.length == 0">*</span></h3>
+        <input type="text" v-model="password">
+      </label>
+
+      <button class="connexion" @click="connexion">Connexion</button>
+      <button class="quitter" @click="quitter">Quitter</button>
+      <!-- Fin Form -->
+
+    </div>
+
+    <div class="spinner" v-if="flagSpinner">
+      <Spinner />
+    </div>
 
   </div>
 </template>
 
 <script>
-import Account from "@/requests/Account"
+import Inspecteurs from "@/requests/Inspecteurs"
 import Spinner from 'vue-simple-spinner'
 export default {
-    name: 'LoginComponent',
-    data() {
-      return {
-        message : "",
-        email : null,
-        password : null,
-        flagSpinner : false,
-        flagForm : true,
-        flagMessage : false
-      }
-    },
-
-    components : {
-      Spinner
-    },
-
-    methods : {
-
-      quitter() {
-        this.$emit("quitter");
-      },
-
-      connexion() {
-
-        this.flagForm = false;
-        this.flagSpinner = true;
-
-
-        setTimeout(() => {
-
-            Account.connexion(this.email, this.password)
-            .then((result) => {
-
-                  if(result) {
-
-                        this.flagSpinner = false;
-                        this.flagForm = true;
-
-                        
-                        if(result.data.case === true) {
-                            sessionStorage.setItem("id", result.data.id);
-                            sessionStorage.setItem("nom", result.data.nom);
-                            sessionStorage.setItem("prenom", result.data.prenom);
-                            this.$router.push("/dashboard");
-                        }
-
-                        if(result.data.case === false) {
-                            this.flagMessage = true;
-                            this.message = result.data.msg;
-                        }
-
-
-
-                  }
-
-            })
-            .catch((error) => {
-              console.log(error)
-              // if(error) {
-              //   this.flagForm = true;
-              //   this.flagSpinner = false;
-              // }
-            });
-
-        }, 8000);
-
-      }
+  name: 'LoginComponent',
+  data() {
+    return {
+      message: "",
+      email: "",
+      password: "",
+      flagSpinner: false,
+      flagForm: true,
+      flagMessage: false,
+      errors: []
     }
+  },
+
+  components: {
+    Spinner
+  },
+
+  methods: {
+
+    quitter() {
+      this.$emit("quitter");
+    },
+
+    connexion() {
+
+      this.flagForm = false;
+      this.flagSpinner = true;
+
+      Inspecteurs.connexion(this.email, this.password)
+        .then((result) => {
+
+          if (result.data) {
+
+            this.flagSpinner = false;
+            this.flagForm = true;
+
+            if (result.data) {
+              sessionStorage.setItem("id", result.data.id);
+              sessionStorage.setItem("nom", result.data.nom);
+              sessionStorage.setItem("prenom", result.data.prenom);
+              this.$router.push("/dashboard");
+            }
+          }
+
+        })
+        .catch((error) => {
+
+          // instance 
+          this.errors = [];
+          this.flagMessage = true;
+          this.flagSpinner = false;
+          this.flagForm = true;
+
+          // erorr msg
+          if (error.response.data.msg) {
+            console.log(error.response.data.msg)
+          }
+
+          // errors array
+          if (error.response.data.errors) {
+            error.response.data.errors.forEach(element => {
+              this.errors.push(element);
+            });
+          }
+
+        });
+
+    }
+  }
 }
 </script>
 
 <style scoped>
 
-  .login .form {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  .login .form input , .login .form button {
-    padding: 5px;
-    margin: 3px;
-    
-  }
-  .login .form button {
-    width: 100px;
-    cursor: pointer;
-  }
+.login {
+  width: 100%;
+  padding: 0px;
+  margin: 0;
+}
 
+.login .form {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+
+
+.login .form label {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.login .form label h3 {
+  margin: 3px;
+}
+
+.login .form label input {
+  width: 100%;
+  height: 30px;
+  padding: 5px;
+  margin: 3px;
+}
+
+.login .form button {
+    padding: 10px;
+    width : 20%;
+    height : 40px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0px;
+    border-radius: 5px;
+}
+
+.connexion {
+    background-color: #04AA6D;
+    cursor: pointer;
+}
+
+.quitter {
+    background-color: #f00e06;
+    cursor: pointer;
+}
+
+.start {
+  color: red;
+}
 
 </style>

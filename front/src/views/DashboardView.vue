@@ -26,30 +26,31 @@
     methods : {
 
       interventions() {
-        this.$router.push("/interventions");
+        this.$router.push("/interventions").catch(()=>{});
+
       },
 
       transferer() {
-        this.$router.push("/");
+        this.$router.push("/transferer").catch(()=>{});
       },
 
       previsualisation() {
-        this.$router.push("/");
+        this.$router.push("/previsualisation").catch(()=>{});
       },
 
       modification() {
-        this.$router.push("/");
+        this.$router.push("/modification").catch(()=>{});
       },
 
       sauvgarde() {
-        this.$router.push("/");
+        this.$router.push("/sauvgarde").catch(()=>{});
       },
 
       deconnexion() {
         sessionStorage.removeItem("id");
         sessionStorage.removeItem("nom");
         sessionStorage.removeItem("prenom");
-        this.$router.push("/");
+        this.$router.push("/").catch(()=>{});
       }
       
     },
