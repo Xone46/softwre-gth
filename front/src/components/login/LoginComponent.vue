@@ -15,9 +15,9 @@
         <input type="text" v-model="email">
       </label>
 
-      <label for="E-mail">
+      <label for="Mot de pass">
         <h3>Mot de pass <span class="start" v-if="password.length == 0">*</span></h3>
-        <input type="text" v-model="password">
+        <input type="password" v-model="password">
       </label>
 
       <button class="connexion" @click="connexion">Connexion</button>
@@ -110,11 +110,20 @@ export default {
 </script>
 
 <style scoped>
-
 .login {
   width: 100%;
   padding: 0px;
   margin: 0;
+}
+
+.login .form ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .login .form {
@@ -149,28 +158,27 @@ export default {
 }
 
 .login .form button {
-    padding: 10px;
-    width : 20%;
-    height : 40px;
-    color: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 0px;
-    border-radius: 5px;
+  padding: 10px;
+  width: 20%;
+  height: 40px;
+  color: white;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 0px;
+  border-radius: 5px;
 }
 
 .connexion {
-    background-color: #04AA6D;
-    cursor: pointer;
+  background-color: #04AA6D;
+  cursor: pointer;
 }
 
 .quitter {
-    background-color: #f00e06;
-    cursor: pointer;
+  background-color: #f00e06;
+  cursor: pointer;
 }
 
 .start {
   color: red;
 }
-
 </style>

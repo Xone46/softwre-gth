@@ -1,13 +1,14 @@
 <template>
     <div class="table-intervention">
-        
+
         <h1>Interventions en cours</h1>
         <h2>Sites d'intervention</h2>
 
-        <Spinner v-if="flagSpinner"/>
+        <Spinner v-if="flagSpinner" />
+        <Invertesment :msgInvertesment="msgInvertesment" v-if="flagInvertesment" />
 
-        <div class="sites">
-            <table class="table-data" v-if="!flagSpinner">
+        <div class="sites" v-if="!flagSpinner && !flagInvertesment">
+            <table class="table-data">
                 <tr>
                     <th></th>
                     <th>Date</th>
@@ -21,8 +22,8 @@
                     <th>Métier</th>
                 </tr>
                 <tr v-for="intervention in interventions" :key="intervention._id">
-                    <td><input type="checkbox" v-model="intervention._id"></td>
-                    <td>{{ intervention.date }}</td>
+                    <td><input type="checkbox" v-model="interventionsSelect" :value="intervention._id" @input="event => this.text = event.target.value"></td>
+                    <td>{{ new Date(intervention.date).toLocaleDateString() }}</td>
                     <td>{{ intervention.numeroAffaire }}</td>
                     <td>{{ intervention.site }}</td>
                     <td>{{ intervention.etablissement }}</td>
@@ -36,10 +37,12 @@
         </div>
         <div class="actions">
             <button @click="$emit('nouveau')">Nouveau Site (Intervention)</button>
-            <button>Modifier</button>
-            <button>Supprimer</button>
+            <button v-if="!flagInvertesment" @click="apercu()">Aperçu</button>
+            <button v-if="!flagInvertesment">Modifier</button>
+            <button v-if="!flagInvertesment" @click="ajouter()">Ajouter</button>
+            <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
         </div>
-
+        <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
     </div>
 </template>
   
@@ -47,31 +50,87 @@
 
 import Interventions from "@/requests/Interventions"
 import Spinner from 'vue-simple-spinner'
-
+import Invertesment from "@/components/models/Invertesment.vue"
+import Verified from "@/components/models/Verified.vue"
 export default {
     name: 'table-intervention',
     data() {
         return {
+            
+            flagVerified: false,
             interventions: [],
-            flagSpinner : true
+            interventionsSelect: [],
+            flagSpinner: true,
+            flagInvertesment: false,
+            msgInvertesment: null
         }
     },
 
     components: {
-        Spinner
+        Spinner,
+        Invertesment,
+        Verified
+    },
+
+    methods: {
+
+        ajouter() {
+            this.$router.push("/observateurs").catch(() => { });
+        },
+
+        apercu() {
+            if (this.interventionsSelect.length === 1) {
+                this.$emit('apercu', this.interventionsSelect[0]);
+            }
+        },
+
+        supprimer() {
+
+            if (this.interventionsSelect.length === 1) {
+                this.flagVerified = true;
+            }
+        },
+
+        confirmer() {
+            Interventions.delete(this.interventionsSelect[0])
+                .then(() => {
+
+                    for (let i = 0; i < this.interventions.length; i++) {
+                        if (String(this.interventions[i]._id) === String(this.interventionsSelect[0])) {
+                            this.interventions.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                    this.flagVerified = false;
+                    this.interventionsSelect = [];
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+        },
+
+        retirer() {
+            this.flagVerified = false;
+        }
     },
 
     created() {
 
         Interventions.read()
             .then((response) => {
-                if (response) {
-                    this.flagSpinner = true;
-                    this.interventions = response.data.result;
-                }
+                // response succes
+                this.flagSpinner = false;
+                this.flagInvertesment = false;
+                this.interventions = response.data;
             })
             .catch((error) => {
-                console.log(error);
+                // response error
+                this.flagSpinner = false;
+                this.flagInvertesment = true;
+                this.msgInvertesment = error.response.data.msg;
             });
 
     }
@@ -137,6 +196,7 @@ export default {
 .actions {
     display: flex;
     flex-direction: row;
+    margin: 5px;
 }
 
 .actions button {
@@ -154,10 +214,17 @@ export default {
 }
 
 .actions button:nth-child(2) {
-    background-color: #dfe208;
+    background-color: #04AA6D;
 }
 
 .actions button:nth-child(3) {
+    background-color: #04AA6D;
+}
+.actions button:nth-child(4) {
+    background-color: #04AA6D;
+}
+
+.actions button:nth-child(5) {
     background-color: #e21608;
 }
 </style>

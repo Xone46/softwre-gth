@@ -3,12 +3,12 @@ import axios from 'axios'
 const VUE_APP_API_BASE_URL= "http://localhost:3000/api/v1";
 
 
-class Interventions {
+class Observateurs {
 
-    static create(interventions) {
+    static create(Observateurs) {
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/interventions/create`,
-            interventions,
+            axios.post(`${VUE_APP_API_BASE_URL}/observateurs/create`,
+            Observateurs,
             {
                 headers: {
                      'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ class Interventions {
 
     static read() {
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/interventions/read`,{
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs`,{
                 headers: {
                      'Content-Type': 'application/json'
                  }
@@ -40,9 +40,26 @@ class Interventions {
         })
     }
 
-    static delete(interventionId) {
+    
+    static select(observateurId) {
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/interventions/${interventionId}`,{
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/${observateurId}`,{
+                headers: {
+                     'Content-Type': 'application/json'
+                 }
+             })
+            .then(response => {
+                    resolve(response);
+            })
+            .catch(error => {
+                    reject(error);
+            });
+        })
+    }
+
+    static delete(observateurId) {
+        return new Promise((resolve, reject) => {
+            axios.delete(`${VUE_APP_API_BASE_URL}/observateurs/${observateurId}`,{
                 headers: {
                      'Content-Type': 'application/json'
                  }
@@ -58,4 +75,4 @@ class Interventions {
 
 }
 
-export default Interventions;
+export default Observateurs;

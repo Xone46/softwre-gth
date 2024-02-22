@@ -1,7 +1,8 @@
 <template>
   <div class="interventions">
-    <FormIntervention v-if="flagFormIntervention" @anuller="closeFormIntervention()"/>
-    <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention()"/>
+    <FormIntervention v-if="flagFormIntervention" @anuller="closeFormIntervention()" @table="closeFormIntervention()"/>
+    <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention()" @apercu="apercu" />
+    <TableObservateur v-if="flagTableObservateur" :interventionId="interventionId" />
   </div>
 </template>
 
@@ -9,31 +10,41 @@
 
 import FormIntervention from "@/components/intervention/FormIntervention.vue"
 import TableIntervention from "@/components/intervention/TableIntervention"
+import TableObservateur from "@/components/intervention/TableObservateur.vue"
 
 export default {
   name: 'InterventionsView',
   data() {
     return {
         flagFormIntervention : false,
-        flagTableIntervention : true
+        flagTableIntervention : true,
+        flagTableObservateur : true,
+        interventionId : null
     }
   },
 
   components : {
     FormIntervention,
-    TableIntervention
+    TableIntervention,
+    TableObservateur
   },
 
   methods : {
 
+    apercu(value) {
+      this.interventionId = value;
+    },
+
     openFormIntervention() {
         this.flagTableIntervention = false;
         this.flagFormIntervention = true;
+        this.flagTableObservateur = false;
     },
 
     closeFormIntervention() {
         this.flagTableIntervention = true;
         this.flagFormIntervention = false;
+        this.flagTableObservateur = true;
     }
 
   },

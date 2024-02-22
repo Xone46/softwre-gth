@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import AboutView from '../views/AboutView.vue'
 import DashboardView from '../views/DashboardView.vue'
 import InterventionsView from '../views/InterventionsView.vue'
+import ObservateursView from '../views/ObservateursView.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,11 @@ const routes = [
     path: '/interventions',
     name: 'interventions',
     component: InterventionsView
+  },
+  {
+    path: '/observateurs',
+    name: 'observateurs',
+    component: ObservateursView
   }
 ]
 

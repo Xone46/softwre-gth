@@ -1,7 +1,7 @@
 <template>
-    <div class="form-intervention">
+    <div class="observateurs">
 
-        <h1>Création d'une nouvelle d'intervention</h1>
+        <h1>Nouvel Appareil, Equipement, Ou Installation</h1>
 
         <!-- start errors -->
         <ul v-if="flagError">
@@ -9,9 +9,9 @@
         </ul>
         <!-- Fin errors -->
 
-        <label for="Date d'intervention">
-            <h3>Date d'intervention : <span class="start" v-if="interventions.date.length == 0">*</span></h3>
-            <input type="date" v-model="interventions.date">
+        <label for="Date">
+            <h3>Date : <span class="start" v-if="observateur.date.length == 0">*</span></h3>
+            <input type="date" v-model="observateur.date">
         </label>
 
         <label for="Numéro d'affaire">
@@ -61,141 +61,42 @@
 
         <button class="valider" @click="valider">Valider</button>
         <button class="anuller" @click="$emit('anuller')">Anuller</button>
-
     </div>
 </template>
   
 <script>
 
-import Interventions from "@/requests/Interventions"
-
 
 export default {
-    name: 'table-intervention',
+    name: 'ObservateursView',
     data() {
         return {
-            flagError : false,
-            errors : [],
-            interventions: {
-                date : "",
-                numeroAffaire : "",
-                site : 1,
-                etablissement : "",
-                repere : "",
-                adresse : "",
-                codePostal : "",
-                ville : "",
-                metier : ""
-            },
 
-            metiers : [
-                "Electricite",
-                "Levage",
-                "Accessoires de Levage",
-                "Ascenseur",
-                "Escaliers Mécanique – Trottoirs Roulantes",
-                "Machines Et Engins De Chantier",
-                "Porte & Portail",
-                "Quai Niveleur "
-            ]
         }
     },
 
     components: {
-
     },
 
     methods: {
 
-        valider() {
 
-            Interventions.create(this.interventions)
-            .then(() => {
-                return this.$emit("table");
-            })
-            .catch((error) => {
-                this.errors = [];
-                this.flagError = true;
-                this.errors = error.response.data.errors;
-            });
-
-        }
     },
 
     created() {
-
     }
 }
 </script>
   
 <style scoped>
-.form-intervention {
-    width :100%;
+.observateurs {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items : center; 
+    align-items: flex-start;
 }
-
-.form-intervention ul {
-  margin: 0;
-  list-style: none;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.form-intervention label {
-    width :80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items : flex-start; 
-}
-.form-intervention h3 {
-    margin: 3px;
-}
-
-.form-intervention label input {
-    width : 100%;
-    height : 40px;
-    margin-top : 5px;
-    margin-bottom : 5px;
-}
-.form-intervention label select {
-    width : 100%;
-    height : 40px;
-    margin-top : 5px;
-    margin-bottom : 5px;
-}
-
-
-
-.form-intervention button {
-    padding: 10px;
-    width : 40%;
-    height : 40px;
-    color: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 0px;
-    border-radius: 5px;
-}
-
-.valider {
-    background-color: #04AA6D;
-    cursor: pointer;
-}
-
-.anuller {
-    background-color: #f00e06;
-    cursor: pointer;
-}
-
-.start {
-    color: red;
-}
-
 </style>
