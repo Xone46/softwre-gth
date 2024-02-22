@@ -1,6 +1,6 @@
 <template>
   <div class="interventions">
-    <FormIntervention v-if="flagFormIntervention" @anuller="closeFormIntervention()" @table="closeFormIntervention()"/>
+    <FormIntervention v-if="flagFormIntervention" @anuller="closeFormIntervention()" @table="closeFormIntervention()" />
     <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention()" @apercu="apercu" />
     <TableObservateur v-if="flagTableObservateur" :interventionId="interventionId" />
   </div>
@@ -16,35 +16,39 @@ export default {
   name: 'InterventionsView',
   data() {
     return {
-        flagFormIntervention : false,
-        flagTableIntervention : true,
-        flagTableObservateur : true,
-        interventionId : null
+      flagFormIntervention: false,
+      flagTableIntervention: true,
+      flagTableObservateur: true,
+      interventionId: null
     }
   },
 
-  components : {
+  components: {
     FormIntervention,
     TableIntervention,
     TableObservateur
   },
 
-  methods : {
+  methods: {
 
     apercu(value) {
       this.interventionId = value;
+      this.flagTableObservateur = false;
+      this.$nextTick(() => {
+        this.flagTableObservateur = true;
+      });
     },
 
     openFormIntervention() {
-        this.flagTableIntervention = false;
-        this.flagFormIntervention = true;
-        this.flagTableObservateur = false;
+      this.flagTableIntervention = false;
+      this.flagFormIntervention = true;
+      this.flagTableObservateur = false;
     },
 
     closeFormIntervention() {
-        this.flagTableIntervention = true;
-        this.flagFormIntervention = false;
-        this.flagTableObservateur = true;
+      this.flagTableIntervention = true;
+      this.flagFormIntervention = false;
+      this.flagTableObservateur = true;
     }
 
   },
@@ -55,15 +59,14 @@ export default {
 </script>
 
 <style scoped>
-    .interventions {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-    }
-
+.interventions {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
 </style>

@@ -27,7 +27,6 @@
 
       interventions() {
         this.$router.push("/interventions").catch(()=>{});
-
       },
 
       transferer() {

@@ -22,7 +22,7 @@
                     <th>Métier</th>
                 </tr>
                 <tr v-for="intervention in interventions" :key="intervention._id">
-                    <td><input type="checkbox" v-model="interventionsSelect" :value="intervention._id" @input="event => this.text = event.target.value"></td>
+                    <td><input type="checkbox" v-model="interventionsSelect" :value="intervention._id"></td>
                     <td>{{ new Date(intervention.date).toLocaleDateString() }}</td>
                     <td>{{ intervention.numeroAffaire }}</td>
                     <td>{{ intervention.site }}</td>
@@ -75,7 +75,9 @@ export default {
     methods: {
 
         ajouter() {
-            this.$router.push("/observateurs").catch(() => { });
+            if (this.interventionsSelect.length === 1) {
+                this.$router.push({ name: "observateurs", params: { id: this.interventionsSelect[0] }})
+            }
         },
 
         apercu() {

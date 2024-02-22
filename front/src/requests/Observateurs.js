@@ -5,10 +5,10 @@ const VUE_APP_API_BASE_URL= "http://localhost:3000/api/v1";
 
 class Observateurs {
 
-    static create(Observateurs) {
+    static create(observateur) {
         return new Promise((resolve, reject) => {
             axios.post(`${VUE_APP_API_BASE_URL}/observateurs/create`,
-            Observateurs,
+            observateur,
             {
                 headers: {
                      'Content-Type': 'application/json'

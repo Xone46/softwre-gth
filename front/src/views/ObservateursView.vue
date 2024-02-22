@@ -1,7 +1,7 @@
 <template>
     <div class="observateurs">
 
-        <h1>Nouvel Appareil, Equipement, Ou Installation</h1>
+        <h3>Nouvel Appareil, Equipement, Ou Installation</h3>
 
         <!-- start errors -->
         <ul v-if="flagError">
@@ -14,64 +14,94 @@
             <input type="date" v-model="observateur.date">
         </label>
 
-        <label for="Numéro d'affaire">
-            <h3>Numéro d'affaire : <span class="start" v-if="interventions.numeroAffaire.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.numeroAffaire">
+        <label for="Type de Vérification">
+            <h3>Type de Vérification : <span class="start" v-if="observateur.typeVerification.length == 0">*</span></h3>
+            <select v-model="observateur.typeVerification">
+                <option v-for="veification in verifications" :key="veification.name">{{ veification.name }}</option>
+            </select>
         </label>
 
-        <label for="Numéro d'affaire">
-            <h3>Numéro de Site : <span class="start" v-if="interventions.site.length == 0">*</span></h3>
-            <input type="number" v-model="interventions.site">
-        </label>
-
-        <label for="Etablissement">
-            <h3>Établissement : <span class="start" v-if="interventions.etablissement.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.etablissement">
-        </label>
-
-        <label for="Repère">
-            <h3>Repère : <span class="start" v-if="interventions.repere.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.repere">
-        </label>
-
-        <label for="Adresse">
-            <h3>Adresse : <span class="start" v-if="interventions.adresse.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.adresse">
-        </label>
-
-        <label for="Code Postal">
-            <h3>Code Postal : <span class="start" v-if="interventions.codePostal.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.codePostal">
-        </label>
-
-        <label for="Ville">
-            <h3>Ville : <span class="start" v-if="interventions.ville.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.ville">
-        </label>
-
-        <label for="Métier">
-            <h3>Métier : <span class="start" v-if="interventions.metier.length == 0">*</span></h3>
-            <select v-model="interventions.metier">
-                <option v-for="metier in metiers" :key="metier">{{ metier }}</option>
+        <label for="Catégorie d’Appareil">
+            <h3>Catégorie d'Appareil : <span class="start" v-if="observateur.categorieAppareil.length == 0">*</span></h3>
+            <select v-model="observateur.categorieAppareil">
+                <option v-for="appareil in appareils" :key="appareil">{{ appareil }}</option>
             </select>
         </label>
 
 
+        <label for="Constructeur">
+            <h3>Constructeur : <span class="start" v-if="observateur.constructeur.length == 0">*</span></h3>
+            <input type="text" v-model="observateur.constructeur">
+        </label>
 
+        <label for="N° de Série ">
+            <h3>N° de Série : <span class="start" v-if="observateur.numeroSerie.length == 0">*</span></h3>
+            <input type="text" v-model="observateur.numeroSerie">
+        </label>
 
-        <button class="valider" @click="valider">Valider</button>
-        <button class="anuller" @click="$emit('anuller')">Anuller</button>
+        <label for="Etablissement">
+            <h3> N° Interne : <span class="start" v-if="observateur.numeroInterne.length == 0">*</span></h3>
+            <input type="text" v-model="observateur.numeroInterne">
+        </label>
+
+        <label for="Localisation">
+            <h3>Localisation : <span class="start" v-if="observateur.localisation.length == 0">*</span></h3>
+            <input type="text" v-model="observateur.localisation">
+        </label>
+
+        <label for="Marquage">
+            <h3>Marquage : <span class="start" v-if="observateur.marquage.length == 0">*</span></h3>
+            <select v-model="observateur.marquage">
+                <option v-for="marque in marquage" :key="marque">{{ marque }}</option>
+            </select>
+        </label>
+
+        <button class="valider" @click="valider()">Valider</button>
+        <button class="anuller" @click="anuller()">Anuller</button>
+
     </div>
 </template>
   
 <script>
+import Observateurs from '@/requests/Observateurs';
+
 
 
 export default {
     name: 'ObservateursView',
     data() {
         return {
+            errors : [],
+            flagError : false,
+            observateur : {
+                interventionId : null,
+                date : "",
+                typeVerification : "",
+                categorieAppareil : "",
+                constructeur : "",
+                numeroSerie : "",
+                numeroInterne : "",
+                localisation : "",
+                marquage : "",
+            },
 
+            marquage : [
+                "Appareil CE",
+                "Appareil Non CE",
+                "Appareil Epsilon (uniquement pour les anciens chariots automoteurs)",
+                "Sans objet (Pour les vérifications périodiques des accessoires de levage et Equipements de travail)"
+            ],
+
+            verifications : [
+                { status : false, name : "Mise en service" },
+                { status : false, name : "Préalable à la mise en service à la suite d'un démontage et remontage" },
+                { status : false, name : "Préalable à la remise en service pour autre motif" },
+                { status : false, name : "Périodique" }
+            ],
+
+            appareils : [
+                "Accessoires de levage - Palonniers (2)"
+            ]
         }
     },
 
@@ -80,10 +110,26 @@ export default {
 
     methods: {
 
+        valider() {
+            console.log(this.observateur)
+            Observateurs.create(this.observateur)
+            .then(() => {
+                this.$router.push("/interventions").catch(()=>{});
+            })
+            .catch((error) => {
+                this.errors = [];
+                this.flagError = true;
+                this.errors = error.response.data.errors;
+            });
+        },
 
+        anuller() {
+            this.$router.push("/interventions").catch(()=>{});
+        }
     },
 
     created() {
+        this.observateur.interventionId = this.$route.params.id;
     }
 }
 </script>
@@ -97,6 +143,70 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
 }
+
+.observateurs ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.observateurs label {
+    width :80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items : flex-start; 
+}
+.observateurs h3 {
+    margin: 3px;
+}
+
+.observateurs label input {
+    width : 100%;
+    height : 40px;
+    margin-top : 5px;
+    margin-bottom : 5px;
+}
+.observateurs label select {
+    width : 100%;
+    height : 40px;
+    margin-top : 5px;
+    margin-bottom : 5px;
+}
+
+
+
+.observateurs button {
+    padding: 10px;
+    width : 40%;
+    height : 40px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0px;
+    border-radius: 5px;
+}
+
+.valider {
+    background-color: #04AA6D;
+    cursor: pointer;
+}
+
+.anuller {
+    background-color: #f00e06;
+    cursor: pointer;
+}
+
+.start {
+    color: red;
+}
+
+
+
 </style>

@@ -22,18 +22,18 @@
                 <tr v-for="observateur in observateurs" :key="observateur._id">
                     <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
                     <td>{{ new Date(observateur.date).toLocaleDateString() }}</td>
-                    <td>{{ observateur.type }}</td>
-                    <td>{{ observateur.mission }}</td>
+                    <td>{{ observateur.typeVerification }}</td>
+                    <td>{{ observateur.categorieAppareil }}</td>
                     <td>{{ observateur.constructeur }}</td>
                     <td>{{ observateur.numeroSerie }}</td>
                     <td>{{ observateur.numeroInterne }}</td>
                     <td>{{ observateur.localisation }}</td>
-                    <td>{{ observateur.contrôle }}</td>
+                    <td>{{ observateur.marquage }}</td>
                 </tr>
             </table>
         </div>
         <div class="actions">
-            <button v-if="!flagInvertesment">Editer</button>
+            <button v-if="!flagInvertesment" @click="editer()">Editer</button>
             <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
         </div>
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
@@ -50,7 +50,6 @@ export default {
     name: 'table-observateur',
     data() {
         return {
-            text : null,
             flagVerified: false,
             observateurs: [],
             observateursSelect: [],
@@ -72,6 +71,11 @@ export default {
 
     methods: {
 
+        editer() {
+            if (this.observateursSelect.length === 1) {
+                this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0] }})
+            }
+        },
 
         supprimer() {
 
@@ -217,6 +221,7 @@ export default {
     border: 0px;
     cursor: pointer;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 .actions button:nth-child(1) {
