@@ -19,6 +19,7 @@
                     <th>Adresse</th>
                     <th>Code Postal</th>
                     <th>Ville</th>
+                    <th>Pays</th>
                     <th>Métier</th>
                 </tr>
                 <tr v-for="intervention in interventions" :key="intervention._id">
@@ -31,6 +32,7 @@
                     <td>{{ intervention.adresse }}</td>
                     <td>{{ intervention.codePostal }}</td>
                     <td>{{ intervention.ville }}</td>
+                    <td>{{ intervention.pays }}</td>
                     <td>{{ intervention.metier }}</td>
                 </tr>
             </table>

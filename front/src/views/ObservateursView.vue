@@ -56,6 +56,11 @@
             </select>
         </label>
 
+        <label for="Accompagnateur">
+            <h3>Accompagnateur : <span class="start" v-if="observateur.accompagnateur.length == 0">*</span></h3>
+            <input type="text" v-model="observateur.accompagnateur">
+        </label>
+
         <button class="valider" @click="valider()">Valider</button>
         <button class="anuller" @click="anuller()">Anuller</button>
 
@@ -83,6 +88,7 @@ export default {
                 numeroInterne : "",
                 localisation : "",
                 marquage : "",
+                accompagnateur :"",
             },
 
             marquage : [
@@ -111,7 +117,6 @@ export default {
     methods: {
 
         valider() {
-            console.log(this.observateur)
             Observateurs.create(this.observateur)
             .then(() => {
                 this.$router.push("/interventions").catch(()=>{});

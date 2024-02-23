@@ -17,6 +17,7 @@
                     <th>N° De Série</th>
                     <th>N° Interne</th>
                     <th>Localisation</th>
+                    <th>Accompagnateur</th>
                     <th>Contrôle</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
@@ -28,6 +29,7 @@
                     <td>{{ observateur.numeroSerie }}</td>
                     <td>{{ observateur.numeroInterne }}</td>
                     <td>{{ observateur.localisation }}</td>
+                    <td>{{ observateur.accompagnateur }}</td>
                     <td>{{ observateur.marquage }}</td>
                 </tr>
             </table>
@@ -73,7 +75,13 @@ export default {
 
         editer() {
             if (this.observateursSelect.length === 1) {
-                this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0] }})
+
+                for (let i = 0; i < this.observateurs.length; i++) {
+                    if (this.observateurs[i]._id == this.observateursSelect[0]) {
+                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], categorieAppareil: this.observateurs[i].categorieAppareil } });
+                        break;
+                    }
+                }
             }
         },
 

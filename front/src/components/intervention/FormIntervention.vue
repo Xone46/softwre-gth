@@ -49,6 +49,11 @@
             <input type="text" v-model="interventions.ville">
         </label>
 
+        <label for="Pays">
+            <h3>Pays : <span class="start" v-if="interventions.pays.length == 0">*</span></h3>
+            <input type="text" v-model="interventions.pays">
+        </label>
+
         <label for="Métier">
             <h3>Métier : <span class="start" v-if="interventions.metier.length == 0">*</span></h3>
             <select v-model="interventions.metier">
@@ -85,6 +90,7 @@ export default {
                 adresse : "",
                 codePostal : "",
                 ville : "",
+                pays : "",
                 metier : ""
             },
 
