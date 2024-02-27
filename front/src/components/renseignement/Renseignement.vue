@@ -1,7 +1,9 @@
 <template>
+
     <div>
 
         <table class="renseignements">
+
             <tr>
                 <th>Constructeur</th>
             </tr>
@@ -172,7 +174,7 @@
 
         </table>
 
-        <div class="sauvegarde" v-if="flagRenseignements">
+        <div class="sauvegarde">
             <button @click="sauvegarde">Sauvegarde de Secours</button>
         </div>
 
@@ -184,14 +186,9 @@
 <script>
 import Renseignement from "@/requests/Renseignement"
 export default {
-    name: 'Renseignement',
+    name: 'renseignement-component',
     data() {
         return {
-            flagRenseignements: false,
-            formulaire: {
-                observateurId: null,
-                categorieAppareil: null
-            },
             renseignement: {
                 typeConstructeur: "",
                 anneeMiseService: "",
@@ -257,8 +254,6 @@ export default {
                 { id: 10023, titre: "Non Présenté", status: false },
             ],
 
-
-
         }
     },
 
@@ -267,9 +262,6 @@ export default {
 
     methods: {
 
-        renseignements() {
-            this.flagRenseignements = true;
-        },
 
         sauvegarde() {
 
@@ -288,8 +280,7 @@ export default {
     },
 
     created() {
-        this.formulaire.observateurId = this.$route.params.id;
-        this.formulaire.categorieAppareil = this.$route.params.categorieAppareil;
+
     }
 }
 </script>
@@ -299,6 +290,9 @@ export default {
 .renseignements {
     width: 100%;
     margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
 }
 
 

@@ -11,16 +11,18 @@
 
         <table class="menu">
             <tr>
-                <th @click="renseignements()">RENSEIGNEMENTS GENERAUX</th>
+                <th @click="renseignement()">RENSEIGNEMENTS GENERAUX</th>
                 <th @click="description()">DESCRIPTION DE L'APPAREIL VERIFIE</th>
-                <th @click="examens()">EXAMENS ET ESSAIS DE L'APPAREIL</th>
+                <th @click="examen()">EXAMENS ET ESSAIS DE L'APPAREIL</th>
                 <th @click="conclusion()">CONCLUSION</th>
                 <th @photo="photo()">PHOTO</th>
             </tr>
         </table>
 
-        <div class="parent-renseignements" >
+        <div class="content" >
             <Renseignement v-if="flagRenseignements" />
+            <Description v-if="flagDescription"/>
+            <Examen v-if="flagExamen"/>
         </div>
 
     </div>
@@ -28,11 +30,16 @@
   
 <script>
 import Renseignement from "@/components/renseignement/Renseignement"
+import Description from "@/components/renseignement/Description.vue"
+import Examen from "@/components/renseignement/Examen.vue"
+
 export default {
     name: 'FormulaireView',
     data() {
         return {
             flagRenseignements : false,
+            flagDescription : false,
+            flagExamen : false,
             formulaire : {
                 observateurId : "",
                 categorieAppareil : ""
@@ -41,12 +48,29 @@ export default {
     },
 
     components: {
-        Renseignement
+        Renseignement,
+        Description,
+        Examen
     },
 
     methods: {
-        renseignements() {
+        
+        renseignement() {
             this.flagRenseignements = true;
+            this.flagDescription = false;
+            this.flagExamen = false;
+        },
+
+        description() {
+            this.flagRenseignements = false;
+            this.flagDescription = true;
+            this.flagExamen = false;
+        },
+
+        examen() {
+            this.flagRenseignements = false;
+            this.flagDescription = false;
+            this.flagExamen = true;
         }
     },
 
@@ -97,6 +121,15 @@ th {
     border-collapse: collapse;
     padding: 10px;
     cursor: pointer;
+}
+
+.content {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 
