@@ -15,14 +15,18 @@
                 <th @click="description()">DESCRIPTION DE L'APPAREIL VERIFIE</th>
                 <th @click="examen()">EXAMENS ET ESSAIS DE L'APPAREIL</th>
                 <th @click="conclusion()">CONCLUSION</th>
-                <th @photo="photo()">PHOTO</th>
+                <th @click="photo()">PHOTO</th>
             </tr>
         </table>
 
         <div class="content" >
+
             <Renseignement v-if="flagRenseignements" />
-            <Description v-if="flagDescription"/>
-            <Examen v-if="flagExamen"/>
+            <Description v-if="flagDescription" />
+            <Examen v-if="flagExamen" />
+            <Photo v-if="flagPhoto" />
+            <Conclusion v-if="flagConclusion" />
+
         </div>
 
     </div>
@@ -32,6 +36,8 @@
 import Renseignement from "@/components/renseignement/Renseignement"
 import Description from "@/components/renseignement/Description.vue"
 import Examen from "@/components/renseignement/Examen.vue"
+import Photo from "@/components/renseignement/Photo.vue"
+import Conclusion from "@/components/renseignement/Conclusion.vue"
 
 export default {
     name: 'FormulaireView',
@@ -40,6 +46,8 @@ export default {
             flagRenseignements : false,
             flagDescription : false,
             flagExamen : false,
+            flagPhoto : false,
+            flagConclusion : false,
             formulaire : {
                 observateurId : "",
                 categorieAppareil : ""
@@ -50,7 +58,9 @@ export default {
     components: {
         Renseignement,
         Description,
-        Examen
+        Examen,
+        Photo,
+        Conclusion
     },
 
     methods: {
@@ -59,18 +69,40 @@ export default {
             this.flagRenseignements = true;
             this.flagDescription = false;
             this.flagExamen = false;
+            this.flagPhoto = false;
+            this.flagConclusion = false;
         },
 
         description() {
             this.flagRenseignements = false;
             this.flagDescription = true;
             this.flagExamen = false;
+            this.flagPhoto = false;
+            this.flagConclusion = false;
         },
 
         examen() {
             this.flagRenseignements = false;
             this.flagDescription = false;
             this.flagExamen = true;
+            this.flagPhoto = false;
+            this.flagConclusion = false;
+        },
+
+        conclusion() {
+            this.flagRenseignements = false;
+            this.flagDescription = false;
+            this.flagExamen = false;
+            this.flagPhoto = false;
+            this.flagConclusion = true;
+        },
+
+        photo() {
+            this.flagRenseignements = false;
+            this.flagDescription = false;
+            this.flagExamen = false;
+            this.flagPhoto = true;
+            this.flagConclusion = false;
         }
     },
 

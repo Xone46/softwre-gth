@@ -2,84 +2,390 @@
     <div class="examen">
 
         <table>
-
             <tr>
-                <td>ACCES INSTALLES A DEMEURE</td>
-                <td>ACCES INSTALLES A DEMEURE</td>
-                <td>BE</td>
-                <td>FC</td>
-                <td>SA</td>
-                <td>NV</td>
-                <td>SO</td>
-                <td>O</td>
+                <th>ACCES INSTALLES A DEMEURE</th>
+                <th>ACCES INSTALLES A DEMEURE</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
+            <tr v-for="(item, index) in a" :key="index">
+                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkA(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkA(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkA(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkA(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkA(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkA(index, 'o')">
+                </td>
+            </tr>
+        </table>
 
+        <table>
             <tr>
-                <td>CHEMINS DE ROULEMENT / SUPPORTS</td>
-                <td></td>
-                <td></td>
+                <th>CHEMINS DE ROULEMENT / SUPPORTS</th>
+                <th>CHEMINS DE ROULEMENT / SUPPORTS</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
+            <tr v-for="(item, index) in b" :key="index">
+                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkB(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkB(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkB(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkB(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkB(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkB(index, 'o')">
+                </td>
+            </tr>
+        </table>
 
+        <table>
             <tr>
-                <td>CHARPENTE ET OSSATURE DE L'APPAREIL</td>
-                <td></td>
-                <td></td>
+                <th>CHARPENTE ET OSSATURE DE L'APPAREIL</th>
+                <th>CHARPENTE ET OSSATURE DE L'APPAREIL</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
+            <tr v-for="(item, index) in c" :key="index">
+                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkC(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkC(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkC(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkC(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkC(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkC(index, 'o')">
+                </td>
+            </tr>
+        </table>
 
+        <table>
             <tr>
-                <td>SOURCES D'ENERGIE</td>
-                <td></td>
-                <td></td>
+                <th>SOURCES D'ENERGIE</th>
+                <th>SOURCES D'ENERGIE</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
+            <tr v-for="(item, index) in d" :key="index">
+                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkD(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkD(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkD(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkD(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkD(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkD(index, 'o')">
+                </td>
+            </tr>
+        </table>
 
+        <table>
             <tr>
-                <td>ECLAIRAGE INCORPORE A L'APPAREIL</td>
-                <td></td>
-                <td></td>
+                <th>ECLAIRAGE INCORPORE A L'APPAREIL</th>
+                <th>ECLAIRAGE INCORPORE A L'APPAREIL</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
+            <tr v-for="(item, index) in e" :key="index">
+                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkE(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkE(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkE(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkE(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkE(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkE(index, 'o')">
+                </td>
+            </tr>
+        </table>
 
+        <table>
             <tr>
-                <td>POSTE DE CONDUITE</td>
-                <td></td>
-                <td></td>
+                <th>POSTE DE CONDUITE</th>
+                <th>POSTE DE CONDUITE</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
+            <tr v-for="(item, index) in f" :key="index">
+                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkF(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkF(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkF(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkF(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkF(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkF(index, 'o')">
+                </td>
+            </tr>
+        </table>
 
+        <table>
             <tr>
-                <td>POSTE DE CONDUITE</td>
-                <td></td>
-                <td></td>
+                <th>ORGANES DE SERVICE ET DE MANOEUVRE</th>
+                <th>ORGANES DE SERVICE ET DE MANOEUVRE</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
+            <tr v-for="(item, index) in g" :key="index">
+                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkG(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkG(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkG(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkG(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkG(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkG(index, 'o')">
+                </td>
+            </tr>
+        </table>
 
+        <table>
             <tr>
-                <td>ORGANES DE SERVICE ET DE MANOEUVRE</td>
-                <td></td>
-                <td></td>
+                <th>SUSPENTES TAMBOURS POULIES DISPOSITIFS DE PREHENSION</th>
+                <th>SUSPENTES TAMBOURS POULIES DISPOSITIFS DE PREHENSION</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
+            <tr v-for="(item, index) in h" :key="index">
+                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkH(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkH(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkH(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkH(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkH(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkH(index, 'o')">
+                </td>
+            </tr>
+        </table>
 
+
+        <table>
             <tr>
-                <td>SUSPENTES TAMBOURS POULIES  DISPOSITIFS DE PREHENSION</td>
-                <td></td>
-                <td></td>
+                <th>MECANISMES</th>
+                <th>MECANISMES</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
+            <tr v-for="(item, index) in i" :key="index">
+                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkI(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkI(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkI(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkI(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkI(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkI(index, 'o')">
+                </td>
+            </tr>
+        </table>
 
+        <table>
             <tr>
-                <td>MECANISMES</td>
-                <td></td>
-                <td></td>
+                <th>DISPOSITIFS DE SECURITE</th>
+                <th>DISPOSITIFS DE SECURITE</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
+            <tr v-for="(item, index) in j" :key="index">
+                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkJ(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkJ(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkJ(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkJ(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkJ(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkJ(index, 'o')">
+                </td>
+            </tr>
+        </table>
 
+
+        <table>
             <tr>
-                <td>DISPOSITIFS DE SECURITE</td>
-                <td></td>
-                <td></td>
+                <th>DISPOSITIFS DE SECURITE</th>
+                <th>DISPOSITIFS DE SECURITE</th>
+                <th>BE</th>
+                <th>FC</th>
+                <th>SA</th>
+                <th>NV</th>
+                <th>SO</th>
+                <th>O</th>
             </tr>
-
-            <tr>
-                <td>PRESCRIPTIONS DIVERSES</td>
+            <tr v-for="(item, index) in k" :key="index">
                 <td></td>
-                <td></td>
+                <td>{{ item.titre }}</td>
+                <td>
+                    <input type="checkbox" v-model="item.be" @change="checkK(index, 'be')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.fc" @change="checkK(index, 'fc')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.sa" @change="checkK(index, 'sa')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.nv" @change="checkK(index, 'nv')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.so" @input="checkK(index, 'so')">
+                </td>
+                <td>
+                    <input type="checkbox" v-model="item.o" @input="checkK(index, 'o')">
+                </td>
             </tr>
-
         </table>
 
         <div class="sauvegarde">
@@ -88,26 +394,100 @@
 
 
     </div>
-
 </template>
   
 <script>
-// import Descriptions from "@/requests/Descriptions"
+import Examens from "@/requests/Examens"
 export default {
     name: 'renseignement-component',
     data() {
         return {
-            
-            a : [
-                { titre : "- Accès a la cabine et au poste de conduite", BE : false ,FC : false, SA : false, NV: false, SO : false, O : false },
-                { titre : "- Accès aux chemins de roulement", BE : false ,FC : false, SA : false, NV: false, SO : false, O : false },
-                { titre : "- Autres accès pour entretien et vérification", BE : false ,FC : false, SA : false, NV: false, SO : false, O : false },
+
+            a: [
+                { titre: "- Accès a la cabine et au poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Accès aux chemins de roulement", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Autres accès pour entretien et vérification", be: false, fc: false, sa: false, nv: false, so: false, o: false },
             ],
 
-            b : [
-                 { titre : "- Rails et / ou poutres de roulement, fixations", BE : false ,FC : false, SA : false, NV: false, SO : false, O : false },
-                 { titre : "- Poteaux, corbeaux, potence, ancrages", BE : false ,FC : false, SA : false, NV: false, SO : false, O : false },
-                 { titre : "- Butoirs, amortisseurs", BE : false ,FC : false, SA : false, NV: false, SO : false, O : false }
+            b: [
+                { titre: "- Rails et / ou poutres de roulement, fixations", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Poteaux, corbeaux, potence, ancrages", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Butoirs, amortisseurs", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+            ],
+
+            c: [
+                { titre: "- Poutres, sommiers, palées...", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Chariot, galets, guidages", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+            ],
+
+            d: [
+                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+            ],
+
+            e: [
+                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+            ],
+
+            f: [
+                { titre: "- Constitution, fixation, plancher", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Protection contre les chutes de hauteur de l'opérateur à partir du poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Visibilité (vitrage, essuie-glaces)", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Chauffage", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Absence de stockage de chiffons, déchets, huile ou toute autre matière inflammable en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Extincteur en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Evacuation de secours", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Siège", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Eclairage", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+            ],
+
+            g: [
+                { titre: "- Mise en marche- Arrêt normal – Sélecteur", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Identification des organes de service", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Retour automatique au point neutre des commandes", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Autres arrêts accessibles (urgence….)", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Avertisseur sonore, lumineux", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Indicateurs", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+            ],
+
+            h: [
+                { titre: "- Suspentes", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Attaches", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Moufles, crochets, linguet de sécurité ou dispositifs équivalents", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Autres dispositifs de préhension (bennes, grappins, électro-aimants…)", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+            ],
+
+            i: [
+                { titre: "- Groupes moto-réducteurs", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Organes de transmission, accouplements", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Freins des mouvements concourant au levage", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Limitation de la vitesse (absence d'emballement) ", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Freins des mouvements horizontaux", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Immobilisation hors service", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Autres freins (Secours, sécurité...)", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Protection des organes mobiles de transmission", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+            ],
+
+            j: [
+                { titre: "- Limiteurs de course haute ou mise en butée", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Autres limiteurs de course/hors course", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Limiteur de charge, de capacité (Obligatoire pour appareils CE si capacité >= 1 Tonne)", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Dispositifs anti collision ou équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+            ],
+
+            k: [
+                { titre: "- Plaque constructeur ", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Affichage capacité, tableau des charges", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Consignes de sécurité et d'utilisation (lisibilité)", be: false, fc: false, sa: false, nv: false, so: false, o: false }
             ]
         }
     },
@@ -117,16 +497,169 @@ export default {
 
     methods: {
 
+        checkA(index, type) {
+
+            //change all to false
+            this.a[index]["be"] = false;
+            this.a[index]["fc"] = false;
+            this.a[index]["sa"] = false;
+            this.a[index]["nv"] = false;
+            this.a[index]["so"] = false;
+            this.a[index]["o"] = false;
+
+            // select new value
+            this.a[index][type] = !this.a[index][type];
+        },
+
+        checkB(index, type) {
+
+            //change all to false
+            this.b[index]["be"] = false;
+            this.b[index]["fc"] = false;
+            this.b[index]["sa"] = false;
+            this.b[index]["nv"] = false;
+            this.b[index]["so"] = false;
+            this.b[index]["o"] = false;
+
+            // select new value
+            this.b[index][type] = !this.b[index][type];
+        },
+
+        checkC(index, type) {
+
+            //change all to false
+            this.c[index]["be"] = false;
+            this.c[index]["fc"] = false;
+            this.c[index]["sa"] = false;
+            this.c[index]["nv"] = false;
+            this.c[index]["so"] = false;
+            this.c[index]["o"] = false;
+
+            // select new value
+            this.c[index][type] = !this.c[index][type];
+        },
+
+        checkD(index, type) {
+
+            //change all to false
+            this.d[index]["be"] = false;
+            this.d[index]["fc"] = false;
+            this.d[index]["sa"] = false;
+            this.d[index]["nv"] = false;
+            this.d[index]["so"] = false;
+            this.d[index]["o"] = false;
+
+            // select new value
+            this.d[index][type] = !this.d[index][type];
+        },
+
+        checkE(index, type) {
+
+            //change all to false
+            this.e[index]["be"] = false;
+            this.e[index]["fc"] = false;
+            this.e[index]["sa"] = false;
+            this.e[index]["nv"] = false;
+            this.e[index]["so"] = false;
+            this.e[index]["o"] = false;
+
+            // select new value
+            this.e[index][type] = !this.e[index][type];
+        },
+
+        checkF(index, type) {
+
+            //change all to false
+            this.f[index]["be"] = false;
+            this.f[index]["fc"] = false;
+            this.f[index]["sa"] = false;
+            this.f[index]["nv"] = false;
+            this.f[index]["so"] = false;
+            this.f[index]["o"] = false;
+
+            // select new value
+            this.f[index][type] = !this.f[index][type];
+        },
+
+        checkG(index, type) {
+
+            //change all to false
+            this.g[index]["be"] = false;
+            this.g[index]["fc"] = false;
+            this.g[index]["sa"] = false;
+            this.g[index]["nv"] = false;
+            this.g[index]["so"] = false;
+            this.g[index]["o"] = false;
+
+            // select new value
+            this.g[index][type] = !this.g[index][type];
+        },
+        
+        checkH(index, type) {
+
+            //change all to false
+            this.h[index]["be"] = false;
+            this.h[index]["fc"] = false;
+            this.h[index]["sa"] = false;
+            this.h[index]["nv"] = false;
+            this.h[index]["so"] = false;
+            this.h[index]["o"] = false;
+
+            // select new value
+            this.h[index][type] = !this.h[index][type];
+        },
+
+        checkI(index, type) {
+
+            //change all to false
+            this.i[index]["be"] = false;
+            this.i[index]["fc"] = false;
+            this.i[index]["sa"] = false;
+            this.i[index]["nv"] = false;
+            this.i[index]["so"] = false;
+            this.i[index]["o"] = false;
+
+            // select new value
+            this.i[index][type] = !this.i[index][type];
+        },
+
+        checkJ(index, type) {
+
+            //change all to false
+            this.j[index]["be"] = false;
+            this.j[index]["fc"] = false;
+            this.j[index]["sa"] = false;
+            this.j[index]["nv"] = false;
+            this.j[index]["so"] = false;
+            this.j[index]["o"] = false;
+
+            // select new value
+            this.j[index][type] = !this.j[index][type];
+        },
+
+        checkK(index, type) {
+
+            //change all to false
+            this.k[index]["be"] = false;
+            this.k[index]["fc"] = false;
+            this.k[index]["sa"] = false;
+            this.k[index]["nv"] = false;
+            this.k[index]["so"] = false;
+            this.k[index]["o"] = false;
+
+            // select new value
+            this.k[index][type] = !this.k[index][type];
+        },
 
         sauvegarde() {
 
-            // Descriptions.create(this.description)
-            // .then((result) => {
-            //     console.log(result)
-            // })
-            // .catch((error) => {
-            //     console.log(error);
-            // });
+            Examens.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k)
+            .then((result) => {
+                console.log(result)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
         }
 
@@ -135,13 +668,12 @@ export default {
     },
 
     created() {
-        
+
     }
 }
 </script>
   
 <style scoped>
-
 .examen {
     margin-top: 10px;
     margin-bottom: 100px;
@@ -150,11 +682,19 @@ export default {
 
 table {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 0;
     margin-right: 0;
-    margin-bottom: 0;
+    margin-bottom: 20px;
+    border: 1px solid #aaa;
 }
+
+table tr th,
+table tr td {
+    text-align: left;
+}
+
+
 
 
 
@@ -176,9 +716,4 @@ table {
     border-radius: 5px;
     cursor: pointer;
 }
-
-
-
-
-
 </style>
