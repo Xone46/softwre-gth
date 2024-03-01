@@ -57,6 +57,22 @@ class Observateurs {
         })
     }
 
+    static apercu(observateurId) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/apercu/${observateurId}`,{
+                headers: {
+                     'Content-Type': 'application/json'
+                 }
+             })
+            .then(response => {
+                    resolve(response);
+            })
+            .catch(error => {
+                    reject(error);
+            });
+        })
+    }
+
     static delete(observateurId) {
         return new Promise((resolve, reject) => {
             axios.delete(`${VUE_APP_API_BASE_URL}/observateurs/${observateurId}`,{

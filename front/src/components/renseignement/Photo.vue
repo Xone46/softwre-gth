@@ -25,17 +25,19 @@ export default {
     components: {
     },
 
+    props : {
+        observateurId : String
+    },
+
     methods: {
 
         previewFile() {
-            console.log("achraf")
             this.file = this.$refs.file.files[0];
-            console.log(this.file);
         },
 
 
         sauvegarde() {
-            Photos.create(this.file)
+            Photos.create(this.file, this.observateurId, this.observateurId)
             .then((result) => {
                 console.log(result)
             })

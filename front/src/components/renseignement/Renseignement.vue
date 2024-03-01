@@ -189,6 +189,7 @@ export default {
     name: 'renseignement-component',
     data() {
         return {
+
             renseignement: {
                 typeConstructeur: "",
                 anneeMiseService: "",
@@ -207,7 +208,8 @@ export default {
                 realiseesMiseEnService: "",
                 epreuveDateDerniereVerficationPeriodique: "",
                 realiseesDateDerniereVerficationPeriodique: "",
-                poidsKg : ""
+                poidsKg : "",
+                observateurId : ""
             },
 
             numeroInternes: [
@@ -257,6 +259,10 @@ export default {
         }
     },
 
+    props : {
+        observateurId : String
+    },
+
     components: {
     },
 
@@ -265,9 +271,10 @@ export default {
 
         sauvegarde() {
 
+            this.renseignement.observateurId = this.observateurId;
             Renseignement.create(this.renseignement)
             .then((result) => {
-                console.log(result)
+                console.log(result);
             })
             .catch((error) => {
                 console.log(error);
@@ -275,11 +282,17 @@ export default {
 
         }
 
-
-
     },
 
     created() {
+
+        Renseignement.select(this.observateurId)
+        .then((result) => {
+            this.renseignement = result.data
+        })
+        .catch((error) => {
+            console.log(error)
+        });
 
     }
 }

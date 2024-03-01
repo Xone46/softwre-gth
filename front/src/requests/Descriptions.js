@@ -55,6 +55,25 @@ class Descriptions {
         })
     }
 
+    static select(observateurId) {
+        
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/descriptions/${observateurId}`,
+            {
+                headers: {
+                     'Content-Type': 'application/json'
+                 }
+             })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
+
 }
 
 export default Descriptions;

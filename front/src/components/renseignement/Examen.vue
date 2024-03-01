@@ -492,6 +492,10 @@ export default {
         }
     },
 
+    props: {
+        observateurId: String
+    },
+
     components: {
     },
 
@@ -594,7 +598,7 @@ export default {
             // select new value
             this.g[index][type] = !this.g[index][type];
         },
-        
+
         checkH(index, type) {
 
             //change all to false
@@ -653,13 +657,13 @@ export default {
 
         sauvegarde() {
 
-            Examens.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k)
-            .then((result) => {
-                console.log(result)
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+            Examens.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k, this.observateurId)
+                .then((result) => {
+                    console.log(result)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
 
         }
 
@@ -668,7 +672,23 @@ export default {
     },
 
     created() {
-
+        Examens.select(this.observateurId)
+            .then((result) => {
+                    this.a = result.data.a;
+                    this.b = result.data.b;
+                    this.c = result.data.c;
+                    this.d = result.data.d;
+                    this.e = result.data.e;
+                    this.f = result.data.f;
+                    this.g = result.data.g;
+                    this.h = result.data.h;
+                    this.i = result.data.i;
+                    this.j = result.data.j;
+                    this.k = result.data.k;
+        })
+            .catch((error) => {
+                console.log(error)
+            });
     }
 }
 </script>

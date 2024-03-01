@@ -294,7 +294,8 @@ export default {
                     levage : "",
                     translation : "",
                     direction : ""
-                }
+                },
+                observateurId : ""
             },
 
             suspentesTable: [
@@ -321,6 +322,11 @@ export default {
         }
     },
 
+    props : {
+        observateurId : String
+    },
+
+
     components: {
     },
 
@@ -328,9 +334,10 @@ export default {
 
         sauvegarde() {
 
+            this.description.observateurId = this.observateurId;
             Descriptions.create(this.description)
             .then((result) => {
-                console.log(result)
+                console.log(result);
             })
             .catch((error) => {
                 console.log(error);
@@ -343,7 +350,25 @@ export default {
     },
 
     created() {
-  
+        Descriptions.select(this.observateurId)
+        .then((result) => {
+
+            
+            this.description.marquage = result.data.marquage;
+            this.description.modeDeLevage = result.data.modeDeLevage;
+            this.description.caracteristiques = result.data.caracteristiques;
+            this.description.levageAuxiliaire = result.data.levageAuxiliaire;
+            this.description.modeInstallation = result.data.modeInstallation;
+            this.description.modeInstallationDetails = result.data.modeInstallationDetails;
+            this.description.modeInstallationDetailsAutre = result.data.modeInstallationDetailsAutre;
+            this.description.sourceDenergie = result.data.sourceDenergie;
+            this.description.observateurId = result.data.observateurId;
+          
+
+        })
+        .catch((error) => {
+            console.log(error)
+        });
     }
 }
 </script>

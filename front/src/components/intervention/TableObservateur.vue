@@ -36,9 +36,18 @@
         </div>
         <div class="actions">
             <button v-if="!flagInvertesment" @click="editer()">Editer</button>
+            <button v-if="!flagInvertesment" @click="apercu()">Aperçu</button>
             <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
         </div>
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
+        <!-- <iframe
+            v-if="flagApercu"
+            src="C:\Users\DELL\Desktop\express-la\src\rapports\65e1a67b9518ef8819c95d0a.docx"
+            frameBorder="0"
+            scrolling="auto"
+            height="100%"
+            width="100%"
+        ></iframe> -->
     </div>
 </template>
   
@@ -52,6 +61,7 @@ export default {
     name: 'table-observateur',
     data() {
         return {
+            flagApercu : false,
             flagVerified: false,
             observateurs: [],
             observateursSelect: [],
@@ -115,6 +125,20 @@ export default {
 
         retirer() {
             this.flagVerified = false;
+        },
+
+        apercu() {
+            this.flagSpinner = true;
+            Observateurs.apercu(this.observateursSelect[0])
+                .then((result) => {
+                    if(result) {
+                        this.flagApercu = true
+                    }
+                    // console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     },
 
@@ -243,4 +267,9 @@ export default {
 .actions button:nth-child(3) {
     background-color: #e21608;
 }
+
+iframe {
+    margin-top: 20px;
+}
+
 </style>

@@ -49,6 +49,10 @@ export default {
     components: {
     },
 
+    props : {
+        observateurId : String
+    },
+
     methods: {
 
         removeTagsConclusion(str) {
@@ -108,7 +112,7 @@ export default {
 
         sauvegarde() {
 
-            console.log(this.poids)
+            console.log(this.poids);
 
             // if(this.flagcommentaire) {
             //     for(let i = 0; i < this.conclusionTableSelected.length; i++) {
@@ -119,7 +123,7 @@ export default {
             //     }
             // }
 
-            Conclusion.create(this.observationsComplémentairesTableSelected, this.poids, this.conclusionTableSelected, this.commentaire)
+            Conclusion.create(this.observationsComplémentairesTableSelected, this.poids, this.conclusionTableSelected, this.commentaire, this.observateurId)
                 .then((result) => {
                     console.log(result)
                 })
@@ -135,6 +139,13 @@ export default {
 
     created() {
 
+        Conclusion.select(this.observateurId)
+        .then((result) => {
+            console.log(result);
+        })
+        .catch((error) => {
+            console.log(error)
+        });
     }
 }
 </script>
