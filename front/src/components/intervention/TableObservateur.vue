@@ -40,14 +40,14 @@
             <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
         </div>
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
-        <!-- <iframe
+        <iframe
             v-if="flagApercu"
-            src="C:\Users\DELL\Desktop\express-la\src\rapports\65e1a67b9518ef8819c95d0a.docx"
+            src="http://exo7.emath.fr/cours/ch_logique.pdf"
             frameBorder="0"
             scrolling="auto"
             height="100%"
             width="100%"
-        ></iframe> -->
+        ></iframe>
     </div>
 </template>
   

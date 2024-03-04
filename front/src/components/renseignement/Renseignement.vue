@@ -1,206 +1,235 @@
 <template>
-
     <div>
+        <div class="descriptions">
+            <table>
 
-        <table class="renseignements">
+                <tr>
+                    <th>Constructeur</th>
+                </tr>
+                <tr>
+                    <td :class="[renseignement.typeConstructeur.length != 0 ? 'saved' : 'not-saved']">Type constructeur
+                        (Plaque):</td>
+                    <td v-html="renseignement.tagTypeConstructeur" @input="getValueTypeConstructeur"></td>
+                </tr>
 
-            <tr>
-                <th>Constructeur</th>
-            </tr>
-            <tr>
-                <td>
-                    <label for="Type constructeur (Plaque)">
-                        <h3>Type constructeur (Plaque) : <span class="start"
-                                v-if="renseignement.typeConstructeur.length == 0">*</span></h3>
-                        <input type="text" v-model="renseignement.typeConstructeur">
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <label for="Année de mise en service (Plaque constructeur)">
-                    <h3>Année de mise en service (Plaque constructeur) : <span class="start"
-                            v-if="renseignement.anneeMiseService.length == 0">*</span></h3>
-                    <input type="text" v-model="renseignement.anneeMiseService">
-                </label>
-            </tr>
-            <tr>
-                <label for="Numéro(s) de série (plaque constructeur)">
-                    <h3>Numéro(s) de série (plaque constructeur) : <span class="start"
-                            v-if="renseignement.numeroSerie.length == 0">*</span></h3>
-                    <input type="text" v-model="renseignement.numeroSerie">
-                </label>
-            </tr>
-            <tr>
-                <label for="Numéro(s) interne(s)">
-                    <h3>Numéro(s) interne(s) : <span class="start" v-if="renseignement.numeroInterne.length == 0">*</span>
-                    </h3>
-                    <select v-model="renseignement.numeroInterne">
-                        <option v-for="item in numeroInternes" :key="item.id">{{ item.titre }}</option>
-                    </select>
-                </label>
-            </tr>
-            <tr v-if="renseignement.numeroInterne == 'Avec Object'">
-                <label for="N°">
-                    <h3>N°: <span class="start" v-if="renseignement.valueNumeroInterne.length == 0">*</span>
-                    </h3>
-                    <input type="text" v-model="renseignement.valueNumeroInterne">
-                </label>
-            </tr>
-            <tr>
-                <label for="Localisation de(s) l'appareil (s) lors de la visite">
-                    <h3>Localisation de(s) l'appareil (s) lors de la visite : <span class="start"
-                            v-if="renseignement.localisation.length == 0">*</span></h3>
-                    <input type="text" v-model="renseignement.localisation">
-                </label>
-            </tr>
+                <tr>
+                    <td :class="[renseignement.anneeMiseService.length != 0 ? 'saved' : 'not-saved']">Année de mise en
+                        service (Plaque constructeur):</td>
+                    <td v-html="renseignement.tagAnneeMiseService" @input="getValueAnneeMiseService"></td>
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.numeroSerie.length != 0 ? 'saved' : 'not-saved']">Numéro(s) de série (plaque
+                        constructeur):</td>
+                    <td v-html="renseignement.tagNumeroSerie" @input="getValueNumeroSerie"></td>
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.numeroInterne.length != 0 ? 'saved' : 'not-saved']">Numéro(s) interne(s):
+                    </td>
+                    <td v-html="renseignement.tagNumeroInterne" @input="getValueNumeroInterne"></td>
+                    {{ renseignement.numeroInterneAutre }}
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.localisation.length != 0 ? 'saved' : 'not-saved']">Localisation de(s)
+                        l'appareil (s) lors de la visite:</td>
+                    <td v-html="renseignement.tagLocalisation" @input="getValueLocalisation"></td>
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.typeAppareil.length != 0 ? 'saved' : 'not-saved']">Numéro(s) interne(s):</td>
+                    <td v-html="renseignement.tagTypeAppareil" @input="getValueTypeAppareil"></td>
+                    {{ renseignement.typeAppareilAutre }}
+                </tr>
+
+
+            </table>
+        </div>
+
+        <!-- <table class="renseignements">
+
+
 
             <tr>
                 <label for="Type d'appareil">
-                    <h3>Type d'appareil : <span class="start" v-if="renseignement.typeAppareil.length == 0">*</span></h3>
-                    <select v-model="renseignement.typeAppareil">
-                        <option v-for="item in typeAppareils" :key="item.id">{{ item.titre }}</option>
+                    <h3>Type d'appareil : <span class="start" v-if=" renseignement.typeAppareil.length == 0 ">*</span></h3>
+                    <select v-model=" renseignement.typeAppareil ">
+                        <option v-for="  item   in   typeAppareils  " :key=" item.id ">{{ item.titre }}</option>
                     </select>
                 </label>
             </tr>
 
-            <tr v-if="renseignement.typeAppareil == 'Autre'">
+            <tr v-if=" renseignement.typeAppareil == 'Autre' ">
                 <label for="Type d'appareil">
-                    <h3>Le nom d'autre Type d'appareil : <span class="start" v-if="renseignement.autreTypeAppareil.length == 0">*</span></h3>
-                    <input type="text" v-model="renseignement.autreTypeAppareil">
+                    <h3>Le nom d'autre Type d'appareil : <span class="start"
+                            v-if=" renseignement.autreTypeAppareil.length == 0 ">*</span></h3>
+                    <input type="text" v-model=" renseignement.autreTypeAppareil ">
                 </label>
             </tr>
 
-            <!-- Start Mise en service -->
+         Start Mise en service -->
 
-            <tr>
-                <label for="Mise en service (Rapport de vérification avant mise ou remise en service)">
-                    <h3>Mise en service (Rapport de vérification avant mise ou remise en service) :<span class="start"
-                            v-if="renseignement.miseEnService.length == 0">*</span></h3>
-                    <select v-model="renseignement.miseEnService">
-                        <option v-for="item in miseEnServiceTable" :key="item.id">{{ item.titre }}</option>
-                    </select>
-                </label>
-            </tr>
-
-
-
-            <tr v-if="renseignement.miseEnService == 'Présenté'">
-                <label for="Epreuves de Mise en service (Rapport de vérification avant mise ou remise en service)">
-                    <h3>Epreuves : <span class="start" v-if="renseignement.epreuvemMiseEnService.length == 0">*</span></h3>
-                    <select v-model="renseignement.epreuvemMiseEnService">
-                        <option v-for="item in epreuves" :key="item.id">{{ item.titre }}</option>
-                    </select>
-                </label>
-            </tr>
-
-            <tr v-if="renseignement.epreuvemMiseEnService == 'Réalisées' && renseignement.miseEnService == 'Présenté'">
-                <label for="Réalisées Le">
-                    <h3>Réalisées Le : <span class="start" v-if="renseignement.realiseesMiseEnService.length == 0">*</span></h3>
-                    <input type="date" v-model="renseignement.realiseesMiseEnService">
-                </label>
-            </tr>
-
-            <!-- End Mise en Service -->
-
-
-            <!-- Start Date de la dernière vérification périodique -->
-            <tr>
-                <label for="Date de la dernière vérification périodique">
-                    <h3>Date de la dernière vérification périodique : <span class="start"
-                            v-if="renseignement.dateDerniereVerficationPeriodique.length == 0">*</span></h3>
-                    <select v-model="renseignement.dateDerniereVerficationPeriodique">
-                        <option v-for="item in dateDerniereVerficationPeriodiqueTable" :key="item.id">{{ item.titre }}
-                        </option>
-                    </select>
-                </label>
-            </tr>
-
-            <tr v-if="renseignement.dateDerniereVerficationPeriodique == 'Présenté'">
-                <label for="Epreuves">
-                    <h3>Epreuves : <span class="start"
-                            v-if="renseignement.epreuveDateDerniereVerficationPeriodique.length == 0">*</span></h3>
-                    <select v-model="renseignement.epreuveDateDerniereVerficationPeriodique">
-                        <option v-for="item in epreuves" :key="item.id">{{ item.titre }}</option>
-                    </select>
-                </label>
-            </tr>
-
-            <tr
-                v-if="renseignement.epreuveDateDerniereVerficationPeriodique == 'Réalisées' && renseignement.dateDerniereVerficationPeriodique == 'Présenté'">
-                <label for="Réalisées Le">
-                    <h3>Réalisées Le : <span class="start"
-                            v-if="renseignement.realiseesDateDerniereVerficationPeriodique.length == 0">*</span></h3>
-                    <input type="date" v-model="renseignement.realiseesDateDerniereVerficationPeriodique">
-                </label>
-            </tr>
-            <!-- End Date de la dernière vérification périodique -->
-
-            <tr>
-                <label for="Essais en charge">
-                    <h3>Essais en charge: <span class="start" v-if="renseignement.essaischarge.length == 0">*</span></h3>
-                    <select v-model="renseignement.essaischarge">
-                        <option v-for="item in essaischarges" :key="item.id">{{ item.titre }}</option>
-                    </select>
-                </label>
-            </tr>
-
-            <tr v-if="renseignement.essaischarge == 'Réalisé sous charge de (kg) :'">
-                <label for="Poids en kg">
-                    <h3>Poids en kg : <span class="start" v-if="renseignement.poidsKg.length == 0">*</span></h3>
-                    <input type="number" v-model="renseignement.poidsKg">
-                </label>
-            </tr>
-
-            <tr>
-                <label
-                    for="Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l'appareil examiné">
-                    <h3>Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l'appareil examiné:
-                        <span class="start" v-if="renseignement.modification.length == 0">*</span></h3>
-                    <select v-model="renseignement.modification">
-                        <option v-for="item in modifications" :key="item.id">{{ item.titre }}</option>
-                    </select>
-                </label>
-            </tr>
-
-            <tr v-if="renseignement.modification == 'Description'">
-                <label for="Description">
-                    <h3>Description : <span class="start" v-if="renseignement.description.length == 0">*</span>
-                    </h3>
-                    <input type="text" v-model="renseignement.description">
-                </label>
-            </tr>
+        <tr>
+            <label for="Mise en service (Rapport de vérification avant mise ou remise en service)">
+                <h3>Mise en service (Rapport de vérification avant mise ou remise en service) :<span class="start"
+                        v-if="renseignement.miseEnService.length == 0">*</span></h3>
+                <select v-model="renseignement.miseEnService">
+                    <option v-for="  item   in   miseEnServiceTable  " :key="item.id">{{ item.titre }}</option>
+                </select>
+            </label>
+        </tr>
 
 
 
-        </table>
+        <tr v-if="renseignement.miseEnService == 'Présenté'">
+            <label for="Epreuves de Mise en service (Rapport de vérification avant mise ou remise en service)">
+                <h3>Epreuves : <span class="start" v-if="renseignement.epreuvemMiseEnService.length == 0">*</span>
+                </h3>
+                <select v-model="renseignement.epreuvemMiseEnService">
+                    <option v-for="  item   in   epreuves  " :key="item.id">{{ item.titre }}</option>
+                </select>
+            </label>
+        </tr>
+
+        <tr v-if="renseignement.epreuvemMiseEnService == 'Réalisées' && renseignement.miseEnService == 'Présenté'">
+            <label for="Réalisées Le">
+                <h3>Réalisées Le : <span class="start" v-if="renseignement.realiseesMiseEnService.length == 0">*</span>
+                </h3>
+                <input type="date" v-model="renseignement.realiseesMiseEnService">
+            </label>
+        </tr>
+
+        <!-- End Mise en Service -->
+
+
+        <!-- Start Date de la dernière vérification périodique -->
+        <tr>
+            <label for="Date de la dernière vérification périodique">
+                <h3>Date de la dernière vérification périodique : <span class="start"
+                        v-if="renseignement.dateDerniereVerficationPeriodique.length == 0">*</span></h3>
+                <select v-model="renseignement.dateDerniereVerficationPeriodique">
+                    <option v-for="  item   in   dateDerniereVerficationPeriodiqueTable  " :key="item.id">{{ item.titre }}
+                    </option>
+                </select>
+            </label>
+        </tr>
+
+        <tr v-if="renseignement.dateDerniereVerficationPeriodique == 'Présenté'">
+            <label for="Epreuves">
+                <h3>Epreuves : <span class="start"
+                        v-if="renseignement.epreuveDateDerniereVerficationPeriodique.length == 0">*</span></h3>
+                <select v-model="renseignement.epreuveDateDerniereVerficationPeriodique">
+                    <option v-for="  item   in   epreuves  " :key="item.id">{{ item.titre }}</option>
+                </select>
+            </label>
+        </tr>
+
+        <tr
+            v-if="renseignement.epreuveDateDerniereVerficationPeriodique == 'Réalisées' && renseignement.dateDerniereVerficationPeriodique == 'Présenté'">
+            <label for="Réalisées Le">
+                <h3>Réalisées Le : <span class="start"
+                        v-if="renseignement.realiseesDateDerniereVerficationPeriodique.length == 0">*</span></h3>
+                <input type="date" v-model="renseignement.realiseesDateDerniereVerficationPeriodique">
+            </label>
+        </tr>
+        <!-- End Date de la dernière vérification périodique -->
+
+        <tr>
+            <label for="Essais en charge">
+                <h3>Essais en charge: <span class="start" v-if="renseignement.essaischarge.length == 0">*</span></h3>
+                <select v-model="renseignement.essaischarge">
+                    <option v-for="  item   in   essaischarges  " :key="item.id">{{ item.titre }}</option>
+                </select>
+            </label>
+        </tr>
+
+        <tr v-if="renseignement.essaischarge == 'Réalisé sous charge de (kg) :'">
+            <label for="Poids en kg">
+                <h3>Poids en kg : <span class="start" v-if="renseignement.poidsKg.length == 0">*</span></h3>
+                <input type="number" v-model="renseignement.poidsKg">
+            </label>
+        </tr>
+
+        <tr>
+            <label for="Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l'appareil examiné">
+                <h3>Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l'appareil examiné:
+                    <span class="start" v-if="renseignement.modification.length == 0">*</span>
+                </h3>
+                <select v-model="renseignement.modification">
+                    <option v-for="  item   in   modifications  " :key="item.id">{{ item.titre }}</option>
+                </select>
+            </label>
+        </tr>
+
+        <tr v-if="renseignement.modification == 'Description'">
+            <label for="Description">
+                <h3>Description : <span class="start" v-if="renseignement.description.length == 0">*</span>
+                </h3>
+                <input type="text" v-model="renseignement.description">
+            </label>
+        </tr>
+
+
 
         <div class="sauvegarde">
             <button @click="sauvegarde">Sauvegarde de Secours</button>
         </div>
 
+        <Insert v-if="falgInsert" :typeInsert="typeInsert" @valider="valider" @annuler="annuler" />
 
     </div>
-
 </template>
   
 <script>
 import Renseignement from "@/requests/Renseignement"
+import Insert from "@/components/models/Insert.vue"
 export default {
     name: 'renseignement-component',
     data() {
         return {
 
+
+            falgInsert: false,
+            savedMode: false,
+
             renseignement: {
+
+                tagTypeConstructeur: "<input type='text' value=''>",
                 typeConstructeur: "",
+
+                tagAnneeMiseService: "<input type='text' value=''>",
                 anneeMiseService: "",
+
+                tagNumeroSerie: "<input type='text' value=''>",
                 numeroSerie: "",
+
+                tagNumeroInterne: `
+                <label>Sans objet<input type='radio' value='Sans objet' name='numeroInterne'/></label>
+                <label>N°<input type='radio' value='N°' name='numeroInterne'/></label>
+                `,
                 numeroInterne: "",
-                valueNumeroInterne: "",
+                numeroInterneAutre: "",
+
+                tagLocalisation: "<input type='text' value='' >",
                 localisation: "",
+
+                tagTypeAppareil:
+                    `<label>Pont roulant<input type='radio' value='Pont roulant' name='typeAppareil'/></label>
+                 <label>Poutre roulante<input type='radio' value='Poutre roulante' name='typeAppareil'/></label>
+                 <label>Portique<input type='radio' value='Portique' name='typeAppareil' /></label>
+                 <label>Semi portique<input type='radio' value='Semi portique' name='typeAppareil' /></label>
+                 <label>Palan<input type='radio' value='Palan' name='typeAppareil' /></label>
+                 <label>Treuil<input type='radio' value='Treuil' name='typeAppareil' /></label>
+                 <label>Autre<input type='radio' value='Autre' name='typeAppareil' /></label>
+                 `,
                 typeAppareil: "",
-                autreTypeAppareil : '',
+                typeAppareilAutre: "",
+
+
+
                 modification: "",
-                description : "",
+                description: "",
                 essaischarge: "",
                 miseEnService: "",
                 epreuvemMiseEnService: "",
@@ -208,8 +237,8 @@ export default {
                 realiseesMiseEnService: "",
                 epreuveDateDerniereVerficationPeriodique: "",
                 realiseesDateDerniereVerficationPeriodique: "",
-                poidsKg : "",
-                observateurId : ""
+                poidsKg: "",
+                observateurId: ""
             },
 
             numeroInternes: [
@@ -259,26 +288,85 @@ export default {
         }
     },
 
-    props : {
-        observateurId : String
+    props: {
+        observateurId: String
     },
 
     components: {
+        Insert
     },
 
     methods: {
 
+        valider(event, type) {
+
+            if (type === "TypeAppareil") {
+                this.renseignement.typeAppareilAutre
+            }
+
+            if (type === "NumeroInterne") {
+                this.renseignement.numeroInterne = `N°`;
+                this.renseignement.numeroInterneAutre = event;
+            }
+
+            this.falgInsert = false;
+        },
+
+        annuler() {
+            this.falgInsert = false;
+        },
+
+        getValueTypeConstructeur(event) {
+            this.renseignement.typeConstructeur = event.target.value;
+        },
+
+        getValueAnneeMiseService(event) {
+            this.renseignement.anneeMiseService = event.target.value;
+        },
+
+        getValueNumeroSerie(event) {
+            this.renseignement.numeroSerie = event.target.value;
+        },
+
+        getValueNumeroInterne(event) {
+
+            if (event.target.value === "N°") {
+                this.falgInsert = true;
+                this.typeInsert = "NumeroInterne";
+
+            } else {
+                this.renseignement.numeroInterne = event.target.value;
+                this.renseignement.numeroInterneAutre = "";
+            }
+        },
+
+        getValueLocalisation(event) {
+            this.renseignement.localisation = event.target.value;
+        },
+
+        getValueTypeAppareil(event) {
+            if (event.target.value === "Autre") {
+                this.falgInsert = true;
+                this.typeInsert = "TypeAppareil";
+            } else {
+                this.renseignement.typeAppareil = event.target.value;
+                this.renseignement.typeAppareilAutre = "";
+            }
+        },
 
         sauvegarde() {
 
             this.renseignement.observateurId = this.observateurId;
+
             Renseignement.create(this.renseignement)
-            .then((result) => {
-                console.log(result);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+                .then((result) => {
+                    if (result.data) {
+                        console.log(result.data)
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
 
         }
 
@@ -287,19 +375,37 @@ export default {
     created() {
 
         Renseignement.select(this.observateurId)
-        .then((result) => {
-            this.renseignement = result.data
-        })
-        .catch((error) => {
-            console.log(error)
-        });
+            .then((result) => {
+                if (result.data != null) {
+
+                    this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.typeConstructeur}'`);
+                    this.renseignement.typeConstructeur = result.data.typeConstructeur;
+
+                    this.renseignement.tagAnneeMiseService = this.renseignement.tagAnneeMiseService.replace("value=''", `value='${result.data.anneeMiseService}'`);
+                    this.renseignement.anneeMiseService = result.data.anneeMiseService;
+
+                    this.renseignement.tagNumeroSerie = this.renseignement.tagNumeroSerie.replace("value=''", `value='${result.data.numeroSerie}'`);
+                    this.renseignement.numeroSerie = result.data.numeroSerie;
+
+                    this.renseignement.tagNumeroInterne = this.renseignement.tagNumeroInterne.replace(`value='${result.data.numeroInterne}'`, `value='${result.data.numeroInterne}' checked='checked'`);
+                    this.renseignement.numeroInterne = result.data.numeroInterne;
+                    this.renseignement.numeroInterneAutre = result.data.numeroInterneAutre;
+
+                    this.renseignement.tagNumeroSerie = this.renseignement.tagLocalisation.replace("value=''", `value='${result.data.localisation}'`);
+                    this.renseignement.localisation = result.data.localisation;
+
+
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            });
 
     }
 }
 </script>
   
 <style scoped>
-
 .renseignements {
     width: 100%;
     margin-top: 10px;
@@ -371,5 +477,18 @@ label select {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+td:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+}
+
+.saved {
+    color: #04AA6D;
+}
+
+.not-saved {
+    color: red;
 }
 </style>

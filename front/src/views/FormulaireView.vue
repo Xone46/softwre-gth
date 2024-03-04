@@ -39,6 +39,8 @@
 
         </div>
 
+        
+
     </div>
 </template>
   
@@ -49,17 +51,17 @@ import Examen from "@/components/renseignement/Examen.vue"
 import Photo from "@/components/renseignement/Photo.vue"
 import Conclusion from "@/components/renseignement/Conclusion.vue"
 
-import Renseignements from "@/requests/Renseignement";
-import Descriptions from "@/requests/Descriptions";
-import Examens from "@/requests/Examens";
-import Photos from "@/requests/Photos";
-import Conclusions from "@/requests/conclusion";
+// import Renseignements from "@/requests/Renseignement";
+// import Descriptions from "@/requests/Descriptions";
+// import Examens from "@/requests/Examens";
+// import Photos from "@/requests/Photos";
+// import Conclusions from "@/requests/conclusion";
 
 export default {
     name: 'FormulaireView',
     data() {
         return {
-            flagRenseignements : false,
+            flagRenseignements : true,
             flagDescription : false,
             flagExamen : false,
             flagPhoto : false,
@@ -134,56 +136,56 @@ export default {
         this.formulaire.observateurId = this.$route.params.id;
         this.formulaire.categorieAppareil = this.$route.params.categorieAppareil;
 
-        Renseignements.select(this.formulaire.observateurId)
-        .then((result) => {
-            if(result.data != null) {
-                this.flagRenseignementsColor = true;
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        // Renseignements.select(this.formulaire.observateurId)
+        // .then((result) => {
+        //     if(result.data != null) {
+        //         this.flagRenseignementsColor = true;
+        //     }
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
 
         
-        Examens.select(this.formulaire.observateurId)
-        .then((result) => {
-            if(result.data != null) {
-                this.flagExamenColor = true;
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        // Examens.select(this.formulaire.observateurId)
+        // .then((result) => {
+        //     if(result.data != null) {
+        //         this.flagExamenColor = true;
+        //     }
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
         
-        Descriptions.select(this.formulaire.observateurId)
-        .then((result) => {
-            if(result.data != null) {
-                this.flagDescriptionColor = true;
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        // Descriptions.select(this.formulaire.observateurId)
+        // .then((result) => {
+        //     if(result.data != null) {
+        //         this.flagDescriptionColor = true;
+        //     }
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
 
-        Photos.select(this.formulaire.observateurId)
-        .then((result) => {
-            if(result.data != null) {
-                this.flagPhotoColor = true;
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        // Photos.select(this.formulaire.observateurId)
+        // .then((result) => {
+        //     if(result.data != null) {
+        //         this.flagPhotoColor = true;
+        //     }
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
 
-        Conclusions.select(this.formulaire.observateurId)
-        .then((result) => {
-            if(result.data != null) {
-                this.flagConclusionColor = true;
-            }
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        // Conclusions.select(this.formulaire.observateurId)
+        // .then((result) => {
+        //     if(result.data != null) {
+        //         this.flagConclusionColor = true;
+        //     }
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        // });
 
 
     }
@@ -243,7 +245,6 @@ th {
 
 .green {
     color: #04AA6D;
-    
 }
 
 
