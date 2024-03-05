@@ -38,142 +38,57 @@
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.typeAppareil.length != 0 ? 'saved' : 'not-saved']">Numéro(s) interne(s):</td>
+                    <td :class="[renseignement.typeAppareil.length != 0 ? 'saved' : 'not-saved']">Type d'appareil:</td>
                     <td v-html="renseignement.tagTypeAppareil" @input="getValueTypeAppareil"></td>
                     {{ renseignement.typeAppareilAutre }}
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.miseEnServiceRapport.length != 0 ? 'saved' : 'not-saved']">Mise en service (Rapport):</td>
+                    <td v-html="renseignement.tagMiseEnServiceRapport" @input="getValueMiseEnServiceRapport"></td>
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.miseEnServiceEpreuves.length != 0 ? 'saved' : 'not-saved']">Mise en service (Epreuves):</td>
+                    <td v-html="renseignement.tagMiseEnServiceEpreuves" @input="getValueMiseEnServiceEpreuves"></td>
+                    {{ renseignement.miseEnServiceEpreuvesAutre }}
+                </tr>
+
+
+                <tr>
+                    <td :class="[renseignement.dateDerniereVerficationPeriodique.length != 0 ? 'saved' : 'not-saved']">Date de la dernière vérification périodique:</td>
+                    <td v-html="renseignement.tagDateDerniereVerficationPeriodique" @input="getValueDateDerniereVerficationPeriodique"></td>
+                    {{ renseignement.dateDerniereVerficationPeriodiqueAutre }}
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.dateDerniereVerficationPeriodiqueRapport.length != 0 ? 'saved' : 'not-saved']">Date de la dernière vérification périodique (Rapport):</td>
+                    <td v-html="renseignement.tagDateDerniereVerficationPeriodiqueRapport" @input="getValueDateDerniereVerficationPeriodiqueRapport"></td>
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.essaischarge.length != 0 ? 'saved' : 'not-saved']">Essais en charge:</td>
+                    <td v-html="renseignement.tagEssaischarge" @input="getValueEssaischarge"></td>
+                </tr>
+
+
+                <tr>
+                    <td :class="[renseignement.modification.length != 0 ? 'saved' : 'not-saved']">Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l’appareil examiné:</td>
+                    <td v-html="renseignement.tagModification" @input="getValueModification"></td>
+                    {{ renseignement.modificationAutre }}
                 </tr>
 
 
             </table>
         </div>
 
-        <!-- <table class="renseignements">
 
-
-
-            <tr>
-                <label for="Type d'appareil">
-                    <h3>Type d'appareil : <span class="start" v-if=" renseignement.typeAppareil.length == 0 ">*</span></h3>
-                    <select v-model=" renseignement.typeAppareil ">
-                        <option v-for="  item   in   typeAppareils  " :key=" item.id ">{{ item.titre }}</option>
-                    </select>
-                </label>
-            </tr>
-
-            <tr v-if=" renseignement.typeAppareil == 'Autre' ">
-                <label for="Type d'appareil">
-                    <h3>Le nom d'autre Type d'appareil : <span class="start"
-                            v-if=" renseignement.autreTypeAppareil.length == 0 ">*</span></h3>
-                    <input type="text" v-model=" renseignement.autreTypeAppareil ">
-                </label>
-            </tr>
-
-         Start Mise en service -->
-
-        <tr>
-            <label for="Mise en service (Rapport de vérification avant mise ou remise en service)">
-                <h3>Mise en service (Rapport de vérification avant mise ou remise en service) :<span class="start"
-                        v-if="renseignement.miseEnService.length == 0">*</span></h3>
-                <select v-model="renseignement.miseEnService">
-                    <option v-for="  item   in   miseEnServiceTable  " :key="item.id">{{ item.titre }}</option>
-                </select>
-            </label>
-        </tr>
-
-
-
-        <tr v-if="renseignement.miseEnService == 'Présenté'">
-            <label for="Epreuves de Mise en service (Rapport de vérification avant mise ou remise en service)">
-                <h3>Epreuves : <span class="start" v-if="renseignement.epreuvemMiseEnService.length == 0">*</span>
-                </h3>
-                <select v-model="renseignement.epreuvemMiseEnService">
-                    <option v-for="  item   in   epreuves  " :key="item.id">{{ item.titre }}</option>
-                </select>
-            </label>
-        </tr>
-
-        <tr v-if="renseignement.epreuvemMiseEnService == 'Réalisées' && renseignement.miseEnService == 'Présenté'">
-            <label for="Réalisées Le">
-                <h3>Réalisées Le : <span class="start" v-if="renseignement.realiseesMiseEnService.length == 0">*</span>
-                </h3>
-                <input type="date" v-model="renseignement.realiseesMiseEnService">
-            </label>
-        </tr>
-
-        <!-- End Mise en Service -->
-
-
-        <!-- Start Date de la dernière vérification périodique -->
-        <tr>
-            <label for="Date de la dernière vérification périodique">
-                <h3>Date de la dernière vérification périodique : <span class="start"
-                        v-if="renseignement.dateDerniereVerficationPeriodique.length == 0">*</span></h3>
-                <select v-model="renseignement.dateDerniereVerficationPeriodique">
-                    <option v-for="  item   in   dateDerniereVerficationPeriodiqueTable  " :key="item.id">{{ item.titre }}
-                    </option>
-                </select>
-            </label>
-        </tr>
-
-        <tr v-if="renseignement.dateDerniereVerficationPeriodique == 'Présenté'">
-            <label for="Epreuves">
-                <h3>Epreuves : <span class="start"
-                        v-if="renseignement.epreuveDateDerniereVerficationPeriodique.length == 0">*</span></h3>
-                <select v-model="renseignement.epreuveDateDerniereVerficationPeriodique">
-                    <option v-for="  item   in   epreuves  " :key="item.id">{{ item.titre }}</option>
-                </select>
-            </label>
-        </tr>
-
-        <tr
-            v-if="renseignement.epreuveDateDerniereVerficationPeriodique == 'Réalisées' && renseignement.dateDerniereVerficationPeriodique == 'Présenté'">
-            <label for="Réalisées Le">
-                <h3>Réalisées Le : <span class="start"
-                        v-if="renseignement.realiseesDateDerniereVerficationPeriodique.length == 0">*</span></h3>
-                <input type="date" v-model="renseignement.realiseesDateDerniereVerficationPeriodique">
-            </label>
-        </tr>
-        <!-- End Date de la dernière vérification périodique -->
-
-        <tr>
-            <label for="Essais en charge">
-                <h3>Essais en charge: <span class="start" v-if="renseignement.essaischarge.length == 0">*</span></h3>
-                <select v-model="renseignement.essaischarge">
-                    <option v-for="  item   in   essaischarges  " :key="item.id">{{ item.titre }}</option>
-                </select>
-            </label>
-        </tr>
-
-        <tr v-if="renseignement.essaischarge == 'Réalisé sous charge de (kg) :'">
-            <label for="Poids en kg">
-                <h3>Poids en kg : <span class="start" v-if="renseignement.poidsKg.length == 0">*</span></h3>
-                <input type="number" v-model="renseignement.poidsKg">
-            </label>
-        </tr>
-
-        <tr>
-            <label for="Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l'appareil examiné">
-                <h3>Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l'appareil examiné:
-                    <span class="start" v-if="renseignement.modification.length == 0">*</span>
-                </h3>
-                <select v-model="renseignement.modification">
-                    <option v-for="  item   in   modifications  " :key="item.id">{{ item.titre }}</option>
-                </select>
-            </label>
-        </tr>
-
-        <tr v-if="renseignement.modification == 'Description'">
-            <label for="Description">
-                <h3>Description : <span class="start" v-if="renseignement.description.length == 0">*</span>
-                </h3>
-                <input type="text" v-model="renseignement.description">
-            </label>
-        </tr>
-
-
-
-        <div class="sauvegarde">
+        <div v-if="!flagExistOldData" class="sauvegarde">
             <button @click="sauvegarde">Sauvegarde de Secours</button>
+        </div>
+
+        <div v-if="flagExistOldData" class="modifier">
+            <button @click="sauvegarde">Modifier</button>
         </div>
 
         <Insert v-if="falgInsert" :typeInsert="typeInsert" @valider="valider" @annuler="annuler" />
@@ -192,98 +107,111 @@ export default {
 
             falgInsert: false,
             savedMode: false,
+            flagExistOldData : false,
 
             renseignement: {
 
                 tagTypeConstructeur: "<input type='text' value=''>",
                 typeConstructeur: "",
 
+
                 tagAnneeMiseService: "<input type='text' value=''>",
                 anneeMiseService: "",
+
 
                 tagNumeroSerie: "<input type='text' value=''>",
                 numeroSerie: "",
 
+
                 tagNumeroInterne: `
-                <label>Sans objet<input type='radio' value='Sans objet' name='numeroInterne'/></label>
-                <label>N°<input type='radio' value='N°' name='numeroInterne'/></label>
+                <label><input type='radio' value='Sans objet' name='numeroInterne'/>Sans objet</label>
+                <label><input type='radio' value='N°' name='numeroInterne'/>N°</label>
                 `,
                 numeroInterne: "",
                 numeroInterneAutre: "",
 
+
                 tagLocalisation: "<input type='text' value='' >",
                 localisation: "",
 
+
                 tagTypeAppareil:
-                    `<label>Pont roulant<input type='radio' value='Pont roulant' name='typeAppareil'/></label>
-                 <label>Poutre roulante<input type='radio' value='Poutre roulante' name='typeAppareil'/></label>
-                 <label>Portique<input type='radio' value='Portique' name='typeAppareil' /></label>
-                 <label>Semi portique<input type='radio' value='Semi portique' name='typeAppareil' /></label>
-                 <label>Palan<input type='radio' value='Palan' name='typeAppareil' /></label>
-                 <label>Treuil<input type='radio' value='Treuil' name='typeAppareil' /></label>
-                 <label>Autre<input type='radio' value='Autre' name='typeAppareil' /></label>
+                `<label><input type='radio' value='Pont roulant' name='typeAppareil'/>Pont roulant</label>
+                 <label><input type='radio' value='Poutre roulante' name='typeAppareil'/>Poutre roulante</label>
+                 <label><input type='radio' value='Portique' name='typeAppareil' />Portique</label>
+                 <label><input type='radio' value='Semi portique' name='typeAppareil' />Semi portique</label>
+                 <label><input type='radio' value='Palan' name='typeAppareil' />Palan</label>
+                 <label><input type='radio' value='Treuil' name='typeAppareil' />Treuil</label>
+                 <label><input type='radio' value='Autre' name='typeAppareil' />Autre</label>
                  `,
                 typeAppareil: "",
                 typeAppareilAutre: "",
 
 
 
-                modification: "",
-                description: "",
+                tagMiseEnServiceRapport: 
+                `<label><input type='radio' value='Présenté' name='miseEnServiceRapport'/>Présenté</label>
+                 <label><input type='radio' value='Non présenté' name='miseEnServiceRapport'/>Non présenté</label>
+                 `,
+                miseEnServiceRapport: "",
+
+
+
+                tagMiseEnServiceEpreuves: 
+                `<label><input type='radio' value='Réalisées le:' name='miseEnServiceEpreuves'/>Réalisées le:</label>
+                 <label><input type='radio' value='Absence de renseignement' name='miseEnServiceEpreuves'/>Absence de renseignement</label>
+                 `,
+                miseEnServiceEpreuves: "",
+                miseEnServiceEpreuvesAutre : "",
+
+
+                tagDateDerniereVerficationPeriodique : 
+                `<label><input type='radio' value='Absence de renseignement' name='dateDerniereVerficationPeriodique'/>Absence de renseignement</label>
+                 <label><input type='radio' value='Effectuée le:' name='dateDerniereVerficationPeriodique'/>Effectuée le:</label>
+                 `,
+                dateDerniereVerficationPeriodique : "",
+                dateDerniereVerficationPeriodiqueAutre : "",
+
+
+                tagDateDerniereVerficationPeriodiqueRapport : 
+                `<label><input type='radio' value='Présenté' name='dateDerniereVerficationPeriodiqueRapport'/>Présenté</label>
+                 <label><input type='radio' value='Non présenté' name='dateDerniereVerficationPeriodiqueRapport'/>Non présenté</label>
+                 `,
+                dateDerniereVerficationPeriodiqueRapport : "",
+
+
+
+                tagEssaischarge : `
+                 <label><input type='radio' value='Réalisé avec la Charge maximale utile' name='essaischarge'/>Réalisé avec la Charge maximale utile</label>
+                 <label><input type='radio' value='Réalisé sous charge de (kg):' name='essaischarge'/>Réalisé sous charge de (kg):</label>
+                 <label><input type='radio' value='Absence de charge pour réaliser les essais' name='essaischarge'/>Absence de charge pour réaliser les essais</label>
+                 <label><input type='radio' value='Absence de tableau des charges pour réaliser les essais' name='essaischarge'/>Absence de tableau des charges pour réaliser les essais</label>
+                 <label>Palan<input type='radio' value='Non réalisé. Voir observation critique' name='essaischarge'/>Non réalisé. Voir observation critique</label>
+                 <label>Treuil<input type='radio' value='(Les 4 dernières options conduisent à faire une observation)' name='essaischarge'/>(Les 4 dernières options conduisent à faire une observation) </label>
+                 `,
                 essaischarge: "",
-                miseEnService: "",
-                epreuvemMiseEnService: "",
-                dateDerniereVerficationPeriodique: "",
-                realiseesMiseEnService: "",
-                epreuveDateDerniereVerficationPeriodique: "",
-                realiseesDateDerniereVerficationPeriodique: "",
-                poidsKg: "",
-                observateurId: ""
+                essaischargeAutre : "",
+
+
+                tagModification : `
+                 <label><input type='radio' value='Sans objet' name='modification' />Sans objet</label>
+                 <label><input type='radio' value='Description:' name='modification' />Description:</label>
+                `,
+                modification : "",
+                modificationAutre : "",
+
+                observateurId: "",
+                renseignementId : null
             },
 
-            numeroInternes: [
-                { id: 10001, titre: "Sans Object", status: false },
-                { id: 10002, titre: "Avec Object", status: false },
-            ],
 
-            typeAppareils: [
-                { id: 10003, titre: "Pont roulant", status: false },
-                { id: 10004, titre: "Poutre roulante", status: false },
-                { id: 10005, titre: "Portique", status: false },
-                { id: 10006, titre: "Semi portique", status: false },
-                { id: 10007, titre: "Palan", status: false },
-                { id: 10008, titre: "Treuil", status: false },
-                { id: 10009, titre: "Autre", status: true },
-            ],
 
-            essaischarges: [
-                { id: 10010, titre: "Réalisé avec la Charge maximale utile", status: false },
-                { id: 10011, titre: "Réalisé sous charge de (kg) :", status: true },
-                { id: 10012, titre: "Absence de charge pour réaliser les essais", status: false },
-                { id: 10013, titre: "Absence de tableau des charges pour réaliser les essais", status: false },
-                { id: 10014, titre: "Non réalisé. Voir observation critique", status: false },
-                { id: 10015, titre: "(Les 4 dernières options conduisent à faire une observation) ", status: false }
-            ],
 
-            modifications: [
-                { id: 10016, titre: "Sans Object", status: false },
-                { id: 10017, titre: "Description", status: false },
-            ],
 
-            miseEnServiceTable: [
-                { id: 10018, titre: "Présenté", status: false },
-                { id: 10019, titre: "Non Présenté", status: false }
-            ],
 
-            epreuves: [
-                { id: 10020, titre: "Réalisées", status: false },
-                { id: 10021, titre: "Absence de renseignement", status: false },
-            ],
 
-            dateDerniereVerficationPeriodiqueTable: [
-                { id: 10022, titre: "Présenté", status: false },
-                { id: 10023, titre: "Non Présenté", status: false },
-            ],
+
+
 
         }
     },
@@ -301,12 +229,34 @@ export default {
         valider(event, type) {
 
             if (type === "TypeAppareil") {
-                this.renseignement.typeAppareilAutre
+
+                this.renseignement.typeAppareil = `Autre`;
+                this.renseignement.typeAppareilAutre = event;
             }
 
             if (type === "NumeroInterne") {
                 this.renseignement.numeroInterne = `N°`;
                 this.renseignement.numeroInterneAutre = event;
+            }
+
+            if (type === "Réalisé sous charge de (kg):") {
+                this.renseignement.essaischarge = `Réalisé sous charge de (kg):`;
+                this.renseignement.essaischargeAutre = event;
+            }
+
+            if (type === "Description:") {
+                this.renseignement.modification = `Description:`;
+                this.renseignement.modificationAutre = event;
+            }
+
+            if (type === "Effectuée le:") {
+                this.renseignement.dateDerniereVerficationPeriodique = `Effectuée le:`;
+                this.renseignement.dateDerniereVerficationPeriodiqueAutre = event;
+            }
+
+            if (type === "Réalisées le:") {
+                this.renseignement.miseEnServiceEpreuves = `Réalisées le:`;
+                this.renseignement.miseEnServiceEpreuvesAutre = event;
             }
 
             this.falgInsert = false;
@@ -354,6 +304,54 @@ export default {
             }
         },
 
+        getValueMiseEnServiceRapport() {
+            this.renseignement.miseEnServiceRapport = event.target.value;
+        },
+
+        getValueMiseEnServiceEpreuves() {
+            if (event.target.value === "Effectuée le:") {
+                this.falgInsert = true;
+                this.typeInsert = "Effectuée le:";
+            } else {
+                this.renseignement.miseEnServiceEpreuves = event.target.value;
+                this.renseignement.miseEnServiceEpreuvesAutre = "";
+            }
+        },
+
+        getValueDateDerniereVerficationPeriodique(event) {
+            if (event.target.value === "Effectuée le:") {
+                this.falgInsert = true;
+                this.typeInsert = "Effectuée le:";
+            } else {
+                this.renseignement.dateDerniereVerficationPeriodique = event.target.value;
+                this.renseignement.dateDerniereVerficationPeriodiqueAutre = "";
+            }
+        },
+
+        getValueDateDerniereVerficationPeriodiqueRapport(event) {
+            this.renseignement.dateDerniereVerficationPeriodiqueRapport = event.target.value;
+        },
+
+        getValueEssaischarge(event) {
+            if (event.target.value === "Réalisé sous charge de (kg):") {
+                this.falgInsert = true;
+                this.typeInsert = "Réalisé sous charge de (kg):";
+            } else {
+                this.renseignement.essaischarge = event.target.value;
+                this.renseignement.essaischargeAutre = "";
+            }
+        },
+
+        getValueModification(event) {
+            if (event.target.value === "Réalisées le:") {
+                this.falgInsert = true;
+                this.typeInsert = "Réalisées le:";
+            } else {
+                this.renseignement.modification = event.target.value;
+                this.renseignement.modificationAutre = "";
+            }
+        },
+
         sauvegarde() {
 
             this.renseignement.observateurId = this.observateurId;
@@ -361,13 +359,13 @@ export default {
             Renseignement.create(this.renseignement)
                 .then((result) => {
                     if (result.data) {
-                        console.log(result.data)
+                        this.flagExistOldData = true;
+                        this.renseignementId = result.data.renseignementId;
                     }
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
         }
 
     },
@@ -377,6 +375,10 @@ export default {
         Renseignement.select(this.observateurId)
             .then((result) => {
                 if (result.data != null) {
+
+                    this.renseignement.observateurId = this.observateurId;
+
+                    this.flagExistOldData = true;
 
                     this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.typeConstructeur}'`);
                     this.renseignement.typeConstructeur = result.data.typeConstructeur;
@@ -394,7 +396,27 @@ export default {
                     this.renseignement.tagNumeroSerie = this.renseignement.tagLocalisation.replace("value=''", `value='${result.data.localisation}'`);
                     this.renseignement.localisation = result.data.localisation;
 
+                    this.renseignement.tagTypeAppareil = this.renseignement.tagTypeAppareil.replace(`value='${result.data.typeAppareil}'`, `value='${result.data.typeAppareil}' checked='checked`);
+                    this.renseignement.typeAppareil = result.data.typeAppareil;
+                    this.renseignement.typeAppareilAutre = result.data.typeAppareilAutre;
 
+                    this.renseignement.tagMiseEnServiceRapport = this.renseignement.tagMiseEnServiceRapport.replace(`value='${result.data.miseEnServiceRapport}'`, `value='${result.data.miseEnServiceRapport}' checked='checked`);
+                    this.renseignement.miseEnServiceRapport = result.data.miseEnServiceRapport;
+
+                    this.renseignement.tagMiseEnServiceEpreuves = this.renseignement.tagMiseEnServiceEpreuves.replace(`value='${result.data.miseEnServiceEpreuves}'`, `value='${result.data.miseEnServiceEpreuves}' checked='checked`);
+                    this.renseignement.miseEnServiceEpreuves = result.data.miseEnServiceEpreuves;
+                    this.renseignement.miseEnServiceEpreuvesAutre = result.data.miseEnServiceEpreuvesAutre;
+
+                    this.renseignement.tagDateDerniereVerficationPeriodique = this.renseignement.tagDateDerniereVerficationPeriodique.replace(`value='${result.data.dateDerniereVerficationPeriodique}'`, `value='${result.data.dateDerniereVerficationPeriodique}' checked='checked`);
+                    this.renseignement.dateDerniereVerficationPeriodique = result.data.dateDerniereVerficationPeriodique;
+                    this.renseignement.dateDerniereVerficationPeriodiqueAutre = result.data.dateDerniereVerficationPeriodiqueAutre;
+
+                    this.renseignement.tagDateDerniereVerficationPeriodiqueRapport = this.renseignement.tagDateDerniereVerficationPeriodiqueRapport.replace(`value='${result.data.dateDerniereVerficationPeriodiqueRapport}'`, `value='${result.data.dateDerniereVerficationPeriodiqueRapport}' checked='checked`);
+                    this.renseignement.dateDerniereVerficationPeriodiqueRapport = result.data.dateDerniereVerficationPeriodiqueRapport;
+
+                    this.renseignement.tagEssaischarge = this.renseignement.tagEssaischarge.replace(`value='${result.data.essaischarge}'`, `value='${result.data.essaischarge}' checked='checked`);
+                    this.renseignement.essaischarge = result.data.essaischarge;
+                    this.renseignement.essaischargeAutre = result.data.essaischargeAutre;
                 }
             })
             .catch((error) => {
@@ -471,6 +493,25 @@ label select {
 
 .sauvegarde button {
     background-color: #040faa;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.modifier {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.modifier button {
+    background-color: #04AA6D;
     color: white;
     margin: 3px;
     border: 0px;
