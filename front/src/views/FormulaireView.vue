@@ -1,6 +1,6 @@
 <template>
     <div class="formulaire">
-        <!-- <h3>{{ formulaire.observateurId }}</h3> -->
+
         <h3>{{ formulaire.categorieAppareil }}</h3>
 
         <div class="buttons">
@@ -26,16 +26,20 @@
                 <th class="green" v-if="flagPhotoColor" @click="photo()">PHOTO</th>
                 <th v-if="!flagPhotoColor" @click="photo()">PHOTO</th>
 
+                <th class="green" v-if="flagPhotoColor" @click="reserve()">LES RÉSERVES</th>
+                <th v-if="!flagPhotoColor" @click="reserve()">LES RÉSERVES</th>
+
             </tr>
         </table>
 
         <div class="content" >
 
-            <Renseignement v-if="flagRenseignements" :observateurId="formulaire.observateurId"/>
-            <Description v-if="flagDescription" :observateurId="formulaire.observateurId"/>
-            <Examen v-if="flagExamen" :observateurId="formulaire.observateurId"/>
-            <Photo v-if="flagPhoto" :observateurId="formulaire.observateurId"/>
-            <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId"/>
+            <Renseignement v-if="flagRenseignements" :observateurId="formulaire.observateurId" />
+            <Description v-if="flagDescription" :observateurId="formulaire.observateurId" />
+            <Examen v-if="flagExamen" :observateurId="formulaire.observateurId" />
+            <Photo v-if="flagPhoto" :observateurId="formulaire.observateurId" />
+            <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" />
+            <Reserve  v-if="flagReserve" :observateurId="formulaire.observateurId" />
 
         </div>
 
@@ -50,6 +54,7 @@ import Description from "@/components/renseignement/Description.vue"
 import Examen from "@/components/renseignement/Examen.vue"
 import Photo from "@/components/renseignement/Photo.vue"
 import Conclusion from "@/components/renseignement/Conclusion.vue"
+import Reserve from "@/components/renseignement/Reserve.vue"
 
 // import Renseignements from "@/requests/Renseignement";
 // import Descriptions from "@/requests/Descriptions";
@@ -61,20 +66,24 @@ export default {
     name: 'FormulaireView',
     data() {
         return {
+
             flagRenseignements : true,
             flagDescription : false,
             flagExamen : false,
             flagPhoto : false,
             flagConclusion : false,
+            flagReserve : false,
+
             formulaire : {
                 observateurId : "",
                 categorieAppareil : ""
             },
+
             flagRenseignementsColor : false,
             flagDescriptionColor : false,
             flagExamenColor : false,
             flagPhotoColor : false,
-            flagConclusionColor : false,
+            flagConclusionColor : false
 
         }
     },
@@ -84,7 +93,8 @@ export default {
         Description,
         Examen,
         Photo,
-        Conclusion
+        Conclusion,
+        Reserve
     },
 
     methods: {
@@ -95,6 +105,7 @@ export default {
             this.flagExamen = false;
             this.flagPhoto = false;
             this.flagConclusion = false;
+            this.flagReserve = false;
         },
 
         description() {
@@ -104,6 +115,8 @@ export default {
             this.flagPhoto = false;
             this.flagConclusion = false;
             this.flagRenseignementsColor = false;
+            this.flagReserve = false;
+
         },
 
         examen() {
@@ -112,6 +125,8 @@ export default {
             this.flagExamen = true;
             this.flagPhoto = false;
             this.flagConclusion = false;
+            this.flagReserve = false;
+
         },
 
         conclusion() {
@@ -120,6 +135,8 @@ export default {
             this.flagExamen = false;
             this.flagPhoto = false;
             this.flagConclusion = true;
+            this.flagReserve = false;
+
         },
 
         photo() {
@@ -128,6 +145,18 @@ export default {
             this.flagExamen = false;
             this.flagPhoto = true;
             this.flagConclusion = false;
+            this.flagReserve = false;
+
+        },
+
+        reserve() {
+            this.flagRenseignements = false;
+            this.flagDescription = false;
+            this.flagExamen = false;
+            this.flagPhoto = false;
+            this.flagConclusion = false;
+            this.flagReserve = true;
+
         }
     },
 
