@@ -1,10 +1,7 @@
 <template>
     <div class="reserve">
-        <TableModels v-if="flagTableModels" :observateurId="observateurId" :titreReserve="titreReserve" :commentairesReserve="commentairesReserve" />
+        <TableModels  v-if="flagTableModels" :observateurId="observateurId" :titreReserve="titreReserve" :commentairesReserve="commentairesReserve" />
         <TableReserve :observateurId="observateurId" @apercu="apercu" />
-        <div class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
-        </div>
     </div>
 </template>
   
@@ -12,6 +9,7 @@
 
 import TableModels from "@/components/reserve/TableModels.vue"
 import TableReserve from "@/components/reserve/TableReserve.vue"
+
 // import Examens from "@/requests/Examens";
 
 export default {
@@ -21,7 +19,7 @@ export default {
             titreReserve : "",
             commentairesReserve : [],
             reserves : [],
-            flagTableModels : false,
+            flagTableModels : false
         }
     },
 
@@ -37,26 +35,19 @@ export default {
 
     methods: {
 
+
+
         apercu(titreReserve, commentaires) {
+
             this.titreReserve = titreReserve;
             this.commentairesReserve = commentaires;
-            this.flagTableModels = true;
-        },
 
-        sauvegarde() {
-
-            // this.description.observateurId = this.observateurId;
-            // Descriptions.create(this.description)
-            // .then((result) => {
-            //     console.log(result);
-            // })
-            // .catch((error) => {
-            //     console.log(error);
-            // });
-
+            this.flagTableModels = false;
+            this.$nextTick(() => {
+                this.flagTableModels = true;
+            });
+            
         }
-
-
 
     },
 

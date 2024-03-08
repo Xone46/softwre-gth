@@ -1,15 +1,25 @@
 <template>
     <div class="models">
+
         <h2>Attachés</h2>
-        <select v-model="commentaires" multiple>
-            <option :value="item" v-for="item in attaches" :key="item">{{ item }}</option>
-        </select>
-        <input type="button" value="Attacher" @click="attacher()">
-        <Error v-if="flagError" @annuller="annuller" :msg="msg"/>
+
+        <div class="liste-models" v-for="(item, index) in attaches" :key="index">
+            <label><input type="checkbox" @click="selectCommentaire(index)" :checked="item.checked">{{ item.titre }}</label>
+        </div>
+
+        <div class="buttons">
+            <input type="button" value="Attacher" @click="attacher()">
+            <input type="button" value="Ajouter" @click="ajouter">
+        </div>
+
+        <Error v-if="flagError" @annuller="annuller" :msg="msg" />
+        <AddModel v-if="flagAddModel" @annulerAddModel="annulerAddModel" @ajouterModel="ajouterModel" />
+
     </div>
 </template>
 
 <script>
+import AddModel from "@/components/models/AddModel.vue"
 import Error from "@/components/models/Error.vue"
 import Commentaire from "@/requests/commentaire"
 export default {
@@ -19,12 +29,13 @@ export default {
             commentaires: [],
             models: [],
             attaches: [
-                "Lorem  dolor sit, amet consectetur adipisicing elit. Dolorem dolorum est repudiandae numquam debitis doloremque, voluptatum amet, ratione aut quibusdam",
-                "Lorem ipsum dolor , amet consectetur adipisicing elit. Dolorem dolorum est repudiandae numquam debitis doloremque, voluptatum amet, ratione aut quibusdam",
-                "Lorem ipsum dolor sit,  consectetur adipisicing elit. Dolorem dolorum est repudiandae numquam debitis doloremque, voluptatum amet, ratione aut quibusdam",
+                { titre: "Lorem  dolor sit, amet consectetur adipisicing elit. Dolorem dolorum est repudiandae numquam debitis doloremque, voluptatum amet, ratione aut quibusdam", checked: false },
+                { titre: "Lorem  dolor consectetur adipisicing elit. Dolorem dolorum est repudiandae numquam debitis doloremque, voluptatum amet, ratione aut quibusdam", checked: false },
+                { titre: "Lorem ipsum dolor sit,  consectetur adipisicing elit. Dolorem dolorum est repudiandae numquam debitis doloremque, voluptatum amet, ratione aut quibusdam", checked: false }
             ],
 
-            flagError : false
+            flagError: false,
+            flagAddModel: false
 
         }
     },
@@ -32,11 +43,12 @@ export default {
     props: {
         observateurId: String,
         titreReserve: String,
-        commentairesReserve : Array
+        commentairesReserve: Array
     },
 
     components: {
-        Error
+        Error,
+        AddModel
     },
 
     methods: {
@@ -48,113 +60,97 @@ export default {
                 this.msg = "Vous devez saisir au moins un élément";
             } else {
                 Commentaire.create(this.commentaires, this.observateurId, this.titreReserve)
-                .then((result) => {
-                    console.log(result);
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+                    .then((result) => {
+                        console.log(result);
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
             }
         },
 
         annuller() {
             this.flagError = false;
+        },
+
+        annulerAddModel() {
+            this.flagAddModel = false;
+        },
+
+        selectCommentaire(index) {
+            if (!this.commentaires.includes(this.attaches[index].titre)) {
+                this.commentaires.push(this.attaches[index].titre);
+            } else {
+                this.commentaires.splice(index, 1);
+            }
+        },
+
+        ajouter() {
+            this.flagAddModel = true;
+        },
+
+        ajouterModel(event) {
+
+            this.attaches.push({
+                titre: event,
+                checked: false
+            });
+
+            this.flagAddModel = false;
         }
+
 
     },
 
+    computed: {
+        attachesFilter: function () {
+            return this.attaches;
+        }
+    },
+
     created() {
-        console.log(this.observateurId, this.titreReserve, this.commentairesReserve);
+
+        if (this.commentairesReserve) {
+            for (let i = 0; i < this.attaches.length; i++) {
+                if (this.commentairesReserve.includes(this.attaches[i].titre)) {
+                    this.attaches[i].checked = true;
+                    this.commentaires.push(this.attaches[i].titre);
+                } else {
+                    this.attaches[i].checked = false;
+                }
+            }
+        }
+
+
     }
 }
 </script>
 
 <style scoped>
-.table-objet-observateur {
+.models {
     width: 100%;
 }
 
-.sites {
-    padding: 0;
-    margin: 0;
+.models select {
     width: 100%;
-    height: 200px;
-    overflow-x: auto;
-    overflow-y: auto;
+}
+
+
+.buttons {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
 }
 
-.table {
-    padding: 0px;
-    width: 100%;
-    height: 300px;
-}
-
-.table-data {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-}
-
-.table-data td,
-.table-data th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.table-data tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-.table-data tr:hover {
-    background-color: #ddd;
-    cursor: pointer;
-}
-
-.table-data th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
+.buttons input {
     background-color: #04AA6D;
     color: white;
-}
-
-.textarea {
-    width: 100%;
-}
-
-.actions {
-    display: flex;
-    flex-direction: row;
-    margin: 5px;
-}
-
-.actions button {
-    margin-left: 5px;
-    margin-right: 5px;
-    padding: 10px;
-    color: white;
+    margin: 3px;
     border: 0px;
-    cursor: pointer;
+    padding: 10px;
     border-radius: 5px;
-    margin-top: 10px;
-}
-
-.actions button:nth-child(1) {
-    background-color: #04AA6D;
-}
-
-.actions button:nth-child(2) {
-    background-color: #04AA6D;
-}
-
-.actions button:nth-child(3) {
-    background-color: #e21608;
-}
-
-iframe {
-    margin-top: 20px;
+    cursor: pointer;
 }
 </style>

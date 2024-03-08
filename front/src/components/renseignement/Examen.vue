@@ -404,90 +404,90 @@ export default {
         return {
 
             a: [
-                { titre: "- Accès a la cabine et au poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Accès aux chemins de roulement", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Autres accès pour entretien et vérification", be: false, fc: false, sa: false, nv: false, so: false, o: false },
+                { titre: "- Accès a la cabine et au poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Accès aux chemins de roulement", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Autres accès pour entretien et vérification", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
             ],
 
             b: [
-                { titre: "- Rails et / ou poutres de roulement, fixations", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Poteaux, corbeaux, potence, ancrages", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Butoirs, amortisseurs", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+                { titre: "- Rails et / ou poutres de roulement, fixations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Poteaux, corbeaux, potence, ancrages", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Butoirs, amortisseurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
             ],
 
             c: [
-                { titre: "- Poutres, sommiers, palées...", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Chariot, galets, guidages", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+                { titre: "- Poutres, sommiers, palées...", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Chariot, galets, guidages", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
             ],
 
             d: [
-                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
             ],
 
             e: [
-                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
             ],
 
             f: [
-                { titre: "- Constitution, fixation, plancher", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Protection contre les chutes de hauteur de l'opérateur à partir du poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Visibilité (vitrage, essuie-glaces)", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Chauffage", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Absence de stockage de chiffons, déchets, huile ou toute autre matière inflammable en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Extincteur en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Evacuation de secours", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Siège", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Eclairage", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+                { titre: "- Constitution, fixation, plancher", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Protection contre les chutes de hauteur de l'opérateur à partir du poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Visibilité (vitrage, essuie-glaces)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Chauffage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Absence de stockage de chiffons, déchets, huile ou toute autre matière inflammable en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Extincteur en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Evacuation de secours", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Siège", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Eclairage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
             ],
 
             g: [
-                { titre: "- Mise en marche- Arrêt normal – Sélecteur", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Identification des organes de service", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Retour automatique au point neutre des commandes", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Autres arrêts accessibles (urgence….)", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Avertisseur sonore, lumineux", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Indicateurs", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+                { titre: "- Mise en marche- Arrêt normal – Sélecteur", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Identification des organes de service", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Retour automatique au point neutre des commandes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Autres arrêts accessibles (urgence….)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Avertisseur sonore, lumineux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Indicateurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
             ],
 
             h: [
-                { titre: "- Suspentes", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Attaches", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Moufles, crochets, linguet de sécurité ou dispositifs équivalents", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Autres dispositifs de préhension (bennes, grappins, électro-aimants…)", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+                { titre: "- Suspentes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Attaches", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Moufles, crochets, linguet de sécurité ou dispositifs équivalents", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Autres dispositifs de préhension (bennes, grappins, électro-aimants…)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
             ],
 
             i: [
-                { titre: "- Groupes moto-réducteurs", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Organes de transmission, accouplements", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Freins des mouvements concourant au levage", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Limitation de la vitesse (absence d'emballement) ", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Freins des mouvements horizontaux", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Immobilisation hors service", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Autres freins (Secours, sécurité...)", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Protection des organes mobiles de transmission", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+                { titre: "- Groupes moto-réducteurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Organes de transmission, accouplements", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Freins des mouvements concourant au levage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Limitation de la vitesse (absence d'emballement) ", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Freins des mouvements horizontaux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Immobilisation hors service", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Autres freins (Secours, sécurité...)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Protection des organes mobiles de transmission", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
             ],
 
             j: [
-                { titre: "- Limiteurs de course haute ou mise en butée", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Autres limiteurs de course/hors course", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Limiteur de charge, de capacité (Obligatoire pour appareils CE si capacité >= 1 Tonne)", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Dispositifs anti collision ou équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+                { titre: "- Limiteurs de course haute ou mise en butée", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Autres limiteurs de course/hors course", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Limiteur de charge, de capacité (Obligatoire pour appareils CE si capacité >= 1 Tonne)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Dispositifs anti collision ou équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
             ],
 
             k: [
-                { titre: "- Plaque constructeur ", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Affichage capacité, tableau des charges", be: false, fc: false, sa: false, nv: false, so: false, o: false },
-                { titre: "- Consignes de sécurité et d'utilisation (lisibilité)", be: false, fc: false, sa: false, nv: false, so: false, o: false }
+                { titre: "- Plaque constructeur ", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Affichage capacité, tableau des charges", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Consignes de sécurité et d'utilisation (lisibilité)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
             ]
         }
     },
@@ -664,7 +664,6 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
-
         }
 
 

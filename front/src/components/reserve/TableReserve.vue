@@ -10,21 +10,28 @@
         <div class="observations" v-if="!flagSpinner && !flagInvertesment">
             <table class="table-data">
                 <tr v-for="reserve in reserves" :key="reserve._id">
-                    <td><input type="radio" name="reserve" @change="selectReserve(reserve.titre)"></td>
+                    <td><input type="radio" name="reserve" @input="selectReserve(reserve.titre)"></td>
                     <td>{{ reserve.titre }}</td>
+                    <td>
+                        <select v-model="reserve.statusCritique" @change="changeStatusCritique(reserve.titre, reserve.statusCritique)">
+                            <option :value="true">Critique</option>
+                            <option :value="false">Sous critique</option>
+                        </select>
+                    </td>
                 </tr>
             </table>
         </div>
 
         <div class="actions">
             <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
+            <button v-if="!flagInvertesment" @click="getCommentaires()">Les commentaires</button>
         </div>
 
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
 
     </div>
 </template>
-  
+
 <script>
 
 import Examens from "@/requests/Examens"
@@ -32,18 +39,20 @@ import Spinner from 'vue-simple-spinner'
 import Invertesment from "@/components/models/Invertesment.vue"
 import Verified from "@/components/models/Verified.vue"
 import Commentaire from "@/requests/commentaire"
+
 export default {
     name: 'table-observateur',
     data() {
         return {
-            reserves : [],
-            reservesSelect : null,
-            flagInvertesment : false,
-            flagVerified : false,
-            flagSpinner : false,
-            msgInvertesment : "",
-            commentaires : [],
-            titreReserve : null
+            reserves: [],
+            reservesSelect: null,
+            flagInvertesment: false,
+            flagVerified: false,
+            flagSpinner: false,
+            msgInvertesment: "",
+            commentaires: [],
+            titreReserve: null,
+            statusReserve : null
         }
     },
 
@@ -59,24 +68,56 @@ export default {
 
     methods: {
 
-        selectReserve(titreReserve) {
+        getCommentaires() {
 
-            Commentaire.select(this.observateurId, titreReserve)
+            if (this.titreReserve != null) {
+                Commentaire.select(this.observateurId, this.titreReserve)
+                    .then((result) => {
+
+                        if (result.data != null) {
+                            this.titreReserve = result.data.titreReserve;
+                            this.commentaires = result.data.commentaires;
+                            return this.$emit("apercu", this.titreReserve, this.commentaires);
+                        }
+
+                        return this.$emit("apercu", this.titreReserve);
+
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
+        },
+
+        supprimer() {
+
+            Examens.updateStatus(this.observateurId, this.titreReserve)
             .then((result) => {
-
-                if(result.data != null) {
-                    this.commentaires = result.data.commentaires;
-                    this.titreReserve = result.data.titreReserve;
-                    return this.$emit("apercu" , this.titreReserve, this.commentaires);
+                if(result.data) {
+                    const index = this.reserves.findIndex((el) => el.titre == this.titreReserve );
+                    this.reserves.splice(index, 1);
                 }
-
-                return this.$emit("apercu" , titreReserve);
-
             })
             .catch((error) => {
                 console.log(error);
             });
 
+        },
+
+        selectReserve(titreReserve) {
+            this.titreReserve = titreReserve;
+        },
+
+        changeStatusCritique(titre, statusCritique) {
+
+            Examens.changeStatusCritique(titre, statusCritique, this.observateurId)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+            
         }
 
     },
@@ -84,86 +125,103 @@ export default {
     created() {
 
         Examens.select(this.observateurId)
-        .then((result) => {
-            
-            const { a, b, c, d, e, f, g, h, i, j, k } = result.data;
-            
-            a.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
+            .then((result) => {
 
-            b.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
+                result.data.a.forEach(el => {
+                    if (el.o === true) {
+                        this.reserves.push(el);
+                    }
+                });
 
-            c.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
+                result.data.b.forEach(el => {
+                    if (el.o == true) {
+                        this.reserves.push(el);
 
-            d.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
+                    }
+                });
 
-            e.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
+                result.data.c.forEach(el => {
+                    if (el.o == true) {
+                        this.reserves.push(el);
 
-            f.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
 
-            g.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
+                    }
+                });
 
-            h.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
+                result.data.d.forEach(el => {
+                    if (el.o == true) {
+                        this.reserves.push(el);
 
-            i.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
 
-            j.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
+                    }
+                });
 
-            k.forEach(el => {
-                if(el.so == true) {
-                    this.reserves.push(el);
-                }
-            });
+                result.data.e.forEach(el => {
+                    if (el.o == true) {
+                        this.reserves.push(el);
 
-        })
-        .catch((error) => {
-            console.log(error)
-        });
+
+                    }
+                });
+
+                result.data.f.forEach(el => {
+                    if (el.o == true) {
+                        this.reserves.push(el);
+
+
+                    }
+                });
+
+                result.data.g.forEach(el => {
+                    if (el.o == true) {
+                        this.reserves.push(el);
+
+
+                    }
+                });
+
+                result.data.h.forEach(el => {
+                    if (el.o == true) {
+                        this.reserves.push(el);
+
+
+                    }
+                });
+
+                result.data.i.forEach(el => {
+                    if (el.o == true) {
+                        this.reserves.push(el);
+
+
+                    }
+                });
+
+                result.data.j.forEach(el => {
+                    if (el.o == true) {
+                        this.reserves.push(el);
+
+
+                    }
+                });
+
+                result.data.k.forEach(el => {
+                    if (el.o == true) {
+                        this.reserves.push(el);
+
+
+                    }
+                });
+
+            })
+            .catch((error) => {
+                console.log(error)
+            });
 
 
     }
 }
 </script>
-  
+
 <style scoped>
 .table-objet-observateur {
     width: 100%;
@@ -221,8 +279,11 @@ export default {
 }
 
 .actions {
+    width: 100%;
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
     margin: 5px;
 }
 
@@ -252,5 +313,4 @@ export default {
 iframe {
     margin-top: 20px;
 }
-
 </style>
