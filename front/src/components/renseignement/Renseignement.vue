@@ -1,11 +1,12 @@
 <template>
     <div>
         <div class="descriptions">
-            <table>
+            <table border="1">
 
                 <tr>
                     <th>Constructeur</th>
                 </tr>
+
                 <tr>
                     <td :class="[renseignement.typeConstructeur.length != 0 ? 'saved' : 'not-saved']">Type constructeur
                         (Plaque):</td>
@@ -73,7 +74,7 @@
 
 
                 <tr>
-                    <td :class="[renseignement.modification.length != 0 ? 'saved' : 'not-saved']">Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l’appareil examiné:</td>
+                    <td :class="[renseignement.modification.length != 0 ? 'saved' : 'not-saved']">Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l'appareil examiné:</td>
                     <td v-html="renseignement.tagModification" @input="getValueModification"></td>
                     {{ renseignement.modificationAutre }}
                 </tr>
@@ -88,7 +89,7 @@
         </div>
 
         <div v-if="flagExistOldData" class="modifier">
-            <button @click="sauvegarde">Modifier</button>
+            <button @click="modifier">Modifier</button>
         </div>
 
         <Insert v-if="falgInsert" :typeInsert="typeInsert" @valider="valider" @annuler="annuler" />
@@ -308,10 +309,10 @@ export default {
             this.renseignement.miseEnServiceRapport = event.target.value;
         },
 
-        getValueMiseEnServiceEpreuves() {
-            if (event.target.value === "Effectuée le:") {
+        getValueMiseEnServiceEpreuves(event) {
+            if (event.target.value === "Réalisées le:") {
                 this.falgInsert = true;
-                this.typeInsert = "Effectuée le:";
+                this.typeInsert = "Réalisées le:";
             } else {
                 this.renseignement.miseEnServiceEpreuves = event.target.value;
                 this.renseignement.miseEnServiceEpreuvesAutre = "";
@@ -343,9 +344,9 @@ export default {
         },
 
         getValueModification(event) {
-            if (event.target.value === "Réalisées le:") {
+            if (event.target.value === "Description:") {
                 this.falgInsert = true;
-                this.typeInsert = "Réalisées le:";
+                this.typeInsert = "Description:";
             } else {
                 this.renseignement.modification = event.target.value;
                 this.renseignement.modificationAutre = "";
@@ -357,6 +358,22 @@ export default {
             this.renseignement.observateurId = this.observateurId;
 
             Renseignement.create(this.renseignement)
+                .then((result) => {
+                    if (result.data) {
+                        this.flagExistOldData = true;
+                        this.renseignementId = result.data.renseignementId;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        modifier() {
+
+            console.log(this.renseignement);
+
+            Renseignement.update(this.observateurId, this.renseignement)
                 .then((result) => {
                     if (result.data) {
                         this.flagExistOldData = true;
@@ -417,6 +434,10 @@ export default {
                     this.renseignement.tagEssaischarge = this.renseignement.tagEssaischarge.replace(`value='${result.data.essaischarge}'`, `value='${result.data.essaischarge}' checked='checked`);
                     this.renseignement.essaischarge = result.data.essaischarge;
                     this.renseignement.essaischargeAutre = result.data.essaischargeAutre;
+
+                    this.renseignement.tagModification = this.renseignement.tagModification.replace(`value='${result.data.modification}'`, `value='${result.data.modification}' checked='checked`);
+                    this.renseignement.modification = result.data.modification;
+                    this.renseignement.modificationAutre = result.data.modificationAutre;
                 }
             })
             .catch((error) => {
@@ -452,7 +473,9 @@ export default {
     justify-content: flex-start;
     color: red;
     background-color: whitesmoke;
+    padding: 20px;
 }
+
 
 label {
     width: 80%;

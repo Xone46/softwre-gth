@@ -1,12 +1,14 @@
 <template>
     <div class="photos">
 
-        <h1>Veuillez entrer une photo</h1>
+        <h1 v-if="!flagImg">Veuillez entrer une photo</h1>
 
+        <p class="display-button" v-if="flagImg" @click="displayImage">Clique ici pour voir Image</p>
         <input  type="file" multiple="multiple" class="form-control" placeholder="Format Photo" ref="file" @change="previewFile"/>
 
         <div class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+            <button v-if="!flagImg" @click="sauvegarde">Sauvegarde de Secours</button>
+            <button v-if="flagImg" @click="modifier">Modifier</button>
         </div>
 
     </div>
@@ -18,7 +20,9 @@ export default {
     name: 'photo-component',
     data() {
         return {
-            file : null
+            file : null,
+            imgSrc : null,
+            flagImg : false,
         }
     },
 
@@ -31,15 +35,39 @@ export default {
 
     methods: {
 
+        displayImage() {
+            Photos.displayImage(this.imgSrc)
+            .then((result) => {
+                var image = new Image();
+                image.src = "data:image/jpg;base64," + result;
+                document.body.appendChild(image);
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+        },
+
         previewFile() {
             this.file = this.$refs.file.files[0];
         },
 
 
         sauvegarde() {
-            Photos.create(this.file, this.observateurId, this.observateurId)
+            Photos.create(this.file, this.observateurId)
             .then((result) => {
-                console.log(result)
+                this.imgSrc = result.data.filename;
+                this.flagImg = true;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        },
+
+        modifier() {
+
+            Photos.update(this.file, this.observateurId)
+            .then((result) => {
+                this.imgSrc = result.data.filename;
             })
             .catch((error) => {
                 console.log(error);
@@ -49,6 +77,14 @@ export default {
 
     created() {
 
+            Photos.select(this.observateurId)
+            .then((result) => {
+                this.flagImg = true;
+                this.imgSrc = result.data.img;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 }
 </script>
@@ -60,6 +96,10 @@ export default {
     margin-left: 0;
     margin-right: 0;
     margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .photos input {
@@ -92,5 +132,14 @@ export default {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.display-button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    width: max-content;
 }
 </style>
