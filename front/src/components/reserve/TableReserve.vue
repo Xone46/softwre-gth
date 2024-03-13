@@ -13,7 +13,8 @@
                     <td><input type="radio" name="reserve" @input="selectReserve(reserve.titre)"></td>
                     <td>{{ reserve.titre }}</td>
                     <td>
-                        <select v-model="reserve.statusCritique" @change="changeStatusCritique(reserve.titre, reserve.statusCritique)">
+                        <select v-model="reserve.statusCritique"
+                            @change="changeStatusCritique(reserve.titre, reserve.statusCritique)">
                             <option :value="true">Critique</option>
                             <option :value="false">Sous critique</option>
                         </select>
@@ -52,7 +53,7 @@ export default {
             msgInvertesment: "",
             commentaires: [],
             titreReserve: null,
-            statusReserve : null
+            statusReserve: null
         }
     },
 
@@ -92,15 +93,15 @@ export default {
         supprimer() {
 
             Examens.updateStatus(this.observateurId, this.titreReserve)
-            .then((result) => {
-                if(result.data) {
-                    const index = this.reserves.findIndex((el) => el.titre == this.titreReserve );
-                    this.reserves.splice(index, 1);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+                .then((result) => {
+                    if (result.data) {
+                        const index = this.reserves.findIndex((el) => el.titre == this.titreReserve);
+                        this.reserves.splice(index, 1);
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
 
         },
 
@@ -111,13 +112,13 @@ export default {
         changeStatusCritique(titre, statusCritique) {
 
             Examens.changeStatusCritique(titre, statusCritique, this.observateurId)
-            .then((result) => {
-                console.log(result);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-            
+                .then((result) => {
+                    console.log(result);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
         }
 
     },
@@ -127,98 +128,84 @@ export default {
         Examens.select(this.observateurId)
             .then((result) => {
 
-                result.data.a.forEach(el => {
-                    if (el.o === true) {
-                        this.reserves.push(el);
-                    }
-                });
+                if (result.data) {
 
-                result.data.b.forEach(el => {
-                    if (el.o == true) {
-                        this.reserves.push(el);
+                    result.data.a.forEach(el => {
+                        if (el.o === true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
-                    }
-                });
+                    result.data.b.forEach(el => {
+                        if (el.o == true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
-                result.data.c.forEach(el => {
-                    if (el.o == true) {
-                        this.reserves.push(el);
+                    result.data.c.forEach(el => {
+                        if (el.o == true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
+                    result.data.d.forEach(el => {
+                        if (el.o == true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
-                    }
-                });
+                    result.data.e.forEach(el => {
+                        if (el.o == true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
-                result.data.d.forEach(el => {
-                    if (el.o == true) {
-                        this.reserves.push(el);
+                    result.data.f.forEach(el => {
+                        if (el.o == true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
+                    result.data.g.forEach(el => {
+                        if (el.o == true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
-                    }
-                });
+                    result.data.h.forEach(el => {
+                        if (el.o == true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
-                result.data.e.forEach(el => {
-                    if (el.o == true) {
-                        this.reserves.push(el);
+                    result.data.i.forEach(el => {
+                        if (el.o == true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
+                    result.data.j.forEach(el => {
+                        if (el.o == true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
-                    }
-                });
+                    result.data.k.forEach(el => {
+                        if (el.o == true) {
+                            this.reserves.push(el);
+                        }
+                    });
 
-                result.data.f.forEach(el => {
-                    if (el.o == true) {
-                        this.reserves.push(el);
+                
+                }
 
-
-                    }
-                });
-
-                result.data.g.forEach(el => {
-                    if (el.o == true) {
-                        this.reserves.push(el);
-
-
-                    }
-                });
-
-                result.data.h.forEach(el => {
-                    if (el.o == true) {
-                        this.reserves.push(el);
-
-
-                    }
-                });
-
-                result.data.i.forEach(el => {
-                    if (el.o == true) {
-                        this.reserves.push(el);
-
-
-                    }
-                });
-
-                result.data.j.forEach(el => {
-                    if (el.o == true) {
-                        this.reserves.push(el);
-
-
-                    }
-                });
-
-                result.data.k.forEach(el => {
-                    if (el.o == true) {
-                        this.reserves.push(el);
-
-
-                    }
-                });
-
-            })
+    })
             .catch((error) => {
-                console.log(error)
-            });
+        console.log(error)
+    });
 
 
-    }
+}
 }
 </script>
 

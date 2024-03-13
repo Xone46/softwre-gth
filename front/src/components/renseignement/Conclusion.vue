@@ -1,129 +1,177 @@
 <template>
-    <div class="parent-conclusions">
+
+    <div class="conclusion">
 
         <h1>D1. Observations complémentaires</h1>
-        <div :id="$style.observations" v-for="(item, index) in observationsComplémentairesTable" :key="item">
-            <div v-html="item" :id="$style.observation" @change="selectObservation(index)" @input="event => poids = event.target.value"></div>
-        </div>
+
+        <div v-html="tagA" @input="getValueTagA"></div><span>{{ this.poids }}</span>
+        <div class="sous" v-html="sous_A"></div>
+        <div v-html="tagB" @input="getValueTagB"></div>
+        <div v-html="tagC" @input="getValueTagC"></div>
 
         <h1>CONCLUSION</h1>
-        <div :id="$style.conclusions" v-for="(item, index) in conclusionTable" :key="item">
-            <div v-html="item" :id="$style.conclusion" @change="selectConclusion(index)"></div>
-        </div>
 
-        <textarea :id="$style.commentaire" v-if="flagcommentaire" v-model="commentaire" cols="30" rows="10"></textarea>
+        <div v-html="tagD" @input="getValueTagD"></div>
+        <div v-html="tagE" @input="getValueTagE"></div>
+        <div v-html="tagF" @input="getValueTagF"></div>
+        <div v-html="tagG" @input="getValueTagG"></div>
+        <div>{{ this.commentaire }}</div>
 
-        <div :id="$style.sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        <Insert v-if="falgInsert" :typeInsert="typeInsert" @valider="valider" @annuler="annuler" />
+
+        <div class="sauvegarde">
+            <button v-show="!flagModifier" @click="sauvegarde">Sauvegarde de Secours</button>
+            <button v-show="flagModifier" @click="modifier">Modifier</button>
         </div>
 
     </div>
+
 </template>
-  
+
 <script>
 import Conclusion from "@/requests/conclusion"
+import Insert from "@/components/models/Insert.vue"
+
 export default {
     name: 'conclusion-component',
     data() {
         return {
-            poids: "",
-            commentaire: null,
-            flagcommentaire: false,
-            observationsComplémentairesTable: [
-                `<ul><li><input type='checkbox'>Les essais ont été réalisés avec les charges mises à disposition <input type='text' placeholder='EX : 130 kg'></li> <li>a) le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.</li> <li>b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.</li><ul>`,
-                `<ul><li><input type='checkbox'>L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.</li><ul>`,
-                `<ul><li><input type='checkbox'>Absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.</li><ul>`,
-            ],
-            observationsComplémentairesTableSelected: [],
-            conclusionTable: [
-                `<ul><li><input type='checkbox'>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</li><ul>`,
-                `<ul><li><input type='checkbox'>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.</li><ul>`,
-                `<ul><li><input type='checkbox'>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.</li><ul>`,
-                `<ul><li><input type='checkbox'>Commentaire complémentaire</li><ul>`,
-            ],
-            conclusionTableSelected: []
+            flagModifier: false,
+            falgInsert: false,
+            typeInsert: ``,
+            poids: ``,
+            commentaire: '',
+            tagA: `<li><input type="checkbox" value="Les essais ont été réalisés avec les charges mises à disposition.">Les essais ont été réalisés avec les charges mises à disposition.</li>`,
+            a: ``,
+            sous_A: `<li>a) le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.</li> <li>b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.</li>`,
+            tagB: `<li><input type="checkbox" value="L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.">L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.</li>`,
+            b: ``,
+            tagC: `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</li>`,
+            c: ``,
 
+            tagD: `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</li>`,
+            d: ``,
+
+            tagE: `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.</li>`,
+            e: ``,
+
+            tagF: `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.</li>`,
+            f: ``,
+
+            tagG: `<li><input type="checkbox" value="Commentaire complémentaire.">Commentaire complémentaire.</li>`,
+            g: ``,
         }
     },
 
     components: {
+        Insert
     },
 
-    props : {
-        observateurId : String
+    props: {
+        observateurId: String
     },
 
     methods: {
 
-        removeTagsConclusion(str) {
-            if ((str === null) || (str === ''))
-                return false;
-            else
-                str = str.toString();
-            return str.replace(/(<([^>]+)>)/ig, '');
-        },
+        valider(event, type) {
 
-        removeTagObservations(str) {
-            if ((str === null) || (str === ''))
-                return false;
-            else
-                str = str.toString();
-            //Get between tag <li></li>
-            const tab = str.match(/<li>(.*?)<\/li>/g);
-            const newTab = tab.map((el) => {
-                return el.replace(/(<([^>]+)>)/ig, '');
-            })
-
-            return newTab;
-        },
-
-
-        selectObservation(index) {
-            const result = this.removeTagObservations(this.observationsComplémentairesTable[index]);
-            for (let j = 0; j < result.length; j++) {
-                const el = result[j];
-                if (!this.observationsComplémentairesTableSelected.includes(el)) {
-                    this.observationsComplémentairesTableSelected.push(el);
-                } else {
-                    for (let i = 0; i < this.observationsComplémentairesTableSelected.length; i++) {
-                        if (this.observationsComplémentairesTableSelected[i] == el) {
-                            this.observationsComplémentairesTableSelected.splice(i, 1);
-                        }
-                    }
-                }
-            }
-        },
-
-        selectConclusion(index) {
-
-            if (index == 3) {
-                this.flagcommentaire = !this.flagcommentaire;
+            if (type == "Commentaire complémentaire.") {
+                this.commentaire = event;
             }
 
-            const result = this.removeTagsConclusion(this.conclusionTable[index]);
+            if (type == "Les essais ont été réalisés avec les charges mises à disposition.") {
+                this.poids = event;
+            }
 
-            if (this.conclusionTableSelected.includes(result)) {
-                const indexSelected = this.conclusionTableSelected.findIndex((el) => el == result);
-                this.conclusionTableSelected.splice(indexSelected, 1);
+            this.falgInsert = false;
+        },
+
+        annuler() {
+            this.falgInsert = false;
+        },
+
+        getValueTagA(event) {
+
+            if (this.a == "") {
+                this.a = event.target.value;
+                this.typeInsert = event.target.value;
+                this.falgInsert = true;
             } else {
-                this.conclusionTableSelected.push(result);
+                this.a = "";
+                this.poids = "";
+            }
+
+        },
+
+        getValueTagB(event) {
+
+            if (this.b == "") {
+                this.b = event.target.value;
+            } else {
+                this.b = "";
+            }
+
+        },
+
+        getValueTagC(event) {
+            if (this.c == "") {
+                this.c = event.target.value;
+            } else {
+                this.c = "";
             }
         },
+
+        getValueTagD(event) {
+            if (this.d == "") {
+                this.d = event.target.value;
+            } else {
+                this.d = "";
+            }
+        },
+
+        getValueTagE(event) {
+
+            if (this.e == "") {
+                this.e = event.target.value;
+            } else {
+                this.e = "";
+            }
+        },
+
+
+        getValueTagF(event) {
+            if (this.f == "") {
+                this.f = event.target.value;
+            } else {
+                this.f = "";
+            }
+        },
+
+        getValueTagG(event) {
+            if (this.g == "") {
+                this.g = event.target.value;
+                this.typeInsert = event.target.value;
+                this.falgInsert = true;
+            } else {
+                this.g = "";
+                this.commentaire = ""
+            }
+        },
+
 
         sauvegarde() {
+            Conclusion.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.poids, this.commentaire, this.observateurId)
+                .then((result) => {
+                    console.log(result)
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
 
-            console.log(this.poids);
+        modifier() {
 
-            // if(this.flagcommentaire) {
-            //     for(let i = 0; i < this.conclusionTableSelected.length; i++) {
-            //             if(this.conclusionTableSelected[i] == "Commentaire complémentaire") {
-            //                 this.conclusionTableSelected[i] = this.commentaire;
-            //                 break;
-            //             }
-            //     }
-            // }
-
-            Conclusion.create(this.observationsComplémentairesTableSelected, this.poids, this.conclusionTableSelected, this.commentaire, this.observateurId)
+            Conclusion.update(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.poids, this.commentaire, this.observateurId)
                 .then((result) => {
                     console.log(result)
                 })
@@ -140,18 +188,59 @@ export default {
     created() {
 
         Conclusion.select(this.observateurId)
-        .then((result) => {
-            console.log(result);
-        })
-        .catch((error) => {
-            console.log(error)
-        });
+            .then((result) => {
+                if (result.data != null) {
+
+                    this.flagModifier = true;
+                    this.poids = result.data.poids;
+                    this.commentaire = result.data.commentaire;
+
+                    if (result.data.a != "") {
+                        this.tagA = this.tagA.replace('type="checkbox"', 'type="checkbox" checked');
+                        this.a = result.data.a;
+                    }
+
+                    if (result.data.b != "") {
+                        this.tagB = this.tagB.replace('type="checkbox"', 'type="checkbox" checked');
+                        this.b = result.data.b;
+                    }
+
+                    if (result.data.c != "") {
+                        this.tagC = this.tagC.replace('type="checkbox"', 'type="checkbox" checked');
+                        this.c = result.data.c;
+                    }
+
+                    if (result.data.d != "") {
+                        this.tagD = this.tagD.replace('type="checkbox"', 'type="checkbox" checked');
+                        this.d = result.data.d;
+                    }
+
+                    if (result.data.e != "") {
+                        this.tagE = this.tagE.replace('type="checkbox"', 'type="checkbox" checked');
+                        this.e = result.data.e;
+                    }
+
+                    if (result.data.f != "") {
+                        this.tagF = this.tagF.replace('type="checkbox"', 'type="checkbox" checked');
+                        this.f = result.data.f;
+                    }
+
+                    if (result.data.g != "") {
+                        this.tagG = this.tagG.replace('type="checkbox"', 'type="checkbox" checked');
+                        this.g = result.data.g;
+                    }
+
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            });
     }
 }
 </script>
-  
-<style module>
-.parent-conclusions {
+
+<style scoped>
+.conclusion {
     width: 100%;
     margin-top: 10px;
     margin-left: 0;
@@ -164,64 +253,17 @@ export default {
     align-items: flex-start;
 }
 
-#observations {
-    width: 100%;
-}
-
-#observations>#observation {
-    width: 100%;
-}
-
-
-#observation>ul {
-    list-style-type: none;
+.conclusion div {
     width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 0;
+    flex-direction: row;
 }
 
-#observation>ul>li {
-    text-align: left;
-    padding: 5px;
+.conclusion > div > li {
+    list-style: none;
 }
 
-#observation>ul>li:nth-child(2),
-#observation>ul>li:nth-child(3) {
-    margin-left: 10px;
-}
-
-#conclusions {
-    width: 100%;
-}
-
-#conclusions>#conclusion {
-    width: 100%;
-}
-
-
-#conclusion>ul {
-    list-style-type: none;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding: 0;
-}
-
-#conclusion>ul>li {
-    text-align: left;
-    padding: 5px;
-}
-
-#commentaire {
-    width: 80%;
-}
-
-#sauvegarde {
+.sauvegarde {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -230,7 +272,7 @@ export default {
     color: white;
 }
 
-#sauvegarde>button {
+.sauvegarde button {
     background-color: #040faa;
     color: white;
     margin: 3px;
@@ -238,5 +280,13 @@ export default {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+div.sous {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 </style>

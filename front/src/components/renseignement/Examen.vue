@@ -389,7 +389,8 @@
         </table>
 
         <div class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+            <button v-if="!falgModifie" @click="sauvegarde">Sauvegarde de Secours</button>
+            <button v-if="falgModifie" @click="sauvegarde">Modifier</button>
         </div>
 
 
@@ -402,6 +403,8 @@ export default {
     name: 'renseignement-component',
     data() {
         return {
+
+            falgModifie : false,
 
             a: [
                 { titre: "- Accès a la cabine et au poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
@@ -673,6 +676,9 @@ export default {
     created() {
         Examens.select(this.observateurId)
             .then((result) => {
+                
+                if(result.data != null) {
+                    this.falgModifie = true;
                     this.a = result.data.a;
                     this.b = result.data.b;
                     this.c = result.data.c;
@@ -684,6 +690,7 @@ export default {
                     this.i = result.data.i;
                     this.j = result.data.j;
                     this.k = result.data.k;
+                }
         })
             .catch((error) => {
                 console.log(error)
