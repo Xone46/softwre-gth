@@ -29,34 +29,52 @@ class Photos {
         })
     }
 
-    static update(file, observateurId) {
-        return new Promise((resolve, reject) => {
+    // static update(file, observateurId) {
+    //     return new Promise((resolve, reject) => {
 
-            var formData = new FormData();
+    //         var formData = new FormData();
 
-            if (file) {
-                formData.append('file', file);
-                formData.append('observateurId', observateurId);
-            }
+    //         if (file) {
+    //             formData.append('file', file);
+    //             formData.append('observateurId', observateurId);
+    //         }
 
-            axios.post(`${VUE_APP_API_BASE_URL}/photos/update`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            })
-                .then(response => {
-                    resolve(response.data);
-                })
-                .catch(error => {
-                    reject(error.response.data);
-                });
-        })
-    }
+    //         axios.post(`${VUE_APP_API_BASE_URL}/photos/update`, formData, {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data'
+    //             }
+    //         })
+    //             .then(response => {
+    //                 resolve(response.data);
+    //             })
+    //             .catch(error => {
+    //                 reject(error.response.data);
+    //             });
+    //     })
+    // }
 
     static select(observateurId) {
         
         return new Promise((resolve, reject) => {
             axios.get(`${VUE_APP_API_BASE_URL}/photos/${observateurId}`,
+            {
+                headers: {
+                     'Content-Type': 'application/json'
+                 }
+             })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
+    static reset(observateurId) {
+        
+        return new Promise((resolve, reject) => {
+            axios.delete(`${VUE_APP_API_BASE_URL}/photos/${observateurId}`,
             {
                 headers: {
                      'Content-Type': 'application/json'

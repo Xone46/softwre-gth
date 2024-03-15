@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <img src="@/assets/logo.png" alt="">
+    <img src="@/assets/logo.png" alt="logo">
 
     <div v-if="flagSpinner" class="spinner">
       <Spinner message="Veuillez patienter, logiciel se connectera aux serveurs GTHCONSULT" />

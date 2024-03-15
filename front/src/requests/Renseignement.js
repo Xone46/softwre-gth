@@ -22,13 +22,9 @@ class Renseignement {
         })
     }
 
-    static update(observateurId, renseignement) {
+    static reset(observateurId) {
         return new Promise((resolve, reject) => {
-            axios.put(`${VUE_APP_API_BASE_URL}/renseignements/update`,
-            {
-                observateurId : observateurId,
-                renseignement : renseignement
-            },
+            axios.delete(`${VUE_APP_API_BASE_URL}/renseignements/reset/${observateurId}`,
             {
                 headers: {
                      'Content-Type': 'application/json'

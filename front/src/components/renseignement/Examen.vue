@@ -388,15 +388,18 @@
             </tr>
         </table>
 
-        <div class="sauvegarde">
-            <button v-if="!falgModifie" @click="sauvegarde">Sauvegarde de Secours</button>
-            <button v-if="falgModifie" @click="sauvegarde">Modifier</button>
+        <div v-if="!flagReset" class="sauvegarde">
+            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        </div>
+
+        <div v-if="flagReset" class="reset">
+            <button @click="reset">Reset</button>
         </div>
 
 
     </div>
 </template>
-  
+
 <script>
 import Examens from "@/requests/Examens"
 export default {
@@ -404,93 +407,93 @@ export default {
     data() {
         return {
 
-            falgModifie : false,
+            flagReset: false,
 
             a: [
-                { titre: "- Accès a la cabine et au poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Accès aux chemins de roulement", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Autres accès pour entretien et vérification", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
+                { titre: "- Accès a la cabine et au poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Accès aux chemins de roulement", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Autres accès pour entretien et vérification", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
             ],
 
             b: [
-                { titre: "- Rails et / ou poutres de roulement, fixations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Poteaux, corbeaux, potence, ancrages", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Butoirs, amortisseurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
+                { titre: "- Rails et / ou poutres de roulement, fixations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Poteaux, corbeaux, potence, ancrages", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Butoirs, amortisseurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             c: [
-                { titre: "- Poutres, sommiers, palées...", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Chariot, galets, guidages", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
+                { titre: "- Poutres, sommiers, palées...", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Chariot, galets, guidages", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             d: [
-                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
+                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             e: [
-                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
+                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             f: [
-                { titre: "- Constitution, fixation, plancher", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Protection contre les chutes de hauteur de l'opérateur à partir du poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Visibilité (vitrage, essuie-glaces)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Chauffage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Absence de stockage de chiffons, déchets, huile ou toute autre matière inflammable en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Extincteur en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Evacuation de secours", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Siège", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Eclairage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
+                { titre: "- Constitution, fixation, plancher", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Protection contre les chutes de hauteur de l'opérateur à partir du poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Visibilité (vitrage, essuie-glaces)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Chauffage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Absence de stockage de chiffons, déchets, huile ou toute autre matière inflammable en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Extincteur en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Evacuation de secours", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Siège", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Eclairage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             g: [
-                { titre: "- Mise en marche- Arrêt normal – Sélecteur", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Identification des organes de service", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Retour automatique au point neutre des commandes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Autres arrêts accessibles (urgence….)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Avertisseur sonore, lumineux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Indicateurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
+                { titre: "- Mise en marche- Arrêt normal – Sélecteur", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Identification des organes de service", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Retour automatique au point neutre des commandes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Autres arrêts accessibles (urgence….)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Avertisseur sonore, lumineux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Indicateurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             h: [
-                { titre: "- Suspentes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Attaches", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Moufles, crochets, linguet de sécurité ou dispositifs équivalents", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Autres dispositifs de préhension (bennes, grappins, électro-aimants…)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
+                { titre: "- Suspentes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Attaches", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Moufles, crochets, linguet de sécurité ou dispositifs équivalents", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Autres dispositifs de préhension (bennes, grappins, électro-aimants…)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             i: [
-                { titre: "- Groupes moto-réducteurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Organes de transmission, accouplements", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Freins des mouvements concourant au levage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Limitation de la vitesse (absence d'emballement) ", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Freins des mouvements horizontaux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Immobilisation hors service", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Autres freins (Secours, sécurité...)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Protection des organes mobiles de transmission", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
+                { titre: "- Groupes moto-réducteurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Organes de transmission, accouplements", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Freins des mouvements concourant au levage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Limitation de la vitesse (absence d'emballement) ", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Freins des mouvements horizontaux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Immobilisation hors service", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Autres freins (Secours, sécurité...)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Protection des organes mobiles de transmission", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             j: [
-                { titre: "- Limiteurs de course haute ou mise en butée", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Autres limiteurs de course/hors course", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Limiteur de charge, de capacité (Obligatoire pour appareils CE si capacité >= 1 Tonne)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Dispositifs anti collision ou équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
+                { titre: "- Limiteurs de course haute ou mise en butée", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Autres limiteurs de course/hors course", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Limiteur de charge, de capacité (Obligatoire pour appareils CE si capacité >= 1 Tonne)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Dispositifs anti collision ou équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             k: [
-                { titre: "- Plaque constructeur ", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Affichage capacité, tableau des charges", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false },
-                { titre: "- Consignes de sécurité et d'utilisation (lisibilité)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique : false }
+                { titre: "- Plaque constructeur ", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Affichage capacité, tableau des charges", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Consignes de sécurité et d'utilisation (lisibilité)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ]
         }
     },
@@ -658,11 +661,136 @@ export default {
             this.k[index][type] = !this.k[index][type];
         },
 
+        reset() {
+            Examens.reset(this.observateurId)
+                .then((result) => {
+                    if (result.data) {
+
+                        this.a.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+
+                        this.b.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+
+                        this.c.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+
+                        this.d.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+
+                        this.e.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+
+                        this.f.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+
+                        this.g.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+
+                        this.h.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+
+                        this.i.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+
+                        this.j.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+                        this.k.forEach((element) => {
+                                element.be = false;
+                                element.fc = false;
+                                element.sa = false;
+                                element.nv = false;
+                                element.so = false;
+                                element.o = false;
+                            }
+                        );
+                        this.flagReset = false;
+                        this.$emit("menuStatusChicked");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
         sauvegarde() {
 
             Examens.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k, this.observateurId)
                 .then((result) => {
-                    console.log(result)
+                    if (result.data) {
+                        this.flagReset = true;
+                        this.$emit("menuStatusChicked");
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -676,9 +804,9 @@ export default {
     created() {
         Examens.select(this.observateurId)
             .then((result) => {
-                
-                if(result.data != null) {
-                    this.falgModifie = true;
+
+                if (result.data != null) {
+                    this.flagReset = true;
                     this.a = result.data.a;
                     this.b = result.data.b;
                     this.c = result.data.c;
@@ -690,15 +818,19 @@ export default {
                     this.i = result.data.i;
                     this.j = result.data.j;
                     this.k = result.data.k;
+                    this.$emit("menuStatusChicked");
+                } else {
+                    this.flagReset = false;
+                    this.$emit("menuStatusChicked");
                 }
-        })
+            })
             .catch((error) => {
                 console.log(error)
             });
     }
 }
 </script>
-  
+
 <style scoped>
 .examen {
     margin-top: 10px;
@@ -721,9 +853,6 @@ table tr td {
 }
 
 
-
-
-
 .sauvegarde {
     width: 100%;
     display: flex;
@@ -735,6 +864,25 @@ table tr td {
 
 .sauvegarde button {
     background-color: #040faa;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.reset button {
+    background-color: #aa1704;
     color: white;
     margin: 3px;
     border: 0px;

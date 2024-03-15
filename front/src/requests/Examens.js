@@ -42,6 +42,24 @@ class Examens {
         })
     }
 
+    static reset(observateurId) {
+
+        return new Promise((resolve, reject) => {
+            axios.delete(`${VUE_APP_API_BASE_URL}/examens/${observateurId}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
     static updateStatus(observateurId, titreReserve) {
 
         return new Promise((resolve, reject) => {

@@ -33,21 +33,9 @@ class Conclusions {
         })
     }
 
-    static update(a, b, c, d, e, f, g, poids, commentaire, observateurId) {
+    static reset(observateurId) {
         return new Promise((resolve, reject) => {
-            axios.put(`${VUE_APP_API_BASE_URL}/conclusions/update/${observateurId}`,
-            {
-                a,
-                b,
-                c,
-                d,
-                e,
-                f,
-                g,
-                poids,
-                commentaire,
-                observateurId
-            },
+            axios.delete(`${VUE_APP_API_BASE_URL}/conclusions/reset/${observateurId}`,
             {
                 headers: {
                      'Content-Type': 'application/json'

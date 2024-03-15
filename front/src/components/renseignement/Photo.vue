@@ -1,14 +1,17 @@
 <template>
     <div class="photos">
 
-        <h1 v-if="!flagImg">Veuillez entrer une photo</h1>
+        <h1 v-if="!flagReset">Veuillez entrer une photo</h1>
 
-        <p class="display-button" v-if="flagImg" @click="displayImage">Clique ici pour voir Image</p>
+        <p class="display-button" v-if="flagReset" @click="displayImage">Clique ici pour voir Image</p>
         <input  type="file" multiple="multiple" class="form-control" placeholder="Format Photo" ref="file" @change="previewFile"/>
 
-        <div class="sauvegarde">
-            <button v-if="!flagImg" @click="sauvegarde">Sauvegarde de Secours</button>
-            <button v-if="flagImg" @click="modifier">Modifier</button>
+        <div v-if="!flagReset" class="sauvegarde">
+            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        </div>
+
+        <div v-if="flagReset" class="reset">
+            <button @click="reset">Reset</button>
         </div>
 
     </div>
@@ -20,9 +23,9 @@ export default {
     name: 'photo-component',
     data() {
         return {
+            flagReset : false,
             file : null,
-            imgSrc : null,
-            flagImg : false,
+            imgSrc : null
         }
     },
 
@@ -55,19 +58,28 @@ export default {
         sauvegarde() {
             Photos.create(this.file, this.observateurId)
             .then((result) => {
-                this.imgSrc = result.data.filename;
-                this.flagImg = true;
+                if(result) {
+                    this.imgSrc = result.filename;
+                    this.flagReset = true;
+                    this.$emit("menuStatusChicked");
+                }
             })
             .catch((error) => {
                 console.log(error);
             });
         },
 
-        modifier() {
-
-            Photos.update(this.file, this.observateurId)
+        reset() {
+            Photos.reset(this.observateurId)
             .then((result) => {
-                this.imgSrc = result.data.filename;
+
+                if(result.data) {
+                    this.flagReset = false;
+                    this.file = null;
+                    this.imgSrc = null;
+                    this.$emit("menuStatusChicked");
+                }
+
             })
             .catch((error) => {
                 console.log(error);
@@ -79,8 +91,12 @@ export default {
 
             Photos.select(this.observateurId)
             .then((result) => {
-                this.flagImg = true;
-                this.imgSrc = result.data.img;
+                if(result.data.img != null) {
+                    this.flagReset = true;
+                    this.flagImg = true;
+                    this.imgSrc = result.data.img;
+                    this.$emit("menuStatusChicked");
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -141,5 +157,24 @@ export default {
     cursor: pointer;
     border-radius: 10px;
     width: max-content;
+}
+
+.reset {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.reset button {
+    background-color: #aa1704;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 </style>

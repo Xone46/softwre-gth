@@ -19,9 +19,13 @@
 
         <Insert v-if="falgInsert" :typeInsert="typeInsert" @valider="valider" @annuler="annuler" />
 
-        <div class="sauvegarde">
-            <button v-show="!flagModifier" @click="sauvegarde">Sauvegarde de Secours</button>
-            <button v-show="flagModifier" @click="modifier">Modifier</button>
+
+        <div v-if="!flagReset" class="sauvegarde">
+            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        </div>
+
+        <div v-if="flagReset" class="reset">
+            <button @click="reset">Reset</button>
         </div>
 
     </div>
@@ -36,7 +40,7 @@ export default {
     name: 'conclusion-component',
     data() {
         return {
-            flagModifier: false,
+            flagReset: false,
             falgInsert: false,
             typeInsert: ``,
             poids: ``,
@@ -161,19 +165,47 @@ export default {
 
         sauvegarde() {
             Conclusion.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.poids, this.commentaire, this.observateurId)
-                .then((result) => {
-                    console.log(result)
+                .then(() => {
+                    this.flagReset = true;
+                    this.$emit("menuStatusChicked");
                 })
                 .catch((error) => {
                     console.log(error);
                 });
         },
 
-        modifier() {
+        reset() {
 
-            Conclusion.update(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.poids, this.commentaire, this.observateurId)
-                .then((result) => {
-                    console.log(result)
+            Conclusion.reset(this.observateurId)
+                .then(() => {
+
+                    this.flagReset = false;
+                    this.falgInsert = false;
+                    this.typeInsert = ``;
+                    this.poids = ``;
+                    this.commentaire = '';
+                    this.tagA = `<li><input type="checkbox" value="Les essais ont été réalisés avec les charges mises à disposition.">Les essais ont été réalisés avec les charges mises à disposition.</li>`;
+                    this.a = ``;
+                    this.sous_A = `<li>a) le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.</li> <li>b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais; il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.</li>`;
+                    this.tagB = `<li><input type="checkbox" value="L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement; il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.">L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement; il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.</li>`;
+                    this.b = ``;
+                    this.tagC = `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</li>`;
+                    this.c = ``;
+
+                    this.tagD = `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</li>`;
+                    this.d = ``;
+
+                    this.tagE = `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.</li>`;
+                    this.e = ``;
+
+                    this.tagF = `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.</li>`;
+                    this.f = ``,
+
+                    this.tagG = `<li><input type="checkbox" value="Commentaire complémentaire.">Commentaire complémentaire.</li>`,
+                    this.g = ``,
+                    
+                    this.$emit("menuStatusChicked");
+
                 })
                 .catch((error) => {
                     console.log(error);
@@ -191,7 +223,7 @@ export default {
             .then((result) => {
                 if (result.data != null) {
 
-                    this.flagModifier = true;
+                    this.flagReset = true;
                     this.poids = result.data.poids;
                     this.commentaire = result.data.commentaire;
 
@@ -288,5 +320,24 @@ div.sous {
     margin-left: 20px;
     justify-content: flex-start;
     align-items: flex-start;
+}
+
+.reset {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.reset button {
+    background-color: #aa1704;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
 }
 </style>

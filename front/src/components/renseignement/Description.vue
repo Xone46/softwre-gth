@@ -243,8 +243,12 @@
 
         </table>
 
-        <div class="sauvegarde">
+        <div v-if="!flagReset" class="sauvegarde">
             <button @click="sauvegarde">Sauvegarde de Secours</button>
+        </div>
+
+        <div v-if="flagReset" class="reset">
+            <button @click="reset">Reset</button>
         </div>
 
 
@@ -259,6 +263,7 @@ export default {
     data() {
         return {
 
+            flagReset : false,
             description: {
                 marquage : null,
                 modeDeLevage : null,
@@ -338,33 +343,103 @@ export default {
             Descriptions.create(this.description)
             .then((result) => {
                 console.log(result);
+                this.flagReset = true;
+                this.$emit("menuStatusChicked");
             })
             .catch((error) => {
                 console.log(error);
             });
 
+        },
+
+        reset() {
+            Descriptions.reset(this.observateurId)
+            .then(() => {
+
+                this.flagReset = false;
+
+                this.description.marquage = null;
+                this.description.modeDeLevage = null;
+                this.description.caracteristiques.chargeMaximaleUtile = "";
+                this.description.caracteristiques.hauteurDeLevage = "";
+                this.description.caracteristiques.portee = "";
+                this.description.caracteristiques.porteFaux = "";
+                this.description.caracteristiques.longueurDuCheminDeRoulement = "";
+                this.description.caracteristiques.suspentes = "";
+                this.description.caracteristiques.composition = "";
+                this.description.caracteristiques.caracteristiquesChainesDeLevage = "";
+                this.description.caracteristiques.caracteristiquesSangleDeLevage = "";
+                this.description.caracteristiques.mouflage = "";
+                this.description.caracteristiques.diametre = "";
+                this.description.levageAuxiliaire.sansObjet = "";
+                this.description.levageAuxiliaire.chargeMaximaleUtileDeChaquePalan = "";
+                this.description.levageAuxiliaire.suspentes = "";
+                this.description.levageAuxiliaire.composition = "";
+                this.description.levageAuxiliaire.caracteristiquesChainesDeLevage = "";
+                this.description.levageAuxiliaire.caracteristiquesSangleDeLevage = "";
+                this.description.levageAuxiliaire.mouflage = "";
+                this.description.levageAuxiliaire.diametre = "";
+                this.description.modeInstallation = "";
+                this.description.modeInstallationDetails = "";
+                this.description.modeInstallationDetailsAutre = "";
+                this.description.sourceDenergie.value = "";
+                this.description.sourceDenergie.autre = "";
+                this.description.sourceDenergie.levage = "";
+                this.description.sourceDenergie.translation = "";
+                this.description.sourceDenergie.direction = "";
+
+                this.$emit("menuStatusChicked");
+            })
+            .catch((error) => {
+                console.log(error);
+            })
         }
-
-
-
     },
 
     created() {
         Descriptions.select(this.observateurId)
         .then((result) => {
+            if(result.data != null) {
 
-            
-            this.description.marquage = result.data.marquage;
-            this.description.modeDeLevage = result.data.modeDeLevage;
-            this.description.caracteristiques = result.data.caracteristiques;
-            this.description.levageAuxiliaire = result.data.levageAuxiliaire;
-            this.description.modeInstallation = result.data.modeInstallation;
-            this.description.modeInstallationDetails = result.data.modeInstallationDetails;
-            this.description.modeInstallationDetailsAutre = result.data.modeInstallationDetailsAutre;
-            this.description.sourceDenergie = result.data.sourceDenergie;
-            this.description.observateurId = result.data.observateurId;
-          
+                console.log(result.data)
 
+                this.flagReset = true;
+                this.$emit("menuStatusChicked");
+
+                this.description.marquage = result.data.marquage;
+                this.description.modeDeLevage = result.data.modeDeLevage;
+                this.description.caracteristiques.chargeMaximaleUtile = result.data.caracteristiques[0].chargeMaximaleUtile;
+                this.description.caracteristiques.hauteurDeLevage = result.data.caracteristiques[0].hauteurDeLevage;
+                this.description.caracteristiques.portee = result.data.caracteristiques[0].portee;
+                this.description.caracteristiques.porteFaux = result.data.caracteristiques[0].porteFaux;
+                this.description.caracteristiques.longueurDuCheminDeRoulement = result.data.caracteristiques[0].longueurDuCheminDeRoulement;
+                this.description.caracteristiques.suspentes = result.data.caracteristiques[0].suspentes;
+                this.description.caracteristiques.composition = result.data.caracteristiques[0].composition;
+                this.description.caracteristiques.caracteristiquesChainesDeLevage = result.data.caracteristiques[0].caracteristiquesChainesDeLevage;
+                this.description.caracteristiques.caracteristiquesSangleDeLevage = result.data.caracteristiques[0].caracteristiquesSangleDeLevage;
+                this.description.caracteristiques.mouflage = result.data.caracteristiques[0].mouflage;
+                this.description.caracteristiques.diametre = result.data.caracteristiques[0].diametre;
+                this.description.levageAuxiliaire.sansObjet = result.data.levageAuxiliaire[0].sansObjet;
+                this.description.levageAuxiliaire.chargeMaximaleUtileDeChaquePalan = result.data.levageAuxiliaire[0].chargeMaximaleUtileDeChaquePalan;
+                this.description.levageAuxiliaire.suspentes = result.data.levageAuxiliaire[0].suspentes;
+                this.description.levageAuxiliaire.composition = result.data.levageAuxiliaire[0].composition;
+                this.description.levageAuxiliaire.caracteristiquesChainesDeLevage = result.data.levageAuxiliaire[0].caracteristiquesChainesDeLevage;
+                this.description.levageAuxiliaire.caracteristiquesSangleDeLevage = result.data.levageAuxiliaire[0].caracteristiquesSangleDeLevage;
+                this.description.levageAuxiliaire.mouflage = result.data.levageAuxiliaire[0].mouflage;
+                this.description.levageAuxiliaire.diametre = result.data.levageAuxiliaire[0].diametre;
+                this.description.modeInstallation = result.data.modeInstallation;
+                this.description.modeInstallationDetails = result.data.modeInstallationDetails;
+                this.description.modeInstallationDetailsAutre = result.data.modeInstallationDetailsAutre;
+                this.description.sourceDenergie.value = result.data.sourceDenergie[0].value;
+                this.description.sourceDenergie.autre = result.data.sourceDenergie[0].autre;
+                this.description.sourceDenergie.levage = result.data[0].levage;
+                this.description.sourceDenergie.translation = result.data[0].translation;
+                this.description.sourceDenergie.direction = result.data[0].direction;
+                this.description.observateurId = result.data.observateurId;
+
+
+
+            }
         })
         .catch((error) => {
             console.log(error)
@@ -454,6 +529,33 @@ table > tr:nth-child(6) > td:nth-child(3) {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.reset {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.reset button {
+    background-color: #aa1704;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.saved {
+    color: #04AA6D;
+}
+
+.not-saved {
+    color: red;
 }
 
 

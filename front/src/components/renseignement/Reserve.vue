@@ -1,8 +1,19 @@
 <template>
     <div class="reserve">
+
         <TableModels  v-if="flagTableModels" :observateurId="observateurId" :titreReserve="titreReserve" :commentairesReserve="commentairesReserve" />
+
         <TableReserve :observateurId="observateurId" @apercu="apercu" />
+
+        <div v-if="!flagReset" class="sauvegarde">
+            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        </div>
+
+        <div v-if="flagReset" class="reset">
+            <button @click="reset">Reset</button>
+        </div>
     </div>
+    
 </template>
   
 <script>
@@ -10,12 +21,13 @@
 import TableModels from "@/components/reserve/TableModels.vue"
 import TableReserve from "@/components/reserve/TableReserve.vue"
 
-// import Examens from "@/requests/Examens";
+import Commentaire from "@/requests/commentaire";
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
+            flagReset : false,
             titreReserve : "",
             commentairesReserve : [],
             reserves : [],
@@ -35,8 +47,6 @@ export default {
 
     methods: {
 
-
-
         apercu(titreReserve, commentaires) {
 
             this.titreReserve = titreReserve;
@@ -47,7 +57,26 @@ export default {
                 this.flagTableModels = true;
             });
             
+        },
+
+        sauvegarde() {
+            Commentaire.sauvegarde
+        },
+
+        reset() {
+            Commentaire.reset(this.observateurId)
+            .then((result) => {
+                if(result.data) {
+                    this.$emit("menuStatusChicked");
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         }
+
+
+
 
     },
 
@@ -132,6 +161,25 @@ table > tr:nth-child(6) > td:nth-child(3) {
 
 .sauvegarde button {
     background-color: #040faa;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.reset button {
+    background-color: #aa1704;
     color: white;
     margin: 3px;
     border: 0px;

@@ -8,47 +8,23 @@
             <button>Visualisation des observations</button>
         </div>
 
+        <Menu v-if="flagMenu" :observateurId="formulaire.observateurId"  @renseignement="renseignement" @description="description" @examen="examen" @conclusion="conclusion" @photo="photo" @reserve="reserve"/>
 
-        <table class="menu">
-            <tr>
-                <th class="green" v-if="flagRenseignementsColor" @click="renseignement()">RENSEIGNEMENTS GENERAUX</th>
-                <th v-if="!flagRenseignementsColor" @click="renseignement()">RENSEIGNEMENTS GENERAUX</th>
-
-                <th class="green" v-if="flagDescriptionColor" @click="description()">DESCRIPTION DE L'APPAREIL VERIFIE</th>
-                <th v-if="!flagDescriptionColor" @click="description()">DESCRIPTION DE L'APPAREIL VERIFIE</th>
-
-                <th class="green" v-if="flagExamenColor" @click="examen()">EXAMENS ET ESSAIS DE L'APPAREIL</th>
-                <th v-if="!flagExamenColor" @click="examen()">EXAMENS ET ESSAIS DE L'APPAREIL</th>
-
-                <th class="green" v-if="flagConclusionColor" @click="conclusion()">CONCLUSION</th>
-                <th v-if="!flagConclusionColor" @click="conclusion()">CONCLUSION</th>
-
-                <th class="green" v-if="flagPhotoColor" @click="photo()">PHOTO</th>
-                <th v-if="!flagPhotoColor" @click="photo()">PHOTO</th>
-
-                <th class="green" v-if="flagPhotoColor" @click="reserve()">LES RÉSERVES</th>
-                <th v-if="!flagPhotoColor" @click="reserve()">LES RÉSERVES</th>
-
-            </tr>
-        </table>
-
-        <div class="content" >
-
-            <Renseignement v-if="flagRenseignements" :observateurId="formulaire.observateurId" />
-            <Description v-if="flagDescription" :observateurId="formulaire.observateurId" />
-            <Examen v-if="flagExamen" :observateurId="formulaire.observateurId" />
-            <Photo v-if="flagPhoto" :observateurId="formulaire.observateurId" />
-            <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" />
-            <Reserve  v-if="flagReserve" :observateurId="formulaire.observateurId" />
-
+        <div class="content">
+            <Renseignement v-if="flagRenseignements" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            <Description v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            <Examen v-if="flagExamen" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            <Photo v-if="flagPhoto" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            <Reserve v-if="flagReserve" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
         </div>
 
-        
 
     </div>
 </template>
-  
+
 <script>
+import { nextTick } from 'vue';
 import Renseignement from "@/components/renseignement/Renseignement"
 import Description from "@/components/renseignement/Description.vue"
 import Examen from "@/components/renseignement/Examen.vue"
@@ -56,34 +32,31 @@ import Photo from "@/components/renseignement/Photo.vue"
 import Conclusion from "@/components/renseignement/Conclusion.vue"
 import Reserve from "@/components/renseignement/Reserve.vue"
 
-// import Renseignements from "@/requests/Renseignement";
-// import Descriptions from "@/requests/Descriptions";
-// import Examens from "@/requests/Examens";
-// import Photos from "@/requests/Photos";
-// import Conclusions from "@/requests/conclusion";
+import Menu from "@/components/menu/Menu.vue"
 
 export default {
     name: 'FormulaireView',
     data() {
         return {
 
-            flagRenseignements : true,
-            flagDescription : false,
-            flagExamen : false,
-            flagPhoto : false,
-            flagConclusion : false,
-            flagReserve : false,
+            flagMenu : true,
+            flagRenseignements: true,
+            flagDescription: false,
+            flagExamen: false,
+            flagPhoto: false,
+            flagConclusion: false,
+            flagReserve: false,
 
-            formulaire : {
-                observateurId : "",
-                categorieAppareil : ""
+            formulaire: {
+                observateurId: "",
+                categorieAppareil: ""
             },
 
-            flagRenseignementsColor : false,
-            flagDescriptionColor : false,
-            flagExamenColor : false,
-            flagPhotoColor : false,
-            flagConclusionColor : false
+            flagRenseignementsColor: false,
+            flagDescriptionColor: false,
+            flagExamenColor: false,
+            flagPhotoColor: false,
+            flagConclusionColor: false
 
         }
     },
@@ -94,11 +67,21 @@ export default {
         Examen,
         Photo,
         Conclusion,
-        Reserve
+        Reserve,
+        Menu
     },
 
     methods: {
-        
+
+        async menuStatusChicked() {
+            // Remove MyComponent from the DOM
+            this.flagMenu = false;
+            // Wait for the change to get flushed to the DOM
+            await nextTick();
+            // Add the component back in
+            this.flagMenu = true;
+        },
+
         renseignement() {
             this.flagRenseignements = true;
             this.flagDescription = false;
@@ -116,7 +99,6 @@ export default {
             this.flagConclusion = false;
             this.flagRenseignementsColor = false;
             this.flagReserve = false;
-
         },
 
         examen() {
@@ -126,7 +108,6 @@ export default {
             this.flagPhoto = false;
             this.flagConclusion = false;
             this.flagReserve = false;
-
         },
 
         conclusion() {
@@ -136,7 +117,6 @@ export default {
             this.flagPhoto = false;
             this.flagConclusion = true;
             this.flagReserve = false;
-
         },
 
         photo() {
@@ -146,7 +126,6 @@ export default {
             this.flagPhoto = true;
             this.flagConclusion = false;
             this.flagReserve = false;
-
         },
 
         reserve() {
@@ -156,72 +135,19 @@ export default {
             this.flagPhoto = false;
             this.flagConclusion = false;
             this.flagReserve = true;
-
         }
+
     },
 
     created() {
-
         this.formulaire.observateurId = this.$route.params.id;
         this.formulaire.categorieAppareil = this.$route.params.categorieAppareil;
-
-        // Renseignements.select(this.formulaire.observateurId)
-        // .then((result) => {
-        //     if(result.data != null) {
-        //         this.flagRenseignementsColor = true;
-        //     }
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
-
-        
-        // Examens.select(this.formulaire.observateurId)
-        // .then((result) => {
-        //     if(result.data != null) {
-        //         this.flagExamenColor = true;
-        //     }
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
-        
-        // Descriptions.select(this.formulaire.observateurId)
-        // .then((result) => {
-        //     if(result.data != null) {
-        //         this.flagDescriptionColor = true;
-        //     }
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
-
-        // Photos.select(this.formulaire.observateurId)
-        // .then((result) => {
-        //     if(result.data != null) {
-        //         this.flagPhotoColor = true;
-        //     }
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
-
-        // Conclusions.select(this.formulaire.observateurId)
-        // .then((result) => {
-        //     if(result.data != null) {
-        //         this.flagConclusionColor = true;
-        //     }
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        // });
-
-
     }
 }
 </script>
-  
+
 <style scoped>
+
 .formulaire {
     padding: 0;
     margin: 0;
@@ -254,15 +180,6 @@ export default {
     cursor: pointer;
 }
 
-menu,
-th {
-    border: 1px solid black;
-    color: red;
-    border-collapse: collapse;
-    padding: 10px;
-    cursor: pointer;
-}
-
 .content {
     width: 100%;
     margin: 0;
@@ -271,11 +188,4 @@ th {
     justify-content: flex-start;
     align-items: flex-start;
 }
-
-.green {
-    color: #04AA6D;
-}
-
-
-
 </style>
