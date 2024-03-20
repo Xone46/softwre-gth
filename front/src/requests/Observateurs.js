@@ -57,9 +57,9 @@ class Observateurs {
         })
     }
 
-    static apercu(observateurId) {
+    static apercu(observateurId, interventionId, inspecteurId) {
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/apercu/${observateurId}`,{
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/apercu/${observateurId}/${interventionId}/${inspecteurId}`,{
                 headers: {
                      'Content-Type': 'application/json'
                  }

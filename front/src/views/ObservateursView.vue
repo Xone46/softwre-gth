@@ -21,11 +21,16 @@
             </select>
         </label>
 
-        <label for="Catégorie d’Appareil">
+        <label for="Catégorie d'Appareil">
             <h3>Catégorie d'Appareil : <span class="start" v-if="observateur.categorieAppareil.length == 0">*</span></h3>
             <select v-model="observateur.categorieAppareil">
                 <option v-for="appareil in appareils" :key="appareil">{{ appareil }}</option>
             </select>
+        </label>
+
+        <label for="Equipement">
+            <h3>Equipement : <span class="start" v-if="observateur.equipement.length == 0">*</span></h3>
+            <input type="test" v-model="observateur.equipement">
         </label>
 
 
@@ -83,6 +88,7 @@ export default {
                 date : "",
                 typeVerification : "",
                 categorieAppareil : "",
+                equipement : "",
                 constructeur : "",
                 numeroSerie : "",
                 numeroInterne : "",

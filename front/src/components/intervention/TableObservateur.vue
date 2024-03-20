@@ -128,8 +128,9 @@ export default {
         },
 
         apercu() {
+
             this.flagSpinner = true;
-            Observateurs.apercu(this.observateursSelect[0])
+            Observateurs.apercu(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
                 .then((result) => {
                     if(result) {
                         this.flagApercu = true

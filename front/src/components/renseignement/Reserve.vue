@@ -60,7 +60,13 @@ export default {
         },
 
         sauvegarde() {
-            Commentaire.sauvegarde
+            Commentaire.sauvegarde(this.observateurId)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         },
 
         reset() {
