@@ -396,18 +396,23 @@
             <button @click="reset">Reset</button>
         </div>
 
+        <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve" @annuler="annulerReserve"/>
 
     </div>
 </template>
 
 <script>
 import Examens from "@/requests/Examens"
+import Reserve from "@/components/models/Reserve.vue"
+
 export default {
     name: 'renseignement-component',
     data() {
         return {
 
             flagReset: false,
+            flagReserve : false,
+            infoReserve : [],
 
             a: [
                 { titre: "- Accès a la cabine et au poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
@@ -503,9 +508,18 @@ export default {
     },
 
     components: {
+        Reserve
     },
 
     methods: {
+
+        validerReserve() {
+            this.flagReserve = false;
+        },
+
+        annulerReserve() {
+            this.flagReserve = false;
+        },
 
         checkA(index, type) {
 
@@ -519,6 +533,11 @@ export default {
 
             // select new value
             this.a[index][type] = !this.a[index][type];
+
+            if(this.a[index]["o"] == true) {
+                this.infoReserve = ["A", index, this.a[index]["titre"]]
+                this.flagReserve = true;
+            }
         },
 
         checkB(index, type) {

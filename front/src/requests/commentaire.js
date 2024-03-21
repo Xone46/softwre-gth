@@ -4,13 +4,15 @@ const VUE_APP_API_BASE_URL= "http://localhost:3000/api/v1";
 
 class Commentaires {
 
-    static create(commentaires, observateurId, titreReserve) {
+    static create(observateurId, ref, number, titre, modelSelected) {
         return new Promise((resolve, reject) => {
             axios.post(`${VUE_APP_API_BASE_URL}/commentaires/create`,
             {
-                commentaires,
                 observateurId,
-                titreReserve
+                ref,
+                number,
+                titre,
+                modelSelected
             },
             {
                 headers: {

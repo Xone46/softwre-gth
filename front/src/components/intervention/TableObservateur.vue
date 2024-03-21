@@ -40,14 +40,6 @@
             <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
         </div>
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
-        <iframe
-            v-if="flagApercu"
-            src="http://exo7.emath.fr/cours/ch_logique.pdf"
-            frameBorder="0"
-            scrolling="auto"
-            height="100%"
-            width="100%"
-        ></iframe>
     </div>
 </template>
   
@@ -61,7 +53,6 @@ export default {
     name: 'table-observateur',
     data() {
         return {
-            flagApercu : false,
             flagVerified: false,
             observateurs: [],
             observateursSelect: [],
@@ -133,9 +124,8 @@ export default {
             Observateurs.apercu(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
                 .then((result) => {
                     if(result) {
-                        this.flagApercu = true
+                        this.flagSpinner = false
                     }
-                    // console.log(result);
                 })
                 .catch((error) => {
                     console.log(error);
