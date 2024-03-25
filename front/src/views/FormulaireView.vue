@@ -16,7 +16,7 @@
             <Examen v-if="flagExamen" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
             <Photo v-if="flagPhoto" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
             <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-            <Reserve v-if="flagReserve" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            <!-- <Reserve v-if="flagReserve" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/> -->
         </div>
 
 
@@ -30,7 +30,7 @@ import Description from "@/components/renseignement/Description.vue"
 import Examen from "@/components/renseignement/Examen.vue"
 import Photo from "@/components/renseignement/Photo.vue"
 import Conclusion from "@/components/renseignement/Conclusion.vue"
-import Reserve from "@/components/renseignement/Reserve.vue"
+// import Reserve from "@/components/renseignement/Reserve.vue"
 
 import Menu from "@/components/menu/Menu.vue"
 
@@ -67,7 +67,7 @@ export default {
         Examen,
         Photo,
         Conclusion,
-        Reserve,
+        // Reserve,
         Menu
     },
 

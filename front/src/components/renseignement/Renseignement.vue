@@ -109,6 +109,7 @@
 <script>
 import Renseignement from "@/requests/Renseignement"
 import Insert from "@/components/models/Insert.vue"
+import Observateurs from "@/requests/Observateurs";
 export default {
     name: 'renseignement-component',
     data() {
@@ -467,8 +468,10 @@ export default {
                         `;
                         this.renseignement.numeroInterne = "";
                         this.renseignement.numeroInterneAutre = "";
+
                         this.renseignement.tagLocalisation = "<input type='text' value='' >";
                         this.renseignement.localisation = "";
+
                         this.renseignement.tagTypeAppareil =
                             `<label><input type='radio' value='Pont roulant' name='typeAppareil'/>Pont roulant</label>
                         <label><input type='radio' value='Poutre roulante' name='typeAppareil'/>Poutre roulante</label>
@@ -617,9 +620,26 @@ export default {
                         this.renseignement.modificationAutre = result.data.modificationAutre;
 
                         this.$emit("menuStatusChicked");
+                } else {
 
-                    
+                    Observateurs.selected(this.observateurId)
+                    .then((result) => {
 
+                        console.log(result.data);
+
+                        this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.constructeur}'`);
+                        this.renseignement.typeConstructeur = result.data.constructeur;
+
+                        this.renseignement.tagLocalisation = this.renseignement.tagLocalisation.replace("value=''", `value='${result.data.localisation}'`);
+                        this.renseignement.localisation = result.data.localisation;
+
+                        this.renseignement.tagNumeroInterne = this.renseignement.tagNumeroInterne.replace(`value='N°'`, `value='N°' checked='checked'`);
+                        this.renseignement.numeroInterne = "N°";
+                        this.renseignement.numeroInterneAutre = result.data.numeroInterne;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
 
                 }
             })
@@ -757,4 +777,5 @@ td:nth-child(2) {
 .not-saved {
     color: red;
 }
+
 </style>

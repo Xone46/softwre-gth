@@ -5,7 +5,7 @@
         <table>
             <tr>
                 <td>B-1</td>
-                <td>MARQUAGE</td>
+                <td :class="[description.marquage != null ? 'saved' : 'not-saved']">MARQUAGE</td>
                 <td>
 
                     <label for="CE">
@@ -23,7 +23,7 @@
 
             <tr>
                 <td>B-2</td>
-                <td>MODE DE LEVAGE</td>
+                <td :class="[description.modeDeLevage != null ? 'saved' : 'not-saved']">MODE DE LEVAGE</td>
                 <td>
                     <label for="CE">
                         Unique
@@ -45,11 +45,11 @@
 
             <tr>
                 <td>B-3</td>
-                <td>CARACTERISTIQUES DIMENSIONNELLES ET DE CHARGE</td>
+                <td :class="[(description.caracteristiques.caracteristiques != '' && description.caracteristiques.hauteurDeLevage != '' && description.caracteristiques.portee != '' && description.caracteristiques.porteFaux != '' && description.caracteristiques.longueurDuCheminDeRoulement != '' && description.caracteristiques.suspentes != '' && description.caracteristiques.mouflage != '' && description.caracteristiques.diametre != '') ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET DE CHARGE</td>
                 <td>
                     <label for="Charge maximale utile (kg) :">
                         Charge maximale utile (kg) :
-                        <input type="text" v-model="description.caracteristiques.chargeMaximaleUtile">
+                        <input type="text" v-model="description.caracteristiques.caracteristiques">
                     </label>
 
                     <label for="Hauteur de levage (m) :">
@@ -78,22 +78,9 @@
                         <select v-model="description.caracteristiques.suspentes">
                             <option v-for="item in suspentesTable" :key="item.id">{{ item.titre }}</option>
                         </select>
+                        <input v-if="description.caracteristiques.suspentes != ''" type="text" v-model="description.caracteristiques.suspentesAutre">
                     </label>
 
-                    <label for="Composition" v-if="description.caracteristiques.suspentes == 'Câble(s) de levage'">
-                        <span>Composition</span>
-                        <input type="text" v-model="description.caracteristiques.composition">
-                    </label>
-
-                    <label for="Caractéristiques" v-if="description.caracteristiques.suspentes == 'Chaînes(s) de levage'">
-                        <span>Caractéristiques</span>
-                        <input type="text" v-model="description.caracteristiques.caracteristiquesChainesDeLevage">
-                    </label>
-
-                    <label for="Caractéristiques" v-if="description.caracteristiques.suspentes == 'Sangle(s) de levage'">
-                        <span>Caractéristiques</span>
-                        <input type="text" v-model="description.caracteristiques.caracteristiquesSangleDeLevage">
-                    </label>
 
                     <label for="Mouflage (nombre de brins)">
                         <span>Mouflage (nombre de brins) : </span>
@@ -110,47 +97,34 @@
 
             <tr>
                 <td>B-4</td>
-                <td>LEVAGE AUXILIAIRE</td>
+                <td :class="[description.levageAuxiliaire.sansObjet == 'Sans objet' || description.levageAuxiliaire.avecObjet == 'Avec objet' ? 'saved' : 'not-saved']">LEVAGE AUXILIAIRE</td>
                 <td>
                     <label for="Sans objet">
                         Sans objet
-                        <input type="radio" value="Sans objet" v-model="description.levageAuxiliaire.sansObjet">
+                        <input type="radio" name="levageAuxiliaire" value="Sans objet" @change="statuslevageAuxiliaireSansObjet" v-model="description.levageAuxiliaire.sansObjet" :checked="description.levageAuxiliaire.sansObjet == 'Sans Objet'">
+                        Avec objet
+                        <input type="radio" name="levageAuxiliaire" value="Avec objet" @change="statuslevageAuxiliaireAvecObjet"  v-model="description.levageAuxiliaire.avecObjet" :checked="description.levageAuxiliaire.avecObjet == 'Avec Objet'">
                     </label>
 
-                    <label for="Charge maximale utile de chaque palan (kg)">
+                    <label v-if="description.levageAuxiliaire.avecObjet == 'Avec Objet' && description.levageAuxiliaire.sansObjet == ''" for="Charge maximale utile de chaque palan (kg)">
                         Charge maximale utile de chaque palan (kg) : 
                         <input type="text" v-model="description.levageAuxiliaire.chargeMaximaleUtileDeChaquePalan">
                     </label>
 
-                    <label
-                        for="Suspentes de levage :">
+                    <label v-if="description.levageAuxiliaire.avecObjet == 'Avec Objet' && description.levageAuxiliaire.sansObjet == ''" for="Suspentes de levage :">
                         <span>Suspentes de levage</span>
                         <select v-model="description.levageAuxiliaire.suspentes">
                             <option v-for="item in suspentesTable" :key="item.id">{{ item.titre }}</option>
                         </select>
+                        <input v-if="description.levageAuxiliaire.suspentes != ''" type="text" v-model="description.levageAuxiliaire.suspentesAutre">
                     </label>
 
-                    <label for="Composition" v-if="description.levageAuxiliaire.suspentes == 'Câble(s) de levage'">
-                        <span>Composition</span>
-                        <input type="text" v-model="description.levageAuxiliaire.composition">
-                    </label>
-
-                    <label for="Caractéristiques" v-if="description.levageAuxiliaire.suspentes == 'Chaînes(s) de levage'">
-                        <span>Caractéristiques</span>
-                        <input type="text" v-model="description.levageAuxiliaire.caracteristiquesChainesDeLevage">
-                    </label>
-
-                    <label for="Caractéristiques" v-if="description.levageAuxiliaire.suspentes == 'Sangle(s) de levage'">
-                        <span>Caractéristiques</span>
-                        <input type="text" v-model="description.levageAuxiliaire.caracteristiquesSangleDeLevage">
-                    </label>
-
-                    <label for="Mouflage (nombre de brins)">
+                    <label v-if="description.levageAuxiliaire.avecObjet == 'Avec Objet' && description.levageAuxiliaire.sansObjet == ''" for="Mouflage (nombre de brins)">
                         <span>Mouflage (nombre de brins) : </span>
                         <input type="text" v-model="description.levageAuxiliaire.mouflage">
                     </label>
 
-                    <label for="Diamètre ou pas théorique de câble(s) ou de chaîne(s) (mm) :">
+                    <label v-if="description.levageAuxiliaire.avecObjet == 'Avec Objet' && description.levageAuxiliaire.sansObjet == ''" for="Diamètre ou pas théorique de câble(s) ou de chaîne(s) (mm) :">
                         <span>Diamètre ou pas théorique de câble(s) ou de chaîne(s) (mm):  </span>
                         <input type="text" v-model="description.levageAuxiliaire.diametre">
                     </label>
@@ -160,7 +134,7 @@
 
             <tr>
                 <td>B-5</td>
-                <td>MODE D'INSTALLATION</td>
+                <td :class="[description.modeInstallationDetails.length != 0 ? 'saved' : 'not-saved']">MODE D'INSTALLATION</td>
                 <td>
                     <label>
                         <select v-model="description.modeInstallation">
@@ -208,7 +182,7 @@
 
             <tr>
                 <td>B-6</td>
-                <td>SOURCE D'ENERGIE</td>
+                <td :class="[description.sourceDenergie.value != '' ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
                 <td>
                     <label>
                         <select v-model="description.sourceDenergie.value">
@@ -274,7 +248,7 @@ export default {
                     porteFaux : "",
                     longueurDuCheminDeRoulement : "",
                     suspentes : "",
-                    composition : "",
+                    suspentesAutre : "",
                     caracteristiquesChainesDeLevage : "",
                     caracteristiquesSangleDeLevage : "",
                     mouflage : "",
@@ -282,9 +256,10 @@ export default {
                 },
                 levageAuxiliaire : {
                     sansObjet : "",
+                    avecObjet : "",
                     chargeMaximaleUtileDeChaquePalan : "",
                     suspentes : "",
-                    composition : "",
+                    suspentesAutre : "",
                     caracteristiquesChainesDeLevage : "",
                     caracteristiquesSangleDeLevage : "",
                     mouflage : "",
@@ -304,9 +279,9 @@ export default {
             },
 
             suspentesTable: [
-                { id: 10001, titre: "Câble(s) de levage" },
-                { id: 10002, titre: "Chaînes(s) de levage" },
-                { id: 10003, titre: "Sangle(s) de levage" },
+                { id: 10001, titre: "Câble(s) de levage / Composition" },
+                { id: 10002, titre: "Chaînes(s) de levage / Caractéristiques" },
+                { id: 10003, titre: "Sangle(s) de levage / Caractéristiques" }
             ],
 
             modeInstallationTable: [
@@ -337,6 +312,16 @@ export default {
 
     methods: {
 
+        statuslevageAuxiliaireSansObjet() {
+            this.description.levageAuxiliaire.sansObjet = "Sans Objet";
+            this.description.levageAuxiliaire.avecObjet = ""
+        },
+
+        statuslevageAuxiliaireAvecObjet() {
+            this.description.levageAuxiliaire.avecObjet = "Avec Objet";
+            this.description.levageAuxiliaire.sansObjet = "";
+        },
+
         sauvegarde() {
 
             this.description.observateurId = this.observateurId;
@@ -366,15 +351,16 @@ export default {
                 this.description.caracteristiques.porteFaux = "";
                 this.description.caracteristiques.longueurDuCheminDeRoulement = "";
                 this.description.caracteristiques.suspentes = "";
-                this.description.caracteristiques.composition = "";
+                this.description.caracteristiques.suspentesAutre = "";
                 this.description.caracteristiques.caracteristiquesChainesDeLevage = "";
                 this.description.caracteristiques.caracteristiquesSangleDeLevage = "";
                 this.description.caracteristiques.mouflage = "";
                 this.description.caracteristiques.diametre = "";
                 this.description.levageAuxiliaire.sansObjet = "";
+                this.description.levageAuxiliaire.avecObjet = "";
                 this.description.levageAuxiliaire.chargeMaximaleUtileDeChaquePalan = "";
                 this.description.levageAuxiliaire.suspentes = "";
-                this.description.levageAuxiliaire.composition = "";
+                this.description.levageAuxiliaire.suspentesAutre = "";
                 this.description.levageAuxiliaire.caracteristiquesChainesDeLevage = "";
                 this.description.levageAuxiliaire.caracteristiquesSangleDeLevage = "";
                 this.description.levageAuxiliaire.mouflage = "";
@@ -399,9 +385,8 @@ export default {
     created() {
         Descriptions.select(this.observateurId)
         .then((result) => {
-            if(result.data != null) {
 
-                console.log(result.data)
+            if(result.data != null) {
 
                 this.flagReset = true;
                 this.$emit("menuStatusChicked");
@@ -414,15 +399,16 @@ export default {
                 this.description.caracteristiques.porteFaux = result.data.caracteristiques[0].porteFaux;
                 this.description.caracteristiques.longueurDuCheminDeRoulement = result.data.caracteristiques[0].longueurDuCheminDeRoulement;
                 this.description.caracteristiques.suspentes = result.data.caracteristiques[0].suspentes;
-                this.description.caracteristiques.composition = result.data.caracteristiques[0].composition;
+                this.description.caracteristiques.suspentesAutre = result.data.caracteristiques[0].suspentesAutre;
                 this.description.caracteristiques.caracteristiquesChainesDeLevage = result.data.caracteristiques[0].caracteristiquesChainesDeLevage;
                 this.description.caracteristiques.caracteristiquesSangleDeLevage = result.data.caracteristiques[0].caracteristiquesSangleDeLevage;
                 this.description.caracteristiques.mouflage = result.data.caracteristiques[0].mouflage;
                 this.description.caracteristiques.diametre = result.data.caracteristiques[0].diametre;
                 this.description.levageAuxiliaire.sansObjet = result.data.levageAuxiliaire[0].sansObjet;
+                this.description.levageAuxiliaire.avecObjet = result.data.levageAuxiliaire[0].avecObjet;
                 this.description.levageAuxiliaire.chargeMaximaleUtileDeChaquePalan = result.data.levageAuxiliaire[0].chargeMaximaleUtileDeChaquePalan;
                 this.description.levageAuxiliaire.suspentes = result.data.levageAuxiliaire[0].suspentes;
-                this.description.levageAuxiliaire.composition = result.data.levageAuxiliaire[0].composition;
+                this.description.levageAuxiliaire.suspentesAutre = result.data.levageAuxiliaire[0].suspentesAutre;
                 this.description.levageAuxiliaire.caracteristiquesChainesDeLevage = result.data.levageAuxiliaire[0].caracteristiquesChainesDeLevage;
                 this.description.levageAuxiliaire.caracteristiquesSangleDeLevage = result.data.levageAuxiliaire[0].caracteristiquesSangleDeLevage;
                 this.description.levageAuxiliaire.mouflage = result.data.levageAuxiliaire[0].mouflage;
@@ -436,9 +422,6 @@ export default {
                 this.description.sourceDenergie.translation = result.data[0].translation;
                 this.description.sourceDenergie.direction = result.data[0].direction;
                 this.description.observateurId = result.data.observateurId;
-
-
-
             }
         })
         .catch((error) => {
@@ -557,9 +540,5 @@ table > tr:nth-child(6) > td:nth-child(3) {
 .not-saved {
     color: red;
 }
-
-
-
-
 
 </style>

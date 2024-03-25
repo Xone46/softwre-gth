@@ -27,8 +27,8 @@
 
                     <td>
                         <select v-model="item.status">
-                            <option value="Critique">Critique</option>
-                            <option value="Sous critique">Sous critique</option>
+                            <option value="critique">Critique</option>
+                            <option value="non critique">Non critique</option>
                         </select>
                     </td>
 
@@ -130,7 +130,7 @@ export default {
             Commentaires.create(this.observateurId, this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.modelSelected)
             .then((result) => {
                 if(result) {
-                    return this.$emit("annulerReserve")
+                    return this.$emit('annuler');
                 }
                 console.log(result);
             })
@@ -142,6 +142,19 @@ export default {
     },
 
     created() {
+        Commentaires.select(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.infoReserve[3])
+        .then((result) => {
+
+            result.data.modelSelected.forEach((el) => {
+                const index = this.liste.findIndex(val => val == el.name)
+                this.liste.splice(index, 1);
+            })
+
+            this.modelSelected = result.data.modelSelected;
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
 

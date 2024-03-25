@@ -41,7 +41,7 @@
             <button @click="$emit('nouveau')">Nouveau Site (Intervention)</button>
             <button v-if="!flagInvertesment" @click="apercu()">Aperçu</button>
             <button v-if="!flagInvertesment">Modifier</button>
-            <button v-if="!flagInvertesment" @click="ajouter()">Ajouter</button>
+            <button v-if="!flagInvertesment" @click="ajouter()">Ajouter (Appareil, équipement, installation)</button>
             <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
         </div>
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />

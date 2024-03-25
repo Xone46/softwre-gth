@@ -18,7 +18,7 @@
                     <th>N° Interne</th>
                     <th>Localisation</th>
                     <th>Accompagnateur</th>
-                    <th>Contrôle</th>
+                    <th>Type de Vérification</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
                     <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
@@ -35,9 +35,15 @@
             </table>
         </div>
         <div class="actions">
-            <button v-if="!flagInvertesment" @click="editer()">Editer</button>
-            <button v-if="!flagInvertesment" @click="apercu()">Aperçu</button>
-            <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
+
+            <div class="left">
+                <button v-if="!flagInvertesment" @click="editer()">Editer</button>
+                <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
+            </div>
+            <div class="right">
+                <button v-if="!flagInvertesment" @click="apercu()">Aperçu</button>
+            </div>
+
         </div>
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
     </div>
@@ -233,6 +239,7 @@ export default {
 .actions {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin: 5px;
 }
 
@@ -247,16 +254,17 @@ export default {
     margin-top: 10px;
 }
 
-.actions button:nth-child(1) {
+.actions .left button:nth-child(1) {
     background-color: #04AA6D;
 }
 
-.actions button:nth-child(2) {
-    background-color: #04AA6D;
-}
-
-.actions button:nth-child(3) {
+.actions .left button:nth-child(2) {
     background-color: #e21608;
+}
+
+.actions .right button {
+    background-color: #f3a108;
+
 }
 
 iframe {

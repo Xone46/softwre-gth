@@ -29,13 +29,15 @@ class Commentaires {
     }
 
 
-    static select(observateurId, titreReserve) {
+    static select(ref, number, titre, observateurId) {
         
         return new Promise((resolve, reject) => {
             axios.post(`${VUE_APP_API_BASE_URL}/commentaires`,
             {
-                observateurId : observateurId,
-                titreReserve : titreReserve
+                ref : ref,
+                number : number,
+                titre : titre,
+                observateurId : observateurId
             },
             {
                 headers: {

@@ -4,17 +4,17 @@
 
         <h1>D1. Observations complémentaires</h1>
 
-        <div v-html="tagA" @input="getValueTagA"></div><span>{{ this.poids }}</span>
-        <div class="sous" v-html="sous_A"></div>
-        <div v-html="tagB" @input="getValueTagB"></div>
-        <div v-html="tagC" @input="getValueTagC"></div>
+        <div v-html="tagA" :class="[a.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagA"></div><span>{{ this.poids }}</span>
+        <div class="sous" :class="[a.length != 0 ? 'saved' : 'not-saved']" v-html="sous_A"></div>
+        <div v-html="tagB" :class="[b.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagB"></div>
+        <div v-html="tagC" :class="[c.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagC"></div>
 
         <h1>CONCLUSION</h1>
 
-        <div v-html="tagD" @input="getValueTagD"></div>
-        <div v-html="tagE" @input="getValueTagE"></div>
-        <div v-html="tagF" @input="getValueTagF"></div>
-        <div v-html="tagG" @input="getValueTagG"></div>
+        <div v-html="tagD" :class="[d.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagD"></div>
+        <div v-html="tagE" :class="[e.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagE"></div>
+        <div v-html="tagF" :class="[f.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagF"></div>
+        <div v-html="tagG" :class="[g.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagG"></div>
         <div>{{ this.commentaire }}</div>
 
         <Insert v-if="falgInsert" :typeInsert="typeInsert" @valider="valider" @annuler="annuler" />
@@ -45,24 +45,24 @@ export default {
             typeInsert: ``,
             poids: ``,
             commentaire: '',
-            tagA: `<li><input type="checkbox" value="Les essais ont été réalisés avec les charges mises à disposition.">Les essais ont été réalisés avec les charges mises à disposition.</li>`,
+            tagA: `<li><input type="radio" name="observations" value="Les essais ont été réalisés avec les charges mises à disposition.">Les essais ont été réalisés avec les charges mises à disposition.</li>`,
             a: ``,
             sous_A: `<li>a) le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.</li> <li>b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.</li>`,
-            tagB: `<li><input type="checkbox" value="L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.">L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.</li>`,
+            tagB: `<li><input type="radio" name="observations" value="L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.">L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.</li>`,
             b: ``,
-            tagC: `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</li>`,
+            tagC: `<li><input type="radio" name="observations" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</li>`,
             c: ``,
 
-            tagD: `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</li>`,
+            tagD: `<li><input type="radio" name="conclusion" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</li>`,
             d: ``,
 
-            tagE: `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.</li>`,
+            tagE: `<li><input type="radio" name="conclusion" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.</li>`,
             e: ``,
 
-            tagF: `<li><input type="checkbox" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.</li>`,
+            tagF: `<li><input type="radio" name="conclusion" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.">La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.</li>`,
             f: ``,
 
-            tagG: `<li><input type="checkbox" value="Commentaire complémentaire.">Commentaire complémentaire.</li>`,
+            tagG: `<li><input type="radio" name="conclusion" value="Commentaire complémentaire.">Commentaire complémentaire.</li>`,
             g: ``,
         }
     },
@@ -96,6 +96,9 @@ export default {
 
         getValueTagA(event) {
 
+            this.b = ``;
+            this.c = ``;
+
             if (this.a == "") {
                 this.a = event.target.value;
                 this.typeInsert = event.target.value;
@@ -109,6 +112,10 @@ export default {
 
         getValueTagB(event) {
 
+            this.a = ``;
+            this.c = ``;
+            this.poids = ``;
+
             if (this.b == "") {
                 this.b = event.target.value;
             } else {
@@ -118,6 +125,11 @@ export default {
         },
 
         getValueTagC(event) {
+
+            this.a = ``;
+            this.b = ``;
+            this.poids = ``;
+
             if (this.c == "") {
                 this.c = event.target.value;
             } else {
@@ -126,6 +138,12 @@ export default {
         },
 
         getValueTagD(event) {
+
+            this.e = "";
+            this.f = "";
+            this.g = "";
+            this.commentaire = "";
+
             if (this.d == "") {
                 this.d = event.target.value;
             } else {
@@ -134,6 +152,10 @@ export default {
         },
 
         getValueTagE(event) {
+            this.d = "";
+            this.f = "";
+            this.g = "";
+            this.commentaire = "";
 
             if (this.e == "") {
                 this.e = event.target.value;
@@ -144,6 +166,12 @@ export default {
 
 
         getValueTagF(event) {
+
+            this.d = "";
+            this.e = "";
+            this.g = "";
+            this.commentaire = "";
+
             if (this.f == "") {
                 this.f = event.target.value;
             } else {
@@ -152,6 +180,11 @@ export default {
         },
 
         getValueTagG(event) {
+
+            this.d = "";
+            this.e = "";
+            this.f = "";
+
             if (this.g == "") {
                 this.g = event.target.value;
                 this.typeInsert = event.target.value;
@@ -339,5 +372,13 @@ div.sous {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.saved {
+    color: #04AA6D;
+}
+
+.not-saved {
+    color: red;
 }
 </style>

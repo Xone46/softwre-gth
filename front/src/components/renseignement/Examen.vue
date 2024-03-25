@@ -14,7 +14,7 @@
             </tr>
             <tr v-for="(item, index) in a" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkA(index, 'be')">
                 </td>
@@ -49,7 +49,7 @@
             </tr>
             <tr v-for="(item, index) in b" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkB(index, 'be')">
                 </td>
@@ -84,7 +84,7 @@
             </tr>
             <tr v-for="(item, index) in c" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkC(index, 'be')">
                 </td>
@@ -119,7 +119,7 @@
             </tr>
             <tr v-for="(item, index) in d" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkD(index, 'be')">
                 </td>
@@ -154,7 +154,7 @@
             </tr>
             <tr v-for="(item, index) in e" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkE(index, 'be')">
                 </td>
@@ -189,7 +189,7 @@
             </tr>
             <tr v-for="(item, index) in f" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkF(index, 'be')">
                 </td>
@@ -224,7 +224,7 @@
             </tr>
             <tr v-for="(item, index) in g" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkG(index, 'be')">
                 </td>
@@ -259,7 +259,7 @@
             </tr>
             <tr v-for="(item, index) in h" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkH(index, 'be')">
                 </td>
@@ -295,7 +295,7 @@
             </tr>
             <tr v-for="(item, index) in i" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkI(index, 'be')">
                 </td>
@@ -330,7 +330,7 @@
             </tr>
             <tr v-for="(item, index) in j" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkJ(index, 'be')">
                 </td>
@@ -366,7 +366,7 @@
             </tr>
             <tr v-for="(item, index) in k" :key="index">
                 <td></td>
-                <td>{{ item.titre }}</td>
+                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkK(index, 'be')">
                 </td>
@@ -534,8 +534,10 @@ export default {
             // select new value
             this.a[index][type] = !this.a[index][type];
 
+            // console.log(this.a[index]["o"])
+
             if(this.a[index]["o"] == true) {
-                this.infoReserve = ["A", index, this.a[index]["titre"]]
+                this.infoReserve = ["A", index, this.a[index]["titre"], this.observateurId]
                 this.flagReserve = true;
             }
         },
@@ -909,4 +911,13 @@ table tr td {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.saved {
+    color: #04AA6D;
+}
+
+.not-saved {
+    color: red;
+}
+
 </style>

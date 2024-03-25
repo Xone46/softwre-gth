@@ -72,7 +72,7 @@
                 </th>
 
 
-                <th class="green" v-if="flagReserveColor" @click="reserve">
+                <!-- <th class="green" v-if="flagReserveColor" @click="reserve">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>LES RÉSERVES</span>
@@ -83,7 +83,7 @@
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>LES RÉSERVES</span>
                     </div>
-                </th>
+                </th> -->
 
             </tr>
         </table>
