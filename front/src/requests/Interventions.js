@@ -24,6 +24,25 @@ class Interventions {
         })
     }
 
+    static update(interventions, interventionId) {
+        return new Promise((resolve, reject) => {
+            axios.put(`${VUE_APP_API_BASE_URL}/interventions/${interventionId}`,
+            interventions,
+            {
+                headers: {
+                     'Content-Type': 'application/json'
+                 }
+             })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+
+        })
+    }
+
     static read() {
         return new Promise((resolve, reject) => {
             axios.get(`${VUE_APP_API_BASE_URL}/interventions/read`,{
@@ -43,6 +62,22 @@ class Interventions {
     static delete(interventionId) {
         return new Promise((resolve, reject) => {
             axios.delete(`${VUE_APP_API_BASE_URL}/interventions/${interventionId}`,{
+                headers: {
+                     'Content-Type': 'application/json'
+                 }
+             })
+            .then(response => {
+                    resolve(response);
+            })
+            .catch(error => {
+                    reject(error);
+            });
+        })
+    }
+
+    static select(interventionId) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/interventions/${interventionId}`,{
                 headers: {
                      'Content-Type': 'application/json'
                  }

@@ -1,11 +1,12 @@
 <template>
     <div class="formulaire">
 
+        <button @click="retour">Retour</button>
+
         <h3>{{ formulaire.categorieAppareil }}</h3>
 
         <div class="buttons">
-            <button>Liste des interventions</button>
-            <button>Visualisation des observations</button>
+            <button @click="observations">Visualisation des observations</button>
         </div>
 
         <Menu v-if="flagMenu" :observateurId="formulaire.observateurId"  @renseignement="renseignement" @description="description" @examen="examen" @conclusion="conclusion" @photo="photo" @reserve="reserve"/>
@@ -72,6 +73,14 @@ export default {
     },
 
     methods: {
+
+        retour() {
+            this.$router.push("/interventions").catch(()=>{});
+        },
+
+        observations() {
+            this.$router.push("/observations").catch(()=>{});
+        },
 
         async menuStatusChicked() {
             // Remove MyComponent from the DOM

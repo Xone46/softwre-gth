@@ -39,10 +39,10 @@
         </div>
         <div class="actions">
             <button @click="$emit('nouveau')">Nouveau Site (Intervention)</button>
-            <button v-if="!flagInvertesment" @click="apercu()">Aperçu</button>
-            <button v-if="!flagInvertesment">Modifier</button>
-            <button v-if="!flagInvertesment" @click="ajouter()">Ajouter (Appareil, équipement, installation)</button>
-            <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
+            <button v-if="!flagInvertesment" @click="apercu">Aperçu</button>
+            <button v-if="!flagInvertesment" @click="modifier">Modifier</button>
+            <button v-if="!flagInvertesment" @click="ajouter">Ajouter (Appareil, équipement, installation)</button>
+            <button v-if="!flagInvertesment" @click="supprimer">Supprimer</button>
         </div>
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
     </div>
@@ -76,6 +76,12 @@ export default {
 
     methods: {
 
+        modifier() {
+            if(this.interventionsSelect.length === 1) {
+                return this.$emit("modifier", this.interventionsSelect[0]);
+            }
+        },
+
         ajouter() {
             if (this.interventionsSelect.length === 1) {
                 this.$router.push({ name: "observateurs", params: { id: this.interventionsSelect[0] }})
@@ -83,8 +89,13 @@ export default {
         },
 
         apercu() {
+
             if (this.interventionsSelect.length === 1) {
                 this.$emit('apercu', this.interventionsSelect[0]);
+            }
+
+            if (this.interventionsSelect.length == 0) {
+                this.$emit("relaodTableObservateur");
             }
         },
 
@@ -108,6 +119,7 @@ export default {
 
                     this.flagVerified = false;
                     this.interventionsSelect = [];
+                    this.$emit("relaodTableObservateur");
 
                 })
                 .catch((error) => {

@@ -4,7 +4,7 @@
       <p class="inspecteur">{{ nom }} {{ prenom  }}</p>
       <button @click="interventions">Interventions en cours</button>
       <button @click="transferer">Transférer des minutes</button>
-      <button @click="previsualisation">Prévisualisation rapports</button>
+      <button @click="previsualisation">Prévisualisation rapports ({{  conterTransfer }})</button>
       <button @click="modification">Modification rapport</button>
       <button @click="sauvgarde">Sauvgarde de secours</button>
       <button @click="deconnexion">Déconnexion</button>
@@ -12,13 +12,14 @@
   </template>
   
   <script>
-  
+  import Completed from "@/requests/completed"
   export default {
     name: 'DashboardView',
     data() {
       return {
         nom : null,
-        prenom : null
+        prenom : null,
+        conterTransfer : 0
       }
     },
     components: {
@@ -57,6 +58,14 @@
     created() {
         this.nom = sessionStorage.getItem("nom")
         this.prenom = sessionStorage.getItem("prenom")
+
+        Completed.read()
+        .then((result) => {
+          this.conterTransfer = result.data
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   }
   </script>

@@ -1,8 +1,7 @@
 <template>
-    <div class="table-objet-observateur">
-
+    <div class="observations">
+        <button @click="retour">Retour</button>
         <h2>Appareil(s), équipement(s) ou installation(s) du site</h2>
-
         <Spinner v-if="flagSpinner" />
         <Invertesment :msgInvertesment="msgInvertesment" v-if="flagInvertesment" />
 
@@ -34,33 +33,31 @@
                 </tr>
             </table>
         </div>
+
         <div class="actions">
-
-            <div class="left">
-                <button v-if="!flagInvertesment" @click="editer()">Editer</button>
-                <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
-            </div>
-            <div class="right">
-                <button v-if="!flagInvertesment" @click="apercu()">Aperçu</button>
-            </div>
-
+            <button v-if="!flagInvertesment" @click="apercu()">Aperçu</button>
+            <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
         </div>
-        <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
 
+        <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
 
     </div>
 </template>
-  
+
 <script>
 
 import Observateurs from "@/requests/Observateurs"
 import Spinner from 'vue-simple-spinner'
 import Invertesment from "@/components/models/Invertesment.vue"
 import Verified from "@/components/models/Verified.vue"
+
 export default {
-    name: 'table-observateur',
+    name: 'ObservationView',
     data() {
         return {
+            errors: [],
+            flagError: false,
+
             flagVerified: false,
             observateurs: [],
             observateursSelect: [],
@@ -70,32 +67,24 @@ export default {
         }
     },
 
+    components: {
+        Invertesment,
+        Verified,
+        Spinner
+    },
+
     props: {
         interventionId: String
     },
 
-    components: {
-        Spinner,
-        Invertesment,
-        Verified
-    },
-
     methods: {
 
-        editer() {
-            if (this.observateursSelect.length === 1) {
-
-                for (let i = 0; i < this.observateurs.length; i++) {
-                    if (this.observateurs[i]._id == this.observateursSelect[0]) {
-                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], categorieAppareil: this.observateurs[i].categorieAppareil } });
-                        break;
-                    }
-                }
-            }
+        retour() {
+         this.$router.push("/dashboard").catch(()=>{});
         },
 
-        supprimer() {
 
+        supprimer() {
             if (this.observateursSelect.length === 1) {
                 this.flagVerified = true;
             }
@@ -104,7 +93,6 @@ export default {
         confirmer() {
             Observateurs.delete(this.observateursSelect[0])
                 .then(() => {
-
                     for (let i = 0; i < this.observateurs.length; i++) {
                         if (String(this.observateurs[i]._id) === String(this.observateursSelect[0])) {
                             this.observateurs.splice(i, 1);
@@ -127,45 +115,41 @@ export default {
         },
 
         apercu() {
-
             this.flagSpinner = true;
             Observateurs.apercu(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
-                .then((result) => {
-                    if(result) {
-                        this.flagSpinner = false
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            .then((result) => {
+                if (result) {
+                 this.flagSpinner = false
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         }
     },
 
     created() {
 
-        if (this.interventionId) {
-            Observateurs.select(this.interventionId)
-                .then((response) => {
-                    this.flagSpinner = false;
-                    this.flagInvertesment = false;
-                    this.observateurs = response.data;
-                })
-                .catch((error) => {
-                    this.flagSpinner = false;
-                    this.flagInvertesment = true;
-                    this.msgInvertesment = error.response.data.msg;
-                });
-        }
-
-
-
-
+        Observateurs.read()
+            .then((response) => {
+                // response succes
+                this.flagSpinner = false;
+                this.flagInvertesment = false;
+                this.observateurs = response.data;
+            })
+            .catch((error) => {
+                // response error
+                this.flagSpinner = false;
+                this.flagInvertesment = true;
+                this.msgInvertesment = error.response.data.msg;
+            });
     }
 }
 </script>
-  
+
 <style scoped>
-.table-objet-observateur {
+
+.observations {
     width: 100%;
 }
 
@@ -216,14 +200,11 @@ export default {
     color: white;
 }
 
-.textarea {
-    width: 100%;
-}
-
 .actions {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     margin: 5px;
 }
 
@@ -238,21 +219,13 @@ export default {
     margin-top: 10px;
 }
 
-.actions .left button:nth-child(1) {
+.actions button:nth-child(1) {
     background-color: #04AA6D;
 }
 
-.actions .left button:nth-child(2) {
-    background-color: #e21608;
-}
-
-.actions .right button {
+.actions button:nth-child(2) {
     background-color: #f3a108;
 
-}
-
-iframe {
-    margin-top: 20px;
 }
 
 </style>

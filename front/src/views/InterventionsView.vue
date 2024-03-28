@@ -1,7 +1,8 @@
 <template>
   <div class="interventions">
-    <FormIntervention v-if="flagFormIntervention" @anuller="closeFormIntervention()" @table="closeFormIntervention()" />
-    <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention()" @apercu="apercu" />
+    <button @click="retour">Retour</button>
+    <FormIntervention v-if="flagFormIntervention" :interventionId="interventionId" @anuller="closeFormIntervention()" @table="closeFormIntervention()" />
+    <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention()" @modifier="modifier" @apercu="apercu" @relaodTableObservateur="relaodTableObservateur" />
     <TableObservateur v-if="flagTableObservateur" :interventionId="interventionId" />
   </div>
 </template>
@@ -18,7 +19,7 @@ export default {
     return {
       flagFormIntervention: false,
       flagTableIntervention: true,
-      flagTableObservateur: true,
+      flagTableObservateur: false,
       interventionId: null
     }
   },
@@ -31,6 +32,17 @@ export default {
 
   methods: {
 
+    relaodTableObservateur() {
+      this.flagTableObservateur = false;
+      this.$nextTick(() => {
+        this.flagTableObservateur = true;
+      });
+    },
+
+    retour() {
+        this.$router.push("/dashboard").catch(()=>{});
+    },
+
     apercu(value) {
       this.interventionId = value;
       this.flagTableObservateur = false;
@@ -40,6 +52,13 @@ export default {
     },
 
     openFormIntervention() {
+      this.flagTableIntervention = false;
+      this.flagFormIntervention = true;
+      this.flagTableObservateur = false;
+    },
+
+    modifier(value) {
+      this.interventionId = value;
       this.flagTableIntervention = false;
       this.flagFormIntervention = true;
       this.flagTableObservateur = false;

@@ -6,6 +6,7 @@ import DashboardView from '../views/DashboardView.vue'
 import InterventionsView from '../views/InterventionsView.vue'
 import ObservateursView from '../views/ObservateursView.vue'
 import FormulaireView from '@/views/FormulaireView.vue'
+import ObservationsView from '@/views/ObservationsView'
 
 Vue.use(VueRouter)
 
@@ -40,6 +41,11 @@ const routes = [
     path: '/formulaire',
     name: 'formulaire',
     component: FormulaireView
+  },
+  {
+    path: '/observations',
+    name: 'observations',
+    component: ObservationsView
   }
 
 ]

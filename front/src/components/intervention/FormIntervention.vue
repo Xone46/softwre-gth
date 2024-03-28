@@ -1,7 +1,8 @@
 <template>
     <div class="form-intervention">
 
-        <h1>Création d'une nouvelle d'intervention</h1>
+        <h1 v-if="interventionId == null">Création d'une nouvelle d'intervention</h1>
+        <h1 v-else>Modification d'intervention</h1>
 
         <!-- start errors -->
         <ul v-if="flagError">
@@ -64,7 +65,8 @@
 
 
 
-        <button class="valider" @click="valider">Valider</button>
+        <button v-if="interventionId == null" class="valider" @click="valider">Valider</button>
+        <button class="valider" @click="modifier" v-else>Modifier</button>
         <button class="anuller" @click="$emit('anuller')">Anuller</button>
 
     </div>
@@ -107,14 +109,29 @@ export default {
         }
     },
 
+    props : {
+        interventionId : String
+    },
+
     components: {
 
     },
 
     methods: {
 
-        valider() {
+        modifier() {
+            Interventions.update(this.interventions, this.interventionId)
+            .then(() => {
+                return this.$emit("table");
+            })
+            .catch((error) => {
+                this.errors = [];
+                this.flagError = true;
+                this.errors = error.response.data.errors;
+            });
+        },
 
+        valider() {
             Interventions.create(this.interventions)
             .then(() => {
                 return this.$emit("table");
@@ -124,12 +141,22 @@ export default {
                 this.flagError = true;
                 this.errors = error.response.data.errors;
             });
-
         }
     },
 
     created() {
 
+        
+        if(this.interventionId) {
+            Interventions.select(this.interventionId)
+            .then((result) => {
+                this.interventions = result.data;
+                this.interventions.date = result.data.dateCreated.split('T')[0];
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
     }
 }
 </script>
