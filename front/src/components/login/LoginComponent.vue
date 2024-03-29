@@ -77,7 +77,8 @@ export default {
               sessionStorage.setItem("id", result.data.id);
               sessionStorage.setItem("nom", result.data.nom);
               sessionStorage.setItem("prenom", result.data.prenom);
-              this.$router.push("/dashboard");
+              this.$router.push("/dashboard").catch(()=>{});
+
             }
           }
 

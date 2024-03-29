@@ -625,8 +625,6 @@ export default {
                     Observateurs.selected(this.observateurId)
                     .then((result) => {
 
-                        console.log(result.data);
-
                         this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.constructeur}'`);
                         this.renseignement.typeConstructeur = result.data.constructeur;
 

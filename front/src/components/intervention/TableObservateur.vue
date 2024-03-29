@@ -37,11 +37,12 @@
         <div class="actions">
 
             <div class="left">
-                <button v-if="!flagInvertesment" @click="editer()">Editer</button>
-                <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
+                <button v-if="!flagInvertesment" @click="editer">Editer</button>
+                <button v-if="!flagInvertesment" @click="modifier">Modifier</button>
+                <button v-if="!flagInvertesment" @click="supprimer">Supprimer</button>
             </div>
             <div class="right">
-                <button v-if="!flagInvertesment" @click="apercu()">Aperçu</button>
+                <button v-if="!flagInvertesment" @click="apercu">Aperçu</button>
             </div>
 
         </div>
@@ -50,7 +51,7 @@
 
     </div>
 </template>
-  
+
 <script>
 
 import Observateurs from "@/requests/Observateurs"
@@ -82,6 +83,12 @@ export default {
 
     methods: {
 
+        modifier() {
+            if(this.observateursSelect.length === 1) {
+                return this.$emit("modifierObservateur", this.observateursSelect[0]);
+            }
+        },
+
         editer() {
             if (this.observateursSelect.length === 1) {
 
@@ -95,7 +102,6 @@ export default {
         },
 
         supprimer() {
-
             if (this.observateursSelect.length === 1) {
                 this.flagVerified = true;
             }
@@ -103,22 +109,23 @@ export default {
 
         confirmer() {
             Observateurs.delete(this.observateursSelect[0])
-                .then(() => {
-
-                    for (let i = 0; i < this.observateurs.length; i++) {
-                        if (String(this.observateurs[i]._id) === String(this.observateursSelect[0])) {
-                            this.observateurs.splice(i, 1);
-                            break;
-                        }
-                    }
-
-                    this.flagVerified = false;
-                    this.observateursSelect = [];
-
+                .then((result) => {
+                    console.log(result)
                 })
                 .catch((error) => {
-                    console.log(error);
+                    console.log(error)
                 });
+
+
+            for (let i = 0; i < this.observateurs.length; i++) {
+                if (String(this.observateurs[i]._id) === String(this.observateursSelect[0])) {
+                    this.observateurs.splice(i, 1);
+                    break;
+                }
+            }
+
+            this.flagVerified = false;
+            this.observateursSelect = [];
 
         },
 
@@ -131,7 +138,7 @@ export default {
             this.flagSpinner = true;
             Observateurs.apercu(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
                 .then((result) => {
-                    if(result) {
+                    if (result) {
                         this.flagSpinner = false
                     }
                 })
@@ -163,7 +170,7 @@ export default {
     }
 }
 </script>
-  
+
 <style scoped>
 .table-objet-observateur {
     width: 100%;
@@ -241,8 +248,11 @@ export default {
 .actions .left button:nth-child(1) {
     background-color: #04AA6D;
 }
-
 .actions .left button:nth-child(2) {
+    background-color: #04AA6D;
+}
+
+.actions .left button:nth-child(3) {
     background-color: #e21608;
 }
 
@@ -254,5 +264,4 @@ export default {
 iframe {
     margin-top: 20px;
 }
-
 </style>

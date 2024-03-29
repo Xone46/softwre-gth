@@ -105,6 +105,25 @@ class Observateurs {
         })
     }
 
+    static update(observateur, observateurId) {
+        return new Promise((resolve, reject) => {
+            axios.put(`${VUE_APP_API_BASE_URL}/observateurs/${observateurId}`,
+            observateur,
+            {
+                headers: {
+                     'Content-Type': 'application/json'
+                 }
+             })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+
+        })
+    }
+
 }
 
 export default Observateurs;

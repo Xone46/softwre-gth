@@ -1,7 +1,9 @@
 <template>
     <div class="observateurs">
-
-        <h3>Nouvel Appareil, Equipement, Ou Installation</h3>
+        <button @click="retour">Retour</button>
+        
+        <h3 v-if="observateurId != null">Modification Appareil, Equipement, Ou Installation</h3>
+        <h3 v-else>Nouvel Appareil, Equipement, Ou Installation</h3>
 
         <!-- start errors -->
         <ul v-if="flagError">
@@ -66,8 +68,9 @@
             <input type="text" v-model="observateur.accompagnateur">
         </label>
 
-        <button class="valider" @click="valider()">Valider</button>
-        <button class="anuller" @click="anuller()">Anuller</button>
+        <button v-if="observateurId != null" class="valider" @click="modifier">Modifier</button>
+        <button v-else class="valider" @click="valider">Valider</button>
+        <button class="anuller" @click="anuller">Anuller</button>
 
     </div>
 </template>
@@ -83,6 +86,7 @@ export default {
         return {
             errors : [],
             flagError : false,
+            observateurId : null,
             observateur : {
                 interventionId : null,
                 date : "",
@@ -122,6 +126,22 @@ export default {
 
     methods: {
 
+        modifier() {
+            Observateurs.update(this.observateur, this.observateurId)
+            .then(() => {
+                this.$router.push("/interventions").catch(()=>{});
+            })
+            .catch((error) => {
+                this.errors = [];
+                this.flagError = true;
+                this.errors = error.response.data.errors;
+            });
+        },
+
+        retour() {
+            this.$router.push("/interventions").catch(()=>{});
+        },
+
         valider() {
             Observateurs.create(this.observateur)
             .then(() => {
@@ -140,7 +160,22 @@ export default {
     },
 
     created() {
+
         this.observateur.interventionId = this.$route.params.id;
+        this.observateurId = this.$route.params.observateurId;
+
+
+        if(this.observateurId) {
+
+            Observateurs.selected(this.observateurId)
+            .then((result) => {
+                this.observateur = result.data;
+                this.observateur.date = result.data.date.split('T')[0];
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        }
     }
 }
 </script>

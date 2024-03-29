@@ -133,7 +133,8 @@ export default {
 
         valider() {
             Interventions.create(this.interventions)
-            .then(() => {
+            .then((result) => {
+                console.log(result)
                 return this.$emit("table");
             })
             .catch((error) => {

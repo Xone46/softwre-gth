@@ -88,10 +88,6 @@ export default {
         sessionStorage.setItem("connection", false);
       }
 
-
-
-
-
     }
 
 
