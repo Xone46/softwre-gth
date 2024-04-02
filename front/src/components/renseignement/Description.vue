@@ -101,9 +101,9 @@
                 <td>
                     <label for="Sans objet">
                         Sans objet
-                        <input type="radio" name="levageAuxiliaire" value="Sans objet" @change="statuslevageAuxiliaireSansObjet" v-model="description.levageAuxiliaire.sansObjet" :checked="description.levageAuxiliaire.sansObjet == 'Sans Objet'">
+                        <input type="radio" name="levageAuxiliaire" value="Sans objet" @click="statuslevageAuxiliaireSansObjet" v-model="description.levageAuxiliaire.sansObjet" :checked="description.levageAuxiliaire.sansObjet == 'Sans Objet'">
                         Avec objet
-                        <input type="radio" name="levageAuxiliaire" value="Avec objet" @change="statuslevageAuxiliaireAvecObjet"  v-model="description.levageAuxiliaire.avecObjet" :checked="description.levageAuxiliaire.avecObjet == 'Avec Objet'">
+                        <input type="radio" name="levageAuxiliaire" value="Avec objet" @click="statuslevageAuxiliaireAvecObjet"  v-model="description.levageAuxiliaire.avecObjet" :checked="description.levageAuxiliaire.avecObjet == 'Avec Objet'">
                     </label>
 
                     <label v-if="description.levageAuxiliaire.avecObjet == 'Avec Objet' && description.levageAuxiliaire.sansObjet == ''" for="Charge maximale utile de chaque palan (kg)">
@@ -313,13 +313,15 @@ export default {
     methods: {
 
         statuslevageAuxiliaireSansObjet() {
+            
             this.description.levageAuxiliaire.sansObjet = "Sans Objet";
-            this.description.levageAuxiliaire.avecObjet = ""
+            this.description.levageAuxiliaire.avecObjet = '';
+
         },
 
         statuslevageAuxiliaireAvecObjet() {
             this.description.levageAuxiliaire.avecObjet = "Avec Objet";
-            this.description.levageAuxiliaire.sansObjet = "";
+            this.description.levageAuxiliaire.sansObjet = '';
         },
 
         sauvegarde() {
@@ -422,6 +424,7 @@ export default {
                 this.description.sourceDenergie.translation = result.data[0].translation;
                 this.description.sourceDenergie.direction = result.data[0].direction;
                 this.description.observateurId = result.data.observateurId;
+
             }
         })
         .catch((error) => {

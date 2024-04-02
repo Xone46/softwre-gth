@@ -71,20 +71,6 @@
                     </div>
                 </th>
 
-
-                <!-- <th class="green" v-if="flagReserveColor" @click="reserve">
-                    <div>
-                        <img src="@/assets/mark.png" alt="pencil">
-                        <span>LES RÉSERVES</span>
-                    </div>
-                </th>
-                <th v-if="!flagReserveColor" @click="reserve">
-                    <div>
-                        <img src="@/assets/pencil.png" alt="pencil">
-                        <span>LES RÉSERVES</span>
-                    </div>
-                </th> -->
-
             </tr>
         </table>
     </div>
@@ -108,8 +94,7 @@ export default {
             flagDescriptionColor: false,
             flagExamenColor: false,
             flagPhotoColor: false,
-            flagConclusionColor: false,
-            flagReserveColor: false
+            flagConclusionColor: false
         }
     },
 
@@ -142,10 +127,6 @@ export default {
 
         photo() {
             this.$emit("photo")
-        },
-
-        reserve() {
-           this.$emit("reserve")
         }
     },
 

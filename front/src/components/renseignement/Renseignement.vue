@@ -4,7 +4,7 @@
             <table border="1">
 
                 <tr>
-                    <th>Constructeur</th>
+                    <th>Constructeurs</th>
                 </tr>
 
                 <tr>
@@ -320,6 +320,13 @@ export default {
         Insert
     },
 
+    computed: {
+        checkNotEmpty () {
+            console.log("achraf")
+            return this.renseignement.typeConstructeur;
+        }
+    },
+
     methods: {
 
         valider(event, type) {
@@ -356,6 +363,7 @@ export default {
             }
 
             this.falgInsert = false;
+            return this.sauvegarde();
         },
 
         annuler() {
@@ -364,14 +372,17 @@ export default {
 
         getValueTypeConstructeur(event) {
             this.renseignement.typeConstructeur = event.target.value;
+            return this.sauvegarde();
         },
 
         getValueAnneeMiseService(event) {
             this.renseignement.anneeMiseService = event.target.value;
+            return this.sauvegarde();
         },
 
         getValueNumeroSerie(event) {
             this.renseignement.numeroSerie = event.target.value;
+            return this.sauvegarde();
         },
 
         getValueNumeroInterne(event) {
@@ -383,11 +394,14 @@ export default {
             } else {
                 this.renseignement.numeroInterne = event.target.value;
                 this.renseignement.numeroInterneAutre = "";
+                return this.sauvegarde();
             }
+            
         },
 
         getValueLocalisation(event) {
             this.renseignement.localisation = event.target.value;
+            return this.sauvegarde();
         },
 
         getValueTypeAppareil(event) {
@@ -397,11 +411,13 @@ export default {
             } else {
                 this.renseignement.typeAppareil = event.target.value;
                 this.renseignement.typeAppareilAutre = "";
+                return this.sauvegarde();
             }
         },
 
         getValueMiseEnServiceRapport() {
             this.renseignement.miseEnServiceRapport = event.target.value;
+            return this.sauvegarde();
         },
 
         getValueMiseEnServiceEpreuves(event) {
@@ -411,6 +427,7 @@ export default {
             } else {
                 this.renseignement.miseEnServiceEpreuves = event.target.value;
                 this.renseignement.miseEnServiceEpreuvesAutre = "";
+                return this.sauvegarde();
             }
         },
 
@@ -421,11 +438,13 @@ export default {
             } else {
                 this.renseignement.dateDerniereVerficationPeriodique = event.target.value;
                 this.renseignement.dateDerniereVerficationPeriodiqueAutre = "";
+                return this.sauvegarde();
             }
         },
 
         getValueDateDerniereVerficationPeriodiqueRapport(event) {
             this.renseignement.dateDerniereVerficationPeriodiqueRapport = event.target.value;
+            return this.sauvegarde();
         },
 
         getValueEssaischarge(event) {
@@ -435,6 +454,7 @@ export default {
             } else {
                 this.renseignement.essaischarge = event.target.value;
                 this.renseignement.essaischargeAutre = "";
+                return this.sauvegarde();
             }
         },
 
@@ -445,15 +465,15 @@ export default {
             } else {
                 this.renseignement.modification = event.target.value;
                 this.renseignement.modificationAutre = "";
+                return this.sauvegarde();
             }
         },
 
         reset() {
             Renseignement.reset(this.observateurId)
                 .then((result) => {
-                    
-                    if (result.data) {
 
+                    if (result.data) {
 
                         this.renseignement.tagTypeConstructeur = "<input type='text' value=''>";
                         this.renseignement.typeConstructeur = "";
@@ -498,7 +518,7 @@ export default {
                             `<label><input type='radio' value='Réalisées le:' name='miseEnServiceEpreuves'/>Réalisées le:</label>
                         <label><input type='radio' value='Absence de renseignement' name='miseEnServiceEpreuves'/>Absence de renseignement</label>
                         `,
-                        this.renseignement.miseEnServiceEpreuves = "";
+                            this.renseignement.miseEnServiceEpreuves = "";
                         this.renseignement.miseEnServiceEpreuvesAutre = "";
 
 
@@ -554,9 +574,9 @@ export default {
             Renseignement.create(this.renseignement)
                 .then((result) => {
                     if (result.data) {
-                            this.flagReset = true;
-                            this.renseignementId = result.data.renseignementId;
-                            this.$emit("menuStatusChicked");
+                        this.flagReset = true;
+                        this.renseignementId = result.data.renseignementId;
+                        this.$emit("menuStatusChicked");
                     }
                 })
                 .catch((error) => {
@@ -574,70 +594,70 @@ export default {
                 if (result.data != null) {
 
 
-                        this.renseignement.observateurId = this.observateurId;
-                        this.flagReset = true;
+                    this.renseignement.observateurId = this.observateurId;
+                    this.flagReset = true;
 
-                        this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.typeConstructeur}'`);
-                        this.renseignement.typeConstructeur = result.data.typeConstructeur;
+                    this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.typeConstructeur}'`);
+                    this.renseignement.typeConstructeur = result.data.typeConstructeur;
 
-                        this.renseignement.tagAnneeMiseService = this.renseignement.tagAnneeMiseService.replace("value=''", `value='${result.data.anneeMiseService}'`);
-                        this.renseignement.anneeMiseService = result.data.anneeMiseService;
+                    this.renseignement.tagAnneeMiseService = this.renseignement.tagAnneeMiseService.replace("value=''", `value='${result.data.anneeMiseService}'`);
+                    this.renseignement.anneeMiseService = result.data.anneeMiseService;
 
-                        this.renseignement.tagNumeroSerie = this.renseignement.tagNumeroSerie.replace("value=''", `value='${result.data.numeroSerie}'`);
-                        this.renseignement.numeroSerie = result.data.numeroSerie;
+                    this.renseignement.tagNumeroSerie = this.renseignement.tagNumeroSerie.replace("value=''", `value='${result.data.numeroSerie}'`);
+                    this.renseignement.numeroSerie = result.data.numeroSerie;
 
-                        this.renseignement.tagNumeroInterne = this.renseignement.tagNumeroInterne.replace(`value='${result.data.numeroInterne}'`, `value='${result.data.numeroInterne}' checked='checked'`);
-                        this.renseignement.numeroInterne = result.data.numeroInterne;
-                        this.renseignement.numeroInterneAutre = result.data.numeroInterneAutre;
+                    this.renseignement.tagNumeroInterne = this.renseignement.tagNumeroInterne.replace(`value='${result.data.numeroInterne}'`, `value='${result.data.numeroInterne}' checked='checked'`);
+                    this.renseignement.numeroInterne = result.data.numeroInterne;
+                    this.renseignement.numeroInterneAutre = result.data.numeroInterneAutre;
 
-                        this.renseignement.tagLocalisation = this.renseignement.tagLocalisation.replace("value=''", `value='${result.data.localisation}'`);
-                        this.renseignement.localisation = result.data.localisation;
+                    this.renseignement.tagLocalisation = this.renseignement.tagLocalisation.replace("value=''", `value='${result.data.localisation}'`);
+                    this.renseignement.localisation = result.data.localisation;
 
-                        this.renseignement.tagTypeAppareil = this.renseignement.tagTypeAppareil.replace(`value='${result.data.typeAppareil}'`, `value='${result.data.typeAppareil}' checked='checked`);
-                        this.renseignement.typeAppareil = result.data.typeAppareil;
-                        this.renseignement.typeAppareilAutre = result.data.typeAppareilAutre;
+                    this.renseignement.tagTypeAppareil = this.renseignement.tagTypeAppareil.replace(`value='${result.data.typeAppareil}'`, `value='${result.data.typeAppareil}' checked='checked`);
+                    this.renseignement.typeAppareil = result.data.typeAppareil;
+                    this.renseignement.typeAppareilAutre = result.data.typeAppareilAutre;
 
-                        this.renseignement.tagMiseEnServiceRapport = this.renseignement.tagMiseEnServiceRapport.replace(`value='${result.data.miseEnServiceRapport}'`, `value='${result.data.miseEnServiceRapport}' checked='checked`);
-                        this.renseignement.miseEnServiceRapport = result.data.miseEnServiceRapport;
+                    this.renseignement.tagMiseEnServiceRapport = this.renseignement.tagMiseEnServiceRapport.replace(`value='${result.data.miseEnServiceRapport}'`, `value='${result.data.miseEnServiceRapport}' checked='checked`);
+                    this.renseignement.miseEnServiceRapport = result.data.miseEnServiceRapport;
 
-                        this.renseignement.tagMiseEnServiceEpreuves = this.renseignement.tagMiseEnServiceEpreuves.replace(`value='${result.data.miseEnServiceEpreuves}'`, `value='${result.data.miseEnServiceEpreuves}' checked='checked`);
-                        this.renseignement.miseEnServiceEpreuves = result.data.miseEnServiceEpreuves;
-                        this.renseignement.miseEnServiceEpreuvesAutre = result.data.miseEnServiceEpreuvesAutre;
+                    this.renseignement.tagMiseEnServiceEpreuves = this.renseignement.tagMiseEnServiceEpreuves.replace(`value='${result.data.miseEnServiceEpreuves}'`, `value='${result.data.miseEnServiceEpreuves}' checked='checked`);
+                    this.renseignement.miseEnServiceEpreuves = result.data.miseEnServiceEpreuves;
+                    this.renseignement.miseEnServiceEpreuvesAutre = result.data.miseEnServiceEpreuvesAutre;
 
-                        this.renseignement.tagDateDerniereVerficationPeriodique = this.renseignement.tagDateDerniereVerficationPeriodique.replace(`value='${result.data.dateDerniereVerficationPeriodique}'`, `value='${result.data.dateDerniereVerficationPeriodique}' checked='checked`);
-                        this.renseignement.dateDerniereVerficationPeriodique = result.data.dateDerniereVerficationPeriodique;
-                        this.renseignement.dateDerniereVerficationPeriodiqueAutre = result.data.dateDerniereVerficationPeriodiqueAutre;
+                    this.renseignement.tagDateDerniereVerficationPeriodique = this.renseignement.tagDateDerniereVerficationPeriodique.replace(`value='${result.data.dateDerniereVerficationPeriodique}'`, `value='${result.data.dateDerniereVerficationPeriodique}' checked='checked`);
+                    this.renseignement.dateDerniereVerficationPeriodique = result.data.dateDerniereVerficationPeriodique;
+                    this.renseignement.dateDerniereVerficationPeriodiqueAutre = result.data.dateDerniereVerficationPeriodiqueAutre;
 
-                        this.renseignement.tagDateDerniereVerficationPeriodiqueRapport = this.renseignement.tagDateDerniereVerficationPeriodiqueRapport.replace(`value='${result.data.dateDerniereVerficationPeriodiqueRapport}'`, `value='${result.data.dateDerniereVerficationPeriodiqueRapport}' checked='checked`);
-                        this.renseignement.dateDerniereVerficationPeriodiqueRapport = result.data.dateDerniereVerficationPeriodiqueRapport;
+                    this.renseignement.tagDateDerniereVerficationPeriodiqueRapport = this.renseignement.tagDateDerniereVerficationPeriodiqueRapport.replace(`value='${result.data.dateDerniereVerficationPeriodiqueRapport}'`, `value='${result.data.dateDerniereVerficationPeriodiqueRapport}' checked='checked`);
+                    this.renseignement.dateDerniereVerficationPeriodiqueRapport = result.data.dateDerniereVerficationPeriodiqueRapport;
 
-                        this.renseignement.tagEssaischarge = this.renseignement.tagEssaischarge.replace(`value='${result.data.essaischarge}'`, `value='${result.data.essaischarge}' checked='checked`);
-                        this.renseignement.essaischarge = result.data.essaischarge;
-                        this.renseignement.essaischargeAutre = result.data.essaischargeAutre;
+                    this.renseignement.tagEssaischarge = this.renseignement.tagEssaischarge.replace(`value='${result.data.essaischarge}'`, `value='${result.data.essaischarge}' checked='checked`);
+                    this.renseignement.essaischarge = result.data.essaischarge;
+                    this.renseignement.essaischargeAutre = result.data.essaischargeAutre;
 
-                        this.renseignement.tagModification = this.renseignement.tagModification.replace(`value='${result.data.modification}'`, `value='${result.data.modification}' checked='checked`);
-                        this.renseignement.modification = result.data.modification;
-                        this.renseignement.modificationAutre = result.data.modificationAutre;
+                    this.renseignement.tagModification = this.renseignement.tagModification.replace(`value='${result.data.modification}'`, `value='${result.data.modification}' checked='checked`);
+                    this.renseignement.modification = result.data.modification;
+                    this.renseignement.modificationAutre = result.data.modificationAutre;
 
-                        this.$emit("menuStatusChicked");
+                    this.$emit("menuStatusChicked");
                 } else {
 
                     Observateurs.selected(this.observateurId)
-                    .then((result) => {
+                        .then((result) => {
 
-                        this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.constructeur}'`);
-                        this.renseignement.typeConstructeur = result.data.constructeur;
+                            this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.constructeur}'`);
+                            this.renseignement.typeConstructeur = result.data.constructeur;
 
-                        this.renseignement.tagLocalisation = this.renseignement.tagLocalisation.replace("value=''", `value='${result.data.localisation}'`);
-                        this.renseignement.localisation = result.data.localisation;
+                            this.renseignement.tagLocalisation = this.renseignement.tagLocalisation.replace("value=''", `value='${result.data.localisation}'`);
+                            this.renseignement.localisation = result.data.localisation;
 
-                        this.renseignement.tagNumeroInterne = this.renseignement.tagNumeroInterne.replace(`value='N°'`, `value='N°' checked='checked'`);
-                        this.renseignement.numeroInterne = "N°";
-                        this.renseignement.numeroInterneAutre = result.data.numeroInterne;
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                            this.renseignement.tagNumeroInterne = this.renseignement.tagNumeroInterne.replace(`value='N°'`, `value='N°' checked='checked'`);
+                            this.renseignement.numeroInterne = "N°";
+                            this.renseignement.numeroInterneAutre = result.data.numeroInterne;
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
 
                 }
             })
@@ -775,5 +795,4 @@ td:nth-child(2) {
 .not-saved {
     color: red;
 }
-
 </style>

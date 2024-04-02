@@ -513,11 +513,123 @@ export default {
 
     methods: {
 
-        validerReserve() {
+        validerReserve(value) {
+
+            const indexA = this.a.findIndex((el) => el.titre == value[2]);
+            if(indexA != -1) {
+                this.a[indexA]["o"] = true;
+            }
+
+            const indexB = this.b.findIndex((el) => el.titre == value[2]);
+            if(indexB != -1) {
+                this.b[indexB]["o"] = true;
+            }
+
+            const indexC = this.c.findIndex((el) => el.titre == value[2]);
+            if(indexC != -1) {
+                this.c[indexC]["o"] = true;
+            }
+
+            const indexD = this.d.findIndex((el) => el.titre == value[2]);
+            if(indexD != -1) {
+                this.d[indexD]["o"] = true;
+            }
+
+            const indexE = this.e.findIndex((el) => el.titre == value[2]);
+            if(indexE != -1) {
+                this.e[indexE]["o"] = true;
+            }
+
+            const indexF = this.f.findIndex((el) => el.titre == value[2]);
+            if(indexF != -1) {
+                this.f[indexF]["o"] = true;
+            }
+
+            const indexG = this.g.findIndex((el) => el.titre == value[2]);
+            if(indexG != -1) {
+                this.g[indexG]["o"] = true;
+            }
+
+            const indexH = this.h.findIndex((el) => el.titre == value[2]);
+            if(indexH != -1) {
+                this.h[indexH]["o"] = true;
+            }
+
+            const indexI = this.i.findIndex((el) => el.titre == value[2]);
+            if(indexI != -1) {
+                this.i[indexA]["o"] = true;
+            }
+
+            const indexJ = this.j.findIndex((el) => el.titre == value[2]);
+            if(indexJ != -1) {
+                this.j[indexJ]["o"] = true;
+            }
+
+            const indexK = this.k.findIndex((el) => el.titre == value[2]);
+            if(indexK != -1) {
+                this.k[indexK]["o"] = true;
+            }
+
             this.flagReserve = false;
         },
 
-        annulerReserve() {
+        annulerReserve(value) {
+
+            const indexA = this.a.findIndex((el) => el.titre == value[2]);
+            if(indexA != -1) {
+                this.a[indexA]["o"] = false;
+            }
+
+            const indexB = this.b.findIndex((el) => el.titre == value[2]);
+            if(indexB != -1) {
+                this.b[indexB]["o"] = false;
+            }
+
+            const indexC = this.c.findIndex((el) => el.titre == value[2]);
+            if(indexC != -1) {
+                this.c[indexC]["o"] = false;
+            }
+
+            const indexD = this.d.findIndex((el) => el.titre == value[2]);
+            if(indexD != -1) {
+                this.d[indexD]["o"] = false;
+            }
+
+            const indexE = this.e.findIndex((el) => el.titre == value[2]);
+            if(indexE != -1) {
+                this.e[indexE]["o"] = false;
+            }
+
+            const indexF = this.f.findIndex((el) => el.titre == value[2]);
+            if(indexF != -1) {
+                this.f[indexF]["o"] = false;
+            }
+
+            const indexG = this.g.findIndex((el) => el.titre == value[2]);
+            if(indexG != -1) {
+                this.g[indexG]["o"] = false;
+            }
+
+            const indexH = this.h.findIndex((el) => el.titre == value[2]);
+            if(indexH != -1) {
+                this.h[indexH]["o"] = false;
+            }
+
+            const indexI = this.i.findIndex((el) => el.titre == value[2]);
+            if(indexI != -1) {
+                this.i[indexA]["o"] = false;
+            }
+
+            const indexJ = this.j.findIndex((el) => el.titre == value[2]);
+            if(indexJ != -1) {
+                this.j[indexJ]["o"] = false;
+            }
+
+            const indexK = this.k.findIndex((el) => el.titre == value[2]);
+            if(indexK != -1) {
+                this.k[indexK]["o"] = false;
+            }
+
             this.flagReserve = false;
         },
 
@@ -534,12 +646,12 @@ export default {
             // select new value
             this.a[index][type] = !this.a[index][type];
 
-            // console.log(this.a[index]["o"])
-
             if(this.a[index]["o"] == true) {
                 this.infoReserve = ["A", index, this.a[index]["titre"], this.observateurId]
                 this.flagReserve = true;
             }
+
+            return this.sauvegarde();
         },
 
         checkB(index, type) {
@@ -554,6 +666,13 @@ export default {
 
             // select new value
             this.b[index][type] = !this.b[index][type];
+
+            if(this.b[index]["o"] == true) {
+                this.infoReserve = ["B", index, this.b[index]["titre"], this.observateurId]
+                this.flagReserve = true;
+            }
+            
+            return this.sauvegarde();
         },
 
         checkC(index, type) {
@@ -568,6 +687,13 @@ export default {
 
             // select new value
             this.c[index][type] = !this.c[index][type];
+
+            if(this.c[index]["o"] == true) {
+                this.infoReserve = ["C", index, this.c[index]["titre"], this.observateurId]
+                this.flagReserve = true;
+            }
+            
+            return this.sauvegarde();
         },
 
         checkD(index, type) {
@@ -582,6 +708,13 @@ export default {
 
             // select new value
             this.d[index][type] = !this.d[index][type];
+
+            if(this.d[index]["o"] == true) {
+                this.infoReserve = ["D", index, this.d[index]["titre"], this.observateurId]
+                this.flagReserve = true;
+            }
+            
+            return this.sauvegarde();
         },
 
         checkE(index, type) {
@@ -596,6 +729,13 @@ export default {
 
             // select new value
             this.e[index][type] = !this.e[index][type];
+
+            if(this.e[index]["o"] == true) {
+                this.infoReserve = ["E", index, this.e[index]["titre"], this.observateurId]
+                this.flagReserve = true;
+            }
+            
+            return this.sauvegarde();
         },
 
         checkF(index, type) {
@@ -610,6 +750,13 @@ export default {
 
             // select new value
             this.f[index][type] = !this.f[index][type];
+
+            if(this.f[index]["o"] == true) {
+                this.infoReserve = ["F", index, this.f[index]["titre"], this.observateurId]
+                this.flagReserve = true;
+            }
+            
+            return this.sauvegarde();
         },
 
         checkG(index, type) {
@@ -624,6 +771,13 @@ export default {
 
             // select new value
             this.g[index][type] = !this.g[index][type];
+
+            if(this.g[index]["o"] == true) {
+                this.infoReserve = ["G", index, this.g[index]["titre"], this.observateurId]
+                this.flagReserve = true;
+            }
+            
+            return this.sauvegarde();
         },
 
         checkH(index, type) {
@@ -638,6 +792,13 @@ export default {
 
             // select new value
             this.h[index][type] = !this.h[index][type];
+
+            if(this.h[index]["o"] == true) {
+                this.infoReserve = ["H", index, this.h[index]["titre"], this.observateurId]
+                this.flagReserve = true;
+            }
+            
+            return this.sauvegarde();
         },
 
         checkI(index, type) {
@@ -652,6 +813,13 @@ export default {
 
             // select new value
             this.i[index][type] = !this.i[index][type];
+
+            if(this.i[index]["o"] == true) {
+                this.infoReserve = ["I", index, this.i[index]["titre"], this.observateurId]
+                this.flagReserve = true;
+            }
+            
+            return this.sauvegarde();
         },
 
         checkJ(index, type) {
@@ -666,6 +834,13 @@ export default {
 
             // select new value
             this.j[index][type] = !this.j[index][type];
+
+            if(this.j[index]["o"] == true) {
+                this.infoReserve = ["J", index, this.j[index]["titre"], this.observateurId]
+                this.flagReserve = true;
+            }
+            
+            return this.sauvegarde();
         },
 
         checkK(index, type) {
@@ -680,6 +855,13 @@ export default {
 
             // select new value
             this.k[index][type] = !this.k[index][type];
+
+            if(this.k[index]["o"] == true) {
+                this.infoReserve = ["K", index, this.k[index]["titre"], this.observateurId]
+                this.flagReserve = true;
+            }
+            
+            return this.sauvegarde();
         },
 
         reset() {

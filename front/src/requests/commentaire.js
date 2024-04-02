@@ -28,6 +28,23 @@ class Commentaires {
         })
     }
 
+    static delete(commentaireId) {
+        return new Promise((resolve, reject) => {
+            axios.delete(`${VUE_APP_API_BASE_URL}/commentaires/${commentaireId}`,
+            {
+                headers: {
+                     'Content-Type': 'application/json'
+                 }
+             })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
 
     static select(ref, number, titre, observateurId) {
         

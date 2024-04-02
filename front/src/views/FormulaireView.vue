@@ -9,7 +9,7 @@
             <button @click="observations">Visualisation des observations</button>
         </div>
 
-        <Menu v-if="flagMenu" :observateurId="formulaire.observateurId"  @renseignement="renseignement" @description="description" @examen="examen" @conclusion="conclusion" @photo="photo" @reserve="reserve"/>
+        <Menu v-if="flagMenu" :observateurId="formulaire.observateurId"  @renseignement="renseignement" @description="description" @examen="examen" @conclusion="conclusion" @photo="photo" />
 
         <div class="content">
             <Renseignement v-if="flagRenseignements" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
@@ -17,7 +17,6 @@
             <Examen v-if="flagExamen" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
             <Photo v-if="flagPhoto" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
             <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-            <!-- <Reserve v-if="flagReserve" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/> -->
         </div>
 
 
@@ -31,7 +30,6 @@ import Description from "@/components/renseignement/Description.vue"
 import Examen from "@/components/renseignement/Examen.vue"
 import Photo from "@/components/renseignement/Photo.vue"
 import Conclusion from "@/components/renseignement/Conclusion.vue"
-// import Reserve from "@/components/renseignement/Reserve.vue"
 
 import Menu from "@/components/menu/Menu.vue"
 
@@ -46,7 +44,6 @@ export default {
             flagExamen: false,
             flagPhoto: false,
             flagConclusion: false,
-            flagReserve: false,
 
             formulaire: {
                 observateurId: "",
@@ -68,7 +65,6 @@ export default {
         Examen,
         Photo,
         Conclusion,
-        // Reserve,
         Menu
     },
 
@@ -97,7 +93,6 @@ export default {
             this.flagExamen = false;
             this.flagPhoto = false;
             this.flagConclusion = false;
-            this.flagReserve = false;
         },
 
         description() {
@@ -107,7 +102,6 @@ export default {
             this.flagPhoto = false;
             this.flagConclusion = false;
             this.flagRenseignementsColor = false;
-            this.flagReserve = false;
         },
 
         examen() {
@@ -116,7 +110,6 @@ export default {
             this.flagExamen = true;
             this.flagPhoto = false;
             this.flagConclusion = false;
-            this.flagReserve = false;
         },
 
         conclusion() {
@@ -125,7 +118,6 @@ export default {
             this.flagExamen = false;
             this.flagPhoto = false;
             this.flagConclusion = true;
-            this.flagReserve = false;
         },
 
         photo() {
@@ -134,16 +126,6 @@ export default {
             this.flagExamen = false;
             this.flagPhoto = true;
             this.flagConclusion = false;
-            this.flagReserve = false;
-        },
-
-        reserve() {
-            this.flagRenseignements = false;
-            this.flagDescription = false;
-            this.flagExamen = false;
-            this.flagPhoto = false;
-            this.flagConclusion = false;
-            this.flagReserve = true;
         }
 
     },

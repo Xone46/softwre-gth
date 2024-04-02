@@ -21,9 +21,9 @@
             <h4 v-if="modelSelected.length > 0">Liste des modèles sélectionnés</h4>
 
             <table class="table-data">
-                <tr v-for="item in modelSelected" :key="item.name">
+                <tr v-for="(item, index) in modelSelected" :key="item.name">
 
-                    <td>{{ item.name }}</td>
+                    <input type="text" v-model="modelSelected[index].name">
 
                     <td>
                         <select v-model="item.status">
@@ -33,7 +33,7 @@
                     </td>
 
                     <td>
-                        <button @click="supprimer(item)">supprimer</button>
+                        <button @click="supprimer(item)">Supprimer</button>
                     </td>
 
                 </tr>
@@ -41,9 +41,14 @@
 
         </div>
 
-        <div class="bottom">
+        <div class="bottom" v-if="!flagExisteCommentaire">
             <button @click="valider">Valider</button>
             <button @click="$emit('annuler')">Annuler</button>
+        </div>
+
+        <div class="bottom" v-if="flagExisteCommentaire">
+            <button @click="valider">Modifier</button>
+            <button @click="supprimerCommentaire">Supprimer</button>
         </div>
 
      <AddModel v-if="flagAddModel" @ajouterModel="ajouterModel" @annulerAddModel="annulerAddModel" />
@@ -60,15 +65,17 @@ export default {
     name: 'reserve-component',
     data() {
         return {
+            flagExisteCommentaire : false,
+            commentaireId : null,
             flagAddModel : false,
             statusCritique : null,
             model: null,
             modelSelected: [],
             liste: [
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias repellendus amet dolorem natus, illum nihil quis consequatur inventore accusamus dolor beatae laborum tempore veniam voluptatibus ut, at dolorum atque eveniet",
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias repellendus amet dolorem natus, illum nihil quis consequatur inventore accusamus dolor beatae laborum tempore veniam voluptatibus ut, at dolorum atque",
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias repellendus amet dolorem natus, illum nihil quis consequatur inventore accusamus dolor beatae laborum tempore veniam voluptatibus ut, at dolorum",
-                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias repellendus amet dolorem natus, illum nihil quis consequatur inventore accusamus dolor beatae laborum tempore veniam voluptatibus ut, at",
+                "Lore dol atque eveniet",
+                "Lore dol atque evenie",
+                "Lore dol atque even",
+                "Lore dol atque ev",
             ]
         }
     },
@@ -91,6 +98,21 @@ export default {
     },
 
     methods: {
+
+        supprimerCommentaire() {
+            Commentaires.delete(this.commentaireId)
+            .then((result) => {
+                console.log(result);
+                return this.$emit('annuler', this.infoReserve);
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+        },
+
+        edit(value) {
+            console.log(value);
+        },
 
         ajouterModel(value) {
             this.liste.push(value)
@@ -130,9 +152,8 @@ export default {
             Commentaires.create(this.observateurId, this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.modelSelected)
             .then((result) => {
                 if(result) {
-                    return this.$emit('annuler');
+                    return this.$emit('valider', this.infoReserve);
                 }
-                console.log(result);
             })
             .catch((error) => {
                 console.log(error);
@@ -145,10 +166,13 @@ export default {
         Commentaires.select(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.infoReserve[3])
         .then((result) => {
 
+            this.commentaireId = result.data._id;
+            this.flagExisteCommentaire = true;
+            
             result.data.modelSelected.forEach((el) => {
                 const index = this.liste.findIndex(val => val == el.name)
                 this.liste.splice(index, 1);
-            })
+            });
 
             this.modelSelected = result.data.modelSelected;
         })
