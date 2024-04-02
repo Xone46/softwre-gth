@@ -14,7 +14,7 @@
             </tr>
             <tr v-for="(item, index) in a" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkA(index, 'be')">
                 </td>
@@ -49,7 +49,7 @@
             </tr>
             <tr v-for="(item, index) in b" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkB(index, 'be')">
                 </td>
@@ -84,7 +84,7 @@
             </tr>
             <tr v-for="(item, index) in c" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkC(index, 'be')">
                 </td>
@@ -119,7 +119,7 @@
             </tr>
             <tr v-for="(item, index) in d" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkD(index, 'be')">
                 </td>
@@ -154,7 +154,7 @@
             </tr>
             <tr v-for="(item, index) in e" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkE(index, 'be')">
                 </td>
@@ -189,7 +189,7 @@
             </tr>
             <tr v-for="(item, index) in f" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkF(index, 'be')">
                 </td>
@@ -224,7 +224,7 @@
             </tr>
             <tr v-for="(item, index) in g" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkG(index, 'be')">
                 </td>
@@ -259,7 +259,7 @@
             </tr>
             <tr v-for="(item, index) in h" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkH(index, 'be')">
                 </td>
@@ -295,7 +295,7 @@
             </tr>
             <tr v-for="(item, index) in i" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkI(index, 'be')">
                 </td>
@@ -330,7 +330,7 @@
             </tr>
             <tr v-for="(item, index) in j" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkJ(index, 'be')">
                 </td>
@@ -366,7 +366,7 @@
             </tr>
             <tr v-for="(item, index) in k" :key="index">
                 <td></td>
-                <td :class="[item.be == true || item.fc || item.sa || item.nv || item.so || item.o ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkK(index, 'be')">
                 </td>
@@ -635,7 +635,8 @@ export default {
 
         checkA(index, type) {
 
-            //change all to false
+            const flag = this.a[index][type]
+
             this.a[index]["be"] = false;
             this.a[index]["fc"] = false;
             this.a[index]["sa"] = false;
@@ -643,8 +644,7 @@ export default {
             this.a[index]["so"] = false;
             this.a[index]["o"] = false;
 
-            // select new value
-            this.a[index][type] = !this.a[index][type];
+            this.a[index][type] = flag;
 
             if(this.a[index]["o"] == true) {
                 this.infoReserve = ["A", index, this.a[index]["titre"], this.observateurId]
@@ -656,7 +656,8 @@ export default {
 
         checkB(index, type) {
 
-            //change all to false
+            const flag = this.b[index][type]
+
             this.b[index]["be"] = false;
             this.b[index]["fc"] = false;
             this.b[index]["sa"] = false;
@@ -664,8 +665,7 @@ export default {
             this.b[index]["so"] = false;
             this.b[index]["o"] = false;
 
-            // select new value
-            this.b[index][type] = !this.b[index][type];
+            this.b[index][type] = flag;
 
             if(this.b[index]["o"] == true) {
                 this.infoReserve = ["B", index, this.b[index]["titre"], this.observateurId]
@@ -677,7 +677,8 @@ export default {
 
         checkC(index, type) {
 
-            //change all to false
+            const flag = this.c[index][type]
+
             this.c[index]["be"] = false;
             this.c[index]["fc"] = false;
             this.c[index]["sa"] = false;
@@ -685,8 +686,7 @@ export default {
             this.c[index]["so"] = false;
             this.c[index]["o"] = false;
 
-            // select new value
-            this.c[index][type] = !this.c[index][type];
+            this.c[index][type] = flag;
 
             if(this.c[index]["o"] == true) {
                 this.infoReserve = ["C", index, this.c[index]["titre"], this.observateurId]
@@ -698,7 +698,8 @@ export default {
 
         checkD(index, type) {
 
-            //change all to false
+            const flag = this.d[index][type]
+
             this.d[index]["be"] = false;
             this.d[index]["fc"] = false;
             this.d[index]["sa"] = false;
@@ -706,8 +707,7 @@ export default {
             this.d[index]["so"] = false;
             this.d[index]["o"] = false;
 
-            // select new value
-            this.d[index][type] = !this.d[index][type];
+            this.d[index][type] = flag;
 
             if(this.d[index]["o"] == true) {
                 this.infoReserve = ["D", index, this.d[index]["titre"], this.observateurId]
@@ -719,7 +719,8 @@ export default {
 
         checkE(index, type) {
 
-            //change all to false
+            const flag = this.e[index][type]
+
             this.e[index]["be"] = false;
             this.e[index]["fc"] = false;
             this.e[index]["sa"] = false;
@@ -727,8 +728,7 @@ export default {
             this.e[index]["so"] = false;
             this.e[index]["o"] = false;
 
-            // select new value
-            this.e[index][type] = !this.e[index][type];
+            this.e[index][type] = flag;
 
             if(this.e[index]["o"] == true) {
                 this.infoReserve = ["E", index, this.e[index]["titre"], this.observateurId]
@@ -740,7 +740,8 @@ export default {
 
         checkF(index, type) {
 
-            //change all to false
+            const flag = this.f[index][type]
+
             this.f[index]["be"] = false;
             this.f[index]["fc"] = false;
             this.f[index]["sa"] = false;
@@ -748,8 +749,7 @@ export default {
             this.f[index]["so"] = false;
             this.f[index]["o"] = false;
 
-            // select new value
-            this.f[index][type] = !this.f[index][type];
+            this.f[index][type] = flag;
 
             if(this.f[index]["o"] == true) {
                 this.infoReserve = ["F", index, this.f[index]["titre"], this.observateurId]
@@ -761,7 +761,8 @@ export default {
 
         checkG(index, type) {
 
-            //change all to false
+            const flag = this.g[index][type]
+
             this.g[index]["be"] = false;
             this.g[index]["fc"] = false;
             this.g[index]["sa"] = false;
@@ -769,8 +770,7 @@ export default {
             this.g[index]["so"] = false;
             this.g[index]["o"] = false;
 
-            // select new value
-            this.g[index][type] = !this.g[index][type];
+            this.g[index][type] = flag;
 
             if(this.g[index]["o"] == true) {
                 this.infoReserve = ["G", index, this.g[index]["titre"], this.observateurId]
@@ -782,7 +782,8 @@ export default {
 
         checkH(index, type) {
 
-            //change all to false
+            const flag = this.h[index][type]
+
             this.h[index]["be"] = false;
             this.h[index]["fc"] = false;
             this.h[index]["sa"] = false;
@@ -790,8 +791,7 @@ export default {
             this.h[index]["so"] = false;
             this.h[index]["o"] = false;
 
-            // select new value
-            this.h[index][type] = !this.h[index][type];
+            this.h[index][type] = flag;
 
             if(this.h[index]["o"] == true) {
                 this.infoReserve = ["H", index, this.h[index]["titre"], this.observateurId]
@@ -803,7 +803,8 @@ export default {
 
         checkI(index, type) {
 
-            //change all to false
+            const flag = this.i[index][type]
+
             this.i[index]["be"] = false;
             this.i[index]["fc"] = false;
             this.i[index]["sa"] = false;
@@ -811,8 +812,7 @@ export default {
             this.i[index]["so"] = false;
             this.i[index]["o"] = false;
 
-            // select new value
-            this.i[index][type] = !this.i[index][type];
+            this.i[index][type] = flag;
 
             if(this.i[index]["o"] == true) {
                 this.infoReserve = ["I", index, this.i[index]["titre"], this.observateurId]
@@ -824,7 +824,8 @@ export default {
 
         checkJ(index, type) {
 
-            //change all to false
+            const flag = this.j[index][type]
+
             this.j[index]["be"] = false;
             this.j[index]["fc"] = false;
             this.j[index]["sa"] = false;
@@ -832,8 +833,7 @@ export default {
             this.j[index]["so"] = false;
             this.j[index]["o"] = false;
 
-            // select new value
-            this.j[index][type] = !this.j[index][type];
+            this.j[index][type] = flag;
 
             if(this.j[index]["o"] == true) {
                 this.infoReserve = ["J", index, this.j[index]["titre"], this.observateurId]
@@ -845,7 +845,8 @@ export default {
 
         checkK(index, type) {
 
-            //change all to false
+            const flag = this.k[index][type]
+
             this.k[index]["be"] = false;
             this.k[index]["fc"] = false;
             this.k[index]["sa"] = false;
@@ -853,8 +854,7 @@ export default {
             this.k[index]["so"] = false;
             this.k[index]["o"] = false;
 
-            // select new value
-            this.k[index][type] = !this.k[index][type];
+            this.k[index][type] = flag;
 
             if(this.k[index]["o"] == true) {
                 this.infoReserve = ["K", index, this.k[index]["titre"], this.observateurId]
@@ -1008,19 +1008,19 @@ export default {
         Examens.select(this.observateurId)
             .then((result) => {
 
-                if (result.data != null) {
+                if (result.data.examen != null) {
                     this.flagReset = true;
-                    this.a = result.data.a;
-                    this.b = result.data.b;
-                    this.c = result.data.c;
-                    this.d = result.data.d;
-                    this.e = result.data.e;
-                    this.f = result.data.f;
-                    this.g = result.data.g;
-                    this.h = result.data.h;
-                    this.i = result.data.i;
-                    this.j = result.data.j;
-                    this.k = result.data.k;
+                    this.a = result.data.examen.a;
+                    this.b = result.data.examen.b;
+                    this.c = result.data.examen.c;
+                    this.d = result.data.examen.d;
+                    this.e = result.data.examen.e;
+                    this.f = result.data.examen.f;
+                    this.g = result.data.examen.g;
+                    this.h = result.data.examen.h;
+                    this.i = result.data.examen.i;
+                    this.j = result.data.examen.j;
+                    this.k = result.data.examen.k;
                     this.$emit("menuStatusChicked");
                 } else {
                     this.flagReset = false;

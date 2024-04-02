@@ -78,7 +78,9 @@ export default {
             this.$router.push("/observations").catch(()=>{});
         },
 
-        async menuStatusChicked() {
+        async menuStatusChicked(value) {
+            console.log(value)
+
             // Remove MyComponent from the DOM
             this.flagMenu = false;
             // Wait for the change to get flushed to the DOM

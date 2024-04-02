@@ -320,13 +320,6 @@ export default {
         Insert
     },
 
-    computed: {
-        checkNotEmpty () {
-            console.log("achraf")
-            return this.renseignement.typeConstructeur;
-        }
-    },
-
     methods: {
 
         valider(event, type) {
@@ -591,55 +584,55 @@ export default {
         Renseignement.select(this.observateurId)
             .then((result) => {
 
-                if (result.data != null) {
-
+                if (result.data.renseignement != null) {
 
                     this.renseignement.observateurId = this.observateurId;
                     this.flagReset = true;
 
                     this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.typeConstructeur}'`);
-                    this.renseignement.typeConstructeur = result.data.typeConstructeur;
+                    this.renseignement.typeConstructeur = result.data.renseignement.typeConstructeur;
 
-                    this.renseignement.tagAnneeMiseService = this.renseignement.tagAnneeMiseService.replace("value=''", `value='${result.data.anneeMiseService}'`);
-                    this.renseignement.anneeMiseService = result.data.anneeMiseService;
+                    this.renseignement.tagAnneeMiseService = this.renseignement.tagAnneeMiseService.replace("value=''", `value='${result.data.renseignement.anneeMiseService}'`);
+                    this.renseignement.anneeMiseService = result.data.renseignement.anneeMiseService;
 
-                    this.renseignement.tagNumeroSerie = this.renseignement.tagNumeroSerie.replace("value=''", `value='${result.data.numeroSerie}'`);
-                    this.renseignement.numeroSerie = result.data.numeroSerie;
+                    this.renseignement.tagNumeroSerie = this.renseignement.tagNumeroSerie.replace("value=''", `value='${result.data.renseignement.numeroSerie}'`);
+                    this.renseignement.numeroSerie = result.data.renseignement.numeroSerie;
 
-                    this.renseignement.tagNumeroInterne = this.renseignement.tagNumeroInterne.replace(`value='${result.data.numeroInterne}'`, `value='${result.data.numeroInterne}' checked='checked'`);
-                    this.renseignement.numeroInterne = result.data.numeroInterne;
-                    this.renseignement.numeroInterneAutre = result.data.numeroInterneAutre;
+                    this.renseignement.tagNumeroInterne = this.renseignement.tagNumeroInterne.replace(`value='${result.data.renseignement.numeroInterne}'`, `value='${result.data.renseignement.numeroInterne}' checked='checked'`);
+                    this.renseignement.numeroInterne = result.data.renseignement.numeroInterne;
+                    this.renseignement.numeroInterneAutre = result.data.renseignement.numeroInterneAutre;
 
-                    this.renseignement.tagLocalisation = this.renseignement.tagLocalisation.replace("value=''", `value='${result.data.localisation}'`);
-                    this.renseignement.localisation = result.data.localisation;
+                    this.renseignement.tagLocalisation = this.renseignement.tagLocalisation.replace("value=''", `value='${result.data.renseignement.localisation}'`);
+                    this.renseignement.localisation = result.data.renseignement.localisation;
 
-                    this.renseignement.tagTypeAppareil = this.renseignement.tagTypeAppareil.replace(`value='${result.data.typeAppareil}'`, `value='${result.data.typeAppareil}' checked='checked`);
-                    this.renseignement.typeAppareil = result.data.typeAppareil;
-                    this.renseignement.typeAppareilAutre = result.data.typeAppareilAutre;
+                    this.renseignement.tagTypeAppareil = this.renseignement.tagTypeAppareil.replace(`value='${result.data.renseignement.typeAppareil}'`, `value='${result.data.renseignement.typeAppareil}' checked='checked`);
+                    this.renseignement.typeAppareil = result.data.renseignement.typeAppareil;
+                    this.renseignement.typeAppareilAutre = result.data.renseignement.typeAppareilAutre;
 
-                    this.renseignement.tagMiseEnServiceRapport = this.renseignement.tagMiseEnServiceRapport.replace(`value='${result.data.miseEnServiceRapport}'`, `value='${result.data.miseEnServiceRapport}' checked='checked`);
-                    this.renseignement.miseEnServiceRapport = result.data.miseEnServiceRapport;
+                    this.renseignement.tagMiseEnServiceRapport = this.renseignement.tagMiseEnServiceRapport.replace(`value='${result.data.renseignement.miseEnServiceRapport}'`, `value='${result.data.renseignement.miseEnServiceRapport}' checked='checked`);
+                    this.renseignement.miseEnServiceRapport = result.data.renseignement.miseEnServiceRapport;
 
-                    this.renseignement.tagMiseEnServiceEpreuves = this.renseignement.tagMiseEnServiceEpreuves.replace(`value='${result.data.miseEnServiceEpreuves}'`, `value='${result.data.miseEnServiceEpreuves}' checked='checked`);
-                    this.renseignement.miseEnServiceEpreuves = result.data.miseEnServiceEpreuves;
-                    this.renseignement.miseEnServiceEpreuvesAutre = result.data.miseEnServiceEpreuvesAutre;
+                    this.renseignement.tagMiseEnServiceEpreuves = this.renseignement.tagMiseEnServiceEpreuves.replace(`value='${result.data.renseignement.miseEnServiceEpreuves}'`, `value='${result.data.renseignement.miseEnServiceEpreuves}' checked='checked`);
+                    this.renseignement.miseEnServiceEpreuves = result.data.renseignement.miseEnServiceEpreuves;
+                    this.renseignement.miseEnServiceEpreuvesAutre = result.data.renseignement.miseEnServiceEpreuvesAutre;
 
-                    this.renseignement.tagDateDerniereVerficationPeriodique = this.renseignement.tagDateDerniereVerficationPeriodique.replace(`value='${result.data.dateDerniereVerficationPeriodique}'`, `value='${result.data.dateDerniereVerficationPeriodique}' checked='checked`);
-                    this.renseignement.dateDerniereVerficationPeriodique = result.data.dateDerniereVerficationPeriodique;
-                    this.renseignement.dateDerniereVerficationPeriodiqueAutre = result.data.dateDerniereVerficationPeriodiqueAutre;
+                    this.renseignement.tagDateDerniereVerficationPeriodique = this.renseignement.tagDateDerniereVerficationPeriodique.replace(`value='${result.data.renseignement.dateDerniereVerficationPeriodique}'`, `value='${result.data.renseignement.dateDerniereVerficationPeriodique}' checked='checked`);
+                    this.renseignement.dateDerniereVerficationPeriodique = result.data.renseignement.dateDerniereVerficationPeriodique;
+                    this.renseignement.dateDerniereVerficationPeriodiqueAutre = result.data.renseignement.dateDerniereVerficationPeriodiqueAutre;
 
-                    this.renseignement.tagDateDerniereVerficationPeriodiqueRapport = this.renseignement.tagDateDerniereVerficationPeriodiqueRapport.replace(`value='${result.data.dateDerniereVerficationPeriodiqueRapport}'`, `value='${result.data.dateDerniereVerficationPeriodiqueRapport}' checked='checked`);
-                    this.renseignement.dateDerniereVerficationPeriodiqueRapport = result.data.dateDerniereVerficationPeriodiqueRapport;
+                    this.renseignement.tagDateDerniereVerficationPeriodiqueRapport = this.renseignement.tagDateDerniereVerficationPeriodiqueRapport.replace(`value='${result.data.renseignement.dateDerniereVerficationPeriodiqueRapport}'`, `value='${result.data.renseignement.dateDerniereVerficationPeriodiqueRapport}' checked='checked`);
+                    this.renseignement.dateDerniereVerficationPeriodiqueRapport = result.data.renseignement.dateDerniereVerficationPeriodiqueRapport;
 
-                    this.renseignement.tagEssaischarge = this.renseignement.tagEssaischarge.replace(`value='${result.data.essaischarge}'`, `value='${result.data.essaischarge}' checked='checked`);
-                    this.renseignement.essaischarge = result.data.essaischarge;
-                    this.renseignement.essaischargeAutre = result.data.essaischargeAutre;
+                    this.renseignement.tagEssaischarge = this.renseignement.tagEssaischarge.replace(`value='${result.data.renseignement.essaischarge}'`, `value='${result.data.renseignement.essaischarge}' checked='checked`);
+                    this.renseignement.essaischarge = result.data.renseignement.essaischarge;
+                    this.renseignement.essaischargeAutre = result.data.renseignement.essaischargeAutre;
 
-                    this.renseignement.tagModification = this.renseignement.tagModification.replace(`value='${result.data.modification}'`, `value='${result.data.modification}' checked='checked`);
-                    this.renseignement.modification = result.data.modification;
-                    this.renseignement.modificationAutre = result.data.modificationAutre;
+                    this.renseignement.tagModification = this.renseignement.tagModification.replace(`value='${result.data.renseignement.modification}'`, `value='${result.data.renseignement.modification}' checked='checked`);
+                    this.renseignement.modification = result.data.renseignement.modification;
+                    this.renseignement.modificationAutre = result.data.renseignement.modificationAutre;
 
                     this.$emit("menuStatusChicked");
+
                 } else {
 
                     Observateurs.selected(this.observateurId)

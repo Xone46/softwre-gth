@@ -137,11 +137,7 @@ export default {
         Renseignements.select(this.observateurId)
             .then((result) => {
                 if(result.data) {
-                    if (result.data.typeConstructeur != "") {
-                        this.flagRenseignementsColor = true;
-                    } else {
-                        this.flagRenseignementsColor = false;
-                    }
+                    this.flagRenseignementsColor = result.data.checkEmptyStatus;
                 }
             })
             .catch((error) => {
@@ -152,9 +148,7 @@ export default {
         Descriptions.select(this.observateurId)
             .then((result) => {
                 if (result.data) {
-                    this.flagDescriptionColor = true;
-                } else {
-                    this.flagDescriptionColor = false;
+                    this.flagDescriptionColor = result.data.checkEmptyStatus;
                 }
             })
             .catch((error) => {
@@ -165,9 +159,7 @@ export default {
         Examens.select(this.observateurId)
             .then((result) => {
                 if (result.data) {
-                    this.flagExamenColor = true;
-                } else {
-                    this.flagExamenColor = false;
+                    this.flagExamenColor = result.data.checkEmptyStatus;
                 }
             })
             .catch((error) => {
