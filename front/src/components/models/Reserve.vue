@@ -43,7 +43,7 @@
 
         <div class="bottom" v-if="!flagExisteCommentaire">
             <button @click="valider">Valider</button>
-            <button @click="$emit('annuler')">Annuler</button>
+            <button @click="annuler">Annuler</button>
         </div>
 
         <div class="bottom" v-if="flagExisteCommentaire">
@@ -99,19 +99,18 @@ export default {
 
     methods: {
 
+        annuler() {
+            return this.$emit('annuler', this.infoReserve);
+        },
+
         supprimerCommentaire() {
             Commentaires.delete(this.commentaireId)
-            .then((result) => {
-                console.log(result);
+            .then(() => {
                 return this.$emit('annuler', this.infoReserve);
             })
             .catch((error) => {
                 console.log(error)
             });
-        },
-
-        edit(value) {
-            console.log(value);
         },
 
         ajouterModel(value) {

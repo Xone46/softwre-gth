@@ -575,6 +575,7 @@ export default {
 
         annulerReserve(value) {
 
+        
             const indexA = this.a.findIndex((el) => el.titre == value[2]);
             if(indexA != -1) {
                 this.a[indexA]["o"] = false;
@@ -636,6 +637,7 @@ export default {
         checkA(index, type) {
 
             const flag = this.a[index][type]
+            console.log(flag)
 
             this.a[index]["be"] = false;
             this.a[index]["fc"] = false;
