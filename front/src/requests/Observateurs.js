@@ -57,6 +57,8 @@ class Observateurs {
         })
     }
 
+
+
     static selected(observateurId) {
         return new Promise((resolve, reject) => {
             axios.get(`${VUE_APP_API_BASE_URL}/observateurs/selected/${observateurId}`, {
@@ -77,6 +79,22 @@ class Observateurs {
 
         return new Promise((resolve, reject) => {
             axios.get(`${VUE_APP_API_BASE_URL}/observateurs/apercu/${observateurId}/${interventionId}/${inspecteurId}`, {
+                headers: this.headers,
+                responseType: 'blob',
+            })
+                .then(response => {
+                    resolve(window.open(URL.createObjectURL(response.data)));
+                })
+                .catch(error => {
+                    reject(error.response.data);
+                });
+        });
+    }
+    
+    static send(observateurId, interventionId, inspecteurId) {
+
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/send/${observateurId}/${interventionId}/${inspecteurId}`, {
                 headers: this.headers,
                 responseType: 'blob',
             })

@@ -152,6 +152,19 @@ export default {
     align-items: center;
 }
 
+.formulaire button {
+    padding: 10px;
+    width : 40%;
+    height : 40px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #04AA6D;
+    cursor: pointer;
+}
+
 .buttons {
     display: flex;
     flex-direction: row;

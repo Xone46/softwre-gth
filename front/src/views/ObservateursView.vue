@@ -1,5 +1,6 @@
 <template>
     <div class="observateurs">
+
         <button @click="retour">Retour</button>
         
         <h3 v-if="observateurId != null">Modification Appareil, Equipement, Ou Installation</h3>
@@ -237,6 +238,8 @@ export default {
     margin-bottom: 5px;
     border: 0px;
     border-radius: 5px;
+    background-color: #04AA6D;
+    cursor: pointer;
 }
 
 .valider {
