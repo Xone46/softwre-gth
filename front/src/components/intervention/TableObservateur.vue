@@ -149,11 +149,8 @@ export default {
 
         send() {
             this.flagSpinner = true;
-<<<<<<< HEAD
+
             Observateurs.send(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
-=======
-            Observateurs.c(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
->>>>>>> 421410b7095440430a4939461c78c5bc53cd5cb3
                 .then((result) => {
                     if (result) {
                         this.flagSpinner = false
