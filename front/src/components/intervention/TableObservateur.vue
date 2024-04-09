@@ -43,6 +43,7 @@
             </div>
             <div class="right">
                 <button v-if="!flagInvertesment" @click="apercu">Aperçu</button>
+                <button v-if="!flagInvertesment" @click="send">Transférer</button>
             </div>
 
         </div>
@@ -134,9 +135,21 @@ export default {
         },
 
         apercu() {
-
             this.flagSpinner = true;
             Observateurs.apercu(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
+                .then((result) => {
+                    if (result) {
+                        this.flagSpinner = false
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
+        send() {
+            this.flagSpinner = true;
+            Observateurs.send(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
                 .then((result) => {
                     if (result) {
                         this.flagSpinner = false

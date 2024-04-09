@@ -14,24 +14,24 @@
             </tr>
             <tr v-for="(item, index) in a" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkA(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkA(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkA(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkA(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkA(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkA(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkA(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkA(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkA(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkA(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkA(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkA(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -51,22 +51,22 @@
                 <td></td>
                 <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkB(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkB(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkB(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkB(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkB(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkB(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkB(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkB(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkB(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkB(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkB(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkB(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -86,22 +86,22 @@
                 <td></td>
                 <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkC(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkC(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkC(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkC(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkC(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkC(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkC(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkC(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkC(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkC(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkC(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkC(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -121,22 +121,22 @@
                 <td></td>
                 <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkD(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkD(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkD(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkD(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkD(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkD(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkD(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkD(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkD(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkD(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkD(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkD(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -156,22 +156,22 @@
                 <td></td>
                 <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkE(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkE(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkE(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkE(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkE(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkE(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkE(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkE(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkE(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkE(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkE(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkE(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -191,22 +191,22 @@
                 <td></td>
                 <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkF(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkF(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkF(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkF(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkF(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkF(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkF(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkF(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkF(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkF(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkF(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkF(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -226,22 +226,22 @@
                 <td></td>
                 <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkG(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkG(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkG(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkG(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkG(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkG(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkG(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkG(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkG(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkG(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkG(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkG(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -261,22 +261,22 @@
                 <td></td>
                 <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkH(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkH(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkH(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkH(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkH(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkH(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkH(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkH(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkH(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkH(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkH(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkH(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -297,22 +297,22 @@
                 <td></td>
                 <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkI(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkI(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkI(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkI(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkI(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkI(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkI(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkI(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkI(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkI(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkI(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkI(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -332,22 +332,22 @@
                 <td></td>
                 <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkJ(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkJ(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkJ(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkJ(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkJ(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkJ(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkJ(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkJ(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkJ(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkJ(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkJ(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkJ(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -368,22 +368,22 @@
                 <td></td>
                 <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
                 <td>
-                    <input type="checkbox" v-model="item.be" @change="checkK(index, 'be')">
+                    <input type="checkbox" v-model="item.be" @change="checkK(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkK(index, 'fc')">
+                    <input type="checkbox" v-model="item.fc" @change="checkK(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkK(index, 'sa')">
+                    <input type="checkbox" v-model="item.sa" @change="checkK(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkK(index, 'nv')">
+                    <input type="checkbox" v-model="item.nv" @change="checkK(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkK(index, 'so')">
+                    <input type="checkbox" v-model="item.so" @input="checkK(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkK(index, 'o')">
+                    <input type="checkbox" v-model="item.o" @input="checkK(index, 'o', item.o)">
                 </td>
             </tr>
         </table>
@@ -415,9 +415,9 @@ export default {
             infoReserve : [],
 
             a: [
-                { titre: "- Accès a la cabine et au poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Accès aux chemins de roulement", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Autres accès pour entretien et vérification", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Accès a la cabine et au poste de conduite", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
+                { titre: "- Accès aux chemins de roulement", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
+                { titre: "- Autres accès pour entretien et vérification", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
             ],
 
             b: [
@@ -634,10 +634,7 @@ export default {
             this.flagReserve = false;
         },
 
-        checkA(index, type) {
-
-            const flag = this.a[index][type]
-            console.log(flag)
+        checkA(index, type, bol) {
 
             this.a[index]["be"] = false;
             this.a[index]["fc"] = false;
@@ -646,19 +643,24 @@ export default {
             this.a[index]["so"] = false;
             this.a[index]["o"] = false;
 
-            this.a[index][type] = flag;
+            if(type == "so" || type == "o") {
+                this.a[index][type] = !bol;
+            } else {
+                this.a[index][type] = bol;
+            }
 
-            if(this.a[index]["o"] == true) {
-                this.infoReserve = ["A", index, this.a[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+
+            if(type == "o") {
+                if (this.a[index]["o"] == true) {
+                    this.infoReserve = ["A", index, this.a[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
             }
 
             return this.sauvegarde();
         },
 
-        checkB(index, type) {
-
-            const flag = this.b[index][type]
+        checkB(index, type, bol) {
 
             this.b[index]["be"] = false;
             this.b[index]["fc"] = false;
@@ -667,19 +669,24 @@ export default {
             this.b[index]["so"] = false;
             this.b[index]["o"] = false;
 
-            this.b[index][type] = flag;
-
-            if(this.b[index]["o"] == true) {
-                this.infoReserve = ["B", index, this.b[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+            if(type == "so" || type == "o") {
+                this.b[index][type] = !bol;
+            } else {
+                this.b[index][type] = bol;
             }
-            
+
+
+            if(type == "o") {
+                if (this.b[index]["o"] == true) {
+                    this.infoReserve = ["B", index, this.b[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
+            }
+
             return this.sauvegarde();
         },
 
-        checkC(index, type) {
-
-            const flag = this.c[index][type]
+        checkC(index, type, bol) {
 
             this.c[index]["be"] = false;
             this.c[index]["fc"] = false;
@@ -688,19 +695,24 @@ export default {
             this.c[index]["so"] = false;
             this.c[index]["o"] = false;
 
-            this.c[index][type] = flag;
-
-            if(this.c[index]["o"] == true) {
-                this.infoReserve = ["C", index, this.c[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+            if(type == "so" || type == "o") {
+                this.c[index][type] = !bol;
+            } else {
+                this.c[index][type] = bol;
             }
-            
+
+
+            if(type == "o") {
+                if (this.c[index]["o"] == true) {
+                    this.infoReserve = ["C", index, this.c[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
+            }
+
             return this.sauvegarde();
         },
 
-        checkD(index, type) {
-
-            const flag = this.d[index][type]
+        checkD(index, type, bol) {
 
             this.d[index]["be"] = false;
             this.d[index]["fc"] = false;
@@ -709,19 +721,25 @@ export default {
             this.d[index]["so"] = false;
             this.d[index]["o"] = false;
 
-            this.d[index][type] = flag;
-
-            if(this.d[index]["o"] == true) {
-                this.infoReserve = ["D", index, this.d[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+            if(type == "so" || type == "o") {
+                this.d[index][type] = !bol;
+            } else {
+                this.d[index][type] = bol;
             }
-            
+
+
+
+            if(type == "o") {
+                if (this.d[index]["o"] == true) {
+                    this.infoReserve = ["D", index, this.d[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
+            }
+
             return this.sauvegarde();
         },
 
-        checkE(index, type) {
-
-            const flag = this.e[index][type]
+        checkE(index, type, bol) {
 
             this.e[index]["be"] = false;
             this.e[index]["fc"] = false;
@@ -730,19 +748,25 @@ export default {
             this.e[index]["so"] = false;
             this.e[index]["o"] = false;
 
-            this.e[index][type] = flag;
-
-            if(this.e[index]["o"] == true) {
-                this.infoReserve = ["E", index, this.e[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+            if(type == "so" || type == "o") {
+                this.e[index][type] = !bol;
+            } else {
+                this.e[index][type] = bol;
             }
-            
+
+
+
+            if(type == "o") {
+                if (this.e[index]["o"] == true) {
+                    this.infoReserve = ["E", index, this.e[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
+            }
+
             return this.sauvegarde();
         },
 
-        checkF(index, type) {
-
-            const flag = this.f[index][type]
+        checkF(index, type, bol) {
 
             this.f[index]["be"] = false;
             this.f[index]["fc"] = false;
@@ -751,19 +775,25 @@ export default {
             this.f[index]["so"] = false;
             this.f[index]["o"] = false;
 
-            this.f[index][type] = flag;
-
-            if(this.f[index]["o"] == true) {
-                this.infoReserve = ["F", index, this.f[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+            if(type == "so" || type == "o") {
+                this.f[index][type] = !bol;
+            } else {
+                this.f[index][type] = bol;
             }
-            
+
+
+
+            if(type == "o") {
+                if (this.f[index]["o"] == true) {
+                    this.infoReserve = ["F", index, this.f[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
+            }
+
             return this.sauvegarde();
         },
 
-        checkG(index, type) {
-
-            const flag = this.g[index][type]
+        checkG(index, type, bol) {
 
             this.g[index]["be"] = false;
             this.g[index]["fc"] = false;
@@ -772,19 +802,24 @@ export default {
             this.g[index]["so"] = false;
             this.g[index]["o"] = false;
 
-            this.g[index][type] = flag;
-
-            if(this.g[index]["o"] == true) {
-                this.infoReserve = ["G", index, this.g[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+            if(type == "so" || type == "o") {
+                this.g[index][type] = !bol;
+            } else {
+                this.g[index][type] = bol;
             }
-            
+
+
+            if(type == "o") {
+                if (this.g[index]["o"] == true) {
+                    this.infoReserve = ["G", index, this.g[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
+            }
+
             return this.sauvegarde();
         },
 
-        checkH(index, type) {
-
-            const flag = this.h[index][type]
+        checkH(index, type, bol) {
 
             this.h[index]["be"] = false;
             this.h[index]["fc"] = false;
@@ -793,19 +828,24 @@ export default {
             this.h[index]["so"] = false;
             this.h[index]["o"] = false;
 
-            this.h[index][type] = flag;
-
-            if(this.h[index]["o"] == true) {
-                this.infoReserve = ["H", index, this.h[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+            if(type == "so" || type == "o") {
+                this.h[index][type] = !bol;
+            } else {
+                this.h[index][type] = bol;
             }
-            
+
+
+            if(type == "o") {
+                if (this.h[index]["o"] == true) {
+                    this.infoReserve = ["H", index, this.h[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
+            }
+
             return this.sauvegarde();
         },
 
-        checkI(index, type) {
-
-            const flag = this.i[index][type]
+        checkI(index, type, bol) {
 
             this.i[index]["be"] = false;
             this.i[index]["fc"] = false;
@@ -814,19 +854,24 @@ export default {
             this.i[index]["so"] = false;
             this.i[index]["o"] = false;
 
-            this.i[index][type] = flag;
-
-            if(this.i[index]["o"] == true) {
-                this.infoReserve = ["I", index, this.i[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+            if(type == "so" || type == "o") {
+                this.i[index][type] = !bol;
+            } else {
+                this.i[index][type] = bol;
             }
-            
+
+
+            if(type == "o") {
+                if (this.i[index]["o"] == true) {
+                    this.infoReserve = ["I", index, this.i[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
+            }
+
             return this.sauvegarde();
         },
 
-        checkJ(index, type) {
-
-            const flag = this.j[index][type]
+        checkJ(index, type, bol) {
 
             this.j[index]["be"] = false;
             this.j[index]["fc"] = false;
@@ -835,19 +880,23 @@ export default {
             this.j[index]["so"] = false;
             this.j[index]["o"] = false;
 
-            this.j[index][type] = flag;
-
-            if(this.j[index]["o"] == true) {
-                this.infoReserve = ["J", index, this.j[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+            if(type == "so" || type == "o") {
+                this.j[index][type] = !bol;
+            } else {
+                this.j[index][type] = bol;
             }
-            
+
+            if(type == "o") {
+                if (this.j[index]["o"] == true) {
+                    this.infoReserve = ["J", index, this.j[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
+            }
+
             return this.sauvegarde();
         },
 
-        checkK(index, type) {
-
-            const flag = this.k[index][type]
+        checkK(index, type, bol) {
 
             this.k[index]["be"] = false;
             this.k[index]["fc"] = false;
@@ -856,13 +905,19 @@ export default {
             this.k[index]["so"] = false;
             this.k[index]["o"] = false;
 
-            this.k[index][type] = flag;
-
-            if(this.k[index]["o"] == true) {
-                this.infoReserve = ["K", index, this.k[index]["titre"], this.observateurId]
-                this.flagReserve = true;
+            if(type == "so" || type == "o") {
+                this.k[index][type] = !bol;
+            } else {
+                this.k[index][type] = bol;
             }
-            
+
+            if(type == "o") {
+                if (this.k[index]["o"] == true) {
+                    this.infoReserve = ["K", index, this.k[index]["titre"], this.observateurId]
+                    this.flagReserve = true;
+                }
+            }
+
             return this.sauvegarde();
         },
 

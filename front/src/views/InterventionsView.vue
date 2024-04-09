@@ -1,6 +1,8 @@
 <template>
   <div class="interventions">
-    <button @click="retour">Retour</button>
+    <div class="retour">
+      <button @click="retour">Retour</button>
+    </div>
     <FormIntervention v-if="flagFormIntervention" :interventionId="interventionId"  @anuller="closeFormIntervention()" @table="closeFormIntervention()" />
     <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention()" @modifier="modifier" @apercu="apercu" @relaodTableObservateur="relaodTableObservateur" />
     <TableObservateur v-if="flagTableObservateur" :interventionId="interventionId" @modifierObservateur="modifierObservateur" />
@@ -94,4 +96,26 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
 }
+
+.retour {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
+.retour button {
+    padding: 10px;
+    width : 40%;
+    height : 40px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #04AA6D;
+    cursor: pointer;
+}
+
 </style>
