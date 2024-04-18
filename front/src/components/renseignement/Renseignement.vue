@@ -469,89 +469,100 @@ export default {
 
                     if (result.data) {
 
-                        this.renseignement.tagTypeConstructeur = "<input type='text' value=''>";
-                        this.renseignement.typeConstructeur = "";
-                        this.renseignement.tagAnneeMiseService = "<input type='text' value=''>";
-                        this.renseignement.anneeMiseService = "";
-                        this.renseignement.tagNumeroSerie = "<input type='text' value=''>";
-                        this.renseignement.numeroSerie = "";
+                        this.renseignement = {
 
-                        this.renseignement.tagNumeroInterne = `
-                        <label><input type='radio' value='Sans objet' name='numeroInterne'/>Sans objet</label>
-                        <label><input type='radio' value='N°' name='numeroInterne'/>N°</label>
-                        `;
-                        this.renseignement.numeroInterne = "";
-                        this.renseignement.numeroInterneAutre = "";
-
-                        this.renseignement.tagLocalisation = "<input type='text' value='' >";
-                        this.renseignement.localisation = "";
-
-                        this.renseignement.tagTypeAppareil =
-                            `<label><input type='radio' value='Pont roulant' name='typeAppareil'/>Pont roulant</label>
-                        <label><input type='radio' value='Poutre roulante' name='typeAppareil'/>Poutre roulante</label>
-                        <label><input type='radio' value='Portique' name='typeAppareil' />Portique</label>
-                        <label><input type='radio' value='Semi portique' name='typeAppareil' />Semi portique</label>
-                        <label><input type='radio' value='Palan' name='typeAppareil' />Palan</label>
-                        <label><input type='radio' value='Treuil' name='typeAppareil' />Treuil</label>
-                        <label><input type='radio' value='Autre' name='typeAppareil' />Autre</label>
-                        `;
-                        this.renseignement.typeAppareil = "";
-                        this.renseignement.typeAppareilAutre = "";
+                                tagTypeConstructeur: "<input type='text' value=''>",
+                                typeConstructeur: "",
 
 
-
-                        this.renseignement.tagMiseEnServiceRapport =
-                            `<label><input type='radio' value='Présenté' name='miseEnServiceRapport'/>Présenté</label>
-                        <label><input type='radio' value='Non présenté' name='miseEnServiceRapport'/>Non présenté</label>
-                        `;
-                        this.renseignement.miseEnServiceRapport = "";
+                                tagAnneeMiseService: "<input type='text' value=''>",
+                                anneeMiseService: "",
 
 
-
-                        this.renseignement.tagMiseEnServiceEpreuves =
-                            `<label><input type='radio' value='Réalisées le:' name='miseEnServiceEpreuves'/>Réalisées le:</label>
-                        <label><input type='radio' value='Absence de renseignement' name='miseEnServiceEpreuves'/>Absence de renseignement</label>
-                        `,
-                            this.renseignement.miseEnServiceEpreuves = "";
-                        this.renseignement.miseEnServiceEpreuvesAutre = "";
+                                tagNumeroSerie: "<input type='text' value=''>",
+                                numeroSerie: "",
 
 
-                        this.renseignement.tagDateDerniereVerficationPeriodique =
-                            `<label><input type='radio' value='Absence de renseignement' name='dateDerniereVerficationPeriodique'/>Absence de renseignement</label>
-                        <label><input type='radio' value='Effectuée le:' name='dateDerniereVerficationPeriodique'/>Effectuée le:</label>
-                        `;
-                        this.renseignement.dateDerniereVerficationPeriodique = "";
-                        this.renseignement.dateDerniereVerficationPeriodiqueAutre = "";
+                                tagNumeroInterne: `
+                                <label><input type='radio' value='Sans objet' name='numeroInterne'/>Sans objet</label>
+                                <label><input type='radio' value='N°' name='numeroInterne'/>N°</label>
+                                `,
+                                numeroInterne: "",
+                                numeroInterneAutre: "",
 
 
-                        this.renseignement.tagDateDerniereVerficationPeriodiqueRapport =
-                            `<label><input type='radio' value='Présenté' name='dateDerniereVerficationPeriodiqueRapport'/>Présenté</label>
-                        <label><input type='radio' value='Non présenté' name='dateDerniereVerficationPeriodiqueRapport'/>Non présenté</label>
-                        `;
-                        this.renseignement.dateDerniereVerficationPeriodiqueRapport = "";
+                                tagLocalisation: "<input type='text' value='' >",
+                                localisation: "",
+
+
+                                tagTypeAppareil:
+                                    `<label><input type='radio' value='Pont roulant' name='typeAppareil'/>Pont roulant</label>
+                                <label><input type='radio' value='Poutre roulante' name='typeAppareil'/>Poutre roulante</label>
+                                <label><input type='radio' value='Portique' name='typeAppareil' />Portique</label>
+                                <label><input type='radio' value='Semi portique' name='typeAppareil' />Semi portique</label>
+                                <label><input type='radio' value='Palan' name='typeAppareil' />Palan</label>
+                                <label><input type='radio' value='Treuil' name='typeAppareil' />Treuil</label>
+                                <label><input type='radio' value='Autre' name='typeAppareil' />Autre</label>
+                                `,
+                                typeAppareil: "",
+                                typeAppareilAutre: "",
 
 
 
-                        this.renseignement.tagEssaischarge = `
-                        <label><input type='radio' value='Réalisé avec la Charge maximale utile' name='essaischarge'/>Réalisé avec la Charge maximale utile</label>
-                        <label><input type='radio' value='Réalisé sous charge de (kg):' name='essaischarge'/>Réalisé sous charge de (kg):</label>
-                        <label><input type='radio' value='Absence de charge pour réaliser les essais' name='essaischarge'/>Absence de charge pour réaliser les essais</label>
-                        <label><input type='radio' value='Absence de tableau des charges pour réaliser les essais' name='essaischarge'/>Absence de tableau des charges pour réaliser les essais</label>
-                        <label>Palan<input type='radio' value='Non réalisé. Voir observation critique' name='essaischarge'/>Non réalisé. Voir observation critique</label>
-                        <label>Treuil<input type='radio' value='(Les 4 dernières options conduisent à faire une observation)' name='essaischarge'/>(Les 4 dernières options conduisent à faire une observation) </label>
-                        `;
-                        this.renseignement.essaischarge = "";
-                        this.renseignement.essaischargeAutre = "";
+                                tagMiseEnServiceRapport:
+                                    `<label><input type='radio' value='Présenté' name='miseEnServiceRapport'/>Présenté</label>
+                                <label><input type='radio' value='Non présenté' name='miseEnServiceRapport'/>Non présenté</label>
+                                `,
+                                miseEnServiceRapport: "",
 
 
-                        this.renseignement.tagModification = `
-                        <label><input type='radio' value='Sans objet' name='modification' />Sans objet</label>
-                        <label><input type='radio' value='Description:' name='modification' />Description:</label>
-                        `;
-                        this.renseignement.modification = "";
-                        this.renseignement.modificationAutre = "";
+
+                                tagMiseEnServiceEpreuves:
+                                    `<label><input type='radio' value='Réalisées le:' name='miseEnServiceEpreuves'/>Réalisées le:</label>
+                                <label><input type='radio' value='Absence de renseignement' name='miseEnServiceEpreuves'/>Absence de renseignement</label>
+                                `,
+                                miseEnServiceEpreuves: "",
+                                miseEnServiceEpreuvesAutre: "",
+
+
+                                tagDateDerniereVerficationPeriodique:
+                                    `<label><input type='radio' value='Absence de renseignement' name='dateDerniereVerficationPeriodique'/>Absence de renseignement</label>
+                                <label><input type='radio' value='Effectuée le:' name='dateDerniereVerficationPeriodique'/>Effectuée le:</label>
+                                `,
+                                dateDerniereVerficationPeriodique: "",
+                                dateDerniereVerficationPeriodiqueAutre: "",
+
+
+                                tagDateDerniereVerficationPeriodiqueRapport:
+                                    `<label><input type='radio' value='Présenté' name='dateDerniereVerficationPeriodiqueRapport'/>Présenté</label>
+                                <label><input type='radio' value='Non présenté' name='dateDerniereVerficationPeriodiqueRapport'/>Non présenté</label>
+                                `,
+                                dateDerniereVerficationPeriodiqueRapport: "",
+
+
+
+                                tagEssaischarge: `
+                                <label><input type='radio' value='Réalisé avec la Charge maximale utile' name='essaischarge'/>Réalisé avec la Charge maximale utile</label>
+                                <label><input type='radio' value='Réalisé sous charge de (kg):' name='essaischarge'/>Réalisé sous charge de (kg):</label>
+                                <label><input type='radio' value='Absence de charge pour réaliser les essais' name='essaischarge'/>Absence de charge pour réaliser les essais</label>
+                                <label><input type='radio' value='Absence de tableau des charges pour réaliser les essais' name='essaischarge'/>Absence de tableau des charges pour réaliser les essais</label>
+                                <label>Palan<input type='radio' value='Non réalisé. Voir observation critique' name='essaischarge'/>Non réalisé. Voir observation critique</label>
+                                <label>Treuil<input type='radio' value='(Les 4 dernières options conduisent à faire une observation)' name='essaischarge'/>(Les 4 dernières options conduisent à faire une observation) </label>
+                                `,
+                                essaischarge: "",
+                                essaischargeAutre: "",
+
+
+                                tagModification: `
+                                <label><input type='radio' value='Sans objet' name='modification' />Sans objet</label>
+                                <label><input type='radio' value='Description:' name='modification' />Description:</label>
+                                `,
+                                modification: "",
+                                modificationAutre: "",
+                        },
+
+
                         this.flagReset = false;
-
                         this.$emit("menuStatusChicked");
 
                     }
@@ -584,6 +595,7 @@ export default {
 
         Completed.checkRenseignement(this.observateurId)
             .then((result) => {
+
                 if (result.data == false) {
 
                     Observateurs.selected(this.observateurId)
@@ -610,13 +622,16 @@ export default {
 
 
                 if (result.data == true) {
+
                     Renseignement.select(this.observateurId)
                         .then((result) => {
+
+                            console.log(result.data.renseignement.typeConstructeur)
 
                             this.renseignement.observateurId = this.observateurId;
                             this.flagReset = true;
 
-                            this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.typeConstructeur}'`);
+                            this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.renseignement.typeConstructeur}'`);
                             this.renseignement.typeConstructeur = result.data.renseignement.typeConstructeur;
 
                             this.renseignement.tagAnneeMiseService = this.renseignement.tagAnneeMiseService.replace("value=''", `value='${result.data.renseignement.anneeMiseService}'`);

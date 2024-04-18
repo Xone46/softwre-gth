@@ -1,0 +1,16 @@
+marquage : string
+modeDeLevage : string
+caracteristiques : Array
+levageAuxiliaire : string
+detailsLevageAuxiliaire : Array
+modeInstallation : string
+pose : string
+suspendu : string
+surMonorail : string
+surPointFixe : string
+surPotence : string
+surPortique : string
+autre : string
+sourceDenergie : string
+detailSourceDenergie : string
+autreSourceDenergie : string

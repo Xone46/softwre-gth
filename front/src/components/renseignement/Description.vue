@@ -17,25 +17,43 @@
 
             <tr>
                 <td>B-3</td>
-                <td>CARACTERISTIQUES DIMENSIONNELLES ET DE CHARGE</td>
+                <td 
+                :class="[description.modeDeLevage.length != 0 &&
+                 description.caracteristiques.hauteurDeLevage.length != 0 &&
+                 description.caracteristiques.portee.length != 0 &&
+                 description.caracteristiques.porteFaux.length != 0  &&
+                 description.caracteristiques.longueurDuCheminDeRoulement.length != 0 &&
+                 description.caracteristiques.suspentes.length != 0 &&
+                 description.caracteristiques.suspentesAutre.length != 0 &&
+                 description.caracteristiques.mouflage.length != 0 &&
+                 description.caracteristiques.diametre.length != 0 ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET DE CHARGE</td>
                 <td>
                     <label for="Charge maximale utile (kg) :"
                         v-html="description.caracteristiques.tagChargeMaximaleUtile"
                         @input="getValueChargeMaximaleUtile"></label>
+
                     <label for="Hauteur de levage (m) :" v-html="description.caracteristiques.tagHauteurDeLevage"
                         @input="getValueHauteurDeLevage"></label>
+
                     <label for="Portée (m) :" v-html="description.caracteristiques.tagPortee"
                         @input="getValuePortee"></label>
+
                     <label for="Porte a faux (m) :" v-html="description.caracteristiques.tagPorteFaux"
                         @input="getValuePorteFaux"></label>
+
                     <label for="Longueur du chemin de roulement (m) :"
-                        v-html="description.caracteristiques.longueurDuCheminDeRoulement"
+                        v-html="description.caracteristiques.tagLongueurDuCheminDeRoulement"
                         @input="getValueLongueurDuCheminDeRoulement"></label>
+
                     <label for="Suspentes de levage :" v-html="description.caracteristiques.tagSuspentes"
                         @input="getValueSuspentes"></label>
-                    <label v-html="description.caracteristiques.suspentesAutre" @input="getValueSuspentesAutre"></label>
+
+                    <label for="Suspentes de levage Autre :" v-html="description.caracteristiques.tagSuspentesAutre"
+                        @input="getValueSuspentesAutre"></label>
+
                     <label for="Mouflage (nombre de brins)" v-html="description.caracteristiques.tagMouflage"
                         @input="getValueMouflage"></label>
+
                     <label for="Diamètre ou pas théorique de câble(s) ou de chaîne(s) (mm) :"
                         v-html="description.caracteristiques.tagDiametre" @input="getValueDiametre"></label>
                 </td>
@@ -43,7 +61,7 @@
 
             <tr>
                 <td>B-4</td>
-                <td>LEVAGE AUXILIAIRE</td>
+                <td :class="[description.levageAuxiliaire.length != 0 ? 'saved' : 'not-saved']">LEVAGE AUXILIAIRE</td>
                 <td>
                     <label for="LevageAuxiliaie" v-html="description.tagLevageAuxiliaie"
                         @input="getValueTagLevageAuxiliaie"></label>
@@ -74,7 +92,7 @@
 
             <tr>
                 <td>B-5</td>
-                <td>MODE D'INSTALLATION</td>
+                <td :class="[description.modeInstallation.length != 0 ? 'saved' : 'not-saved']">MODE D'INSTALLATION</td>
                 <td>
                     <label for="Mode Installation" v-html="description.tagModeInstallation"
                         @input="getValueModeInstallation"></label>
@@ -88,6 +106,8 @@
                         v-html="description.tagSurPortique" @input="getValueSurPortique"></label>
                     <label for="Autre" v-if="description.modeInstallation == 'Palan ou treuil'"
                         v-html="description.tagAutre" @input="getValueAutre"></label>
+                    <label for="valueAutre" v-if="description.valueAutre == 'Autre'"
+                        v-html="description.tagValueAutre" @input="getValueDeAutre"></label>
                     <label for="Posé" v-if="description.modeInstallation == 'Pont roulant / Poutre roulante'"
                         v-html="description.tagPose" @input="getValuePose"></label>
                     <label for="Suspendu" v-if="description.modeInstallation == 'Pont roulant / Poutre roulante'"
@@ -97,7 +117,7 @@
 
             <tr>
                 <td>B-6</td>
-                <td>SOURCE D'ENERGIE</td>
+                <td :class="[description.sourceDenergie.length != 0 ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
                 <td>
                     <label for="source d'energie" v-html="description.tagSourceDenergie"
                         @input="getValueSourceEnergie"></label>
@@ -156,7 +176,7 @@ export default {
                     tagLongueurDuCheminDeRoulement: "Longueur du chemin de roulement (m): <input type='text' value=''>",
                     longueurDuCheminDeRoulement: "",
 
-                    tagSuspentes: "<span>Suspentes de levage</span><select value=''><option value='Câble(s) de levage / Composition'>Câble(s) de levage / Composition</option><option value='Chaînes(s) de levage / Caractéristiques'>Chaînes(s) de levage / Caractéristiques</option><option value='Sangle(s) de levage / Caractéristiques'>Sangle(s) de levage / Caractéristiques</option></select><input type='text' value=''>",
+                    tagSuspentes: "<span>Suspentes de levage</span><select value=''><option value='Câble(s) de levage / Composition'>Câble(s) de levage / Composition</option><option value='Chaînes(s) de levage / Caractéristiques'>Chaînes(s) de levage / Caractéristiques</option><option value='Sangle(s) de levage / Caractéristiques'>Sangle(s) de levage / Caractéristiques</option></select>",
                     suspentes: "",
 
                     tagSuspentesAutre: "<input type='text' value=''>",
@@ -190,7 +210,7 @@ export default {
                     diametre: ""
                 },
 
-                tagModeInstallation: "<select value=''><option></option><option>Pont roulant / Poutre roulante</option><option>Palan ou treuil</option></select>",
+                tagModeInstallation: "<select value=''><option value=''></option><option value='Pont roulant / Poutre roulante'>Pont roulant / Poutre roulante</option><option value='Palan ou treuil'>Palan ou treuil</option></select>",
                 modeInstallation: "",
 
                 tagPose: "Posé<input type='radio' value='Posé'>",
@@ -211,11 +231,14 @@ export default {
                 tagSurPortique: "Sur Portique<input type='radio' value='Sur Portique'>",
                 surPortique: "",
 
-                tagAutre: "Autre<input type='radio' value='Autre'><input type='text' value=''>",
+                tagAutre: "Autre<input type='radio' value='Autre'>",
                 autre: "",
 
+                tagValueAutre: "<input type='text' value=''>",
+                valueAutre: "",
 
-                tagSourceDenergie: "<select value=''><option></option><option>Electrique</option><option>Hydraulique</option><option>Pneumatique</option><option>Autre</option><option>Levage</option><option>Translation</option><option>Direction</option></select>",
+
+                tagSourceDenergie: "<select value=''><option value=''></option><option value='Electrique'>Electrique</option><option value='Hydraulique'>Hydraulique</option><option value='Pneumatique'>Pneumatique</option><option value='Autre'>Autre</option><option value='Levage'>Levage</option><option value='Translation'>Translation</option><option value='Direction'>Direction</option></select>",
                 sourceDenergie: "",
 
                 tagDetailSourceDenergie: "Motorisé<input type='radio' value='Motorisé'>Non motorisé<input type='radio' value='Non motorisé'>",
@@ -323,6 +346,14 @@ export default {
 
         getValueModeInstallation(event) {
             this.description.modeInstallation = event.target.value;
+            this.description.surMonorail = "";
+            this.description.surPointFixe = "";
+            this.description.surPotence = "";
+            this.description.surPortique = "";
+            this.description.autre = "";
+            this.description.pose = "";
+            this.description.suspendu = "";
+            this.description.valueAutre = "";
             return this.sauvegarde();
         },
 
@@ -351,12 +382,17 @@ export default {
             return this.sauvegarde();
         },
 
+        getValueDeAutre(event) {
+            this.description.valueAutre = event.target.value;
+            return this.sauvegarde();
+        },
+
         getValuePose(event) {
             this.description.pose = event.target.value;
             return this.sauvegarde();
         },
 
-        getValueSuspendu() {
+        getValueSuspendu(event) {
             this.description.suspendu = event.target.value;
             return this.sauvegarde();
         },
@@ -368,6 +404,8 @@ export default {
 
         getValueSourceEnergie(event) {
             this.description.sourceDenergie = event.target.value;
+            this.description.detailSourceDenergie = "";
+            this.description.autreSourceDenergie = "";
             return this.sauvegarde();
         },
 
@@ -397,100 +435,104 @@ export default {
             Descriptions.reset(this.observateurId)
                 .then(() => {
 
-                    this.description.tagMarquage = "<label for='CE'>CE<input type='radio' value='CE' name='marquage'></label><label for='Absence de marquage'>Absence de marquage<input type='radio' value='Absence de marquage' name='marquage'></label>";
-                    this.description.marquage = "";
+                this.description = {
 
-                    this.description.tagModeDeLevage = "<label for='CE'>Unique<input type='radio' value='Unique' name='modeDeLevage'></label><label for='CE'>Multiples indépendants<input type='radio' value='Multiples indépendants' name='modeDeLevage'></label><label for='CE'>Multiples synchronisés<input type='radio' value='Multiples synchronisés' name='modeDeLevage'></label>";
-                    this.description.modeDeLevage = "";
+                tagMarquage: "<label for='CE'>CE<input type='radio' value='CE' name='marquage'></label><label for='Absence de marquage'>Absence de marquage<input type='radio' value='Absence de marquage' name='marquage'></label>",
+                marquage: "",
 
-                    this.description.caracteristiques.tagChargeMaximaleUtile = "Charge maximale utile (kg) :<input type='text' value=''>";
-                    this.description.caracteristiques.chargeMaximaleUtile = "";
+                tagModeDeLevage: "<label for='CE'>Unique<input type='radio' value='Unique' name='modeDeLevage'></label><label for='CE'>Multiples indépendants<input type='radio' value='Multiples indépendants' name='modeDeLevage'></label><label for='CE'>Multiples synchronisés<input type='radio' value='Multiples synchronisés' name='modeDeLevage'></label>",
+                modeDeLevage: "",
 
-                    this.description.caracteristiques.tagHauteurDeLevage = "Hauteur de levage (m) :<input type='text' value=''>";
-                    this.description.caracteristiques.hauteurDeLevage = "";
+                caracteristiques: {
 
-                    this.description.caracteristiques.tagPortee = "Portée (m) :<input type='text' value=''>";
-                    this.description.caracteristiques.portee = "";
+                    tagChargeMaximaleUtile: "Charge maximale utile (kg) :<input type='text' value=''>",
+                    chargeMaximaleUtile: "",
 
-                    this.description.caracteristiques.tagPorteFaux = "Porte a faux (m): <input type='text' value=''>";
-                    this.description.caracteristiques.porteFaux = "";
+                    tagHauteurDeLevage: "Hauteur de levage (m) :<input type='text' value=''>",
+                    hauteurDeLevage: "",
 
-                    this.description.caracteristiques.tagLongueurDuCheminDeRoulement = "Longueur du chemin de roulement (m): <input type='text' value=''>";
-                    this.description.caracteristiques.longueurDuCheminDeRoulement = "";
+                    tagPortee: "Portée (m) :<input type='text' value=''>",
+                    portee: "",
 
+                    tagPorteFaux: "Porte a faux (m): <input type='text' value=''>",
+                    porteFaux: "",
 
-                    this.description.caracteristiques.tagSuspentes = "Suspendu<input type='radio' value='Suspendu'>";
-                    this.description.caracteristiques.suspentes = "";
+                    tagLongueurDuCheminDeRoulement: "Longueur du chemin de roulement (m): <input type='text' value=''>",
+                    longueurDuCheminDeRoulement: "",
 
+                    tagSuspentes: "<span>Suspentes de levage</span><select value=''><option value='Câble(s) de levage / Composition'>Câble(s) de levage / Composition</option><option value='Chaînes(s) de levage / Caractéristiques'>Chaînes(s) de levage / Caractéristiques</option><option value='Sangle(s) de levage / Caractéristiques'>Sangle(s) de levage / Caractéristiques</option></select>",
+                    suspentes: "",
 
-                    this.description.caracteristiques.tagSuspentesAutre = "<input type='text' value=''>";
-                    this.description.caracteristiques.suspentesAutre = "";
+                    tagSuspentesAutre: "<input type='text' value=''>",
+                    suspentesAutre: "",
 
-                    this.description.caracteristiques.tagMouflage = "<span>Mouflage (nombre de brins) : </span><input type='text' value=''>";
-                    this.description.caracteristiques.mouflage = "";
+                    tagMouflage: "<span>Mouflage (nombre de brins) : </span><input type='text' value=''>",
+                    mouflage: "",
 
-                    this.description.caracteristiques.tagDiametre = "<span>Diamètre ou pas théorique de câble(s) ou de chaîne(s) (mm): </span><input type='text' value=''>";
-                    this.description.caracteristiques.diametre = "";
+                    tagDiametre: "<span>Diamètre ou pas théorique de câble(s) ou de chaîne(s) (mm): </span><input type='text' value=''>",
+                    diametre: ""
+                },
 
+                tagLevageAuxiliaie: "Sans objet<input type='radio' name='levageAuxiliaire' value='Sans objet'>Avec objet<input type='radio' name='levageAuxiliaire' value='Avec objet'>",
+                levageAuxiliaire: "",
 
-                    this.description.tagLevageAuxiliaie = "Sans objet<input type='radio' name='levageAuxiliaire' value='Sans objet' >Avec objet<input type='radio' name='levageAuxiliaire' value='Avec objet'>";
-                    this.description.levageAuxiliaire = "";
+                detailsLevageAuxiliaire: {
 
+                    tagChargeMaximaleUtileDeChaquePalan: "Charge maximale utile de chaque palan (kg) : <input type='text' value=''>",
+                    chargeMaximaleUtileDeChaquePalan: "",
 
-                    this.description.detailsLevageAuxiliaire.tagChargeMaximaleUtileDeChaquePalan = "Charge maximale utile de chaque palan (kg) : <input type='text' value=''>";
-                    this.description.detailsLevageAuxiliaire.chargeMaximaleUtileDeChaquePalan = "";
+                    tagSuspentes: "<span>Suspentes de levage</span><select value=''><option value='Câble(s) de levage / Composition'>Câble(s) de levage / Composition</option><option value='Chaînes(s) de levage / Caractéristiques'>Chaînes(s) de levage / Caractéristiques</option><option value='Sangle(s) de levage / Caractéristiques'>Sangle(s) de levage / Caractéristiques</option></select>",
+                    suspentes: "",
 
-                    this.description.detailsLevageAuxiliaire.tagSuspentes = "<span>Suspentes de levage</span><select value=''><option value='Câble(s) de levage / Composition'>Câble(s) de levage / Composition</option><option value='Chaînes(s) de levage / Caractéristiques'>Chaînes(s) de levage / Caractéristiques</option><option value='Sangle(s) de levage / Caractéristiques'>Sangle(s) de levage / Caractéristiques</option></select><input type='text' value=''>";
-                    this.description.detailsLevageAuxiliaire.suspentes = "";
+                    tagSuspentesAutre: "<input type='text' value=''>",
+                    suspentesAutre: "",
 
-                    this.description.detailsLevageAuxiliaire.tagSuspentesAutre = "<input type='text' value=''>";
-                    this.description.detailsLevageAuxiliaire.suspentesAutre = "";
+                    tagMouflage: "<span>Mouflage (nombre de brins) : </span><input type='text' value=''>",
+                    mouflage: "",
 
+                    tagDiametre: "<span>Diamètre ou pas théorique de câble(s) ou de chaîne(s) (mm): </span><input type='text' value=''>",
+                    diametre: ""
+                },
 
-                    this.description.detailsLevageAuxiliaire.tagMouflage = "<span>Mouflage (nombre de brins) : </span><input type='text' value=''>";
-                    this.description.detailsLevageAuxiliaire.mouflage = "";
+                tagModeInstallation: "<select value=''><option value=''></option><option value='Pont roulant / Poutre roulante'>Pont roulant / Poutre roulante</option><option value='Palan ou treuil'>Palan ou treuil</option></select>",
+                modeInstallation: "",
 
-                    this.description.detailsLevageAuxiliaire.tagDiametre = "<span>Diamètre ou pas théorique de câble(s) ou de chaîne(s) (mm): </span><input type='text' value=''>";
-                    this.description.detailsLevageAuxiliaire.diametre = "";
+                tagPose: "Posé<input type='radio' value='Posé'>",
+                pose: "",
 
+                tagSuspendu: "Suspendu<input type='radio' value='Suspendu'>",
+                suspendu: "",
 
-                    this.description.tagModeInstallation = "<select value=''><option></option><option>Pont roulant / Poutre roulante</option><option>Palan ou treuil</option></select>";
-                    this.description.modeInstallation = "";
+                tagSurMonorail: "Sur monorail<input type='radio' value='Sur monorail'>",
+                surMonorail: "",
 
-                    this.description.tagPose = "Posé<input type='radio' value='Posé'>";
-                    this.description.pose = "";
+                tagSurPointFixe: "Sur point fixe<input type='radio' value='Sur point fixe'>",
+                surPointFixe: "",
 
-                    this.description.tagSuspendu = "Suspendu<input type='radio' value='Suspendu'>";
-                    this.description.suspendu = "";
+                tagSurPotence: "Sur Potence<input type='radio' value='Sur Potence'>",
+                surPotence: "",
 
+                tagSurPortique: "Sur Portique<input type='radio' value='Sur Portique'>",
+                surPortique: "",
 
-                    this.description.tagSurMonorail = "Sur monorail<input type='radio' value='Sur monorail'>";
-                    this.description.surMonorail = "";
+                tagAutre: "Autre<input type='radio' value='Autre'>",
+                autre: "",
 
-
-                    this.description.tagSurPointFixe = "Sur point fixe<input type='radio' value='Sur point fixe'>";
-                    this.description.surPointFixe = "";
-
-
-                    this.description.tagSurPotence = "Sur Potence<input type='radio' value='Sur Potence'>";
-                    this.description.surPotence = "";
-
-                    this.description.tagSurPortique = "Sur Portique<input type='radio' value='Sur Portique'>";
-                    this.description.surPortique = "";
-
-                    this.description.tagAutre = "Autre<input type='radio' value='Autre'><input type='text' value=''>";
-                    this.description.autre = "";
-
-
-                    this.description.tagSourceDenergie = "<select value=''><option></option><option>Electrique</option><option>Hydraulique</option><option>Pneumatique</option><option>Autre</option><option>Levage</option><option>Translation</option><option>Direction</option></select>";
-                    this.description.sourceDenergie = "";
+                tagValueAutre: "<input type='text' value=''>",
+                valueAutre: "",
 
 
-                    this.description.tagDetailSourceDenergie = "Motorisé<input type='radio' value='Motorisé'>Non motorisé<input type='radio' value='Non motorisé'>";
-                    this.description.detailSourceDenergie = "";
+                tagSourceDenergie: "<select value=''><option value=''></option><option value='Electrique'>Electrique</option><option value='Hydraulique'>Hydraulique</option><option value='Pneumatique'>Pneumatique</option><option value='Autre'>Autre</option><option value='Levage'>Levage</option><option value='Translation'>Translation</option><option value='Direction'>Direction</option></select>",
+                sourceDenergie: "",
 
-                    this.description.tagAutreSourceDenergie = "<input type='text' value=''>";
-                    this.description.autreSourceDenergie = "";
+                tagDetailSourceDenergie: "Motorisé<input type='radio' value='Motorisé'>Non motorisé<input type='radio' value='Non motorisé'>",
+                detailSourceDenergie: "",
+
+                tagAutreSourceDenergie: "<input type='text' value=''>",
+                autreSourceDenergie: "",
+
+                observateurId: ""
+            }
 
                     this.flagReset = false;
                     this.$emit("menuStatusChicked");
@@ -506,104 +548,107 @@ export default {
         Descriptions.select(this.observateurId)
             .then((result) => {
 
-                console.log(result.data);
-
-                if (result.data != null) {
+                if (result.data.description != null) {
 
                     this.flagReset = true;
 
-                    this.description.marquage = result.data.marquage;
-                    this.description.tagMarquage = this.description.tagMarquage.replace(`value='${result.data.marquage}'`, `value='${result.data.marquag}' checked='checked'`);
+                    this.description.marquage = result.data.description.marquage;
+                    this.description.tagMarquage = this.description.tagMarquage.replace(`value='${result.data.description.marquage}'`, `value='${result.data.description.marquag}' checked='checked'`);
 
-                    this.description.modeDeLevage = result.data.modeDeLevage;
-                    this.description.tagModeDeLevage = this.description.tagModeDeLevage.replace(`value='${result.data.modeDeLevage}'`, `value='${result.data.modeDeLevage}' checked='checked'`);
+                    this.description.modeDeLevage = result.data.description.modeDeLevage;
+                    this.description.tagModeDeLevage = this.description.tagModeDeLevage.replace(`value='${result.data.description.modeDeLevage}'`, `value='${result.data.description.modeDeLevage}' checked='checked'`);
 
-                    this.description.caracteristiques.chargeMaximaleUtile = result.data.caracteristiques[0].chargeMaximaleUtile;
-                    this.description.caracteristiques.tagChargeMaximaleUtile = this.description.caracteristiques.tagChargeMaximaleUtile.replace(`value=''`, `value='${result.data.caracteristiques[0].chargeMaximaleUtile}'`);
+                    this.description.caracteristiques.chargeMaximaleUtile = result.data.description.caracteristiques[0].chargeMaximaleUtile;
+                    this.description.caracteristiques.tagChargeMaximaleUtile = this.description.caracteristiques.tagChargeMaximaleUtile.replace(`value=''`, `value='${result.data.description.caracteristiques[0].chargeMaximaleUtile}'`);
 
-                    this.description.caracteristiques.hauteurDeLevage = result.data.caracteristiques[0].hauteurDeLevage;
-                    this.description.caracteristiques.tagHauteurDeLevage = this.description.caracteristiques.tagHauteurDeLevage.replace(`value=''`, `value='${result.data.caracteristiques[0].hauteurDeLevage}'`);
+                    this.description.caracteristiques.hauteurDeLevage = result.data.description.caracteristiques[0].hauteurDeLevage;
+                    this.description.caracteristiques.tagHauteurDeLevage = this.description.caracteristiques.tagHauteurDeLevage.replace(`value=''`, `value='${result.data.description.caracteristiques[0].hauteurDeLevage}'`);
 
-                    this.description.caracteristiques.portee = result.data.caracteristiques[0].portee;
-                    this.description.caracteristiques.tagPortee = this.description.caracteristiques.tagPortee.replace(`value=''`, `value='${result.data.caracteristiques[0].portee}'`);
+                    this.description.caracteristiques.portee = result.data.description.caracteristiques[0].portee;
+                    this.description.caracteristiques.tagPortee = this.description.caracteristiques.tagPortee.replace(`value=''`, `value='${result.data.description.caracteristiques[0].portee}'`);
 
-                    this.description.caracteristiques.porteFaux = result.data.caracteristiques[0].porteFaux;
-                    this.description.caracteristiques.tagPorteFaux = this.description.caracteristiques.tagPorteFaux.replace(`value=''`, `value='${result.data.caracteristiques[0].porteFaux}'`);
+                    this.description.caracteristiques.porteFaux = result.data.description.caracteristiques[0].porteFaux;
+                    this.description.caracteristiques.tagPorteFaux = this.description.caracteristiques.tagPorteFaux.replace(`value=''`, `value='${result.data.description.caracteristiques[0].porteFaux}'`);
 
-                    this.description.caracteristiques.longueurDuCheminDeRoulement = result.data.caracteristiques[0].longueurDuCheminDeRoulement;
-                    this.description.caracteristiques.tagLongueurDuCheminDeRoulement = this.description.caracteristiques.tagLongueurDuCheminDeRoulement.replace(`value=''`, `value='${result.data.caracteristiques[0].longueurDuCheminDeRoulement}'`);
+                    this.description.caracteristiques.longueurDuCheminDeRoulement = result.data.description.caracteristiques[0].longueurDuCheminDeRoulement;
+                    this.description.caracteristiques.tagLongueurDuCheminDeRoulement = this.description.caracteristiques.tagLongueurDuCheminDeRoulement.replace(`value=''`, `value='${result.data.description.caracteristiques[0].longueurDuCheminDeRoulement}'`);
 
-                    this.description.caracteristiques.suspentes = result.data.caracteristiques[0].suspentes;
-                    this.description.caracteristiques.tagSuspentes = this.description.caracteristiques.tagSuspentes.replace(`value='${result.data.caracteristiques[0].suspentes}'`, `value='${result.data.caracteristiques[0].suspentes}' selected`);
-                    this.description.caracteristiques.tagSuspentes = this.description.caracteristiques.tagSuspentes.replace(`value=''`, `value='${result.data.caracteristiques[0].suspentes}'`);
+                    this.description.caracteristiques.suspentes = result.data.description.caracteristiques[0].suspentes;
+                    this.description.caracteristiques.tagSuspentes = this.description.caracteristiques.tagSuspentes.replace(`value='${result.data.description.caracteristiques[0].suspentes}'`, `value='${result.data.description.caracteristiques[0].suspentes}' selected`);
+                    this.description.caracteristiques.tagSuspentes = this.description.caracteristiques.tagSuspentes.replace(`value=''`, `value='${result.data.description.caracteristiques[0].suspentes}'`);
 
     
 
-                    this.description.caracteristiques.suspentesAutre = result.data.caracteristiques[0].suspentesAutre;
-                    this.description.caracteristiques.tagSuspentesAutre = this.description.caracteristiques.tagSuspentesAutre.replace(`value=''`, `value='${result.data.caracteristiques[0].suspentesAutre}'`);
+                    this.description.caracteristiques.suspentesAutre = result.data.description.caracteristiques[0].suspentesAutre;
+                    this.description.caracteristiques.tagSuspentesAutre = this.description.caracteristiques.tagSuspentesAutre.replace(`value=''`, `value='${result.data.description.caracteristiques[0].suspentesAutre}'`);
 
-                    this.description.caracteristiques.mouflage = result.data.caracteristiques[0].mouflage;
-                    this.description.caracteristiques.tagMouflage = this.description.caracteristiques.tagMouflage.replace(`value=''`, `value='${result.data.caracteristiques[0].mouflage}'`);
+                    this.description.caracteristiques.mouflage = result.data.description.caracteristiques[0].mouflage;
+                    this.description.caracteristiques.tagMouflage = this.description.caracteristiques.tagMouflage.replace(`value=''`, `value='${result.data.description.caracteristiques[0].mouflage}'`);
 
-                    this.description.caracteristiques.diametre = result.data.caracteristiques[0].diametre;
-                    this.description.caracteristiques.tagDiametre = this.description.caracteristiques.tagDiametre.replace(`value=''`, `value='${result.data.caracteristiques[0].diametre}'`);
-
-
-                    this.description.levageAuxiliaire = result.data.levageAuxiliaire;
-                    this.description.tagLevageAuxiliaie = this.description.tagLevageAuxiliaie.replace(`value='${result.data.levageAuxiliaire}'`, `value='${result.data.levageAuxiliaire}' checked='checked'`);
+                    this.description.caracteristiques.diametre = result.data.description.caracteristiques[0].diametre;
+                    this.description.caracteristiques.tagDiametre = this.description.caracteristiques.tagDiametre.replace(`value=''`, `value='${result.data.description.caracteristiques[0].diametre}'`);
 
 
-                    this.description.detailsLevageAuxiliaire.chargeMaximaleUtileDeChaquePalan = result.data.detailsLevageAuxiliaire[0].chargeMaximaleUtileDeChaquePalan;
-                    this.description.detailsLevageAuxiliaire.tagChargeMaximaleUtileDeChaquePalan = this.description.detailsLevageAuxiliaire.tagChargeMaximaleUtileDeChaquePalan.replace(`value='${result.data.detailsLevageAuxiliaire[0].chargeMaximaleUtileDeChaquePalan}'`, `value='${result.data.detailsLevageAuxiliaire[0].chargeMaximaleUtileDeChaquePalan}'`);
-
-                    this.description.detailsLevageAuxiliaire.suspentes = result.data.detailsLevageAuxiliaire[0].suspentes;
-                    this.description.detailsLevageAuxiliaire.tagSuspentes = this.description.detailsLevageAuxiliaire.tagSuspentes.replace(`value='${result.data.detailsLevageAuxiliaire[0].suspentes}'`, `value='${result.data.detailsLevageAuxiliaire[0].suspentes}' selected`);
-                    this.description.detailsLevageAuxiliaire.tagSuspentes = this.description.detailsLevageAuxiliaire.tagSuspentes.replace(`value=''`, `value='${result.data.detailsLevageAuxiliaire[0].suspentes}'`);
-
-                    this.description.detailsLevageAuxiliaire.suspentesAutre = result.data.detailsLevageAuxiliaire[0].suspentesAutre;
-                    this.description.detailsLevageAuxiliaire.tagSuspentesAutre = this.description.detailsLevageAuxiliaire.tagSuspentesAutre.replace(`value=''`, `value='${result.data.detailsLevageAuxiliaire[0].suspentesAutre}'`);
+                    this.description.levageAuxiliaire = result.data.description.levageAuxiliaire;
+                    this.description.tagLevageAuxiliaie = this.description.tagLevageAuxiliaie.replace(`value='${result.data.description.levageAuxiliaire}'`, `value='${result.data.description.levageAuxiliaire}' checked='checked'`);
 
 
-                    this.description.detailsLevageAuxiliaire.mouflage = result.data.detailsLevageAuxiliaire[0].mouflage;
-                    this.description.detailsLevageAuxiliaire.tagMouflage = this.description.detailsLevageAuxiliaire.tagMouflage.replace(`value=''`, `value='${result.data.detailsLevageAuxiliaire[0].mouflage}'`);
+                    this.description.detailsLevageAuxiliaire.chargeMaximaleUtileDeChaquePalan = result.data.description.detailsLevageAuxiliaire[0].chargeMaximaleUtileDeChaquePalan;
+                    this.description.detailsLevageAuxiliaire.tagChargeMaximaleUtileDeChaquePalan = this.description.detailsLevageAuxiliaire.tagChargeMaximaleUtileDeChaquePalan.replace(`value=''`, `value='${result.data.description.detailsLevageAuxiliaire[0].chargeMaximaleUtileDeChaquePalan}'`);
 
-                    this.description.detailsLevageAuxiliaire.diametre = result.data.detailsLevageAuxiliaire[0].diametre;
-                    this.description.detailsLevageAuxiliaire.tagDiametre = this.description.detailsLevageAuxiliaire.tagDiametre.replace(`value=''`, `value='${result.data.detailsLevageAuxiliaire[0].diametre}'`);
+                    this.description.detailsLevageAuxiliaire.suspentes = result.data.description.detailsLevageAuxiliaire[0].suspentes;
+                    this.description.detailsLevageAuxiliaire.tagSuspentes = this.description.detailsLevageAuxiliaire.tagSuspentes.replace(`value='${result.data.description.detailsLevageAuxiliaire[0].suspentes}'`, `value='${result.data.description.detailsLevageAuxiliaire[0].suspentes}' selected`);
+                    this.description.detailsLevageAuxiliaire.tagSuspentes = this.description.detailsLevageAuxiliaire.tagSuspentes.replace(`value=''`, `value='${result.data.description.detailsLevageAuxiliaire[0].suspentes}'`);
 
-                    this.description.modeInstallation = result.data.modeInstallation;
-                    this.description.tagModeInstallation = this.description.tagModeInstallation.replace(`value=''`, `value='${result.data.modeInstallation}'`);
+                    this.description.detailsLevageAuxiliaire.suspentesAutre = result.data.description.detailsLevageAuxiliaire[0].suspentesAutre;
+                    this.description.detailsLevageAuxiliaire.tagSuspentesAutre = this.description.detailsLevageAuxiliaire.tagSuspentesAutre.replace(`value=''`, `value='${result.data.description.detailsLevageAuxiliaire[0].suspentesAutre}'`);
 
-                    this.description.pose = result.data.pose;
-                    this.description.tagPose = this.description.tagPose.replace(`value=''`, `value='${result.data.pose}' checked='checked'`);
 
-                    this.description.suspendu = result.data.suspendu;
-                    this.description.tagSuspendu = this.description.tagSuspendu.replace(`value=''`, `value='${result.data.suspendu}' checked='checked'`);
+                    this.description.detailsLevageAuxiliaire.mouflage = result.data.description.detailsLevageAuxiliaire[0].mouflage;
+                    this.description.detailsLevageAuxiliaire.tagMouflage = this.description.detailsLevageAuxiliaire.tagMouflage.replace(`value=''`, `value='${result.data.description.detailsLevageAuxiliaire[0].mouflage}'`);
 
-                    this.description.surMonorail = result.data.surMonorail;
-                    this.description.tagSurMonorail = this.description.tagSurMonorail.replace(`value=''`, `value='${result.data.surMonorail}' checked='checked'`);
+                    this.description.detailsLevageAuxiliaire.diametre = result.data.description.detailsLevageAuxiliaire[0].diametre;
+                    this.description.detailsLevageAuxiliaire.tagDiametre = this.description.detailsLevageAuxiliaire.tagDiametre.replace(`value=''`, `value='${result.data.description.detailsLevageAuxiliaire[0].diametre}'`);
 
-                    this.description.surPointFixe = result.data.surPointFixe;
-                    this.description.tagSurPointFixe = this.description.tagSurPointFixe.replace(`value=''`, `value='${result.data.surPointFixe}' checked='checked'`);
+                    this.description.modeInstallation = result.data.description.modeInstallation;
+                    this.description.tagModeInstallation = this.description.tagModeInstallation.replace(`value='${result.data.description.modeInstallation}'`, `value='${result.data.description.modeInstallation}' selected`);
+                    this.description.tagModeInstallation = this.description.tagModeInstallation.replace(`value=''`, `value='${result.data.description.modeInstallation}'`);
 
-                    this.description.surPotence = result.data.surPotence;
-                    this.description.tagSurPotence = this.description.tagSurPotence.replace(`value=''`, `value='${result.data.surPotence}' checked='checked'`);
 
-                    this.description.surPortique = result.data.surPortique;
-                    this.description.tagSurPortique = this.description.tagSurPortique.replace(`value=''`, `value='${result.data.surPortique}' checked='checked'`);
+                    this.description.pose = result.data.description.pose;
+                    this.description.tagPose = this.description.tagPose.replace(`value='${result.data.description.pose}'`, `value='${result.data.description.pose}' checked='checked'`);
 
-                    this.description.autre = result.data.autre;
-                    this.description.tagAutre = this.description.tagAutre.replace(`value=''`, `value='${result.data.autre}'`);
+                    this.description.suspendu = result.data.description.suspendu;
+                    this.description.tagSuspendu = this.description.tagSuspendu.replace(`value='${result.data.description.suspendu}'`, `value='${result.data.description.suspendu}' checked='checked'`);
 
-                    this.description.sourceDenergie = result.data.sourceDenergie;
-                    this.description.tagSourceDenergie = this.description.tagSourceDenergie.replace(`value=''`, `value='${result.data.sourceDenergie}'`);
+                    this.description.surMonorail = result.data.description.surMonorail;
+                    this.description.tagSurMonorail = this.description.tagSurMonorail.replace(`value='${result.data.description.surMonorail}'`, `value='${result.data.description.surMonorail}' checked='checked'`);
 
-                    this.description.detailSourceDenergie = result.data.detailSourceDenergie;
-                    this.description.tagDetailSourceDenergie = this.description.tagDetailSourceDenergie.replace(`value=''`, `value='${result.data.detailSourceDenergie}' checked='checked'`);
+                    this.description.surPointFixe = result.data.description.surPointFixe;
+                    this.description.tagSurPointFixe = this.description.tagSurPointFixe.replace(`value='${result.data.description.surPointFixe}'`, `value='${result.data.description.surPointFixe}' checked='checked'`);
 
-                    this.description.autreSourceDenergie = result.data.autreSourceDenergie;
-                    this.description.tagAutreSourceDenergie = this.description.tagAutreSourceDenergie.replace(`value=''`, `value='${result.data.autreSourceDenergie}'`);
+                    this.description.surPotence = result.data.description.surPotence;
+                    this.description.tagSurPotence = this.description.tagSurPotence.replace(`value='${result.data.description.surPotence}'`, `value='${result.data.description.surPotence}' checked='checked'`);
 
-                    this.description.observateurId = result.data.observateurId;
+                    this.description.surPortique = result.data.description.surPortique;
+                    this.description.tagSurPortique = this.description.tagSurPortique.replace(`value='${result.data.description.surPortique}'`, `value='${result.data.description.surPortique}' checked='checked'`);
+
+                    this.description.autre = result.data.description.autre;
+                    this.description.tagAutre = this.description.tagAutre.replace(`value='${result.data.description.autre}'`, `value='${result.data.description.autre}' checked='checked'`);
+
+                    this.description.sourceDenergie = result.data.description.sourceDenergie;
+                    this.description.tagSourceDenergie = this.description.tagSourceDenergie.replace(`value='${result.data.description.sourceDenergie}'`, `value='${result.data.description.sourceDenergie}' selected`);
+                    this.description.tagSourceDenergie = this.description.tagSourceDenergie.replace(`value=''`, `value='${result.data.description.sourceDenergie}'`);
+
+
+                    this.description.detailSourceDenergie = result.data.description.detailSourceDenergie;
+                    this.description.tagDetailSourceDenergie = this.description.tagDetailSourceDenergie.replace(`value='${result.data.description.detailSourceDenergie}'`, `value='${result.data.description.detailSourceDenergie}' checked='checked'`);
+
+
+                    this.description.autreSourceDenergie = result.data.description.autreSourceDenergie;
+                    this.description.tagAutreSourceDenergie = this.description.tagAutreSourceDenergie.replace(`value=''`, `value='${result.data.description.autreSourceDenergie}'`);
+
+                    this.description.observateurId = result.data.description.observateurId;
 
                     this.$emit("menuStatusChicked");
 

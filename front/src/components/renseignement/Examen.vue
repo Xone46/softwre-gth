@@ -636,13 +636,34 @@ export default {
 
         checkA(index, type, bol) {
 
-            this.a[index]["be"] = false;
-            this.a[index]["fc"] = false;
-            this.a[index]["sa"] = false;
-            this.a[index]["nv"] = false;
-            this.a[index]["so"] = false;
-            this.a[index]["o"] = false;
+            const stautusFc =  this.a[index]["fc"]
+            const stautusBe =  this.a[index]["be"]
 
+            if(type == "be") {
+                this.a[index]["be"] = false;
+                this.a[index]["fc"] = stautusFc;
+                this.a[index]["sa"] = false;
+                this.a[index]["nv"] = false;
+                this.a[index]["so"] = false;
+                this.a[index]["o"] = false;
+            } else if(type == "fc") {
+                this.a[index]["be"] = stautusBe;
+                this.a[index]["fc"] = false;
+                this.a[index]["sa"] = false;
+                this.a[index]["nv"] = false;
+                this.a[index]["so"] = false;
+                this.a[index]["o"] = false;
+            } else {
+                this.a[index]["be"] = false;
+                this.a[index]["fc"] = false;
+                this.a[index]["sa"] = false;
+                this.a[index]["nv"] = false;
+                this.a[index]["so"] = false;
+                this.a[index]["o"] = false;
+            }
+
+
+            // for fix problem value false
             if(type == "so" || type == "o") {
                 this.a[index][type] = !bol;
             } else {
@@ -662,12 +683,31 @@ export default {
 
         checkB(index, type, bol) {
 
-            this.b[index]["be"] = false;
-            this.b[index]["fc"] = false;
-            this.b[index]["sa"] = false;
-            this.b[index]["nv"] = false;
-            this.b[index]["so"] = false;
-            this.b[index]["o"] = false;
+            const stautusFc =  this.b[index]["fc"]
+            const stautusBe =  this.b[index]["be"]
+
+            if(type == "be") {
+                this.b[index]["be"] = false;
+                this.b[index]["fc"] = stautusFc;
+                this.b[index]["sa"] = false;
+                this.b[index]["nv"] = false;
+                this.b[index]["so"] = false;
+                this.b[index]["o"] = false;
+            } else if(type == "fc") {
+                this.b[index]["be"] = stautusBe;
+                this.b[index]["fc"] = false;
+                this.b[index]["sa"] = false;
+                this.b[index]["nv"] = false;
+                this.b[index]["so"] = false;
+                this.b[index]["o"] = false;
+            } else {
+                this.b[index]["be"] = false;
+                this.b[index]["fc"] = false;
+                this.b[index]["sa"] = false;
+                this.b[index]["nv"] = false;
+                this.b[index]["so"] = false;
+                this.b[index]["o"] = false;
+            }
 
             if(type == "so" || type == "o") {
                 this.b[index][type] = !bol;
@@ -688,12 +728,31 @@ export default {
 
         checkC(index, type, bol) {
 
-            this.c[index]["be"] = false;
-            this.c[index]["fc"] = false;
-            this.c[index]["sa"] = false;
-            this.c[index]["nv"] = false;
-            this.c[index]["so"] = false;
-            this.c[index]["o"] = false;
+            const stautusFc =  this.c[index]["fc"]
+            const stautusBe =  this.c[index]["be"]
+
+            if(type == "be") {
+                this.c[index]["be"] = false;
+                this.c[index]["fc"] = stautusFc;
+                this.c[index]["sa"] = false;
+                this.c[index]["nv"] = false;
+                this.c[index]["so"] = false;
+                this.c[index]["o"] = false;
+            } else if(type == "fc") {
+                this.c[index]["be"] = stautusBe;
+                this.c[index]["fc"] = false;
+                this.c[index]["sa"] = false;
+                this.c[index]["nv"] = false;
+                this.c[index]["so"] = false;
+                this.c[index]["o"] = false;
+            } else {
+                this.c[index]["be"] = false;
+                this.c[index]["fc"] = false;
+                this.c[index]["sa"] = false;
+                this.c[index]["nv"] = false;
+                this.c[index]["so"] = false;
+                this.c[index]["o"] = false;
+            }
 
             if(type == "so" || type == "o") {
                 this.c[index][type] = !bol;
@@ -714,12 +773,31 @@ export default {
 
         checkD(index, type, bol) {
 
-            this.d[index]["be"] = false;
-            this.d[index]["fc"] = false;
-            this.d[index]["sa"] = false;
-            this.d[index]["nv"] = false;
-            this.d[index]["so"] = false;
-            this.d[index]["o"] = false;
+            const stautusFc =  this.d[index]["fc"]
+            const stautusBe =  this.d[index]["be"]
+
+            if(type == "be") {
+                this.d[index]["be"] = false;
+                this.d[index]["fc"] = stautusFc;
+                this.d[index]["sa"] = false;
+                this.d[index]["nv"] = false;
+                this.d[index]["so"] = false;
+                this.d[index]["o"] = false;
+            } else if(type == "fc") {
+                this.d[index]["be"] = stautusBe;
+                this.d[index]["fc"] = false;
+                this.d[index]["sa"] = false;
+                this.d[index]["nv"] = false;
+                this.d[index]["so"] = false;
+                this.d[index]["o"] = false;
+            } else {
+                this.d[index]["be"] = false;
+                this.d[index]["fc"] = false;
+                this.d[index]["sa"] = false;
+                this.d[index]["nv"] = false;
+                this.d[index]["so"] = false;
+                this.d[index]["o"] = false;
+            }
 
             if(type == "so" || type == "o") {
                 this.d[index][type] = !bol;
@@ -741,12 +819,31 @@ export default {
 
         checkE(index, type, bol) {
 
-            this.e[index]["be"] = false;
-            this.e[index]["fc"] = false;
-            this.e[index]["sa"] = false;
-            this.e[index]["nv"] = false;
-            this.e[index]["so"] = false;
-            this.e[index]["o"] = false;
+            const stautusFc =  this.e[index]["fc"]
+            const stautusBe =  this.e[index]["be"]
+
+            if(type == "be") {
+                this.e[index]["be"] = false;
+                this.e[index]["fc"] = stautusFc;
+                this.e[index]["sa"] = false;
+                this.e[index]["nv"] = false;
+                this.e[index]["so"] = false;
+                this.e[index]["o"] = false;
+            } else if(type == "fc") {
+                this.e[index]["be"] = stautusBe;
+                this.e[index]["fc"] = false;
+                this.e[index]["sa"] = false;
+                this.e[index]["nv"] = false;
+                this.e[index]["so"] = false;
+                this.e[index]["o"] = false;
+            } else {
+                this.e[index]["be"] = false;
+                this.e[index]["fc"] = false;
+                this.e[index]["sa"] = false;
+                this.e[index]["nv"] = false;
+                this.e[index]["so"] = false;
+                this.e[index]["o"] = false;
+            }
 
             if(type == "so" || type == "o") {
                 this.e[index][type] = !bol;
@@ -768,12 +865,31 @@ export default {
 
         checkF(index, type, bol) {
 
-            this.f[index]["be"] = false;
-            this.f[index]["fc"] = false;
-            this.f[index]["sa"] = false;
-            this.f[index]["nv"] = false;
-            this.f[index]["so"] = false;
-            this.f[index]["o"] = false;
+            const stautusFc =  this.f[index]["fc"]
+            const stautusBe =  this.f[index]["be"]
+
+            if(type == "be") {
+                this.f[index]["be"] = false;
+                this.f[index]["fc"] = stautusFc;
+                this.f[index]["sa"] = false;
+                this.f[index]["nv"] = false;
+                this.f[index]["so"] = false;
+                this.f[index]["o"] = false;
+            } else if(type == "fc") {
+                this.f[index]["be"] = stautusBe;
+                this.f[index]["fc"] = false;
+                this.f[index]["sa"] = false;
+                this.f[index]["nv"] = false;
+                this.f[index]["so"] = false;
+                this.f[index]["o"] = false;
+            } else {
+                this.f[index]["be"] = false;
+                this.f[index]["fc"] = false;
+                this.f[index]["sa"] = false;
+                this.f[index]["nv"] = false;
+                this.f[index]["so"] = false;
+                this.f[index]["o"] = false;
+            }
 
             if(type == "so" || type == "o") {
                 this.f[index][type] = !bol;
@@ -795,12 +911,31 @@ export default {
 
         checkG(index, type, bol) {
 
-            this.g[index]["be"] = false;
-            this.g[index]["fc"] = false;
-            this.g[index]["sa"] = false;
-            this.g[index]["nv"] = false;
-            this.g[index]["so"] = false;
-            this.g[index]["o"] = false;
+            const stautusFc =  this.g[index]["fc"]
+            const stautusBe =  this.g[index]["be"]
+
+            if(type == "be") {
+                this.g[index]["be"] = false;
+                this.g[index]["fc"] = stautusFc;
+                this.g[index]["sa"] = false;
+                this.g[index]["nv"] = false;
+                this.g[index]["so"] = false;
+                this.g[index]["o"] = false;
+            } else if(type == "fc") {
+                this.g[index]["be"] = stautusBe;
+                this.g[index]["fc"] = false;
+                this.g[index]["sa"] = false;
+                this.g[index]["nv"] = false;
+                this.g[index]["so"] = false;
+                this.g[index]["o"] = false;
+            } else {
+                this.g[index]["be"] = false;
+                this.g[index]["fc"] = false;
+                this.g[index]["sa"] = false;
+                this.g[index]["nv"] = false;
+                this.g[index]["so"] = false;
+                this.g[index]["o"] = false;
+            }
 
             if(type == "so" || type == "o") {
                 this.g[index][type] = !bol;
@@ -821,12 +956,31 @@ export default {
 
         checkH(index, type, bol) {
 
-            this.h[index]["be"] = false;
-            this.h[index]["fc"] = false;
-            this.h[index]["sa"] = false;
-            this.h[index]["nv"] = false;
-            this.h[index]["so"] = false;
-            this.h[index]["o"] = false;
+            const stautusFc =  this.h[index]["fc"]
+            const stautusBe =  this.h[index]["be"]
+
+            if(type == "be") {
+                this.h[index]["be"] = false;
+                this.h[index]["fc"] = stautusFc;
+                this.h[index]["sa"] = false;
+                this.h[index]["nv"] = false;
+                this.h[index]["so"] = false;
+                this.h[index]["o"] = false;
+            } else if(type == "fc") {
+                this.h[index]["be"] = stautusBe;
+                this.h[index]["fc"] = false;
+                this.h[index]["sa"] = false;
+                this.h[index]["nv"] = false;
+                this.h[index]["so"] = false;
+                this.h[index]["o"] = false;
+            } else {
+                this.h[index]["be"] = false;
+                this.h[index]["fc"] = false;
+                this.h[index]["sa"] = false;
+                this.h[index]["nv"] = false;
+                this.h[index]["so"] = false;
+                this.h[index]["o"] = false;
+            }
 
             if(type == "so" || type == "o") {
                 this.h[index][type] = !bol;
@@ -847,12 +1001,31 @@ export default {
 
         checkI(index, type, bol) {
 
-            this.i[index]["be"] = false;
-            this.i[index]["fc"] = false;
-            this.i[index]["sa"] = false;
-            this.i[index]["nv"] = false;
-            this.i[index]["so"] = false;
-            this.i[index]["o"] = false;
+            const stautusFc =  this.i[index]["fc"]
+            const stautusBe =  this.i[index]["be"]
+
+            if(type == "be") {
+                this.i[index]["be"] = false;
+                this.i[index]["fc"] = stautusFc;
+                this.i[index]["sa"] = false;
+                this.i[index]["nv"] = false;
+                this.i[index]["so"] = false;
+                this.i[index]["o"] = false;
+            } else if(type == "fc") {
+                this.i[index]["be"] = stautusBe;
+                this.i[index]["fc"] = false;
+                this.i[index]["sa"] = false;
+                this.i[index]["nv"] = false;
+                this.i[index]["so"] = false;
+                this.i[index]["o"] = false;
+            } else {
+                this.i[index]["be"] = false;
+                this.i[index]["fc"] = false;
+                this.i[index]["sa"] = false;
+                this.i[index]["nv"] = false;
+                this.i[index]["so"] = false;
+                this.i[index]["o"] = false;
+            }
 
             if(type == "so" || type == "o") {
                 this.i[index][type] = !bol;
@@ -873,12 +1046,31 @@ export default {
 
         checkJ(index, type, bol) {
 
-            this.j[index]["be"] = false;
-            this.j[index]["fc"] = false;
-            this.j[index]["sa"] = false;
-            this.j[index]["nv"] = false;
-            this.j[index]["so"] = false;
-            this.j[index]["o"] = false;
+            const stautusFc =  this.j[index]["fc"]
+            const stautusBe =  this.j[index]["be"]
+
+            if(type == "be") {
+                this.j[index]["be"] = false;
+                this.j[index]["fc"] = stautusFc;
+                this.j[index]["sa"] = false;
+                this.j[index]["nv"] = false;
+                this.j[index]["so"] = false;
+                this.j[index]["o"] = false;
+            } else if(type == "fc") {
+                this.j[index]["be"] = stautusBe;
+                this.j[index]["fc"] = false;
+                this.j[index]["sa"] = false;
+                this.j[index]["nv"] = false;
+                this.j[index]["so"] = false;
+                this.j[index]["o"] = false;
+            } else {
+                this.j[index]["be"] = false;
+                this.j[index]["fc"] = false;
+                this.j[index]["sa"] = false;
+                this.j[index]["nv"] = false;
+                this.j[index]["so"] = false;
+                this.j[index]["o"] = false;
+            }
 
             if(type == "so" || type == "o") {
                 this.j[index][type] = !bol;
@@ -898,12 +1090,31 @@ export default {
 
         checkK(index, type, bol) {
 
-            this.k[index]["be"] = false;
-            this.k[index]["fc"] = false;
-            this.k[index]["sa"] = false;
-            this.k[index]["nv"] = false;
-            this.k[index]["so"] = false;
-            this.k[index]["o"] = false;
+            const stautusFc =  this.k[index]["fc"]
+            const stautusBe =  this.k[index]["be"]
+
+            if(type == "be") {
+                this.k[index]["be"] = false;
+                this.k[index]["fc"] = stautusFc;
+                this.k[index]["sa"] = false;
+                this.k[index]["nv"] = false;
+                this.k[index]["so"] = false;
+                this.k[index]["o"] = false;
+            } else if(type == "fc") {
+                this.k[index]["be"] = stautusBe;
+                this.k[index]["fc"] = false;
+                this.k[index]["sa"] = false;
+                this.k[index]["nv"] = false;
+                this.k[index]["so"] = false;
+                this.k[index]["o"] = false;
+            } else {
+                this.k[index]["be"] = false;
+                this.k[index]["fc"] = false;
+                this.k[index]["sa"] = false;
+                this.k[index]["nv"] = false;
+                this.k[index]["so"] = false;
+                this.k[index]["o"] = false;
+            }
 
             if(type == "so" || type == "o") {
                 this.k[index][type] = !bol;
