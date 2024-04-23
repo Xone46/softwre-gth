@@ -4,10 +4,6 @@
             <table border="1">
 
                 <tr>
-                    <th>Constructeurs</th>
-                </tr>
-
-                <tr>
                     <td :class="[renseignement.constructeur.length != 0 ? 'saved' : 'not-saved']">Constructeur</td>
                     <td>{{ renseignement.constructeur }}</td>
                 </tr>
@@ -515,7 +511,6 @@ export default {
                     Observateurs.selected(this.observateurId)
                         .then((result) => {
 
-
                             this.renseignement.constructeur = result.data.constructeur;
 
                             this.renseignement.tagLocalisation = this.renseignement.tagLocalisation.replace("value=''", `value='${result.data.localisation}'`);
@@ -544,7 +539,6 @@ export default {
                             this.flagReset = true;
 
                             this.renseignement.constructeur = result.data.renseignement.constructeur;
-
 
                             this.renseignement.tagTypeConstructeur = this.renseignement.tagTypeConstructeur.replace("value=''", `value='${result.data.renseignement.typeConstructeur}'`);
                             this.renseignement.typeConstructeur = result.data.renseignement.typeConstructeur;

@@ -6,7 +6,9 @@
         <h3>{{ formulaire.categorieAppareil }}</h3>
 
         <div class="buttons">
-            <button @click="observations">Visualisation des observations</button>
+            <button @click="reserves">Visualisation les réserves</button>
+            <button @click="sauvegarder">Sauvegarder</button>
+            <button @click="terminer">Terminer</button>
         </div>
 
         <Menu v-if="flagMenu" :observateurId="formulaire.observateurId"  @renseignement="renseignement" @description="description" @examen="examen" @conclusion="conclusion" @photo="photo" />
@@ -74,13 +76,19 @@ export default {
             this.$router.push("/interventions").catch(()=>{});
         },
 
-        observations() {
-            this.$router.push("/observations").catch(()=>{});
+        reserves() {
+            this.$router.push("/reserves").catch(()=>{});
         },
 
-        async menuStatusChicked(value) {
-            console.log(value)
+        sauvegarder() {
+            this.$router.push("/reserves").catch(()=>{});
+        },
 
+        terminer() {
+            this.$router.push("/reserves").catch(()=>{});
+        },
+
+        async menuStatusChicked() {
             // Remove MyComponent from the DOM
             this.flagMenu = false;
             // Wait for the change to get flushed to the DOM

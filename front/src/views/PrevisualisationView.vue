@@ -35,8 +35,9 @@
         </div>
 
         <div class="actions">
-            <button v-if="!flagInvertesment" @click="apercu()">Aperçu</button>
-            <button v-if="!flagInvertesment" @click="supprimer()">Supprimer</button>
+            <button v-if="!flagInvertesment" @click="apercu">Aperçu</button>
+            <button v-if="!flagInvertesment" @click="supprimer">Supprimer</button>
+            <button v-if="!flagInvertesment" @click="send">Transférer</button>
         </div>
 
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
@@ -116,7 +117,7 @@ export default {
 
         apercu() {
             this.flagSpinner = true;
-            Observateurs.apercu(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
+            Observateurs.apercu(this.observateursSelect[0], sessionStorage.getItem("id"))
             .then((result) => {
                 if (result) {
                  this.flagSpinner = false
@@ -125,12 +126,26 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
+        },
+
+        send() {
+            this.flagSpinner = true;
+
+            Observateurs.send(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
+                .then((result) => {
+                    if (result) {
+                        this.flagSpinner = false
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         }
     },
 
     created() {
 
-        Observateurs.read()
+        Observateurs.readTerminer()
             .then((response) => {
                 // response succes
                 this.flagSpinner = false;
@@ -224,8 +239,15 @@ export default {
 }
 
 .actions button:nth-child(2) {
-    background-color: #f3a108;
+    background-color: red;
+}
 
+.actions button:nth-child(3) {
+    background-color: #f3a108;
+}
+
+.actions button:nth-child(4) {
+    background-color: #0847f3;
 }
 
 </style>

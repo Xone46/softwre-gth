@@ -19,6 +19,7 @@
                     <th>Localisation</th>
                     <th>Accompagnateur</th>
                     <th>Type de Vérification</th>
+                    <th>L état de Vérification</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
                     <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
@@ -31,6 +32,8 @@
                     <td>{{ observateur.localisation }}</td>
                     <td>{{ observateur.accompagnateur }}</td>
                     <td>{{ observateur.marquage }}</td>
+                    <td v-if="observateur.etat">Verrouillé</td>
+                    <td v-if="!observateur.etat"><button @click="terminer(observateur._id)">Je termine</button></td>
                 </tr>
             </table>
         </div>
@@ -41,10 +44,10 @@
                 <button v-if="!flagInvertesment" @click="modifier">Modifier</button>
                 <button v-if="!flagInvertesment" @click="supprimer">Supprimer</button>
             </div>
-            <div class="right">
+            <!-- <div class="right">
                 <button v-if="!flagInvertesment" @click="apercu">Aperçu</button>
                 <button v-if="!flagInvertesment" @click="send">Transférer</button>
-            </div>
+            </div> -->
 
         </div>
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
@@ -83,6 +86,18 @@ export default {
     },
 
     methods: {
+
+        terminer(observateurId) {
+            console.log(observateurId);
+            Observateurs.terminer(observateurId)
+            .then((result) => {
+                console.log(result);
+            })  
+            .catch((error) => {
+                this.flagInvertesment = true;
+                this.msgInvertesment =  error.response.data.msg;
+            }); 
+        },
 
         modifier() {
             if(this.observateursSelect.length === 1) {
@@ -212,6 +227,12 @@ export default {
 .table-data {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .table-data td,

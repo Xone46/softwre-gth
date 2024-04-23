@@ -3,7 +3,7 @@
       <img src="@/assets/person.png" alt="">
       <p class="inspecteur">{{ nom }} {{ prenom  }}</p>
       <button @click="interventions">Interventions en cours</button>
-      <button @click="transferer">Transférer des minutes</button>
+      <!-- <button @click="transferer">Transférer des minutes</button> -->
       <button @click="previsualisation">Prévisualisation rapports ({{  conterTransfer }})</button>
       <button @click="modification">Modification rapport</button>
       <button @click="sauvgarde">Sauvgarde de secours</button>

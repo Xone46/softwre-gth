@@ -40,10 +40,46 @@ class Observateurs {
         })
     }
 
+    static readTerminer() {
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/readTerminer`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
 
     static select(observateurId) {
         return new Promise((resolve, reject) => {
             axios.get(`${VUE_APP_API_BASE_URL}/observateurs/${observateurId}`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
+    static terminer(observateurId) {
+        return new Promise((resolve, reject) => {
+            axios.put(`${VUE_APP_API_BASE_URL}/observateurs/terminer/${observateurId}`,
+            {
+                observateurId : observateurId
+            },
+            {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -75,10 +111,10 @@ class Observateurs {
         })
     }
 
-    static apercu(observateurId, interventionId, inspecteurId) {
+    static apercu(observateurId, inspecteurId) {
 
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/apercu/${observateurId}/${interventionId}/${inspecteurId}`, {
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/apercu/${observateurId}/${inspecteurId}`, {
                 headers: this.headers,
                 responseType: 'blob',
             })

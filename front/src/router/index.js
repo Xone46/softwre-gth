@@ -6,7 +6,7 @@ import DashboardView from '../views/DashboardView.vue'
 import InterventionsView from '../views/InterventionsView.vue'
 import ObservateursView from '../views/ObservateursView.vue'
 import FormulaireView from '@/views/FormulaireView.vue'
-import ObservationsView from '@/views/ObservationsView'
+import Previsualisation from '@/views/PrevisualisationView.vue'
 
 Vue.use(VueRouter)
 
@@ -43,9 +43,9 @@ const routes = [
     component: FormulaireView
   },
   {
-    path: '/observations',
-    name: 'observations',
-    component: ObservationsView
+    path: '/previsualisation',
+    name: 'previsualisation',
+    component: Previsualisation
   }
 
 ]
