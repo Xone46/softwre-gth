@@ -18,6 +18,7 @@
                     <th>Localisation</th>
                     <th>Accompagnateur</th>
                     <th>Type de Vérification</th>
+                    <th>L'etat de Vérification</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
                     <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
@@ -30,6 +31,7 @@
                     <td>{{ observateur.localisation }}</td>
                     <td>{{ observateur.accompagnateur }}</td>
                     <td>{{ observateur.marquage }}</td>
+                    <td v-if="observateur.etat">Verrouillé</td>
                 </tr>
             </table>
         </div>
@@ -131,9 +133,10 @@ export default {
         send() {
             this.flagSpinner = true;
 
-            Observateurs.send(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
+            Observateurs.send(this.observateursSelect[0], sessionStorage.getItem("id"))
                 .then((result) => {
                     if (result) {
+                        console.log(result)
                         this.flagSpinner = false
                     }
                 })
@@ -168,6 +171,20 @@ export default {
     width: 100%;
 }
 
+.observations button {
+    padding: 10px;
+    width : 40%;
+    height : 40px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #04AA6D;
+    cursor: pointer;
+}
+
+
 .sites {
     padding: 0;
     margin: 0;
@@ -190,6 +207,12 @@ export default {
 .table-data {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .table-data td,

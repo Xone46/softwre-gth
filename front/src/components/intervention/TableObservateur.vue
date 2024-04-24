@@ -32,7 +32,6 @@
                     <td>{{ observateur.localisation }}</td>
                     <td>{{ observateur.accompagnateur }}</td>
                     <td>{{ observateur.marquage }}</td>
-                    <td v-if="observateur.etat">Verrouillé</td>
                     <td v-if="!observateur.etat"><button @click="terminer(observateur._id)">Je termine</button></td>
                 </tr>
             </table>
@@ -88,10 +87,10 @@ export default {
     methods: {
 
         terminer(observateurId) {
-            console.log(observateurId);
             Observateurs.terminer(observateurId)
-            .then((result) => {
-                console.log(result);
+            .then(() => {
+                const index = this.observateurs.findIndex((el) => el._id == observateurId);
+                this.observateurs.splice(index , 1);
             })  
             .catch((error) => {
                 this.flagInvertesment = true;

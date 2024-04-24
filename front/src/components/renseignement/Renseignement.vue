@@ -2,7 +2,7 @@
     <div>
         <div class="descriptions">
             <table border="1">
-
+                
                 <tr>
                     <td :class="[renseignement.constructeur.length != 0 ? 'saved' : 'not-saved']">Constructeur</td>
                     <td>{{ renseignement.constructeur }}</td>

@@ -6,7 +6,7 @@
         <h3>{{ formulaire.categorieAppareil }}</h3>
 
         <div class="buttons">
-            <button @click="reserves">Visualisation les réserves</button>
+            <button @click="visualiationReserve" >Visualisation les réserves</button>
             <button @click="sauvegarder">Sauvegarder</button>
             <button @click="terminer">Terminer</button>
         </div>
@@ -21,6 +21,7 @@
             <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
         </div>
 
+        <VisualiationReserve v-if="flagVisualiationReserve" @quitter="handelQuitter"/>
 
     </div>
 </template>
@@ -32,7 +33,7 @@ import Description from "@/components/renseignement/Description.vue"
 import Examen from "@/components/renseignement/Examen.vue"
 import Photo from "@/components/renseignement/Photo.vue"
 import Conclusion from "@/components/renseignement/Conclusion.vue"
-
+import VisualiationReserve from "@/components/models/VisualiationReserve.vue"
 import Menu from "@/components/menu/Menu.vue"
 
 export default {
@@ -46,6 +47,7 @@ export default {
             flagExamen: false,
             flagPhoto: false,
             flagConclusion: false,
+            flagVisualiationReserve : false,
 
             formulaire: {
                 observateurId: "",
@@ -67,25 +69,30 @@ export default {
         Examen,
         Photo,
         Conclusion,
-        Menu
+        Menu,
+        VisualiationReserve
     },
 
     methods: {
 
-        retour() {
-            this.$router.push("/interventions").catch(()=>{});
+        handelQuitter() {
+            this.flagVisualiationReserve = false;
         },
 
-        reserves() {
-            this.$router.push("/reserves").catch(()=>{});
+        retour() {
+            this.$router.push("/retour").catch(()=>{});
+        },
+
+        visualiationReserve() {
+            this.flagVisualiationReserve = true;
         },
 
         sauvegarder() {
-            this.$router.push("/reserves").catch(()=>{});
+            this.$router.push("/sauvegarder").catch(()=>{});
         },
 
         terminer() {
-            this.$router.push("/reserves").catch(()=>{});
+            this.$router.push("/terminer").catch(()=>{});
         },
 
         async menuStatusChicked() {

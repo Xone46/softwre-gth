@@ -127,18 +127,19 @@ class Observateurs {
         });
     }
     
-    static send(observateurId, interventionId, inspecteurId) {
+    static send(observateurId, inspecteurId) {
 
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/send/${observateurId}/${interventionId}/${inspecteurId}`, {
-                headers: this.headers,
-                responseType: 'blob',
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/send/${observateurId}/${inspecteurId}`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             })
                 .then(response => {
-                    resolve(window.open(URL.createObjectURL(response.data)));
+                    resolve(response);
                 })
                 .catch(error => {
-                    reject(error.response.data);
+                    reject(error);
                 });
         });
     }
