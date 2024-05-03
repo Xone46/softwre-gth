@@ -3,11 +3,13 @@
         <div class="parent">
             <h4 class="titre">Liste des réserves</h4>
             <div class="content">
-                <ul>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsa porro quisquam optio cupiditate cumque suscipit aliquam, numquam reiciendis quasi obcaecati. Dolorem earum quo eos cum cupiditate, officia veritatis nihil!</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsa porro quisquam optio cupiditate cumque suscipit aliquam, numquam reiciendis quasi obcaecati. Dolorem earum quo eos cum cupiditate, officia veritatis nihil!</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsa porro quisquam optio cupiditate cumque suscipit aliquam, numquam reiciendis quasi obcaecati. Dolorem earum quo eos cum cupiditate, officia veritatis nihil!</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam ipsa porro quisquam optio cupiditate cumque suscipit aliquam, numquam reiciendis quasi obcaecati. Dolorem earum quo eos cum cupiditate, officia veritatis nihil!</li>
+                <ul v-for="item in commentaires" :key="item.titre">
+                    <label>
+                        <textarea :value="item.titre"></textarea>
+                        <select v-model="item.status">
+                            <option v-for="critique in listCritique" :key="critique">{{ critique }}</option>
+                        </select>
+                    </label>
                 </ul>
             </div>
             <div class="buttons">
@@ -18,12 +20,14 @@
 </template>
 
 <script>
-
+import Commentaires from '@/requests/commentaire';
 
 export default {
     name: 'reserve-component',
     data() {
         return {
+            commentaires : [],
+            listCritique : ["critique", "non critique"]
         }
     },
 
@@ -31,7 +35,7 @@ export default {
     },
 
     props: {
-
+        observateurId : String
     },
 
     methods: {
@@ -41,7 +45,22 @@ export default {
     },
 
     created() {
+        Commentaires.readCommentaires(this.observateurId)
+        .then((result) => {
+            for(let i = 0; i < result.data.length; i++) {
+                    for(let j = 0; j < result.data[i].modelSelected.length; j++) {
+                        this.commentaires.push({
+                        titre : result.data[i].modelSelected[j].name,
+                        status : result.data[i].modelSelected[j].status
+                    });
 
+                    console.log(result.data[i].modelSelected[j].status)
+                }
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 }
 </script>

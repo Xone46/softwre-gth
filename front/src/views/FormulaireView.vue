@@ -21,7 +21,7 @@
             <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
         </div>
 
-        <VisualiationReserve v-if="flagVisualiationReserve" @quitter="handelQuitter"/>
+        <VisualiationReserve :observateurId = "formulaire.observateurId"  v-if="flagVisualiationReserve" @quitter="handelQuitter"/>
 
     </div>
 </template>
@@ -80,7 +80,7 @@ export default {
         },
 
         retour() {
-            this.$router.push("/retour").catch(()=>{});
+            this.$router.push("/interventions").catch(()=>{});
         },
 
         visualiationReserve() {
