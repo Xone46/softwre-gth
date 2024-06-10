@@ -4,7 +4,7 @@
       <button @click="retour">Retour</button>
     </div>
     <FormIntervention v-if="flagFormIntervention" :interventionId="interventionId"  @anuller="closeFormIntervention()" @table="closeFormIntervention()" />
-    <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention()" @modifier="modifier" @apercu="apercu" @relaodTableObservateur="relaodTableObservateur" />
+    <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention()" @modifier="modifier" @apercu="apercu" @relaodTableObservateur="relaodTableObservateur" @deleteTableIntervention="deleteTableIntervention" />
     <TableObservateur v-if="flagTableObservateur" :interventionId="interventionId" @modifierObservateur="modifierObservateur" />
   </div>
 </template>
@@ -51,6 +51,13 @@ export default {
       this.flagTableObservateur = false;
       this.$nextTick(() => {
         this.flagTableObservateur = true;
+      });
+    },
+
+    deleteTableIntervention() {
+      this.flagTableObservateur = false;
+      this.$nextTick(() => {
+        this.flagTableObservateur = false;
       });
     },
 
@@ -107,14 +114,14 @@ export default {
 
 .retour button {
     padding: 10px;
-    width : 40%;
+    width : 100px;
     height : 40px;
     color: white;
     margin-top: 5px;
     margin-bottom: 5px;
     border: 0px;
     border-radius: 5px;
-    background-color: #04AA6D;
+    background-color: #e21608;
     cursor: pointer;
 }
 

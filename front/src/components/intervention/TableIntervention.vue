@@ -23,7 +23,7 @@
                     <th>Métier</th>
                 </tr>
                 <tr v-for="intervention in interventions" :key="intervention._id">
-                    <td><input type="checkbox" v-model="interventionsSelect" :value="intervention._id"></td>
+                    <td><input type="checkbox" v-model="interventionsSelect" :value="intervention._id" @change="selectIntervention"></td>
                     <td>{{ new Date(intervention.date).toLocaleDateString() }}</td>
                     <td>{{ intervention.numeroAffaire }}</td>
                     <td>{{ intervention.site }}</td>
@@ -37,13 +37,14 @@
                 </tr>
             </table>
         </div>
+
         <div class="actions">
-            <button @click="$emit('nouveau')">Nouveau Site (Intervention)</button>
-            <button v-if="!flagInvertesment" @click="apercu">Aperçu</button>
-            <button v-if="!flagInvertesment" @click="modifier">Modifier</button>
-            <button v-if="!flagInvertesment" @click="ajouter">Ajouter (Appareil, équipement, installation)</button>
-            <button v-if="!flagInvertesment" @click="supprimer">Supprimer</button>
+            <button class="nouveau" @click="$emit('nouveau')" v-show="interventionsSelect.length === 0">Nouveau Site (Intervention)</button>
+            <button class="ajouter" v-show="!flagInvertesment && interventionsSelect.length === 1" @click="ajouter">Ajouter (Appareil, équipement, installation)</button>
+            <button class="modifier" v-show="!flagInvertesment && interventionsSelect.length === 1" @click="modifier">Modifier</button>
+            <button class="supprimer" v-show="!flagInvertesment && interventionsSelect.length === 1" @click="supprimer">Supprimer</button>
         </div>
+
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
     </div>
 </template>
@@ -54,6 +55,7 @@ import Interventions from "@/requests/Interventions"
 import Spinner from 'vue-simple-spinner'
 import Invertesment from "@/components/models/Invertesment.vue"
 import Verified from "@/components/models/Verified.vue"
+
 export default {
     name: 'table-intervention',
     data() {
@@ -76,6 +78,14 @@ export default {
 
     methods: {
 
+        selectIntervention() {
+            if(this.interventionsSelect.length === 0) {
+                this.$emit('deleteTableIntervention');
+            } else {
+                this.apercu();
+            }
+        },
+
         modifier() {
             if(this.interventionsSelect.length === 1) {
                 return this.$emit("modifier", this.interventionsSelect[0]);
@@ -89,18 +99,15 @@ export default {
         },
 
         apercu() {
-
             if (this.interventionsSelect.length === 1) {
                 this.$emit('apercu', this.interventionsSelect[0]);
             }
-
             if (this.interventionsSelect.length == 0) {
                 this.$emit("relaodTableObservateur");
             }
         },
 
         supprimer() {
-
             if (this.interventionsSelect.length === 1) {
                 this.flagVerified = true;
             }
@@ -125,7 +132,6 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
-
         },
 
         retirer() {
@@ -212,7 +218,7 @@ export default {
 .actions {
     display: flex;
     flex-direction: row;
-    margin: 5px;
+    margin-top: 10px;
 }
 
 .actions button {
@@ -234,13 +240,11 @@ export default {
 }
 
 .actions button:nth-child(3) {
-    background-color: #04AA6D;
-}
-.actions button:nth-child(4) {
-    background-color: #04AA6D;
+    background-color: #ff6a00;
 }
 
-.actions button:nth-child(5) {
+.actions button:nth-child(4) {
     background-color: #e21608;
 }
+
 </style>

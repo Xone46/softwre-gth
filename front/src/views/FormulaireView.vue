@@ -1,27 +1,29 @@
 <template>
     <div class="formulaire">
 
-        <button @click="retour">Retour</button>
-
         <h3>{{ formulaire.categorieAppareil }}</h3>
-
-        <div class="buttons">
-            <button @click="visualiationReserve" >Visualisation les réserves</button>
-            <button @click="sauvegarder">Sauvegarder</button>
-            <button @click="terminer">Terminer</button>
-        </div>
 
         <Menu v-if="flagMenu" :observateurId="formulaire.observateurId"  @renseignement="renseignement" @description="description" @examen="examen" @conclusion="conclusion" @photo="photo" />
 
+        <h3></h3>
+
+
         <div class="content">
-            <Renseignement v-if="flagRenseignements" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-            <Description v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-            <Examen v-if="flagExamen" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-            <Photo v-if="flagPhoto" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-            <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            <div class="left">
+                <Renseignement v-if="flagRenseignements" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+                <Description v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+                <Examen v-if="flagExamen" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+                <Photo v-if="flagPhoto" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+                <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            </div>
+            <div class="right">
+                <button @click="retour">Liste des interventions</button>
+                <button @click="visualiationReserve">Visualisation les réserves</button>
+                <button @click="terminer">Contrôle terminer</button>
+            </div>
         </div>
 
-        <VisualiationReserve :observateurId = "formulaire.observateurId"  v-if="flagVisualiationReserve" @quitter="handelQuitter"/>
+        <VisualiationReserve :observateurId="formulaire.observateurId"  v-if="flagVisualiationReserve" @quitter="handelQuitter"/>
 
     </div>
 </template>
@@ -83,6 +85,10 @@ export default {
             this.$router.push("/interventions").catch(()=>{});
         },
 
+        terminer() {
+            this.$router.push("/terminer").catch(()=>{});
+        },
+
         visualiationReserve() {
             this.flagVisualiationReserve = true;
         },
@@ -91,9 +97,6 @@ export default {
             this.$router.push("/sauvegarder").catch(()=>{});
         },
 
-        terminer() {
-            this.$router.push("/terminer").catch(()=>{});
-        },
 
         async menuStatusChicked() {
             // Remove MyComponent from the DOM
@@ -167,20 +170,49 @@ export default {
     align-items: center;
 }
 
-.formulaire button {
-    padding: 10px;
-    width : 40%;
-    height : 40px;
+
+.formulaire h3 {
+    width: 100%;
+    background-color: #0300c7;
     color: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 0px;
-    border-radius: 5px;
-    background-color: #04AA6D;
-    cursor: pointer;
+    padding: 10px;
+}
+/* 
+.formulaire .content .left {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+} */
+
+
+.formulaire .content .right {
+    display: flex;
+    flex-direction: column;
 }
 
-.buttons {
+.formulaire .content .right button {
+    padding: 3px;
+    color: white;
+    border: 0px;
+    margin: 3px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.formulaire .content .right button:nth-child(1) {
+    background-color: #e21608;
+}
+
+.formulaire .content .right button:nth-child(2) {
+    background-color: #0300c7;
+}
+
+.formulaire .content .right button:nth-child(3) {
+    background-color: #04AA6D;
+}
+
+
+/* .buttons {
     display: flex;
     flex-direction: row;
     margin: 10px;
@@ -199,13 +231,14 @@ export default {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-}
+    width: fit-content;
+} */
 
 .content {
     width: 100%;
     margin: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
 }

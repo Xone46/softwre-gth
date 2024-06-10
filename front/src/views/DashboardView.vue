@@ -7,7 +7,7 @@
       <button @click="previsualisation">Prévisualisation rapports ({{  conterTransfer }})</button>
       <button @click="modification">Modification rapport</button>
       <button @click="sauvgarde">Sauvgarde de secours</button>
-      <button @click="deconnexion">Déconnexion</button>
+      <button class="deconnexion" @click="deconnexion">Déconnexion</button>
     </div>
   </template>
   
@@ -95,7 +95,12 @@
         color: white;
         cursor: pointer;
     }
-    .dashboard button:nth-child(8){
+
+    .dashboard button:hover{
+        background-color: #243064;
+    }
+
+    .dashboard .deconnexion {
         margin: 5px;
         width: 200px;
         height: 40px;
@@ -105,7 +110,7 @@
         cursor: pointer;
     }
     
-    .dashboard button:nth-child(8):hover{
+    .dashboard .deconnexion:hover{
         margin: 5px;
         width: 200px;
         height: 40px;
@@ -115,9 +120,6 @@
         cursor: pointer;
     }
 
-    .dashboard button:hover{
-        background-color: #243064;
-    }
 
   </style>
   

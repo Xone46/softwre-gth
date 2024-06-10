@@ -32,24 +32,24 @@
                     <td>{{ observateur.localisation }}</td>
                     <td>{{ observateur.accompagnateur }}</td>
                     <td>{{ observateur.marquage }}</td>
-                    <td v-if="!observateur.etat"><button @click="terminer(observateur._id)">Je termine</button></td>
+                    <td v-if="!observateur.etat"><button class="termine" @click="terminer(observateur._id)">Je termine</button></td>
                 </tr>
             </table>
         </div>
+
         <div class="actions">
-
             <div class="left">
-                <button v-if="!flagInvertesment" @click="editer">Editer</button>
-                <button v-if="!flagInvertesment" @click="modifier">Modifier</button>
-                <button v-if="!flagInvertesment" @click="supprimer">Supprimer</button>
-            </div>
-            <!-- <div class="right">
-                <button v-if="!flagInvertesment" @click="apercu">Aperçu</button>
-                <button v-if="!flagInvertesment" @click="send">Transférer</button>
-            </div> -->
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">Aperçu le Pré-rapport</button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="editer">Editer le Pré-rapport</button>
 
+            </div>
+            <div class="right">
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="modifier">Modifier (Appareil, équipement, installation)</button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="supprimer">Supprimer (Appareil, équipement, installation)</button>
+            </div>
         </div>
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
+        <Error v-if="flagError" :msg="msgError" @annuller="annuller" />
 
 
     </div>
@@ -60,6 +60,7 @@
 import Observateurs from "@/requests/Observateurs"
 import Spinner from 'vue-simple-spinner'
 import Invertesment from "@/components/models/Invertesment.vue"
+import Error from "@/components/models/Error.vue"
 import Verified from "@/components/models/Verified.vue"
 export default {
     name: 'table-observateur',
@@ -70,6 +71,8 @@ export default {
             observateursSelect: [],
             flagSpinner: true,
             flagInvertesment: false,
+            flagError: false,
+            msgError : null,
             msgInvertesment: null
         }
     },
@@ -81,10 +84,15 @@ export default {
     components: {
         Spinner,
         Invertesment,
-        Verified
+        Verified,
+        Error
     },
 
     methods: {
+
+        annuller() {
+            this.flagError = false;
+        },
 
         terminer(observateurId) {
             Observateurs.terminer(observateurId)
@@ -149,16 +157,23 @@ export default {
         },
 
         apercu() {
-            this.flagSpinner = true;
-            Observateurs.apercu(this.observateursSelect[0], this.interventionId, sessionStorage.getItem("id"))
+            const index = this.observateurs.find((el) => el._id === this.observateursSelect[0])
+            if(index.etat == false) {
+                 this.flagError = true;
+                 this.msgError = "Toutes les informations doivent d'abord être remplies pour pouvoir télécharger";
+            } else {
+                this.flagSpinner = true;
+                Observateurs.apercu(this.observateursSelect[0], sessionStorage.getItem("id"))
                 .then((result) => {
                     if (result) {
-                        this.flagSpinner = false
+                    this.flagSpinner = false
                     }
                 })
                 .catch((error) => {
                     console.log(error);
                 });
+            }
+
         },
 
         send() {
@@ -257,6 +272,7 @@ export default {
     color: white;
 }
 
+
 .textarea {
     width: 100%;
 }
@@ -279,23 +295,29 @@ export default {
     margin-top: 10px;
 }
 
+
 .actions .left button:nth-child(1) {
     background-color: #04AA6D;
 }
+
 .actions .left button:nth-child(2) {
-    background-color: #04AA6D;
+    background-color: #0300c7;
+}
+.actions .right button:nth-child(1) {
+    background-color: #ff6a00;
 }
 
-.actions .left button:nth-child(3) {
+.actions .right button:nth-child(2) {
     background-color: #e21608;
 }
 
-.actions .right button {
-    background-color: #f3a108;
-
+.termine {
+    background-color: #04AA6D;
+    color: white;
+    border: 0px;
+    cursor: pointer;
+    padding: 5px;
 }
 
-iframe {
-    margin-top: 20px;
-}
+
 </style>

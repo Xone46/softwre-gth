@@ -229,17 +229,7 @@ export default {
 
 
 
-.observateurs button {
-    padding: 10px;
-    width : 40%;
-    height : 40px;
-    color: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 0px;
-    border-radius: 5px;
-    cursor: pointer;
-}
+
 
 .valider, .retour {
     background-color: #04AA6D;
@@ -254,6 +244,28 @@ export default {
 .start {
     color: red;
 }
+
+.retour {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+
+.observateurs button {
+    padding: 10px;
+    width : 100px;
+    height : 40px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #e21608;
+    cursor: pointer;
+}
+
 
 
 

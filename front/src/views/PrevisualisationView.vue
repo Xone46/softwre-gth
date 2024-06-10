@@ -1,7 +1,7 @@
 <template>
     <div class="observations">
-        <button @click="retour">Retour</button>
-        <h2>Appareil(s), équipement(s) ou installation(s) du site</h2>
+        <button class="retour" @click="retour">Retour</button>
+        <h2>Liste des [ Appareil(s), équipement(s) ou installation(s) ] Terminés</h2>
         <Spinner v-if="flagSpinner" />
         <Invertesment :msgInvertesment="msgInvertesment" v-if="flagInvertesment" />
 
@@ -37,9 +37,8 @@
         </div>
 
         <div class="actions">
-            <button v-if="!flagInvertesment" @click="apercu">Aperçu</button>
-            <button v-if="!flagInvertesment" @click="supprimer">Supprimer</button>
-            <button v-if="!flagInvertesment" @click="send">Transférer</button>
+            <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">Aperçu le Rapport</button>
+            <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="send">Transférer pour la validation</button>
         </div>
 
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
@@ -173,17 +172,16 @@ export default {
 
 .observations button {
     padding: 10px;
-    width : 40%;
+    width : 100px;
     height : 40px;
     color: white;
     margin-top: 5px;
     margin-bottom: 5px;
     border: 0px;
     border-radius: 5px;
-    background-color: #04AA6D;
+    background-color: #e21608;
     cursor: pointer;
 }
-
 
 .sites {
     padding: 0;
@@ -249,6 +247,7 @@ export default {
 .actions button {
     margin-left: 5px;
     margin-right: 5px;
+    width: fit-content;
     padding: 10px;
     color: white;
     border: 0px;
@@ -261,16 +260,10 @@ export default {
     background-color: #04AA6D;
 }
 
-.actions button:nth-child(2) {
-    background-color: red;
-}
 
-.actions button:nth-child(3) {
+.actions button:nth-child(2) {
     background-color: #f3a108;
 }
 
-.actions button:nth-child(4) {
-    background-color: #0847f3;
-}
 
 </style>

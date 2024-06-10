@@ -601,32 +601,31 @@ export default {
 </script>
 
 <style scoped>
-.renseignements {
-    width: 100%;
-    margin-top: 10px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-}
 
+  .descriptions table {
+    border-collapse: collapse;
+    border: none;
+  }
 
-.renseignements th {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    color: white;
-    background-color: blue;
-}
+  tr {
+    border-top: 1px solid black;
+  }
 
+  tr:first-child {
+    border-top: none;
+  }
 
-.renseignements td {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    color: red;
-    background-color: whitesmoke;
-    padding: 20px;
-}
+  td {
+    text-align: start;
+    border: none !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  #app > div > div.content > div.left > div > div.descriptions > table > tr > td > input[type=text] {
+    height: 45px;
+  }
+
 
 
 label {
@@ -637,14 +636,10 @@ label {
     align-items: flex-start;
 }
 
-label h3 {
-    margin: 2px;
-    color: red;
-}
 
 label input {
     width: 100%;
-    height: 40px;
+    height: 50px;
     margin-top: 5px;
     margin-bottom: 5px;
 }
@@ -667,7 +662,7 @@ label select {
 }
 
 .sauvegarde button {
-    background-color: #040faa;
+    background-color: #ff6a00;
     color: white;
     margin: 3px;
     border: 0px;
@@ -695,24 +690,6 @@ label select {
     cursor: pointer;
 }
 
-.modifier {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-
-.modifier button {
-    background-color: #04AA6D;
-    color: white;
-    margin: 3px;
-    border: 0px;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
 td:nth-child(2) {
     display: flex;
@@ -726,4 +703,6 @@ td:nth-child(2) {
 .not-saved {
     color: red;
 }
+
+
 </style>
