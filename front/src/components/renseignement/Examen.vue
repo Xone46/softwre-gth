@@ -1318,9 +1318,24 @@ table {
     border: 1px solid #aaa;
 }
 
-table tr th,
-table tr td {
-    text-align: left;
+table tr td:nth-child(1) {
+    width: 200px;
+    text-align: start;
+}
+
+table tr th:nth-child(1) {
+    width: 200px;
+    text-align: start;
+}
+
+table tr td:nth-child(2) {
+    width: 500px;
+    text-align: start;
+}
+
+table tr th:nth-child(2) {
+    width: 200px;
+    text-align: start;
 }
 
 

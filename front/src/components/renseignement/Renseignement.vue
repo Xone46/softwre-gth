@@ -126,7 +126,7 @@ export default {
 
                 constructeur : "",
 
-                tagTypeConstructeur: "<input type='text' value=''>",
+                tagTypeConstructeur: "<input type='text' value='' height='48px'>",
                 typeConstructeur: "",
 
 
@@ -602,6 +602,7 @@ export default {
 
 <style scoped>
 
+
   .descriptions table {
     border-collapse: collapse;
     border: none;
@@ -621,35 +622,6 @@ export default {
     padding-top: 10px;
     padding-bottom: 10px;
   }
-
-  #app > div > div.content > div.left > div > div.descriptions > table > tr > td > input[type=text] {
-    height: 45px;
-  }
-
-
-
-label {
-    width: 80%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-
-label input {
-    width: 100%;
-    height: 50px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-label select {
-    width: 100%;
-    height: 40px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
 
 
 .sauvegarde {

@@ -14,8 +14,8 @@
             </select>
 
             <div class="bottom-content">
-                <button @click="choisir">Choisir</button>
-                <button @click="ajouter">Ajouter un autre modèle</button>
+                <button v-if="model != null" class="choisir" @click="choisir">Choisir</button>
+                <button class="modele" @click="ajouter">Ajouter un autre modèle</button>
             </div>
 
             <h4 v-if="modelSelected.length > 0">Liste des modèles sélectionnés</h4>
@@ -23,7 +23,9 @@
             <table class="table-data">
                 <tr v-for="(item, index) in modelSelected" :key="item.name">
 
-                    <input type="text" v-model="modelSelected[index].name">
+                    <td>
+                        <textarea v-model="modelSelected[index].name" placeholder="Vous devez saisir un modèle"></textarea>
+                    </td>
 
                     <td>
                         <select v-model="item.status">
@@ -46,10 +48,6 @@
             <button @click="annuler">Annuler</button>
         </div>
 
-        <div class="bottom" v-if="flagExisteCommentaire">
-            <button @click="valider">Modifier</button>
-            <button @click="supprimerCommentaire">Supprimer</button>
-        </div>
 
      <AddModel v-if="flagAddModel" @ajouterModel="ajouterModel" @annulerAddModel="annulerAddModel" />
 
@@ -132,13 +130,14 @@ export default {
 
                 const index = this.liste.findIndex((el) => el == this.model);
                 this.liste.splice(index, 1);
+                this.model = null;
             }
         },
 
         supprimer(value) {
             const index = this.modelSelected.findIndex((el) => el.name == value);
             this.modelSelected.splice(index, 1);
-            this.liste.push(value);
+            this.liste.push(value.name);
         },
 
         ajouter() {
@@ -199,33 +198,39 @@ export default {
     background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
-}
-
-.select-liste-model {
-    width: 850px;
-    height: 50px;
-    border: 1px solid #04AA6D;
-    font-size: large
-}
-
-.select-liste-model > option {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 900px;
-}
-
-.table-data {
-    overflow: scroll;
 }
 
 .head {
     width: 100%;
     height: auto;
-    background-color: #efefef;
-    border-bottom: 1px solid black;
+    background-color: #0b0a68e6;
+    color: white;
+    border: 0px;
+}
+
+
+.select-liste-model {
+    width: 90%;
+    height: 50px;
+    border: 1px solid #0b0a68e6;
+    font-size: large
+}
+
+.table-data {
+    width: 100%;
+}
+
+.table-data tr {
+    width: 100%;
+}
+
+.content {
+    width: 100%;
+    height: 500px;
+    background-color: white;
+    overflow-y: auto;
 }
 
 .bottom-content {
@@ -234,33 +239,48 @@ export default {
     margin-top: 10px;
 }
 
-.bottom-content>button:nth-child(1) {
-    background-color: #1d04aa;
+.choisir, .modele {
+    height: 50px;
+    width: fit-content;
+    background-color: green;
     color: white;
-    padding: 10px;
-    border-radius: 5px;
+    border-radius: 4px;
     border: 0px;
-    margin-left: 5px;
-    margin-right: 5px;
+    font-size: large;
+    margin :5px; 
     cursor: pointer;
 }
 
-.bottom-content>button:nth-child(2) {
-    background-color: #1d04aa;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    border: 0px;
-    margin-left: 5px;
-    margin-right: 5px;
-    cursor: pointer;
+
+.table-data tr td:nth-child(1) {
+    width: auto;
+    margin: 3px
 }
 
-.content {
-    width: 100%;
-    height: 500px;
-    background-color: white;
+.table-data tr td:nth-child(1) textarea {
+    width: 750px;
+    height: 45px;
+    font-size: large;
+    margin: 3px
 }
+
+.table-data tr td:nth-child(2) select {
+    height: 50px;
+    font-size: large;
+    margin: 3px
+}
+
+.table-data tr td:nth-child(3) button {
+    height: 50px;
+    width: fit-content;
+    background-color: red;
+    color: white;
+    border-radius: 4px;
+    border: 0px;
+    font-size: large
+}
+
+
 
 .bottom {
     height: auto;
@@ -275,6 +295,8 @@ export default {
 }
 
 .bottom button:nth-child(1) {
+    height: 50px;
+    width: fit-content;
     margin-left: 5px;
     margin-right: 5px;
     border: 0px;
@@ -286,6 +308,8 @@ export default {
 }
 
 .bottom button:nth-child(2) {
+    height: 50px;
+    width: fit-content;
     margin-left: 5px;
     margin-right: 5px;
     border: 0px;

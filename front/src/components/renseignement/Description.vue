@@ -662,29 +662,39 @@ export default {
 </script>
 
 <style scoped>
+
 .descriptions {
     margin-top: 10px;
     margin-bottom: 100px;
     width: inherit;
 }
 
-table {
-    width: 100%;
-    margin-top: 10px;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 0;
+
+.descriptions table {
+    border-collapse: collapse;
+    border: none;
 }
+
+tr {
+    border-top: 1px solid black;
+}
+
+tr:first-child {
+    border-top: none;
+}
+
+td {
+    text-align: start;
+    border: none !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 
 table tr td:nth-child(1) {
     width: 40px;
 }
 
-
-table tr td {
-    border: 1px solid black;
-    padding: 10px;
-}
 
 table>tr:nth-child(3)>td:nth-child(3) {
     display: flex;
@@ -722,7 +732,8 @@ table>tr:nth-child(6)>td:nth-child(3) {
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-}
+} 
+
 
 .sauvegarde {
     width: 100%;

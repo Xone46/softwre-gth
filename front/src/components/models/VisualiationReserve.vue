@@ -1,16 +1,14 @@
 <template>
     <div class="visualiation">
         <div class="parent">
-            <h4 class="titre">Liste des réserves</h4>
-            <div class="content">
-                <ul v-for="item in commentaires" :key="item.titre">
-                    <label>
-                        <textarea :value="item.titre"></textarea>
-                        <select v-model="item.status">
-                            <option v-for="critique in listCritique" :key="critique">{{ critique }}</option>
-                        </select>
-                    </label>
-                </ul>
+            <h4 class="titre">listes des observation saisies</h4>
+            <div class="content" v-for="item in commentaires" :key="item.titre">
+                <div class="sub-content">
+                    <textarea :value="item.titre"></textarea>
+                    <select v-model="item.status">
+                    <option v-for="critique in listCritique" :key="critique">{{ critique }}</option>
+                    </select>
+                </div>
             </div>
             <div class="buttons">
                 <button @click="quitter">Quitter</button>
@@ -80,14 +78,15 @@ export default {
     background-color: rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 
 .visualiation .parent {
-    width: 80%;
+    width: 90%;
+    height: 90%;
+    padding: 10px;
     background-color: white;
-    margin-top: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -95,22 +94,70 @@ export default {
     border-radius: 5px;
 }
 
-.visualiation .parent .buttons {
+.visualiation .parent .titre {
+    width: 100%;
+    height: 50px;
+    background-color: #0b0a68e6;
+    color: white;
+    border: 0px;
+    font-size: large;
+    padding: 5px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+.visualiation .parent .content {
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.visualiation .parent .content .sub-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.visualiation .parent .content .sub-content textarea {
+    width: 80%;
+    height: 80px;
+}
+
+
+
+.visualiation .parent .buttons {
+    width: 100%;
+    height: auto;
+    background-color: white;
+}
+
+.visualiation .parent .buttons {
+    width: 100%;
+    height: auto;
+    background-color: white;
+}
+
 .visualiation .parent .buttons button {
-    background-color: #040faa;
+    width: fit-content;
+    height: 50px;
+    background-color: red;
     color: white;
-    margin: 3px;
     border: 0px;
-    padding: 10px;
     border-radius: 5px;
+    font-size: large;
     cursor: pointer;
 }
+
+
+
+
+
 
 
 </style>
