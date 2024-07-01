@@ -1,6 +1,12 @@
 import axios from 'axios'
 // const VUE_APP_API_BASE_URL = "/api";
 const VUE_APP_API_BASE_URL = "http://localhost:3000/api/v1";
+const config = {
+    headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+    }
+};
 
 class Chekin {
 
@@ -10,11 +16,7 @@ class Chekin {
                 {
                     ip: ip
                 },
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
+                config)
                 .then(response => {
                     resolve(response);
                 })

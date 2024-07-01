@@ -209,7 +209,7 @@ export default {
 
 .form-intervention button {
     padding: 10px;
-    width : 40%;
+    width : 100px;
     height : 40px;
     color: white;
     margin-top: 5px;

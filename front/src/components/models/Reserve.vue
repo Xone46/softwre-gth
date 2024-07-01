@@ -6,9 +6,7 @@
         </div>
 
         <div class="content">
-
             <h4>Liste des modèles suggérés</h4>
-
             <select class="select-liste-model" v-model="model">
                 <option v-for="(item, index) in liste" :value="item" :key="index">{{ item }}</option>
             </select>
@@ -98,7 +96,7 @@ export default {
     methods: {
 
         annuler() {
-            return this.$emit('annuler', this.infoReserve);
+            return this.$emit('annuler');
         },
 
         supprimerCommentaire() {
@@ -165,7 +163,6 @@ export default {
         .then((result) => {
 
             this.commentaireId = result.data._id;
-            this.flagExisteCommentaire = true;
             
             result.data.modelSelected.forEach((el) => {
                 const index = this.liste.findIndex(val => val == el.name)

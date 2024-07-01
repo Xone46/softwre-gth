@@ -20,7 +20,6 @@
 
 import TableModels from "@/components/reserve/TableModels.vue"
 import TableReserve from "@/components/reserve/TableReserve.vue"
-
 import Commentaire from "@/requests/commentaire";
 
 export default {

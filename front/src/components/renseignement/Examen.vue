@@ -4,13 +4,14 @@
         <table>
             <tr>
                 <th>ACCES INSTALLES A DEMEURE</th>
-                <th>ACCES INSTALLES A DEMEURE</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in a" :key="index">
                 <td></td>
@@ -28,10 +29,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkA(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkA(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkA(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkA(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkA(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkAObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -39,13 +43,14 @@
         <table>
             <tr>
                 <th>CHEMINS DE ROULEMENT / SUPPORTS</th>
-                <th>CHEMINS DE ROULEMENT / SUPPORTS</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in b" :key="index">
                 <td></td>
@@ -63,10 +68,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkB(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkB(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkB(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkB(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkB(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkBObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -74,13 +82,14 @@
         <table>
             <tr>
                 <th>CHARPENTE ET OSSATURE DE L'APPAREIL</th>
-                <th>CHARPENTE ET OSSATURE DE L'APPAREIL</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in c" :key="index">
                 <td></td>
@@ -98,10 +107,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkC(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkC(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkC(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkC(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkC(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkCObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -109,13 +121,14 @@
         <table>
             <tr>
                 <th>SOURCES D'ENERGIE</th>
-                <th>SOURCES D'ENERGIE</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in d" :key="index">
                 <td></td>
@@ -133,10 +146,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkD(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkD(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkD(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkD(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkD(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkDObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -144,13 +160,14 @@
         <table>
             <tr>
                 <th>ECLAIRAGE INCORPORE A L'APPAREIL</th>
-                <th>ECLAIRAGE INCORPORE A L'APPAREIL</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in e" :key="index">
                 <td></td>
@@ -168,10 +185,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkE(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkE(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkE(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkE(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkE(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkEObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -179,13 +199,14 @@
         <table>
             <tr>
                 <th>POSTE DE CONDUITE</th>
-                <th>POSTE DE CONDUITE</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in f" :key="index">
                 <td></td>
@@ -203,10 +224,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkF(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkF(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkF(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkF(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkF(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkFObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -214,13 +238,14 @@
         <table>
             <tr>
                 <th>ORGANES DE SERVICE ET DE MANOEUVRE</th>
-                <th>ORGANES DE SERVICE ET DE MANOEUVRE</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in g" :key="index">
                 <td></td>
@@ -238,10 +263,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkG(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkG(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkG(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkG(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkG(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkGObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -249,13 +277,14 @@
         <table>
             <tr>
                 <th>SUSPENTES TAMBOURS POULIES DISPOSITIFS DE PREHENSION</th>
-                <th>SUSPENTES TAMBOURS POULIES DISPOSITIFS DE PREHENSION</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in h" :key="index">
                 <td></td>
@@ -273,10 +302,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkH(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkH(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkH(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkH(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkH(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkHObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -285,13 +317,14 @@
         <table>
             <tr>
                 <th>MECANISMES</th>
-                <th>MECANISMES</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in i" :key="index">
                 <td></td>
@@ -309,10 +342,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkI(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkI(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkI(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkI(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkI(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkIObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -320,13 +356,14 @@
         <table>
             <tr>
                 <th>DISPOSITIFS DE SECURITE</th>
-                <th>DISPOSITIFS DE SECURITE</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in j" :key="index">
                 <td></td>
@@ -344,10 +381,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkJ(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkJ(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkJ(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkJ(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkJ(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkJObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -356,13 +396,14 @@
         <table>
             <tr>
                 <th>DISPOSITIFS DE SECURITE</th>
-                <th>DISPOSITIFS DE SECURITE</th>
+                <th></th>
                 <th>BE</th>
                 <th>FC</th>
                 <th>SA</th>
                 <th>NV</th>
                 <th>SO</th>
                 <th>O</th>
+                <th></th>
             </tr>
             <tr v-for="(item, index) in k" :key="index">
                 <td></td>
@@ -380,10 +421,13 @@
                     <input type="checkbox" v-model="item.nv" @change="checkK(index, 'nv', item.nv)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.so" @input="checkK(index, 'so', item.so)">
+                    <input type="checkbox" v-model="item.so" @change="checkK(index, 'so', item.so)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.o" @input="checkK(index, 'o', item.o)">
+                    <input type="checkbox" v-model="item.o" @change="checkK(index, 'o', item.o)">
+                </td>
+                <td>
+                    <p v-if="item.o" @click="checkKObs(index)">obs</p>
                 </td>
             </tr>
         </table>
@@ -404,6 +448,7 @@
 <script>
 import Examens from "@/requests/Examens"
 import Reserve from "@/components/models/Reserve.vue"
+import Commentaires from "@/requests/commentaire";
 
 export default {
     name: 'renseignement-component',
@@ -573,199 +618,289 @@ export default {
             this.flagReserve = false;
         },
 
-        annulerReserve(value) {
+        annulerReserve() {
+            this.flagReserve = false;
+        },
 
         
-            const indexA = this.a.findIndex((el) => el.titre == value[2]);
-            if(indexA != -1) {
-                this.a[indexA]["o"] = false;
-            }
+        checkAObs(index) {
+            this.infoReserve = ["A", index, this.a[index]["titre"], this.observateurId]
+            this.flagReserve = true;
+        },
+        checkBObs(index) {
+            this.infoReserve = ["B", index, this.b[index]["titre"], this.observateurId]
+            this.flagReserve = true;
+        },
+        checkCObs(index) {
+            this.infoReserve = ["C", index, this.c[index]["titre"], this.observateurId]
+            this.flagReserve = true;
+        },
+        checkDObs(index) {
+            this.infoReserve = ["D", index, this.d[index]["titre"], this.observateurId]
+            this.flagReserve = true;
+        },
+        checkEObs(index) {
+            this.infoReserve = ["E", index, this.e[index]["titre"], this.observateurId]
+            this.flagReserve = true;
+        },
+        checkFObs(index) {
+            this.infoReserve = ["F", index, this.f[index]["titre"], this.observateurId]
+            this.flagReserve = true;
+        },
+        checkGObs(index) {
+            this.infoReserve = ["G", index, this.g[index]["titre"], this.observateurId]
+            this.flagReserve = true;
+        },
 
-            const indexB = this.b.findIndex((el) => el.titre == value[2]);
-            if(indexB != -1) {
-                this.b[indexB]["o"] = false;
-            }
+        checkHObs(index) {
+            this.infoReserve = ["H", index, this.h[index]["titre"], this.observateurId]
+            this.flagReserve = true;
+        },
 
-            const indexC = this.c.findIndex((el) => el.titre == value[2]);
-            if(indexC != -1) {
-                this.c[indexC]["o"] = false;
-            }
+        checkIObs(index) {
+            this.infoReserve = ["I", index, this.i[index]["titre"], this.observateurId]
+            this.flagReserve = true;
+        },
 
-            const indexD = this.d.findIndex((el) => el.titre == value[2]);
-            if(indexD != -1) {
-                this.d[indexD]["o"] = false;
-            }
+        checkJObs(index) {
+            this.infoReserve = ["J", index, this.j[index]["titre"], this.observateurId]
+            this.flagReserve = true;
+        },
 
-            const indexE = this.e.findIndex((el) => el.titre == value[2]);
-            if(indexE != -1) {
-                this.e[indexE]["o"] = false;
-            }
-
-            const indexF = this.f.findIndex((el) => el.titre == value[2]);
-            if(indexF != -1) {
-                this.f[indexF]["o"] = false;
-            }
-
-            const indexG = this.g.findIndex((el) => el.titre == value[2]);
-            if(indexG != -1) {
-                this.g[indexG]["o"] = false;
-            }
-
-            const indexH = this.h.findIndex((el) => el.titre == value[2]);
-            if(indexH != -1) {
-                this.h[indexH]["o"] = false;
-            }
-
-            const indexI = this.i.findIndex((el) => el.titre == value[2]);
-            if(indexI != -1) {
-                this.i[indexA]["o"] = false;
-            }
-
-            const indexJ = this.j.findIndex((el) => el.titre == value[2]);
-            if(indexJ != -1) {
-                this.j[indexJ]["o"] = false;
-            }
-
-            const indexK = this.k.findIndex((el) => el.titre == value[2]);
-            if(indexK != -1) {
-                this.k[indexK]["o"] = false;
-            }
-
-            this.flagReserve = false;
+        checkKObs(index) {
+            this.infoReserve = ["K", index, this.k[index]["titre"], this.observateurId]
+            this.flagReserve = true;
         },
 
         checkA(index, type, bol) {
 
-            const stautusFc =  this.a[index]["fc"]
-            const stautusBe =  this.a[index]["be"]
-
             if(type == "be") {
-                this.a[index]["be"] = false;
-                this.a[index]["fc"] = stautusFc;
-                this.a[index]["sa"] = false;
-                this.a[index]["nv"] = false;
-                this.a[index]["so"] = false;
-                this.a[index]["o"] = false;
-            } else if(type == "fc") {
-                this.a[index]["be"] = stautusBe;
-                this.a[index]["fc"] = false;
-                this.a[index]["sa"] = false;
-                this.a[index]["nv"] = false;
-                this.a[index]["so"] = false;
-                this.a[index]["o"] = false;
-            } else {
-                this.a[index]["be"] = false;
-                this.a[index]["fc"] = false;
-                this.a[index]["sa"] = false;
-                this.a[index]["nv"] = false;
-                this.a[index]["so"] = false;
-                this.a[index]["o"] = false;
-            }
-
-
-            // for fix problem value false
-            if(type == "so" || type == "o") {
-                this.a[index][type] = !bol;
-            } else {
-                this.a[index][type] = bol;
-            }
-
-
-            if(type == "o") {
-                if (this.a[index]["o"] == true) {
-                    this.infoReserve = ["A", index, this.a[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.a[index]["fc"] == true) {
+                    this.a[index]["be"] = bol;
+                    this.a[index]["sa"] = false;
+                    this.a[index]["nv"] = false;
+                    this.a[index]["so"] = false;
+                    this.a[index]["o"] = false;
+                } else {
+                    this.a[index]["be"] = bol;
+                    this.a[index]["fc"] = false;
+                    this.a[index]["sa"] = false;
+                    this.a[index]["nv"] = false;
+                    this.a[index]["so"] = false;
+                    this.a[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.a[index]["be"] == true) {
+                    this.a[index]["fc"] = bol;
+                    this.a[index]["sa"] = false;
+                    this.a[index]["nv"] = false;
+                    this.a[index]["so"] = false;
+                    this.a[index]["o"] = false;
+                } else {
+                    this.a[index]["be"] = false;
+                    this.a[index]["fc"] = bol;
+                    this.a[index]["sa"] = false;
+                    this.a[index]["nv"] = false;
+                    this.a[index]["so"] = false;
+                    this.a[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.a[index]["be"] = false;
+                this.a[index]["fc"] = false;
+                this.a[index]["sa"] = bol;
+                this.a[index]["nv"] = false;
+                this.a[index]["so"] = false;
+                this.a[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.a[index]["be"] = false;
+                this.a[index]["fc"] = false;
+                this.a[index]["sa"] = false;
+                this.a[index]["nv"] = bol;
+                this.a[index]["so"] = false;
+                this.a[index]["o"] = false;
+            } else if(type == 'so') {
+                this.a[index]["be"] = false;
+                this.a[index]["fc"] = false;
+                this.a[index]["sa"] = false;
+                this.a[index]["nv"] = false;
+                this.a[index]["so"] = bol;
+                this.a[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.a[index]["be"] = false;
+                this.a[index]["fc"] = false;
+                this.a[index]["sa"] = false;
+                this.a[index]["nv"] = false;
+                this.a[index]["so"] = false;
+                this.a[index]["o"] = bol;
             }
 
             return this.sauvegarde();
+
         },
 
+
         checkB(index, type, bol) {
-
-            const stautusFc =  this.b[index]["fc"]
-            const stautusBe =  this.b[index]["be"]
-
             if(type == "be") {
-                this.b[index]["be"] = false;
-                this.b[index]["fc"] = stautusFc;
-                this.b[index]["sa"] = false;
-                this.b[index]["nv"] = false;
-                this.b[index]["so"] = false;
-                this.b[index]["o"] = false;
-            } else if(type == "fc") {
-                this.b[index]["be"] = stautusBe;
-                this.b[index]["fc"] = false;
-                this.b[index]["sa"] = false;
-                this.b[index]["nv"] = false;
-                this.b[index]["so"] = false;
-                this.b[index]["o"] = false;
-            } else {
-                this.b[index]["be"] = false;
-                this.b[index]["fc"] = false;
-                this.b[index]["sa"] = false;
-                this.b[index]["nv"] = false;
-                this.b[index]["so"] = false;
-                this.b[index]["o"] = false;
-            }
-
-            if(type == "so" || type == "o") {
-                this.b[index][type] = !bol;
-            } else {
-                this.b[index][type] = bol;
-            }
-
-
-            if(type == "o") {
-                if (this.b[index]["o"] == true) {
-                    this.infoReserve = ["B", index, this.b[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.b[index]["fc"] == true) {
+                    this.b[index]["be"] = bol;
+                    this.b[index]["sa"] = false;
+                    this.b[index]["nv"] = false;
+                    this.b[index]["so"] = false;
+                    this.b[index]["o"] = false;
+                } else {
+                    this.b[index]["be"] = bol;
+                    this.b[index]["fc"] = false;
+                    this.b[index]["sa"] = false;
+                    this.b[index]["nv"] = false;
+                    this.b[index]["so"] = false;
+                    this.b[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.b[index]["be"] == true) {
+                    this.b[index]["fc"] = bol;
+                    this.b[index]["sa"] = false;
+                    this.b[index]["nv"] = false;
+                    this.b[index]["so"] = false;
+                    this.b[index]["o"] = false;
+                } else {
+                    this.b[index]["be"] = false;
+                    this.b[index]["fc"] = bol;
+                    this.b[index]["sa"] = false;
+                    this.b[index]["nv"] = false;
+                    this.b[index]["so"] = false;
+                    this.b[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.b[index]["be"] = false;
+                this.b[index]["fc"] = false;
+                this.b[index]["sa"] = bol;
+                this.b[index]["nv"] = false;
+                this.b[index]["so"] = false;
+                this.b[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.b[index]["be"] = false;
+                this.b[index]["fc"] = false;
+                this.b[index]["sa"] = false;
+                this.b[index]["nv"] = bol;
+                this.b[index]["so"] = false;
+                this.b[index]["o"] = false;
+            } else if(type == 'so') {
+                this.b[index]["be"] = false;
+                this.b[index]["fc"] = false;
+                this.b[index]["sa"] = false;
+                this.b[index]["nv"] = false;
+                this.b[index]["so"] = bol;
+                this.b[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.b[index]["be"] = false;
+                this.b[index]["fc"] = false;
+                this.b[index]["sa"] = false;
+                this.b[index]["nv"] = false;
+                this.b[index]["so"] = false;
+                this.b[index]["o"] = bol;
             }
 
             return this.sauvegarde();
         },
 
         checkC(index, type, bol) {
-
-            const stautusFc =  this.c[index]["fc"]
-            const stautusBe =  this.c[index]["be"]
-
             if(type == "be") {
-                this.c[index]["be"] = false;
-                this.c[index]["fc"] = stautusFc;
-                this.c[index]["sa"] = false;
-                this.c[index]["nv"] = false;
-                this.c[index]["so"] = false;
-                this.c[index]["o"] = false;
-            } else if(type == "fc") {
-                this.c[index]["be"] = stautusBe;
-                this.c[index]["fc"] = false;
-                this.c[index]["sa"] = false;
-                this.c[index]["nv"] = false;
-                this.c[index]["so"] = false;
-                this.c[index]["o"] = false;
-            } else {
-                this.c[index]["be"] = false;
-                this.c[index]["fc"] = false;
-                this.c[index]["sa"] = false;
-                this.c[index]["nv"] = false;
-                this.c[index]["so"] = false;
-                this.c[index]["o"] = false;
-            }
-
-            if(type == "so" || type == "o") {
-                this.c[index][type] = !bol;
-            } else {
-                this.c[index][type] = bol;
-            }
-
-
-            if(type == "o") {
-                if (this.c[index]["o"] == true) {
-                    this.infoReserve = ["C", index, this.c[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.c[index]["fc"] == true) {
+                    this.c[index]["be"] = bol;
+                    this.c[index]["sa"] = false;
+                    this.c[index]["nv"] = false;
+                    this.c[index]["so"] = false;
+                    this.c[index]["o"] = false;
+                } else {
+                    this.c[index]["be"] = bol;
+                    this.c[index]["fc"] = false;
+                    this.c[index]["sa"] = false;
+                    this.c[index]["nv"] = false;
+                    this.c[index]["so"] = false;
+                    this.c[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.c[index]["be"] == true) {
+                    this.c[index]["fc"] = bol;
+                    this.c[index]["sa"] = false;
+                    this.c[index]["nv"] = false;
+                    this.c[index]["so"] = false;
+                    this.c[index]["o"] = false;
+                } else {
+                    this.c[index]["be"] = false;
+                    this.c[index]["fc"] = bol;
+                    this.c[index]["sa"] = false;
+                    this.c[index]["nv"] = false;
+                    this.c[index]["so"] = false;
+                    this.c[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.c[index]["be"] = false;
+                this.c[index]["fc"] = false;
+                this.c[index]["sa"] = bol;
+                this.c[index]["nv"] = false;
+                this.c[index]["so"] = false;
+                this.c[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.c[index]["be"] = false;
+                this.c[index]["fc"] = false;
+                this.c[index]["sa"] = false;
+                this.c[index]["nv"] = bol;
+                this.c[index]["so"] = false;
+                this.c[index]["o"] = false;
+            } else if(type == 'so') {
+                this.c[index]["be"] = false;
+                this.c[index]["fc"] = false;
+                this.c[index]["sa"] = false;
+                this.c[index]["nv"] = false;
+                this.c[index]["so"] = bol;
+                this.c[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.c[index]["be"] = false;
+                this.c[index]["fc"] = false;
+                this.c[index]["sa"] = false;
+                this.c[index]["nv"] = false;
+                this.c[index]["so"] = false;
+                this.c[index]["o"] = bol;
             }
 
             return this.sauvegarde();
@@ -773,272 +908,462 @@ export default {
 
         checkD(index, type, bol) {
 
-            const stautusFc =  this.d[index]["fc"]
-            const stautusBe =  this.d[index]["be"]
-
             if(type == "be") {
-                this.d[index]["be"] = false;
-                this.d[index]["fc"] = stautusFc;
-                this.d[index]["sa"] = false;
-                this.d[index]["nv"] = false;
-                this.d[index]["so"] = false;
-                this.d[index]["o"] = false;
-            } else if(type == "fc") {
-                this.d[index]["be"] = stautusBe;
-                this.d[index]["fc"] = false;
-                this.d[index]["sa"] = false;
-                this.d[index]["nv"] = false;
-                this.d[index]["so"] = false;
-                this.d[index]["o"] = false;
-            } else {
-                this.d[index]["be"] = false;
-                this.d[index]["fc"] = false;
-                this.d[index]["sa"] = false;
-                this.d[index]["nv"] = false;
-                this.d[index]["so"] = false;
-                this.d[index]["o"] = false;
-            }
-
-            if(type == "so" || type == "o") {
-                this.d[index][type] = !bol;
-            } else {
-                this.d[index][type] = bol;
-            }
-
-
-
-            if(type == "o") {
-                if (this.d[index]["o"] == true) {
-                    this.infoReserve = ["D", index, this.d[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.d[index]["fc"] == true) {
+                    this.d[index]["be"] = bol;
+                    this.d[index]["sa"] = false;
+                    this.d[index]["nv"] = false;
+                    this.d[index]["so"] = false;
+                    this.d[index]["o"] = false;
+                } else {
+                    this.d[index]["be"] = bol;
+                    this.d[index]["fc"] = false;
+                    this.d[index]["sa"] = false;
+                    this.d[index]["nv"] = false;
+                    this.d[index]["so"] = false;
+                    this.d[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.d[index]["be"] == true) {
+                    this.d[index]["fc"] = bol;
+                    this.d[index]["sa"] = false;
+                    this.d[index]["nv"] = false;
+                    this.d[index]["so"] = false;
+                    this.d[index]["o"] = false;
+                } else {
+                    this.d[index]["be"] = false;
+                    this.d[index]["fc"] = bol;
+                    this.d[index]["sa"] = false;
+                    this.d[index]["nv"] = false;
+                    this.d[index]["so"] = false;
+                    this.d[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.d[index]["be"] = false;
+                this.d[index]["fc"] = false;
+                this.d[index]["sa"] = bol;
+                this.d[index]["nv"] = false;
+                this.d[index]["so"] = false;
+                this.d[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.d[index]["be"] = false;
+                this.d[index]["fc"] = false;
+                this.d[index]["sa"] = false;
+                this.d[index]["nv"] = bol;
+                this.d[index]["so"] = false;
+                this.d[index]["o"] = false;
+            } else if(type == 'so') {
+                this.d[index]["be"] = false;
+                this.d[index]["fc"] = false;
+                this.d[index]["sa"] = false;
+                this.d[index]["nv"] = false;
+                this.d[index]["so"] = bol;
+                this.d[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.d[index]["be"] = false;
+                this.d[index]["fc"] = false;
+                this.d[index]["sa"] = false;
+                this.d[index]["nv"] = false;
+                this.d[index]["so"] = false;
+                this.d[index]["o"] = bol;
             }
 
             return this.sauvegarde();
         },
 
         checkE(index, type, bol) {
-
-            const stautusFc =  this.e[index]["fc"]
-            const stautusBe =  this.e[index]["be"]
-
             if(type == "be") {
-                this.e[index]["be"] = false;
-                this.e[index]["fc"] = stautusFc;
-                this.e[index]["sa"] = false;
-                this.e[index]["nv"] = false;
-                this.e[index]["so"] = false;
-                this.e[index]["o"] = false;
-            } else if(type == "fc") {
-                this.e[index]["be"] = stautusBe;
-                this.e[index]["fc"] = false;
-                this.e[index]["sa"] = false;
-                this.e[index]["nv"] = false;
-                this.e[index]["so"] = false;
-                this.e[index]["o"] = false;
-            } else {
-                this.e[index]["be"] = false;
-                this.e[index]["fc"] = false;
-                this.e[index]["sa"] = false;
-                this.e[index]["nv"] = false;
-                this.e[index]["so"] = false;
-                this.e[index]["o"] = false;
-            }
-
-            if(type == "so" || type == "o") {
-                this.e[index][type] = !bol;
-            } else {
-                this.e[index][type] = bol;
-            }
-
-
-
-            if(type == "o") {
-                if (this.e[index]["o"] == true) {
-                    this.infoReserve = ["E", index, this.e[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.e[index]["fc"] == true) {
+                    this.e[index]["be"] = bol;
+                    this.e[index]["sa"] = false;
+                    this.e[index]["nv"] = false;
+                    this.e[index]["so"] = false;
+                    this.e[index]["o"] = false;
+                } else {
+                    this.e[index]["be"] = bol;
+                    this.e[index]["fc"] = false;
+                    this.e[index]["sa"] = false;
+                    this.e[index]["nv"] = false;
+                    this.e[index]["so"] = false;
+                    this.e[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.e[index]["be"] == true) {
+                    this.e[index]["fc"] = bol;
+                    this.e[index]["sa"] = false;
+                    this.e[index]["nv"] = false;
+                    this.e[index]["so"] = false;
+                    this.e[index]["o"] = false;
+                } else {
+                    this.e[index]["be"] = false;
+                    this.e[index]["fc"] = bol;
+                    this.e[index]["sa"] = false;
+                    this.e[index]["nv"] = false;
+                    this.e[index]["so"] = false;
+                    this.e[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.e[index]["be"] = false;
+                this.e[index]["fc"] = false;
+                this.e[index]["sa"] = bol;
+                this.e[index]["nv"] = false;
+                this.e[index]["so"] = false;
+                this.e[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.e[index]["be"] = false;
+                this.e[index]["fc"] = false;
+                this.e[index]["sa"] = false;
+                this.e[index]["nv"] = bol;
+                this.e[index]["so"] = false;
+                this.e[index]["o"] = false;
+            } else if(type == 'so') {
+                this.e[index]["be"] = false;
+                this.e[index]["fc"] = false;
+                this.e[index]["sa"] = false;
+                this.e[index]["nv"] = false;
+                this.e[index]["so"] = bol;
+                this.e[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.e[index]["be"] = false;
+                this.e[index]["fc"] = false;
+                this.e[index]["sa"] = false;
+                this.e[index]["nv"] = false;
+                this.e[index]["so"] = false;
+                this.e[index]["o"] = bol;
             }
 
             return this.sauvegarde();
         },
 
         checkF(index, type, bol) {
-
-            const stautusFc =  this.f[index]["fc"]
-            const stautusBe =  this.f[index]["be"]
-
             if(type == "be") {
-                this.f[index]["be"] = false;
-                this.f[index]["fc"] = stautusFc;
-                this.f[index]["sa"] = false;
-                this.f[index]["nv"] = false;
-                this.f[index]["so"] = false;
-                this.f[index]["o"] = false;
-            } else if(type == "fc") {
-                this.f[index]["be"] = stautusBe;
-                this.f[index]["fc"] = false;
-                this.f[index]["sa"] = false;
-                this.f[index]["nv"] = false;
-                this.f[index]["so"] = false;
-                this.f[index]["o"] = false;
-            } else {
-                this.f[index]["be"] = false;
-                this.f[index]["fc"] = false;
-                this.f[index]["sa"] = false;
-                this.f[index]["nv"] = false;
-                this.f[index]["so"] = false;
-                this.f[index]["o"] = false;
-            }
-
-            if(type == "so" || type == "o") {
-                this.f[index][type] = !bol;
-            } else {
-                this.f[index][type] = bol;
-            }
-
-
-
-            if(type == "o") {
-                if (this.f[index]["o"] == true) {
-                    this.infoReserve = ["F", index, this.f[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.f[index]["fc"] == true) {
+                    this.f[index]["be"] = bol;
+                    this.f[index]["sa"] = false;
+                    this.f[index]["nv"] = false;
+                    this.f[index]["so"] = false;
+                    this.f[index]["o"] = false;
+                } else {
+                    this.f[index]["be"] = bol;
+                    this.f[index]["fc"] = false;
+                    this.f[index]["sa"] = false;
+                    this.f[index]["nv"] = false;
+                    this.f[index]["so"] = false;
+                    this.f[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.f[index]["be"] == true) {
+                    this.f[index]["fc"] = bol;
+                    this.f[index]["sa"] = false;
+                    this.f[index]["nv"] = false;
+                    this.f[index]["so"] = false;
+                    this.f[index]["o"] = false;
+                } else {
+                    this.f[index]["be"] = false;
+                    this.f[index]["fc"] = bol;
+                    this.f[index]["sa"] = false;
+                    this.f[index]["nv"] = false;
+                    this.f[index]["so"] = false;
+                    this.f[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.f[index]["be"] = false;
+                this.f[index]["fc"] = false;
+                this.f[index]["sa"] = bol;
+                this.f[index]["nv"] = false;
+                this.f[index]["so"] = false;
+                this.f[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.f[index]["be"] = false;
+                this.f[index]["fc"] = false;
+                this.f[index]["sa"] = false;
+                this.f[index]["nv"] = bol;
+                this.f[index]["so"] = false;
+                this.f[index]["o"] = false;
+            } else if(type == 'so') {
+                this.f[index]["be"] = false;
+                this.f[index]["fc"] = false;
+                this.f[index]["sa"] = false;
+                this.f[index]["nv"] = false;
+                this.f[index]["so"] = bol;
+                this.f[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.f[index]["be"] = false;
+                this.f[index]["fc"] = false;
+                this.f[index]["sa"] = false;
+                this.f[index]["nv"] = false;
+                this.f[index]["so"] = false;
+                this.f[index]["o"] = bol;
             }
 
             return this.sauvegarde();
         },
 
         checkG(index, type, bol) {
-
-            const stautusFc =  this.g[index]["fc"]
-            const stautusBe =  this.g[index]["be"]
-
             if(type == "be") {
-                this.g[index]["be"] = false;
-                this.g[index]["fc"] = stautusFc;
-                this.g[index]["sa"] = false;
-                this.g[index]["nv"] = false;
-                this.g[index]["so"] = false;
-                this.g[index]["o"] = false;
-            } else if(type == "fc") {
-                this.g[index]["be"] = stautusBe;
-                this.g[index]["fc"] = false;
-                this.g[index]["sa"] = false;
-                this.g[index]["nv"] = false;
-                this.g[index]["so"] = false;
-                this.g[index]["o"] = false;
-            } else {
-                this.g[index]["be"] = false;
-                this.g[index]["fc"] = false;
-                this.g[index]["sa"] = false;
-                this.g[index]["nv"] = false;
-                this.g[index]["so"] = false;
-                this.g[index]["o"] = false;
-            }
-
-            if(type == "so" || type == "o") {
-                this.g[index][type] = !bol;
-            } else {
-                this.g[index][type] = bol;
-            }
-
-
-            if(type == "o") {
-                if (this.g[index]["o"] == true) {
-                    this.infoReserve = ["G", index, this.g[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.g[index]["fc"] == true) {
+                    this.g[index]["be"] = bol;
+                    this.g[index]["sa"] = false;
+                    this.g[index]["nv"] = false;
+                    this.g[index]["so"] = false;
+                    this.g[index]["o"] = false;
+                } else {
+                    this.g[index]["be"] = bol;
+                    this.g[index]["fc"] = false;
+                    this.g[index]["sa"] = false;
+                    this.g[index]["nv"] = false;
+                    this.g[index]["so"] = false;
+                    this.g[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.g[index]["be"] == true) {
+                    this.g[index]["fc"] = bol;
+                    this.g[index]["sa"] = false;
+                    this.g[index]["nv"] = false;
+                    this.g[index]["so"] = false;
+                    this.g[index]["o"] = false;
+                } else {
+                    this.g[index]["be"] = false;
+                    this.g[index]["fc"] = bol;
+                    this.g[index]["sa"] = false;
+                    this.g[index]["nv"] = false;
+                    this.g[index]["so"] = false;
+                    this.g[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.g[index]["be"] = false;
+                this.g[index]["fc"] = false;
+                this.g[index]["sa"] = bol;
+                this.g[index]["nv"] = false;
+                this.g[index]["so"] = false;
+                this.g[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.g[index]["be"] = false;
+                this.g[index]["fc"] = false;
+                this.g[index]["sa"] = false;
+                this.g[index]["nv"] = bol;
+                this.g[index]["so"] = false;
+                this.g[index]["o"] = false;
+            } else if(type == 'so') {
+                this.g[index]["be"] = false;
+                this.g[index]["fc"] = false;
+                this.g[index]["sa"] = false;
+                this.g[index]["nv"] = false;
+                this.g[index]["so"] = bol;
+                this.g[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.g[index]["be"] = false;
+                this.g[index]["fc"] = false;
+                this.g[index]["sa"] = false;
+                this.g[index]["nv"] = false;
+                this.g[index]["so"] = false;
+                this.g[index]["o"] = bol;
             }
 
             return this.sauvegarde();
         },
 
         checkH(index, type, bol) {
-
-            const stautusFc =  this.h[index]["fc"]
-            const stautusBe =  this.h[index]["be"]
-
             if(type == "be") {
-                this.h[index]["be"] = false;
-                this.h[index]["fc"] = stautusFc;
-                this.h[index]["sa"] = false;
-                this.h[index]["nv"] = false;
-                this.h[index]["so"] = false;
-                this.h[index]["o"] = false;
-            } else if(type == "fc") {
-                this.h[index]["be"] = stautusBe;
-                this.h[index]["fc"] = false;
-                this.h[index]["sa"] = false;
-                this.h[index]["nv"] = false;
-                this.h[index]["so"] = false;
-                this.h[index]["o"] = false;
-            } else {
-                this.h[index]["be"] = false;
-                this.h[index]["fc"] = false;
-                this.h[index]["sa"] = false;
-                this.h[index]["nv"] = false;
-                this.h[index]["so"] = false;
-                this.h[index]["o"] = false;
-            }
-
-            if(type == "so" || type == "o") {
-                this.h[index][type] = !bol;
-            } else {
-                this.h[index][type] = bol;
-            }
-
-
-            if(type == "o") {
-                if (this.h[index]["o"] == true) {
-                    this.infoReserve = ["H", index, this.h[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.h[index]["fc"] == true) {
+                    this.h[index]["be"] = bol;
+                    this.h[index]["sa"] = false;
+                    this.h[index]["nv"] = false;
+                    this.h[index]["so"] = false;
+                    this.h[index]["o"] = false;
+                } else {
+                    this.h[index]["be"] = bol;
+                    this.h[index]["fc"] = false;
+                    this.h[index]["sa"] = false;
+                    this.h[index]["nv"] = false;
+                    this.h[index]["so"] = false;
+                    this.h[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.h[index]["be"] == true) {
+                    this.h[index]["fc"] = bol;
+                    this.h[index]["sa"] = false;
+                    this.h[index]["nv"] = false;
+                    this.h[index]["so"] = false;
+                    this.h[index]["o"] = false;
+                } else {
+                    this.h[index]["be"] = false;
+                    this.h[index]["fc"] = bol;
+                    this.h[index]["sa"] = false;
+                    this.h[index]["nv"] = false;
+                    this.h[index]["so"] = false;
+                    this.h[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.h[index]["be"] = false;
+                this.h[index]["fc"] = false;
+                this.h[index]["sa"] = bol;
+                this.h[index]["nv"] = false;
+                this.h[index]["so"] = false;
+                this.h[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.h[index]["be"] = false;
+                this.h[index]["fc"] = false;
+                this.h[index]["sa"] = false;
+                this.h[index]["nv"] = bol;
+                this.h[index]["so"] = false;
+                this.h[index]["o"] = false;
+            } else if(type == 'so') {
+                this.h[index]["be"] = false;
+                this.h[index]["fc"] = false;
+                this.h[index]["sa"] = false;
+                this.h[index]["nv"] = false;
+                this.h[index]["so"] = bol;
+                this.h[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.h[index]["be"] = false;
+                this.h[index]["fc"] = false;
+                this.h[index]["sa"] = false;
+                this.h[index]["nv"] = false;
+                this.h[index]["so"] = false;
+                this.h[index]["o"] = bol;
             }
 
             return this.sauvegarde();
         },
 
         checkI(index, type, bol) {
-
-            const stautusFc =  this.i[index]["fc"]
-            const stautusBe =  this.i[index]["be"]
-
             if(type == "be") {
-                this.i[index]["be"] = false;
-                this.i[index]["fc"] = stautusFc;
-                this.i[index]["sa"] = false;
-                this.i[index]["nv"] = false;
-                this.i[index]["so"] = false;
-                this.i[index]["o"] = false;
-            } else if(type == "fc") {
-                this.i[index]["be"] = stautusBe;
-                this.i[index]["fc"] = false;
-                this.i[index]["sa"] = false;
-                this.i[index]["nv"] = false;
-                this.i[index]["so"] = false;
-                this.i[index]["o"] = false;
-            } else {
-                this.i[index]["be"] = false;
-                this.i[index]["fc"] = false;
-                this.i[index]["sa"] = false;
-                this.i[index]["nv"] = false;
-                this.i[index]["so"] = false;
-                this.i[index]["o"] = false;
-            }
-
-            if(type == "so" || type == "o") {
-                this.i[index][type] = !bol;
-            } else {
-                this.i[index][type] = bol;
-            }
-
-
-            if(type == "o") {
-                if (this.i[index]["o"] == true) {
-                    this.infoReserve = ["I", index, this.i[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.i[index]["fc"] == true) {
+                    this.i[index]["be"] = bol;
+                    this.i[index]["sa"] = false;
+                    this.i[index]["nv"] = false;
+                    this.i[index]["so"] = false;
+                    this.i[index]["o"] = false;
+                } else {
+                    this.i[index]["be"] = bol;
+                    this.i[index]["fc"] = false;
+                    this.i[index]["sa"] = false;
+                    this.i[index]["nv"] = false;
+                    this.i[index]["so"] = false;
+                    this.i[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.i[index]["be"] == true) {
+                    this.i[index]["fc"] = bol;
+                    this.i[index]["sa"] = false;
+                    this.i[index]["nv"] = false;
+                    this.i[index]["so"] = false;
+                    this.i[index]["o"] = false;
+                } else {
+                    this.i[index]["be"] = false;
+                    this.i[index]["fc"] = bol;
+                    this.i[index]["sa"] = false;
+                    this.i[index]["nv"] = false;
+                    this.i[index]["so"] = false;
+                    this.i[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.i[index]["be"] = false;
+                this.i[index]["fc"] = false;
+                this.i[index]["sa"] = bol;
+                this.i[index]["nv"] = false;
+                this.i[index]["so"] = false;
+                this.i[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.i[index]["be"] = false;
+                this.i[index]["fc"] = false;
+                this.i[index]["sa"] = false;
+                this.i[index]["nv"] = bol;
+                this.i[index]["so"] = false;
+                this.i[index]["o"] = false;
+            } else if(type == 'so') {
+                this.i[index]["be"] = false;
+                this.i[index]["fc"] = false;
+                this.i[index]["sa"] = false;
+                this.i[index]["nv"] = false;
+                this.i[index]["so"] = bol;
+                this.i[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.i[index]["be"] = false;
+                this.i[index]["fc"] = false;
+                this.i[index]["sa"] = false;
+                this.i[index]["nv"] = false;
+                this.i[index]["so"] = false;
+                this.i[index]["o"] = bol;
             }
 
             return this.sauvegarde();
@@ -1046,87 +1371,154 @@ export default {
 
         checkJ(index, type, bol) {
 
-            const stautusFc =  this.j[index]["fc"]
-            const stautusBe =  this.j[index]["be"]
-
             if(type == "be") {
-                this.j[index]["be"] = false;
-                this.j[index]["fc"] = stautusFc;
-                this.j[index]["sa"] = false;
-                this.j[index]["nv"] = false;
-                this.j[index]["so"] = false;
-                this.j[index]["o"] = false;
-            } else if(type == "fc") {
-                this.j[index]["be"] = stautusBe;
-                this.j[index]["fc"] = false;
-                this.j[index]["sa"] = false;
-                this.j[index]["nv"] = false;
-                this.j[index]["so"] = false;
-                this.j[index]["o"] = false;
-            } else {
-                this.j[index]["be"] = false;
-                this.j[index]["fc"] = false;
-                this.j[index]["sa"] = false;
-                this.j[index]["nv"] = false;
-                this.j[index]["so"] = false;
-                this.j[index]["o"] = false;
-            }
-
-            if(type == "so" || type == "o") {
-                this.j[index][type] = !bol;
-            } else {
-                this.j[index][type] = bol;
-            }
-
-            if(type == "o") {
-                if (this.j[index]["o"] == true) {
-                    this.infoReserve = ["J", index, this.j[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.j[index]["fc"] == true) {
+                    this.j[index]["be"] = bol;
+                    this.j[index]["sa"] = false;
+                    this.j[index]["nv"] = false;
+                    this.j[index]["so"] = false;
+                    this.j[index]["o"] = false;
+                } else {
+                    this.j[index]["be"] = bol;
+                    this.j[index]["fc"] = false;
+                    this.j[index]["sa"] = false;
+                    this.j[index]["nv"] = false;
+                    this.j[index]["so"] = false;
+                    this.j[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.j[index]["be"] == true) {
+                    this.j[index]["fc"] = bol;
+                    this.j[index]["sa"] = false;
+                    this.j[index]["nv"] = false;
+                    this.j[index]["so"] = false;
+                    this.j[index]["o"] = false;
+                } else {
+                    this.j[index]["be"] = false;
+                    this.j[index]["fc"] = bol;
+                    this.j[index]["sa"] = false;
+                    this.j[index]["nv"] = false;
+                    this.j[index]["so"] = false;
+                    this.j[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.j[index]["be"] = false;
+                this.j[index]["fc"] = false;
+                this.j[index]["sa"] = bol;
+                this.j[index]["nv"] = false;
+                this.j[index]["so"] = false;
+                this.j[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.j[index]["be"] = false;
+                this.j[index]["fc"] = false;
+                this.j[index]["sa"] = false;
+                this.j[index]["nv"] = bol;
+                this.j[index]["so"] = false;
+                this.j[index]["o"] = false;
+            } else if(type == 'so') {
+                this.j[index]["be"] = false;
+                this.j[index]["fc"] = false;
+                this.j[index]["sa"] = false;
+                this.j[index]["nv"] = false;
+                this.j[index]["so"] = bol;
+                this.j[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.j[index]["be"] = false;
+                this.j[index]["fc"] = false;
+                this.j[index]["sa"] = false;
+                this.j[index]["nv"] = false;
+                this.j[index]["so"] = false;
+                this.j[index]["o"] = bol;
             }
 
             return this.sauvegarde();
         },
 
         checkK(index, type, bol) {
-
-            const stautusFc =  this.k[index]["fc"]
-            const stautusBe =  this.k[index]["be"]
-
             if(type == "be") {
-                this.k[index]["be"] = false;
-                this.k[index]["fc"] = stautusFc;
-                this.k[index]["sa"] = false;
-                this.k[index]["nv"] = false;
-                this.k[index]["so"] = false;
-                this.k[index]["o"] = false;
-            } else if(type == "fc") {
-                this.k[index]["be"] = stautusBe;
-                this.k[index]["fc"] = false;
-                this.k[index]["sa"] = false;
-                this.k[index]["nv"] = false;
-                this.k[index]["so"] = false;
-                this.k[index]["o"] = false;
-            } else {
-                this.k[index]["be"] = false;
-                this.k[index]["fc"] = false;
-                this.k[index]["sa"] = false;
-                this.k[index]["nv"] = false;
-                this.k[index]["so"] = false;
-                this.k[index]["o"] = false;
-            }
-
-            if(type == "so" || type == "o") {
-                this.k[index][type] = !bol;
-            } else {
-                this.k[index][type] = bol;
-            }
-
-            if(type == "o") {
-                if (this.k[index]["o"] == true) {
-                    this.infoReserve = ["K", index, this.k[index]["titre"], this.observateurId]
-                    this.flagReserve = true;
+                if(this.k[index]["fc"] == true) {
+                    this.k[index]["be"] = bol;
+                    this.k[index]["sa"] = false;
+                    this.k[index]["nv"] = false;
+                    this.k[index]["so"] = false;
+                    this.k[index]["o"] = false;
+                } else {
+                    this.k[index]["be"] = bol;
+                    this.k[index]["fc"] = false;
+                    this.k[index]["sa"] = false;
+                    this.k[index]["nv"] = false;
+                    this.k[index]["so"] = false;
+                    this.k[index]["o"] = false;
                 }
+            } else if(type == "fc") {
+                if(this.k[index]["be"] == true) {
+                    this.k[index]["fc"] = bol;
+                    this.k[index]["sa"] = false;
+                    this.k[index]["nv"] = false;
+                    this.k[index]["so"] = false;
+                    this.k[index]["o"] = false;
+                } else {
+                    this.k[index]["be"] = false;
+                    this.k[index]["fc"] = bol;
+                    this.k[index]["sa"] = false;
+                    this.k[index]["nv"] = false;
+                    this.k[index]["so"] = false;
+                    this.k[index]["o"] = false;
+                }
+            } else if(type == 'sa') {
+                this.k[index]["be"] = false;
+                this.k[index]["fc"] = false;
+                this.k[index]["sa"] = bol;
+                this.k[index]["nv"] = false;
+                this.k[index]["so"] = false;
+                this.k[index]["o"] = false;
+            } else if(type == 'nv') {
+                this.k[index]["be"] = false;
+                this.k[index]["fc"] = false;
+                this.k[index]["sa"] = false;
+                this.k[index]["nv"] = bol;
+                this.k[index]["so"] = false;
+                this.k[index]["o"] = false;
+            } else if(type == 'so') {
+                this.k[index]["be"] = false;
+                this.k[index]["fc"] = false;
+                this.k[index]["sa"] = false;
+                this.k[index]["nv"] = false;
+                this.k[index]["so"] = bol;
+                this.k[index]["o"] = false;
+            }
+            else if(type == 'o') {
+                // check false for delete observation conncte with title
+                if(bol == false) {
+                    const ref = "A";
+                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
+                    .then((result) => {
+                        console.log(result)
+                    })
+                    .catch((error) => {
+                        console.log(error.message);
+                    });
+                } 
+
+                this.k[index]["be"] = false;
+                this.k[index]["fc"] = false;
+                this.k[index]["sa"] = false;
+                this.k[index]["nv"] = false;
+                this.k[index]["so"] = false;
+                this.k[index]["o"] = bol;
             }
 
             return this.sauvegarde();
@@ -1383,6 +1775,15 @@ table tr th:nth-child(2) {
 
 .not-saved {
     color: red;
+}
+
+td > p {
+   color: red;
+   cursor: pointer;
+}
+
+td > p:hover {
+    color: #04AA6D;
 }
 
 </style>

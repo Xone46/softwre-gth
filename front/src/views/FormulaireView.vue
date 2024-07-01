@@ -19,7 +19,7 @@
             <div class="right">
                 <button @click="retour">Liste des interventions</button>
                 <button @click="visualiationReserve">Visualisation les réserves</button>
-                <button @click="terminer">Contrôle terminer</button>
+                <!-- <button @click="terminer">Contrôle terminer</button> -->
             </div>
         </div>
 

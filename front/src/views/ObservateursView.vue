@@ -4,7 +4,7 @@
         <button class="retour" @click="retour">Retour</button>
         
         <h3 v-if="observateurId != null">Modification Appareil, Equipement, Ou Installation</h3>
-        <h3 v-else>Nouvel Appareil, Equipement, Ou Installation</h3>
+        <h3 v-else>Nouvel Appareil, Equipement Ou Installation</h3>
 
         <!-- start errors -->
         <ul v-if="flagError">
@@ -69,7 +69,7 @@
             <input type="text" v-model="observateur.accompagnateur">
         </label>
 
-        <button v-if="observateurId != null" class="valider" @click="modifier">Modifier</button>
+        <button v-if="observateurId != null" class="modifier" @click="modifier">Modifier</button>
         <button v-else class="valider" @click="valider">Valider</button>
         <button class="anuller" @click="anuller">Anuller</button>
 
@@ -229,31 +229,28 @@ export default {
 
 
 
+.retour {
+    background-color: #f00e06;
+}
 
-
-.valider, .retour {
-    background-color: #04AA6D;
-    cursor: pointer;
+.modifier {
+    background-color: #f7890c;
 }
 
 .anuller {
     background-color: #f00e06;
-    cursor: pointer;
+}
+
+.valider {
+    background-color: #04AA6D;
 }
 
 .start {
     color: red;
 }
 
-.retour {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center
-}
 
-.observateurs button {
+.retour, .modifier, .anuller, .valider {
     padding: 10px;
     width : 100px;
     height : 40px;
@@ -262,7 +259,6 @@ export default {
     margin-bottom: 5px;
     border: 0px;
     border-radius: 5px;
-    background-color: #e21608;
     cursor: pointer;
 }
 

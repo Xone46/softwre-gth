@@ -2,14 +2,15 @@
     <div class="visualiation">
         <div class="parent">
             <h4 class="titre">listes des observation saisies</h4>
-            <div class="content" v-for="item in commentaires" :key="item.titre">
-                <div class="sub-content">
-                    <textarea :value="item.titre"></textarea>
-                    <select v-model="item.status">
-                    <option v-for="critique in listCritique" :key="critique">{{ critique }}</option>
-                    </select>
-                </div>
-            </div>
+            <ul class="content">
+                <li v-for="(item, index) in commentaires" :key="index">
+                    <p class="critique" v-if="item.status == 'critique'" >{{  item.status  }} </p>
+                    <p class="non_critique" v-if="item.status == 'non critique'">{{  item.status  }}</p>
+                    <span>{{  item.name  }}</span>
+                    <p>{{  item.status  }}</p>
+                    <button @click="supprimer(item.ref, item.name,)">supprimer</button>
+                </li>
+            </ul>
             <div class="buttons">
                 <button @click="quitter">Quitter</button>
             </div>
@@ -39,20 +40,32 @@ export default {
     methods: {
         quitter() {
             return this.$emit("quitter");
+        },
+
+        supprimer(ref, name, index) {
+            Commentaires.supprimer(ref, name, this.observateurId)
+            .then((result) => {
+                if(result) {
+                    this.commentaires.splice(index, 1);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         }
     },
 
     created() {
         Commentaires.readCommentaires(this.observateurId)
-        .then((result) => {
+        .then((result) => {                    
             for(let i = 0; i < result.data.length; i++) {
                     for(let j = 0; j < result.data[i].modelSelected.length; j++) {
                         this.commentaires.push({
-                        titre : result.data[i].modelSelected[j].name,
+                        titre : result.data[i].titre,
+                        ref : result.data[i].ref,
+                        name : result.data[i].modelSelected[j].name,
                         status : result.data[i].modelSelected[j].status
                     });
-
-                    console.log(result.data[i].modelSelected[j].status)
                 }
             }
         })
@@ -97,6 +110,7 @@ export default {
 .visualiation .parent .titre {
     width: 100%;
     height: 50px;
+    margin: 0;
     background-color: #0b0a68e6;
     color: white;
     border: 0px;
@@ -110,7 +124,8 @@ export default {
 
 .visualiation .parent .content {
     overflow-y: auto;
-    width: 100%;
+    margin: 0;
+    width: 90%;
     height: 100%;
     background-color: white;
     display: flex;
@@ -119,45 +134,63 @@ export default {
     align-items: flex-start;
 }
 
-.visualiation .parent .content .sub-content {
+
+ul > li {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;;
+    text-decoration: none;
 }
 
-.visualiation .parent .content .sub-content textarea {
-    width: 80%;
-    height: 80px;
+ul > li > span {
+    font-size: large;
+    margin-left: 10px;
 }
 
-
-
-.visualiation .parent .buttons {
-    width: 100%;
-    height: auto;
-    background-color: white;
-}
-
-.visualiation .parent .buttons {
-    width: 100%;
-    height: auto;
-    background-color: white;
-}
-
-.visualiation .parent .buttons button {
-    width: fit-content;
-    height: 50px;
+ul > li > .critique {
+    font-size: large;
     background-color: red;
     color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+ul > li > .non_critique {
+    font-size: large;
+    background-color: green;
+    color: white;
+    height: fit-content;
+    width: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+ul > li > button {
+    font-size: large;
+    background-color: red;
+    color: white;
+    cursor: pointer;
     border: 0px;
     border-radius: 5px;
-    font-size: large;
-    cursor: pointer;
+    margin-left: 10px;
+    padding: 3px;
 }
 
 
-
-
-
-
+.visualiation .parent .buttons button {
+    height: 45px;
+    width: fit-content;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    font-size: large;
+    border: 0px;
+    border-radius: 5px;
+}
 
 </style>

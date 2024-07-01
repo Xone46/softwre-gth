@@ -33,6 +33,7 @@
                     <td>{{ observateur.accompagnateur }}</td>
                     <td>{{ observateur.marquage }}</td>
                     <td v-if="!observateur.etat"><button class="termine" @click="terminer(observateur._id)">Je termine</button></td>
+                    <td v-if="observateur.etat">Déjà terminé</td>
                 </tr>
             </table>
         </div>
@@ -44,8 +45,9 @@
 
             </div>
             <div class="right">
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="modifier">Modifier (Appareil, équipement, installation)</button>
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="supprimer">Supprimer (Appareil, équipement, installation)</button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="cacher">Cacher</button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="modifier">Modifier</button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="supprimer">Supprimer</button>
             </div>
         </div>
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
@@ -95,20 +97,38 @@ export default {
         },
 
         terminer(observateurId) {
+
             Observateurs.terminer(observateurId)
             .then(() => {
                 const index = this.observateurs.findIndex((el) => el._id == observateurId);
-                this.observateurs.splice(index , 1);
+                this.observateurs[index].etat = true;
             })  
             .catch((error) => {
                 this.flagInvertesment = true;
                 this.msgInvertesment =  error.response.data.msg;
             }); 
+
         },
 
         modifier() {
             if(this.observateursSelect.length === 1) {
                 return this.$emit("modifierObservateur", this.observateursSelect[0]);
+            }
+        },
+
+        cacher() {
+
+            if(this.observateursSelect.length === 1) {
+                console.log(this.observateursSelect[0])
+                Observateurs.cacher(this.observateursSelect[0])
+                .then(() => {
+                    const index = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
+                    this.observateurs.splice(index , 1);
+                })  
+                .catch((error) => {
+                    this.flagInvertesment = true;
+                    this.msgInvertesment =  error.response.data.msg;
+                });
             }
         },
 
@@ -157,23 +177,17 @@ export default {
         },
 
         apercu() {
-            const index = this.observateurs.find((el) => el._id === this.observateursSelect[0])
-            if(index.etat == false) {
-                 this.flagError = true;
-                 this.msgError = "Toutes les informations doivent d'abord être remplies pour pouvoir télécharger";
-            } else {
-                this.flagSpinner = true;
-                Observateurs.apercu(this.observateursSelect[0], sessionStorage.getItem("id"))
-                .then((result) => {
-                    if (result) {
-                    this.flagSpinner = false
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-            }
 
+            this.flagSpinner = true;
+            Observateurs.apercu(this.observateursSelect[0], sessionStorage.getItem("id"))
+            .then((result) => {
+                if (result) {
+                    this.flagSpinner = false;
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            });
         },
 
         send() {
@@ -198,7 +212,11 @@ export default {
                 .then((response) => {
                     this.flagSpinner = false;
                     this.flagInvertesment = false;
-                    this.observateurs = response.data;
+                    response.data.forEach((element) => {
+                        if(!element.cache) {
+                            this.observateurs.push(element);
+                        }
+                    });
                 })
                 .catch((error) => {
                     this.flagSpinner = false;
@@ -303,13 +321,19 @@ export default {
 .actions .left button:nth-child(2) {
     background-color: #0300c7;
 }
+
 .actions .right button:nth-child(1) {
-    background-color: #ff6a00;
+    background-color: #f607ca;
 }
 
 .actions .right button:nth-child(2) {
+    background-color: #ff6a00;
+}
+
+.actions .right button:nth-child(3) {
     background-color: #e21608;
 }
+
 
 .termine {
     background-color: #04AA6D;

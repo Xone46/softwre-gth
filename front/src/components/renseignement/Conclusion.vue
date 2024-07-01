@@ -319,7 +319,7 @@ export default {
 }
 
 .alignment {
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     text-align: justify;
@@ -339,7 +339,7 @@ export default {
 }
 
 .alignment-nested {
-    width: 1000px;
+    width: 80%;
     display: flex;
     flex-direction: row;
     text-align: justify;

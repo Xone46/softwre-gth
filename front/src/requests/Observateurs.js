@@ -93,6 +93,25 @@ class Observateurs {
         })
     }
 
+    static cacher(observateurId) {
+        return new Promise((resolve, reject) => {
+            axios.put(`${VUE_APP_API_BASE_URL}/observateurs/cacher/${observateurId}`,
+            {
+                observateurId : observateurId
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
 
 
     static selected(observateurId) {
