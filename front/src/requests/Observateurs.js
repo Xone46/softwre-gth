@@ -57,9 +57,9 @@ class Observateurs {
     }
 
 
-    static select(observateurId) {
+    static select(interventionId) {
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/${observateurId}`, {
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/${interventionId}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }

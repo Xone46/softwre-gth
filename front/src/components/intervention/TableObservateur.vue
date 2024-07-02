@@ -212,9 +212,9 @@ export default {
                 .then((response) => {
                     this.flagSpinner = false;
                     this.flagInvertesment = false;
-                    response.data.forEach((element) => {
-                        if(!element.cache) {
-                            this.observateurs.push(element);
+                    response.data.forEach((el) => {
+                        if(Boolean(el.cache) === false) {
+                            this.observateurs.push(el);
                         }
                     });
                 })

@@ -135,7 +135,6 @@ export default {
             Observateurs.send(this.observateursSelect[0], sessionStorage.getItem("id"))
                 .then((result) => {
                     if (result) {
-                        console.log(result)
                         this.flagSpinner = false
                     }
                 })
@@ -152,7 +151,12 @@ export default {
                 // response succes
                 this.flagSpinner = false;
                 this.flagInvertesment = false;
-                this.observateurs = response.data;
+                response.data.forEach((el) => {
+                    if(el.etat == true) {
+                        this.observateurs.push(el);
+                    }
+                })
+                
             })
             .catch((error) => {
                 // response error
