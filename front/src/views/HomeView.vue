@@ -8,7 +8,7 @@
     </div>
 
     <button class="ressayer" v-if="flagDemarrer" @click="demarrer">Démarrer</button>
-    <Login v-if="falgAuth" @quitter="quitter()" />
+    <Login v-if="falgAuth" @quitter="quitter" />
 
   </div>
 </template>
@@ -28,6 +28,7 @@ export default {
       flagDemarrer: true,
       falgAuth: false,
       counter: 0,
+      online: null,
     }
   },
   components: {
@@ -55,38 +56,41 @@ export default {
       this.flagReessayer = false;
 
       //ckeck connecte internet exist or not
-      var online = navigator.onLine;
 
-      if (online) {
+      await fetch("https://api.ipify.org/?format=json")
+        .then(async (res) => {
+          if (res.status == 200) {
+            const response = await fetch("https://api.ipify.org/?format=json");
+            const { ip } = await response.json();
+            Chekin.status(ip)
+              .then((result) => {
 
-        const response = await fetch("https://api.ipify.org/?format=json");
-        const adresse = await response.json();
+                if (result.data) {
+                  this.flagDemarrer = false;
+                  this.flagSpinner = false;
+                  this.falgAuth = true;
+                  sessionStorage.setItem("connection", true);
+                }
 
-        Chekin.status(adresse.ip)
-          .then((result) => {
+              })
+              .catch((error) => {
+                if (error.message) {
+                  this.flagDemarrer = false;
+                  this.flagSpinner = false;
+                  this.falgAuth = false;
+                }
+              });
+          }
+        })
+        .catch(() => {
+            this.flagDemarrer = false;
+            this.flagSpinner = false;
+            this.falgAuth = true;
+            sessionStorage.setItem("connection", false);
+        });
 
-            if (result.data) {
-              this.flagDemarrer = false;
-              this.flagSpinner = false;
-              this.falgAuth = true;
-              sessionStorage.setItem("connection", true);
-            }
 
-          })
-          .catch((error) => {
-            if (error.message) {
-              this.flagDemarrer = false;
-              this.flagSpinner = false;
-              this.falgAuth = false;
-            }
-          });
 
-      } else {
-        this.flagDemarrer = false;
-        this.flagSpinner = false;
-        this.falgAuth = true;
-        sessionStorage.setItem("connection", false);
-      }
 
     }
 

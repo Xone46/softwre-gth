@@ -4,6 +4,7 @@
         <h2>Liste des [ Appareil(s), équipement(s) ou installation(s) ] Terminés</h2>
         <Spinner v-if="flagSpinner" />
         <Invertesment :msgInvertesment="msgInvertesment" v-if="flagInvertesment" />
+        <Error :msg="msgError" v-if="flagError" @annuller="annuller" />
 
         <div class="sites" v-if="!flagSpinner && !flagInvertesment">
             <table class="table-data">
@@ -37,8 +38,10 @@
         </div>
 
         <div class="actions">
-            <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">Aperçu le Rapport</button>
-            <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="send">Transférer pour la validation</button>
+            <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">Aperçu le
+                Rapport</button>
+            <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="send">Transférer pour la
+                validation</button>
         </div>
 
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
@@ -51,12 +54,14 @@
 import Observateurs from "@/requests/Observateurs"
 import Spinner from 'vue-simple-spinner'
 import Invertesment from "@/components/models/Invertesment.vue"
+import Error from "@/components/models/Error.vue"
 import Verified from "@/components/models/Verified.vue"
 
 export default {
     name: 'ObservationView',
     data() {
         return {
+
             errors: [],
             flagError: false,
 
@@ -65,14 +70,16 @@ export default {
             observateursSelect: [],
             flagSpinner: true,
             flagInvertesment: false,
-            msgInvertesment: null
+            msgInvertesment: null,
+            msgError : null
         }
     },
 
     components: {
         Invertesment,
         Verified,
-        Spinner
+        Spinner,
+        Error
     },
 
     props: {
@@ -81,8 +88,12 @@ export default {
 
     methods: {
 
+        annuller() {
+            this.flagError = false;
+        },
+
         retour() {
-         this.$router.push("/dashboard").catch(()=>{});
+            this.$router.push("/dashboard").catch(() => { });
         },
 
 
@@ -119,20 +130,6 @@ export default {
         apercu() {
             this.flagSpinner = true;
             Observateurs.apercu(this.observateursSelect[0], sessionStorage.getItem("id"))
-            .then((result) => {
-                if (result) {
-                 this.flagSpinner = false
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        },
-
-        send() {
-            this.flagSpinner = true;
-
-            Observateurs.send(this.observateursSelect[0], sessionStorage.getItem("id"))
                 .then((result) => {
                     if (result) {
                         this.flagSpinner = false
@@ -141,6 +138,37 @@ export default {
                 .catch((error) => {
                     console.log(error);
                 });
+        },
+
+        async send() {
+
+            this.flagSpinner = true;
+            // check online or offline
+            await fetch("https://api.ipify.org/?format=json")
+            .then(async (res) => {
+
+                if (res.status == 200) {
+                    const response = await fetch("https://api.ipify.org/?format=json");
+                    const { ip } = await response.json();
+                    // send rapport with info Inspecteur ville et pays
+                    Observateurs.send(this.observateursSelect[0], sessionStorage.getItem("id"), ip)
+                        .then((result) => {
+                            if (result) {
+                                this.flagSpinner = false
+                            }
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+
+            })
+            .catch(() => {
+                this.flagSpinner = false;
+                this.flagError = true;
+                this.msgError = "il n'existe pas l'internet pour vous envoyons le rapport";
+            });
+
         }
     },
 
@@ -152,11 +180,11 @@ export default {
                 this.flagSpinner = false;
                 this.flagInvertesment = false;
                 response.data.forEach((el) => {
-                    if(el.etat == true) {
+                    if (el.etat == true) {
                         this.observateurs.push(el);
                     }
                 })
-                
+
             })
             .catch((error) => {
                 // response error
@@ -169,15 +197,14 @@ export default {
 </script>
 
 <style scoped>
-
 .observations {
     width: 100%;
 }
 
 .observations button {
     padding: 10px;
-    width : 100px;
-    height : 40px;
+    width: 100px;
+    height: 40px;
     color: white;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -268,6 +295,4 @@ export default {
 .actions button:nth-child(2) {
     background-color: #f3a108;
 }
-
-
 </style>
