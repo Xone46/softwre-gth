@@ -9,13 +9,20 @@
 
 
         <div class="content">
-            <div class="left">
+
+            <div class="left" v-if="formulaire.typeRapport == 'GTH-Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP'">
                 <Renseignement v-if="flagRenseignements" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
                 <Description v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
                 <Examen v-if="flagExamen" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
                 <Photo v-if="flagPhoto" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
                 <Conclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
             </div>
+
+
+            <div class="left" v-if="formulaire.typeRapport == 'GTH-Famille AC1 - Accessoires de levage_Minute'">
+                <Renseignement_gth_famille_ac1 v-if="flagRenseignements" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            </div>
+
             <div class="right">
                 <button @click="retour">Liste des interventions</button>
                 <button @click="visualiationReserve">Visualisation les réserves</button>
@@ -30,12 +37,19 @@
 
 <script>
 import { nextTick } from 'vue';
+
+//GTH-Famille 1-LEV1
 import Renseignement from "@/components/renseignement/Renseignement"
 import Description from "@/components/renseignement/Description.vue"
 import Examen from "@/components/renseignement/Examen.vue"
 import Photo from "@/components/renseignement/Photo.vue"
 import Conclusion from "@/components/renseignement/Conclusion.vue"
 import VisualiationReserve from "@/components/models/VisualiationReserve.vue"
+
+//GTH-Famille-AC1
+import Renseignement_gth_famille_ac1 from "@/components/GTH-Famille-AC1/Renseignement_gth_famille_ac1.vue"
+
+
 import Menu from "@/components/menu/Menu.vue"
 
 export default {
@@ -51,9 +65,12 @@ export default {
             flagConclusion: false,
             flagVisualiationReserve : false,
 
+            flagRenseignement_gth_famille_ac1 : false,
+
             formulaire: {
                 observateurId: "",
-                categorieAppareil: ""
+                categorieAppareil: "",
+                typeRapport : ""
             },
 
             flagRenseignementsColor: false,
@@ -72,7 +89,8 @@ export default {
         Photo,
         Conclusion,
         Menu,
-        VisualiationReserve
+        VisualiationReserve,
+        Renseignement_gth_famille_ac1
     },
 
     methods: {
@@ -153,6 +171,7 @@ export default {
     created() {
         this.formulaire.observateurId = this.$route.params.id;
         this.formulaire.categorieAppareil = this.$route.params.categorieAppareil;
+        this.formulaire.typeRapport = this.$route.params.typeRapport;
     }
 }
 </script>

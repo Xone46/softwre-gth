@@ -20,40 +20,52 @@
             <input type="text" v-model="interventions.numeroAffaire">
         </label>
 
-        <label for="Numéro d'affaire">
-            <h3>Numéro de Site : <span class="start" v-if="interventions.site.length == 0">*</span></h3>
-            <input type="number" v-model="interventions.site">
-        </label>
 
         <label for="Etablissement">
-            <h3>Établissement : <span class="start" v-if="interventions.etablissement.length == 0">*</span></h3>
+            <h3>Établissement (Siège social): <span class="start" v-if="interventions.etablissement.length == 0">*</span></h3>
             <input type="text" v-model="interventions.etablissement">
         </label>
 
         <label for="Repère">
-            <h3>Repère : <span class="start" v-if="interventions.repere.length == 0">*</span></h3>
+            <h3>Repère (Siège social): <span class="start" v-if="interventions.repere.length == 0">*</span></h3>
             <input type="text" v-model="interventions.repere">
         </label>
 
         <label for="Adresse">
-            <h3>Adresse : <span class="start" v-if="interventions.adresse.length == 0">*</span></h3>
+            <h3>Adresse (Siège social): <span class="start" v-if="interventions.adresse.length == 0">*</span></h3>
             <input type="text" v-model="interventions.adresse">
         </label>
 
         <label for="Code Postal">
-            <h3>Code Postal : <span class="start" v-if="interventions.codePostal.length == 0">*</span></h3>
+            <h3>Code Postal (Siège social): <span class="start" v-if="interventions.codePostal.length == 0">*</span></h3>
             <input type="text" v-model="interventions.codePostal">
         </label>
 
         <label for="Ville">
-            <h3>Ville : <span class="start" v-if="interventions.ville.length == 0">*</span></h3>
+            <h3>Ville (Siège social): <span class="start" v-if="interventions.ville.length == 0">*</span></h3>
             <input type="text" v-model="interventions.ville">
         </label>
 
         <label for="Pays">
-            <h3>Pays : <span class="start" v-if="interventions.pays.length == 0">*</span></h3>
+            <h3>Pays (Siège social): <span class="start" v-if="interventions.pays.length == 0">*</span></h3>
             <input type="text" v-model="interventions.pays">
         </label>
+
+        <label for="Numéro d'affaire">
+            <h3>Numéro de Site : <span class="start" v-if="interventions.site.length == 0">*</span></h3>
+            <input type="number" :value="interventions.site" @input="event => handelSite(event)">
+        </label>
+
+        
+
+        <label for="Coordonnée du site" v-if="interventions.site >= 2">
+            <div v-for="(item, index) in filterSite" :key="item">
+              <h3>Coordonnée du site {{ index + 1 }} :<span class="start" v-if="interventions.site.length == 0">*</span></h3>
+              <input type="text" :value="interventions.coordonnees[index]" @input="event => handelCoordonnee(event, index)">
+            </div>
+        </label>
+
+
 
         <label for="Métier">
             <h3>Métier : <span class="start" v-if="interventions.metier.length == 0">*</span></h3>
@@ -93,18 +105,19 @@ export default {
                 codePostal : "",
                 ville : "",
                 pays : "",
-                metier : ""
+                metier : "",
+                coordonnees : [null, null]
             },
 
             metiers : [
-                "Electricite",
-                "Levage",
-                "Accessoires de Levage",
-                "Ascenseur",
-                "Escaliers Mécanique – Trottoirs Roulantes",
-                "Machines Et Engins De Chantier",
-                "Porte & Portail",
-                "Quai Niveleur "
+                "Installations électriques",
+                "Accessoire et Appareil de Levage",
+                "Ascenseur et Escalier Mecanique",
+                "Appareil à pression",
+                "Machine et Engin Chantier",
+                "Bruit et Eclairement",
+                "Incendie",
+                "Equipement de travail"
             ]
         }
     },
@@ -119,6 +132,14 @@ export default {
 
     methods: {
 
+        handelSite(event) {
+            this.interventions.site = event.target.value;
+        },
+
+        handelCoordonnee(event, index) {
+            this.interventions.coordonnees[index] = event.target.value;
+        },
+
         modifier() {
             Interventions.update(this.interventions, this.interventionId)
             .then(() => {
@@ -132,6 +153,12 @@ export default {
         },
 
         valider() {
+            
+            // voir est que exite plusiueur site
+            if(this.interventions.coordonnees[0] == null && this.interventions.coordonnees[1] == null) {
+                this.interventions.coordonnees = [];
+            }
+
             Interventions.create(this.interventions)
             .then((result) => {
                 console.log(result)
@@ -143,6 +170,15 @@ export default {
                 this.errors = error.response.data.errors;
             });
         }
+    },
+
+    computed: {
+
+        filterSite: function () {
+            const num = Number(this.interventions.site);
+            return num;
+        }
+
     },
 
     created() {
@@ -205,6 +241,21 @@ export default {
     margin-bottom : 5px;
 }
 
+
+.form-intervention label div {
+    width : 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.form-intervention label div input {
+    width : 100%;
+    height : 40px;
+    margin-top : 5px;
+    margin-bottom : 5px;
+}
 
 
 .form-intervention button {

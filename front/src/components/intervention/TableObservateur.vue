@@ -11,26 +11,30 @@
                 <tr>
                     <th></th>
                     <th>Date</th>
-                    <th>Type</th>
+                    <th>Type de Vérification</th>
                     <th>Mission</th>
+                    <th>Metier</th>
                     <th>Constructeur</th>
                     <th>N° De Série</th>
                     <th>N° Interne</th>
                     <th>Localisation</th>
-                    <th>Accompagnateur</th>
-                    <th>Type de Vérification</th>
+                    <th>Accompagnateur Client</th>
+                    <th>Accompagnateur Inspecteur</th>
+                    <th>marquage</th>
                     <th>L état de Vérification</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
                     <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
                     <td>{{ new Date(observateur.date).toLocaleDateString() }}</td>
                     <td>{{ observateur.typeVerification }}</td>
-                    <td>{{ observateur.categorieAppareil }}</td>
+                    <td>{{ observateur.typeAppareil }}</td>
+                    <td>{{ observateur.metier }}</td>
                     <td>{{ observateur.constructeur }}</td>
                     <td>{{ observateur.numeroSerie }}</td>
                     <td>{{ observateur.numeroInterne }}</td>
                     <td>{{ observateur.localisation }}</td>
-                    <td>{{ observateur.accompagnateur }}</td>
+                    <td>{{ observateur.accompagnateurClient }}</td>
+                    <td>{{ observateur.accompagnateurInspecteur }}</td>
                     <td>{{ observateur.marquage }}</td>
                     <td v-if="!observateur.etat"><button class="termine" @click="terminer(observateur._id)">Je termine</button></td>
                     <td v-if="observateur.etat">Déjà terminé</td>
@@ -137,7 +141,7 @@ export default {
 
                 for (let i = 0; i < this.observateurs.length; i++) {
                     if (this.observateurs[i]._id == this.observateursSelect[0]) {
-                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], categorieAppareil: this.observateurs[i].categorieAppareil } });
+                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], categorieAppareil: this.observateurs[i].categorieAppareil, typeRapport : this.observateurs[i].typeRapport } });
                         break;
                     }
                 }
@@ -213,6 +217,7 @@ export default {
                     this.flagSpinner = false;
                     this.flagInvertesment = false;
                     response.data.forEach((el) => {
+                        console.log(el)
                         if(Boolean(el.cache) === false) {
                             this.observateurs.push(el);
                         }
