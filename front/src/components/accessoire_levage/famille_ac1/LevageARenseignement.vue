@@ -3,7 +3,6 @@
         <div class="descriptions">
             <table border="1">
 
-
                 <tr>
                     <td :class="[renseignement.etablissement.length != 0 ? 'saved' : 'not-saved']">Etablissement :</td>
                     <td v-html="renseignement.tagEtablissement" @input="getValueEtablissement"></td>
@@ -83,10 +82,12 @@
 </template>
 
 <script>
-import Renseignement from "@/requests/Renseignement"
+
+
 import Insert from "@/components/models/Insert.vue"
+import Renseignement from "@/requests/levageA/Renseignements"
+import Completed from "@/requests/levageA/Completed"
 // import Observateurs from "@/requests/Observateurs";
-import Completed from "@/requests/completed";
 export default {
     name: 'renseignement-component',
     data() {
@@ -126,7 +127,6 @@ export default {
 
                 tagDateDuree: "<input type='date' value='' height='48px'>",
                 dateDuree: "",
-
 
                 observateurId: "",
                 renseignementId: null
@@ -244,8 +244,7 @@ export default {
 
                         },
 
-
-                            this.flagReset = false;
+                        this.flagReset = false;
                         this.$emit("menuStatusChicked");
 
                     }
@@ -289,14 +288,35 @@ export default {
                             this.renseignement.observateurId = this.observateurId;
                             this.flagReset = true;
 
-                            this.renseignement.etablissement = this.renseignement.tagEtablissement.replace("value=''", `value='${result.data.renseignement.etablissement}'`);
+                            this.renseignement.tagEtablissement = this.renseignement.tagEtablissement.replace("value=''", `value='${result.data.renseignement.etablissement}'`);
                             this.renseignement.etablissement = result.data.renseignement.etablissement;
                             
-                            this.renseignement.adresse = this.renseignement.tagAdresse.replace("value=''", `value='${result.data.renseignement.adresse}'`);
+                            this.renseignement.tagAdresse = this.renseignement.tagAdresse.replace("value=''", `value='${result.data.renseignement.adresse}'`);
                             this.renseignement.adresse = result.data.renseignement.adresse;
 
-                            this.renseignement.etendueVerification = this.renseignement.tagEtendueVerification.replace("value=''", `value='${result.data.renseignement.adresse}'`);
+                            this.renseignement.tagEtendueVerification = this.renseignement.tagEtendueVerification.replace("value=''", `value='${result.data.renseignement.etendueVerification}'`);
                             this.renseignement.etendueVerification = result.data.renseignement.etendueVerification;
+
+                            this.renseignement.tagAccompagnateurClient = this.renseignement.tagAccompagnateurClient.replace("value=''", `value='${result.data.renseignement.accompagnateurClient}'`);
+                            this.renseignement.accompagnateurClient = result.data.renseignement.accompagnateurClient;
+
+                            this.renseignement.tagPersonneCompteRendu = this.renseignement.tagPersonneCompteRendu.replace("value=''", `value='${result.data.renseignement.personneCompteRendu}'`);
+                            this.renseignement.personneCompteRendu = result.data.renseignement.personneCompteRendu;
+
+                            this.renseignement.tagNomVerificateur = this.renseignement.tagNomVerificateur.replace("value=''", `value='${result.data.renseignement.nomVerificateur}'`);
+                            this.renseignement.nomVerificateur = result.data.renseignement.nomVerificateur;
+
+                            this.renseignement.tagRapportPrecedent = this.renseignement.tagRapportPrecedent.replace("value=''", `value='${result.data.renseignement.rapportPrecedent}'`);
+                            this.renseignement.rapportPrecedent = result.data.renseignement.rapportPrecedent;
+
+                            this.renseignement.tagDatePrecedenteVerification = this.renseignement.tagDatePrecedenteVerification.replace("value=''", `value='${result.data.renseignement.datePrecedenteVerification}'`);
+                            this.renseignement.datePrecedenteVerification = result.data.renseignement.datePrecedenteVerification;
+
+                            this.renseignement.tagDocuments = this.renseignement.tagDocuments.replace("value=''", `value='${result.data.renseignement.documents}'`);
+                            this.renseignement.documents = result.data.renseignement.documents;
+
+                            this.renseignement.tagDateDuree = this.renseignement.tagDateDuree.replace("value=''", `value='${result.data.renseignement.dateDuree}'`);
+                            this.renseignement.dateDuree = result.data.renseignement.dateDuree;
 
                             this.$emit("menuStatusChicked");
 
@@ -309,8 +329,6 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
-
-
 
     }
 }

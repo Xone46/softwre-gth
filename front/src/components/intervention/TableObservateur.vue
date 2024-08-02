@@ -123,7 +123,6 @@ export default {
         cacher() {
 
             if(this.observateursSelect.length === 1) {
-                console.log(this.observateursSelect[0])
                 Observateurs.cacher(this.observateursSelect[0])
                 .then(() => {
                     const index = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
@@ -137,11 +136,12 @@ export default {
         },
 
         editer() {
+
             if (this.observateursSelect.length === 1) {
 
                 for (let i = 0; i < this.observateurs.length; i++) {
                     if (this.observateurs[i]._id == this.observateursSelect[0]) {
-                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], categorieAppareil: this.observateurs[i].categorieAppareil, typeRapport : this.observateurs[i].typeRapport } });
+                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], typeAppareil: this.observateurs[i].typeAppareil, typeRapport : this.observateurs[i].typeRapport } });
                         break;
                     }
                 }

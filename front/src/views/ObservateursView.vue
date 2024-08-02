@@ -137,12 +137,12 @@ export default {
             },
             coordonnees : [],
             rapports : [
-                "GTH-Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP",
-                "GTH-Famille 2-LEV2_(Palans, Ponts roulants, Portiques)_Minute VGP",
-                "GTH-Famille 3-LEV3_(Chariots automoteurs, Elévateur Gerbeur )_Minute VGP",
-                "GTH-Famille 4-LEV4_(Elevateur personnel )_Minute VGP",
-                "GTH-Famille 4-LEV5_(Pont Elevateur de véhicule )_Minute VGP",
-                "GTH-Famille AC1 - Accessoires de levage_Minute"
+                "Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP",
+                "Famille 2-LEV2_(Palans, Ponts roulants, Portiques)_Minute VGP",
+                "Famille 3-LEV3_(Chariots automoteurs, Elévateur Gerbeur )_Minute VGP",
+                "Famille 4-LEV4_(Elevateur personnel )_Minute VGP",
+                "Famille 4-LEV5_(Pont Elevateur de véhicule )_Minute VGP",
+                "Famille AC1 - Accessoires de levage_Minute"
             ],
             marquage: [
                 "Appareil CE",
