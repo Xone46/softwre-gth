@@ -6,7 +6,7 @@
             <!-- Start Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
             <Menu_famille1_lev1 v-if="flagMenu && formulaire.typeRapport == 'GTH-Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP'" :observateurId="formulaire.observateurId"  @renseignement="renseignement_famille1_lev1" @description="description" @examen="examen"  @conclusion="conclusion" @photo="photo" />
             <!-- Fin Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
-            <MenuLevageA v-if="flagMenu && formulaire.typeRapport == 'GTH-Famille AC1 - Accessoires de levage_Minute'" :observateurId="formulaire.observateurId" @renseignementLevageA="renseignementLevageA" @examenLevageA="examenLevageA" @accessoireLevageA="accessoireLevageA" @descriptionLevageA="descriptionLevageA" @photo="photo" @conclusion="conclusion"  />
+            <Menu_famille_ac1 v-if="flagMenu && formulaire.typeRapport == 'GTH-Famille AC1 - Accessoires de levage_Minute'" :observateurId="formulaire.observateurId" @renseignementLevageA="renseignementLevageA" @examenLevageA="examenLevageA" @accessoireLevageA="accessoireLevageA" @descriptionLevageA="descriptionLevageA" @photo="photo" @conclusion="conclusion"  />
         <h3></h3>
 
 
@@ -25,12 +25,12 @@
 
             <!-- Start GTH-Famille AC1 - Accessoires de levage_Minute -->
             <div class="left" v-if="formulaire.typeRapport == 'GTH-Famille AC1 - Accessoires de levage_Minute'">
-                <LevageARenseignement v-if="flagRenseignements" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <LevageAExamen v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <LevageAAccessoire v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <LevageADescription v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <LevageAPhoto v-if="flagPhoto" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <LevageAConclusion v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+                <Renseignement_famille_ac1 v-if="flagRenseignements" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+                <Examen_famille_ac1 v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+                <Accessoire_famille_ac1 v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+                <Description_famille_ac1 v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+                <Photo_famille_ac1 v-if="flagPhoto" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+                <Conclusion_famille_ac1 v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
             </div>
             <!-- Fin GTH-Famille AC1 - Accessoires de levage_Minute -->
 
@@ -53,28 +53,28 @@ import { nextTick } from 'vue';
 
 // Start Components ---------------------------------------------------------------
 //GTH-Famille 1-LEV1
-import Renseignement_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Renseignement_famille1_lev1.vue"
+import Conclusion_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Conclusion_famille_ac1.vue"
 import Description_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Description_famille1_lev1.vue"
 import Examen_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Examen_famille1_lev1.vue"
 import Photo_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Photo_famille1_lev1.vue"
-import Conclusion_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Conclusion_famille1_lev1.vue"
-// import Reserve_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Reserve_famille1_lev1.vue"
+import Renseignement_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Renseignement_famille1_lev1.vue"
+import Reserve_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Reserve_famille1_lev1.vue"
 
 
 
 //GTH-Famille-AC1
-import LevageARenseignement from "@/components/gth_famille_ac1/LevageARenseignement.vue"
-import LevageAExamen from "@/components/gth_famille_ac1/LevageAExamen.vue"
-import LevageAAccessoire from "@/components/gth_famille_ac1/LevageAAccessoire.vue"
-import LevageADescription from "@/components/gth_famille_ac1/LevageADescription.vue"
-import LevageAPhoto from "@/components/gth_famille_ac1/LevageAPhoto.vue"
-import LevageAConclusion from "@/components/gth_famille_ac1/LevageAConclusion.vue"
+import Accessoire_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Accessoire_famille_ac1.vue"
+import Conclusion_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Conclusion_famille_ac1"
+import Description_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Description_famille_ac1"
+import Examen_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Examen_famille_ac1"
+import Photo_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Photo_famille_ac1.vue"
+import Renseignement_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Renseignement_famille_ac1.vue"
 // Fin components ---------------------------------------------------------------
 
 
 // Start Menu --------------------------------------------
 import Menu_famille1_lev1 from "@/components/menu/appareil_levage/Menu_famille1_lev1.vue"
-import MenuLevageA from "@/components/menu/accessoire_levage/MenuLevageA.vue"
+import Menu_famille_ac1 from "@/components/menu/accessoire_levage/Menu_famille_ac1.vue"
 // Fin Menu ----------------------------------------------
 
 
@@ -87,22 +87,23 @@ export default {
     data() {
         return {
 
-            flagMenu : true,
-            flagMenuLevageA : true,
-
-            flagRenseignement_famille1_lev1 : true,
+            flagConclusion_famille1_lev1 : false,
             flagDescription_famille1_lev1 : false,
             flagExamen_famille1_lev1 : false,
-            flagPhoto_famille1_lev1: false,
-            Reserve_famille1_lev1: false,
-            flagConclusion_famille1_lev1 : false,
+            flagPhoto_famille1_lev1 : false,
+            flagRenseignement_famille1_lev1 : false,
+            flagReserve_famille1_lev1 : false,
 
-            flagRenseignementsColor: false,
-            flagDescriptionColor: false,
-            flagExamenColor: false,
-            flagPhotoColor: false,
-            flagConclusionColor: false,
+            flagAccessoire_famille_ac1 : false,
+            flagConclusion_famille_ac1 : false,
+            flagDescription_famille_ac1 : false,
+            flagExamen_famille_ac1 : false,
+            flagPhoto_famille_ac1 : false,
+            flagRenseignement_famille_ac1 : false,
 
+            flagVisualiationReserve : false,
+            flagMenu_famille1_lev1 : false,
+            flagMenu_famille_ac1 : false,
 
             formulaire: {
                 observateurId: "",
@@ -114,20 +115,25 @@ export default {
     },
 
     components: {
-        Renseignement_famille1_lev1,
+
+        Conclusion_famille1_lev1,
         Description_famille1_lev1,
         Examen_famille1_lev1,
         Photo_famille1_lev1,
-        Conclusion_famille1_lev1,
-        Menu_famille1_lev1,
+        Renseignement_famille1_lev1,
+        Reserve_famille1_lev1,
+
+        Accessoire_famille_ac1,
+        Conclusion_famille_ac1,
+        Description_famille_ac1,
+        Examen_famille_ac1,
+        Photo_famille_ac1,
+        Renseignement_famille_ac1,
+
         VisualiationReserve,
-        LevageARenseignement,
-        LevageAExamen,
-        LevageAAccessoire,
-        LevageADescription,
-        LevageAPhoto,
-        LevageAConclusion,
-        MenuLevageA
+        Menu_famille1_lev1,
+        Menu_famille_ac1
+
     },
 
     methods: {

@@ -153,4 +153,4 @@ export default {
     border-radius: 5px;
     cursor: pointer;
 }
-</style>
+</style>@/requests/appareil_levage/famille1_lev1/commentaire

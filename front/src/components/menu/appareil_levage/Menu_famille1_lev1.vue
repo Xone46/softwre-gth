@@ -240,4 +240,4 @@ table>tr>th>div>img:hover {
     width: 40px;
     transition: 0.3s;
 }
-</style>
+</style>@/requests/appareil_levage/famille1_lev1/Descriptions@/requests/appareil_levage/famille1_lev1/conclusion

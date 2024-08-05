@@ -780,4 +780,4 @@ table>tr:nth-child(6)>td:nth-child(3) {
 .not-saved {
     color: red;
 }
-</style>
+</style>@/requests/appareil_levage/famille1_lev1/Descriptions
