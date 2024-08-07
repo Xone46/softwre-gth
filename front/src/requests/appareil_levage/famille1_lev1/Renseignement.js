@@ -8,7 +8,7 @@ class Renseignement {
 
     static create(renseignement) {
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/renseignements/create`,
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/renseignements/create`,
                 renseignement,
                 {
                     headers: {
@@ -26,7 +26,7 @@ class Renseignement {
 
     static reset(observateurId) {
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/renseignements/reset/${observateurId}`,
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/renseignements/reset/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ class Renseignement {
     static select(observateurId) {
 
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/renseignements/${observateurId}`,
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/renseignements/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ class Renseignement {
     // -----------------------------------Start gth famille ac1 ----------------------------
     static create_famille_ac1(renseignement) {
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/levageA/create`,
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/levageA/create`,
                 renseignement,
                 {
                     headers: {
@@ -83,7 +83,7 @@ class Renseignement {
 
     static reset_famille_ac1(observateurId) {
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/renseignements_famille_ac1/reset/${observateurId}`,
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/renseignements_famille_ac1/reset/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -101,7 +101,7 @@ class Renseignement {
     static select_famille_ac1(observateurId) {
 
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/renseignements_famille_ac1/${observateurId}`,
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/renseignements_famille_ac1/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'

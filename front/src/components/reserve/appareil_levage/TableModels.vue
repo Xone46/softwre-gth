@@ -21,7 +21,7 @@
 <script>
 import AddModel from "@/components/models/AddModel.vue"
 import Error from "@/components/models/Error.vue"
-import Commentaire from "@/requests/commentaire"
+import Commentaire from "@/requests/appareil_levage/famille1_lev1/commentaire"
 export default {
     name: 'table-observateur',
     data() {

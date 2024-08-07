@@ -27,7 +27,7 @@
                     <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
                     <td>{{ new Date(observateur.date).toLocaleDateString() }}</td>
                     <td>{{ observateur.typeVerification }}</td>
-                    <td>{{ observateur.typeAppareil }}</td>
+                    <td>{{ observateur.typeAppareil[1] }}</td>
                     <td>{{ observateur.metier }}</td>
                     <td>{{ observateur.constructeur }}</td>
                     <td>{{ observateur.numeroSerie }}</td>
@@ -141,7 +141,8 @@ export default {
 
                 for (let i = 0; i < this.observateurs.length; i++) {
                     if (this.observateurs[i]._id == this.observateursSelect[0]) {
-                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], typeAppareil: this.observateurs[i].typeAppareil, typeRapport : this.observateurs[i].typeRapport } });
+                        console.log(this.observateurs[i])
+                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], typeAppareil: this.observateurs[i].typeAppareil } });
                         break;
                     }
                 }

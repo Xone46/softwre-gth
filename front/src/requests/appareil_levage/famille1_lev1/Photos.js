@@ -15,7 +15,7 @@ class Photos {
                 formData.append('observateurId', observateurId);
             }
 
-            axios.post(`${VUE_APP_API_BASE_URL}/photos/create`, formData, {
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/photos/create`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -56,7 +56,7 @@ class Photos {
     static select(observateurId) {
         
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/photos/${observateurId}`,
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/photos/${observateurId}`,
             {
                 headers: {
                      'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ class Photos {
     static reset(observateurId) {
         
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/photos/${observateurId}`,
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/photos/${observateurId}`,
             {
                 headers: {
                      'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ class Photos {
     static displayImage(filename) {
 
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/photos/display/${filename}`, {
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/photos/display/${filename}`, {
                 headers: this.headers,
                 responseType: 'blob',
             })

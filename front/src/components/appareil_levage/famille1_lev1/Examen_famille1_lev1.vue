@@ -446,9 +446,9 @@
 </template>
 
 <script>
-import Examens from "@/requests/Examens"
+import Examens from "@/requests/appareil_levage/famille1_lev1/Examens"
+import Commentaires from "@/requests/appareil_levage/famille1_lev1/commentaire";
 import Reserve from "@/components/models/Reserve.vue"
-import Commentaires from "@/requests/commentaire";
 
 export default {
     name: 'renseignement-component',

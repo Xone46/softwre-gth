@@ -8,7 +8,7 @@
                         <span>RENSEIGNEMENTS GENERAUX ET ADMINISTRATIFS</span>
                     </div>
                 </th>
-                <th v-if="!flagRenseignementsColor" @click="renseignementLevageA">
+                <th v-if="!flagRenseignementsColor" @click="renseignement">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>RENSEIGNEMENTS GENERAUX ET ADMINISTRATIFS</span>
@@ -16,7 +16,7 @@
                 </th>
 
 
-                <th class="green" v-if="flagDescriptionColor" @click="descriptionLevageA">
+                <th class="green" v-if="flagDescriptionColor" @click="description">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>EXAMEN DE L'APPAREIL OU DE L'ÉTAT DE CONSERVATION</span>
@@ -30,7 +30,7 @@
                 </th>
 
 
-                <th class="green" v-if="flagExamenColor" @click="examenLevageA">
+                <th class="green" v-if="flagExamenColor" @click="examen">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>EXAMEN DE L'APPAREIL OU DE L'ÉTAT DE CONSERVATION</span>
@@ -43,13 +43,13 @@
                     </div>
                 </th>
 
-                <th class="green" v-if="flagExamenColor" @click="examenLevageA">
+                <th class="green" v-if="flagExamenColor" @click="examen">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>LISTE DES ACCESSOIRES VERIFIES</span>
                     </div>
                 </th>
-                <th v-if="!flagExamenColor" @click="examenLevageA">
+                <th v-if="!flagExamenColor" @click="examen">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>LISTE DES ACCESSOIRES VERIFIES</span>
@@ -57,13 +57,13 @@
                 </th>
 
 
-                <th class="green" v-if="flagConclusionColor" @click="conclusionLevageA">
+                <th class="green" v-if="flagConclusionColor" @click="conclusion">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>CONCLUSION</span>
                     </div>
                 </th>
-                <th v-if="!flagConclusionColor" @click="conclusionLevageA">
+                <th v-if="!flagConclusionColor" @click="conclusion">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>CONCLUSION</span>
@@ -71,13 +71,13 @@
                 </th>
 
 
-                <th class="green" v-if="flagPhotoColor" @click="photoLevageA">
+                <th class="green" v-if="flagPhotoColor" @click="photo">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>PHOTO</span>
                     </div>
                 </th>
-                <th v-if="!flagPhotoColor" @click="photolevageA">
+                <th v-if="!flagPhotoColor" @click="photo">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>PHOTO</span>
@@ -91,12 +91,11 @@
 
 <script>
 
-
-import Renseignements from "@/requests/Renseignement";
-import Descriptions from "@/requests/Descriptions";
-import Examens from "@/requests/Examens";
-import Photos from "@/requests/Photos";
-import Conclusions from "@/requests/conclusion";
+import Renseignements from "@/requests/appareil_levage/famille1_lev1/Renseignement";
+import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions";
+import Examens from "@/requests/appareil_levage/famille1_lev1/Examens";
+import Photos from "@/requests/appareil_levage/famille1_lev1/Photos";
+import Conclusions from "@/requests/appareil_levage/famille1_lev1/conclusion";
 
 export default {
     name: 'menu-component',
@@ -145,7 +144,6 @@ export default {
 
 
     created() {
-
 
         Renseignements.select(this.observateurId)
             .then((result) => {

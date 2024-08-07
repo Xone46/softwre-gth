@@ -12,7 +12,7 @@
   </template>
   
   <script>
-  import Completed from "@/requests/completed"
+  import Completed from "@/requests/appareil_levage/famille1_lev1/completed"
   export default {
     name: 'DashboardView',
     data() {

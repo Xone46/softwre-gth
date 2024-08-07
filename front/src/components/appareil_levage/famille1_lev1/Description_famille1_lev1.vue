@@ -145,7 +145,7 @@
 </template>
 
 <script>
-import Descriptions from "@/requests/Descriptions"
+import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions"
 export default {
     name: 'renseignement-component',
     data() {

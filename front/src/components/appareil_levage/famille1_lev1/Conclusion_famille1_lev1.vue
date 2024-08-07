@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import Conclusion from "@/requests/conclusion"
+import Conclusion from "@/requests/appareil_levage/famille1_lev1/conclusion"
 import Insert from "@/components/models/Insert.vue"
 
 export default {

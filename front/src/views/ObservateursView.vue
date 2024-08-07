@@ -24,12 +24,12 @@
             </select>
         </label>
 
-        <label for="Type de Rapport">
-            <h3>Type de Rapport : <span class="start" v-if="observateur.typeRapport.length == 0">*</span></h3>
-            <select v-model="observateur.typeRapport">
-                <option v-for="rapport in rapports" :key="rapport">{{ rapport }}</option>
+        <!-- <label for="Catégorie d'Appareil">
+            <h3>Catégorie d'Appareil : <span class="start" v-if="observateur.categorie.length == 0">*</span></h3>
+            <select v-model="observateur.categorie">
+                <option v-for="categorie in categories" :key="[categorie.a, categorie.b, categorie.c]">{{ categorie.a }} - {{ categorie.b }} - {{ categorie.c }}</option>
             </select>
-        </label>
+        </label> -->
 
         <label for="Marquage">
             <h3>Marquage : <span class="start" v-if="observateur.marquage.length == 0">*</span></h3>
@@ -54,7 +54,7 @@
         <label for="Type d'Appareil">
             <h3>Type d'Appareil : <span class="start" v-if="observateur.typeAppareil.length == 0">*</span></h3>
             <select v-model="observateur.typeAppareil">
-                <option v-for="appareil in appareils" :key="appareil">{{ appareil }}</option>
+                <option v-for="appareil in appareils" :key="appareil.b" :value="[appareil.a, appareil.b]">{{ appareil.b }}</option>
             </select>
         </label>
 
@@ -108,6 +108,7 @@
 <script>
 import Observateurs from '@/requests/Observateurs';
 import Interventions from '@/requests/Interventions';
+import Filo from '@/requests/Filos';
 
 
 
@@ -133,17 +134,10 @@ export default {
                 marquage: "",
                 accompagnateurClient: "",
                 accompagnateurInspecteur: "",
-                typeRapport : ""
+                // categorie : ""
             },
             coordonnees : [],
-            rapports : [
-                "Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP",
-                "Famille 2-LEV2_(Palans, Ponts roulants, Portiques)_Minute VGP",
-                "Famille 3-LEV3_(Chariots automoteurs, Elévateur Gerbeur )_Minute VGP",
-                "Famille 4-LEV4_(Elevateur personnel )_Minute VGP",
-                "Famille 4-LEV5_(Pont Elevateur de véhicule )_Minute VGP",
-                "Famille AC1 - Accessoires de levage_Minute"
-            ],
+            categories : [],
             marquage: [
                 "Appareil CE",
                 "Appareil Non CE",
@@ -158,9 +152,7 @@ export default {
                 { status: false, name: "Périodique" }
             ],
 
-            appareils: [
-                "Accessoires de levage - Palonniers (2)"
-            ]
+            appareils: []
         }
     },
 
@@ -213,6 +205,15 @@ export default {
                 // set metier
                 this.observateur.metier = result.data.metier;
 
+                // obtenir les categories compatible avec metier
+                Filo.read()
+                .then((result) => {
+                    this.appareils = result.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
                 if(result.data.coordonnees.length >= 2) {
                     result.data.coordonnees.forEach((el) => this.coordonnees.push(el))
                 }
@@ -240,6 +241,7 @@ export default {
                     console.log(error);
                 });
         }
+
     }
 }
 </script>

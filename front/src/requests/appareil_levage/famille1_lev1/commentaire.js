@@ -8,11 +8,12 @@ const config = {
     }
 };
 
+
 class Commentaires {
 
     static create(observateurId, ref, number, titre, modelSelected) {
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/commentaires/create`,
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/commentaires/create`,
                 {
                     observateurId,
                     ref,
@@ -32,7 +33,7 @@ class Commentaires {
 
     static supprimer(ref, name, observateurId) {
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/commentaires/supprimer`,
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/commentaires/supprimer`,
                 {
                     ref,
                     name,
@@ -49,7 +50,7 @@ class Commentaires {
 
     static delete(commentaireId) {
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/commentaires/${commentaireId}`, config)
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/commentaires/${commentaireId}`, config)
                 .then(response => {
                     resolve(response);
                 })
@@ -61,7 +62,7 @@ class Commentaires {
 
     static deleteByRefAndObservateurId(ref, observateurId) {
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/commentaires/${ref}/${observateurId}`, config)
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/commentaires/${ref}/${observateurId}`, config)
                 .then(response => {
                     resolve(response);
                 })
@@ -73,7 +74,7 @@ class Commentaires {
 
     static deleteByIndexAndTitreAnd(commentaireId) {
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/commentaires/${commentaireId}`, config)
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/commentaires/${commentaireId}`, config)
                 .then(response => {
                     resolve(response);
                 })
@@ -87,7 +88,7 @@ class Commentaires {
     static select(ref, number, titre, observateurId) {
 
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/commentaires`,
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/commentaires`,
                 {
                     ref: ref,
                     number: number,
@@ -107,7 +108,7 @@ class Commentaires {
     static readCommentaires(observateurId) {
 
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/commentaires/${observateurId}`, config)
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/commentaires/${observateurId}`, config)
                 .then(response => {
                     resolve(response);
                 })

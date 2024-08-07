@@ -111,11 +111,12 @@ export default {
 
             metiers : [
                 "Installations électriques",
-                "Accessoire et Appareil de Levage",
-                "Ascenseur et Escalier Mecanique",
+                "Appareil de levage",
+                "Accessoire de levage",
+                "Ascenseur et escalier mecanique",
                 "Appareil à pression",
-                "Machine et Engin Chantier",
-                "Bruit et Eclairement",
+                "Machine et engin chantier",
+                "Bruit et eclairement",
                 "Incendie",
                 "Equipement de travail"
             ]

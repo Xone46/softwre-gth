@@ -79,11 +79,12 @@
 <script>
 
 
-import Renseignements from "@/requests/Renseignement";
-import Descriptions from "@/requests/Descriptions";
-import Examens from "@/requests/Examens";
-import Photos from "@/requests/Photos";
-import Conclusions from "@/requests/conclusion";
+import Renseignements from "@/requests/appareil_levage/famille1_lev1/Renseignement";
+import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions";
+import Examens from "@/requests/appareil_levage/famille1_lev1/Examens";
+import Photos from "@/requests/appareil_levage/famille1_lev1/Photos";
+import Conclusions from "@/requests/appareil_levage/famille1_lev1/conclusion";
+
 
 export default {
     name: 'menu-component',

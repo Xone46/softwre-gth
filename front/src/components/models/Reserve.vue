@@ -55,7 +55,7 @@
 <script>
 
 import AddModel from '@/components/models/AddModel.vue';
-import Commentaires from "@/requests/commentaire"
+import Commentaires from "@/requests/appareil_levage/famille1_lev1/commentaire"
 
 export default {
     name: 'reserve-component',

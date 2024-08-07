@@ -35,11 +35,11 @@
 
 <script>
 
-import Examens from "@/requests/Examens"
+import Examens from "@/requests/appareil_levage/famille1_lev1/Examens"
 import Spinner from 'vue-simple-spinner'
 import Invertesment from "@/components/models/Invertesment.vue"
 import Verified from "@/components/models/Verified.vue"
-import Commentaire from "@/requests/commentaire"
+import Commentaire from "@/requests/appareil_levage/famille1_lev1/commentaire"
 
 export default {
     name: 'table-observateur',

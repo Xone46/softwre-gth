@@ -85,8 +85,8 @@
 
 
 import Insert from "@/components/models/Insert.vue"
-import Renseignement from "@/requests/levageA/Renseignements"
-import Completed from "@/requests/levageA/Completed"
+import Renseignement from "@/requests/accessoire_levage/famille_ac1/Renseignements"
+import Completed from "@/requests/accessoire_levage/famille_ac1/Completed"
 // import Observateurs from "@/requests/Observateurs";
 export default {
     name: 'renseignement-component',

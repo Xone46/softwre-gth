@@ -1,39 +1,54 @@
 <template>
     <div class="formulaire">
 
-        <h3>{{ formulaire.typeAppareil }}</h3>
+        <h3>{{ formulaire.typeAppareil[1] }}</h3>
 
-            <!-- Start Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
-            <Menu_famille1_lev1 v-if="flagMenu && formulaire.typeRapport == 'GTH-Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP'" :observateurId="formulaire.observateurId"  @renseignement="renseignement_famille1_lev1" @description="description" @examen="examen"  @conclusion="conclusion" @photo="photo" />
-            <!-- Fin Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
-            <Menu_famille_ac1 v-if="flagMenu && formulaire.typeRapport == 'GTH-Famille AC1 - Accessoires de levage_Minute'" :observateurId="formulaire.observateurId" @renseignementLevageA="renseignementLevageA" @examenLevageA="examenLevageA" @accessoireLevageA="accessoireLevageA" @descriptionLevageA="descriptionLevageA" @photo="photo" @conclusion="conclusion"  />
+        <!-- Start Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
+        <Menu_famille1_lev1
+            v-if="flag_famille_lev"
+            :observateurId="formulaire.observateurId" @renseignement="renseignement_famille1_lev1"
+            @description="description_famille1_lev1" @examen="examen_famille1_lev1" @conclusion="conclusion_famille1_lev1" @photo="photo_famille1_lev1" />
+        <!-- Fin Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
+        <Menu_famille_ac1 v-if="flag_famille_ac"
+            :observateurId="formulaire.observateurId" @renseignement="renseignement_famille_ac1"
+            @examen="examen_famille_ac1" @accessoire="accessoire_famille_ac1"
+            @description="description_famille_ac1" @photo="photo_famille_ac1" @conclusion="conclusion_famille_ac1" />
         <h3></h3>
 
 
         <div class="content">
 
-            <!-- Start Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
-            <div class="left" v-if="formulaire.typeRapport == 'Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP'">
-                <Renseignement_famille1_lev1 v-if="flagRenseignement_famille1_lev1" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <Description_famille1_lev1 v-if="flagDescription_famille1_lev1" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <Examen_famille1_lev1 v-if="flagExamen_famille1_lev1" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <Photo_famille1_lev1 v-if="flagPhoto_famille1_lev1" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <Conclusion_famille1_lev1 v-if="flagConclusion_famille1_lev1" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            <div class="left"
+                v-if="flag_famille_lev">
+                <Renseignement_famille1_lev1 v-if="flagRenseignement_famille1_lev1"
+                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked" />
+                <Description_famille1_lev1 v-if="flagDescription_famille1_lev1"
+                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked" />
+                <Examen_famille1_lev1 v-if="flagExamen_famille1_lev1" :observateurId="formulaire.observateurId"
+                    @menuStatusChicked="menuStatusChicked" />
+                <Photo_famille1_lev1 v-if="flagPhoto_famille1_lev1" :observateurId="formulaire.observateurId"
+                    @menuStatusChicked="menuStatusChicked" />
+                <Conclusion_famille1_lev1 v-if="flagConclusion_famille1_lev1" :observateurId="formulaire.observateurId"
+                    @menuStatusChicked="menuStatusChicked" />
+                <Reserve_famille1_lev1 v-if="flagReserve_famille1_lev1" :observateurId="formulaire.observateurId"
+                    @menuStatusChicked="menuStatusChicked" />
             </div>
-            <!-- End Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
 
 
-            <!-- Start GTH-Famille AC1 - Accessoires de levage_Minute -->
-            <div class="left" v-if="formulaire.typeRapport == 'GTH-Famille AC1 - Accessoires de levage_Minute'">
-                <Renseignement_famille_ac1 v-if="flagRenseignements" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <Examen_famille_ac1 v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <Accessoire_famille_ac1 v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <Description_famille_ac1 v-if="flagDescription" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <Photo_famille_ac1 v-if="flagPhoto" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
-                <Conclusion_famille_ac1 v-if="flagConclusion" :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked"/>
+            <div class="left" v-if="flag_famille_ac">
+                <Renseignement_famille_ac1 v-if="flagRenseignement_famille_ac1"
+                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked" />
+                <Examen_famille_ac1 v-if="flagExamen_famille_ac1" :observateurId="formulaire.observateurId"
+                    @menuStatusChicked="menuStatusChicked" />
+                <Accessoire_famille_ac1 v-if="flagAccessoire_famille_ac1" :observateurId="formulaire.observateurId"
+                    @menuStatusChicked="menuStatusChicked" />
+                <Description_famille_ac1 v-if="flagDescription_famille_ac1" :observateurId="formulaire.observateurId"
+                    @menuStatusChicked="menuStatusChicked" />
+                <Photo_famille_ac1 v-if="flagPhoto_famille_ac1" :observateurId="formulaire.observateurId"
+                    @menuStatusChicked="menuStatusChicked" />
+                <Conclusion_famille_ac1 v-if="flagConclusion_famille_ac1" :observateurId="formulaire.observateurId"
+                    @menuStatusChicked="menuStatusChicked" />
             </div>
-            <!-- Fin GTH-Famille AC1 - Accessoires de levage_Minute -->
-
 
             <div class="right">
                 <button @click="retour">Liste des interventions</button>
@@ -42,7 +57,8 @@
             </div>
         </div>
 
-        <VisualiationReserve :observateurId="formulaire.observateurId"  v-if="flagVisualiationReserve" @quitter="handelQuitter"/>
+        <VisualiationReserve :observateurId="formulaire.observateurId" v-if="flagVisualiationReserve"
+            @quitter="handelQuitter" />
 
     </div>
 </template>
@@ -51,9 +67,9 @@
 
 import { nextTick } from 'vue';
 
-// Start Components ---------------------------------------------------------------
+
 //GTH-Famille 1-LEV1
-import Conclusion_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Conclusion_famille_ac1.vue"
+import Conclusion_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Conclusion_famille1_lev1.vue"
 import Description_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Description_famille1_lev1.vue"
 import Examen_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Examen_famille1_lev1.vue"
 import Photo_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Photo_famille1_lev1.vue"
@@ -64,12 +80,11 @@ import Reserve_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Re
 
 //GTH-Famille-AC1
 import Accessoire_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Accessoire_famille_ac1.vue"
-import Conclusion_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Conclusion_famille_ac1"
-import Description_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Description_famille_ac1"
-import Examen_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Examen_famille_ac1"
+import Conclusion_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Conclusion_famille_ac1.vue"
+import Description_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Description_famille_ac1.vue"
+import Examen_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Examen_famille_ac1.vue"
 import Photo_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Photo_famille_ac1.vue"
 import Renseignement_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Renseignement_famille_ac1.vue"
-// Fin components ---------------------------------------------------------------
 
 
 // Start Menu --------------------------------------------
@@ -87,30 +102,32 @@ export default {
     data() {
         return {
 
-            flagConclusion_famille1_lev1 : false,
-            flagDescription_famille1_lev1 : false,
-            flagExamen_famille1_lev1 : false,
-            flagPhoto_famille1_lev1 : false,
-            flagRenseignement_famille1_lev1 : false,
-            flagReserve_famille1_lev1 : false,
+            flag_famille_lev : false,
+            flagMenu_famille1_lev1: false,
+            flagConclusion_famille1_lev1: false,
+            flagDescription_famille1_lev1: false,
+            flagExamen_famille1_lev1: false,
+            flagPhoto_famille1_lev1: false,
+            flagRenseignement_famille1_lev1: true,
+            flagReserve_famille1_lev1: false,
 
-            flagAccessoire_famille_ac1 : false,
-            flagConclusion_famille_ac1 : false,
-            flagDescription_famille_ac1 : false,
-            flagExamen_famille_ac1 : false,
-            flagPhoto_famille_ac1 : false,
-            flagRenseignement_famille_ac1 : false,
+            flag_famille_ac : false,
+            flagMenu_famille_ac1: false,
+            flagAccessoire_famille_ac1: false,
+            flagConclusion_famille_ac1: false,
+            flagDescription_famille_ac1: false,
+            flagExamen_famille_ac1: false,
+            flagPhoto_famille_ac1: false,
+            flagRenseignement_famille_ac1: true,
 
-            flagVisualiationReserve : false,
-            flagMenu_famille1_lev1 : false,
-            flagMenu_famille_ac1 : false,
+            flagVisualiationReserve: false,
+
 
             formulaire: {
                 observateurId: "",
                 categorieAppareil: "",
-                typeRapport : ""
+                typeRapport: ""
             }
-
         }
     },
 
@@ -131,6 +148,8 @@ export default {
         Renseignement_famille_ac1,
 
         VisualiationReserve,
+
+
         Menu_famille1_lev1,
         Menu_famille_ac1
 
@@ -143,11 +162,11 @@ export default {
         },
 
         retour() {
-            this.$router.push("/interventions").catch(()=>{});
+            this.$router.push("/interventions").catch(() => { });
         },
 
         terminer() {
-            this.$router.push("/terminer").catch(()=>{});
+            this.$router.push("/terminer").catch(() => { });
         },
 
         visualiationReserve() {
@@ -155,99 +174,189 @@ export default {
         },
 
         sauvegarder() {
-            this.$router.push("/sauvegarder").catch(()=>{});
+            this.$router.push("/sauvegarder").catch(() => { });
         },
-
 
         async menuStatusChicked() {
             // Remove MyComponent from the DOM
-            this.flagMenu = false;
+            this.flagMenu_famille1_lev1 = false;
+            this.flagMenu_famille_ac1 = false;
             // Wait for the change to get flushed to the DOM
             await nextTick();
             // Add the component back in
-            this.flagMenu = true;
+            this.flagMenu_famille1_lev1 = true;
+            this.flagMenu_famille_ac1 = true;
         },
 
         renseignement_famille1_lev1() {
 
-            this.flagRenseignement_famille1_lev1 = true;
+            this.flagConclusion_famille1_lev1 = false;
             this.flagDescription_famille1_lev1 = false;
             this.flagExamen_famille1_lev1 = false;
-            this.flagPhoto_famille1_lev1= false;
-            this.Reserve_famille1_lev1= false;
-            this.flagConclusion_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = true;
+            this.flagReserve_famille1_lev1 = false;
 
-            this.flagRenseignementsColor = false;
-            this.flagDescriptionColor = false;
-            this.flagExamenColor = false;
-            this.flagPhotoColor = false;
-            this.flagConclusionColor = false;
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagConclusion_famille_ac1 = false;
+            this.flagDescription_famille_ac1 = false;
+            this.flagExamen_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = false;
         },
 
-        description() {
-
-            this.flagRenseignement_famille1_lev1 = false;
+        description_famille1_lev1() {
+            this.flagConclusion_famille1_lev1 = false;
             this.flagDescription_famille1_lev1 = true;
             this.flagExamen_famille1_lev1 = false;
-            this.flagPhoto_famille1_lev1= false;
-            this.Reserve_famille1_lev1= false;
-            this.flagConclusion_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
 
-            this.flagRenseignementsColor = false;
-            this.flagDescriptionColor = false;
-            this.flagExamenColor = false;
-            this.flagPhotoColor = false;
-            this.flagConclusionColor = false;
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagConclusion_famille_ac1 = false;
+            this.flagDescription_famille_ac1 = false;
+            this.flagExamen_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = false;
         },
 
-        examen() {
-
-            this.flagRenseignement_famille1_lev1 = false;
+        examen_famille1_lev1() {
+            this.flagConclusion_famille1_lev1 = false;
             this.flagDescription_famille1_lev1 = false;
             this.flagExamen_famille1_lev1 = true;
-            this.flagPhoto_famille1_lev1= false;
-            this.Reserve_famille1_lev1= false;
-            this.flagConclusion_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
 
-            this.flagRenseignementsColor = false;
-            this.flagDescriptionColor = false;
-            this.flagExamenColor = false;
-            this.flagPhotoColor = false;
-            this.flagConclusionColor = false;
-
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagConclusion_famille_ac1 = false;
+            this.flagDescription_famille_ac1 = false;
+            this.flagExamen_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = false;
         },
 
-        conclusion() {
-
-            this.flagRenseignement_famille1_lev1 = false;
-            this.flagDescription_famille1_lev1 = false;
-            this.flagExamen_famille1_lev1 = false;
-            this.flagPhoto_famille1_lev1= false;
-            this.Reserve_famille1_lev1= false;
+        conclusion_famille1_lev1() {
             this.flagConclusion_famille1_lev1 = true;
-
-            this.flagRenseignementsColor = false;
-            this.flagDescriptionColor = false;
-            this.flagExamenColor = false;
-            this.flagPhotoColor = false;
-            this.flagConclusionColor = false;
-
-        },
-
-        photo() {
-
-            this.flagRenseignement_famille1_lev1 = false;
             this.flagDescription_famille1_lev1 = false;
             this.flagExamen_famille1_lev1 = false;
-            this.flagPhoto_famille1_lev1= true;
-            this.Reserve_famille1_lev1= false;
-            this.flagConclusion_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
 
-            this.flagRenseignementsColor = false;
-            this.flagDescriptionColor = false;
-            this.flagExamenColor = false;
-            this.flagPhotoColor = false;
-            this.flagConclusionColor = false;
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagConclusion_famille_ac1 = false;
+            this.flagDescription_famille_ac1 = false;
+            this.flagExamen_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = false;
+        },
+
+
+        photo_famille1_lev1() {
+
+            this.flagConclusion_famille1_lev1 = false;
+            this.flagDescription_famille1_lev1 = false;
+            this.flagExamen_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = true;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
+
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagConclusion_famille_ac1 = false;
+            this.flagDescription_famille_ac1 = false;
+            this.flagExamen_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = false;
+        },
+
+
+
+
+        accessoire_famille_ac1() {
+            this.flagConclusion_famille1_lev1 = false;
+            this.flagDescription_famille1_lev1 = false;
+            this.flagExamen_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
+
+            this.flagAccessoire_famille_ac1 = true;
+            this.flagConclusion_famille_ac1 = false;
+            this.flagDescription_famille_ac1 = false;
+            this.flagExamen_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = false;
+        },
+
+
+        conclusion_famille_ac1() {
+            this.flagConclusion_famille1_lev1 = false;
+            this.flagDescription_famille1_lev1 = false;
+            this.flagExamen_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
+
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagConclusion_famille_ac1 = true;
+            this.flagDescription_famille_ac1 = false;
+            this.flagExamen_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = false;
+        },
+
+
+        examen_famille_ac1() {
+            this.flagConclusion_famille1_lev1 = false;
+            this.flagDescription_famille1_lev1 = false;
+            this.flagExamen_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
+
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagConclusion_famille_ac1 = false;
+            this.flagDescription_famille_ac1 = false;
+            this.flagExamen_famille_ac1 = true;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = false;
+        },
+
+
+
+        photo_famille_ac1() {
+            this.flagConclusion_famille1_lev1 = false;
+            this.flagDescription_famille1_lev1 = false;
+            this.flagExamen_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
+
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagConclusion_famille_ac1 = false;
+            this.flagDescription_famille_ac1 = false;
+            this.flagExamen_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = true;
+            this.flagRenseignement_famille_ac1 = false;
+        },
+
+
+        renseignement_famille_ac1() {
+            this.flagConclusion_famille1_lev1 = false;
+            this.flagDescription_famille1_lev1 = false;
+            this.flagExamen_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
+
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagConclusion_famille_ac1 = false;
+            this.flagDescription_famille_ac1 = false;
+            this.flagExamen_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = true;
         }
 
     },
@@ -256,13 +365,15 @@ export default {
 
         this.formulaire.observateurId = this.$route.params.id;
         this.formulaire.typeAppareil = this.$route.params.typeAppareil;
-        this.formulaire.typeRapport = this.$route.params.typeRapport;
+        this.flag_famille_lev = ["Famille 1 LEV1", "Famille 2 LEV2", "Famille 3 LEV3", "Famille 4 LEV4", "Famille 5 LEV5"].includes(this.$route.params.typeAppareil[0]);
+        this.flag_famille_ac = ["Famille AC1"].includes(this.$route.params.typeAppareil[0]);
     }
+
 }
+
 </script>
 
 <style scoped>
-
 .formulaire {
     padding: 0;
     margin: 0;
@@ -281,6 +392,7 @@ export default {
     color: white;
     padding: 10px;
 }
+
 /* 
 .formulaire .content .left {
     display: flex;

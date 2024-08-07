@@ -109,10 +109,12 @@
 </template>
 
 <script>
-import Renseignement from "@/requests/Renseignement"
+
+import Renseignement from "@/requests/appareil_levage/famille1_lev1/Renseignement"
+import Completed from "@/requests/appareil_levage/famille1_lev1/completed";
+import Observateurs from "@/requests/Observateurs"
 import Insert from "@/components/models/Insert.vue"
-import Observateurs from "@/requests/Observateurs";
-import Completed from "@/requests/completed";
+
 export default {
     name: 'renseignement-component',
     data() {
