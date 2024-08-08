@@ -110,7 +110,6 @@ export default {
     methods: {
 
         renseignement() {
-
             this.$emit("renseignement");
         },
 
@@ -169,7 +168,6 @@ export default {
 
         Photos.select(this.observateurId)
             .then((result) => {
-                
                 if (result.data.img != null) {
                     this.flagPhotoColor = true;
                 }

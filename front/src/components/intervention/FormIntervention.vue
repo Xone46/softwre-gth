@@ -110,15 +110,15 @@ export default {
             },
 
             metiers : [
-                "Installations électriques",
+                // "Installations électriques",
                 "Appareil de levage",
                 "Accessoire de levage",
-                "Ascenseur et escalier mecanique",
-                "Appareil à pression",
-                "Machine et engin chantier",
-                "Bruit et eclairement",
-                "Incendie",
-                "Equipement de travail"
+                // "Ascenseur et escalier mecanique",
+                // "Appareil à pression",
+                // "Machine et engin chantier",
+                // "Bruit et eclairement",
+                // "Incendie",
+                // "Equipement de travail"
             ]
         }
     },

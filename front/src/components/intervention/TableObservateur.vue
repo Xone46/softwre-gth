@@ -43,17 +43,21 @@
         </div>
 
         <div class="actions">
+
             <div class="left">
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">Aperçu le Pré-rapport</button>
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="editer">Editer le Pré-rapport</button>
 
             </div>
+
             <div class="right">
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="cacher">Cacher</button>
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="modifier">Modifier</button>
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="supprimer">Supprimer</button>
             </div>
+
         </div>
+
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
         <Error v-if="flagError" :msg="msgError" @annuller="annuller" />
 
@@ -186,6 +190,7 @@ export default {
             this.flagSpinner = true;
             Observateurs.apercu(this.observateursSelect[0], sessionStorage.getItem("id"))
             .then((result) => {
+                console.log(result)
                 if (result) {
                     this.flagSpinner = false;
                 }
@@ -218,7 +223,6 @@ export default {
                     this.flagSpinner = false;
                     this.flagInvertesment = false;
                     response.data.forEach((el) => {
-                        console.log(el)
                         if(Boolean(el.cache) === false) {
                             this.observateurs.push(el);
                         }

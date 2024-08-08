@@ -5,11 +5,11 @@
 
         <!-- Start Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
         <Menu_famille1_lev1
-            v-if="flag_famille_lev"
+            v-if="flag_Menu_famille_lev"
             :observateurId="formulaire.observateurId" @renseignement="renseignement_famille1_lev1"
             @description="description_famille1_lev1" @examen="examen_famille1_lev1" @conclusion="conclusion_famille1_lev1" @photo="photo_famille1_lev1" />
         <!-- Fin Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
-        <Menu_famille_ac1 v-if="flag_famille_ac"
+        <Menu_famille_ac1 v-if="flag_Menu_famille_ac"
             :observateurId="formulaire.observateurId" @renseignement="renseignement_famille_ac1"
             @examen="examen_famille_ac1" @accessoire="accessoire_famille_ac1"
             @description="description_famille_ac1" @photo="photo_famille_ac1" @conclusion="conclusion_famille_ac1" />
@@ -21,33 +21,33 @@
             <div class="left"
                 v-if="flag_famille_lev">
                 <Renseignement_famille1_lev1 v-if="flagRenseignement_famille1_lev1"
-                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked" />
+                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked_famille_lev" />
                 <Description_famille1_lev1 v-if="flagDescription_famille1_lev1"
-                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked" />
+                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked_famille_lev" />
                 <Examen_famille1_lev1 v-if="flagExamen_famille1_lev1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked" />
+                    @menuStatusChicked="menuStatusChicked_famille_lev" />
                 <Photo_famille1_lev1 v-if="flagPhoto_famille1_lev1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked" />
+                    @menuStatusChicked="menuStatusChicked_famille_lev" />
                 <Conclusion_famille1_lev1 v-if="flagConclusion_famille1_lev1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked" />
+                    @menuStatusChicked="menuStatusChicked_famille_lev" />
                 <Reserve_famille1_lev1 v-if="flagReserve_famille1_lev1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked" />
+                    @menuStatusChicked="menuStatusChicked_famille_lev" />
             </div>
 
 
             <div class="left" v-if="flag_famille_ac">
                 <Renseignement_famille_ac1 v-if="flagRenseignement_famille_ac1"
-                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked" />
+                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked_famille_ac1" />
                 <Examen_famille_ac1 v-if="flagExamen_famille_ac1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked" />
+                    @menuStatusChicked="menuStatusChicked_famille_ac1" />
                 <Accessoire_famille_ac1 v-if="flagAccessoire_famille_ac1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked" />
+                    @menuStatusChicked="menuStatusChicked_famille_ac1" />
                 <Description_famille_ac1 v-if="flagDescription_famille_ac1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked" />
+                    @menuStatusChicked="menuStatusChicked_famille_ac1" />
                 <Photo_famille_ac1 v-if="flagPhoto_famille_ac1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked" />
+                    @menuStatusChicked="menuStatusChicked_famille_ac1" />
                 <Conclusion_famille_ac1 v-if="flagConclusion_famille_ac1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked" />
+                    @menuStatusChicked="menuStatusChicked_famille_ac1" />
             </div>
 
             <div class="right">
@@ -103,7 +103,7 @@ export default {
         return {
 
             flag_famille_lev : false,
-            flagMenu_famille1_lev1: false,
+            flag_Menu_famille_lev: false,
             flagConclusion_famille1_lev1: false,
             flagDescription_famille1_lev1: false,
             flagExamen_famille1_lev1: false,
@@ -112,7 +112,7 @@ export default {
             flagReserve_famille1_lev1: false,
 
             flag_famille_ac : false,
-            flagMenu_famille_ac1: false,
+            flag_Menu_famille_ac: false,
             flagAccessoire_famille_ac1: false,
             flagConclusion_famille_ac1: false,
             flagDescription_famille_ac1: false,
@@ -177,16 +177,25 @@ export default {
             this.$router.push("/sauvegarder").catch(() => { });
         },
 
-        async menuStatusChicked() {
+        async menuStatusChicked_famille_lev() {
             // Remove MyComponent from the DOM
-            this.flagMenu_famille1_lev1 = false;
-            this.flagMenu_famille_ac1 = false;
+            this.flag_Menu_famille_lev = false;
             // Wait for the change to get flushed to the DOM
             await nextTick();
             // Add the component back in
-            this.flagMenu_famille1_lev1 = true;
-            this.flagMenu_famille_ac1 = true;
+            this.flag_Menu_famille_lev = true;
         },
+        
+        async menuStatusChicked_famille_ac1() {
+            // Remove MyComponent from the DOM
+            this.flag_Menu_famille_ac = false;
+            // Wait for the change to get flushed to the DOM
+            await nextTick();
+            // Add the component back in
+            this.flag_Menu_famille_ac = true;
+        },
+
+
 
         renseignement_famille1_lev1() {
 
@@ -365,8 +374,14 @@ export default {
 
         this.formulaire.observateurId = this.$route.params.id;
         this.formulaire.typeAppareil = this.$route.params.typeAppareil;
+
         this.flag_famille_lev = ["Famille 1 LEV1", "Famille 2 LEV2", "Famille 3 LEV3", "Famille 4 LEV4", "Famille 5 LEV5"].includes(this.$route.params.typeAppareil[0]);
+        this.flag_Menu_famille_lev = this.flag_famille_lev;
+
+
         this.flag_famille_ac = ["Famille AC1"].includes(this.$route.params.typeAppareil[0]);
+        this.flag_Menu_famille_ac = this.flag_famille_ac;
+
     }
 
 }
@@ -427,28 +442,6 @@ export default {
     background-color: #04AA6D;
 }
 
-
-/* .buttons {
-    display: flex;
-    flex-direction: row;
-    margin: 10px;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.buttons button {
-    background-color: #04AA6D;
-    color: white;
-    margin: 3px;
-    border: 0px;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: fit-content;
-} */
 
 .content {
     width: 100%;
