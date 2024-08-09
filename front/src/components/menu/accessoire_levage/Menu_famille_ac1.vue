@@ -16,40 +16,27 @@
                 </th>
 
 
-                <th class="green" v-if="flagDescriptionColor" @click="description">
+                <!-- <th class="green" v-if="flagVerficationColor" @click="verfication">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
-                        <span>EXAMEN DE L'APPAREIL OU DE L'ÉTAT DE CONSERVATION</span>
+                        <span>CONTENU DE LA VERIFICATION GENERALE PERIODIQUE</span>
                     </div>
                 </th>
-                <th v-if="!flagDescriptionColor" @click="descriptionLevageA">
+                <th v-if="!flagVerficationColor" @click="verfication">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
-                        <span>EXAMEN DE L'APPAREIL OU DE L'ÉTAT DE CONSERVATION</span>
+                        <span>CONTENU DE LA VERIFICATION GENERALE PERIODIQUE</span>
                     </div>
-                </th>
+                </th> -->
 
 
-                <th class="green" v-if="flagExamenColor" @click="examen">
-                    <div>
-                        <img src="@/assets/mark.png" alt="pencil">
-                        <span>EXAMEN DE L'APPAREIL OU DE L'ÉTAT DE CONSERVATION</span>
-                    </div>
-                </th>
-                <th v-if="!flagExamenColor" @click="examenLevageA">
-                    <div>
-                        <img src="@/assets/pencil.png" alt="pencil">
-                        <span>EXAMEN DE L'APPAREIL OU DE L'ÉTAT DE CONSERVATION</span>
-                    </div>
-                </th>
-
-                <th class="green" v-if="flagExamenColor" @click="examen">
+                <th class="green" v-if="flagAccessoireColor" @click="accessoire">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>LISTE DES ACCESSOIRES VERIFIES</span>
                     </div>
                 </th>
-                <th v-if="!flagExamenColor" @click="examen">
+                <th v-if="!flagAccessoireColor" @click="accessoire">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>LISTE DES ACCESSOIRES VERIFIES</span>
@@ -57,19 +44,18 @@
                 </th>
 
 
-                <th class="green" v-if="flagConclusionColor" @click="conclusion">
+                <th class="green" v-if="flagFicheColor" @click="fiche">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
-                        <span>CONCLUSION</span>
+                        <span>FICHES DE VÉRIFICATIONS</span>
                     </div>
                 </th>
-                <th v-if="!flagConclusionColor" @click="conclusion">
+                <th v-if="!flagFicheColor" @click="fiche">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
-                        <span>CONCLUSION</span>
+                        <span>FICHES DE VÉRIFICATIONS</span>
                     </div>
                 </th>
-
 
                 <th class="green" v-if="flagPhotoColor" @click="photo">
                     <div>
@@ -91,22 +77,20 @@
 
 <script>
 
-import Renseignements from "@/requests/appareil_levage/famille1_lev1/Renseignement";
-import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions";
-import Examens from "@/requests/appareil_levage/famille1_lev1/Examens";
-import Photos from "@/requests/appareil_levage/famille1_lev1/Photos";
-import Conclusions from "@/requests/appareil_levage/famille1_lev1/conclusion";
+import Accessoires from "@/requests/accessoire_levage/famille_ac1/Accessoires";
+import Photos from "@/requests/accessoire_levage/famille_ac1/Photos";
+import Fiches from "@/requests/accessoire_levage/famille_ac1/Fiches";
+import Renseignements from "@/requests/accessoire_levage/famille_ac1/Renseignements";
 
 export default {
     name: 'menu-component',
     data() {
         return {
-
-            flagRenseignementsColor: false,
-            flagDescriptionColor: false,
-            flagExamenColor: false,
+            flagAccessoireColor: false,
+            flagFicheColor: false,
             flagPhotoColor: false,
-            flagConclusionColor: false
+            flagRenseignementsColor: false,
+            // flagVerficationColor: false,
         }
     },
 
@@ -125,16 +109,12 @@ export default {
             this.$emit("renseignement");
         },
 
-        description() {
-            this.$emit("description")
+        accessoire() {
+            this.$emit("accessoire")
         },
 
-        examen() {
-            this.$emit("examen")
-        },
-
-        conclusion() {
-            this.$emit("conclusion")
+        fiche() {
+            this.$emit("fiche")
         },
 
         photo() {
@@ -156,22 +136,27 @@ export default {
             });
 
 
-        Descriptions.select(this.observateurId)
+
+        Accessoires.select(this.observateurId)
             .then((result) => {
                 if (result.data) {
-                    this.flagDescriptionColor = result.data.checkEmptyStatus;
+                    this.flagAccessoireColor = result.data.checkEmptyStatus;
                 }
             })
             .catch((error) => {
                 console.log(error);
             });
 
-
-        Examens.select(this.observateurId)
+        Fiches.select(this.observateurId)
             .then((result) => {
-                if (result.data) {
-                    this.flagExamenColor = result.data.checkEmptyStatus;
+                
+                if (result.data.img != null) {
+                    this.flagFicheColor = true;
                 }
+
+                if (result.data.img == null) {
+                    this.flagPhotoColor = false;
+                } 
             })
             .catch((error) => {
                 console.log(error);
@@ -191,19 +176,6 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
-
-        Conclusions.select(this.observateurId)
-            .then((result) => {
-                if (result.data) {
-                    this.flagConclusionColor = true;
-                } else {
-                    this.flagConclusionColor = false;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
 
     }
 }

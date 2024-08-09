@@ -9,10 +9,15 @@
             :observateurId="formulaire.observateurId" @renseignement="renseignement_famille1_lev1"
             @description="description_famille1_lev1" @examen="examen_famille1_lev1" @conclusion="conclusion_famille1_lev1" @photo="photo_famille1_lev1" />
         <!-- Fin Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
+
+
+        <!-- Start Famille-AC1 -->
         <Menu_famille_ac1 v-if="flag_Menu_famille_ac"
             :observateurId="formulaire.observateurId" @renseignement="renseignement_famille_ac1"
             @examen="examen_famille_ac1" @accessoire="accessoire_famille_ac1"
             @description="description_famille_ac1" @photo="photo_famille_ac1" @conclusion="conclusion_famille_ac1" />
+        <!-- Fin Famille-AC1 -->
+
         <h3></h3>
 
 
