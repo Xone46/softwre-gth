@@ -4,18 +4,16 @@
         <h3>{{ formulaire.typeAppareil[1] }}</h3>
 
         <!-- Start Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
-        <Menu_famille1_lev1
-            v-if="flag_Menu_famille_lev"
-            :observateurId="formulaire.observateurId" @renseignement="renseignement_famille1_lev1"
-            @description="description_famille1_lev1" @examen="examen_famille1_lev1" @conclusion="conclusion_famille1_lev1" @photo="photo_famille1_lev1" />
+        <Menu_famille1_lev1 v-if="flag_Menu_famille_lev" :observateurId="formulaire.observateurId"
+            @renseignement="renseignement_famille1_lev1" @description="description_famille1_lev1"
+            @examen="examen_famille1_lev1" @conclusion="conclusion_famille1_lev1" @photo="photo_famille1_lev1" />
         <!-- Fin Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
 
 
         <!-- Start Famille-AC1 -->
-        <Menu_famille_ac1 v-if="flag_Menu_famille_ac"
-            :observateurId="formulaire.observateurId" @renseignement="renseignement_famille_ac1"
-            @examen="examen_famille_ac1" @accessoire="accessoire_famille_ac1"
-            @description="description_famille_ac1" @photo="photo_famille_ac1" @conclusion="conclusion_famille_ac1" />
+        <Menu_famille_ac1 v-if="flag_Menu_famille_ac" :observateurId="formulaire.observateurId"
+            @accessoire="accessoire_famille_ac1" @fiche="fiche_famille_ac1" @photo="photo_famille_ac1"
+            @renseignement="renseignement_famille_ac1" @verfication="verfication_famille_ac1" />
         <!-- Fin Famille-AC1 -->
 
         <h3></h3>
@@ -23,8 +21,7 @@
 
         <div class="content">
 
-            <div class="left"
-                v-if="flag_famille_lev">
+            <div class="left" v-if="flag_famille_lev">
                 <Renseignement_famille1_lev1 v-if="flagRenseignement_famille1_lev1"
                     :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked_famille_lev" />
                 <Description_famille1_lev1 v-if="flagDescription_famille1_lev1"
@@ -41,17 +38,15 @@
 
 
             <div class="left" v-if="flag_famille_ac">
-                <Renseignement_famille_ac1 v-if="flagRenseignement_famille_ac1"
-                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked_famille_ac1" />
-                <Examen_famille_ac1 v-if="flagExamen_famille_ac1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked_famille_ac1" />
                 <Accessoire_famille_ac1 v-if="flagAccessoire_famille_ac1" :observateurId="formulaire.observateurId"
                     @menuStatusChicked="menuStatusChicked_famille_ac1" />
-                <Description_famille_ac1 v-if="flagDescription_famille_ac1" :observateurId="formulaire.observateurId"
+                <Fiche_famille_ac1 v-if="flagFiche_famille_ac1" :observateurId="formulaire.observateurId"
                     @menuStatusChicked="menuStatusChicked_famille_ac1" />
                 <Photo_famille_ac1 v-if="flagPhoto_famille_ac1" :observateurId="formulaire.observateurId"
                     @menuStatusChicked="menuStatusChicked_famille_ac1" />
-                <Conclusion_famille_ac1 v-if="flagConclusion_famille_ac1" :observateurId="formulaire.observateurId"
+                <Renseignement_famille_ac1 v-if="flagRenseignement_famille_ac1"
+                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked_famille_ac1" />
+                <Verfication_famille_ac1 v-if="flagVerfication_famille_ac1" :observateurId="formulaire.observateurId"
                     @menuStatusChicked="menuStatusChicked_famille_ac1" />
             </div>
 
@@ -85,11 +80,10 @@ import Reserve_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Re
 
 //GTH-Famille-AC1
 import Accessoire_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Accessoire_famille_ac1.vue"
-import Conclusion_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Conclusion_famille_ac1.vue"
-import Description_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Description_famille_ac1.vue"
-import Examen_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Examen_famille_ac1.vue"
+import Fiche_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Fiche_famille_ac1.vue"
 import Photo_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Photo_famille_ac1.vue"
 import Renseignement_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Renseignement_famille_ac1.vue"
+import Verfication_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Verfication_famille_ac1.vue"
 
 
 // Start Menu --------------------------------------------
@@ -107,7 +101,7 @@ export default {
     data() {
         return {
 
-            flag_famille_lev : false,
+            flag_famille_lev: false,
             flag_Menu_famille_lev: false,
             flagConclusion_famille1_lev1: false,
             flagDescription_famille1_lev1: false,
@@ -116,17 +110,15 @@ export default {
             flagRenseignement_famille1_lev1: true,
             flagReserve_famille1_lev1: false,
 
-            flag_famille_ac : false,
+            flag_famille_ac: false,
             flag_Menu_famille_ac: false,
             flagAccessoire_famille_ac1: false,
-            flagConclusion_famille_ac1: false,
-            flagDescription_famille_ac1: false,
-            flagExamen_famille_ac1: false,
             flagPhoto_famille_ac1: false,
             flagRenseignement_famille_ac1: true,
+            flagFiche_famille_ac1 : false,
+            flagVerfication_famille_ac1 : false,
 
             flagVisualiationReserve: false,
-
 
             formulaire: {
                 observateurId: "",
@@ -146,14 +138,12 @@ export default {
         Reserve_famille1_lev1,
 
         Accessoire_famille_ac1,
-        Conclusion_famille_ac1,
-        Description_famille_ac1,
-        Examen_famille_ac1,
         Photo_famille_ac1,
+        Fiche_famille_ac1,
+        Verfication_famille_ac1,
         Renseignement_famille_ac1,
 
         VisualiationReserve,
-
 
         Menu_famille1_lev1,
         Menu_famille_ac1
@@ -190,7 +180,7 @@ export default {
             // Add the component back in
             this.flag_Menu_famille_lev = true;
         },
-        
+
         async menuStatusChicked_famille_ac1() {
             // Remove MyComponent from the DOM
             this.flag_Menu_famille_ac = false;
@@ -212,14 +202,15 @@ export default {
             this.flagReserve_famille1_lev1 = false;
 
             this.flagAccessoire_famille_ac1 = false;
-            this.flagConclusion_famille_ac1 = false;
-            this.flagDescription_famille_ac1 = false;
-            this.flagExamen_famille_ac1 = false;
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
+            this.flagFiche_famille_ac1  = false;
+            this.flagVerfication_famille_ac1  = false;
+
         },
 
         description_famille1_lev1() {
+
             this.flagConclusion_famille1_lev1 = false;
             this.flagDescription_famille1_lev1 = true;
             this.flagExamen_famille1_lev1 = false;
@@ -228,14 +219,16 @@ export default {
             this.flagReserve_famille1_lev1 = false;
 
             this.flagAccessoire_famille_ac1 = false;
-            this.flagConclusion_famille_ac1 = false;
-            this.flagDescription_famille_ac1 = false;
-            this.flagExamen_famille_ac1 = false;
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
+            this.flagFiche_famille_ac1  = false;
+            this.flagVerfication_famille_ac1  = false;
+
+
         },
 
         examen_famille1_lev1() {
+
             this.flagConclusion_famille1_lev1 = false;
             this.flagDescription_famille1_lev1 = false;
             this.flagExamen_famille1_lev1 = true;
@@ -244,14 +237,14 @@ export default {
             this.flagReserve_famille1_lev1 = false;
 
             this.flagAccessoire_famille_ac1 = false;
-            this.flagConclusion_famille_ac1 = false;
-            this.flagDescription_famille_ac1 = false;
-            this.flagExamen_famille_ac1 = false;
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
+            this.flagFiche_famille_ac1  = false;
+            this.flagVerfication_famille_ac1  = false;
         },
 
         conclusion_famille1_lev1() {
+
             this.flagConclusion_famille1_lev1 = true;
             this.flagDescription_famille1_lev1 = false;
             this.flagExamen_famille1_lev1 = false;
@@ -260,11 +253,11 @@ export default {
             this.flagReserve_famille1_lev1 = false;
 
             this.flagAccessoire_famille_ac1 = false;
-            this.flagConclusion_famille_ac1 = false;
-            this.flagDescription_famille_ac1 = false;
-            this.flagExamen_famille_ac1 = false;
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
+            this.flagFiche_famille_ac1  = false;
+            this.flagVerfication_famille_ac1  = false;
+
         },
 
 
@@ -278,17 +271,18 @@ export default {
             this.flagReserve_famille1_lev1 = false;
 
             this.flagAccessoire_famille_ac1 = false;
-            this.flagConclusion_famille_ac1 = false;
-            this.flagDescription_famille_ac1 = false;
-            this.flagExamen_famille_ac1 = false;
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
+            this.flagFiche_famille_ac1  = false;
+            this.flagVerfication_famille_ac1  = false;
+
         },
 
 
 
 
         accessoire_famille_ac1() {
+
             this.flagConclusion_famille1_lev1 = false;
             this.flagDescription_famille1_lev1 = false;
             this.flagExamen_famille1_lev1 = false;
@@ -297,50 +291,16 @@ export default {
             this.flagReserve_famille1_lev1 = false;
 
             this.flagAccessoire_famille_ac1 = true;
-            this.flagConclusion_famille_ac1 = false;
-            this.flagDescription_famille_ac1 = false;
-            this.flagExamen_famille_ac1 = false;
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
+            this.flagFiche_famille_ac1  = false;
+            this.flagVerfication_famille_ac1  = false;
+
         },
-
-
-        conclusion_famille_ac1() {
-            this.flagConclusion_famille1_lev1 = false;
-            this.flagDescription_famille1_lev1 = false;
-            this.flagExamen_famille1_lev1 = false;
-            this.flagPhoto_famille1_lev1 = false;
-            this.flagRenseignement_famille1_lev1 = false;
-            this.flagReserve_famille1_lev1 = false;
-
-            this.flagAccessoire_famille_ac1 = false;
-            this.flagConclusion_famille_ac1 = true;
-            this.flagDescription_famille_ac1 = false;
-            this.flagExamen_famille_ac1 = false;
-            this.flagPhoto_famille_ac1 = false;
-            this.flagRenseignement_famille_ac1 = false;
-        },
-
-
-        examen_famille_ac1() {
-            this.flagConclusion_famille1_lev1 = false;
-            this.flagDescription_famille1_lev1 = false;
-            this.flagExamen_famille1_lev1 = false;
-            this.flagPhoto_famille1_lev1 = false;
-            this.flagRenseignement_famille1_lev1 = false;
-            this.flagReserve_famille1_lev1 = false;
-
-            this.flagAccessoire_famille_ac1 = false;
-            this.flagConclusion_famille_ac1 = false;
-            this.flagDescription_famille_ac1 = false;
-            this.flagExamen_famille_ac1 = true;
-            this.flagPhoto_famille_ac1 = false;
-            this.flagRenseignement_famille_ac1 = false;
-        },
-
 
 
         photo_famille_ac1() {
+
             this.flagConclusion_famille1_lev1 = false;
             this.flagDescription_famille1_lev1 = false;
             this.flagExamen_famille1_lev1 = false;
@@ -349,15 +309,15 @@ export default {
             this.flagReserve_famille1_lev1 = false;
 
             this.flagAccessoire_famille_ac1 = false;
-            this.flagConclusion_famille_ac1 = false;
-            this.flagDescription_famille_ac1 = false;
-            this.flagExamen_famille_ac1 = false;
             this.flagPhoto_famille_ac1 = true;
             this.flagRenseignement_famille_ac1 = false;
+            this.flagFiche_famille_ac1 = false;
+            this.flagVerfication_famille_ac1 = false;
         },
 
 
         renseignement_famille_ac1() {
+
             this.flagConclusion_famille1_lev1 = false;
             this.flagDescription_famille1_lev1 = false;
             this.flagExamen_famille1_lev1 = false;
@@ -366,11 +326,45 @@ export default {
             this.flagReserve_famille1_lev1 = false;
 
             this.flagAccessoire_famille_ac1 = false;
-            this.flagConclusion_famille_ac1 = false;
-            this.flagDescription_famille_ac1 = false;
-            this.flagExamen_famille_ac1 = false;
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = true;
+            this.flagFiche_famille_ac1  = false;
+            this.flagVerfication_famille_ac1  = false;
+        },
+
+
+
+        verfication_famille_ac1() {
+
+            this.flagConclusion_famille1_lev1 = false;
+            this.flagDescription_famille1_lev1 = false;
+            this.flagExamen_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
+
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = false;
+            this.flagFiche_famille_ac1  = false;
+            this.flagVerfication_famille_ac1  = true;
+        },
+
+
+        fiche_famille_ac1() {
+
+            this.flagConclusion_famille1_lev1 = false;
+            this.flagDescription_famille1_lev1 = false;
+            this.flagExamen_famille1_lev1 = false;
+            this.flagPhoto_famille1_lev1 = false;
+            this.flagRenseignement_famille1_lev1 = false;
+            this.flagReserve_famille1_lev1 = false;
+            
+            this.flagAccessoire_famille_ac1 = false;
+            this.flagPhoto_famille_ac1 = false;
+            this.flagRenseignement_famille_ac1 = false;
+            this.flagFiche_famille_ac1  = true;
+            this.flagVerfication_famille_ac1  = false;
         }
 
     },

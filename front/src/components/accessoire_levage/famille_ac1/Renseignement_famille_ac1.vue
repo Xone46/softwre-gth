@@ -257,7 +257,6 @@ export default {
         sauvegarde() {
 
             this.renseignement.observateurId = this.observateurId;
-
             Renseignement.create(this.renseignement)
                 .then((result) => {
 
@@ -279,55 +278,56 @@ export default {
 
         Completed.checkRenseignement(this.observateurId)
             .then((result) => {
-
                 if (result.data == true) {
+                    
+                    console.log(result);
 
-                    Renseignement.select(this.observateurId)
-                        .then((result) => {
+                    // Renseignement.select(this.observateurId)
+                    //     .then((result) => {
 
-                            this.renseignement.observateurId = this.observateurId;
-                            this.flagReset = true;
+                    //         this.renseignement.observateurId = this.observateurId;
+                    //         this.flagReset = true;
 
-                            this.renseignement.tagEtablissement = this.renseignement.tagEtablissement.replace("value=''", `value='${result.data.renseignement.etablissement}'`);
-                            this.renseignement.etablissement = result.data.renseignement.etablissement;
+                    //         this.renseignement.tagEtablissement = this.renseignement.tagEtablissement.replace("value=''", `value='${result.data.renseignement.etablissement}'`);
+                    //         this.renseignement.etablissement = result.data.renseignement.etablissement;
                             
-                            this.renseignement.tagAdresse = this.renseignement.tagAdresse.replace("value=''", `value='${result.data.renseignement.adresse}'`);
-                            this.renseignement.adresse = result.data.renseignement.adresse;
+                    //         this.renseignement.tagAdresse = this.renseignement.tagAdresse.replace("value=''", `value='${result.data.renseignement.adresse}'`);
+                    //         this.renseignement.adresse = result.data.renseignement.adresse;
 
-                            this.renseignement.tagEtendueVerification = this.renseignement.tagEtendueVerification.replace("value=''", `value='${result.data.renseignement.etendueVerification}'`);
-                            this.renseignement.etendueVerification = result.data.renseignement.etendueVerification;
+                    //         this.renseignement.tagEtendueVerification = this.renseignement.tagEtendueVerification.replace("value=''", `value='${result.data.renseignement.etendueVerification}'`);
+                    //         this.renseignement.etendueVerification = result.data.renseignement.etendueVerification;
 
-                            this.renseignement.tagAccompagnateurClient = this.renseignement.tagAccompagnateurClient.replace("value=''", `value='${result.data.renseignement.accompagnateurClient}'`);
-                            this.renseignement.accompagnateurClient = result.data.renseignement.accompagnateurClient;
+                    //         this.renseignement.tagAccompagnateurClient = this.renseignement.tagAccompagnateurClient.replace("value=''", `value='${result.data.renseignement.accompagnateurClient}'`);
+                    //         this.renseignement.accompagnateurClient = result.data.renseignement.accompagnateurClient;
 
-                            this.renseignement.tagPersonneCompteRendu = this.renseignement.tagPersonneCompteRendu.replace("value=''", `value='${result.data.renseignement.personneCompteRendu}'`);
-                            this.renseignement.personneCompteRendu = result.data.renseignement.personneCompteRendu;
+                    //         this.renseignement.tagPersonneCompteRendu = this.renseignement.tagPersonneCompteRendu.replace("value=''", `value='${result.data.renseignement.personneCompteRendu}'`);
+                    //         this.renseignement.personneCompteRendu = result.data.renseignement.personneCompteRendu;
 
-                            this.renseignement.tagNomVerificateur = this.renseignement.tagNomVerificateur.replace("value=''", `value='${result.data.renseignement.nomVerificateur}'`);
-                            this.renseignement.nomVerificateur = result.data.renseignement.nomVerificateur;
+                    //         this.renseignement.tagNomVerificateur = this.renseignement.tagNomVerificateur.replace("value=''", `value='${result.data.renseignement.nomVerificateur}'`);
+                    //         this.renseignement.nomVerificateur = result.data.renseignement.nomVerificateur;
 
-                            this.renseignement.tagRapportPrecedent = this.renseignement.tagRapportPrecedent.replace("value=''", `value='${result.data.renseignement.rapportPrecedent}'`);
-                            this.renseignement.rapportPrecedent = result.data.renseignement.rapportPrecedent;
+                    //         this.renseignement.tagRapportPrecedent = this.renseignement.tagRapportPrecedent.replace("value=''", `value='${result.data.renseignement.rapportPrecedent}'`);
+                    //         this.renseignement.rapportPrecedent = result.data.renseignement.rapportPrecedent;
 
-                            this.renseignement.tagDatePrecedenteVerification = this.renseignement.tagDatePrecedenteVerification.replace("value=''", `value='${result.data.renseignement.datePrecedenteVerification}'`);
-                            this.renseignement.datePrecedenteVerification = result.data.renseignement.datePrecedenteVerification;
+                    //         this.renseignement.tagDatePrecedenteVerification = this.renseignement.tagDatePrecedenteVerification.replace("value=''", `value='${result.data.renseignement.datePrecedenteVerification}'`);
+                    //         this.renseignement.datePrecedenteVerification = result.data.renseignement.datePrecedenteVerification;
 
-                            this.renseignement.tagDocuments = this.renseignement.tagDocuments.replace("value=''", `value='${result.data.renseignement.documents}'`);
-                            this.renseignement.documents = result.data.renseignement.documents;
+                    //         this.renseignement.tagDocuments = this.renseignement.tagDocuments.replace("value=''", `value='${result.data.renseignement.documents}'`);
+                    //         this.renseignement.documents = result.data.renseignement.documents;
 
-                            this.renseignement.tagDateDuree = this.renseignement.tagDateDuree.replace("value=''", `value='${result.data.renseignement.dateDuree}'`);
-                            this.renseignement.dateDuree = result.data.renseignement.dateDuree;
+                    //         this.renseignement.tagDateDuree = this.renseignement.tagDateDuree.replace("value=''", `value='${result.data.renseignement.dateDuree}'`);
+                    //         this.renseignement.dateDuree = result.data.renseignement.dateDuree;
 
-                            this.$emit("menuStatusChicked");
+                    //         this.$emit("menuStatusChicked");
 
-                        })
-                        .catch((error) => {
-                            console.log(error)
-                        })
+                    //     })
+                    //     .catch((error) => {
+                    //         console.log(error.message)
+                    //     })
                 }
             })
             .catch((error) => {
-                console.log(error);
+                console.log(error.message);
             });
 
     }

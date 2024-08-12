@@ -8,7 +8,7 @@ class Renseignement {
 
     static create(renseignement) {
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/levageA/create`,
+            axios.post(`${VUE_APP_API_BASE_URL}/accessoire_levage-famille_ac1/renseignements/create`,
                 renseignement,
                 {
                     headers: {
@@ -26,7 +26,7 @@ class Renseignement {
 
     static reset(observateurId) {
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/levageA/reset/${observateurId}`,
+            axios.delete(`${VUE_APP_API_BASE_URL}/accessoire_levage-famille_ac1/renseignements/reset/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -41,10 +41,13 @@ class Renseignement {
         })
     }
 
+
+
+
     static select(observateurId) {
 
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/levageA/${observateurId}`,
+            axios.get(`${VUE_APP_API_BASE_URL}/accessoire_levage-famille_ac1/renseignements/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'

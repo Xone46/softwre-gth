@@ -16,20 +16,6 @@
                 </th>
 
 
-                <!-- <th class="green" v-if="flagVerficationColor" @click="verfication">
-                    <div>
-                        <img src="@/assets/mark.png" alt="pencil">
-                        <span>CONTENU DE LA VERIFICATION GENERALE PERIODIQUE</span>
-                    </div>
-                </th>
-                <th v-if="!flagVerficationColor" @click="verfication">
-                    <div>
-                        <img src="@/assets/pencil.png" alt="pencil">
-                        <span>CONTENU DE LA VERIFICATION GENERALE PERIODIQUE</span>
-                    </div>
-                </th> -->
-
-
                 <th class="green" v-if="flagAccessoireColor" @click="accessoire">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
@@ -77,9 +63,9 @@
 
 <script>
 
-import Accessoires from "@/requests/accessoire_levage/famille_ac1/Accessoires";
-import Photos from "@/requests/accessoire_levage/famille_ac1/Photos";
-import Fiches from "@/requests/accessoire_levage/famille_ac1/Fiches";
+// import Accessoires from "@/requests/accessoire_levage/famille_ac1/Accessoires";
+// import Photos from "@/requests/accessoire_levage/famille_ac1/Photos";
+// import Fiches from "@/requests/accessoire_levage/famille_ac1/Fiches";
 import Renseignements from "@/requests/accessoire_levage/famille_ac1/Renseignements";
 
 export default {
@@ -137,45 +123,47 @@ export default {
 
 
 
-        Accessoires.select(this.observateurId)
-            .then((result) => {
-                if (result.data) {
-                    this.flagAccessoireColor = result.data.checkEmptyStatus;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        // Accessoires.select(this.observateurId)
+        //     .then((result) => {
+        //         if (result.data) {
+        //             this.flagAccessoireColor = result.data.checkEmptyStatus;
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
 
-        Fiches.select(this.observateurId)
-            .then((result) => {
+
+        // Fiches.select(this.observateurId)
+        //     .then((result) => {
                 
-                if (result.data.img != null) {
-                    this.flagFicheColor = true;
-                }
+        //         if (result.data.img != null) {
+        //             this.flagFicheColor = true;
+        //         }
 
-                if (result.data.img == null) {
-                    this.flagPhotoColor = false;
-                } 
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        //         if (result.data.img == null) {
+        //             this.flagPhotoColor = false;
+        //         } 
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
 
-        Photos.select(this.observateurId)
-            .then((result) => {
+
+        // Photos.select(this.observateurId)
+        //     .then((result) => {
                 
-                if (result.data.img != null) {
-                    this.flagPhotoColor = true;
-                }
+        //         if (result.data.img != null) {
+        //             this.flagPhotoColor = true;
+        //         }
 
-                if (result.data.img == null) {
-                    this.flagPhotoColor = false;
-                } 
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        //         if (result.data.img == null) {
+        //             this.flagPhotoColor = false;
+        //         } 
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
 
     }
 }
