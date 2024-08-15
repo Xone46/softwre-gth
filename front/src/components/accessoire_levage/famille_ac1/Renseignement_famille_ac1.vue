@@ -4,63 +4,88 @@
             <table border="1">
 
                 <tr>
-                    <td :class="[renseignement.etablissement.length != 0 ? 'saved' : 'not-saved']">Etablissement :</td>
-                    <td v-html="renseignement.tagEtablissement" @input="getValueEtablissement"></td>
+                    <td :class="[renseignement.etablissement.length != 0 ? 'saved' : 'not-saved']">
+                        Etablissement :
+                    </td>
+                    <td>
+                        <input type='text' value='' height='48px'  @input="handelEtablissement($event)">
+                    </td>
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.adresse.length != 0 ? 'saved' : 'not-saved']">Adresse :</td>
-                    <td v-html="renseignement.tagAdresse" @input="getValueAdresse"></td>
+                    <td :class="[renseignement.adresse.length != 0 ? 'saved' : 'not-saved']">
+                        Adresse :
+                    </td>
+                    <td>
+                        <input type='text' value='' height='48px'  @input="handelAdresse($event)">
+                    </td>
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.etendueVerification.length != 0 ? 'saved' : 'not-saved']">Etendue de la
-                        vérification – limite de prestation :</td>
-                    <td v-html="renseignement.tagEtendueVerification" @input="getEtendueVerification"></td>
+                    <td :class="[renseignement.etendueVerification.length != 0 ? 'saved' : 'not-saved']">
+                        Etendue de la vérification – limite de prestation :
+                    </td>
+                    <td >
+                        <input type='text' value='' height='48px'  @input="handelEtendueVerification($event)">
+                    </td>
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.accompagnateurClient.length != 0 ? 'saved' : 'not-saved']">Personne ayant
-                        accompagné le vérificateur (nom et qualité) :</td>
-                    <td v-html="renseignement.tagAccompagnateurClient" @input="getAccompagnateurClient"></td>
+                    <td :class="[renseignement.accompagnateurClient.length != 0 ? 'saved' : 'not-saved']">
+                        Personne ayant Accompagné le vérificateur (nom et qualité) :
+                    </td>
+                    <td>
+                        <input type='text' value='' height='48px'  @input="handelAccompagnateurClient($event)">
+                    </td>
                 </tr>
 
                 <tr>
                     <td :class="[renseignement.personneCompteRendu.length != 0 ? 'saved' : 'not-saved']">Personne(s) à
-                        qui est fait le compte rendu de fin de visite :</td>
-                    <td v-html="renseignement.tagPersonneCompteRendu" @input="getPersonneCompteRendu"></td>
+                        Qui est fait le compte rendu de fin de visite :
+                    </td>
+                    <td>
+                        <input type='text' value='' height='48px'  @input="handelPersonneCompteRendu($event)">
+                    </td>
                 </tr>
 
 
                 <tr>
                     <td :class="[renseignement.nomVerificateur.length != 0 ? 'saved' : 'not-saved']">Nom du ou des
-                        vérificateurs agréé(s) :</td>
-                    <td v-html="renseignement.tagNomVerificateur" @input="getNomVerificateur"></td>
-                </tr>
-
-                <tr>
-                    <td :class="[renseignement.rapportPrecedent.length != 0 ? 'saved' : 'not-saved']">Rapport précédent
-                        :</td>
-                    <td v-html="renseignement.tagRapportPrecedent" @input="getRapportPrecedent"></td>
-                </tr>
-
-                <tr>
-                    <td :class="[renseignement.datePrecedenteVerification.length != 0 ? 'saved' : 'not-saved']">Date de
-                        la précédente vérification :</td>
-                    <td v-html="renseignement.tagDatePrecedenteVerification" @input="getDatePrecedenteVerification">
+                        Vérificateurs agréé(s) :
+                    </td>
+                    <td>
+                        <input type='text' value='' height='48px'  @input="handelNomVerificateur($event)">
                     </td>
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.documents.length != 0 ? 'saved' : 'not-saved']">Documents & plans fournis
-                        :</td>
-                    <td v-html="renseignement.tagDocuments" @input="getDocuments"></td>
+                    <td :class="[renseignement.rapportPrecedent.length != 0 ? 'saved' : 'not-saved']">
+                        Rapport précédent :</td>
+                    <td>
+                        <input type='text' value='' height='48px'  @input="handelRapportPrecedent($event)">
+                    </td>
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.dateDuree.length != 0 ? 'saved' : 'not-saved']">Date et durée de la
-                        présente vérification :</td>
-                    <td v-html="renseignement.tagDateDuree" @input="getDateDuree"></td>
+                    <td :class="[renseignement.datePrecedenteVerification.length != 0 ? 'saved' : 'not-saved']">
+                        Date de la précédente vérification :</td>
+                    <td>
+                        <input type='date' value='' height='48px'  @input="handelDatePrecedenteVerification($event)">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.documents.length != 0 ? 'saved' : 'not-saved']">
+                        Documents & plans fournis :</td>
+                    <td>
+                        <input type='text' value='' height='48px'  @input="handelDocuments($event)">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.dateDuree.length != 0 ? 'saved' : 'not-saved']">
+                        Date et durée de la présente vérification :</td>
+                        <input type='date' value='' height='48px'  @input="handelDateDuree($event)">
                 </tr>
 
 
@@ -85,8 +110,8 @@
 
 
 import Insert from "@/components/models/Insert.vue"
-import Renseignement from "@/requests/accessoire_levage/famille_ac1/Renseignements"
-import Completed from "@/requests/accessoire_levage/famille_ac1/Completed"
+// import Renseignement from "@/requests/accessoire_levage/famille_ac1/Renseignements"
+// import Completed from "@/requests/accessoire_levage/famille_ac1/Completed"
 // import Observateurs from "@/requests/Observateurs";
 export default {
     name: 'renseignement-component',
@@ -98,39 +123,19 @@ export default {
 
             renseignement: {
 
-                tagEtablissement: "<input type='text' value='' height='48px'>",
                 etablissement: "",
-
-                tagAdresse: "<input type='text' value='' height='48px'>",
                 adresse: "",
-
-                tagEtendueVerification: "<input type='text' value='' height='48px'>",
                 etendueVerification: "",
-
-                tagAccompagnateurClient: "<input type='text' value='' height='48px'>",
                 accompagnateurClient: "",
-
-                tagPersonneCompteRendu: "<input type='text' value='' height='48px'>",
                 personneCompteRendu: "",
-
-                tagNomVerificateur: "<input type='text' value='' height='48px'>",
                 nomVerificateur: "",
-
-                tagRapportPrecedent: "<input type='text' value='' height='48px'>",
                 rapportPrecedent: "",
-
-                tagDatePrecedenteVerification: "<input type='date' value='' height='48px'>",
                 datePrecedenteVerification: "",
-
-                tagDocuments: "<input type='text' value='' height='48px'>",
                 documents: "",
+                dateDuree: ""
+            },
 
-                tagDateDuree: "<input type='date' value='' height='48px'>",
-                dateDuree: "",
-
-                observateurId: "",
-                renseignementId: null
-            }
+            renseignementId: null
         }
     },
 
@@ -144,191 +149,140 @@ export default {
 
     methods: {
 
+        checkProperties(obj) {
+            for (var key in obj) {
+                    if(obj[key] == "") {
+                        return false;
+                    }              
+            }
+            return true;
+        },
+
+        notEmpty() {
+            this.$emit("changeColorRenseignement_famille_ac1", this.checkProperties(this.renseignement))
+        },
+
+        handelEtablissement(e) {
+            this.renseignement.etablissement = e.target.value;
+            this.notEmpty();
+        },
+
+        handelAdresse(e) {
+            this.renseignement.adresse = e.target.value;
+            this.notEmpty();
+        },
+
+        handelEtendueVerification(e) {
+            this.renseignement.etendueVerification = e.target.value;
+            this.notEmpty();
+        },
+
+        handelAccompagnateurClient(e) {
+            this.renseignement.accompagnateurClient = e.target.value;
+            this.notEmpty();
+        },
+
+        handelPersonneCompteRendu(e) {
+            this.renseignement.personneCompteRendu = e.target.value;
+            this.notEmpty();
+        },
+
+        handelNomVerificateur(e) {
+            this.renseignement.nomVerificateur = e.target.value;
+            this.notEmpty();
+        },
+
+        handelRapportPrecedent(e) {
+            this.renseignement.rapportPrecedent = e.target.value;
+            this.notEmpty();
+        },
+
+        handelDatePrecedenteVerification(e) {
+            this.renseignement.datePrecedenteVerification = e.target.value;
+            this.notEmpty();
+        },
+
+        handelDocuments(e) {
+            this.renseignement.documents = e.target.value;
+            this.notEmpty();
+        },
+
+        handelDateDuree(e) {
+            this.renseignement.dateDuree = e.target.value;
+            this.notEmpty();
+        },
+
+
         valider() {
             this.falgInsert = false;
-            return this.sauvegarde();
         },
 
         annuler() {
             this.falgInsert = false;
         },
 
-        getValueEtablissement(event) {
-            this.renseignement.etablissement = event.target.value;
-            return this.sauvegarde();
-        },
-
-        getValueAdresse(event) {
-            this.renseignement.adresse = event.target.value;
-            return this.sauvegarde();
-        },
-
-        getEtendueVerification(event) {
-            this.renseignement.etendueVerification = event.target.value;
-            return this.sauvegarde();
-        },
-
-        getAccompagnateurClient(event) {
-            this.renseignement.accompagnateurClient = event.target.value;
-            return this.sauvegarde();
-        },
-
-        getPersonneCompteRendu(event) {
-            this.renseignement.personneCompteRendu = event.target.value;
-            return this.sauvegarde();
-        },
-
-        getNomVerificateur(event) {
-            this.renseignement.nomVerificateur = event.target.value;
-            return this.sauvegarde();
-        },
-
-        getRapportPrecedent(event) {
-            this.renseignement.rapportPrecedent = event.target.value;
-            return this.sauvegarde();
-        },
-
-        getDatePrecedenteVerification(event) {
-            this.renseignement.datePrecedenteVerification = event.target.value;
-            return this.sauvegarde();
-        },
-
-        getDocuments(event) {
-            this.renseignement.documents = event.target.value;
-            return this.sauvegarde();
-        },
-
-        getDateDuree(event) {
-            this.renseignement.dateDuree = event.target.value;
-            return this.sauvegarde();
-        },
-
         reset() {
 
-            Renseignement.reset(this.observateurId)
-                .then((result) => {
+            // Renseignement.reset(this.observateurId)
+            //     .then((result) => {
 
-                    if (result.data) {
+            //         if (result.data) {
 
-                        this.renseignement = {
+            //             this.renseignement = {
 
-                            tagEtablissement: "<input type='text' value='' height='48px'>",
-                            etablissement: "",
+            //                 etablissement: "",
+            //                 adresse: "",
+            //                 etendueVerification: "",
+            //                 accompagnateurClient: "",
+            //                 personneCompteRendu: "",
+            //                 nomVerificateur: "",
+            //                 rapportPrecedent: "",
+            //                 datePrecedenteVerification: "",
+            //                 documents: "",
+            //                 dateDuree: "",
+            //             },
 
-                            tagAdresse: "<input type='text' value='' height='48px'>",
-                            adresse: "",
+            //             this.flagReset = false;
+            //             this.$emit("menuStatusChicked");
 
-                            tagEtendueVerification: "<input type='text' value='' height='48px'>",
-                            etendueVerification: "",
-
-                            tagAccompagnateurClient: "<input type='text' value='' height='48px'>",
-                            accompagnateurClient: "",
-
-                            tagPersonneCompteRendu: "<input type='text' value='' height='48px'>",
-                            personneCompteRendu: "",
-
-                            tagNomVerificateur: "<input type='text' value='' height='48px'>",
-                            nomVerificateur: "",
-
-                            tagRapportPrecedent: "<input type='text' value='' height='48px'>",
-                            rapportPrecedent: "",
-
-                            tagDatePrecedenteVerification: "<input type='date' value='' height='48px'>",
-                            datePrecedenteVerification: "",
-
-                            tagDocuments: "<input type='text' value='' height='48px'>",
-                            documents: "",
-
-                            tagDateDuree: "<input type='date' value='' height='48px'>",
-                            dateDuree: "",
-
-                        },
-
-                        this.flagReset = false;
-                        this.$emit("menuStatusChicked");
-
-                    }
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            //         }
+            //     })
+            //     .catch((error) => {
+            //         console.log(error);
+            //     });
         },
 
         sauvegarde() {
 
-            this.renseignement.observateurId = this.observateurId;
-            Renseignement.create(this.renseignement)
-                .then((result) => {
+            // this.renseignement.observateurId = this.observateurId;
+            // Renseignement.create(this.renseignement)
+            //     .then((result) => {
 
-                    if (result.data) {
-                        this.flagReset = true;
-                        this.renseignementId = result.data.renseignementId;
-                        this.$emit("menuStatusChicked");
-                    }
+            //         if (result.data) {
+            //             this.flagReset = true;
+            //             this.renseignementId = result.data.renseignementId;
+            //             this.$emit("menuStatusChicked");
+            //         }
 
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+            //     })
+            //     .catch((error) => {
+            //         console.log(error);
+            //     });
         }
 
     },
 
     created() {
 
-        Completed.checkRenseignement(this.observateurId)
-            .then((result) => {
-                if (result.data == true) {
-                    
-                    console.log(result);
+        // Completed.checkRenseignement(this.observateurId)
+        //     .then((result) => {
+        //         if (result.data == true) {
 
-                    // Renseignement.select(this.observateurId)
-                    //     .then((result) => {
-
-                    //         this.renseignement.observateurId = this.observateurId;
-                    //         this.flagReset = true;
-
-                    //         this.renseignement.tagEtablissement = this.renseignement.tagEtablissement.replace("value=''", `value='${result.data.renseignement.etablissement}'`);
-                    //         this.renseignement.etablissement = result.data.renseignement.etablissement;
-                            
-                    //         this.renseignement.tagAdresse = this.renseignement.tagAdresse.replace("value=''", `value='${result.data.renseignement.adresse}'`);
-                    //         this.renseignement.adresse = result.data.renseignement.adresse;
-
-                    //         this.renseignement.tagEtendueVerification = this.renseignement.tagEtendueVerification.replace("value=''", `value='${result.data.renseignement.etendueVerification}'`);
-                    //         this.renseignement.etendueVerification = result.data.renseignement.etendueVerification;
-
-                    //         this.renseignement.tagAccompagnateurClient = this.renseignement.tagAccompagnateurClient.replace("value=''", `value='${result.data.renseignement.accompagnateurClient}'`);
-                    //         this.renseignement.accompagnateurClient = result.data.renseignement.accompagnateurClient;
-
-                    //         this.renseignement.tagPersonneCompteRendu = this.renseignement.tagPersonneCompteRendu.replace("value=''", `value='${result.data.renseignement.personneCompteRendu}'`);
-                    //         this.renseignement.personneCompteRendu = result.data.renseignement.personneCompteRendu;
-
-                    //         this.renseignement.tagNomVerificateur = this.renseignement.tagNomVerificateur.replace("value=''", `value='${result.data.renseignement.nomVerificateur}'`);
-                    //         this.renseignement.nomVerificateur = result.data.renseignement.nomVerificateur;
-
-                    //         this.renseignement.tagRapportPrecedent = this.renseignement.tagRapportPrecedent.replace("value=''", `value='${result.data.renseignement.rapportPrecedent}'`);
-                    //         this.renseignement.rapportPrecedent = result.data.renseignement.rapportPrecedent;
-
-                    //         this.renseignement.tagDatePrecedenteVerification = this.renseignement.tagDatePrecedenteVerification.replace("value=''", `value='${result.data.renseignement.datePrecedenteVerification}'`);
-                    //         this.renseignement.datePrecedenteVerification = result.data.renseignement.datePrecedenteVerification;
-
-                    //         this.renseignement.tagDocuments = this.renseignement.tagDocuments.replace("value=''", `value='${result.data.renseignement.documents}'`);
-                    //         this.renseignement.documents = result.data.renseignement.documents;
-
-                    //         this.renseignement.tagDateDuree = this.renseignement.tagDateDuree.replace("value=''", `value='${result.data.renseignement.dateDuree}'`);
-                    //         this.renseignement.dateDuree = result.data.renseignement.dateDuree;
-
-                    //         this.$emit("menuStatusChicked");
-
-                    //     })
-                    //     .catch((error) => {
-                    //         console.log(error.message)
-                    //     })
-                }
-            })
-            .catch((error) => {
-                console.log(error.message);
-            });
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error.message);
+        //     });
 
     }
 }

@@ -2,13 +2,13 @@
     <div class="menu">
         <table>
             <tr>
-                <th class="green" v-if="flagRenseignementsColor" @click="renseignement">
+                <th class="green" v-if="colorRenseignement_famille_ac1" @click="renseignement">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>RENSEIGNEMENTS GENERAUX ET ADMINISTRATIFS</span>
                     </div>
                 </th>
-                <th v-if="!flagRenseignementsColor" @click="renseignement">
+                <th v-if="!colorRenseignement_famille_ac1" @click="renseignement">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>RENSEIGNEMENTS GENERAUX ET ADMINISTRATIFS</span>
@@ -66,7 +66,7 @@
 // import Accessoires from "@/requests/accessoire_levage/famille_ac1/Accessoires";
 // import Photos from "@/requests/accessoire_levage/famille_ac1/Photos";
 // import Fiches from "@/requests/accessoire_levage/famille_ac1/Fiches";
-import Renseignements from "@/requests/accessoire_levage/famille_ac1/Renseignements";
+// import Renseignements from "@/requests/accessoire_levage/famille_ac1/Renseignements";
 
 export default {
     name: 'menu-component',
@@ -85,7 +85,8 @@ export default {
 
     props: {
         observateurId: String,
-        renseignementChicked : Boolean
+        renseignementChicked : Boolean,
+        colorRenseignement_famille_ac1 : Boolean
     },
 
     methods: {
@@ -111,15 +112,15 @@ export default {
 
     created() {
 
-        Renseignements.select(this.observateurId)
-            .then((result) => {
-                if(result.data) {
-                    this.flagRenseignementsColor = result.data.checkEmptyStatus;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        // Renseignements.select(this.observateurId)
+        //     .then((result) => {
+        //         if(result.data) {
+        //             this.flagRenseignementsColor = result.data.checkEmptyStatus;
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
 
 
 

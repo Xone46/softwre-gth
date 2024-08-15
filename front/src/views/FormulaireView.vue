@@ -11,9 +11,16 @@
 
 
         <!-- Start Famille-AC1 -->
-        <Menu_famille_ac1 v-if="flag_Menu_famille_ac" :observateurId="formulaire.observateurId"
-            @accessoire="accessoire_famille_ac1" @fiche="fiche_famille_ac1" @photo="photo_famille_ac1"
-            @renseignement="renseignement_famille_ac1" @verfication="verfication_famille_ac1" />
+        <Menu_famille_ac1 
+            v-if="flag_Menu_famille_ac" 
+            :observateurId="formulaire.observateurId"
+            @accessoire="accessoire_famille_ac1" 
+            @fiche="fiche_famille_ac1" 
+            @photo="photo_famille_ac1"
+            @renseignement="renseignement_famille_ac1" 
+            @verfication="verfication_famille_ac1"
+            :flagRenseignementColor="flagRenseignementColor"
+         />
         <!-- Fin Famille-AC1 -->
 
         <h3></h3>
@@ -38,16 +45,38 @@
 
 
             <div class="left" v-if="flag_famille_ac">
+
+                <KeepAlive>
+                <Renseignement_famille_ac1 
+                    v-if="flagRenseignement_famille_ac1" 
+                    @changeColorRenseignement_famille_ac1="changeColorRenseignement_famille_ac1"
+                    :observateurId="formulaire.observateurId" 
+                    :colorRenseignement_famille_ac1="colorRenseignement_famille_ac1"
+                />
+                </KeepAlive>
+
+                <KeepAlive>
                 <Accessoire_famille_ac1 v-if="flagAccessoire_famille_ac1" :observateurId="formulaire.observateurId"
                     @menuStatusChicked="menuStatusChicked_famille_ac1" />
+                </KeepAlive>
+
+                <KeepAlive>
                 <Fiche_famille_ac1 v-if="flagFiche_famille_ac1" :observateurId="formulaire.observateurId"
                     @menuStatusChicked="menuStatusChicked_famille_ac1" />
+                </KeepAlive>
+
+                <KeepAlive>
                 <Photo_famille_ac1 v-if="flagPhoto_famille_ac1" :observateurId="formulaire.observateurId"
                     @menuStatusChicked="menuStatusChicked_famille_ac1" />
-                <Renseignement_famille_ac1 v-if="flagRenseignement_famille_ac1"
-                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked_famille_ac1" />
+                </KeepAlive>
+
+
+
+                <KeepAlive>
                 <Verfication_famille_ac1 v-if="flagVerfication_famille_ac1" :observateurId="formulaire.observateurId"
                     @menuStatusChicked="menuStatusChicked_famille_ac1" />
+                </KeepAlive>
+
             </div>
 
             <div class="right">
@@ -117,6 +146,7 @@ export default {
             flagRenseignement_famille_ac1: true,
             flagFiche_famille_ac1 : false,
             flagVerfication_famille_ac1 : false,
+            colorRenseignement_famille_ac1 : false,
 
             flagVisualiationReserve: false,
 
@@ -190,6 +220,9 @@ export default {
             this.flag_Menu_famille_ac = true;
         },
 
+        async changeColorRenseignement_famille_ac1 () {
+            this.colorRenseignement_famille_ac1 = true;
+        },
 
 
         renseignement_famille1_lev1() {
