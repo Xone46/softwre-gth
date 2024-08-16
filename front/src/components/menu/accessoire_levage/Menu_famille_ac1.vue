@@ -16,13 +16,13 @@
                 </th>
 
 
-                <th class="green" v-if="flagAccessoireColor" @click="accessoire">
+                <th class="green" v-if="colorAccessoire_famille_ac1" @click="accessoire">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>LISTE DES ACCESSOIRES VERIFIES</span>
                     </div>
                 </th>
-                <th v-if="!flagAccessoireColor" @click="accessoire">
+                <th v-if="!colorAccessoire_famille_ac1" @click="accessoire">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>LISTE DES ACCESSOIRES VERIFIES</span>
@@ -75,7 +75,6 @@ export default {
             flagAccessoireColor: false,
             flagFicheColor: false,
             flagPhotoColor: false,
-            flagRenseignementsColor: false,
             // flagVerficationColor: false,
         }
     },
@@ -86,7 +85,8 @@ export default {
     props: {
         observateurId: String,
         renseignementChicked : Boolean,
-        colorRenseignement_famille_ac1 : Boolean
+        colorRenseignement_famille_ac1 : Boolean,
+        colorAccessoire_famille_ac1 : Boolean
     },
 
     methods: {

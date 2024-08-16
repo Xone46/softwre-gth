@@ -62,62 +62,6 @@ class Renseignement {
     // ------------------------------ Fin ------------------------------
 
 
-    // -----------------------------------Start gth famille ac1 ----------------------------
-    static create_famille_ac1(renseignement) {
-        return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/levageA/create`,
-                renseignement,
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    resolve(response);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        })
-    }
-
-    static reset_famille_ac1(observateurId) {
-        return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/renseignements_famille_ac1/reset/${observateurId}`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    resolve(response);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        })
-    }
-
-    static select_famille_ac1(observateurId) {
-
-        return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/renseignements_famille_ac1/${observateurId}`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => {
-                    resolve(response);
-                })
-                .catch(error => {
-                    reject(error);
-                });
-        })
-    }
-    // -----------------------------------Fin gth famille ac1 ----------------------------
-
-
 }
 
 export default Renseignement;

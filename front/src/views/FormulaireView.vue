@@ -4,9 +4,15 @@
         <h3>{{ formulaire.typeAppareil[1] }}</h3>
 
         <!-- Start Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
-        <Menu_famille1_lev1 v-if="flag_Menu_famille_lev" :observateurId="formulaire.observateurId"
-            @renseignement="renseignement_famille1_lev1" @description="description_famille1_lev1"
-            @examen="examen_famille1_lev1" @conclusion="conclusion_famille1_lev1" @photo="photo_famille1_lev1" />
+        <Menu_famille1_lev1 
+            v-if="flag_Menu_famille_lev" 
+            :observateurId="formulaire.observateurId"
+            @renseignement="renseignement_famille1_lev1"
+            @description="description_famille1_lev1"
+            @examen="examen_famille1_lev1"
+            @conclusion="conclusion_famille1_lev1"
+            @photo="photo_famille1_lev1" 
+        />
         <!-- Fin Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
 
 
@@ -19,7 +25,8 @@
             @photo="photo_famille_ac1"
             @renseignement="renseignement_famille_ac1" 
             @verfication="verfication_famille_ac1"
-            :flagRenseignementColor="flagRenseignementColor"
+            :colorRenseignement_famille_ac1="colorRenseignement_famille_ac1"
+            :colorAccessoire_famille_ac1="colorAccessoire_famille_ac1"
          />
         <!-- Fin Famille-AC1 -->
 
@@ -51,18 +58,24 @@
                     v-if="flagRenseignement_famille_ac1" 
                     @changeColorRenseignement_famille_ac1="changeColorRenseignement_famille_ac1"
                     :observateurId="formulaire.observateurId" 
-                    :colorRenseignement_famille_ac1="colorRenseignement_famille_ac1"
                 />
                 </KeepAlive>
 
                 <KeepAlive>
-                <Accessoire_famille_ac1 v-if="flagAccessoire_famille_ac1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked_famille_ac1" />
+                <Accessoire_famille_ac1 
+                    v-if="flagAccessoire_famille_ac1" 
+                    @changeColorAccessoire_famille_ac1="changeColorAccessoire_famille_ac1" 
+                    @sendAccessoires="sendAccessoires"
+                    :observateurId="formulaire.observateurId"
+                />
                 </KeepAlive>
 
                 <KeepAlive>
-                <Fiche_famille_ac1 v-if="flagFiche_famille_ac1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked_famille_ac1" />
+                <Fiche_famille_ac1 
+                    v-if="flagFiche_famille_ac1"
+                    :observateurId="formulaire.observateurId"
+                    :accessoires="accessoires"
+                 />
                 </KeepAlive>
 
                 <KeepAlive>
@@ -147,6 +160,7 @@ export default {
             flagFiche_famille_ac1 : false,
             flagVerfication_famille_ac1 : false,
             colorRenseignement_famille_ac1 : false,
+            colorAccessoire_famille_ac1 : false,
 
             flagVisualiationReserve: false,
 
@@ -154,7 +168,9 @@ export default {
                 observateurId: "",
                 categorieAppareil: "",
                 typeRapport: ""
-            }
+            },
+
+            accessoires : []
         }
     },
 
@@ -202,6 +218,10 @@ export default {
             this.$router.push("/sauvegarder").catch(() => { });
         },
 
+        sendAccessoires(value) {
+            this.accessoires = value;
+        },
+
         async menuStatusChicked_famille_lev() {
             // Remove MyComponent from the DOM
             this.flag_Menu_famille_lev = false;
@@ -220,8 +240,12 @@ export default {
             this.flag_Menu_famille_ac = true;
         },
 
-        async changeColorRenseignement_famille_ac1 () {
-            this.colorRenseignement_famille_ac1 = true;
+        async changeColorRenseignement_famille_ac1 (value) {
+            this.colorRenseignement_famille_ac1 = value;
+        },
+
+        async changeColorAccessoire_famille_ac1 (value) {
+            this.colorAccessoire_famille_ac1 = value;
         },
 
 
