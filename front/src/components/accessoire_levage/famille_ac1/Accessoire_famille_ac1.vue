@@ -32,7 +32,7 @@
                         Voir fiche   
                     </td>
                     <td>
-                        <select @input="saisirValue(index, 'arret', $event)">
+                        <select @input="saisirValue(index, 'arret', $event)" :value="accessoires[index]['arret']">
                             <option value=""></option>
                             <option value="Oui">Oui</option>
                             <option value="No">No</option>
@@ -68,9 +68,8 @@
 
 
 import Insert from "@/components/models/Insert.vue"
-// import Renseignement from "@/requests/accessoire_levage/famille_ac1/Renseignements"
-// import Completed from "@/requests/accessoire_levage/famille_ac1/Completed"
-// import Observateurs from "@/requests/Observateurs";
+import Accessoires from "@/requests/accessoire_levage/famille_ac1/Accessoires"
+
 export default {
     name: 'renseignement-component',
     data() {
@@ -100,12 +99,31 @@ export default {
         annuler() {
             this.falgInsert = false;
         },
-
         reset() {
+
+            Accessoires.reset(this.observateurId)
+                    .then(() => {
+                        this.accessoires = [];
+                        this.$emit("changeColorAccessoire_famille_ac1", false);
+                        this.flagReset = false;
+                
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
 
         },
 
+
         sauvegarde() {
+
+            Accessoires.create(this.accessoires, this.observateurId)
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
 
         },
 
@@ -129,6 +147,7 @@ export default {
         saisirValue(index, value, e) {
                 this.accessoires[index][value] = e.target.value;
                 this.notEmpty();
+                this.sauvegarde();
         },
 
         ajouter() {
@@ -174,18 +193,24 @@ export default {
         },
 
         supprimer(index) {
-
             this.accessoires.splice(index, 1);
             this.$emit("sendAccessoires",  this.accessoires);
             this.notEmpty();
-
         }
 
     },
 
     created() {
 
-
+        Accessoires.select(this.observateurId)
+        .then((result) => {
+            this.accessoires = result.data.accessoires;
+            this.$emit("changeColorAccessoire_famille_ac1", true)
+            this.flagReset = true;
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
     }
 }
 </script>
