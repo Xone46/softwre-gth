@@ -190,7 +190,6 @@ export default {
             this.flagSpinner = true;
             Observateurs.apercu(this.observateursSelect[0], sessionStorage.getItem("id"))
             .then((result) => {
-                console.log(result)
                 if (result) {
                     this.flagSpinner = false;
                 }

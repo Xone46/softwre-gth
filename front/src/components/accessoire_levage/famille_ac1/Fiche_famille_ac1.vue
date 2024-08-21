@@ -2,7 +2,7 @@
     <div>
         <div class="content" v-for="(item, index) in fiches" :key="index + 100">
 
-            <h3 @click="displayFiche(index)"> Fiche de vérification N° : {{ item.verfication }}</h3>
+            <h3 @click="displayFiche(index)"> Fiche de vérification N° :{{ item.verfication }}</h3>
 
             <table v-if="item.display">
 
@@ -77,13 +77,13 @@
                 </tr>
                 <tr v-for="(o, j) in fiches[index]['observation']" :key="j + 200">
                     <td>
-                        <input type="text" @input="saisirObs(index, j)" :value="fiches[index]['observation'][j]['obs']">
+                        <input type="text" @input="saisirObs(index, j, $event)" :value="fiches[index]['observation'][j]['obs']">
                     </td>
                     <td>
-                        <textarea @input="saisirObservation(index, j)" :value="fiches[index]['observation'][j]['observation']" cols="30" rows="3"></textarea>
+                        <textarea @input="saisirObservation(index, j, $event)" :value="fiches[index]['observation'][j]['observation']" cols="30" rows="3"></textarea>
                     </td>
                     <td>
-                        <input type="text" @input="saisirSuite(index, j)" :value=" fiches[index]['observation'][j]['suite']">
+                        <input type="text" @input="saisirSuite(index, j, $event)" :value=" fiches[index]['observation'][j]['suite']">
                     </td>
                     <td>
                         <p @click="supprimerObservation(index, j)">supprimer</p>
@@ -94,8 +94,8 @@
             <button v-if="item.display" @click="ajouterObservation(index)">Ajouter Observation</button>
 
             <div v-if="item.display">
-                <div v-for="(v, k) in item.conclusion" :key="k + 300">
-                    <input type="checkbox" v-model="v.status" />
+                <div v-for="(v, k) in fiches[index]['conclusion']" :key="k + 300">
+                    <input type="checkbox" @input="saisirConclusion(index, k, v.status)" :checked="fiches[index]['conclusion'][k]['status']" :value="fiches[index]['conclusion'][k]['status']" />
                     <label>{{ v.text }}</label>
                 </div>
             </div>
@@ -133,7 +133,8 @@ export default {
     },
 
     props: {
-        accessoires: Array
+        accessoires: Array,
+        observateurId: String
     },
 
     components: {
@@ -142,59 +143,109 @@ export default {
 
     methods: {
 
-        saisirObs(index, j) {
-            console.log(j);
-            console.log(this.fiches[index]["observation"]);
-        },
-
-        saisirObservation(index, j) {
-            console.log(j);
-            console.log(this.fiches[index]["observation"]);
-        },
-
-        saisirSuite(index, j) {
-            console.log(j);
-            console.log(this.fiches[index]["observation"]);
-        },
-
         checkProperties(obj) {
-            for (let i = 0; i < obj.length; i++) {
 
-                for (const [key] of Object.entries(obj[i])) {
+            for(let i = 0; i < obj.length; i++) {
 
-                    if(key == "observation") {
-                        for(let j = 0; j < obj[i]["observation"].length; j++) {
-
-                            for (const [key, value] of Object.entries(obj[i]["observation"][j])) {
-                                    if(value == "") {
-                                        console.log(key)
-                                        return false;
-                                    }
-                            }
-
-                        }
+                    if(obj[i]["description"] == "") {
+                        return false;
                     }
 
-                    if(key == "conclusion") {
-                        for(let j = 0; j < obj[i]["conclusion"].length; j++) {
-                            for (const [key, value] of Object.entries(obj[i]["conclusion"][j])) {
-                                    if(value == "") {
-                                        console.log(key)
-                                        return false;
-                                    }
-                            }
-                        }
+                    if(obj[i]["numeroInterne"] == "") {
+                        return false;
                     }
-                }
+
+                    if(obj[i]["localisation"] == "") {
+                        return false;
+                    }
+
+                    if(obj[i]["informationComplementaire"] =="") {
+                        return false;
+                    }
+
+                    if(obj[i]["marque"] == "") {
+                        return false;
+                    }
+
+                    if(obj[i]["type"] == "") {
+                        return false;
+                    }
+
+                    if(obj[i]["numeroSerie"] == "") {
+                        return false;
+                    }
+
+                    if(obj[i]["anneeMiseService"] == "") {
+                        return false;
+                    }
+
+                    if(obj[i]["chargeMaximaleUtile"] == "") {
+                        return false;
+                    }
+
+                    if(obj[i]["diametreCableChaine"] == "") {
+                        return false;
+                    }
+
+                    if(obj[i]["nombreBrins"] == "") {
+                        return false;
+                    }
+
+                    if(obj[i]["longueur"] == "") {
+                        return false;
+                    }
+
+                    // for(let j = 0; j < obj[i]["observation"].length; j++) {
+
+
+                    //     if(obj[i]["observation"][j]["obs"] == "") {
+                    //         return false;
+                    //     }   
+
+                    //     if(obj[i]["observation"][j]["observation"] == "") {
+                    //         return false;
+                    //     }
+
+                    //     if(obj[i]["observation"][j]["suite"] == "") {
+                    //         return false;
+                    //     }
+                    // }
+
 
             }
-            // return true;
+
+           return true;
         },
 
         notEmpty() {
             this.$emit("changeColorFiche_famille_ac1", this.checkProperties(this.fiches));
+        },
+
+        saisirObs(index, j, e) {
+            this.fiches[index]["observation"][j]["obs"] = e.target.value;
+            this.notEmpty();
             this.sauvegarde();
         },
+
+        saisirObservation(index, j, e) {
+            this.fiches[index]["observation"][j]["observation"] = e.target.value;
+            this.notEmpty();
+            this.sauvegarde();
+        },
+
+        saisirSuite(index, j, e) {
+            this.fiches[index]["observation"][j]["suite"] = e.target.value;
+            this.notEmpty();
+            this.sauvegarde();
+        },
+
+        saisirConclusion(index, j, value) {
+            this.fiches[index]["conclusion"][j]["status"] = Boolean(!value);
+            this.notEmpty();
+            this.sauvegarde();
+        },
+
+
 
         saisirDescription(index, e) {
             this.fiches[index]["description"] = e.target.value;
@@ -270,8 +321,6 @@ export default {
 
         displayFiche(index) {
             this.fiches[index]["display"] = !this.fiches[index]["display"];
-            this.notEmpty();
-            this.sauvegarde();
         },
 
         supprimerObservation(index, j) {
@@ -293,13 +342,13 @@ export default {
         annuler() {
             this.falgInsert = false;
         },
+
         reset() {
             Fiche.reset(this.observateurId)
                     .then(() => {
-                        this.fiches = [];
+                        this.fiches = this.accessoires;
                         this.$emit("changeColorFiche_famille_ac1", this.checkProperties(this.fiches));
                         this.flagReset = false;
-                
                 })
                 .catch((error) => {
                     console.log(error);
@@ -312,7 +361,7 @@ export default {
 
             Fiche.create(this.fiches, this.observateurId)
             .then((result) => {
-                console.log(result);
+                console.log(result)
             })
             .catch((error) => {
                 console.log(error);
@@ -328,9 +377,11 @@ export default {
 
         Fiche.select(this.observateurId)
         .then((result) => {
-            this.fiches = result.data.fiches;
-            this.$emit("changeColorFiche_famille_ac1", true);
-            this.flagReset = true;
+            if(result.data) {
+                this.fiches = result.data.fiches;
+                this.$emit("changeColorFiche_famille_ac1", this.checkProperties(this.fiches));
+                this.flagReset = true;
+            }
         })
         .catch((error) => {
             console.log(error.message);

@@ -27,6 +27,8 @@
             @verfication="verfication_famille_ac1"
             :colorRenseignement_famille_ac1="colorRenseignement_famille_ac1"
             :colorAccessoire_famille_ac1="colorAccessoire_famille_ac1"
+            :colorFiche_famille_ac1="colorFiche_famille_ac1"
+            :colorPhoto_famille_ac1="colorPhoto_famille_ac1"
          />
         <!-- Fin Famille-AC1 -->
 
@@ -73,14 +75,18 @@
                 <KeepAlive>
                 <Fiche_famille_ac1 
                     v-if="flagFiche_famille_ac1"
+                    @changeColorFiche_famille_ac1="changeColorFiche_famille_ac1"
                     :observateurId="formulaire.observateurId"
                     :accessoires="accessoires"
                  />
                 </KeepAlive>
 
                 <KeepAlive>
-                <Photo_famille_ac1 v-if="flagPhoto_famille_ac1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked_famille_ac1" />
+                <Photo_famille_ac1 
+                    v-if="flagPhoto_famille_ac1" 
+                    :observateurId="formulaire.observateurId"
+                    @changeColorPhoto_famille_ac1="changeColorPhoto_famille_ac1"
+                 />
                 </KeepAlive>
 
 
@@ -161,6 +167,8 @@ export default {
             flagVerfication_famille_ac1 : false,
             colorRenseignement_famille_ac1 : false,
             colorAccessoire_famille_ac1 : false,
+            colorFiche_famille_ac1 : false,
+            colorPhoto_famille_ac1 : false,
 
             flagVisualiationReserve: false,
 
@@ -197,6 +205,10 @@ export default {
     },
 
     methods: {
+
+        emptyAccessoire_famille_ac1() {
+            this.accessoires = [];
+        },
 
         handelQuitter() {
             this.flagVisualiationReserve = false;
@@ -246,6 +258,14 @@ export default {
 
         async changeColorAccessoire_famille_ac1 (value) {
             this.colorAccessoire_famille_ac1 = value;
+        },
+
+        async changeColorFiche_famille_ac1 (value) {
+            this.colorFiche_famille_ac1 = value;
+        },
+
+        async changeColorPhoto_famille_ac1 (value) {
+            this.colorPhoto_famille_ac1 = value;
         },
 
 

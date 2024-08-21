@@ -30,26 +30,26 @@
                 </th>
 
 
-                <th class="green" v-if="flagFicheColor" @click="fiche">
+                <th class="green" v-if="colorFiche_famille_ac1" @click="fiche">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>FICHES DE VÉRIFICATIONS</span>
                     </div>
                 </th>
-                <th v-if="!flagFicheColor" @click="fiche">
+                <th v-if="!colorFiche_famille_ac1" @click="fiche">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>FICHES DE VÉRIFICATIONS</span>
                     </div>
                 </th>
 
-                <th class="green" v-if="flagPhotoColor" @click="photo">
+                <th class="green" v-if="colorPhoto_famille_ac1" @click="photo">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>PHOTO</span>
                     </div>
                 </th>
-                <th v-if="!flagPhotoColor" @click="photo">
+                <th v-if="!colorPhoto_famille_ac1" @click="photo">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>PHOTO</span>
@@ -72,10 +72,7 @@ export default {
     name: 'menu-component',
     data() {
         return {
-            flagAccessoireColor: false,
-            flagFicheColor: false,
-            flagPhotoColor: false,
-            // flagVerficationColor: false,
+
         }
     },
 
@@ -86,7 +83,9 @@ export default {
         observateurId: String,
         renseignementChicked : Boolean,
         colorRenseignement_famille_ac1 : Boolean,
-        colorAccessoire_famille_ac1 : Boolean
+        colorAccessoire_famille_ac1 : Boolean,
+        colorFiche_famille_ac1 : Boolean,
+        colorPhoto_famille_ac1 : Boolean
     },
 
     methods: {

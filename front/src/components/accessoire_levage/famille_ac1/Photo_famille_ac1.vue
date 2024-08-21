@@ -38,6 +38,14 @@ export default {
 
     methods: {
 
+        checkProperties(file) {
+            if(file) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
         displayImage() {
             Photos.displayImage(this.imgSrc)
             .then((result) => {
@@ -54,15 +62,16 @@ export default {
             this.file = this.$refs.file.files[0];
         },
 
-
         sauvegarde() {
             Photos.create(this.file, this.observateurId)
             .then((result) => {
+
                 if(result) {
                     this.imgSrc = result.filename;
                     this.flagReset = true;
-                    this.$emit("menuStatusChicked");
+                    this.$emit("changeColorPhoto_famille_ac1", this.checkProperties(this.file));
                 }
+
             })
             .catch((error) => {
                 console.log(error);
@@ -77,7 +86,7 @@ export default {
                     this.flagReset = false;
                     this.file = null;
                     this.imgSrc = null;
-                    this.$emit("menuStatusChicked");
+                    this.$emit("changeColorPhoto_famille_ac1", this.checkProperties(this.file));
                 }
 
             })
@@ -89,13 +98,16 @@ export default {
 
     created() {
 
+            console.log("achraf")
+
             Photos.select(this.observateurId)
             .then((result) => {
                 if(result.data.img != null) {
+                    console.log(result.data)
                     this.flagReset = true;
                     this.flagImg = true;
                     this.imgSrc = result.data.img;
-                    this.$emit("menuStatusChicked");
+                    this.$emit("changeColorPhoto_famille_ac1", true);
                 }
             })
             .catch((error) => {

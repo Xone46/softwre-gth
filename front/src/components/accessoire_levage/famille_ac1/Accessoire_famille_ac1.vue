@@ -119,7 +119,9 @@ export default {
 
             Accessoires.create(this.accessoires, this.observateurId)
             .then((result) => {
-                console.log(result);
+                if(result) {
+                    this.flagReset = true;
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -205,7 +207,8 @@ export default {
         Accessoires.select(this.observateurId)
         .then((result) => {
             this.accessoires = result.data.accessoires;
-            this.$emit("changeColorAccessoire_famille_ac1", true)
+            this.$emit("changeColorAccessoire_famille_ac1", true);
+            this.$emit("sendAccessoires",  this.accessoires);
             this.flagReset = true;
         })
         .catch((error) => {
