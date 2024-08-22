@@ -3,7 +3,7 @@
 
         <table>
             <tr>
-                <th>ACCES INSTALLES A DEMEURE</th>
+                <th>INSTALLATION (Installation a demeure ou nécessitant l'aménagement de supports particuliers)</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -42,7 +42,7 @@
 
         <table>
             <tr>
-                <th>CHEMINS DE ROULEMENT / SUPPORTS</th>
+                <th>ACCES INSTALLES A DEMEURE</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -81,7 +81,7 @@
 
         <table>
             <tr>
-                <th>CHARPENTE ET OSSATURE DE L'APPAREIL</th>
+                <th>CHASSIS</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -120,7 +120,7 @@
 
         <table>
             <tr>
-                <th>SOURCES D'ENERGIE</th>
+                <th>CHARPENTE</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -159,7 +159,7 @@
 
         <table>
             <tr>
-                <th>ECLAIRAGE INCORPORE A L'APPAREIL</th>
+                <th>POSTE DE CONDUITE</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -198,7 +198,7 @@
 
         <table>
             <tr>
-                <th>POSTE DE CONDUITE</th>
+                <th>ORGANES DE SERVICE ET DE MANOEUVRE</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -237,7 +237,7 @@
 
         <table>
             <tr>
-                <th>ORGANES DE SERVICE ET DE MANOEUVRE</th>
+                <th>SUSPENTES TAMBOURS POULIES DISPOSITIFS DE PREHENSION</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -276,7 +276,7 @@
 
         <table>
             <tr>
-                <th>SUSPENTES TAMBOURS POULIES DISPOSITIFS DE PREHENSION</th>
+                <th>MECANISMES</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -316,7 +316,7 @@
 
         <table>
             <tr>
-                <th>MECANISMES</th>
+                <th>DISPOSITIFS DE SECURITE</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -355,7 +355,7 @@
 
         <table>
             <tr>
-                <th>DISPOSITIFS DE SECURITE</th>
+                <th>PRESCRIPTIONS DIVERSES</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -392,45 +392,6 @@
             </tr>
         </table>
 
-
-        <table>
-            <tr>
-                <th>DISPOSITIFS DE SECURITE</th>
-                <th></th>
-                <th>BE</th>
-                <th>FC</th>
-                <th>SA</th>
-                <th>NV</th>
-                <th>SO</th>
-                <th>O</th>
-                <th></th>
-            </tr>
-            <tr v-for="(item, index) in k" :key="index">
-                <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
-                <td>
-                    <input type="checkbox" v-model="item.be" @change="checkK(index, 'be', item.be)">
-                </td>
-                <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkK(index, 'fc', item.fc)">
-                </td>
-                <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkK(index, 'sa', item.sa)">
-                </td>
-                <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkK(index, 'nv', item.nv)">
-                </td>
-                <td>
-                    <input type="checkbox" v-model="item.so" @change="checkK(index, 'so', item.so)">
-                </td>
-                <td>
-                    <input type="checkbox" v-model="item.o" @change="checkK(index, 'o', item.o)">
-                </td>
-                <td>
-                    <p v-if="item.o" @click="checkKObs(index)">obs</p>
-                </td>
-            </tr>
-        </table>
 
         <div v-if="!flagReset" class="sauvegarde">
             <button @click="sauvegarde">Sauvegarde de Secours</button>

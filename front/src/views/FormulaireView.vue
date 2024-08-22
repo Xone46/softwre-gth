@@ -198,7 +198,7 @@ export default {
             flagRenseignement_famille1_lev1: true,
             flagReserve_famille1_lev1: false,
             colorConclusion_famille1_lev1: false,
-            colorDescription_famille1_lev1: false,
+            colorDescription_famille_lev1: false,
             colorExamen_famille1_lev1: false,
             colorPhoto_famille1_lev1: false,
             colorRenseignement_famille1_lev1: true,

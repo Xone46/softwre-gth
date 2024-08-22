@@ -25,7 +25,8 @@ export default {
     },
 
     props : {
-        typeInsert : String
+        typeInsert : String,
+        valueInsert : String
     },
 
     methods: {
@@ -38,6 +39,10 @@ export default {
             return this.$emit('annuler');
         }
     },
+
+    created() {
+        this.val = this.valueInsert;
+    }
 
 
 }
