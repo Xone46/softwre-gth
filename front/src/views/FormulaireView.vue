@@ -12,6 +12,11 @@
             @examen="examen_famille1_lev1"
             @conclusion="conclusion_famille1_lev1"
             @photo="photo_famille1_lev1" 
+            :colorRenseignement_famille1_lev1="colorRenseignement_famille1_lev1"
+            :colorDescription_famille_lev1="colorDescription_famille_lev1"
+            :colorExamen_famille1_lev1="colorExamen_famille1_lev1"
+            :colorConclusion_famille1_lev1="colorConclusion_famille1_lev1"
+            :colorPhoto_famille1_lev1="colorPhoto_famille1_lev1"
         />
         <!-- Fin Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
 
@@ -37,22 +42,60 @@
 
         <div class="content">
 
+            <!-- famille1_lev1 -->
             <div class="left" v-if="flag_famille_lev">
-                <Renseignement_famille1_lev1 v-if="flagRenseignement_famille1_lev1"
-                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked_famille_lev" />
-                <Description_famille1_lev1 v-if="flagDescription_famille1_lev1"
-                    :observateurId="formulaire.observateurId" @menuStatusChicked="menuStatusChicked_famille_lev" />
-                <Examen_famille1_lev1 v-if="flagExamen_famille1_lev1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked_famille_lev" />
-                <Photo_famille1_lev1 v-if="flagPhoto_famille1_lev1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked_famille_lev" />
-                <Conclusion_famille1_lev1 v-if="flagConclusion_famille1_lev1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked_famille_lev" />
-                <Reserve_famille1_lev1 v-if="flagReserve_famille1_lev1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked_famille_lev" />
+
+                <KeepAlive>
+                <Renseignement_famille1_lev1 
+                    v-if="flagRenseignement_famille1_lev1"
+                    @changeColorRenseignement_famille1_lev1="changeColorRenseignement_famille1_lev1"
+                    :observateurId="formulaire.observateurId"
+                 />
+                </KeepAlive>
+
+                <KeepAlive>
+                <Description_famille1_lev1
+                    v-if="flagDescription_famille1_lev1"
+                    @changeColorDescription_famille1_lev1="changeColorDescription_famille1_lev1"
+                    :observateurId="formulaire.observateurId"
+                />
+                </KeepAlive>
+
+                <KeepAlive>
+                <Examen_famille1_lev1 
+                    v-if="flagExamen_famille1_lev1"
+                    @changeColorExamen_famille1_lev1="changeColorExamen_famille1_lev1"
+                    :observateurId="formulaire.observateurId"
+                 />
+                </KeepAlive>
+
+                <KeepAlive>
+                <Photo_famille1_lev1 
+                    v-if="flagPhoto_famille1_lev1"
+                    @changeColorPhoto_famille1_lev1="changeColorPhoto_famille1_lev1"
+                    :observateurId="formulaire.observateurId"
+                />
+                </KeepAlive>
+
+                <KeepAlive>
+                <Conclusion_famille1_lev1 
+                    v-if="flagConclusion_famille1_lev1"
+                    @changeColorConclusion_famille1_lev1="changeColorConclusion_famille1_lev1"
+                    :observateurId="formulaire.observateurId"
+                 />
+                </KeepAlive>
+
+                <KeepAlive>
+                <Reserve_famille1_lev1 
+                    v-if="flagReserve_famille1_lev1" 
+                    @changeColorReserve_famille1_lev1="changeColorReserve_famille1_lev1"
+                    :observateurId="formulaire.observateurId"
+                />
+                </KeepAlive>
+
             </div>
 
-
+            <!-- Famille AC1 -->
             <div class="left" v-if="flag_famille_ac">
 
                 <KeepAlive>
@@ -89,8 +132,6 @@
                  />
                 </KeepAlive>
 
-
-
                 <KeepAlive>
                 <Verfication_famille_ac1 v-if="flagVerfication_famille_ac1" :observateurId="formulaire.observateurId"
                     @menuStatusChicked="menuStatusChicked_famille_ac1" />
@@ -113,8 +154,7 @@
 
 <script>
 
-import { nextTick } from 'vue';
-
+// 
 
 //GTH-Famille 1-LEV1
 import Conclusion_famille1_lev1 from "@/components/appareil_levage/famille1_lev1/Conclusion_famille1_lev1.vue"
@@ -157,6 +197,12 @@ export default {
             flagPhoto_famille1_lev1: false,
             flagRenseignement_famille1_lev1: true,
             flagReserve_famille1_lev1: false,
+            colorConclusion_famille1_lev1: false,
+            colorDescription_famille1_lev1: false,
+            colorExamen_famille1_lev1: false,
+            colorPhoto_famille1_lev1: false,
+            colorRenseignement_famille1_lev1: true,
+            colorReserve_famille1_lev1: false,
 
             flag_famille_ac: false,
             flag_Menu_famille_ac: false,
@@ -234,24 +280,8 @@ export default {
             this.accessoires = value;
         },
 
-        async menuStatusChicked_famille_lev() {
-            // Remove MyComponent from the DOM
-            this.flag_Menu_famille_lev = false;
-            // Wait for the change to get flushed to the DOM
-            await nextTick();
-            // Add the component back in
-            this.flag_Menu_famille_lev = true;
-        },
 
-        async menuStatusChicked_famille_ac1() {
-            // Remove MyComponent from the DOM
-            this.flag_Menu_famille_ac = false;
-            // Wait for the change to get flushed to the DOM
-            await nextTick();
-            // Add the component back in
-            this.flag_Menu_famille_ac = true;
-        },
-
+        // All functions for Change color famille_ac1---------------------
         async changeColorRenseignement_famille_ac1 (value) {
             this.colorRenseignement_famille_ac1 = value;
         },
@@ -267,6 +297,29 @@ export default {
         async changeColorPhoto_famille_ac1 (value) {
             this.colorPhoto_famille_ac1 = value;
         },
+        //--------------------------------------------------------------
+
+        // All functions for Change color famille1_lev1 ---------------------------
+        async changeColorRenseignement_famille1_lev1(value) {
+            this.colorRenseignement_famille1_lev1 = value;
+        },
+
+        async changeColorDescription_famille1_lev1(value) {
+            this.colorDescription_famille1_lev1 = value;
+        },
+
+        async changeColorExamen_famille1_lev1(value){
+            this.colorExamen_famille1_lev1 = value;
+        },
+
+        async changeColorConclusion_famille1_lev1(value) {
+            this.colorConclusion_famille1_lev1 = value;
+        },
+
+        async changeColorPhoto_famille1_lev1(value) {
+            this.colorPhoto_famille1_lev1 = value;
+        },
+        // ------------------------------------------------------------------
 
 
         renseignement_famille1_lev1() {
@@ -483,13 +536,6 @@ export default {
     color: white;
     padding: 10px;
 }
-
-/* 
-.formulaire .content .left {
-    display: flex;
-    flex-direction: column;
-    padding: 5px;
-} */
 
 
 .formulaire .content .right {

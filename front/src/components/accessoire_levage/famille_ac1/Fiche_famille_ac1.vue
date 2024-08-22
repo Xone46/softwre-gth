@@ -195,21 +195,6 @@ export default {
                         return false;
                     }
 
-                    // for(let j = 0; j < obj[i]["observation"].length; j++) {
-
-
-                    //     if(obj[i]["observation"][j]["obs"] == "") {
-                    //         return false;
-                    //     }   
-
-                    //     if(obj[i]["observation"][j]["observation"] == "") {
-                    //         return false;
-                    //     }
-
-                    //     if(obj[i]["observation"][j]["suite"] == "") {
-                    //         return false;
-                    //     }
-                    // }
 
 
             }

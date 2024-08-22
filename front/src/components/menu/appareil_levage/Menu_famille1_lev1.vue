@@ -2,13 +2,15 @@
     <div class="menu">
         <table>
             <tr>
-                <th class="green" v-if="flagRenseignementsColor" @click="renseignement">
+
+                <th class="green" v-if="colorRenseignement_famille1_lev1" @click="renseignement">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>RENSEIGNEMENTS GENERAUX</span>
                     </div>
                 </th>
-                <th v-if="!flagRenseignementsColor" @click="renseignement">
+
+                <th v-if="!colorRenseignement_famille1_lev1" @click="renseignement">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>RENSEIGNEMENTS GENERAUX</span>
@@ -16,13 +18,13 @@
                 </th>
 
 
-                <th class="green" v-if="flagDescriptionColor" @click="description">
+                <th class="green" v-if="colorDescription_famille_lev1" @click="description">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>DESCRIPTION DE L'APPAREIL VERIFIE</span>
                     </div>
                 </th>
-                <th v-if="!flagDescriptionColor" @click="description">
+                <th v-if="!colorDescription_famille_lev1" @click="description">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>DESCRIPTION DE L'APPAREIL VERIFIE</span>
@@ -30,27 +32,26 @@
                 </th>
 
 
-                <th class="green" v-if="flagExamenColor" @click="examen">
+                <th class="green" v-if="colorExamen_famille1_lev1" @click="examen">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
-                        <span>EXAMENS ET ESSAIS DE L'APPAREIL</span>
+                        <span>EXAMEN ET ESSAIS DE L'APPAREIL</span>
                     </div>
                 </th>
-                <th v-if="!flagExamenColor" @click="examen">
+                <th v-if="!colorExamen_famille1_lev1" @click="examen">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
-                        <span>EXAMENS ET ESSAIS DE L'APPAREIL</span>
+                        <span>EXAMEN ET ESSAIS DE L'APPAREIL</span>
                     </div>
                 </th>
 
-
-                <th class="green" v-if="flagConclusionColor" @click="conclusion">
+                <th class="green" v-if="colorConclusion_famille1_lev1" @click="conclusion">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>CONCLUSION</span>
                     </div>
                 </th>
-                <th v-if="!flagConclusionColor" @click="conclusion">
+                <th v-if="!colorConclusion_famille1_lev1" @click="conclusion">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>CONCLUSION</span>
@@ -58,13 +59,13 @@
                 </th>
 
 
-                <th class="green" v-if="flagPhotoColor" @click="photo">
+                <th class="green" v-if="colorPhoto_famille1_lev1" @click="photo">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>PHOTO</span>
                     </div>
                 </th>
-                <th v-if="!flagPhotoColor" @click="photo">
+                <th v-if="!colorPhoto_famille1_lev1" @click="photo">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>PHOTO</span>
@@ -79,23 +80,17 @@
 <script>
 
 
-import Renseignements from "@/requests/appareil_levage/famille1_lev1/Renseignement";
-import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions";
-import Examens from "@/requests/appareil_levage/famille1_lev1/Examens";
-import Photos from "@/requests/appareil_levage/famille1_lev1/Photos";
-import Conclusions from "@/requests/appareil_levage/famille1_lev1/conclusion";
+// import Renseignements from "@/requests/appareil_levage/famille1_lev1/Renseignement";
+// import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions";
+// import Examens from "@/requests/appareil_levage/famille1_lev1/Examens";
+// import Photos from "@/requests/appareil_levage/famille1_lev1/Photos";
+// import Conclusions from "@/requests/appareil_levage/famille1_lev1/conclusion";
 
 
 export default {
     name: 'menu-component',
     data() {
         return {
-
-            flagRenseignementsColor: false,
-            flagDescriptionColor: false,
-            flagExamenColor: false,
-            flagPhotoColor: false,
-            flagConclusionColor: false
         }
     },
 
@@ -104,7 +99,12 @@ export default {
 
     props: {
         observateurId: String,
-        renseignementChicked : Boolean
+        renseignementChicked : Boolean,
+        colorRenseignement_famille1_lev1 : Boolean,
+        colorDescription_famille_lev1 : Boolean,
+        colorExamen_famille1_lev1 : Boolean,
+        colorConclusion_famille1_lev1 : Boolean,
+        colorPhoto_famille1_lev1 : Boolean
     },
 
     methods: {
@@ -134,63 +134,63 @@ export default {
     created() {
 
 
-        Renseignements.select(this.observateurId)
-            .then((result) => {
-                if(result.data) {
-                    this.flagRenseignementsColor = result.data.checkEmptyStatus;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        // Renseignements.select(this.observateurId)
+        //     .then((result) => {
+        //         if(result.data) {
+        //             this.flagRenseignementsColor = result.data.checkEmptyStatus;
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
 
 
-        Descriptions.select(this.observateurId)
-            .then((result) => {
-                if (result.data) {
-                    this.flagDescriptionColor = result.data.checkEmptyStatus;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        // Descriptions.select(this.observateurId)
+        //     .then((result) => {
+        //         if (result.data) {
+        //             this.flagDescriptionColor = result.data.checkEmptyStatus;
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
 
 
-        Examens.select(this.observateurId)
-            .then((result) => {
-                if (result.data) {
-                    this.flagExamenColor = result.data.checkEmptyStatus;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        // Examens.select(this.observateurId)
+        //     .then((result) => {
+        //         if (result.data) {
+        //             this.flagExamenColor = result.data.checkEmptyStatus;
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
 
-        Photos.select(this.observateurId)
-            .then((result) => {
-                if (result.data.img != null) {
-                    this.flagPhotoColor = true;
-                }
+        // Photos.select(this.observateurId)
+        //     .then((result) => {
+        //         if (result.data.img != null) {
+        //             this.flagPhotoColor = true;
+        //         }
 
-                if (result.data.img == null) {
-                    this.flagPhotoColor = false;
-                } 
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        //         if (result.data.img == null) {
+        //             this.flagPhotoColor = false;
+        //         } 
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
 
-        Conclusions.select(this.observateurId)
-            .then((result) => {
-                if (result.data) {
-                    this.flagConclusionColor = true;
-                } else {
-                    this.flagConclusionColor = false;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+        // Conclusions.select(this.observateurId)
+        //     .then((result) => {
+        //         if (result.data) {
+        //             this.flagConclusionColor = true;
+        //         } else {
+        //             this.flagConclusionColor = false;
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
 
 
     }
@@ -239,4 +239,4 @@ table>tr>th>div>img:hover {
     width: 40px;
     transition: 0.3s;
 }
-</style>@/requests/appareil_levage/famille1_lev1/Descriptions@/requests/appareil_levage/famille1_lev1/conclusion
+</style>
