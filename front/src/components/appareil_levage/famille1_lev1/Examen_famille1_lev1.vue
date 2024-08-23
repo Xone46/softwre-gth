@@ -23,10 +23,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkA(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkA(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkA(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkA(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkA(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkA(index, 'so', item.so)">
@@ -59,13 +59,13 @@
                     <input type="checkbox" v-model="item.be" @change="checkB(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkB(index, 'fc', item.fc)">
+                    <input type="checkbox" disabled v-model="item.fc" @change="checkB(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkB(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkB(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkB(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkB(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkB(index, 'so', item.so)">
@@ -101,10 +101,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkC(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkC(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkC(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkC(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkC(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkC(index, 'so', item.so)">
@@ -140,10 +140,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkD(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkD(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkD(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkD(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkD(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkD(index, 'so', item.so)">
@@ -179,10 +179,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkE(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkE(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkE(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkE(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkE(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkE(index, 'so', item.so)">
@@ -218,10 +218,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkF(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkF(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkF(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkF(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkF(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkF(index, 'so', item.so)">
@@ -257,10 +257,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkG(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkG(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkG(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkG(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkG(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkG(index, 'so', item.so)">
@@ -296,10 +296,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkH(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkH(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkH(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkH(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkH(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkH(index, 'so', item.so)">
@@ -336,10 +336,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkI(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkI(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkI(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkI(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkI(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkI(index, 'so', item.so)">
@@ -375,10 +375,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkJ(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkJ(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkJ(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkJ(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkJ(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkJ(index, 'so', item.so)">
@@ -421,91 +421,67 @@ export default {
             infoReserve : [],
 
             a: [
-                { titre: "- Accès a la cabine et au poste de conduite", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
-                { titre: "- Accès aux chemins de roulement", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
-                { titre: "- Autres accès pour entretien et vérification", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
+                { titre: "- Distance a obstacles fixes ou entre appareils", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
+                { titre: "- Lignes électriques ou éléments sous tension", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
+                { titre: "- Effet du vent hors service", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
             ],
 
             b: [
-                { titre: "- Rails et / ou poutres de roulement, fixations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Poteaux, corbeaux, potence, ancrages", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Butoirs, amortisseurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Accès au poste de travail", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             c: [
-                { titre: "- Poutres, sommiers, palées...", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Chariot, galets, guidages", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Assemblages, fixations, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Organes de roulement (pneumatiques, bandages, galets)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Ossature, contrepoids", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             d: [
-                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Structure", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Fixation lest ou contrepoids", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Organes de roulement et de guidage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Assemblage, fixations, liaisons, articulations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Equipage mobile, support de charge", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Plate-forme, nacelle, sellette", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             e: [
-                { titre: "- Dispositif de séparation générale", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Equipements, canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Assemblages, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Protection des pièces nues sous tension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Trolleys, enrouleurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Protection contre les chutes de hauteur de l'opérateur à partir du poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             f: [
-                { titre: "- Constitution, fixation, plancher", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Protection contre les chutes de hauteur de l'opérateur à partir du poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Visibilité (vitrage, essuie-glaces)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Chauffage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Absence de stockage de chiffons, déchets, huile ou toute autre matière inflammable en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Extincteur en cabine", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Evacuation de secours", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Siège", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Eclairage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Chaîne de manoeuvre", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Organe de manœuvre (chaîne, levier, timon)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
             ],
 
             g: [
-                { titre: "- Mise en marche- Arrêt normal – Sélecteur", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Identification des organes de service", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Retour automatique au point neutre des commandes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Autres arrêts accessibles (urgence….)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Avertisseur sonore, lumineux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Indicateurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Suspentes (câbles, chaînes, sangles)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Attaches", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Mouffle, crochet : linguet de sécurité u dispositif équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Autres dispositifs de préhension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             h: [
-                { titre: "- Suspentes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Attaches", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Moufles, crochets, linguet de sécurité ou dispositifs équivalents", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Autres dispositifs de préhension (bennes, grappins, électro-aimants…)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Vérins, canalisations, distributeurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Organes de transmission, accouplements", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Freins des mouvements concourant au levage (arrêt et maintien)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Limitation de la vitesse (absence d'emballement)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Freins des mouvements horizontaux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Freins d'immobilisation en translation (hors service)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Protection des organes mobiles de transmission", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
             ],
 
             i: [
-                { titre: "- Groupes moto-réducteurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Organes de transmission, accouplements", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Freins des mouvements concourant au levage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Limitation de la vitesse (absence d'emballement) ", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Freins des mouvements horizontaux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Immobilisation hors service", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Autres freins (Secours, sécurité...)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Protection des organes mobiles de transmission", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Parachute ou dispositif équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
             ],
 
             j: [
-                { titre: "- Limiteurs de course haute ou mise en butée", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Autres limiteurs de course/hors course", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Limiteur de charge, de capacité (Obligatoire pour appareils CE si capacité >= 1 Tonne)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Dispositifs anti collision ou équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
-            ],
-
-            k: [
-                { titre: "- Plaque constructeur ", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Indication de l'appareil", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
                 { titre: "- Affichage capacité, tableau des charges", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
                 { titre: "- Consignes de sécurité et d'utilisation (lisibilité)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ]
+
         }
     },
 
@@ -571,11 +547,6 @@ export default {
                 this.j[indexJ]["o"] = true;
             }
 
-            const indexK = this.k.findIndex((el) => el.titre == value[2]);
-            if(indexK != -1) {
-                this.k[indexK]["o"] = true;
-            }
-
             this.flagReserve = false;
         },
 
@@ -628,10 +599,6 @@ export default {
             this.flagReserve = true;
         },
 
-        checkKObs(index) {
-            this.infoReserve = ["K", index, this.k[index]["titre"], this.observateurId]
-            this.flagReserve = true;
-        },
 
         checkA(index, type, bol) {
 
@@ -1408,83 +1375,6 @@ export default {
             return this.sauvegarde();
         },
 
-        checkK(index, type, bol) {
-            if(type == "be") {
-                if(this.k[index]["fc"] == true) {
-                    this.k[index]["be"] = bol;
-                    this.k[index]["sa"] = false;
-                    this.k[index]["nv"] = false;
-                    this.k[index]["so"] = false;
-                    this.k[index]["o"] = false;
-                } else {
-                    this.k[index]["be"] = bol;
-                    this.k[index]["fc"] = false;
-                    this.k[index]["sa"] = false;
-                    this.k[index]["nv"] = false;
-                    this.k[index]["so"] = false;
-                    this.k[index]["o"] = false;
-                }
-            } else if(type == "fc") {
-                if(this.k[index]["be"] == true) {
-                    this.k[index]["fc"] = bol;
-                    this.k[index]["sa"] = false;
-                    this.k[index]["nv"] = false;
-                    this.k[index]["so"] = false;
-                    this.k[index]["o"] = false;
-                } else {
-                    this.k[index]["be"] = false;
-                    this.k[index]["fc"] = bol;
-                    this.k[index]["sa"] = false;
-                    this.k[index]["nv"] = false;
-                    this.k[index]["so"] = false;
-                    this.k[index]["o"] = false;
-                }
-            } else if(type == 'sa') {
-                this.k[index]["be"] = false;
-                this.k[index]["fc"] = false;
-                this.k[index]["sa"] = bol;
-                this.k[index]["nv"] = false;
-                this.k[index]["so"] = false;
-                this.k[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.k[index]["be"] = false;
-                this.k[index]["fc"] = false;
-                this.k[index]["sa"] = false;
-                this.k[index]["nv"] = bol;
-                this.k[index]["so"] = false;
-                this.k[index]["o"] = false;
-            } else if(type == 'so') {
-                this.k[index]["be"] = false;
-                this.k[index]["fc"] = false;
-                this.k[index]["sa"] = false;
-                this.k[index]["nv"] = false;
-                this.k[index]["so"] = bol;
-                this.k[index]["o"] = false;
-            }
-            else if(type == 'o') {
-                // check false for delete observation conncte with title
-                if(bol == false) {
-                    const ref = "A";
-                    Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
-
-                this.k[index]["be"] = false;
-                this.k[index]["fc"] = false;
-                this.k[index]["sa"] = false;
-                this.k[index]["nv"] = false;
-                this.k[index]["so"] = false;
-                this.k[index]["o"] = bol;
-            }
-
-            return this.sauvegarde();
-        },
-
         reset() {
             Examens.reset(this.observateurId)
                 .then((result) => {
@@ -1589,17 +1479,9 @@ export default {
                                 element.o = false;
                             }
                         );
-                        this.k.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
-                        );
+  
                         this.flagReset = false;
-                        this.$emit("menuStatusChicked");
+                        this.$emit("changeColorExamen_famille1_lev1", false);
                     }
                 })
                 .catch((error) => {
@@ -1607,13 +1489,109 @@ export default {
                 });
         },
 
+        checkProperties(a, b, c, d, e, f, g, h, i, j) {
+
+            for(let i = 0; i < a.length; i++) {
+                const arr = [a[i].be, a[i].fc, a[i].nv, a[i].o, a[i].sa, a[i].so, a[i].statusCritique];
+                if(!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for(let i = 0; i < b.length; i++) {
+
+                const arr = [b[i].be, b[i].fc, b[i].nv, b[i].o, b[i].sa, b[i].so, b[i].statusCritique];
+
+                if(!arr.includes(true)) {
+                    return false
+                }
+            }
+
+            for(let i = 0; i < c.length; i++) {
+
+                const arr = [c[i].be, c[i].fc, c[i].nv, c[i].o, c[i].sa, c[i].so, c[i].statusCritique];
+
+                if(!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for(let i = 0; i < d.length; i++) {
+
+                const arr = [d[i].be, d[i].fc, d[i].nv, d[i].o, d[i].sa, d[i].so, d[i].statusCritique];
+
+                if(!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for(let i = 0; i < e.length; i++) {
+
+                const arr = [e[i].be, e[i].fc, e[i].nv, e[i].o, e[i].sa, e[i].so, e[i].statusCritique];
+
+                if(!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for(let i = 0; i < f.length; i++) {
+
+                const arr = [f[i].be, f[i].fc, f[i].nv, f[i].o, f[i].sa, f[i].so, f[i].statusCritique];
+
+                if(!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for(let i = 0; i < g.length; i++) {
+
+                const arr = [g[i].be, g[i].fc, g[i].nv, g[i].o, g[i].sa, g[i].so, g[i].statusCritique];
+
+                if(!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for(let i = 0; i < h.length; i++) {
+
+                const arr = [h[i].be, h[i].fc, h[i].nv, h[i].o, h[i].sa, h[i].so, h[i].statusCritique];
+
+                if(!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for(let i = 0; i < i.length; i++) {
+
+                const arr = [i[i].be, i[i].fc, i[i].nv, i[i].o, i[i].sa, i[i].so, i[i].statusCritique];
+
+                if(!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for(let i = 0; i < j.length; i++) {
+
+                const arr = [j[i].be, j[i].fc, j[i].nv, j[i].o, j[i].sa, j[i].so, j[i].statusCritique];
+
+                if(!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            return true;
+        },
+
+        notEmpty() {
+            this.$emit("changeColorExamen_famille1_lev1", this.checkProperties(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j));
+        },
+
         sauvegarde() {
 
-            Examens.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k, this.observateurId)
+            Examens.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.observateurId)
                 .then((result) => {
                     if (result.data) {
-                        this.flagReset = true;
-                        this.$emit("menuStatusChicked");
+                        this.notEmpty();
                     }
                 })
                 .catch((error) => {
@@ -1626,11 +1604,14 @@ export default {
     },
 
     created() {
+
         Examens.select(this.observateurId)
             .then((result) => {
 
+                console.log(result)
+
                 if (result.data.examen != null) {
-                    this.flagReset = true;
+
                     this.a = result.data.examen.a;
                     this.b = result.data.examen.b;
                     this.c = result.data.examen.c;
@@ -1641,11 +1622,13 @@ export default {
                     this.h = result.data.examen.h;
                     this.i = result.data.examen.i;
                     this.j = result.data.examen.j;
-                    this.k = result.data.examen.k;
-                    this.$emit("menuStatusChicked");
+
+                    this.flagReset = true;
+                    this.$emit("changeColorExamen_famille1_lev1", this.checkProperties(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j));
+
                 } else {
                     this.flagReset = false;
-                    this.$emit("menuStatusChicked");
+                    this.$emit("changeColorExamen_famille1_lev1", false);
                 }
             })
             .catch((error) => {

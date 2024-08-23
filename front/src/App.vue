@@ -13,8 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  width: 1024px;
-  height: 768px;
+  width: 100%;
+  height: auto;
   background-color: #fcfcfc;
 }
 

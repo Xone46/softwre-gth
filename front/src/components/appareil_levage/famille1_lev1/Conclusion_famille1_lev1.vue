@@ -3,24 +3,93 @@
     <div class="conclusion">
 
         <h1 class="observation">Observations complémentaires</h1>
-        
-        <div class="alignment" v-html="tagA" :class="[a.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagA"></div>
-        <div class="alignment-nested" v-html="sousAOne" :class="[a.length != 0 ? 'saved' : 'not-saved']"></div>
-        <div class="alignment-nested" v-html="sousATow" :class="[a.length != 0 ? 'saved' : 'not-saved']"></div>
-        <div class="alignment" v-html="tagB" :class="[b.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagB"></div>
-        <div class="alignment" v-html="tagC" :class="[c.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagC"></div>
+
+        <div class="alignment">
+            <input type="checkbox" :checked="(a != '')" @input="saisirA($event)"
+                value="Les essais ont été réalisés avec les charges mises à disposition">
+            <label>
+                Les essais ont été réalisés avec les charges mises à disposition {{ poids == "" ? "......." : poids }}
+                Kg
+            </label>
+        </div>
+
+        <div class="alignment-nested">
+            <label>
+                a) le chef d'établissement doit définir les mesures organisationnelles et techniques visant à
+                restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.
+            </label>
+        </div>
+        <div class="alignment-nested">
+            <label>
+                b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de
+                réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que
+                l'essai de surcharge.
+            </label>
+        </div>
+
+        <div class="alignment">
+            <input type="checkbox" :checked="(b != '')" @input="saisirB($event)"
+                value="L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.">
+            <label>L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu
+                de réaliser
+                les essais correspondants avant utilisation de l'appareil.
+            </label>
+        </div>
+
+        <div class="alignment">
+            <input type="checkbox" :checked="(c != '')" @input="saisirC($event)"
+                value="Absence de tableau des charges pour réaliser les essais, il y aura lieu de réaliser les essais correspondants à la capacité nominale de l'appareil.">
+            <label>Absence de tableau des charges pour réaliser les essais, il y aura lieu de réaliser les essais
+                correspondants à
+                la capacité nominale de l'appareil.
+            </label>
+        </div>
 
 
         <h1 class="conclusion">Conclusion</h1>
-        <div class="alignment" v-html="tagD" :class="[d.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagD"></div>
-        <div class="alignment" v-html="tagE" :class="[e.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagE"></div>
-        <div class="alignment" v-html="tagF" :class="[f.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagF"></div>
-        <div class="alignment" v-html="tagG" :class="[g.length != 0 ? 'saved' : 'not-saved']" @input="getValueTagG"></div>
+        <div class="alignment">
+            <input type="checkbox" :checked="(d != '')" @input="saisirD($event)"
+                value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.">
+            <label>La vérification de l'état de conservation et les essais de
+                fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation
+                ni d'anomalie.
+            </label>
+        </div>
 
-        <div id="commentaire">{{ this.commentaire }}</div>
+        <div class="alignment">
+            <input type="checkbox" :checked="(e != '')" @input="saisirE($event)" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la
+                présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil
+                auxquelles il convient de remédier.">
+            <label>La vérification de l'état de conservation et les
+                essais de fonctionnement réalisés dans les limites de la
+                présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil
+                auxquelles il convient de remédier.
+            </label>
+        </div>
 
-        <Insert v-if="falgInsert" :typeInsert="typeInsert" @valider="valider" @annuler="annuler" />
+        <div class="alignment">
+            <input type="checkbox" :checked="(f != '')" @input="saisirF($event)" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la
+                présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il
+                convient de remédier.">
+            <label>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites
+                de la
+                présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il
+                convient de remédier.
+            </label>
+        </div>
 
+        <div class="alignment">
+            <input type="checkbox" :checked="(g != '')" @input="saisirG($event)" value="Commentaire complémentaire :">
+            <label>Commentaire complémentaire :
+            </label>
+        </div>
+
+        <div class="alignment">
+            <label>{{ this.commentaire }}</label>
+        </div>
+
+        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider"
+            @annuler="annuler" />
 
         <div v-if="!flagReset" class="sauvegarde">
             <button @click="sauvegarde">Sauvegarde de Secours</button>
@@ -36,7 +105,7 @@
 
 <script>
 import Conclusion from "@/requests/appareil_levage/famille1_lev1/conclusion"
-import Insert from "@/components/models/Insert.vue"
+import Insert from "@/components/appareil_levage/famille1_lev1/models_famille1_lev1/Insert.vue"
 
 export default {
     name: 'conclusion-component',
@@ -45,28 +114,16 @@ export default {
             flagReset: false,
             falgInsert: false,
             typeInsert: ``,
+            valueInsert: "",
             poids: ``,
             commentaire: '',
-            tagA: `<input type="radio" name="observations" value="Les essais ont été réalisés avec les charges mises à disposition."><label>Les essais ont été réalisés avec les charges mises à disposition.</label>`,
-            a: ``,
-            sousAOne: `<label>(a) le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.</label>`,
-            sousATow: `<label>(b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.</label>`,
-            tagB: `<input type="radio" name="observations" value="L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil."><label>L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.</label>`,
-            b: ``,
-            tagC: `<input type="radio" name="observations" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie."><label>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</label>`,
-            c: ``,
-
-            tagD: `<input type="radio" name="conclusion" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie."><label>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</label>`,
-            d: ``,
-
-            tagE: `<input type="radio" name="conclusion" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier."><label>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.</label>`,
-            e: ``,
-
-            tagF: `<input type="radio" name="conclusion" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers."><label>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.</label>`,
-            f: ``,
-
-            tagG: `<input type="radio" name="conclusion" value="Commentaire complémentaire."><label>Commentaire complémentaire.</label>`,
-            g: ``,
+            a: "",
+            b: "",
+            c: "",
+            d: "",
+            e: "",
+            f: "",
+            g: ""
         }
     },
 
@@ -80,130 +137,144 @@ export default {
 
     methods: {
 
-        valider(event, type) {
+        checkProperties() {
 
-            if (type == "Commentaire complémentaire.") {
-                this.commentaire = event;
+            const arrOne = [
+                this.a != "" ? true : false,
+                this.b != "" ? true : false,
+                this.c != "" ? true : false
+            ];
+
+            const arrTow = [
+                this.d != "" ? true : false,
+                this.e != "" ? true : false,
+                this.f != "" ? true : false,
+                this.g != "" ? true : false
+            ];
+
+
+            if(arrOne.includes(true)) {
+                if(arrTow.includes(true)) {
+                    return true;
+                }
+            } else {
+                return false;
             }
 
-            if (type == "Les essais ont été réalisés avec les charges mises à disposition.") {
+        },
+
+        notEmpty() {
+            this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties())
+        },
+
+
+        valider(event, type) {
+
+            if (type == "poids") {
                 this.poids = event;
+                this.a = this.a.concat(' ', `${this.poids} kg.`);
+            }
+
+            if (type == "commentaire") {
+                this.commentaire = event;
+                this.g = this.g.concat(' ', this.commentaire);
             }
 
             this.falgInsert = false;
+            this.sauvegarde();
         },
 
         annuler() {
             this.falgInsert = false;
         },
 
-        getValueTagA(event) {
+        saisirA(event) {
 
-            this.b = ``;
-            this.c = ``;
-
-            if (this.a == "") {
-                this.a = event.target.value;
-                this.typeInsert = event.target.value;
-                this.falgInsert = true;
-            } else {
+            if (this.a != "") {
                 this.a = "";
+                this.falgInsert = false;
                 this.poids = "";
-            }
-
-        },
-
-        getValueTagB(event) {
-
-            this.a = ``;
-            this.c = ``;
-            this.poids = ``;
-
-            if (this.b == "") {
-                this.b = event.target.value;
+                this.sauvegarde();
             } else {
-                this.b = "";
-            }
-
-        },
-
-        getValueTagC(event) {
-
-            this.a = ``;
-            this.b = ``;
-            this.poids = ``;
-
-            if (this.c == "") {
-                this.c = event.target.value;
-            } else {
-                this.c = "";
-            }
-        },
-
-        getValueTagD(event) {
-
-            this.e = "";
-            this.f = "";
-            this.g = "";
-            this.commentaire = "";
-
-            if (this.d == "") {
-                this.d = event.target.value;
-            } else {
-                this.d = "";
-            }
-        },
-
-        getValueTagE(event) {
-            this.d = "";
-            this.f = "";
-            this.g = "";
-            this.commentaire = "";
-
-            if (this.e == "") {
-                this.e = event.target.value;
-            } else {
-                this.e = "";
-            }
-        },
-
-
-        getValueTagF(event) {
-
-            this.d = "";
-            this.e = "";
-            this.g = "";
-            this.commentaire = "";
-
-            if (this.f == "") {
-                this.f = event.target.value;
-            } else {
-                this.f = "";
-            }
-        },
-
-        getValueTagG(event) {
-
-            this.d = "";
-            this.e = "";
-            this.f = "";
-
-            if (this.g == "") {
-                this.g = event.target.value;
-                this.typeInsert = event.target.value;
+                this.a = event.target.value;
+                this.typeInsert = "poids";
+                this.valueInsert = this.poids
                 this.falgInsert = true;
-            } else {
-                this.g = "";
-                this.commentaire = ""
             }
+
         },
 
+        saisirB(event) {
+
+            if (this.b != "") {
+                this.b = "";
+            } else {
+                this.b = event.target.value;
+            }
+            this.sauvegarde();
+        },
+
+        saisirC(event) {
+
+            if (this.c != "") {
+                this.c = "";
+            } else {
+                this.c = event.target.value;
+            }
+            this.sauvegarde();
+        },
+
+        saisirD(event) {
+
+            if (this.d != "") {
+                this.d = "";
+            } else {
+                this.d = event.target.value;
+            }
+            this.sauvegarde();
+        },
+
+        saisirE(event) {
+
+            if (this.e != "") {
+                this.e = "";
+            } else {
+                this.e = event.target.value;
+            }
+            this.sauvegarde();
+        },
+
+        saisirF(event) {
+
+            if (this.f != "") {
+                this.f = "";
+            } else {
+                this.f = event.target.value;
+            }
+            this.sauvegarde();
+        },
+
+        saisirG(event) {
+
+
+            if (this.g != "") {
+                this.g = "";
+                this.falgInsert = false;
+                this.commentaire = "";
+                this.sauvegarde();
+            } else {
+                this.g = event.target.value;
+                this.typeInsert = "commentaire";
+                this.valueInsert = this.commentaire
+                this.falgInsert = true;
+            }
+        },
 
         sauvegarde() {
             Conclusion.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.poids, this.commentaire, this.observateurId)
                 .then(() => {
                     this.flagReset = true;
-                    this.$emit("menuStatusChicked");
+                    this.notEmpty();
                 })
                 .catch((error) => {
                     console.log(error);
@@ -211,43 +282,25 @@ export default {
         },
 
         reset() {
-
             Conclusion.reset(this.observateurId)
                 .then(() => {
-
-                    this.flagReset = false,
-                    this.falgInsert = false,
-                    this.typeInsert = ``,
-                    this.poids =  ``,
-                    this.commentaire =  '',
-                    this.tagA =  `<input type="radio" name="observations" value="Les essais ont été réalisés avec les charges mises à disposition."><label>Les essais ont été réalisés avec les charges mises à disposition.</label>`,
-                    this.a =  ``,
-                    this.sousAOne =  `<label>(a) le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.</label>`,
-                    this.sousATow =  `<label>(b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.</label>`,
-                    this.tagB =  `<input type="radio" name="observations" value="L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil."><label>L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.</label>`,
-                    this.b =  ``,
-                    this.tagC =  `<input type="radio" name="observations" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie."><label>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</label>`,
-                    this.c =  ``,
-                    this.tagD =  `<input type="radio" name="conclusion" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie."><label>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.</label>`,
-                    this.d =  ``,
-                    this.tagE =  `<input type="radio" name="conclusion" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier."><label>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil auxquelles il convient de remédier.</label>`,
-                    this.e =  ``,
-                    this.tagF =  `<input type="radio" name="conclusion" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers."><label>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il convient de remédiers.</label>`,
-                    this.f =  ``,
-                    this.tagG =  `<input type="radio" name="conclusion" value="Commentaire complémentaire."><label>Commentaire complémentaire.</label>`,
-                    this.g =  ``,
-                            
-                    this.$emit("menuStatusChicked");
-
+                    this.flagReset = false;
+                    this.falgInsert = false;
+                    this.typeInsert = ``;
+                    this.poids = ``;
+                    this.commentaire = '';
+                    this.a = "";
+                    this.b = "";
+                    this.c = "";
+                    this.d = "";
+                    this.e = "";
+                    this.f = "";
+                    this.g = "";
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
         }
-
-
-
     },
 
     created() {
@@ -255,46 +308,16 @@ export default {
         Conclusion.select(this.observateurId)
             .then((result) => {
                 if (result.data != null) {
-
                     this.flagReset = true;
                     this.poids = result.data.poids;
                     this.commentaire = result.data.commentaire;
-
-                    if (result.data.a != "") {
-                        this.tagA = this.tagA.replace('type="radio"', 'type="radio" checked');
-                        this.a = result.data.a;
-                    }
-
-                    if (result.data.b != "") {
-                        this.tagB = this.tagB.replace('type="radio"', 'type="radio" checked');
-                        this.b = result.data.b;
-                    }
-
-                    if (result.data.c != "") {
-                        this.tagC = this.tagC.replace('type="radio"', 'type="radio" checked');
-                        this.c = result.data.c;
-                    }
-
-                    if (result.data.d != "") {
-                        this.tagD = this.tagD.replace('type="radio"', 'type="radio" checked');
-                        this.d = result.data.d;
-                    }
-
-                    if (result.data.e != "") {
-                        this.tagE = this.tagE.replace('type="radio"', 'type="radio" checked');
-                        this.e = result.data.e;
-                    }
-
-                    if (result.data.f != "") {
-                        this.tagF = this.tagF.replace('type="radio"', 'type="radio" checked');
-                        this.f = result.data.f;
-                    }
-
-                    if (result.data.g != "") {
-                        this.tagG = this.tagG.replace('type="radio"', 'type="radio" checked');
-                        this.g = result.data.g;
-                    }
-
+                    this.a = result.data.a;
+                    this.b = result.data.b;
+                    this.c = result.data.c;
+                    this.d = result.data.d;
+                    this.e = result.data.e;
+                    this.f = result.data.f;
+                    this.g = result.data.g;
                 }
             })
             .catch((error) => {
@@ -328,12 +351,8 @@ export default {
     margin-bottom: 10px;
 }
 
-.alignment > input {
-    margin-top: 15px;
-    width: 5%;
-}
 
-.alignment > label {
+.alignment>label {
     width: 100%;
     margin-left: 10px;
 }
@@ -349,7 +368,8 @@ export default {
     margin-left: 20px;
 }
 
-.sauvegarde , .reset {
+.sauvegarde,
+.reset {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -387,4 +407,4 @@ export default {
 .not-saved {
     color: red;
 }
-</style>@/requests/appareil_levage/famille1_lev1/conclusion
+</style>

@@ -261,7 +261,6 @@ export default {
         },
 
         notEmpty() {
-            console.log(this.checkProperties())
             this.$emit("changeColorRenseignement_famille1_lev1", this.checkProperties())
         },
 
