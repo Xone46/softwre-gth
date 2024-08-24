@@ -296,6 +296,7 @@ export default {
                     this.e = "";
                     this.f = "";
                     this.g = "";
+                    this.notEmpty();
                 })
                 .catch((error) => {
                     console.log(error);
@@ -318,6 +319,7 @@ export default {
                     this.e = result.data.e;
                     this.f = result.data.f;
                     this.g = result.data.g;
+                    this.notEmpty();
                 }
             })
             .catch((error) => {

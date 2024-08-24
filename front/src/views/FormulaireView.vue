@@ -13,7 +13,7 @@
             @conclusion="conclusion_famille1_lev1"
             @photo="photo_famille1_lev1" 
             :colorRenseignement_famille1_lev1="colorRenseignement_famille1_lev1"
-            :colorDescription_famille_lev1="colorDescription_famille_lev1"
+            :colorDescription_famille1_lev1="colorDescription_famille1_lev1"
             :colorExamen_famille1_lev1="colorExamen_famille1_lev1"
             :colorConclusion_famille1_lev1="colorConclusion_famille1_lev1"
             :colorPhoto_famille1_lev1="colorPhoto_famille1_lev1"
@@ -198,7 +198,7 @@ export default {
             flagRenseignement_famille1_lev1: true,
             flagReserve_famille1_lev1: false,
             colorConclusion_famille1_lev1: false,
-            colorDescription_famille_lev1: false,
+            colorDescription_famille1_lev1: false,
             colorExamen_famille1_lev1: false,
             colorPhoto_famille1_lev1: false,
             colorRenseignement_famille1_lev1: true,

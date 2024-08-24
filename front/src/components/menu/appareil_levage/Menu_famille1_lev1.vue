@@ -18,13 +18,13 @@
                 </th>
 
 
-                <th class="green" v-if="colorDescription_famille_lev1" @click="description">
+                <th class="green" v-if="colorDescription_famille1_lev1" @click="description">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>DESCRIPTION DE L'APPAREIL VERIFIE</span>
                     </div>
                 </th>
-                <th v-if="!colorDescription_famille_lev1" @click="description">
+                <th v-if="!colorDescription_famille1_lev1" @click="description">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>DESCRIPTION DE L'APPAREIL VERIFIE</span>
@@ -101,7 +101,7 @@ export default {
         observateurId: String,
         renseignementChicked : Boolean,
         colorRenseignement_famille1_lev1 : Boolean,
-        colorDescription_famille_lev1 : Boolean,
+        colorDescription_famille1_lev1 : Boolean,
         colorExamen_famille1_lev1 : Boolean,
         colorConclusion_famille1_lev1 : Boolean,
         colorPhoto_famille1_lev1 : Boolean
