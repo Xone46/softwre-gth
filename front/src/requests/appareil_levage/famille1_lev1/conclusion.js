@@ -10,7 +10,7 @@ const config = {
 
 class Conclusions {
 
-    static create(a, b, c, d, e, f, g, poids, commentaire, observateurId) {
+    static create(a, b, c, d, e, f, g, poids, commentaire, observateurId, child) {
         return new Promise((resolve, reject) => {
             axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/conclusions/create`,
                 {
@@ -23,7 +23,8 @@ class Conclusions {
                     g,
                     poids,
                     commentaire,
-                    observateurId
+                    observateurId,
+                    child : child
                 },
                 config)
                 .then(response => {

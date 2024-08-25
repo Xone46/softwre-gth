@@ -13,7 +13,8 @@
 
             <tr>
                 <td>B-2</td>
-                <td>CARACTERISTIQUES DIMENSIONNELLES ET DE CHARGE</td>
+                <td :class="[colorCaracteristiques == true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET
+                    DE CHARGE</td>
                 <td>
                     <p>Charge maximale utile (kg) : <input type="text" @input="saisirChargeMaximaleUtile($event)"
                             :value="description.chargeMaximaleUtile"> A la portée minimale de (m) : <input type="text"
@@ -50,6 +51,107 @@
             </tr>
 
             <tr>
+                <td>B-4</td>
+                <td :class="[colorSuspentes == true ? 'saved' : 'not-saved']">SUSPENTES DE LEVAGE</td>
+                <td>
+                    <div>
+                        <p><input type="checkbox" @input="saisirCable"
+                                :checked='description["suspentes"][0]["hasCable"]'>Câble :</p>
+                        <p v-if='description["suspentes"][0]["hasCable"]'>
+                            Nombre : <input type="text" v-model="description['suspentes'][0]['detailsCable'][0]['valA']">
+                            Composition : <input type="text"
+                                v-model="description['suspentes'][0]['detailsCable'][0]['valB']">
+                            Diamètre (mm) : <input type="text"
+                                v-model="description['suspentes'][0]['detailsCable'][0]['valC']"></p>
+                        <p v-if='description["suspentes"][0]["hasCable"]'>
+                            Moufflage : <input type="text"
+                                v-model="description['suspentes'][0]['detailsCable'][1]['valA']">
+                            Nombre de brins : <input type="text"
+                                v-model="description['suspentes'][0]['detailsCable'][1]['valB']">
+                        </p>
+                    </div>
+
+                    <div>
+                        <p><input type="checkbox" @input="chaineRouleau"
+                                :checked='description["suspentes"][0]["hasChaineRouleau"]'>Chaîne(s) a rouleau ou
+                            mailles jointives :</p>
+                        <p v-if='description["suspentes"][0]["hasChaineRouleau"]'>
+                            Nombre : <input type="text"
+                                v-model="description['suspentes'][0]['detailsChaineRouleau'][0]['valA']">
+                            Type : <select v-model="description['suspentes'][0]['detailsChaineRouleau'][0]['valB']">
+                                <option value=""></option>
+                                <option value="A rouleau">A rouleau</option>
+                                <option value="A rouleau">A maille jointive</option>
+                            </select>
+                        </p>
+                        <p v-if='description["suspentes"][0]["hasChaineRouleau"]'>
+                            Pas théorique : <input type="text"
+                                v-model="description['suspentes'][0]['detailsChaineRouleau'][1]['valA']">
+                            Combinaison : <input type="text"
+                                v-model="description['suspentes'][0]['detailsChaineRouleau'][1]['valB']">
+                        </p>
+                        <p v-if='description["suspentes"][0]["hasChaineRouleau"]'>
+                            Moufflage : <input type="text"
+                                v-model="description['suspentes'][0]['detailsChaineRouleau'][2]['valA']">
+                            Nombre de brins : <input type="text"
+                                v-model="description['suspentes'][0]['detailsChaineRouleau'][2]['valB']">
+                        </p>
+                    </div>
+
+                    <div>
+                        <p><input type="checkbox" @input="chaineMaillons"
+                                :checked='description["suspentes"][0]["hasChaineMaillons"]'>Chaîne(s) à maillons
+                            calibrés :</p>
+                        <p v-if='description["suspentes"][0]["hasChaineMaillons"]'>
+                            Nombre : <input type="text"
+                                v-model="description['suspentes'][0]['detailsChaineMaillons'][0]['valA']">
+                            Type :
+                            <select v-model="description['suspentes'][0]['detailsChaineMaillons'][0]['valB']">
+                                <option value=""></option>
+                                <option value="A maillons courts">A maillons courts</option>
+                                <option value="A maillons longs">A maillons longs</option>
+                            </select>
+                        </p>
+                        <p v-if='description["suspentes"][0]["hasChaineMaillons"]'>
+                            Pas: <input type="text"
+                                v-model="description['suspentes'][0]['detailsChaineMaillons'][1]['valA']">
+                            Diamètre :<input type="text"
+                                v-model="description['suspentes'][0]['detailsChaineMaillons'][1]['valB']">
+                        </p>
+                        <p v-if='description["suspentes"][0]["hasChaineMaillons"]'>
+                            Moufflage : <input type="text"
+                                v-model="description['suspentes'][0]['detailsChaineMaillons'][2]['valA']">
+                            Nombre de brins : <input type="text"
+                                v-model="description['suspentes'][0]['detailsChaineMaillons'][2]['valB']">
+                        </p>
+                    </div>
+
+
+                    <div>
+                        <p><input type="checkbox" @input="sangle"
+                                :checked='description["suspentes"][0]["hasSangle"]'>Sangle de levage :</p>
+                        <p v-if='description["suspentes"][0]["hasSangle"]'>hasSangle
+                            Nombre : <input type="text" v-model="description['suspentes'][0]['detailsSangle'][0]['valA']">
+                            Composition :<input type="text"
+                                v-model="description['suspentes'][0]['detailsSangle'][0]['valB']">
+                        </p>
+                        <p v-if='description["suspentes"][0]["hasSangle"]'>
+                            Section (mm2): <input type="text"
+                                v-model="description['suspentes'][0]['detailsSangle'][1]['valA']">
+                        </p>
+                        <p v-if='description["suspentes"][0]["hasSangle"]'>
+                            Moufflage : <input type="text"
+                                v-model="description['suspentes'][0]['detailsSangle'][2]['valA']">
+                            Nombre de brins : <input type="text"
+                                v-model="description['suspentes'][0]['detailsSangle'][2]['valB']">
+                        </p>
+
+                    </div>
+
+                </td>
+            </tr>
+
+            <tr>
                 <td>B-3</td>
                 <td :class="[description.mecanisme.length != 0 ? 'saved' : 'not-saved']">MECANISME ET MOUVEMENT</td>
                 <td>
@@ -67,78 +169,7 @@
                 </td>
             </tr>
 
-            <tr>
-                <td>B-4</td>
-                <td>SUSPENTES DE LEVAGE</td>
-                <td>
-                    <div>
-                        <p><input type="checkbox" @input="saisirCable">Câble :</p>
-                        <p v-if='description["suspentes"]["hasCable"]'>
-                            Nombre : <input type="text" v-model="description['suspentes']['detailsCable'][0]['valA']">
-                            Composition : <input type="text"
-                                v-model="description['suspentes']['detailsCable'][0]['valB']">
-                            Diamètre (mm) : <input type="text"
-                                v-model="description['suspentes']['detailsCable'][0]['valC']"></p>
-                        <p v-if='description["suspentes"]["hasCable"]'>
-                            Moufflage : <input type="text"
-                                v-model="description['suspentes']['detailsCable'][1]['valA']">
-                            Nombre de brins : <input type="text"
-                                v-model="description['suspentes']['detailsCable'][1]['valB']"></p>
-                    </div>
 
-                    <div>
-                        <p><input type="checkbox" @input="chaineRouleau">Chaîne(s) a rouleau ou mailles jointives :</p>
-                        <p v-if='description["suspentes"]["hasChaineRouleau"]'>
-                            Nombre : <input type="text" v-model="description['suspentes']['detailsChaineRouleau'][0]['valA']">
-                            Type : <select v-model="description['suspentes']['detailsChaineRouleau'][0]['valB']">
-                                <option value=""></option>
-                                <option value="A rouleau">A rouleau</option>
-                                <option value="A rouleau">A maille jointive</option>
-                            </select>
-                        </p>
-                        <p v-if='description["suspentes"]["hasChaineRouleau"]'>
-                            Pas théorique : <input type="text" v-model="description['suspentes']['detailsChaineRouleau'][1]['valA']">
-                            Combinaison : <input type="text" v-model="description['suspentes']['detailsChaineRouleau'][1]['valB']">
-                        </p>
-                        <p v-if='description["suspentes"]["hasChaineRouleau"]'>
-                            Moufflage : <input type="text"
-                                v-model="description['suspentes']['detailsChaineRouleau'][2]['valA']">
-                            Nombre de brins : <input type="text"
-                                v-model="description['suspentes']['detailsChaineRouleau'][2]['valB']">
-                        </p>
-                    </div>
-
-                    <div>
-                        <p><input type="checkbox">Chaîne(s) à maillons calibrés :</p>
-                        <p>
-                            Nombre : <input type="text"> 
-                            Type : <input type="checkbox">A maillons courts<input
-                                type="checkbox"> A maillons longs</p>
-                        <p>Pas: <input type="text"> Diamètre : <input type="text"></p>
-                        <p>Moufflage :
-                            <select>
-                                <option value="Sans objet">Sans objet</option>
-                                <option value="Nombre de brins">Nombre de brins</option>
-                            </select>
-                            <input type="text" value="">
-                        </p>
-                    </div>
-                    <div>
-                        <p><input type="checkbox">Sangle de levage :</p>
-                        <p>Nombre : <input type="text"> Composition : <input type="text">;</p>
-                        <p>Section (mm2): <input type="text"></p>
-                        <p>Moufflage :
-                            <select>
-                                <option value="Sans objet">Sans objet</option>
-                                <option value="Nombre de brins">Nombre de brins</option>
-                            </select>
-                            <input type="text" value="">
-                        </p>
-
-                    </div>
-
-                </td>
-            </tr>
 
         </table>
 
@@ -162,7 +193,8 @@ export default {
     name: 'renseignement-component',
     data() {
         return {
-
+            colorSuspentes : false,
+            colorCaracteristiques: false,
             flagReset: false,
             description: {
 
@@ -183,26 +215,45 @@ export default {
                 mecanisme: "",
                 suiveMecanisme: "",
 
+                suspentes: [
+                    {
 
-                suspentes: {
+                        hasCable: false,
+                        cable: "Câble :",
+                        hasDetailsCable: false,
+                        detailsCable: [
+                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
+                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
+                        ],
 
-                    hasCable: false,
-                    cable: "Câble :",
-                    hasDetailsCable: false,
-                    detailsCable: [
-                        { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
-                        { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                    ],
+                        hasChaineRouleau: false,
+                        chaineRouleau: "Chaîne(s) a rouleau ou mailles jointives :",
+                        hasDetailsChaineRouleau: false,
+                        detailsChaineRouleau: [
+                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
+                            { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
+                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
+                        ],
 
-                    hasChaineRouleau: false,
-                    chaineRouleau: "Chaîne(s) a rouleau ou mailles jointives :",
-                    hasDetailsChaineRouleau: false,
-                    detailsChaineRouleau: [
-                        { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                        { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
-                        { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                    ],
-                },
+                        hasChaineMaillons: false,
+                        chaineMaillons: "Chaîne(s) à maillons calibrés :",
+                        hasDetailsChaineMaillons: false,
+                        detailsChaineMaillons: [
+                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
+                            { a: "Pas théorique :", valA: "", b: "Diamètre :", valB: "", c: "", valC: "" },
+                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
+                        ],
+
+                        hasSangle: false,
+                        sangle: "Sangle de levage :",
+                        hasDetailsSangle: false,
+                        detailsSangle: [
+                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "", valC: "" },
+                            { a: "Section (mm2):", valA: "", b: "", valB: "", c: "", valC: "" },
+                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
+                        ],
+                    }
+                ],
 
 
                 observateurId: ""
@@ -220,6 +271,67 @@ export default {
     },
 
     methods: {
+
+        checkeSuspentes() {
+            const arr = [
+                this.description["suspentes"][0]["hasCable"],
+                this.description["suspentes"][0]["hasChaineRouleau"],
+                this.description["suspentes"][0]["hasChaineMaillons"],
+                this.description["suspentes"][0]["hasSangle"],
+            ]
+
+            if(arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkCaracterstiques() {
+
+            if (this.description.chargeMaximaleUtile == "") {
+                return false;
+            }
+
+            if (this.description.porteeMinimale == "") {
+                return false;
+            }
+
+            if (this.description.distanceCentreGravite == "") {
+                return false;
+            }
+
+            if (this.description.course == "") {
+                return false;
+            }
+
+            if (this.description.hauteurLevage == "") {
+                return false;
+            }
+
+            if (this.description.portee == "") {
+                return false;
+            }
+
+            if (this.description.porteFauxDeport == "") {
+                return false;
+            }
+
+            if (this.description.longueurCheminRoulement == "") {
+                return false;
+            }
+
+
+            if (this.description.dimensionPlateau == "") {
+                return false;
+            }
+
+            if (this.description.modeInstallation == "") {
+                return false;
+            }
+
+            return true;
+        },
 
         checkProperties() {
 
@@ -283,79 +395,121 @@ export default {
 
         saisirChargeMaximaleUtile(e) {
             this.description.chargeMaximaleUtile = e.target.value;
-            this.sauvegarde();
+
         },
 
         saisirPorteeMinimale(e) {
             this.description.porteeMinimale = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
         saisirDistanceCentreGravite(e) {
             this.description.distanceCentreGravite = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
         saisirCourse(e) {
             this.description.course = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
         saisirHauteurLevage(e) {
             this.description.hauteurLevage = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
         saisirPortee(e) {
             this.description.portee = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
         saisirPorteFauxDeport(e) {
             this.description.porteFauxDeport = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
         saisirLongueurCheminRoulement(e) {
             this.description.longueurCheminRoulement = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
         saisirDimensionPlateau(e) {
             this.description.dimensionPlateau = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
 
         saisirModeInstallation(e) {
             this.description.modeInstallation = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
 
         saisirSuiveModeInstallation(e) {
             this.description.suiveModeInstallation = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
         saisirMecanisme(e) {
             this.description.mecanisme = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
         saisirSuiveMecanisme(e) {
             this.description.suiveMecanisme = e.target.value;
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
             this.sauvegarde();
         },
 
         saisirCable() {
-            this.description["suspentes"]["hasCable"] = Boolean(!this.description["suspentes"]["hasCable"]);
-            this.description["suspentes"]["hasDetailsCable"] = Boolean(!this.description["suspentes"]["hasDetailsCable"]);
+            this.description["suspentes"][0]["hasCable"] = Boolean(!this.description["suspentes"][0]["hasCable"]);
+            this.description["suspentes"][0]["hasDetailsCable"] = Boolean(!this.description["suspentes"][0]["hasDetailsCable"]);
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
         },
 
         chaineRouleau() {
-            this.description["suspentes"]["hasChaineRouleau"] = Boolean(!this.description["suspentes"]["hasChaineRouleau"]);
-            this.description["suspentes"]["hasDetailsChaineRouleau"] = Boolean(!this.description["suspentes"]["hasDetailsChaineRouleau"]);
+            this.description["suspentes"][0]["hasChaineRouleau"] = Boolean(!this.description["suspentes"][0]["hasChaineRouleau"]);
+            this.description["suspentes"][0]["hasDetailsChaineRouleau"] = Boolean(!this.description["suspentes"][0]["hasDetailsChaineRouleau"]);
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
+        },
+
+        chaineMaillons() {
+            this.description["suspentes"][0]["hasChaineMaillons"] = Boolean(!this.description["suspentes"][0]["hasChaineMaillons"]);
+            this.description["suspentes"][0]["hasDetailsChaineMaillons"] = Boolean(!this.description["suspentes"][0]["hasDetailsChaineMaillons"]);
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
+        },
+
+        sangle() {
+            this.description["suspentes"][0]["hasSangle"] = Boolean(!this.description["suspentes"][0]["hasSangle"]);
+            this.description["suspentes"][0]["hasDetailsSangle"] = Boolean(!this.description["suspentes"][0]["hasDetailsSangle"]);
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorSuspentes = this.checkeSuspentes();
         },
 
         sauvegarde() {
@@ -375,6 +529,7 @@ export default {
                 .then(() => {
 
                     this.description = {
+                        
                         marquage: "",
 
                         chargeMaximaleUtile: "",
@@ -393,28 +548,52 @@ export default {
                         suiveMecanisme: "",
 
 
-                        suspentes: {
+                        suspentes: [
+                            {
 
-                            hasCable: false,
-                            cable: "Câble :",
-                            hasDetailsCable: false,
-                            detailsCable: [
-                                { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
-                                { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                            ],
+                                hasCable: false,
+                                cable: "Câble :",
+                                hasDetailsCable: false,
+                                detailsCable: [
+                                    { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
+                                    { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
+                                ],
 
-                            hasChaineRouleau: false,
-                            chaineRouleau: "Chaîne(s) a rouleau ou mailles jointives :",
-                            hasDetailsChaineRouleau: false,
-                            detailsChaineRouleau: [
-                                { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                                { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
-                                { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                            ],
-                        },
+                                hasChaineRouleau: false,
+                                chaineRouleau: "Chaîne(s) a rouleau ou mailles jointives :",
+                                hasDetailsChaineRouleau: false,
+                                detailsChaineRouleau: [
+                                    { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
+                                    { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
+                                    { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
+                                ],
+
+                                hasChaineMaillons: false,
+                                chaineMaillons: "Chaîne(s) à maillons calibrés :",
+                                hasDetailsChaineMaillons: false,
+                                detailsChaineMaillons: [
+                                    { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
+                                    { a: "Pas théorique :", valA: "", b: "Diamètre :", valB: "", c: "", valC: "" },
+                                    { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
+                                ],
+
+                                hasSangle: false,
+                                sangle: "Sangle de levage :",
+                                hasDetailsSangle: false,
+                                detailsSangle: [
+                                    { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "", valC: "" },
+                                    { a: "Section (mm2):", valA: "", b: "", valB: "", c: "", valC: "" },
+                                    { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
+                                ],
+                            }
+                        ],
+
+
                     }
 
                     this.flagReset = false;
+                    this.colorCaracteristiques = this.checkCaracterstiques();
+                    this.colorSuspentes = this.checkeSuspentes();
                     this.$emit("changeColorDescription_famille1_lev1", false);
 
                 })
@@ -423,6 +602,7 @@ export default {
                 })
         }
     },
+
 
     created() {
 
@@ -445,6 +625,8 @@ export default {
                     this.description = result.data.description;
                 }
 
+                this.colorCaracteristiques = this.checkCaracterstiques();
+                this.colorSuspentes = this.checkeSuspentes();
                 this.$emit("changeColorDescription_famille1_lev1", this.checkProperties());
 
             })

@@ -118,6 +118,13 @@ export default {
             poids: ``,
             commentaire: '',
             a: "",
+            child:[
+            {
+                content : "a)Le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.",
+            }
+            ,{
+                content : "b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.",
+            }],
             b: "",
             c: "",
             d: "",
@@ -271,7 +278,7 @@ export default {
         },
 
         sauvegarde() {
-            Conclusion.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.poids, this.commentaire, this.observateurId)
+            Conclusion.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.poids, this.commentaire, this.observateurId, this.child)
                 .then(() => {
                     this.flagReset = true;
                     this.notEmpty();
@@ -296,6 +303,8 @@ export default {
                     this.e = "";
                     this.f = "";
                     this.g = "";
+                    this.childA[0]["case"] = false;
+                    this.childA[1]["case"] = false;
                     this.notEmpty();
                 })
                 .catch((error) => {
@@ -319,6 +328,7 @@ export default {
                     this.e = result.data.e;
                     this.f = result.data.f;
                     this.g = result.data.g;
+                    this.childA = result.data.childA;
                     this.notEmpty();
                 }
             })

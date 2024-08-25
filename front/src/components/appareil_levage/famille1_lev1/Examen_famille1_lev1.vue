@@ -1608,8 +1608,6 @@ export default {
         Examens.select(this.observateurId)
             .then((result) => {
 
-                console.log(result)
-
                 if (result.data.examen != null) {
 
                     this.a = result.data.examen.a;
