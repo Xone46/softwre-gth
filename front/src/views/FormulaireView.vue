@@ -103,6 +103,7 @@
                     v-if="flagRenseignement_famille_ac1" 
                     @changeColorRenseignement_famille_ac1="changeColorRenseignement_famille_ac1"
                     :observateurId="formulaire.observateurId" 
+                    :interventionId="formulaire.interventionId" 
                 />
                 </KeepAlive>
 
@@ -131,12 +132,6 @@
                     @changeColorPhoto_famille_ac1="changeColorPhoto_famille_ac1"
                  />
                 </KeepAlive>
-
-                <KeepAlive>
-                <Verfication_famille_ac1 v-if="flagVerfication_famille_ac1" :observateurId="formulaire.observateurId"
-                    @menuStatusChicked="menuStatusChicked_famille_ac1" />
-                </KeepAlive>
-
             </div>
 
             <div class="right">
@@ -171,7 +166,6 @@ import Accessoire_famille_ac1 from "@/components/accessoire_levage/famille_ac1/A
 import Fiche_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Fiche_famille_ac1.vue"
 import Photo_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Photo_famille_ac1.vue"
 import Renseignement_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Renseignement_famille_ac1.vue"
-import Verfication_famille_ac1 from "@/components/accessoire_levage/famille_ac1/Verfication_famille_ac1.vue"
 
 
 // Start Menu --------------------------------------------
@@ -210,7 +204,6 @@ export default {
             flagPhoto_famille_ac1: false,
             flagRenseignement_famille_ac1: true,
             flagFiche_famille_ac1 : false,
-            flagVerfication_famille_ac1 : false,
             colorRenseignement_famille_ac1 : false,
             colorAccessoire_famille_ac1 : false,
             colorFiche_famille_ac1 : false,
@@ -221,7 +214,8 @@ export default {
             formulaire: {
                 observateurId: "",
                 categorieAppareil: "",
-                typeRapport: ""
+                typeRapport: "",
+                interventionId : "",
             },
 
             accessoires : []
@@ -240,7 +234,6 @@ export default {
         Accessoire_famille_ac1,
         Photo_famille_ac1,
         Fiche_famille_ac1,
-        Verfication_famille_ac1,
         Renseignement_famille_ac1,
 
         VisualiationReserve,
@@ -335,7 +328,7 @@ export default {
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
             this.flagFiche_famille_ac1  = false;
-            this.flagVerfication_famille_ac1  = false;
+            
 
         },
 
@@ -352,7 +345,7 @@ export default {
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
             this.flagFiche_famille_ac1  = false;
-            this.flagVerfication_famille_ac1  = false;
+            
 
 
         },
@@ -370,7 +363,7 @@ export default {
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
             this.flagFiche_famille_ac1  = false;
-            this.flagVerfication_famille_ac1  = false;
+            
         },
 
         conclusion_famille1_lev1() {
@@ -386,7 +379,7 @@ export default {
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
             this.flagFiche_famille_ac1  = false;
-            this.flagVerfication_famille_ac1  = false;
+            
 
         },
 
@@ -404,7 +397,7 @@ export default {
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
             this.flagFiche_famille_ac1  = false;
-            this.flagVerfication_famille_ac1  = false;
+            
 
         },
 
@@ -424,7 +417,7 @@ export default {
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
             this.flagFiche_famille_ac1  = false;
-            this.flagVerfication_famille_ac1  = false;
+            
 
         },
 
@@ -459,7 +452,7 @@ export default {
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = true;
             this.flagFiche_famille_ac1  = false;
-            this.flagVerfication_famille_ac1  = false;
+            
         },
 
 
@@ -494,7 +487,7 @@ export default {
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
             this.flagFiche_famille_ac1  = true;
-            this.flagVerfication_famille_ac1  = false;
+            
         }
 
     },
@@ -503,6 +496,7 @@ export default {
 
         this.formulaire.observateurId = this.$route.params.id;
         this.formulaire.typeAppareil = this.$route.params.typeAppareil;
+        this.formulaire.interventionId = this.$route.params.interventionId;
 
         this.flag_famille_lev = ["Famille 1 LEV1", "Famille 2 LEV2", "Famille 3 LEV3", "Famille 4 LEV4", "Famille 5 LEV5"].includes(this.$route.params.typeAppareil[0]);
         this.flag_Menu_famille_lev = this.flag_famille_lev;

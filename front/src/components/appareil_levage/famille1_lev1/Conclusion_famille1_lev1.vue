@@ -91,13 +91,16 @@
         <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider"
             @annuler="annuler" />
 
-        <div v-if="!flagReset" class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        <div class="sauvegarder">
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
+                {{ watched_sauvegarder == true ? "Déjà enregistré" : "Non enregistré" }}
+            </button>
         </div>
 
-        <div v-if="flagReset" class="reset">
+        <div class="reset">
             <button @click="reset">Reset</button>
         </div>
+
 
     </div>
 
@@ -111,20 +114,21 @@ export default {
     name: 'conclusion-component',
     data() {
         return {
-            flagReset: false,
+            counter_watched: 0,
+            watched_sauvegarder: false,
             falgInsert: false,
             typeInsert: ``,
             valueInsert: "",
             poids: ``,
             commentaire: '',
             a: "",
-            child:[
-            {
-                content : "a)Le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.",
-            }
-            ,{
-                content : "b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.",
-            }],
+            child: [
+                {
+                    content: "a)Le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.",
+                }
+                , {
+                    content: "b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.",
+                }],
             b: "",
             c: "",
             d: "",
@@ -136,6 +140,104 @@ export default {
 
     components: {
         Insert
+    },
+
+    watch: {
+
+        a: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        b: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        c: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        d: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        e: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        f: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        g: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        falgInsert: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+        typeInsert: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        valueInsert: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        poids: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        commentaire: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        }
     },
 
     props: {
@@ -160,8 +262,8 @@ export default {
             ];
 
 
-            if(arrOne.includes(true)) {
-                if(arrTow.includes(true)) {
+            if (arrOne.includes(true)) {
+                if (arrTow.includes(true)) {
                     return true;
                 }
             } else {
@@ -171,7 +273,7 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties())
+            this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties());
         },
 
 
@@ -188,7 +290,6 @@ export default {
             }
 
             this.falgInsert = false;
-            this.sauvegarde();
         },
 
         annuler() {
@@ -196,49 +297,40 @@ export default {
         },
 
         saisirA(event) {
-
             if (this.a != "") {
                 this.a = "";
                 this.falgInsert = false;
                 this.poids = "";
-                this.sauvegarde();
             } else {
                 this.a = event.target.value;
                 this.typeInsert = "poids";
                 this.valueInsert = this.poids
                 this.falgInsert = true;
             }
-
         },
 
         saisirB(event) {
-
             if (this.b != "") {
                 this.b = "";
             } else {
                 this.b = event.target.value;
             }
-            this.sauvegarde();
         },
 
         saisirC(event) {
-
             if (this.c != "") {
                 this.c = "";
             } else {
                 this.c = event.target.value;
             }
-            this.sauvegarde();
         },
 
         saisirD(event) {
-
             if (this.d != "") {
                 this.d = "";
             } else {
                 this.d = event.target.value;
             }
-            this.sauvegarde();
         },
 
         saisirE(event) {
@@ -248,7 +340,6 @@ export default {
             } else {
                 this.e = event.target.value;
             }
-            this.sauvegarde();
         },
 
         saisirF(event) {
@@ -258,17 +349,14 @@ export default {
             } else {
                 this.f = event.target.value;
             }
-            this.sauvegarde();
         },
 
         saisirG(event) {
-
 
             if (this.g != "") {
                 this.g = "";
                 this.falgInsert = false;
                 this.commentaire = "";
-                this.sauvegarde();
             } else {
                 this.g = event.target.value;
                 this.typeInsert = "commentaire";
@@ -279,9 +367,10 @@ export default {
 
         sauvegarde() {
             Conclusion.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.poids, this.commentaire, this.observateurId, this.child)
-                .then(() => {
-                    this.flagReset = true;
-                    this.notEmpty();
+                .then((result) => {
+                    if (result) {
+                        this.watched_sauvegarder = true;
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -291,7 +380,7 @@ export default {
         reset() {
             Conclusion.reset(this.observateurId)
                 .then(() => {
-                    this.flagReset = false;
+
                     this.falgInsert = false;
                     this.typeInsert = ``;
                     this.poids = ``;
@@ -303,9 +392,10 @@ export default {
                     this.e = "";
                     this.f = "";
                     this.g = "";
-                    this.childA[0]["case"] = false;
-                    this.childA[1]["case"] = false;
-                    this.notEmpty();
+
+                    this.watched_sauvegarder = false;
+                    this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties());
+
                 })
                 .catch((error) => {
                     console.log(error);
@@ -318,7 +408,6 @@ export default {
         Conclusion.select(this.observateurId)
             .then((result) => {
                 if (result.data != null) {
-                    this.flagReset = true;
                     this.poids = result.data.poids;
                     this.commentaire = result.data.commentaire;
                     this.a = result.data.a;
@@ -329,7 +418,8 @@ export default {
                     this.f = result.data.f;
                     this.g = result.data.g;
                     this.childA = result.data.childA;
-                    this.notEmpty();
+                    this.watched_sauvegarder = true;
+                    return this.notEmpty();
                 }
             })
             .catch((error) => {
@@ -380,8 +470,7 @@ export default {
     margin-left: 20px;
 }
 
-.sauvegarde,
-.reset {
+.sauvegarde {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -390,16 +479,36 @@ export default {
     color: white;
 }
 
-.sauvegarde button {
-    background-color: #040faa;
+.watch {
+    background-color: green;
     color: white;
     margin: 3px;
     border: 0px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 100px;
 }
 
+.not-watch {
+    background-color: red;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+
+.reset {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
 
 .reset button {
     background-color: red;

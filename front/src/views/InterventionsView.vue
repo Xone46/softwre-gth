@@ -3,8 +3,8 @@
     <div class="retour">
       <button @click="retour">Retour</button>
     </div>
-    <FormIntervention v-if="flagFormIntervention" :interventionId="interventionId"  @anuller="closeFormIntervention()" @table="closeFormIntervention()" />
-    <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention()" @modifier="modifier" @apercu="apercu" @relaodTableObservateur="relaodTableObservateur" @deleteTableIntervention="deleteTableIntervention" />
+    <FormIntervention v-if="flagFormIntervention" :interventionId="interventionId"  @anuller="closeFormIntervention" @table="closeFormIntervention" />
+    <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention" @modifier="modifier" @apercu="apercu" @relaodTableObservateur="relaodTableObservateur" @deleteTableIntervention="deleteTableIntervention" />
     <TableObservateur v-if="flagTableObservateur" :interventionId="interventionId" @modifierObservateur="modifierObservateur" />
   </div>
 </template>
@@ -74,9 +74,8 @@ export default {
       this.flagTableObservateur = false;
     },
 
-    modifierObservateur(value) {
-      this.observateurId = value;
-      this.$router.push({ name: "observateurs", params: { observateurId: this.observateurId } });
+    modifierObservateur(observateurId, interventionId) {
+      this.$router.push({ name: "observateurs", params: { observateurId: observateurId, interventionId : interventionId } });
     },
 
     closeFormIntervention() {

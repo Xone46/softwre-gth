@@ -173,14 +173,15 @@
 
         </table>
 
-        <div v-if="!flagReset" class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        <div class="sauvegarder">
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
+                {{ watched_sauvegarder == true ? "Déjà enregistré" : "Non enregistré" }}
+            </button>
         </div>
 
-        <div v-if="flagReset" class="reset">
+        <div class="reset">
             <button @click="reset">Reset</button>
         </div>
-
 
     </div>
 
@@ -195,9 +196,75 @@ export default {
         return {
             colorSuspentes : false,
             colorCaracteristiques: false,
+            counter_watched: 0,
+            watched_sauvegarder: false,
             flagReset: false,
+
             description: {
 
+                marquage: "",
+
+                chargeMaximaleUtile: "",
+                porteeMinimale: "",
+                distanceCentreGravite: "",
+                course: "Sans objet",
+                hauteurLevage: "Sans objet",
+                portee: "Sans objet",
+                porteFauxDeport: "Sans objet",
+                longueurCheminRoulement: "Sans objet",
+                dimensionPlateau: "Sans objet",
+                modeInstallation: "",
+                suiveModeInstallation: "",
+
+                mecanisme: "",
+                suiveMecanisme: "",
+
+                suspentes: [
+                    {
+
+                        hasCable: false,
+                        cable: "Câble :",
+                        hasDetailsCable: false,
+                        detailsCable: [
+                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
+                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
+                        ],
+
+                        hasChaineRouleau: false,
+                        chaineRouleau: "Chaîne(s) a rouleau ou mailles jointives :",
+                        hasDetailsChaineRouleau: false,
+                        detailsChaineRouleau: [
+                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
+                            { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
+                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
+                        ],
+
+                        hasChaineMaillons: false,
+                        chaineMaillons: "Chaîne(s) à maillons calibrés :",
+                        hasDetailsChaineMaillons: false,
+                        detailsChaineMaillons: [
+                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
+                            { a: "Pas théorique :", valA: "", b: "Diamètre :", valB: "", c: "", valC: "" },
+                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
+                        ],
+
+                        hasSangle: false,
+                        sangle: "Sangle de levage :",
+                        hasDetailsSangle: false,
+                        detailsSangle: [
+                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "", valC: "" },
+                            { a: "Section (mm2):", valA: "", b: "", valB: "", c: "", valC: "" },
+                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
+                        ],
+                    }
+                ],
+
+
+                observateurId: ""
+            },
+
+            duplicate_description: {
+                
                 marquage: "",
 
                 chargeMaximaleUtile: "",
@@ -268,6 +335,20 @@ export default {
 
 
     components: {
+    },
+
+    watch: {
+        description: {
+            handler() {
+                const count = this.counter_watched++;
+                if (count != 0 && count != 1 && count != 2) {
+                    this.watched_sauvegarder = false;
+                }
+
+                this.notEmpty();
+            },
+            deep: true
+        }
     },
 
     methods: {
@@ -402,56 +483,48 @@ export default {
             this.description.porteeMinimale = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
         saisirDistanceCentreGravite(e) {
             this.description.distanceCentreGravite = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
         saisirCourse(e) {
             this.description.course = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
         saisirHauteurLevage(e) {
             this.description.hauteurLevage = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
         saisirPortee(e) {
             this.description.portee = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
         saisirPorteFauxDeport(e) {
             this.description.porteFauxDeport = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
         saisirLongueurCheminRoulement(e) {
             this.description.longueurCheminRoulement = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
         saisirDimensionPlateau(e) {
             this.description.dimensionPlateau = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
 
@@ -459,7 +532,6 @@ export default {
             this.description.modeInstallation = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
 
@@ -467,21 +539,18 @@ export default {
             this.description.suiveModeInstallation = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
         saisirMecanisme(e) {
             this.description.mecanisme = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
         saisirSuiveMecanisme(e) {
             this.description.suiveMecanisme = e.target.value;
             this.colorCaracteristiques = this.checkCaracterstiques();
             this.colorSuspentes = this.checkeSuspentes();
-            this.sauvegarde();
         },
 
         saisirCable() {
@@ -515,9 +584,10 @@ export default {
         sauvegarde() {
 
             Descriptions.create(this.description)
-                .then(() => {
-                    this.flagReset = true;
-                    this.notEmpty();
+                .then((result) => {
+                    if (result) {
+                        this.watched_sauvegarder = true;
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -528,68 +598,7 @@ export default {
             Descriptions.reset(this.observateurId)
                 .then(() => {
 
-                    this.description = {
-                        
-                        marquage: "",
-
-                        chargeMaximaleUtile: "",
-                        porteeMinimale: "",
-                        distanceCentreGravite: "",
-                        course: "Sans objet",
-                        hauteurLevage: "Sans objet",
-                        portee: "Sans objet",
-                        porteFauxDeport: "Sans objet",
-                        longueurCheminRoulement: "Sans objet",
-                        dimensionPlateau: "Sans objet",
-                        modeInstallation: "",
-                        suiveModeInstallation: "",
-
-                        mecanisme: "",
-                        suiveMecanisme: "",
-
-
-                        suspentes: [
-                            {
-
-                                hasCable: false,
-                                cable: "Câble :",
-                                hasDetailsCable: false,
-                                detailsCable: [
-                                    { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
-                                    { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                                ],
-
-                                hasChaineRouleau: false,
-                                chaineRouleau: "Chaîne(s) a rouleau ou mailles jointives :",
-                                hasDetailsChaineRouleau: false,
-                                detailsChaineRouleau: [
-                                    { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                                    { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
-                                    { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                                ],
-
-                                hasChaineMaillons: false,
-                                chaineMaillons: "Chaîne(s) à maillons calibrés :",
-                                hasDetailsChaineMaillons: false,
-                                detailsChaineMaillons: [
-                                    { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                                    { a: "Pas théorique :", valA: "", b: "Diamètre :", valB: "", c: "", valC: "" },
-                                    { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
-                                ],
-
-                                hasSangle: false,
-                                sangle: "Sangle de levage :",
-                                hasDetailsSangle: false,
-                                detailsSangle: [
-                                    { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "", valC: "" },
-                                    { a: "Section (mm2):", valA: "", b: "", valB: "", c: "", valC: "" },
-                                    { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
-                                ],
-                            }
-                        ],
-
-
-                    }
+                    this.description = this.duplicate_description;
 
                     this.flagReset = false;
                     this.colorCaracteristiques = this.checkCaracterstiques();
@@ -608,9 +617,12 @@ export default {
 
 
         this.description.observateurId = this.observateurId;
+        this.duplicate_description.observateurId = this.observateurId;
+
         Observateurs.selected(this.observateurId)
             .then((result) => {
                 this.description.marquage = result.data.marquage;
+                this.duplicate_description.marquage = result.data.marquage;
             })
             .catch((error) => {
                 console.log(error)
@@ -627,8 +639,8 @@ export default {
 
                 this.colorCaracteristiques = this.checkCaracterstiques();
                 this.colorSuspentes = this.checkeSuspentes();
-                this.$emit("changeColorDescription_famille1_lev1", this.checkProperties());
-
+                this.watched_sauvegarder = true;
+                return this.notEmpty();
             })
             .catch((error) => {
                 console.log(error)
@@ -719,14 +731,26 @@ table>tr:nth-child(6)>td:nth-child(3) {
     color: white;
 }
 
-.sauvegarde button {
-    background-color: #040faa;
+.watch {
+    background-color: green;
     color: white;
     margin: 3px;
     border: 0px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 100px;
+}
+
+.not-watch {
+    background-color: red;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
 }
 
 .reset {
@@ -739,7 +763,7 @@ table>tr:nth-child(6)>td:nth-child(3) {
 }
 
 .reset button {
-    background-color: #aa1704;
+    background-color: red;
     color: white;
     margin: 3px;
     border: 0px;

@@ -22,6 +22,27 @@ class Filo {
         })
     }
 
+    static select(metier) {
+        return new Promise((resolve, reject) => {
+            axios.post(`${VUE_APP_API_BASE_URL}/filos/select`,
+                {   
+                    metier : metier
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+
+        })
+    }
+
 }
 
 export default Filo;

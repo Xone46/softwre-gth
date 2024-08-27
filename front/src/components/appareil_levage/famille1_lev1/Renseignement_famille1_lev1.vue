@@ -2,32 +2,38 @@
     <div>
         <div class="descriptions">
             <table border="1">
-                
+
                 <tr>
                     <td :class="[renseignement.constructeur.length != 0 ? 'saved' : 'not-saved']">Constructeur</td>
-                    <td><input type="text" @input="saisirConstructeur($event)" :value="renseignement.constructeur" disabled></td>
+                    <td><input type="text" @input="saisirConstructeur($event)" :value="renseignement.constructeur"
+                            disabled></td>
                 </tr>
 
                 <tr>
                     <td :class="[renseignement.typeConstructeur.length != 0 ? 'saved' : 'not-saved']">Type constructeur
                         (Plaque):</td>
-                    <td><input type="text" @input="saisirTypeConstructeur($event)" :value="renseignement.typeConstructeur"></td>
+                    <td><input type="text" @input="saisirTypeConstructeur($event)"
+                            :value="renseignement.typeConstructeur"></td>
                 </tr>
 
 
                 <tr>
                     <td :class="[renseignement.anneeMiseService.length != 0 ? 'saved' : 'not-saved']">Année de mise en
                         service (Plaque constructeur):</td>
-                    <td><input type="text" @input="saisirAnneeMiseService($event)" :value="renseignement.anneeMiseService"></td>
+                    <td><input type="text" @input="saisirAnneeMiseService($event)"
+                            :value="renseignement.anneeMiseService"></td>
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.numeroSerie.length != 0 ? 'saved' : 'not-saved']">Numéro(s) de série (plaque constructeur):</td>
-                    <td><input type="text" @input="saisirNumeroSerie($event)" :value="renseignement.numeroSerie" disabled></td>
+                    <td :class="[renseignement.numeroSerie.length != 0 ? 'saved' : 'not-saved']">Numéro(s) de série
+                        (plaque constructeur):</td>
+                    <td><input type="text" @input="saisirNumeroSerie($event)" :value="renseignement.numeroSerie"
+                            disabled></td>
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.numeroInterne.length != 0 ? 'saved' : 'not-saved']">Numéro(s) interne(s):</td>
+                    <td :class="[renseignement.numeroInterne.length != 0 ? 'saved' : 'not-saved']">Numéro(s) interne(s):
+                    </td>
                     <td>
                         <select @change="saisirNumeroInterne($event)" :value="renseignement.numeroInterne" disabled>
                             <option value="Avec Objet : ">Avec Objet</option>
@@ -42,7 +48,8 @@
                 <tr>
                     <td :class="[renseignement.localisation.length != 0 ? 'saved' : 'not-saved']">Localisation de(s)
                         l'appareil (s) lors de la visite:</td>
-                    <td><input type="text" @input="saisirLocalistation($event)" :value="renseignement.localisation" disabled></td>
+                    <td><input type="text" @input="saisirLocalistation($event)" :value="renseignement.localisation"
+                            disabled></td>
                 </tr>
 
                 <tr>
@@ -60,14 +67,17 @@
                         </select>
                     </td>
                     <td v-if="renseignement.typeAppareil == 'Autre : '">
-                        <button :class="[renseignement.suiveTypeAppareil.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('typeAppareil')">voir</button>
+                        <button :class="[renseignement.suiveTypeAppareil.length != 0 ? 'voir' : 'not-voir']"
+                            @click="handelInsert('typeAppareil')">voir</button>
                     </td>
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.miseEnServiceRapport.length != 0 ? 'saved' : 'not-saved']">(Mise en service) Rapport de vérification avant mise ou remise en service: </td>
+                    <td :class="[renseignement.miseEnServiceRapport.length != 0 ? 'saved' : 'not-saved']">(Mise en
+                        service) Rapport de vérification avant mise ou remise en service: </td>
                     <td>
-                        <select @change="saisirMiseEnServiceRapport($event)" :value="renseignement.miseEnServiceRapport">
+                        <select @change="saisirMiseEnServiceRapport($event)"
+                            :value="renseignement.miseEnServiceRapport">
                             <option value="Présenté">Présenté</option>
                             <option value="Non présenté">Non présenté</option>
                         </select>
@@ -75,28 +85,35 @@
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.miseEnServiceEpreuves.length != 0 ? 'saved' : 'not-saved']">(Mise en service) Epreuves: </td>
+                    <td :class="[renseignement.miseEnServiceEpreuves.length != 0 ? 'saved' : 'not-saved']">(Mise en
+                        service) Epreuves: </td>
                     <td>
-                        <select @change="saisirMiseEnServiceEpreuves($event)" :value="renseignement.miseEnServiceEpreuves">
+                        <select @change="saisirMiseEnServiceEpreuves($event)"
+                            :value="renseignement.miseEnServiceEpreuves">
                             <option value="Réalisées le : ">Réalisées le</option>
                             <option value="Absence de renseignement">Absence de renseignement</option>
                         </select>
                     </td>
                     <td v-if="renseignement.miseEnServiceEpreuves == 'Réalisées le : '">
-                        <button :class="[ renseignement.suiveMiseEnServiceEpreuves.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('miseEnServiceEpreuves')">voir</button>
+                        <button :class="[renseignement.suiveMiseEnServiceEpreuves.length != 0 ? 'voir' : 'not-voir']"
+                            @click="handelInsert('miseEnServiceEpreuves')">voir</button>
                     </td>
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.dateDerniereVerficationPeriodique.length != 0 ? 'saved' : 'not-saved']">Date de la dernière vérification périodique:</td>
+                    <td :class="[renseignement.dateDerniereVerficationPeriodique.length != 0 ? 'saved' : 'not-saved']">
+                        Date de la dernière vérification périodique:</td>
                     <td>
-                        <select @change="saisirDateDerniereVerficationPeriodique($event)" :value="renseignement.dateDerniereVerficationPeriodique">
+                        <select @change="saisirDateDerniereVerficationPeriodique($event)"
+                            :value="renseignement.dateDerniereVerficationPeriodique">
                             <option value="Absence de renseignement">Absence de renseignement</option>
                             <option value="Effectuée le : ">Effectuée le</option>
                         </select>
                     </td>
                     <td v-if="renseignement.dateDerniereVerficationPeriodique == 'Effectuée le : '">
-                        <button :class="[ renseignement.suiveDateDerniereVerficationPeriodique.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('dateDerniereVerficationPeriodique')">voir</button>
+                        <button
+                            :class="[renseignement.suiveDateDerniereVerficationPeriodique.length != 0 ? 'voir' : 'not-voir']"
+                            @click="handelInsert('dateDerniereVerficationPeriodique')">voir</button>
                     </td>
                     <td v-if="renseignement.dateDerniereVerficationPeriodique == 'Effectuée le : '">
                         <select @change="saisirRapport($event)" :value="renseignement.rapport">
@@ -112,21 +129,27 @@
                     <td>
 
                         <select @change="saisirEssaischarge($event)" :value="renseignement.essaischarge">
-                            <option value="Réalisé avec la Charge maximale utile">Réalisé avec la Charge maximale utile</option>
+                            <option value="Réalisé avec la Charge maximale utile">Réalisé avec la Charge maximale utile
+                            </option>
                             <option value="Réalisé sous charge de (kg) : ">Réalisé sous charge de (kg)</option>
-                            <option value="Absence de charge pour réaliser les essais">Absence de charge pour réaliser les essais</option>
-                            <option value="Absence de tableau des charges pour réaliser les essais">Absence de tableau des charges pour réaliser les essais</option>
-                            <option value="Non réalisé. Voir observation critique">Non réalisé. Voir observation critique</option>
+                            <option value="Absence de charge pour réaliser les essais">Absence de charge pour réaliser
+                                les essais</option>
+                            <option value="Absence de tableau des charges pour réaliser les essais">Absence de tableau
+                                des charges pour réaliser les essais</option>
+                            <option value="Non réalisé. Voir observation critique">Non réalisé. Voir observation
+                                critique</option>
                         </select>
                     </td>
                     <td v-if="renseignement.essaischarge == 'Réalisé sous charge de (kg) : '">
-                        <button :class="[ renseignement.suiveEssaischarge.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('essaischarge')">voir</button>
+                        <button :class="[renseignement.suiveEssaischarge.length != 0 ? 'voir' : 'not-voir']"
+                            @click="handelInsert('essaischarge')">voir</button>
                     </td>
                 </tr>
 
 
                 <tr>
-                    <td :class="[renseignement.modification.length != 0 ? 'saved' : 'not-saved']">Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l’appareil examiné:</td>
+                    <td :class="[renseignement.modification.length != 0 ? 'saved' : 'not-saved']">Modification(s)
+                        apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l’appareil examiné:</td>
                     <td>
                         <select @change="saisirModification($event)" :value="renseignement.modification">
                             <option value="Sans objet">Sans objet</option>
@@ -134,7 +157,8 @@
                         </select>
                     </td>
                     <td v-if="renseignement.modification == 'Description : '">
-                        <button :class="[ renseignement.suiveModification.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('modification')">voir</button>
+                        <button :class="[renseignement.suiveModification.length != 0 ? 'voir' : 'not-voir']"
+                            @click="handelInsert('modification')">voir</button>
                     </td>
                 </tr>
 
@@ -142,16 +166,18 @@
             </table>
         </div>
 
-
-        <div v-if="!flagReset" class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        <div class="sauvegarder">
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
+                {{ watched_sauvegarder == true ? "Déjà enregistré" : "Non enregistré" }}
+            </button>
         </div>
 
-        <div v-if="flagReset" class="reset">
+        <div class="reset">
             <button @click="reset">Reset</button>
         </div>
 
-        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider" @annuler="annuler" />
+        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider"
+            @annuler="annuler" />
 
     </div>
 </template>
@@ -167,31 +193,33 @@ export default {
     name: 'renseignement-component',
     data() {
         return {
-
+            counter_watched: 0,
+            watched_sauvegarder: false,
             falgInsert: false,
             flagReset: false,
             renseignement: {
-                 constructeur: "",
-                typeConstructeur : "",
-                anneeMiseService : "",
-                numeroSerie : "",
-                numeroInterne : "",
-                suiveNumeroInterne : "",
-                localisation : "",
-                typeAppareil : "",
-                suiveTypeAppareil : "",
-                miseEnServiceRapport : "",
-                miseEnServiceEpreuves : "",
-                suiveMiseEnServiceEpreuves : "",
-                dateDerniereVerficationPeriodique : "",
-                suiveDateDerniereVerficationPeriodique : "",
-                rapport : "",
-                essaischarge : "",
-                suiveEssaischarge : "",
-                modification : "",
-                suiveModification : "",
+                constructeur: "",
+                typeConstructeur: "",
+                anneeMiseService: "",
+                numeroSerie: "",
+                numeroInterne: "",
+                suiveNumeroInterne: "",
+                localisation: "",
+                typeAppareil: "",
+                suiveTypeAppareil: "",
+                miseEnServiceRapport: "",
+                miseEnServiceEpreuves: "",
+                suiveMiseEnServiceEpreuves: "",
+                dateDerniereVerficationPeriodique: "",
+                suiveDateDerniereVerficationPeriodique: "",
+                rapport: "",
+                essaischarge: "",
+                suiveEssaischarge: "",
+                modification: "",
+                suiveModification: "",
                 observateurId: "",
             },
+
             renseignementId: null
         }
     },
@@ -204,58 +232,72 @@ export default {
         Insert
     },
 
+    watch: {
+        renseignement: {
+            handler() {
+                const count = this.counter_watched++;
+                if (count != 0 && count != 1) {
+                    this.watched_sauvegarder = false;
+                }
+
+                this.notEmpty();
+            },
+            deep: true
+        }
+    },
+
     methods: {
 
         checkProperties() {
 
 
-                if(this.renseignement.constructeur == "") {
-                    return false;
-                }
+            if (this.renseignement.constructeur == "") {
+                return false;
+            }
 
-                if(this.renseignement.typeConstructeur == "") {
-                    return false;
-                }
+            if (this.renseignement.typeConstructeur == "") {
+                return false;
+            }
 
-                if(this.renseignement.anneeMiseService == "") {
-                    return false;
-                }
+            if (this.renseignement.anneeMiseService == "") {
+                return false;
+            }
 
-                if(this.renseignement.numeroSerie == "") {
-                    return false;
-                }
+            if (this.renseignement.numeroSerie == "") {
+                return false;
+            }
 
-                if(this.renseignement.numeroInterne == "") {
-                    return false;
-                }
+            if (this.renseignement.numeroInterne == "") {
+                return false;
+            }
 
-                if(this.renseignement.localisation == "") {
-                    return false;
-                }
+            if (this.renseignement.localisation == "") {
+                return false;
+            }
 
-                if(this.renseignement.typeAppareil == "") {
-                    return false;
-                }
+            if (this.renseignement.typeAppareil == "") {
+                return false;
+            }
 
-                if(this.renseignement.miseEnServiceRapport == "") {
-                    return false;
-                }
+            if (this.renseignement.miseEnServiceRapport == "") {
+                return false;
+            }
 
-                if(this.renseignement.miseEnServiceEpreuves == "") {
-                    return false;
-                }
+            if (this.renseignement.miseEnServiceEpreuves == "") {
+                return false;
+            }
 
-                if(this.renseignement.dateDerniereVerficationPeriodique == "") {
-                    return false;
-                }
+            if (this.renseignement.dateDerniereVerficationPeriodique == "") {
+                return false;
+            }
 
-                if(this.renseignement.essaischarge == "") {
-                    return false;
-                }
+            if (this.renseignement.essaischarge == "") {
+                return false;
+            }
 
-                if(this.renseignement.modification == "") {
-                    return false;
-                }
+            if (this.renseignement.modification == "") {
+                return false;
+            }
 
             return true;
         },
@@ -266,27 +308,27 @@ export default {
 
         handelInsert(value) {
 
-            if(value == "numeroInterne") {
+            if (value == "numeroInterne") {
                 this.valueInsert = this.renseignement.suiveNumeroInterne;
             }
 
-            if(value == "typeAppareil") {
+            if (value == "typeAppareil") {
                 this.valueInsert = this.renseignement.suiveTypeAppareil;
             }
 
-            if(value == "miseEnServiceEpreuves") {
+            if (value == "miseEnServiceEpreuves") {
                 this.valueInsert = this.renseignement.suiveMiseEnServiceEpreuves;
             }
 
-            if(value == "dateDerniereVerficationPeriodique") {
+            if (value == "dateDerniereVerficationPeriodique") {
                 this.valueInsert = this.renseignement.suiveDateDerniereVerficationPeriodique;
             }
 
-            if(value == "essaischarge") {
+            if (value == "essaischarge") {
                 this.valueInsert = this.renseignement.suiveEssaischarge;
             }
 
-            if(value == "modification") {
+            if (value == "modification") {
                 this.valueInsert = this.renseignement.suiveModification;
             }
 
@@ -296,99 +338,84 @@ export default {
 
         saisirConstructeur(e) {
             this.renseignement.constructeur = e.target.value;
-            this.sauvegarde();
         },
 
         saisirTypeConstructeur(e) {
             this.renseignement.typeConstructeur = e.target.value;
-            this.sauvegarde();
         },
 
         saisirAnneeMiseService(e) {
             this.renseignement.anneeMiseService = e.target.value;
-            this.sauvegarde();
         },
 
         saisirNumeroSerie(e) {
             this.renseignement.numeroSerie = e.target.value;
-            this.sauvegarde();
         },
 
         saisirNumeroInterne(e) {
             this.renseignement.numeroInterne = e.target.value;
-            this.sauvegarde();
         },
 
         saisirLocalistation(e) {
             this.renseignement.localisation = e.target.value;
-            this.sauvegarde();
         },
 
         saisirTypeAppareil(e) {
             this.renseignement.typeAppareil = e.target.value;
-            this.sauvegarde();
         },
 
         saisirMiseEnServiceRapport(e) {
             this.renseignement.miseEnServiceRapport = e.target.value;
-            this.sauvegarde();
         },
 
         saisirMiseEnServiceEpreuves(e) {
             this.renseignement.miseEnServiceEpreuves = e.target.value;
-            this.sauvegarde();
         },
 
         saisirDateDerniereVerficationPeriodique(e) {
             this.renseignement.dateDerniereVerficationPeriodique = e.target.value;
-            this.sauvegarde();
         },
 
         saisirRapport(e) {
             this.renseignement.rapport = e.target.value;
-            this.sauvegarde();
         },
 
         saisirEssaischarge(e) {
             this.renseignement.essaischarge = e.target.value;
-            this.sauvegarde();
         },
 
         saisirModification(e) {
             this.renseignement.modification = e.target.value;
-            this.sauvegarde();
         },
-        
+
 
         valider(event, type) {
 
-            if(type == "numeroInterne") {
+            if (type == "numeroInterne") {
                 this.renseignement.suiveNumeroInterne = event;
             }
 
-            if(type == "typeAppareil") {
+            if (type == "typeAppareil") {
                 this.renseignement.suiveTypeAppareil = event;
             }
 
-            if(type == "miseEnServiceEpreuves") {
+            if (type == "miseEnServiceEpreuves") {
                 this.renseignement.suiveMiseEnServiceEpreuves = event;
             }
 
-            if(type == "dateDerniereVerficationPeriodique") {
+            if (type == "dateDerniereVerficationPeriodique") {
                 this.renseignement.suiveDateDerniereVerficationPeriodique = event;
             }
 
-            if(type == "essaischarge") {
+            if (type == "essaischarge") {
                 this.renseignement.suiveEssaischarge = event;
             }
 
-            if(type == "modification") {
+            if (type == "modification") {
                 this.renseignement.suiveModification = event;
             }
 
             this.falgInsert = false;
-            this.notEmpty();
-            this.sauvegarde();
         },
 
         annuler() {
@@ -397,34 +424,31 @@ export default {
 
 
         reset() {
+
             Renseignement.reset(this.observateurId)
                 .then((result) => {
 
-                    if (result.data) {
+                    if (result.data == true) {
 
-                        this.renseignement = {
-                            constructeur : "",
-                            typeConstructeur : "",
-                            anneeMiseService : "",
-                            numeroSerie : "",
-                            numeroInterne : "",
-                            suiveNumeroInterne : "",
-                            localisation : "",
-                            typeAppareil : "",
-                            suiveTypeAppareil : "",
-                            miseEnServiceRapport : "",
-                            miseEnServiceEpreuves : "",
-                            suiveMiseEnServiceEpreuves : "",
-                            dateDerniereVerficationPeriodique : "",
-                            suiveDateDerniereVerficationPeriodique : "",
-                            rapport : "",
-                            essaischarge : "",
-                            suiveEssaischarge : "",
-                            modification : "",
-                            suiveModification : "",
-                        },
+                        this.renseignement.typeConstructeur = "",
+                        this.renseignement.anneeMiseService = "",
+                        this.renseignement.numeroInterne = "",
+                        this.renseignement.typeAppareil = "",
+                        this.renseignement.suiveTypeAppareil = "",
+                        this.renseignement.miseEnServiceRapport = "",
+                        this.renseignement.miseEnServiceEpreuves = "",
+                        this.renseignement.suiveMiseEnServiceEpreuves = "",
+                        this.renseignement.dateDerniereVerficationPeriodique = "",
+                        this.renseignement.suiveDateDerniereVerficationPeriodique = "",
+                        this.renseignement.rapport = "",
+                        this.renseignement.essaischarge = "",
+                        this.renseignement.suiveEssaischarge = "",
+                        this.renseignement.modification = "",
+                        this.renseignement.suiveModification = "",
 
                         this.flagReset = false;
+                        this.watched_sauvegarder = false;
+                        this.$emit("changeColorRenseignement_famille_ac1", false);
                     }
                 })
                 .catch((error) => {
@@ -436,8 +460,10 @@ export default {
 
             this.renseignement.observateurId = this.observateurId;
             Renseignement.create(this.renseignement)
-                .then(() => {
-                    this.notEmpty();
+                .then((result) => {
+                    if (result) {
+                        this.watched_sauvegarder = true;
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -460,13 +486,13 @@ export default {
                             this.renseignement.localisation = result.data.localisation;
                             this.renseignement.numeroSerie = result.data.numeroSerie;
 
-                            if(result.data.numeroInterne != null) {
+                            if (result.data.numeroInterne != null) {
                                 this.renseignement.numeroInterne = "Avec Objet : ";
                                 this.renseignement.suiveNumeroInterne = result.data.numeroInterne;
                             }
 
-                            
-                            if(result.data.numeroInterne == null || result.data.numeroInterne == "") {
+
+                            if (result.data.numeroInterne == null || result.data.numeroInterne == "") {
                                 this.renseignement.numeroInterne = "Sans Objet";
                                 this.renseignement.suiveNumeroInterne = "";
                             }
@@ -482,7 +508,6 @@ export default {
 
                     Renseignement.select(this.observateurId)
                         .then((result) => {
-
                             this.renseignement.constructeur = result.data.renseignement.constructeur;
                             this.renseignement.typeConstructeur = result.data.renseignement.typeConstructeur;
                             this.renseignement.anneeMiseService = result.data.renseignement.anneeMiseService;
@@ -502,15 +527,15 @@ export default {
                             this.renseignement.suiveEssaischarge = result.data.renseignement.suiveEssaischarge;
                             this.renseignement.modification = result.data.renseignement.modification;
                             this.renseignement.suiveModification = result.data.renseignement.suiveModification;
-                            this.renseignement.observateurId= result.data.renseignement.observateurId;
-
-                            this.notEmpty();
-
+                            this.renseignement.observateurId = result.data.renseignement.observateurId;
                         })
                         .catch((error) => {
                             console.log(error)
-                        })
+                        });
                 }
+
+                this.watched_sauvegarder = true;
+                return this.notEmpty();
             })
             .catch((error) => {
                 console.log(error);
@@ -522,27 +547,25 @@ export default {
 </script>
 
 <style scoped>
-
-
-  .descriptions table {
+.descriptions table {
     border-collapse: collapse;
     border: none;
-  }
+}
 
-  tr {
+tr {
     border-top: 1px solid black;
-  }
+}
 
-  tr:first-child {
+tr:first-child {
     border-top: none;
-  }
+}
 
-  td {
+td {
     text-align: start;
     border: none !important;
     padding-top: 10px;
     padding-bottom: 10px;
-  }
+}
 
 
 .sauvegarde {
@@ -554,14 +577,26 @@ export default {
     color: white;
 }
 
-.sauvegarde button {
-    background-color: #ff6a00;
+.watch {
+    background-color: green;
     color: white;
     margin: 3px;
     border: 0px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 100px;
+}
+
+.not-watch {
+    background-color: red;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
 }
 
 .reset {
@@ -574,7 +609,7 @@ export default {
 }
 
 .reset button {
-    background-color: #aa1704;
+    background-color: red;
     color: white;
     margin: 3px;
     border: 0px;
@@ -606,6 +641,4 @@ td:nth-child(2) {
     background-color: red;
     color: white
 }
-
-
 </style>

@@ -102,11 +102,13 @@
 
         </div>
 
-        <div v-if="!flagReset" class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        <div class="sauvegarder">
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
+                {{ watched_sauvegarder == true ? "Enregistré" : "Non enregistré" }}
+            </button>
         </div>
 
-        <div v-if="flagReset" class="reset">
+        <div class="reset">
             <button @click="reset">Reset</button>
         </div>
 
@@ -119,12 +121,15 @@
 
 import Insert from "@/components/models/Insert.vue"
 import Fiche from "@/requests/accessoire_levage/famille_ac1/Fiches"
+import Accessoire from "@/requests/accessoire_levage/famille_ac1/Accessoires"
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
 
+            counter_watched : 0,
+            watched_sauvegarder: false,
             falgInsert: false,
             flagReset: false,
             renseignementId: null,
@@ -141,6 +146,18 @@ export default {
         Insert
     },
 
+    watch: {
+        fiches: {
+            handler(){
+                const count = this.counter_watched++;
+                if(count != 0 && count != 1) {
+                    this.watched_sauvegarder = false;
+                }
+            },
+            deep: true
+        }
+    },
+    
     methods: {
 
         checkProperties(obj) {
@@ -194,9 +211,6 @@ export default {
                     if(obj[i]["longueur"] == "") {
                         return false;
                     }
-
-
-
             }
 
            return true;
@@ -209,103 +223,87 @@ export default {
         saisirObs(index, j, e) {
             this.fiches[index]["observation"][j]["obs"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirObservation(index, j, e) {
             this.fiches[index]["observation"][j]["observation"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirSuite(index, j, e) {
             this.fiches[index]["observation"][j]["suite"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirConclusion(index, j, value) {
             this.fiches[index]["conclusion"][j]["status"] = Boolean(!value);
             this.notEmpty();
-            this.sauvegarde();
         },
-
-
 
         saisirDescription(index, e) {
             this.fiches[index]["description"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirNumeroInterne(index, e) {
             this.fiches[index]["numeroInterne"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirLocalisation(index, e) {
             this.fiches[index]["localisation"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirInformationComplementaire(index, e) {
             this.fiches[index]["informationComplementaire"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirMarque(index, e) {
             this.fiches[index]["marque"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirType(index, e) {
             this.fiches[index]["type"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirNumeroSerie(index, e) {
             this.fiches[index]["numeroSerie"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirAnneeMiseService(index, e) {
             this.fiches[index]["anneeMiseService"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirChargeMaximaleUtile(index, e) {
             this.fiches[index]["chargeMaximaleUtile"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirDiametreCableChaine(index, e) {
             this.fiches[index]["diametreCableChaine"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirNombreBrins(index, e) {
             this.fiches[index]["nombreBrins"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         saisirLongueur(index, e) {
             this.fiches[index]["longueur"] = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
+
         },
 
         displayFiche(index) {
-            this.fiches[index]["display"] = !this.fiches[index]["display"];
+            console.log(this.fiches[index])
+            this.fiches[index]["display"] = Boolean(!this.fiches[index]["display"]);
         },
 
         supprimerObservation(index, j) {
@@ -332,8 +330,9 @@ export default {
             Fiche.reset(this.observateurId)
                     .then(() => {
                         this.fiches = this.accessoires;
+                        this.watched_sauvegarder = false;
+                        this.flagReset = true;
                         this.$emit("changeColorFiche_famille_ac1", this.checkProperties(this.fiches));
-                        this.flagReset = false;
                 })
                 .catch((error) => {
                     console.log(error);
@@ -346,7 +345,9 @@ export default {
 
             Fiche.create(this.fiches, this.observateurId)
             .then((result) => {
-                console.log(result)
+                if(result) {
+                    this.watched_sauvegarder = true;
+                }
             })
             .catch((error) => {
                 console.log(error);
@@ -357,16 +358,27 @@ export default {
 
     created() {
 
-
-        this.fiches = this.accessoires;
-
         Fiche.select(this.observateurId)
         .then((result) => {
-            if(result.data) {
+            if(result.data == null) {  
+
+                Accessoire.select(this.observateurId)
+                .then((result) => {
+                    this.fiches = result.data.accessoires;
+                    this.watched_sauvegarder = false;
+                    return this.notEmpty();
+                })
+                .catch((error) => {
+                    console.log(error);
+
+                });
+
+            } else {
                 this.fiches = result.data.fiches;
-                this.$emit("changeColorFiche_famille_ac1", this.checkProperties(this.fiches));
-                this.flagReset = true;
+                this.watched_sauvegarder = true;
+                return this.notEmpty();
             }
+ 
         })
         .catch((error) => {
             console.log(error.message);
@@ -391,14 +403,26 @@ export default {
     color: white;
 }
 
-.sauvegarde button {
-    background-color: #ff6a00;
+.watch {
+    background-color: green;
     color: white;
     margin: 3px;
     border: 0px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 100px;
+}
+
+.not-watch {
+    background-color: red;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
 }
 
 .reset {
@@ -411,7 +435,7 @@ export default {
 }
 
 .reset button {
-    background-color: #aa1704;
+    background-color: red;
     color: white;
     margin: 3px;
     border: 0px;

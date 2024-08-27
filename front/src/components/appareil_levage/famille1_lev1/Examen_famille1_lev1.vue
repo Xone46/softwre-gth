@@ -392,12 +392,13 @@
             </tr>
         </table>
 
-
-        <div v-if="!flagReset" class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        <div class="sauvegarder">
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
+                {{ watched_sauvegarder == true ? "Déjà enregistré" : "Non enregistré" }}
+            </button>
         </div>
 
-        <div v-if="flagReset" class="reset">
+        <div class="reset">
             <button @click="reset">Reset</button>
         </div>
 
@@ -416,6 +417,8 @@ export default {
     data() {
         return {
 
+            counter_watched: 0,
+            watched_sauvegarder: false,
             flagReset: false,
             flagReserve : false,
             infoReserve : [],
@@ -492,6 +495,91 @@ export default {
     components: {
         Reserve
     },
+
+
+    watch: {
+        a: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        b: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        c: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        d: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        e: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        f: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        g: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        h: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        i: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        j: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+    },
+
 
     methods: {
 
@@ -675,8 +763,6 @@ export default {
                 this.a[index]["o"] = bol;
             }
 
-            return this.sauvegarde();
-
         },
 
 
@@ -753,8 +839,6 @@ export default {
                 this.b[index]["so"] = false;
                 this.b[index]["o"] = bol;
             }
-
-            return this.sauvegarde();
         },
 
         checkC(index, type, bol) {
@@ -830,8 +914,6 @@ export default {
                 this.c[index]["so"] = false;
                 this.c[index]["o"] = bol;
             }
-
-            return this.sauvegarde();
         },
 
         checkD(index, type, bol) {
@@ -909,7 +991,6 @@ export default {
                 this.d[index]["o"] = bol;
             }
 
-            return this.sauvegarde();
         },
 
         checkE(index, type, bol) {
@@ -985,8 +1066,6 @@ export default {
                 this.e[index]["so"] = false;
                 this.e[index]["o"] = bol;
             }
-
-            return this.sauvegarde();
         },
 
         checkF(index, type, bol) {
@@ -1063,7 +1142,6 @@ export default {
                 this.f[index]["o"] = bol;
             }
 
-            return this.sauvegarde();
         },
 
         checkG(index, type, bol) {
@@ -1139,8 +1217,6 @@ export default {
                 this.g[index]["so"] = false;
                 this.g[index]["o"] = bol;
             }
-
-            return this.sauvegarde();
         },
 
         checkH(index, type, bol) {
@@ -1217,7 +1293,6 @@ export default {
                 this.h[index]["o"] = bol;
             }
 
-            return this.sauvegarde();
         },
 
         checkI(index, type, bol) {
@@ -1293,8 +1368,6 @@ export default {
                 this.i[index]["so"] = false;
                 this.i[index]["o"] = bol;
             }
-
-            return this.sauvegarde();
         },
 
         checkJ(index, type, bol) {
@@ -1371,8 +1444,6 @@ export default {
                 this.j[index]["so"] = false;
                 this.j[index]["o"] = bol;
             }
-
-            return this.sauvegarde();
         },
 
         reset() {
@@ -1481,6 +1552,7 @@ export default {
                         );
   
                         this.flagReset = false;
+                        this.watched_sauvegarder = false;
                         this.$emit("changeColorExamen_famille1_lev1", false);
                     }
                 })
@@ -1587,11 +1659,10 @@ export default {
         },
 
         sauvegarde() {
-
             Examens.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.observateurId)
                 .then((result) => {
-                    if (result.data) {
-                        this.notEmpty();
+                    if (result) {
+                        this.watched_sauvegarder = true;
                     }
                 })
                 .catch((error) => {
@@ -1621,13 +1692,12 @@ export default {
                     this.i = result.data.examen.i;
                     this.j = result.data.examen.j;
 
-                    this.flagReset = true;
-                    this.$emit("changeColorExamen_famille1_lev1", this.checkProperties(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j));
+                    this.watched_sauvegarder = true;
+                    return this.notEmpty();
+                } 
 
-                } else {
-                    this.flagReset = false;
-                    this.$emit("changeColorExamen_famille1_lev1", false);
-                }
+                return this.notEmpty();
+
             })
             .catch((error) => {
                 console.log(error)
@@ -1682,15 +1752,28 @@ table tr th:nth-child(2) {
     color: white;
 }
 
-.sauvegarde button {
-    background-color: #040faa;
+.watch {
+    background-color: green;
     color: white;
     margin: 3px;
     border: 0px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 100px;
 }
+
+.not-watch {
+    background-color: red;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+
 
 .reset {
     width: 100%;
@@ -1702,7 +1785,7 @@ table tr th:nth-child(2) {
 }
 
 .reset button {
-    background-color: #aa1704;
+    background-color: red;
     color: white;
     margin: 3px;
     border: 0px;

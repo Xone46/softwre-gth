@@ -120,7 +120,7 @@ export default {
 
         modifier() {
             if(this.observateursSelect.length === 1) {
-                return this.$emit("modifierObservateur", this.observateursSelect[0]);
+                return this.$emit("modifierObservateur", this.observateursSelect[0], this.interventionId);
             }
         },
 
@@ -146,7 +146,7 @@ export default {
                 for (let i = 0; i < this.observateurs.length; i++) {
                     if (this.observateurs[i]._id == this.observateursSelect[0]) {
                         console.log(this.observateurs[i])
-                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], typeAppareil: this.observateurs[i].typeAppareil } });
+                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], typeAppareil: this.observateurs[i].typeAppareil, interventionId : this.interventionId } });
                         break;
                     }
                 }

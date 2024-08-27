@@ -8,7 +8,8 @@
                         Etablissement :
                     </td>
                     <td>
-                        <input type='text' :value='renseignement.etablissement' height='48px'  @input="handelEtablissement($event)">
+                        <input type='text' :value='renseignement.etablissement' height='48px'
+                            @input="handelEtablissement($event)">
                     </td>
                 </tr>
 
@@ -17,7 +18,7 @@
                         Adresse :
                     </td>
                     <td>
-                        <input type='text' :value='renseignement.adresse' height='48px'  @input="handelAdresse($event)">
+                        <input type='text' :value='renseignement.adresse' height='48px' @input="handelAdresse($event)">
                     </td>
                 </tr>
 
@@ -25,8 +26,9 @@
                     <td :class="[renseignement.etendueVerification.length != 0 ? 'saved' : 'not-saved']">
                         Etendue de la vérification – limite de prestation :
                     </td>
-                    <td >
-                        <input type='text' :value='renseignement.etendueVerification' height='48px'  @input="handelEtendueVerification($event)">
+                    <td>
+                        <input type='text' :value='renseignement.etendueVerification' height='48px'
+                            @input="handelEtendueVerification($event)">
                     </td>
                 </tr>
 
@@ -35,7 +37,8 @@
                         Personne ayant Accompagné le vérificateur (nom et qualité) :
                     </td>
                     <td>
-                        <input type='text' :value='renseignement.accompagnateurClient' height='48px'  @input="handelAccompagnateurClient($event)">
+                        <input type='text' :value='renseignement.accompagnateurClient' height='48px'
+                            @input="handelAccompagnateurClient($event)">
                     </td>
                 </tr>
 
@@ -44,7 +47,8 @@
                         Qui est fait le compte rendu de fin de visite :
                     </td>
                     <td>
-                        <input type='text' :value='renseignement.personneCompteRendu' height='48px'  @input="handelPersonneCompteRendu($event)">
+                        <input type='text' :value='renseignement.personneCompteRendu' height='48px'
+                            @input="handelPersonneCompteRendu($event)">
                     </td>
                 </tr>
 
@@ -54,7 +58,8 @@
                         Vérificateurs agréé(s) :
                     </td>
                     <td>
-                        <input type='text' :value='renseignement.nomVerificateur' height='48px'  @input="handelNomVerificateur($event)">
+                        <input type='text' :value='renseignement.nomVerificateur' height='48px'
+                            @input="handelNomVerificateur($event)">
                     </td>
                 </tr>
 
@@ -62,7 +67,8 @@
                     <td :class="[renseignement.rapportPrecedent.length != 0 ? 'saved' : 'not-saved']">
                         Rapport précédent :</td>
                     <td>
-                        <input type='text' :value='renseignement.rapportPrecedent' height='48px'  @input="handelRapportPrecedent($event)">
+                        <input type='text' :value='renseignement.rapportPrecedent' height='48px'
+                            @input="handelRapportPrecedent($event)">
                     </td>
                 </tr>
 
@@ -70,7 +76,8 @@
                     <td :class="[renseignement.datePrecedenteVerification.length != 0 ? 'saved' : 'not-saved']">
                         Date de la précédente vérification :</td>
                     <td>
-                        <input type='date' :value='renseignement.datePrecedenteVerification' height='48px'  @input="handelDatePrecedenteVerification($event)">
+                        <input type='date' :value='renseignement.datePrecedenteVerification' height='48px'
+                            @input="handelDatePrecedenteVerification($event)">
                     </td>
                 </tr>
 
@@ -78,25 +85,28 @@
                     <td :class="[renseignement.documents.length != 0 ? 'saved' : 'not-saved']">
                         Documents & plans fournis :</td>
                     <td>
-                        <input type='text' :value='renseignement.documents' height='48px'  @input="handelDocuments($event)">
+                        <input type='text' :value='renseignement.documents' height='48px'
+                            @input="handelDocuments($event)">
                     </td>
                 </tr>
 
                 <tr>
                     <td :class="[renseignement.dateDuree.length != 0 ? 'saved' : 'not-saved']">
                         Date et durée de la présente vérification :</td>
-                        <input type='date' :value='renseignement.dateDuree' height='48px'  @input="handelDateDuree($event)">
+                    <input type='date' :value='renseignement.dateDuree' height='48px' @input="handelDateDuree($event)">
                 </tr>
 
             </table>
         </div>
 
 
-        <div v-if="!flagReset" class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        <div class="sauvegarder">
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
+                {{ watched_sauvegarder == true ? "Enregistré" : "Non enregistré" }}
+            </button>
         </div>
 
-        <div v-if="flagReset" class="reset">
+        <div class="reset">
             <button @click="reset">Reset</button>
         </div>
 
@@ -110,17 +120,32 @@
 
 import Insert from "@/components/models/Insert.vue"
 import Renseignement from "@/requests/accessoire_levage/famille_ac1/Renseignements"
+import Intervention from "@/requests/Interventions"
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
 
+            counter_watched : 0,
+            watched_sauvegarder: false,
             falgInsert: false,
             flagReset: false,
 
             renseignement: {
+                etablissement: "",
+                adresse: "",
+                etendueVerification: "",
+                accompagnateurClient: "",
+                personneCompteRendu: "",
+                nomVerificateur: "",
+                rapportPrecedent: "",
+                datePrecedenteVerification: "",
+                documents: "",
+                dateDuree: ""
+            },
 
+            duplicate_renseignement: {
                 etablissement: "",
                 adresse: "",
                 etendueVerification: "",
@@ -138,20 +163,33 @@ export default {
     },
 
     props: {
-        observateurId: String
+        observateurId: String,
+        interventionId: String
     },
 
     components: {
         Insert
     },
 
+    watch: {
+        renseignement: {
+            handler(){
+                const count = this.counter_watched++;
+                if(count != 0 && count != 1) {
+                    this.watched_sauvegarder = false;
+                }
+            },
+            deep: true
+        }
+    },
+
     methods: {
 
         checkProperties(obj) {
             for (var key in obj) {
-                    if(obj[key] == "") {
-                        return false;
-                    }              
+                if (obj[key] == "" && key != "__v") {
+                    return false;
+                }
             }
             return true;
         },
@@ -163,62 +201,51 @@ export default {
         handelEtablissement(e) {
             this.renseignement.etablissement = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         handelAdresse(e) {
             this.renseignement.adresse = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         handelEtendueVerification(e) {
             this.renseignement.etendueVerification = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         handelAccompagnateurClient(e) {
             this.renseignement.accompagnateurClient = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         handelPersonneCompteRendu(e) {
             this.renseignement.personneCompteRendu = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         handelNomVerificateur(e) {
             this.renseignement.nomVerificateur = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         handelRapportPrecedent(e) {
             this.renseignement.rapportPrecedent = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
-
         },
 
         handelDatePrecedenteVerification(e) {
             this.renseignement.datePrecedenteVerification = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         handelDocuments(e) {
             this.renseignement.documents = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         handelDateDuree(e) {
             this.renseignement.dateDuree = e.target.value;
             this.notEmpty();
-            this.sauvegarde();
         },
 
         valider() {
@@ -245,26 +272,23 @@ export default {
                     this.renseignement.documents = "";
                     this.renseignement.dateDuree = "";
 
+                    this.flagReset = true;
+                    this.watched_sauvegarder = false;
                     this.$emit("changeColorRenseignement_famille_ac1", false);
-                    this.flagReset = false;
-              
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         },
 
         sauvegarde() {
-
             this.renseignement.observateurId = this.observateurId;
             Renseignement.create(this.renseignement)
                 .then((result) => {
-
-                    if (result.data) {
-                        this.flagReset = true;
-                        this.renseignementId = result.data.renseignementId;
+                    if(result) {
+                        this.watched_sauvegarder = true;
                     }
-
                 })
                 .catch((error) => {
                     console.log(error);
@@ -275,22 +299,35 @@ export default {
 
     created() {
 
+
+        Intervention.select(this.interventionId)
+            .then((result) => {
+                this.renseignement.etablissement = result.data.etablissement;
+                this.renseignement.adresse = `${result.data.adresse}  ${result.data.codePostal} - ${result.data.ville}, ${result.data.pays}`;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+
         Renseignement.select(this.observateurId)
-        .then((result) => {
+            .then((result) => {
 
-            this.renseignement = result.data.renseignement
-            this.renseignement.datePrecedenteVerification = new Date(result.data.renseignement.datePrecedenteVerification).toISOString().substring(0, 10);
-            this.renseignement.dateDuree = new Date(result.data.renseignement.dateDuree).toISOString().substring(0, 10);
+                if(result.data.renseignement) {
+                    this.renseignement = result.data.renseignement;
+                    this.renseignement.datePrecedenteVerification = new Date(result.data.renseignement.datePrecedenteVerification).toISOString().substring(0, 10);
+                    this.renseignement.dateDuree = new Date(result.data.renseignement.dateDuree).toISOString().substring(0, 10);
 
-            this.$emit("changeColorRenseignement_famille_ac1", true);
-            this.flagReset = true;
-        })
-        .catch((error) => {
-            console.log(error.message);
-        });
+                    this.watched_sauvegarder = true;
+                    return this.notEmpty();
+                }
+
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
 
     }
-
 
 }
 </script>
@@ -326,14 +363,26 @@ td {
     color: white;
 }
 
-.sauvegarde button {
-    background-color: #ff6a00;
+.watch {
+    background-color: green;
     color: white;
     margin: 3px;
     border: 0px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 100px;
+}
+
+.not-watch {
+    background-color: red;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
 }
 
 .reset {
@@ -367,5 +416,9 @@ td:nth-child(2) {
 
 .not-saved {
     color: red;
+}
+
+input {
+    width: 500px;
 }
 </style>

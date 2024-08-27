@@ -51,11 +51,13 @@
             <button @click="ajouter">Ajouter Accessoire</button>
         </div>
 
-        <div v-if="!flagReset" class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+        <div class="sauvegarder">
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
+                {{ watched_sauvegarder == true ? "Enregistré" : "Non enregistré" }}
+            </button>
         </div>
 
-        <div v-if="flagReset" class="reset">
+        <div class="reset">
             <button @click="reset">Reset</button>
         </div>
 
@@ -74,11 +76,11 @@ export default {
     name: 'renseignement-component',
     data() {
         return {
-
+            counter_watched : 0,
+            watched_sauvegarder : false,
             falgInsert: false,
             flagReset: false,
             accessoires: [],
-            renseignementId: null
         }
     },
 
@@ -90,6 +92,18 @@ export default {
         Insert
     },
 
+    watch: {
+        accessoires: {
+            handler(){
+                const count = this.counter_watched++;
+                if(count != 0 && count != 1) {
+                    this.watched_sauvegarder = false;
+                }
+            },
+            deep: true
+        }
+    },
+
     methods: {
 
         valider() {
@@ -99,13 +113,16 @@ export default {
         annuler() {
             this.falgInsert = false;
         },
+
         reset() {
 
             Accessoires.reset(this.observateurId)
                     .then(() => {
+
                         this.accessoires = [];
+                        this.flagReset = true;
+                        this.watched_sauvegarder = false;
                         this.$emit("changeColorAccessoire_famille_ac1", false);
-                        this.flagReset = false;
                 
                 })
                 .catch((error) => {
@@ -116,12 +133,13 @@ export default {
 
 
         sauvegarde() {
-
+            console.log(this.accessoires, this.observateurId)
             Accessoires.create(this.accessoires, this.observateurId)
             .then((result) => {
-                if(result) {
-                    this.flagReset = true;
-                }
+                console.log(result)
+                    if(result) {
+                        this.watched_sauvegarder = true;
+                    }
             })
             .catch((error) => {
                 console.log(error);
@@ -149,7 +167,6 @@ export default {
         saisirValue(index, value, e) {
                 this.accessoires[index][value] = e.target.value;
                 this.notEmpty();
-                this.sauvegarde();
         },
 
         ajouter() {
@@ -160,6 +177,7 @@ export default {
                 "description" : "",
                 "numeroInterne" : "",
                 "localistation" : "",
+                "informationComplementaire" : "",
                 "marque" : "",
                 "type" : "",
                 "numeroSerie" : "",
@@ -196,7 +214,6 @@ export default {
 
         supprimer(index) {
             this.accessoires.splice(index, 1);
-            this.$emit("sendAccessoires",  this.accessoires);
             this.notEmpty();
         }
 
@@ -206,10 +223,13 @@ export default {
 
         Accessoires.select(this.observateurId)
         .then((result) => {
-            this.accessoires = result.data.accessoires;
-            this.$emit("changeColorAccessoire_famille_ac1", true);
-            this.$emit("sendAccessoires",  this.accessoires);
-            this.flagReset = true;
+            if(result.data.accessoires) {
+                this.accessoires = result.data.accessoires;
+                this.$emit("sendAccessoires",  this.accessoires);
+                this.watched_sauvegarder = true;
+                return this.notEmpty();
+            }
+
         })
         .catch((error) => {
             console.log(error.message);
@@ -257,15 +277,28 @@ td {
     color: white;
 }
 
-.sauvegarde button {
-    background-color: #ff6a00;
+.watch {
+    background-color: green;
     color: white;
     margin: 3px;
     border: 0px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 100px;
 }
+
+.not-watch {
+    background-color: red;
+    color: white;
+    margin: 3px;
+    border: 0px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100px;
+}
+
 
 .reset {
     width: 100%;
@@ -277,7 +310,7 @@ td {
 }
 
 .reset button {
-    background-color: #aa1704;
+    background-color: red;
     color: white;
     margin: 3px;
     border: 0px;

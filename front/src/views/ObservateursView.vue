@@ -13,7 +13,7 @@
         <!-- Fin errors -->
 
         <label for="Métier">
-            <h3>Métier : <span class="start">*</span></h3>
+            <h3>Métier : <span class="start" v-if="observateur.metier.length == 0">*</span></h3>
             <input type="text" v-model="observateur.metier" disabled>
         </label>
 
@@ -23,13 +23,6 @@
                 <option v-for="veification in verifications" :key="veification.name">{{ veification.name }}</option>
             </select>
         </label>
-
-        <!-- <label for="Catégorie d'Appareil">
-            <h3>Catégorie d'Appareil : <span class="start" v-if="observateur.categorie.length == 0">*</span></h3>
-            <select v-model="observateur.categorie">
-                <option v-for="categorie in categories" :key="[categorie.a, categorie.b, categorie.c]">{{ categorie.a }} - {{ categorie.b }} - {{ categorie.c }}</option>
-            </select>
-        </label> -->
 
         <label for="Marquage">
             <h3>Marquage : <span class="start" v-if="observateur.marquage.length == 0">*</span></h3>
@@ -54,7 +47,7 @@
         <label for="Type d'Appareil">
             <h3>Type d'Appareil : <span class="start" v-if="observateur.typeAppareil.length == 0">*</span></h3>
             <select v-model="observateur.typeAppareil">
-                <option v-for="appareil in appareils" :key="appareil.b" :value="[appareil.a, appareil.b]">{{ appareil.b }}</option>
+                <option v-for="appareil in appareils" :key="[appareil.a, appareil.b]" :value="[appareil.a, appareil.b]">{{ appareil.b }}</option>
             </select>
         </label>
 
@@ -62,7 +55,6 @@
             <h3>Equipement : <span class="start" v-if="observateur.equipement.length == 0">*</span></h3>
             <input type="test" v-model="observateur.equipement">
         </label>
-
 
         <label for="Constructeur">
             <h3>Constructeur : <span class="start" v-if="observateur.constructeur.length == 0">*</span></h3>
@@ -83,10 +75,6 @@
             <h3>Localisation : <span class="start" v-if="observateur.localisation.length == 0">*</span></h3>
             <input type="text" v-model="observateur.localisation">
         </label>
-
-
-
-
 
         <label for="Accompagnateur Inspecteur">
             <h3>Accompagnateur Inspecteur : <span class="start" v-if="observateur.accompagnateurInspecteur.length == 0">*</span></h3>
@@ -109,8 +97,6 @@
 import Observateurs from '@/requests/Observateurs';
 import Interventions from '@/requests/Interventions';
 import Filo from '@/requests/Filos';
-
-
 
 export default {
     name: 'ObservateursView',
@@ -141,8 +127,8 @@ export default {
             marquage: [
                 "Appareil CE",
                 "Appareil Non CE",
-                "Appareil Epsilon (uniquement pour les anciens chariots automoteurs)",
-                "Sans objet (Pour les vérifications périodiques des accessoires de levage et Equipements de travail)"
+                "Appareil Epsilon",
+                "Sans Objet"
             ],
 
             verifications: [
@@ -196,18 +182,19 @@ export default {
 
     created() {
 
+        console.log(this.$route.params)
         // pour prend les cordonnes
-        this.observateur.interventionId = this.$route.params.id;
+        this.observateur.interventionId = this.$route.params.interventionId;
 
         Interventions.select(this.observateur.interventionId)
             .then((result) => {
-
                 // set metier
                 this.observateur.metier = result.data.metier;
-
-                // obtenir les categories compatible avec metier
-                Filo.read()
+                console.log(this.observateur.metier)
+                // obtenir les categories a traver metier
+                Filo.select(this.observateur.metier)
                 .then((result) => {
+                    console.log(result.data);
                     this.appareils = result.data;
                 })
                 .catch((error) => {
@@ -228,12 +215,13 @@ export default {
             });
 
 
-        // for check case -> update ou create
+        // // for check case -> update ou create
         this.observateurId = this.$route.params.observateurId;
         if (this.observateurId) {
 
             Observateurs.selected(this.observateurId)
                 .then((result) => {
+                    // console.log(result.data.typeAppareil)
                     this.observateur = result.data;
                     this.observateur.date = result.data.date.split('T')[0];
                 })
