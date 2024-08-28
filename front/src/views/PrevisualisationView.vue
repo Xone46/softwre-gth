@@ -25,12 +25,12 @@
                     <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
                     <td>{{ new Date(observateur.date).toLocaleDateString() }}</td>
                     <td>{{ observateur.typeVerification }}</td>
-                    <td>{{ observateur.categorieAppareil }}</td>
+                    <td>{{ observateur.typeAppareil[1] }}</td>
                     <td>{{ observateur.constructeur }}</td>
                     <td>{{ observateur.numeroSerie }}</td>
                     <td>{{ observateur.numeroInterne }}</td>
                     <td>{{ observateur.localisation }}</td>
-                    <td>{{ observateur.accompagnateur }}</td>
+                    <td>{{ observateur.accompagnateurInspecteur }}</td>
                     <td>{{ observateur.marquage }}</td>
                     <td v-if="observateur.etat">Verrouillé</td>
                 </tr>
@@ -143,6 +143,8 @@ export default {
         async send() {
 
             this.flagSpinner = true;
+            const findObservateur = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
+            const interventionId = this.observateurs[findObservateur]["interventionId"];
             // check online or offline
             await fetch("https://api.ipify.org/?format=json")
             .then(async (res) => {
@@ -151,7 +153,7 @@ export default {
                     const response = await fetch("https://api.ipify.org/?format=json");
                     const { ip } = await response.json();
                     // send rapport with info Inspecteur ville et pays
-                    Observateurs.send(this.observateursSelect[0], sessionStorage.getItem("id"), ip)
+                    Observateurs.send(this.observateursSelect[0], sessionStorage.getItem("id"), ip, interventionId)
                         .then((result) => {
                             if (result) {
                                 this.flagSpinner = false

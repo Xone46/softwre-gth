@@ -146,10 +146,10 @@ class Observateurs {
         });
     }
     
-    static send(observateurId, inspecteurId, ip) {
+    static send(observateurId, inspecteurId, ip, interventionId) {
 
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/send/${observateurId}/${inspecteurId}/${ip}`, {
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/send/${observateurId}/${inspecteurId}/${ip}/${interventionId}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
