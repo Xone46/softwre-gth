@@ -36,7 +36,8 @@
                     <td>{{ observateur.accompagnateurClient }}</td>
                     <td>{{ observateur.accompagnateurInspecteur }}</td>
                     <td>{{ observateur.marquage }}</td>
-                    <td v-if="!observateur.etat"><button class="termine" @click="terminer(observateur._id)">Je termine</button></td>
+                    <td v-if="!observateur.etat"><button class="termine" @click="terminer(observateur._id)">Je
+                            termine</button></td>
                     <td v-if="observateur.etat">Déjà terminé</td>
                 </tr>
             </table>
@@ -45,15 +46,19 @@
         <div class="actions">
 
             <div class="left">
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">Aperçu le Pré-rapport</button>
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="editer">Editer le Pré-rapport</button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">Aperçu le
+                    Pré-rapport</button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="editer">Editer le
+                    Pré-rapport</button>
 
             </div>
 
             <div class="right">
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="cacher">Cacher</button>
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="modifier">Modifier</button>
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="supprimer">Supprimer</button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1"
+                    @click="modifier">Modifier</button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1"
+                    @click="supprimer">Supprimer</button>
             </div>
 
         </div>
@@ -82,7 +87,7 @@ export default {
             flagSpinner: true,
             flagInvertesment: false,
             flagError: false,
-            msgError : null,
+            msgError: null,
             msgInvertesment: null
         }
     },
@@ -107,35 +112,35 @@ export default {
         terminer(observateurId) {
 
             Observateurs.terminer(observateurId)
-            .then(() => {
-                const index = this.observateurs.findIndex((el) => el._id == observateurId);
-                this.observateurs[index].etat = true;
-            })  
-            .catch((error) => {
-                this.flagInvertesment = true;
-                this.msgInvertesment =  error.response.data.msg;
-            }); 
+                .then(() => {
+                    const index = this.observateurs.findIndex((el) => el._id == observateurId);
+                    this.observateurs[index].etat = true;
+                })
+                .catch((error) => {
+                    this.flagInvertesment = true;
+                    this.msgInvertesment = error.response.data.msg;
+                });
 
         },
 
         modifier() {
-            if(this.observateursSelect.length === 1) {
+            if (this.observateursSelect.length === 1) {
                 return this.$emit("modifierObservateur", this.observateursSelect[0], this.interventionId);
             }
         },
 
         cacher() {
 
-            if(this.observateursSelect.length === 1) {
+            if (this.observateursSelect.length === 1) {
                 Observateurs.cacher(this.observateursSelect[0])
-                .then(() => {
-                    const index = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
-                    this.observateurs.splice(index , 1);
-                })  
-                .catch((error) => {
-                    this.flagInvertesment = true;
-                    this.msgInvertesment =  error.response.data.msg;
-                });
+                    .then(() => {
+                        const index = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
+                        this.observateurs.splice(index, 1);
+                    })
+                    .catch((error) => {
+                        this.flagInvertesment = true;
+                        this.msgInvertesment = error.response.data.msg;
+                    });
             }
         },
 
@@ -146,7 +151,7 @@ export default {
                 for (let i = 0; i < this.observateurs.length; i++) {
                     if (this.observateurs[i]._id == this.observateursSelect[0]) {
                         console.log(this.observateurs[i])
-                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], typeAppareil: this.observateurs[i].typeAppareil, interventionId : this.interventionId } });
+                        this.$router.push({ name: "formulaire", params: { id: this.observateursSelect[0], typeAppareil: this.observateurs[i].typeAppareil, interventionId: this.interventionId } });
                         break;
                     }
                 }
@@ -189,14 +194,14 @@ export default {
 
             this.flagSpinner = true;
             Observateurs.apercu(this.observateursSelect[0], sessionStorage.getItem("id"))
-            .then((result) => {
-                if (result) {
-                    this.flagSpinner = false;
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+                .then((result) => {
+                    if (result) {
+                        this.flagSpinner = false;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         },
 
         send() {
@@ -217,20 +222,33 @@ export default {
     created() {
 
         if (this.interventionId) {
+
             Observateurs.select(this.interventionId)
                 .then((response) => {
-                    this.flagSpinner = false;
-                    this.flagInvertesment = false;
-                    response.data.forEach((el) => {
-                        if(Boolean(el.cache) === false) {
-                            this.observateurs.push(el);
-                        }
-                    });
+
+                    if (response.data.msg) {
+                        this.flagSpinner = false;
+                        this.flagInvertesment = true;
+                        this.msgInvertesment = response.data.msg;
+                    }
+
+                    if (response.data.observateurs) {
+                        this.flagSpinner = false;
+                        this.flagInvertesment = false;
+                        response.data.observateurs.forEach((el) => {
+                            if (Boolean(el.cache) === false) {
+                                this.observateurs.push(el);
+                            }
+                        });
+                    }
+
                 })
                 .catch((error) => {
-                    this.flagSpinner = false;
-                    this.flagInvertesment = true;
-                    this.msgInvertesment = error.response.data.msg;
+                    if (error) {
+                        this.flagSpinner = false;
+                        this.flagInvertesment = true;
+                        this.msgInvertesment = error.response.data;
+                    }
                 });
         }
 
@@ -351,6 +369,4 @@ export default {
     cursor: pointer;
     padding: 5px;
 }
-
-
 </style>

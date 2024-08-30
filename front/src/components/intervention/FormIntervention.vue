@@ -16,7 +16,7 @@
         </label>
 
         <label for="Numéro d'affaire">
-            <h3>Numéro d'affaire : <span class="start" v-if="interventions.numeroAffaire.length == 0">*</span></h3>
+            <h3>Numéro d'affaire : <span class="start" v-if="interventions.numeroAffaire.length == 0">* (Si ce n'est pas un numéro d'affaire, vous pouvez l'ignorer)</span></h3>
             <input type="text" v-model="interventions.numeroAffaire">
         </label>
 
@@ -142,6 +142,11 @@ export default {
         },
 
         modifier() {
+
+            if(this.interventions.numeroAffaire == "") {
+                this.interventions.numeroAffaire = `GXXX|XXX|XXX|XXX|${this.interventions.etablissement}`;
+            }
+            
             Interventions.update(this.interventions, this.interventionId)
             .then(() => {
                 return this.$emit("table");
@@ -158,6 +163,11 @@ export default {
             // voir est que exite plusiueur site
             if(this.interventions.coordonnees[0] == null && this.interventions.coordonnees[1] == null) {
                 this.interventions.coordonnees = [];
+            }
+
+            // check numero affaire is null or empty
+            if(this.interventions.numeroAffaire == "") {
+                this.interventions.numeroAffaire = `GXXX|XXX|XXX|XXX|${this.interventions.etablissement}`;
             }
 
             Interventions.create(this.interventions)
@@ -190,6 +200,10 @@ export default {
             .then((result) => {
                 this.interventions = result.data;
                 this.interventions.date = result.data.dateCreated.split('T')[0];
+                if(result.data.numeroAffaire.slice(0, 4) == 'GXXX') {
+                    this.interventions.numeroAffaire = "";                
+                }
+
             })
             .catch((error) => {
                 console.log(error);

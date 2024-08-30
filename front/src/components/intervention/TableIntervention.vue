@@ -79,11 +79,13 @@ export default {
     methods: {
 
         selectIntervention() {
+
             if(this.interventionsSelect.length === 0) {
                 this.$emit('deleteTableIntervention');
             } else {
                 this.apercu();
             }
+
         },
 
         modifier() {
@@ -94,17 +96,20 @@ export default {
 
         ajouter() {
             if (this.interventionsSelect.length === 1) {
-                this.$router.push({ name: "observateurs", params: { id: this.interventionsSelect[0] }})
+                this.$router.push({ name: "observateurs", params: { interventionId: this.interventionsSelect[0] }})
             }
         },
 
         apercu() {
+
             if (this.interventionsSelect.length === 1) {
                 this.$emit('apercu', this.interventionsSelect[0]);
             }
-            if (this.interventionsSelect.length == 0) {
-                this.$emit("relaodTableObservateur");
-            }
+
+            // if (this.interventionsSelect.length == 0) {
+            //     this.$emit("relaodTableObservateur");
+            // }
+
         },
 
         supprimer() {
@@ -114,6 +119,7 @@ export default {
         },
 
         confirmer() {
+
             Interventions.delete(this.interventionsSelect[0])
                 .then(() => {
 
@@ -143,6 +149,7 @@ export default {
 
         Interventions.read()
             .then((response) => {
+                console.log(response)
                 // response succes
                 this.flagSpinner = false;
                 this.flagInvertesment = false;

@@ -47,7 +47,7 @@
         <label for="Type d'Appareil">
             <h3>Type d'Appareil : <span class="start" v-if="observateur.typeAppareil.length == 0">*</span></h3>
             <select v-model="observateur.typeAppareil">
-                <option v-for="appareil in appareils" :key="[appareil.a, appareil.b]" :value="[appareil.a, appareil.b]">{{ appareil.b }}</option>
+                <option v-for="(appareil , index) in appareils" :key="index" :value="[appareil.a, appareil.b]">{{ appareil.b }}</option>
             </select>
         </label>
 
@@ -182,7 +182,6 @@ export default {
 
     created() {
 
-        console.log(this.$route.params)
         // pour prend les cordonnes
         this.observateur.interventionId = this.$route.params.interventionId;
 
@@ -190,11 +189,10 @@ export default {
             .then((result) => {
                 // set metier
                 this.observateur.metier = result.data.metier;
-                console.log(this.observateur.metier)
+
                 // obtenir les categories a traver metier
                 Filo.select(this.observateur.metier)
                 .then((result) => {
-                    console.log(result.data);
                     this.appareils = result.data;
                 })
                 .catch((error) => {
@@ -216,11 +214,12 @@ export default {
 
 
         // // for check case -> update ou create
-        this.observateurId = this.$route.params.observateurId;
-        if (this.observateurId) {
+        this.observateurId = this.$route.params.observateurId;    
 
+        if (this.observateurId) {
             Observateurs.selected(this.observateurId)
                 .then((result) => {
+                    console.log(result)
                     // console.log(result.data.typeAppareil)
                     this.observateur = result.data;
                     this.observateur.date = result.data.date.split('T')[0];
