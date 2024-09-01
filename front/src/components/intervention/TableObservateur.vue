@@ -44,13 +44,14 @@
         </div>
 
         <div class="actions">
-
+            
             <div class="left">
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">Aperçu le
-                    Pré-rapport</button>
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="editer">Editer le
-                    Pré-rapport</button>
-
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">
+                    Aperçu le Pré-rapport
+                </button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="editer">
+                    Editer le Pré-rapport
+                </button>
             </div>
 
             <div class="right">
@@ -107,6 +108,7 @@ export default {
 
         annuller() {
             this.flagError = false;
+            this.msgError = "";
         },
 
         terminer(observateurId) {
@@ -133,9 +135,18 @@ export default {
 
             if (this.observateursSelect.length === 1) {
                 Observateurs.cacher(this.observateursSelect[0])
-                    .then(() => {
-                        const index = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
-                        this.observateurs.splice(index, 1);
+                    .then((result) => {
+
+                        if(result.data.msg == true) {
+                            const index = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
+                            this.observateurs.splice(index, 1);
+                        }
+
+                        if(result.data.msg == false) {
+                            this.flagError = true;
+                            this.msgError = result.data.content;
+                        }
+
                     })
                     .catch((error) => {
                         this.flagInvertesment = true;
@@ -260,15 +271,21 @@ export default {
 </script>
 
 <style scoped>
+
 .table-objet-observateur {
+    height: auto;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .sites {
     padding: 0;
     margin: 0;
-    width: 100%;
-    height: 200px;
+    width: 80%;
+    height: 150px;
     overflow-x: auto;
     overflow-y: auto;
     display: flex;
@@ -317,10 +334,6 @@ export default {
     color: white;
 }
 
-
-.textarea {
-    width: 100%;
-}
 
 .actions {
     display: flex;

@@ -1723,12 +1723,12 @@ table {
 }
 
 table tr td:nth-child(1) {
-    width: 200px;
+    width: 500px;
     text-align: start;
 }
 
 table tr th:nth-child(1) {
-    width: 200px;
+    width: 500px;
     text-align: start;
 }
 
@@ -1743,55 +1743,44 @@ table tr th:nth-child(2) {
 }
 
 
-.sauvegarde {
+.sauvegarder , .reset {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: white;
+    margin-top: 5px;
+    margin-top: 5px;
 }
 
-.watch {
+.sauvegarder .watch {
     background-color: green;
     color: white;
-    margin: 3px;
+    height: 30px;
+    width: 200px;
     border: 0px;
-    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 100px;
 }
 
-.not-watch {
+.sauvegarder .not-watch {
     background-color: red;
     color: white;
-    margin: 3px;
+    height: 30px;
+    width: 200px;
     border: 0px;
-    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 100px;
 }
 
-
-.reset {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
 
 .reset button {
     background-color: red;
     color: white;
-    margin: 3px;
+    height: 30px;
+    width: 200px;
     border: 0px;
-    padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 .saved {
@@ -1811,4 +1800,4 @@ td > p:hover {
     color: #04AA6D;
 }
 
-</style>@/requests/appareil_levage/famille1_lev1/commentaire
+</style>

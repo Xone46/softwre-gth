@@ -512,6 +512,7 @@ export default {
 </script>
 
 <style scoped>
+
 .formulaire {
     padding: 0;
     margin: 0;
@@ -526,7 +527,7 @@ export default {
 
 .formulaire h3 {
     width: 100%;
-    background-color: #0300c7;
+    background-color: #141293;
     color: white;
     padding: 10px;
 }
@@ -538,24 +539,30 @@ export default {
 }
 
 .formulaire .content .right button {
-    padding: 3px;
+    padding: 10px;
     color: white;
     border: 0px;
     margin: 3px;
     cursor: pointer;
-    border-radius: 3px;
+    border-radius: 5px;
+    width: 250px;
+    font-size: medium;
 }
 
 .formulaire .content .right button:nth-child(1) {
-    background-color: #e21608;
+    background-color: #645756;
+}
+
+.formulaire .content .right button:nth-child(1):hover {
+    background-color: black;
 }
 
 .formulaire .content .right button:nth-child(2) {
-    background-color: #0300c7;
+    background-color: #353497;
 }
 
-.formulaire .content .right button:nth-child(3) {
-    background-color: #04AA6D;
+.formulaire .content .right button:nth-child(2):hover {
+    background-color: #363497d5;
 }
 
 
@@ -567,4 +574,5 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
 }
+
 </style>

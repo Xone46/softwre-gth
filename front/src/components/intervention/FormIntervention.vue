@@ -1,6 +1,10 @@
 <template>
     <div class="form-intervention">
 
+        <div class="retour">
+          <button @click="retour">Retour</button>
+        </div>
+
         <h1 v-if="interventionId == null">Création d'une nouvelle d'intervention</h1>
         <h1 v-else>Modification d'intervention</h1>
 
@@ -16,7 +20,7 @@
         </label>
 
         <label for="Numéro d'affaire">
-            <h3>Numéro d'affaire : <span class="start" v-if="interventions.numeroAffaire.length == 0">* (Si ce n'est pas un numéro d'affaire, vous pouvez l'ignorer)</span></h3>
+            <h3>Numéro d'affaire : <span class="start" v-if="interventions.numeroAffaire.length == 0">*</span></h3>
             <input type="text" v-model="interventions.numeroAffaire">
         </label>
 
@@ -73,13 +77,10 @@
                 <option v-for="metier in metiers" :key="metier">{{ metier }}</option>
             </select>
         </label>
-
-
-
+        
 
         <button v-if="interventionId == null" class="valider" @click="valider">Valider</button>
         <button class="valider" @click="modifier" v-else>Modifier</button>
-        <button class="anuller" @click="$emit('anuller')">Anuller</button>
 
     </div>
 </template>
@@ -93,6 +94,7 @@ export default {
     name: 'table-intervention',
     data() {
         return {
+
             flagError : false,
             errors : [],
             interventions: {
@@ -132,6 +134,10 @@ export default {
     },
 
     methods: {
+
+        retour() {
+            return this.$emit("close");
+        },
 
         handelSite(event) {
             this.interventions.site = event.target.value;
@@ -222,6 +228,34 @@ export default {
     align-items : center; 
 }
 
+.retour {
+  width: 100%;
+  display: flex;
+  margin: 10px;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center,
+}
+
+.retour button {
+    padding: 10px;
+    width : 100px;
+    height : 40px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #e21608;
+    cursor: pointer;
+}
+
+.form-intervention h1 {
+    border: 3px solid #000000;
+    padding: 10px;
+}
+
+
 .form-intervention ul {
   margin: 0;
   list-style: none;
@@ -233,44 +267,26 @@ export default {
 }
 
 .form-intervention label {
-    width :80%;
+    width :100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items : flex-start; 
 }
-.form-intervention h3 {
+
+.form-intervention label h3 {
+    text-align: start;
     margin: 3px;
+    width: 300px;
 }
 
-.form-intervention label input {
-    width : 100%;
+.form-intervention label input, .form-intervention label select {
     height : 40px;
-    margin-top : 5px;
-    margin-bottom : 5px;
-}
-.form-intervention label select {
-    width : 100%;
-    height : 40px;
+    width: 900px;
     margin-top : 5px;
     margin-bottom : 5px;
 }
 
-
-.form-intervention label div {
-    width : 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.form-intervention label div input {
-    width : 100%;
-    height : 40px;
-    margin-top : 5px;
-    margin-bottom : 5px;
-}
 
 
 .form-intervention button {
@@ -289,8 +305,18 @@ export default {
     cursor: pointer;
 }
 
-.anuller {
+.valider:hover {
+    background-color: #04aa6da8;
+    cursor: pointer;
+}
+
+.reset {
     background-color: #f00e06;
+    cursor: pointer;
+}
+
+.reset:hover {
+    background-color: #f00e0698;
     cursor: pointer;
 }
 

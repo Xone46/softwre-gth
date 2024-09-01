@@ -28,8 +28,9 @@ export default {
 
 
 <style scoped>
+
 .invertesment {
-    width: auto;
+    width: 60%;
     padding: 10px;
     background-color: rgba(255, 0, 0, 0.377);
     border : 3px solid red;

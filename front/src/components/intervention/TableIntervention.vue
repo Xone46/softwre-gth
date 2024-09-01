@@ -1,6 +1,10 @@
 <template>
     <div class="table-intervention">
 
+        <div class="retour">
+          <button @click="retour">Retour</button>
+        </div>
+
         <h1>Interventions en cours</h1>
         <h2>Sites d'intervention</h2>
 
@@ -78,6 +82,10 @@ export default {
 
     methods: {
 
+        retour() {
+            this.$router.push("/dashboard").catch(()=>{});
+        },
+
         selectIntervention() {
 
             if(this.interventionsSelect.length === 0) {
@@ -105,11 +113,6 @@ export default {
             if (this.interventionsSelect.length === 1) {
                 this.$emit('apercu', this.interventionsSelect[0]);
             }
-
-            // if (this.interventionsSelect.length == 0) {
-            //     this.$emit("relaodTableObservateur");
-            // }
-
         },
 
         supprimer() {
@@ -149,17 +152,28 @@ export default {
 
         Interventions.read()
             .then((response) => {
-                console.log(response)
-                // response succes
-                this.flagSpinner = false;
-                this.flagInvertesment = false;
-                this.interventions = response.data;
+
+
+                if(response.data.interventions) {
+                    this.flagSpinner = false;
+                    this.flagInvertesment = false;
+                    this.interventions = response.data.interventions;
+                }
+
+                if(response.data.msg) {
+                    this.flagSpinner = false;
+                    this.flagInvertesment = true;
+                    this.msgInvertesment = response.data.msg;
+                }
+
+
+
             })
             .catch((error) => {
                 // response error
                 this.flagSpinner = false;
                 this.flagInvertesment = true;
-                this.msgInvertesment = error.response.data.msg;
+                this.msgInvertesment = error.response.data;
             });
 
     }
@@ -167,15 +181,48 @@ export default {
 </script>
   
 <style scoped>
+
 .table-intervention {
+    height: auto;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.retour {
+  width: 100%;
+  display: flex;
+  margin: 10px;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center,
+}
+
+.retour button {
+    padding: 10px;
+    width : 100px;
+    height : 40px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #e21608;
+    cursor: pointer;
+}
+
+.table-intervention h1 {
+    border: 3px solid #000000;
+    padding: 10px;
 }
 
 .sites {
     padding: 0;
     margin: 0;
-    width: 100%;
-    height: 200px;
+    width: 80%;
+    height: 150px;
     overflow-x: auto;
     overflow-y: auto;
     display: flex;
@@ -186,8 +233,8 @@ export default {
 
 .table {
     padding: 0px;
-    width: 100%;
-    height: 300px;
+    width: auto;
+    height: auto;
 }
 
 .table-data {
@@ -218,9 +265,7 @@ export default {
     color: white;
 }
 
-.textarea {
-    width: 100%;
-}
+
 
 .actions {
     display: flex;

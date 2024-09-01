@@ -1,11 +1,10 @@
 <template>
   <div class="interventions">
-    <div class="retour">
-      <button @click="retour">Retour</button>
-    </div>
-    <FormIntervention v-if="flagFormIntervention" :interventionId="interventionId"  @anuller="closeFormIntervention" @table="closeFormIntervention" />
+    
+    <FormIntervention v-if="flagFormIntervention" :interventionId="interventionId"  @anuller="closeFormIntervention" @table="closeFormIntervention" @close="close"/>
     <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention" @modifier="modifier" @apercu="apercu" @relaodTableObservateur="relaodTableObservateur" @deleteTableIntervention="deleteTableIntervention" />
     <TableObservateur v-if="flagTableObservateur" :interventionId="interventionId" @modifierObservateur="modifierObservateur" />
+
   </div>
 </template>
 
@@ -82,6 +81,12 @@ export default {
       this.flagTableIntervention = true;
       this.flagFormIntervention = false;
       this.flagTableObservateur = true;
+    },
+
+    close() {
+      this.flagTableIntervention = true;
+      this.flagFormIntervention = false;
+      this.flagTableObservateur = false;
     }
 
   },
@@ -92,6 +97,7 @@ export default {
 </script>
 
 <style scoped>
+
 .interventions {
   padding: 0;
   margin: 0;
@@ -106,9 +112,10 @@ export default {
 .retour {
   width: 100%;
   display: flex;
+  margin: 10px;
   flex-direction: row;
-  justify-content: center;
-  align-items: center
+  justify-content: flex-end;
+  align-items: center,
 }
 
 .retour button {
@@ -121,6 +128,11 @@ export default {
     border: 0px;
     border-radius: 5px;
     background-color: #e21608;
+    cursor: pointer;
+}
+
+.retour button:hover {
+    background-color: #910f06ad;
     cursor: pointer;
 }
 

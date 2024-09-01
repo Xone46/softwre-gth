@@ -27,6 +27,21 @@ class Chekin {
         })
     }
 
+    static sauvgarde(inspecteurId) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/chekins/sauvgarde/${inspecteurId}`,
+                 config
+                )
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+
+        })
+    }
+
 }
 
 export default Chekin;

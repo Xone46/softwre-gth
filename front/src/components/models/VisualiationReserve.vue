@@ -80,11 +80,11 @@ export default {
 <style scoped>
 
 .visualiation {
-    width: 1024px;
-    height: 768px;
+    width: 100%;
+    height: 100%;
     position: fixed;
     z-index: 999;
-    top: 40px;
+    top: 0;
     bottom: 0;
     left: 0;
     right: 0;
@@ -96,8 +96,8 @@ export default {
 }
 
 .visualiation .parent {
-    width: 90%;
-    height: 90%;
+    height: 400px;
+    width: 1000px;
     padding: 10px;
     background-color: white;
     display: flex;
@@ -183,14 +183,13 @@ ul > li > button {
 
 
 .visualiation .parent .buttons button {
-    height: 45px;
-    width: fit-content;
+    height: 40px;
+    width: 150px;
     background-color: red;
     color: white;
     cursor: pointer;
-    font-size: large;
     border: 0px;
     border-radius: 5px;
 }
 
-</style>@/requests/appareil_levage/famille1_lev1/commentaire
+</style>

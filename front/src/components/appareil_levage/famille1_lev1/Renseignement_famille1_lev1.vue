@@ -4,7 +4,7 @@
             <table border="1">
 
                 <tr>
-                    <td :class="[renseignement.constructeur.length != 0 ? 'saved' : 'not-saved']">Constructeur</td>
+                    <td :class="[renseignement.constructeur.length != 0 ? 'saved' : 'not-saved']">Constructeur:</td>
                     <td><input type="text" @input="saisirConstructeur($event)" :value="renseignement.constructeur"
                             disabled></td>
                 </tr>
@@ -85,8 +85,7 @@
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.miseEnServiceEpreuves.length != 0 ? 'saved' : 'not-saved']">(Mise en
-                        service) Epreuves: </td>
+                    <td :class="[renseignement.miseEnServiceEpreuves.length != 0 ? 'saved' : 'not-saved']">(Mise en service) Epreuves: </td>
                     <td>
                         <select @change="saisirMiseEnServiceEpreuves($event)"
                             :value="renseignement.miseEnServiceEpreuves">
@@ -102,7 +101,9 @@
 
                 <tr>
                     <td :class="[renseignement.dateDerniereVerficationPeriodique.length != 0 ? 'saved' : 'not-saved']">
-                        Date de la dernière vérification périodique:</td>
+                        Date de la dernière vérification périodique:
+                    </td>
+
                     <td>
                         <select @change="saisirDateDerniereVerficationPeriodique($event)"
                             :value="renseignement.dateDerniereVerficationPeriodique">
@@ -110,11 +111,13 @@
                             <option value="Effectuée le : ">Effectuée le</option>
                         </select>
                     </td>
+
                     <td v-if="renseignement.dateDerniereVerficationPeriodique == 'Effectuée le : '">
                         <button
                             :class="[renseignement.suiveDateDerniereVerficationPeriodique.length != 0 ? 'voir' : 'not-voir']"
                             @click="handelInsert('dateDerniereVerficationPeriodique')">voir</button>
                     </td>
+
                     <td v-if="renseignement.dateDerniereVerficationPeriodique == 'Effectuée le : '">
                         <select @change="saisirRapport($event)" :value="renseignement.rapport">
                             <option value="Rapport : Présenté">Rapport : Présenté</option>
@@ -176,8 +179,7 @@
             <button @click="reset">Reset</button>
         </div>
 
-        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider"
-            @annuler="annuler" />
+        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider" @annuler="annuler" />
 
     </div>
 </template>
@@ -362,6 +364,9 @@ export default {
 
         saisirTypeAppareil(e) {
             this.renseignement.typeAppareil = e.target.value;
+            if(this.renseignement.typeAppareil != "Autre")  {
+                this.renseignement.suiveTypeAppareil = "";
+            }
         },
 
         saisirMiseEnServiceRapport(e) {
@@ -370,10 +375,17 @@ export default {
 
         saisirMiseEnServiceEpreuves(e) {
             this.renseignement.miseEnServiceEpreuves = e.target.value;
+            if(this.renseignement.miseEnServiceEpreuves != "Réalisées le : ")  {
+                this.renseignement.suiveMiseEnServiceEpreuves = "";
+            }
         },
 
         saisirDateDerniereVerficationPeriodique(e) {
             this.renseignement.dateDerniereVerficationPeriodique = e.target.value;
+            if(this.renseignement.dateDerniereVerficationPeriodique != "Effectuée le :")  {
+                this.renseignement.suiveDateDerniereVerficationPeriodique = "";
+            }
+             
         },
 
         saisirRapport(e) {
@@ -382,10 +394,16 @@ export default {
 
         saisirEssaischarge(e) {
             this.renseignement.essaischarge = e.target.value;
+            if(this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
+                this.renseignement.suiveEssaischarge = "";
+            }
         },
 
         saisirModification(e) {
             this.renseignement.modification = e.target.value;
+            if(this.renseignement.modification == "Description : ") {
+                this.renseignement.suiveModification = "";
+            }
         },
 
 
@@ -547,13 +565,14 @@ export default {
 </script>
 
 <style scoped>
+
 .descriptions table {
     border-collapse: collapse;
     border: none;
 }
 
 tr {
-    border-top: 1px solid black;
+    border-top: 1px solid #141293;
 }
 
 tr:first-child {
@@ -563,59 +582,73 @@ tr:first-child {
 td {
     text-align: start;
     border: none !important;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
+td {
+    font-size: larger;
+}
 
-.sauvegarde {
+input , select {
+    height: 30px;
+    padding: 5px;
+    font-size: large;
+}
+
+td button {
+    height: 30px;
+    width : 80px;
+    border: 0px;
+    color: white;
+}
+
+.voir {
+    background-color: green;
+}
+
+.not-voir {
+    background-color: red;
+}
+
+.sauvegarder , .reset {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: white;
+    margin-top: 5px;
+    margin-top: 5px;
 }
 
-.watch {
+.sauvegarder .watch {
     background-color: green;
     color: white;
-    margin: 3px;
+    height: 30px;
+    width: 200px;
     border: 0px;
-    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 100px;
 }
 
-.not-watch {
+.sauvegarder .not-watch {
     background-color: red;
     color: white;
-    margin: 3px;
+    height: 30px;
+    width: 200px;
     border: 0px;
-    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 100px;
 }
 
-.reset {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
 
 .reset button {
     background-color: red;
     color: white;
-    margin: 3px;
+    height: 30px;
+    width: 200px;
     border: 0px;
-    padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 
@@ -632,13 +665,4 @@ td:nth-child(2) {
     color: red;
 }
 
-.voir {
-    background-color: #04AA6D;
-    color: white;
-}
-
-.not-voir {
-    background-color: red;
-    color: white
-}
 </style>

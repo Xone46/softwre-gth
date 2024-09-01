@@ -1,7 +1,9 @@
 <template>
     <div class="observateurs">
 
-        <button class="retour" @click="retour">Retour</button>
+        <div class="retour">
+          <button @click="retour">Retour</button>
+        </div>
 
         <h3 v-if="observateurId != null">Modification Appareil, Equipement, Ou Installation</h3>
         <h3 v-else>Nouvel Appareil, Equipement Ou Installation</h3>
@@ -88,7 +90,6 @@
 
         <button v-if="observateurId != null" class="modifier" @click="modifier">Modifier</button>
         <button v-else class="valider" @click="valider">Valider</button>
-        <button class="anuller" @click="anuller">Anuller</button>
 
     </div>
 </template>
@@ -175,9 +176,6 @@ export default {
                 });
         },
 
-        anuller() {
-            this.$router.push("/interventions").catch(() => { });
-        }
     },
 
     created() {
@@ -234,6 +232,7 @@ export default {
 </script>
 
 <style scoped>
+
 .observateurs {
     padding: 0;
     margin: 0;
@@ -256,42 +255,54 @@ export default {
 }
 
 .observateurs label {
-    width: 80%;
+    width :100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items : flex-start; 
 }
 
-.observateurs h3 {
+.observateurs label h3 {
+    text-align: start;
     margin: 3px;
+    width: 300px;
 }
 
-.observateurs label input {
-    width: 100%;
-    height: 40px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+.observateurs label input, .observateurs label select  {
+    height : 40px;
+    width: 900px;
+    margin-top : 5px;
+    margin-bottom : 5px;
 }
-
-.observateurs label select {
-    width: 100%;
-    height: 40px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
 
 
 .retour {
-    background-color: #f00e06;
+  width: 100%;
+  display: flex;
+  margin: 10px;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center,
+}
+
+.retour button {
+    padding: 10px;
+    width : 100px;
+    height : 40px;
+    color: white;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #e21608;
+    cursor: pointer;
 }
 
 .modifier {
     background-color: #f7890c;
 }
 
-.anuller {
+.reset {
     background-color: #f00e06;
 }
 
@@ -304,9 +315,8 @@ export default {
 }
 
 
-.retour,
 .modifier,
-.anuller,
+.reset,
 .valider {
     padding: 10px;
     width: 100px;

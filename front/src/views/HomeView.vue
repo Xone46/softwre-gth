@@ -1,7 +1,7 @@
 <template>
   <div class="home">
 
-    <img src="@/assets/logo.png" alt="logo">
+    <img v-if="!falgAuth" src="@/assets/logo.png" alt="logo">
 
     <div v-if="flagSpinner" class="spinner">
       <Spinner message="Veuillez patienter, logiciel se connectera aux serveurs GTHCONSULT" />
@@ -44,7 +44,6 @@ export default {
       this.falgAuth = false;
     },
 
-
     ressayer() {
       return this.demarrer();
     },
@@ -56,30 +55,31 @@ export default {
       this.flagReessayer = false;
 
       //ckeck connecte internet exist or not
-
       await fetch("https://api.ipify.org/?format=json")
         .then(async (res) => {
+          // existe data
           if (res.status == 200) {
+
             const response = await fetch("https://api.ipify.org/?format=json");
             const { ip } = await response.json();
+
             Chekin.status(ip)
               .then((result) => {
-
-                if (result.data) {
-                  this.flagDemarrer = false;
-                  this.flagSpinner = false;
-                  this.falgAuth = true;
-                  sessionStorage.setItem("connection", true);
-                }
-
+                  if (result.data) {
+                    this.flagDemarrer = false;
+                    this.flagSpinner = false;
+                    this.falgAuth = true;
+                    sessionStorage.setItem("connection", true);
+                  }
               })
               .catch((error) => {
-                if (error.message) {
-                  this.flagDemarrer = false;
-                  this.flagSpinner = false;
-                  this.falgAuth = false;
-                }
+                  if (error.message) {
+                    this.flagDemarrer = false;
+                    this.flagSpinner = false;
+                    this.falgAuth = false;
+                  }
               });
+
           }
         })
         .catch(() => {
@@ -103,7 +103,7 @@ export default {
 
 <style scoped>
 .home {
-  height: 100%;
+  height: 100vh;
   width: 100%;
   margin: 0;
   padding: 0;

@@ -107,7 +107,8 @@ export default {
   
 <style scoped>
 .photos {
-    width: 100%;
+    width: 1000px;
+    height: 100%;
     margin-top: 10px;
     margin-left: 0;
     margin-right: 0;

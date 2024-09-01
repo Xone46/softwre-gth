@@ -470,56 +470,45 @@ export default {
     margin-left: 20px;
 }
 
-.sauvegarde {
+.sauvegarder , .reset {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: white;
+    margin-top: 5px;
+    margin-top: 5px;
 }
 
-.watch {
+.sauvegarder .watch {
     background-color: green;
     color: white;
-    margin: 3px;
+    height: 30px;
+    width: 200px;
     border: 0px;
-    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 100px;
 }
 
-.not-watch {
+.sauvegarder .not-watch {
     background-color: red;
     color: white;
-    margin: 3px;
+    height: 30px;
+    width: 200px;
     border: 0px;
-    padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 100px;
 }
 
-.reset {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
 
 .reset button {
     background-color: red;
     color: white;
-    margin: 3px;
+    height: 30px;
+    width: 200px;
     border: 0px;
-    padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
 }
-
 
 .saved {
     color: #04AA6D;
@@ -528,4 +517,5 @@ export default {
 .not-saved {
     color: red;
 }
+
 </style>

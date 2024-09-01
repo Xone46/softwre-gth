@@ -34,8 +34,8 @@ export default {
 
 <style scoped>
 .verified {
-    width: 1024px;
-    height: 768px;
+    width: 100%;
+    height: 100%;
     position: fixed;
     z-index: 999;
     top: 0;

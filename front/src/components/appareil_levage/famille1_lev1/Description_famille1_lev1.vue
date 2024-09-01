@@ -650,6 +650,7 @@ export default {
 </script>
 
 <style scoped>
+
 .descriptions {
     margin-top: 10px;
     margin-bottom: 100px;
@@ -722,56 +723,6 @@ table>tr:nth-child(6)>td:nth-child(3) {
 }
 
 
-.sauvegarde {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-
-.watch {
-    background-color: green;
-    color: white;
-    margin: 3px;
-    border: 0px;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100px;
-}
-
-.not-watch {
-    background-color: red;
-    color: white;
-    margin: 3px;
-    border: 0px;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100px;
-}
-
-.reset {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-
-.reset button {
-    background-color: red;
-    color: white;
-    margin: 3px;
-    border: 0px;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
 .saved {
     color: #04AA6D;
 }
@@ -779,4 +730,57 @@ table>tr:nth-child(6)>td:nth-child(3) {
 .not-saved {
     color: red;
 }
+
+input , select {
+    height: 25px;
+    font-size: medium;
+}
+
+td div p {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.sauvegarder , .reset {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-top: 5px;
+}
+
+.sauvegarder .watch {
+    background-color: green;
+    color: white;
+    height: 30px;
+    width: 200px;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sauvegarder .not-watch {
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: 200px;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.reset button {
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: 200px;
+    border: 0px;
+    border-radius: 5px;
+}
+
 </style>

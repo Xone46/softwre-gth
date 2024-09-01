@@ -3,9 +3,11 @@
 
     <div class="form" v-if="flagForm">
 
+      <img src="@/assets/logo.png" alt="logo">
+
       <!-- start errors -->
       <ul v-if="flagMessage">
-        <li v-for="error in errors" :key="error">{{ error }}</li>
+        <li v-for="error in errors" :key="error"> - {{ error }}</li>
       </ul>
       <!-- Fin errors -->
 
@@ -111,20 +113,16 @@ export default {
 </script>
 
 <style scoped>
+
 .login {
+  height: 100%;
   width: 100%;
   padding: 0px;
   margin: 0;
-}
-
-.login .form ul {
-  margin: 0;
-  list-style: none;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
 }
 
 .login .form {
@@ -137,22 +135,41 @@ export default {
   align-items: center;
 }
 
+.login .form img {
+  height: 60px;
+}
 
-
-.login .form label {
-  width: 60%;
+.login .form ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
 
+.login .form ul li  {
+  color: red;
+}
+
+
+.login .form label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .login .form label h3 {
+  text-align: start;
+  width: 400px;
   margin: 3px;
 }
 
 .login .form label input {
-  width: 100%;
+  width: 400px;
   height: 30px;
   padding: 5px;
   margin: 3px;
@@ -160,7 +177,7 @@ export default {
 
 .login .form button {
   padding: 10px;
-  width: 20%;
+  width: 100px;
   height: 40px;
   color: white;
   margin-top: 5px;
@@ -174,8 +191,18 @@ export default {
   cursor: pointer;
 }
 
+.connexion:hover {
+  background-color: #02be79b9;
+  cursor: pointer;
+}
+
 .quitter {
-  background-color: #f00e06;
+  background-color: #fa0e06fb;
+  cursor: pointer;
+}
+
+.quitter:hover {
+  background-color: #f00e06d3;
   cursor: pointer;
 }
 
