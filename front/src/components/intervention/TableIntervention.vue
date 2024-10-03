@@ -189,24 +189,26 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 .retour {
   width: 100%;
   display: flex;
-  margin: 10px;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center,
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .retour button {
-    padding: 10px;
+    padding: 0;
+    margin: 0;
     width : 100px;
     height : 40px;
     color: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
     border: 0px;
     border-radius: 5px;
     background-color: #e21608;
@@ -215,13 +217,14 @@ export default {
 
 .table-intervention h1 {
     border: 3px solid #000000;
-    padding: 10px;
+    margin: 0;
+    padding: 5px;
 }
 
 .sites {
     padding: 0;
     margin: 0;
-    width: 80%;
+    width: 95%;
     height: 150px;
     overflow-x: auto;
     overflow-y: auto;
@@ -264,8 +267,6 @@ export default {
     background-color: #04AA6D;
     color: white;
 }
-
-
 
 .actions {
     display: flex;

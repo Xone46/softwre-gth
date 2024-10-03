@@ -244,45 +244,14 @@ export default {
     align-items: center;
 }
 
-.observateurs ul {
-    margin: 0;
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.observateurs label {
-    width :100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items : flex-start; 
-}
-
-.observateurs label h3 {
-    text-align: start;
-    margin: 3px;
-    width: 300px;
-}
-
-.observateurs label input, .observateurs label select  {
-    height : 40px;
-    width: 900px;
-    margin-top : 5px;
-    margin-bottom : 5px;
-}
-
-
 .retour {
   width: 100%;
   display: flex;
-  margin: 10px;
   flex-direction: row;
   justify-content: flex-end;
-  align-items: center,
+  align-items: center;
+  margin : 0;
+  padding: 0;
 }
 
 .retour button {
@@ -290,13 +259,49 @@ export default {
     width : 100px;
     height : 40px;
     color: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
     border: 0px;
     border-radius: 5px;
     background-color: #e21608;
     cursor: pointer;
 }
+
+.observateurs h3 {
+    padding: 0;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.observateurs ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.observateurs label {
+    width :100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items : center; 
+}
+
+.observateurs label h3 {
+    text-align: start;
+    width: 300px;
+}
+
+.observateurs label input, .observateurs label select  {
+    height : 30px;
+    width: 900px;
+    margin-top : 5px;
+    margin-bottom : 5px;
+}
+
 
 .modifier {
     background-color: #f7890c;

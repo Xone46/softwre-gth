@@ -55,7 +55,7 @@
             </div>
 
             <div class="right">
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="cacher">Cacher</button>
+                <!-- <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="cacher">Cacher</button> -->
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1"
                     @click="modifier">Modifier</button>
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1"
@@ -114,9 +114,11 @@ export default {
         terminer(observateurId) {
 
             Observateurs.terminer(observateurId)
-                .then(() => {
-                    const index = this.observateurs.findIndex((el) => el._id == observateurId);
-                    this.observateurs[index].etat = true;
+                .then((result) => {
+                    if(result.data.msg) {
+                        const index = this.observateurs.findIndex((el) => el._id == observateurId);
+                        this.observateurs.splice(index, 1);
+                    }
                 })
                 .catch((error) => {
                     this.flagInvertesment = true;
@@ -284,7 +286,7 @@ export default {
 .sites {
     padding: 0;
     margin: 0;
-    width: 80%;
+    width: 95%;
     height: 150px;
     overflow-x: auto;
     overflow-y: auto;
@@ -362,15 +364,15 @@ export default {
     background-color: #0300c7;
 }
 
-.actions .right button:nth-child(1) {
+/* .actions .right button:nth-child(1) {
     background-color: #f607ca;
-}
+} */
 
-.actions .right button:nth-child(2) {
+.actions .right button:nth-child(1) {
     background-color: #ff6a00;
 }
 
-.actions .right button:nth-child(3) {
+.actions .right button:nth-child(2) {
     background-color: #e21608;
 }
 

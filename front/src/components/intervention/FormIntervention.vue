@@ -5,8 +5,8 @@
           <button @click="retour">Retour</button>
         </div>
 
-        <h1 v-if="interventionId == null">Création d'une nouvelle d'intervention</h1>
-        <h1 v-else>Modification d'intervention</h1>
+        <h3 v-if="interventionId == null">Création d'une nouvelle d'intervention</h3>
+        <h3 v-else>Modification d'intervention</h3>
 
         <!-- start errors -->
         <ul v-if="flagError">
@@ -221,6 +221,8 @@ export default {
   
 <style scoped>
 .form-intervention {
+    margin: 0;
+    padding: 0;
     width :100%;
     display: flex;
     flex-direction: column;
@@ -231,7 +233,8 @@ export default {
 .retour {
   width: 100%;
   display: flex;
-  margin: 10px;
+  margin: 0;
+  padding: 0;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center,
@@ -242,17 +245,17 @@ export default {
     width : 100px;
     height : 40px;
     color: white;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 0;
     border: 0px;
     border-radius: 5px;
     background-color: #e21608;
     cursor: pointer;
 }
 
-.form-intervention h1 {
-    border: 3px solid #000000;
-    padding: 10px;
+.form-intervention h3 {
+    padding: 0;
+    margin: 0;
 }
 
 
@@ -267,27 +270,27 @@ export default {
 }
 
 .form-intervention label {
+    margin: 0;
+    padding: 0;
     width :100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items : flex-start; 
+    align-items : center; 
 }
 
 .form-intervention label h3 {
     text-align: start;
-    margin: 3px;
     width: 300px;
+    font-size: medium;
 }
 
 .form-intervention label input, .form-intervention label select {
-    height : 40px;
+    height : 30px;
     width: 900px;
     margin-top : 5px;
     margin-bottom : 5px;
 }
-
-
 
 .form-intervention button {
     padding: 10px;

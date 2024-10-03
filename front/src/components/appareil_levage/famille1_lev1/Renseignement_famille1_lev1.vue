@@ -510,7 +510,7 @@ export default {
                             }
 
 
-                            if (result.data.numeroInterne == null || result.data.numeroInterne == "") {
+                            if (result.data.numeroInterne == null || result.data.numeroInterne == "" ||  String(result.data.numeroInterne).toLocaleLowerCase() == "sans objet") {
                                 this.renseignement.numeroInterne = "Sans Objet";
                                 this.renseignement.suiveNumeroInterne = "";
                             }
