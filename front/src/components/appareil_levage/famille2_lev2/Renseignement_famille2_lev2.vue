@@ -308,7 +308,7 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorRenseignement_famille1_lev1", this.checkProperties())
+            this.$emit("changeColorRenseignement_famille2_lev2", this.checkProperties())
         },
 
         handelInsert(value) {
@@ -469,7 +469,7 @@ export default {
 
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
-                        this.$emit("changeColorRenseignement_famille_ac1", false);
+                        this.$emit("changeColorRenseignement_famille2_lev2", false);
                     }
                 })
                 .catch((error) => {

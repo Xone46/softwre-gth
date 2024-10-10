@@ -19,9 +19,12 @@
 </template>
 
 <script>
+
 import AddModel from "@/components/models/AddModel.vue"
 import Error from "@/components/models/Error.vue"
 import Commentaire from "@/requests/appareil_levage/famille1_lev1/commentaire"
+import Observateurs from "@/requests/Observateurs"
+
 export default {
     name: 'table-observateur',
     data() {
@@ -109,6 +112,16 @@ export default {
     },
 
     created() {
+
+                
+        Observateurs.selected(this.observateurId)
+        .then((result) => {
+            console.log(result)
+        })
+        .catch((error) => {
+            console.log(error)
+        });  
+
 
         if (this.commentairesReserve) {
             for (let i = 0; i < this.attaches.length; i++) {

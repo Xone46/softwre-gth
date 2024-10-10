@@ -3,14 +3,14 @@
         <table>
             <tr>
 
-                <th class="green" v-if="colorRenseignement_famille1_lev1" @click="renseignement">
+                <th class="green" v-if="colorRenseignement_famille4_lev4" @click="renseignement">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>RENSEIGNEMENTS GENERAUX</span>
                     </div>
                 </th>
 
-                <th v-if="!colorRenseignement_famille1_lev1" @click="renseignement">
+                <th v-if="!colorRenseignement_famille4_lev4" @click="renseignement">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>RENSEIGNEMENTS GENERAUX</span>
@@ -18,13 +18,13 @@
                 </th>
 
 
-                <th class="green" v-if="colorDescription_famille1_lev1" @click="description">
+                <th class="green" v-if="colorDescription_famille4_lev4" @click="description">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>DESCRIPTION DE L'APPAREIL VERIFIE</span>
                     </div>
                 </th>
-                <th v-if="!colorDescription_famille1_lev1" @click="description">
+                <th v-if="!colorDescription_famille4_lev4" @click="description">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>DESCRIPTION DE L'APPAREIL VERIFIE</span>
@@ -32,26 +32,26 @@
                 </th>
 
 
-                <th class="green" v-if="colorExamen_famille1_lev1" @click="examen">
+                <th class="green" v-if="colorExamen_famille4_lev4" @click="examen">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>EXAMEN ET ESSAIS DE L'APPAREIL</span>
                     </div>
                 </th>
-                <th v-if="!colorExamen_famille1_lev1" @click="examen">
+                <th v-if="!colorExamen_famille4_lev4" @click="examen">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>EXAMEN ET ESSAIS DE L'APPAREIL</span>
                     </div>
                 </th>
 
-                <th class="green" v-if="colorConclusion_famille1_lev1" @click="conclusion">
+                <th class="green" v-if="colorConclusion_famille4_lev4" @click="conclusion">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>CONCLUSION</span>
                     </div>
                 </th>
-                <th v-if="!colorConclusion_famille1_lev1" @click="conclusion">
+                <th v-if="!colorConclusion_famille4_lev4" @click="conclusion">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>CONCLUSION</span>
@@ -59,13 +59,13 @@
                 </th>
 
 
-                <th class="green" v-if="colorPhoto_famille1_lev1" @click="photo">
+                <th class="green" v-if="colorPhoto_famille4_lev4" @click="photo">
                     <div>
                         <img src="@/assets/mark.png" alt="pencil">
                         <span>PHOTO</span>
                     </div>
                 </th>
-                <th v-if="!colorPhoto_famille1_lev1" @click="photo">
+                <th v-if="!colorPhoto_famille4_lev4" @click="photo">
                     <div>
                         <img src="@/assets/pencil.png" alt="pencil">
                         <span>PHOTO</span>
@@ -80,11 +80,11 @@
 <script>
 
 
-// import Renseignements from "@/requests/appareil_levage/famille1_lev1/Renseignement";
-// import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions";
-// import Examens from "@/requests/appareil_levage/famille1_lev1/Examens";
-// import Photos from "@/requests/appareil_levage/famille1_lev1/Photos";
-// import Conclusions from "@/requests/appareil_levage/famille1_lev1/conclusion";
+// import Renseignements from "@/requests/appareil_levage/famille4_lev4/Renseignement";
+// import Descriptions from "@/requests/appareil_levage/famille4_lev4/Descriptions";
+// import Examens from "@/requests/appareil_levage/famille4_lev4/Examens";
+// import Photos from "@/requests/appareil_levage/famille4_lev4/Photos";
+// import Conclusions from "@/requests/appareil_levage/famille4_lev4/conclusion";
 
 
 export default {
@@ -100,11 +100,11 @@ export default {
     props: {
         observateurId: String,
         renseignementChicked : Boolean,
-        colorRenseignement_famille1_lev1 : Boolean,
-        colorDescription_famille1_lev1 : Boolean,
-        colorExamen_famille1_lev1 : Boolean,
-        colorConclusion_famille1_lev1 : Boolean,
-        colorPhoto_famille1_lev1 : Boolean
+        colorRenseignement_famille4_lev4 : Boolean,
+        colorDescription_famille4_lev4 : Boolean,
+        colorExamen_famille4_lev4 : Boolean,
+        colorConclusion_famille4_lev4 : Boolean,
+        colorPhoto_famille4_lev4 : Boolean
     },
 
     methods: {

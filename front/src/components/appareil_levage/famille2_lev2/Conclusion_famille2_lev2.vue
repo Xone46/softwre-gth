@@ -273,7 +273,7 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties());
+            this.$emit("changeColorConclusion_famille2_lev2", this.checkProperties());
         },
 
 
@@ -394,7 +394,7 @@ export default {
                     this.g = "";
 
                     this.watched_sauvegarder = false;
-                    this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties());
+                    this.$emit("changeColorConclusion_famille2_lev2", this.checkProperties());
 
                 })
                 .catch((error) => {

@@ -466,7 +466,7 @@ export default {
 
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
-                        this.$emit("changeColorRenseignement_famille_ac1", false);
+                        this.$emit("changeColorRenseignement_famille1_lev1", false);
                     }
                 })
                 .catch((error) => {

@@ -23,10 +23,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkA(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkA(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkA(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkA(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkA(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkA(index, 'so', item.so)">
@@ -59,13 +59,13 @@
                     <input type="checkbox" v-model="item.be" @change="checkB(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.fc" @change="checkB(index, 'fc', item.fc)">
+                    <input type="checkbox" disabled v-model="item.fc" @change="checkB(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkB(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkB(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkB(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkB(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkB(index, 'so', item.so)">
@@ -101,10 +101,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkC(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkC(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkC(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkC(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkC(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkC(index, 'so', item.so)">
@@ -140,10 +140,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkD(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkD(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkD(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkD(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkD(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkD(index, 'so', item.so)">
@@ -179,10 +179,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkE(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkE(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkE(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkE(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkE(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkE(index, 'so', item.so)">
@@ -221,7 +221,7 @@
                     <input type="checkbox" v-model="item.sa" @change="checkF(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkF(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkF(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkF(index, 'so', item.so)">
@@ -257,10 +257,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkG(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkG(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkG(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkG(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkG(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkG(index, 'so', item.so)">
@@ -296,10 +296,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkH(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkH(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkH(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkH(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkH(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkH(index, 'so', item.so)">
@@ -336,10 +336,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkI(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkI(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkI(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkI(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkI(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkI(index, 'so', item.so)">
@@ -375,10 +375,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkJ(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkJ(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkJ(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkJ(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkJ(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkJ(index, 'so', item.so)">
@@ -414,10 +414,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkK(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.sa" @change="checkK(index, 'sa', item.sa)">
+                    <input type="checkbox" disabled v-model="item.sa" @change="checkK(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" v-model="item.nv" @change="checkK(index, 'nv', item.nv)">
+                    <input type="checkbox" disabled v-model="item.nv" @change="checkK(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkK(index, 'so', item.so)">
@@ -632,6 +632,14 @@ export default {
         },
 
         j: {
+            handler() {
+                this.watched_sauvegarder = false;
+                this.notEmpty();
+            },
+            deep: true
+        },
+
+        k: {
             handler() {
                 this.watched_sauvegarder = false;
                 this.notEmpty();
@@ -1710,7 +1718,7 @@ export default {
   
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
-                        this.$emit("changeColorExamen_famille1_lev1", false);
+                        this.$emit("changeColorExamen_famille2_lev2", false);
                     }
                 })
                 .catch((error) => {
@@ -1821,7 +1829,7 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorExamen_famille1_lev1", this.checkProperties(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k));
+            this.$emit("changeColorExamen_famille2_lev2", this.checkProperties(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.k));
         },
 
         sauvegarde() {

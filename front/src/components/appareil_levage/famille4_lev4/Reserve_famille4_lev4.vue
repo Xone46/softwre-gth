@@ -86,7 +86,8 @@ export default {
     },
 
     created() {
-        console.log(this.inf)
+
+ 
     }
 }
 </script>

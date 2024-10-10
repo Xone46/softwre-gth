@@ -40,6 +40,7 @@ import Spinner from 'vue-simple-spinner'
 import Invertesment from "@/components/models/Invertesment.vue"
 import Verified from "@/components/models/Verified.vue"
 import Commentaire from "@/requests/appareil_levage/famille1_lev1/commentaire"
+import Observateurs from "@/requests/Observateurs"
 
 export default {
     name: 'table-observateur',
@@ -124,6 +125,15 @@ export default {
     },
 
     created() {
+
+                
+        Observateurs.selected(this.observateurId)
+        .then((result) => {
+            console.log(result)
+        })
+        .catch((error) => {
+            console.log(error)
+        });  
 
         Examens.select(this.observateurId)
             .then((result) => {

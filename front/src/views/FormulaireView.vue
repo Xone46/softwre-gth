@@ -599,6 +599,7 @@ export default {
         // All functions for Change color famille2_lev2 ---------------------------
         async changeColorRenseignement_famille2_lev2(value) {
             this.colorRenseignement_famille2_lev2 = value;
+            console.log(this.colorRenseignement_famille2_lev2)
         },
 
         async changeColorDescription_famille2_lev2(value) {

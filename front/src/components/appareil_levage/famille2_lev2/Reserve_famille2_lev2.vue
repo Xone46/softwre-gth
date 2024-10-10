@@ -86,7 +86,8 @@ export default {
     },
 
     created() {
-        console.log(this.inf)
+
+
     }
 }
 </script>
@@ -194,7 +195,4 @@ table > tr:nth-child(6) > td:nth-child(3) {
 }
 
 
-
-
-
-</style>@/requests/appareil_levage/famille1_lev1/commentaire
+</style>
