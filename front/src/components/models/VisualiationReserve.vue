@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Commentaires from '@/requests/appareil_levage/famille1_lev1/commentaire';
+import Commentaires from '@/requests/commentaire';
 
 export default {
     name: 'reserve-component',

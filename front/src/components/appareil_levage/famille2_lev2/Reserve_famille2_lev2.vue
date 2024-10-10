@@ -20,7 +20,7 @@
 
 import TableModels from "@/components/reserve/appareil_levage/TableModels.vue"
 import TableReserve from "@/components/reserve/appareil_levage/TableReserve.vue"
-import Commentaire from "@/requests/appareil_levage/famille2_lev2/commentaire";
+import Commentaire from "@/requests/commentaire";
 
 export default {
     name: 'renseignement-component',

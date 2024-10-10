@@ -409,7 +409,7 @@
 
 <script>
 import Examens from "@/requests/appareil_levage/famille1_lev1/Examens"
-import Commentaires from "@/requests/appareil_levage/famille1_lev1/commentaire";
+import Commentaires from "@/requests/commentaire";
 import Reserve from "@/components/models/Reserve.vue"
 
 export default {

@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import Commentaires from "@/requests/appareil_levage/famille1_lev1/commentaire"
+import Commentaires from "@/requests/commentaire"
 
 export default {
     name: 'reserve-component',
@@ -100,11 +100,11 @@ export default {
 
         sauvegarder() {
 
+
             Commentaires.create(this.observateurId, this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.modelSelected)
-                .then((result) => {
-                    if (result) {
-                        return this.$emit('valider', this.infoReserve);
-                    }
+                .then(() => {
+                  return this.$emit('valider', this.infoReserve);
+                    
                 })
                 .catch((error) => {
                     console.log(error);
