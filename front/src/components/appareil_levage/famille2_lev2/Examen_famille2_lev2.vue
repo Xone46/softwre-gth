@@ -448,7 +448,7 @@
 
 <script>
 import Examens from "@/requests/appareil_levage/famille2_lev2/Examens"
-import Commentaires from "@/requests/appareil_levage/famille2_lev2/commentaire";
+import Commentaires from "@/requests/commentaire";
 import Reserve from "@/components/models/Reserve.vue"
 
 export default {

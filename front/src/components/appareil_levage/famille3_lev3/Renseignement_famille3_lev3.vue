@@ -56,13 +56,11 @@
                     <td :class="[renseignement.typeAppareil.length != 0 ? 'saved' : 'not-saved']">Type d'appareil:</td>
                     <td>
                         <select @change="saisirTypeAppareil($event)" :value="renseignement.typeAppareil">
-                            <option value="Poutres roulantes (non motorisée)">Poutres roulantes (non motorisée)</option>
-                            <option value="Palans manuels">Palans manuels</option>
-                            <option value="Grues d'atelier (non motorisée)">Grues d'atelier (non motorisée)</option>
-                            <option value="Sapines">Sapines</option>
+                            <option value="Elévateur Gerbeur a conducteur porté">Elévateur Gerbeur a conducteur porté</option>
+                            <option value="Elévateur Gerbeur a conducteur accompagnant">Elévateur Gerbeur a conducteur accompagnant</option>
+                            <option value="Elévateur gerbeur tout terrain">Grues d'atelier (non motorisée)</option>
+                            <option value="De manutention automoteur à conducteur porté">(porteur, tracteur, pousseur</option>
                             <option value="Potences (Non motorisées)">Potences (Non motorisées)</option>
-                            <option value="Treuils manuels">Treuils manuels</option>
-                            <option value="Crics et vérins">Crics et vérins</option>
                             <option value="Autre : ">Autre</option>
                         </select>
                     </td>
