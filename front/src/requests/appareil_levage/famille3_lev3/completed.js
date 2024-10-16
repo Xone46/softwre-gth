@@ -12,7 +12,7 @@ class Completeds {
 
     static checkRenseignement(observateurId) {
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/completeds/${observateurId}`, config)
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev/completeds/${observateurId}`, config)
                 .then(response => {
                     resolve(response);
                 })
@@ -24,7 +24,7 @@ class Completeds {
 
     static read() {
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/completeds`, config)
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev/completeds`, config)
                 .then(response => {
                     resolve(response);
                 })

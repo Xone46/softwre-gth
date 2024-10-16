@@ -7,7 +7,7 @@ class Descriptions {
 
     static create(description) {
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/descriptions/create`,
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/descriptions/create`,
             description,
             {
                 headers: {
@@ -25,7 +25,7 @@ class Descriptions {
 
     static reset(observateurId) {
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/descriptions/reset/${observateurId}`,
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/descriptions/reset/${observateurId}`,
             {
                 headers: {
                      'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ class Descriptions {
 
     static read() {
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/descriptions/read`,{
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/descriptions/read`,{
                 headers: {
                      'Content-Type': 'application/json'
                  }
@@ -58,7 +58,7 @@ class Descriptions {
 
     static delete(descriptionId) {
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/descriptions/${descriptionId}`,{
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/descriptions/${descriptionId}`,{
                 headers: {
                      'Content-Type': 'application/json'
                  }
@@ -75,7 +75,7 @@ class Descriptions {
     static select(observateurId) {
         
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/descriptions/${observateurId}`,
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/descriptions/${observateurId}`,
             {
                 headers: {
                      'Content-Type': 'application/json'

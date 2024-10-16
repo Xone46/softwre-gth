@@ -8,7 +8,7 @@ class Renseignement {
 
     static create(renseignement) {
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/renseignements/create`,
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/renseignements/create`,
                 renseignement,
                 {
                     headers: {
@@ -26,7 +26,7 @@ class Renseignement {
 
     static reset(observateurId) {
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/renseignements/reset/${observateurId}`,
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/renseignements/reset/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ class Renseignement {
     static select(observateurId) {
 
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/renseignements/${observateurId}`,
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/renseignements/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'

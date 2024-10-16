@@ -1692,9 +1692,9 @@ export default {
                 }
             }
 
-            for(let i = 0; i < i.length; i++) {
+            for(let z = 0; z < i.length; z++) {
 
-                const arr = [i[i].be, i[i].fc, i[i].nv, i[i].o, i[i].sa, i[i].so, i[i].statusCritique];
+                const arr = [i[z].be, i[z].fc, i[z].nv, i[z].o, i[z].sa, i[z].so, i[z].statusCritique];
 
                 if(!arr.includes(true)) {
                     return false;

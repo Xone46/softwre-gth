@@ -6,7 +6,7 @@ class Examens {
 
     static create(a, b, c, d, e, f, g, h, i, j, observateurId) {
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/examens/create`,
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/examens/create`,
                 {
                     a, b, c, d, e, f, g, h, i, j, observateurId
                 },
@@ -27,7 +27,7 @@ class Examens {
     static select(observateurId) {
 
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/examens/${observateurId}`,
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/examens/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ class Examens {
     static reset(observateurId) {
 
         return new Promise((resolve, reject) => {
-            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/examens/${observateurId}`,
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/examens/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ class Examens {
     static updateStatus(observateurId, titreReserve) {
 
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/examens/updateStatus`,
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/examens/updateStatus`,
                 {
                     observateurId: observateurId,
                     titreReserve: titreReserve
@@ -85,7 +85,7 @@ class Examens {
     static changeStatusCritique(titre, statusCritique, observateurId) {
 
         return new Promise((resolve, reject) => {
-            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/examens/changeStatusCritique`,
+            axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille3_lev3/examens/changeStatusCritique`,
                 {
                     titre: titre,
                     statusCritique: statusCritique,
