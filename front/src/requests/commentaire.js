@@ -13,8 +13,6 @@ class Commentaires {
 
     static create(observateurId, ref, number, titre, modelSelected) {
 
-        console.log(observateurId, ref, number, titre, modelSelected);
-
         return new Promise((resolve, reject) => {
             axios.post(`${VUE_APP_API_BASE_URL}/commentaires/create`,
                 {

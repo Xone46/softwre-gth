@@ -100,11 +100,11 @@ export default {
     props: {
         observateurId: String,
         renseignementChicked : Boolean,
-        colorRenseignement_famille2_lev2 : Boolean,
-        colorDescription_famille2_lev2 : Boolean,
-        colorExamen_famille2_lev2 : Boolean,
-        colorConclusion_famille2_lev2 : Boolean,
-        colorPhoto_famille2_lev2 : Boolean
+        colorRenseignement_famille3_lev3 : Boolean,
+        colorDescription_famille3_lev3 : Boolean,
+        colorExamen_famille3_lev3 : Boolean,
+        colorConclusion_famille3_lev3 : Boolean,
+        colorPhoto_famille3_lev3 : Boolean
     },
 
     methods: {
