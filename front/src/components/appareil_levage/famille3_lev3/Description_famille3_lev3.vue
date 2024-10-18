@@ -207,7 +207,7 @@ export default {
                         titre: "levage :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Nombre de vérins :", status: false, content: "" },
+                            { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
                             { index: 1, titre: "Sans Chaines", status: false },
                             { index: 2, titre: "Sans Câbles", status: false }
                         ]
@@ -217,7 +217,7 @@ export default {
                         titre: "Inclinaison - Relevage :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Nombre de vérins :", status: false, content: "" },
+                            { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
                             { index: 1, titre: "Sans", status: false }
                         ]
                     },
@@ -226,7 +226,7 @@ export default {
                         titre: "Rétractation :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Nombre de vérins :", status: false, content: "" },
+                            { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
                             { index: 1, titre: "Sans", status: false }
                         ]
                     },
@@ -256,7 +256,7 @@ export default {
                             { index: 1, titre: "Duplex", status: false },
                             { index: 2, titre: "Triplex", status: false },
                             { index: 3, titre: "Quadruple", status: false },
-                            { index: 4, titre: "Autre", status: false, content: "" },
+                            { index: 4, titre: "Autre", status: false, content: " " },
                         ]
                     },
                     {
@@ -272,9 +272,9 @@ export default {
                                     { index: 0, titre: "Sans objet", status: false },
                                     { index: 1, titre: "A maille jointives", status: false },
                                     { index: 2, titre: "A rouleau", status: false },
-                                    { index: 3, titre: "Combinaison :", status: false, content: "" },
-                                    { index: 4, titre: "Nombre :", status: false, content: "" },
-                                    { index: 5, titre: "Pas théorique :", status: false, content: "" },
+                                    { index: 3, titre: "Combinaison :", status: false, content: " " },
+                                    { index: 4, titre: "Nombre :", status: false, content: " " },
+                                    { index: 5, titre: "Pas théorique :", status: false, content: " " },
                                 ]
                             },
                             {
@@ -285,9 +285,9 @@ export default {
                                     { index: 0, titre: "Sans objet", status: false },
                                     { index: 1, titre: "A maille jointives", status: false },
                                     { index: 2, titre: "A rouleau", status: false },
-                                    { index: 3, titre: "Combinaison :", status: false, content: "" },
-                                    { index: 4, titre: "Nombre :", status: false, content: "" },
-                                    { index: 5, titre: "Pas théorique :", status: false, content: "" },
+                                    { index: 3, titre: "Combinaison :", status: false, content: " " },
+                                    { index: 4, titre: "Nombre :", status: false, content: " " },
+                                    { index: 5, titre: "Pas théorique :", status: false, content: " " },
                                 ]
                             }
                         ]
@@ -306,19 +306,19 @@ export default {
                                 index: 1,
                                 titre: "Nombre :",
                                 status: false,
-                                content: ""
+                                content: " "
                             },
                             {
                                 index: 2,
                                 titre: "Diamètre théorique :",
                                 status: false,
-                                content: ""
+                                content: " "
                             },
                             {
                                 index: 3,
                                 titre: "Diamètre mesuré :",
                                 status: false,
-                                content: ""
+                                content: " "
                             }
                         ]
                     },
@@ -336,13 +336,13 @@ export default {
                                 index: 1,
                                 titre: "Nombre :",
                                 status: false,
-                                content: ""
+                                content: " "
                             },
                             {
                                 index: 2,
                                 titre: "Dimension théorique :",
                                 status: false,
-                                content: ""
+                                content: " "
                             }
                         ]
                     },
@@ -354,9 +354,9 @@ export default {
                         titre: "Fourches :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Nombre de bras :", status: false, content: "" },
-                            { index: 1, titre: "Longueur (m) :", status: false, content: "" },
-                            { index: 2, titre: "CMU X 2(Kg) :", status: false, content: "" },
+                            { index: 0, titre: "Nombre de bras :", status: false, content: " " },
+                            { index: 1, titre: "Longueur (m) :", status: false, content: " " },
+                            { index: 2, titre: "CMU X 2(Kg) :", status: false, content: " " },
                         ]
                     },
                     {
@@ -364,9 +364,9 @@ export default {
                         titre: "Pinces :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Nombre de bras :", status: false, content: "" },
-                            { index: 1, titre: "Longueur (m) :", status: false, content: "" },
-                            { index: 2, titre: "CMU X 2(Kg) :", status: false, content: "" },
+                            { index: 0, titre: "Nombre de bras :", status: false, content: " " },
+                            { index: 1, titre: "Longueur (m) :", status: false, content: " " },
+                            { index: 2, titre: "CMU X 2(Kg) :", status: false, content: " " },
                         ]
                     },
                     {
@@ -407,7 +407,7 @@ export default {
                         index: 5,
                         titre: "Autre :",
                         status: false,
-                        content: ""
+                        content: " "
                     }
                 ],
 
@@ -433,7 +433,7 @@ export default {
                         titre: "levage :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Nombre de vérins :", status: false, content: "" },
+                            { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
                             { index: 1, titre: "Sans Chaines", status: false },
                             { index: 2, titre: "Sans Câbles", status: false }
                         ]
@@ -443,7 +443,7 @@ export default {
                         titre: "Inclinaison - Relevage :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Nombre de vérins :", status: false, content: "" },
+                            { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
                             { index: 1, titre: "Sans", status: false }
                         ]
                     },
@@ -452,7 +452,7 @@ export default {
                         titre: "Rétractation :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Nombre de vérins :", status: false, content: "" },
+                            { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
                             { index: 1, titre: "Sans", status: false }
                         ]
                     },
@@ -482,7 +482,7 @@ export default {
                             { index: 1, titre: "Duplex", status: false },
                             { index: 2, titre: "Triplex", status: false },
                             { index: 3, titre: "Quadruple", status: false },
-                            { index: 4, titre: "Autre", status: false, content: "" },
+                            { index: 4, titre: "Autre", status: false, content: " " },
                         ]
                     },
                     {
@@ -498,9 +498,9 @@ export default {
                                     { index: 0, titre: "Sans objet", status: false },
                                     { index: 1, titre: "A maille jointives", status: false },
                                     { index: 2, titre: "A rouleau", status: false },
-                                    { index: 3, titre: "Combinaison :", status: false, content: "" },
-                                    { index: 4, titre: "Nombre :", status: false, content: "" },
-                                    { index: 5, titre: "Pas théorique :", status: false, content: "" },
+                                    { index: 3, titre: "Combinaison :", status: false, content: " " },
+                                    { index: 4, titre: "Nombre :", status: false, content: " " },
+                                    { index: 5, titre: "Pas théorique :", status: false, content: " " },
                                 ]
                             },
                             {
@@ -511,9 +511,9 @@ export default {
                                     { index: 0, titre: "Sans objet", status: false },
                                     { index: 1, titre: "A maille jointives", status: false },
                                     { index: 2, titre: "A rouleau", status: false },
-                                    { index: 3, titre: "Combinaison :", status: false, content: "" },
+                                    { index: 3, titre: "Combinaison :", status: false, content: " " },
                                     { index: 4, titre: "Nombre :", status: false, content: "" },
-                                    { index: 5, titre: "Pas théorique :", status: false, content: "" },
+                                    { index: 5, titre: "Pas théorique :", status: false, content: " " },
                                 ]
                             }
                         ]
@@ -532,19 +532,19 @@ export default {
                                 index: 1,
                                 titre: "Nombre :",
                                 status: false,
-                                content: ""
+                                content: " "
                             },
                             {
                                 index: 2,
                                 titre: "Diamètre théorique :",
                                 status: false,
-                                content: ""
+                                content: " "
                             },
                             {
                                 index: 3,
                                 titre: "Diamètre mesuré :",
                                 status: false,
-                                content: ""
+                                content: " "
                             }
                         ]
                     },
@@ -562,13 +562,13 @@ export default {
                                 index: 1,
                                 titre: "Nombre :",
                                 status: false,
-                                content: ""
+                                content: " "
                             },
                             {
                                 index: 2,
                                 titre: "Dimension théorique :",
                                 status: false,
-                                content: ""
+                                content: " "
                             }
                         ]
                     },
@@ -580,9 +580,9 @@ export default {
                         titre: "Fourches :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Nombre de bras :", status: false, content: "" },
-                            { index: 1, titre: "Longueur (m) :", status: false, content: "" },
-                            { index: 2, titre: "CMU X 2(Kg) :", status: false, content: "" },
+                            { index: 0, titre: "Nombre de bras :", status: false, content: " " },
+                            { index: 1, titre: "Longueur (m) :", status: false, content: " " },
+                            { index: 2, titre: "CMU X 2(Kg) :", status: false, content: " " },
                         ]
                     },
                     {
@@ -590,9 +590,9 @@ export default {
                         titre: "Pinces :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Nombre de bras :", status: false, content: "" },
-                            { index: 1, titre: "Longueur (m) :", status: false, content: "" },
-                            { index: 2, titre: "CMU X 2(Kg) :", status: false, content: "" },
+                            { index: 0, titre: "Nombre de bras :", status: false, content: " " },
+                            { index: 1, titre: "Longueur (m) :", status: false, content: " " },
+                            { index: 2, titre: "CMU X 2(Kg) :", status: false, content: " " },
                         ]
                     },
                     {
@@ -633,11 +633,11 @@ export default {
                         index: 5,
                         titre: "Autre :",
                         status: false,
-                        content: ""
+                        content: " "
                     }
                 ],
 
-                siPresence: "",
+                siPresence: " ",
 
                 observateurId: ""
             },
