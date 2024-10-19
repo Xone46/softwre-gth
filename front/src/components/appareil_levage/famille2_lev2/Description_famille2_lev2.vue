@@ -524,10 +524,12 @@ export default {
                 this.checkCaracterstiques()
             ];
 
-            if(arr.includes(true)) {
-                    return true;
-            } else {
+            for(let i = 0; i < arr.length; i++) {
+                if(arr[i] == false) {
                     return false;
+                }
+
+                return true
             }
 
         },

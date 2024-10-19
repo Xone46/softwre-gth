@@ -78,6 +78,7 @@ import Spinner from 'vue-simple-spinner'
 import Invertesment from "@/components/models/Invertesment.vue"
 import Error from "@/components/models/Error.vue"
 import Verified from "@/components/models/Verified.vue"
+
 export default {
     name: 'table-observateur',
     data() {

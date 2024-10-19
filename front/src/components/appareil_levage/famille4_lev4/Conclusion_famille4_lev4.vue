@@ -107,8 +107,8 @@
 </template>
 
 <script>
-import Conclusion from "@/requests/appareil_levage/famille1_lev1/conclusion"
-import Insert from "@/components/appareil_levage/famille1_lev1/models_famille1_lev1/Insert.vue"
+import Conclusion from "@/requests/appareil_levage/famille4_lev4/conclusion"
+import Insert from "@/components/appareil_levage/famille4_lev4/models_famille4_lev4/Insert.vue"
 
 export default {
     name: 'conclusion-component',
@@ -273,7 +273,7 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties());
+            this.$emit("changeColorConclusion_famille4_lev4", this.checkProperties());
         },
 
 
@@ -394,7 +394,7 @@ export default {
                     this.g = "";
 
                     this.watched_sauvegarder = false;
-                    this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties());
+                    this.$emit("changeColorConclusion_famille4_lev4", this.checkProperties());
 
                 })
                 .catch((error) => {

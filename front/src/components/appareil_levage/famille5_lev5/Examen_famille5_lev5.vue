@@ -3,7 +3,7 @@
 
         <table>
             <tr>
-                <th>INSTALLATION (Installation a demeure ou nécessitant l'aménagement de supports particuliers)</th>
+                <th>INSTALLATION (Appareil fixe)</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -23,10 +23,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkA(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" disabled v-model="item.sa" @change="checkA(index, 'sa', item.sa)">
+                    <input type="checkbox" v-model="item.sa" @change="checkA(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" disabled v-model="item.nv" @change="checkA(index, 'nv', item.nv)">
+                    <input type="checkbox" v-model="item.nv" @change="checkA(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkA(index, 'so', item.so)">
@@ -42,7 +42,7 @@
 
         <table>
             <tr>
-                <th>ACCES INSTALLES A DEMEURE</th>
+                <th>CHARPENTE - SUPPORT DE CHARGE</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -62,10 +62,10 @@
                     <input type="checkbox" disabled v-model="item.fc" @change="checkB(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" disabled v-model="item.sa" @change="checkB(index, 'sa', item.sa)">
+                    <input type="checkbox" v-model="item.sa" @change="checkB(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" disabled v-model="item.nv" @change="checkB(index, 'nv', item.nv)">
+                    <input type="checkbox" v-model="item.nv" @change="checkB(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkB(index, 'so', item.so)">
@@ -81,7 +81,7 @@
 
         <table>
             <tr>
-                <th>CHASSIS</th>
+                <th>SOURCES D'ENERGIE</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -101,10 +101,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkC(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" disabled v-model="item.sa" @change="checkC(index, 'sa', item.sa)">
+                    <input type="checkbox" v-model="item.sa" @change="checkC(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" disabled v-model="item.nv" @change="checkC(index, 'nv', item.nv)">
+                    <input type="checkbox" v-model="item.nv" @change="checkC(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkC(index, 'so', item.so)">
@@ -120,7 +120,7 @@
 
         <table>
             <tr>
-                <th>CHARPENTE</th>
+                <th>ECLAIRAGE INCORPORE A L'APPAREIL</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -140,10 +140,10 @@
                     <input type="checkbox" v-model="item.fc" @change="checkD(index, 'fc', item.fc)">
                 </td>
                 <td>
-                    <input type="checkbox" disabled v-model="item.sa" @change="checkD(index, 'sa', item.sa)">
+                    <input type="checkbox" v-model="item.sa" @change="checkD(index, 'sa', item.sa)">
                 </td>
                 <td>
-                    <input type="checkbox" disabled v-model="item.nv" @change="checkD(index, 'nv', item.nv)">
+                    <input type="checkbox" v-model="item.nv" @change="checkD(index, 'nv', item.nv)">
                 </td>
                 <td>
                     <input type="checkbox" v-model="item.so" @change="checkD(index, 'so', item.so)">
@@ -237,7 +237,7 @@
 
         <table>
             <tr>
-                <th>SUSPENTES TAMBOURS POULIES DISPOSITIFS DE PREHENSION</th>
+                <th>SUSPENTES POULIES</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -408,7 +408,7 @@
 </template>
 
 <script>
-import Examens from "@/requests/appareil_levage/famille1_lev1/Examens"
+import Examens from "@/requests/appareil_levage/famille4_lev4 copy/Examens"
 import Commentaires from "@/requests/commentaire";
 import Reserve from "@/components/models/Reserve.vue"
 
@@ -424,65 +424,75 @@ export default {
             infoReserve : [],
 
             a: [
-                { titre: "- Distance a obstacles fixes ou entre appareils", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
-                { titre: "- Lignes électriques ou éléments sous tension", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
-                { titre: "- Effet du vent hors service", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
+                { titre: "- Distance a obstacle fixe ou entre appareils", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
+                { titre: "- Assise, fixations, scellements", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
             ],
 
             b: [
-                { titre: "- Accès au poste de travail", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Châssis de base, colonnes, poteaux, mât, ciseaux, parallélogrammes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Supports de charge (chemin de roulement, bras articulés, plate-forme)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Accès et passerelle à demeure", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             c: [
-                { titre: "- Assemblages, fixations, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Organes de roulement (pneumatiques, bandages, galets)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Ossature, contrepoids", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Interrupteur à l'origine de l'installation condamnable en position d'ouverture", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Equipements et canalisations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Protection des pièces nues sous tensions", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             d: [
-                { titre: "- Structure", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Fixation lest ou contrepoids", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Organes de roulement et de guidage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Assemblage, fixations, liaisons, articulations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Equipage mobile, support de charge", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Plate-forme, nacelle, sellette", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Eclairage de la zone de travail", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             e: [
-                { titre: "- Protection contre les chutes de hauteur de l'opérateur à partir du poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Implantation", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Visibilité", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             f: [
-                { titre: "- Chaîne de manoeuvre", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Organe de manœuvre (chaîne, levier, timon)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Identification des organes de service", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Mise en marche- Arrêt normal - Sélecteur", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Retour automatique au point neutre des commandes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Autres arrêts accessibles (urgence)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Retour automatique au point neutre des commandes", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Indicateurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ],
 
             g: [
                 { titre: "- Suspentes (câbles, chaînes, sangles)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
                 { titre: "- Attaches", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Mouffle, crochet : linguet de sécurité u dispositif équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Autres dispositifs de préhension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
             ],
 
             h: [
-                { titre: "- Vérins, canalisations, distributeurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Groupes moto-réducteurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
                 { titre: "- Organes de transmission, accouplements", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Freins des mouvements concourant au levage (arrêt et maintien)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Limitation de la vitesse (absence d'emballement)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Freins des mouvements horizontaux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Freins d'immobilisation en translation (hors service)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Vérins et canalisations, distributeurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Système Vis / Ecrou Jeu vis / Ecrou constructeur (mm) : ……… Mesuré(mm) : …………", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Freins des mouvements concourant au levage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Limitation de la vitesse (absence d'emballement) :……………………", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Dispositif d'immobilisation des appareils mobiles", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
                 { titre: "- Protection des organes mobiles de transmission", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
             ],
 
             i: [
-                { titre: "- Parachute ou dispositif équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Limiteurs de course haute (asservissement)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Autres limiteurs de course/hors course", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Dispositif de retenue a l'arrêt - Visualisation", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Dispositif de retenue en cours de manoeuvre", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Contrôle de synchronisme et/ou d'horizontalité", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Limiteur de charge, de capacité", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Détecteur de mou de suspente", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Interrupteur écrou de sécurité", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Calage immobilisation du véhicule", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Protection contre les risques d'écrasement des pieds", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
             ],
 
             j: [
-                { titre: "- Indication de l'appareil", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Affichage capacité, tableau des charges", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Consignes de sécurité et d'utilisation (lisibilité)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                { titre: "- Plaque constructeur", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Affichage capacité (charge / portée)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Instructions de manœuvre et consignes de sécurité (lisibilité)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                { titre: "- Délimitation au sol de la zone de travail (pont ou plate-forme tournante)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
             ]
 
         }
@@ -1553,7 +1563,7 @@ export default {
   
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
-                        this.$emit("changeColorExamen_famille1_lev1", false);
+                        this.$emit("changeColorExamen_famille5_lev5", false);
                     }
                 })
                 .catch((error) => {
@@ -1655,7 +1665,7 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorExamen_famille1_lev1", this.checkProperties(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j));
+            this.$emit("changeColorExamen_famille5_lev5", this.checkProperties(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j));
         },
 
         sauvegarde() {

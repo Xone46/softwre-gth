@@ -3,6 +3,7 @@
     <div class="descriptions">
 
         <table>
+
             <tr>
                 <td>B-1</td>
                 <td :class="[description.marquage.length != 0 ? 'saved' : 'not-saved']">MARQUAGE</td>
@@ -11,161 +12,142 @@
                 </td>
             </tr>
 
+
             <tr>
                 <td>B-2</td>
-                <td :class="[colorCaracteristiques == true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET
+                <td :class="[colorCaracteristiques === true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET
                     DE CHARGE</td>
                 <td>
-                    <p>Charge maximale utile (kg) : <input type="text" @input="saisirChargeMaximaleUtile($event)"
-                            :value="description.chargeMaximaleUtile"> A la portée minimale de (m) : <input type="text"
-                            @input="saisirPorteeMinimale($event)" :value="description.porteeMinimale"></p>
-                    <p>Distance du centre de gravité (m) : <input type="text" :value="description.distanceCentreGravite"
-                            @input="saisirDistanceCentreGravite($event)"></p>
-                    <p>Course (m) : <input type="text" :value="description.course" @input="saisirCourse($event)"></p>
-                    <p>Hauteur de levage (m) : <input type="text" :value="description.hauteurLevage"
-                            @input="saisirHauteurLevage($event)"></p>
-                    <p>Portée (m) : <input type="text" :value="description.portee" @input="saisirPortee($event)"></p>
-                    <p>Porte a faux ou déport (m) : <input type="text" :value="description.porteFauxDeport"
-                            @input="saisirPorteFauxDeport($event)"></p>
-                    <p>Longueur de chemin de roulement (m) : <input type="text"
-                            :value="description.longueurCheminRoulement" @input="saisirLongueurCheminRoulement($event)">
-                    </p>
-                    <p>Dimension du plateau (m) : <input type="text" :value="description.dimensionPlateau"
-                            @input="saisirDimensionPlateau($event)"></p>
-                    <p>
-                        Mode d'installation:
-                        <select @change="saisirModeInstallation($event)" :value="description.modeInstallation">
-                            <option value=""></option>
-                            <option value="Pont roulant">Pont roulant</option>
-                            <option value="Poutre roulante">Poutre roulante</option>
-                            <option value="Palan">Palan</option>
-                            <option value="Treuil">Treuil</option>
-                            <option value="Vérin">Vérin</option>
-                            <option value="Autre :">Autre</option>
-                        </select>
-                        <input type="text" v-if="description.modeInstallation == 'Autre :'"
-                            :value="description.suiveModeInstallation" @input="saisirSuiveModeInstallation($event)">
-                    </p>
+                    <p>Charge maximale utile (kg) : <input type="text" :value="description.chargeMaximaleUtile"
+                            @input="saisirChargeMaximaleUtile($event)"></p>
+
+                    <p>Hauteur d'élévation (m) : <input type="text" :value="description.hauteurElevation"
+                            @input="saisirHauteurElevation($event)"></p>
+
+                    <p>Extension de plate forme : <input type="text" :value="description.extensionPlateforme"
+                            @input="saisirExtensionPlateforme($event)"></p>
+
+                    <p>Dévers autorisé : <input type="text" :value="description.deversAutorise"
+                            @input="saisirDeversAutorise($event)"></p>
+
+                    <p>Nombre de personnes : <input type="text" :value="description.nombrePersonnes"
+                            @input="saisirNombrePersonnes($event)"></p>
+
+                    <p>Portée : <input type="text" :value="description.portee" @input="saisirPortee($event)"></p>
 
                 </td>
             </tr>
 
-            <tr>
-                <td>B-4</td>
-                <td :class="[colorSuspentes == true ? 'saved' : 'not-saved']">SUSPENTES DE LEVAGE</td>
-                <td>
-                    <div>
-                        <p><input type="checkbox" @input="saisirCable"
-                                :checked='description["suspentes"][0]["hasCable"]'>Câble :</p>
-                        <p v-if='description["suspentes"][0]["hasCable"]'>
-                            Nombre : <input type="text" v-model="description['suspentes'][0]['detailsCable'][0]['valA']">
-                            Composition : <input type="text"
-                                v-model="description['suspentes'][0]['detailsCable'][0]['valB']">
-                            Diamètre (mm) : <input type="text"
-                                v-model="description['suspentes'][0]['detailsCable'][0]['valC']"></p>
-                        <p v-if='description["suspentes"][0]["hasCable"]'>
-                            Moufflage : <input type="text"
-                                v-model="description['suspentes'][0]['detailsCable'][1]['valA']">
-                            Nombre de brins : <input type="text"
-                                v-model="description['suspentes'][0]['detailsCable'][1]['valB']">
-                        </p>
-                    </div>
-
-                    <div>
-                        <p><input type="checkbox" @input="chaineRouleau"
-                                :checked='description["suspentes"][0]["hasChaineRouleau"]'>Chaîne(s) a rouleau ou
-                            mailles jointives :</p>
-                        <p v-if='description["suspentes"][0]["hasChaineRouleau"]'>
-                            Nombre : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineRouleau'][0]['valA']">
-                            Type : <select v-model="description['suspentes'][0]['detailsChaineRouleau'][0]['valB']">
-                                <option value=""></option>
-                                <option value="A rouleau">A rouleau</option>
-                                <option value="A rouleau">A maille jointive</option>
-                            </select>
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasChaineRouleau"]'>
-                            Pas théorique : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineRouleau'][1]['valA']">
-                            Combinaison : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineRouleau'][1]['valB']">
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasChaineRouleau"]'>
-                            Moufflage : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineRouleau'][2]['valA']">
-                            Nombre de brins : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineRouleau'][2]['valB']">
-                        </p>
-                    </div>
-
-                    <div>
-                        <p><input type="checkbox" @input="chaineMaillons"
-                                :checked='description["suspentes"][0]["hasChaineMaillons"]'>Chaîne(s) à maillons
-                            calibrés :</p>
-                        <p v-if='description["suspentes"][0]["hasChaineMaillons"]'>
-                            Nombre : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineMaillons'][0]['valA']">
-                            Type :
-                            <select v-model="description['suspentes'][0]['detailsChaineMaillons'][0]['valB']">
-                                <option value=""></option>
-                                <option value="A maillons courts">A maillons courts</option>
-                                <option value="A maillons longs">A maillons longs</option>
-                            </select>
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasChaineMaillons"]'>
-                            Pas: <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineMaillons'][1]['valA']">
-                            Diamètre :<input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineMaillons'][1]['valB']">
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasChaineMaillons"]'>
-                            Moufflage : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineMaillons'][2]['valA']">
-                            Nombre de brins : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineMaillons'][2]['valB']">
-                        </p>
-                    </div>
-
-
-                    <div>
-                        <p><input type="checkbox" @input="sangle"
-                                :checked='description["suspentes"][0]["hasSangle"]'>Sangle de levage :</p>
-                        <p v-if='description["suspentes"][0]["hasSangle"]'>hasSangle
-                            Nombre : <input type="text" v-model="description['suspentes'][0]['detailsSangle'][0]['valA']">
-                            Composition :<input type="text"
-                                v-model="description['suspentes'][0]['detailsSangle'][0]['valB']">
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasSangle"]'>
-                            Section (mm2): <input type="text"
-                                v-model="description['suspentes'][0]['detailsSangle'][1]['valA']">
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasSangle"]'>
-                            Moufflage : <input type="text"
-                                v-model="description['suspentes'][0]['detailsSangle'][2]['valA']">
-                            Nombre de brins : <input type="text"
-                                v-model="description['suspentes'][0]['detailsSangle'][2]['valB']">
-                        </p>
-
-                    </div>
-
-                </td>
-            </tr>
 
             <tr>
                 <td>B-3</td>
-                <td :class="[description.mecanisme.length != 0 ? 'saved' : 'not-saved']">MECANISME ET MOUVEMENT</td>
+                <td :class="[colorMecanismes == true ? 'saved' : 'not-saved']">MECANISMES</td>
                 <td>
-                    <p>
-                        <select @change="saisirMecanisme($event)" :value="description.mecanisme">
-                            <option value=""></option>
-                            <option value="Hydraulique">Hydraulique</option>
-                            <option value="Treuil">Treuil</option>
-                            <option value="Tambour">Tambour</option>
-                            <option value="Autre :">Autre</option>
-                        </select>
-                        <input type="text" v-if="description.mecanisme == 'Autre :'" :value="description.suiveMecanisme"
-                            @input="saisirSuiveMecanisme($event)">
-                    </p>
+                    <div>
+                        <p v-for="item in description.mecanismes" :key="item.index">
+                            <input type="checkbox" @input="saisirMecanisme(item.index)" :value="item.status">{{
+                                item.titre }}
+                        <ul v-if="item.status">
+                            <li v-for="el in item.tab" :key="el.index">
+                                <input type="checkbox" @input="saisirSousMecanisme(item.index, el.index)">
+                                {{ el.titre }}
+                                <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
+                                    @input="saisirContentMecanisme($event, item.index, el.index)">
+                            </li>
+                        </ul>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>B-4</td>
+                <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
+                <td>
+                    <div>
+                        <p v-for="item in description.sourceEnergie" :key="item.index">
+                            <input type="checkbox" @input="saisirSourceEnergie(item.index)" :value="item.status">{{
+                                item.titre }}
+                            <input v-if="item.status && item.content !== undefined" type="text" :value="item.content"
+                                @input="saisirContentSourceEnergie($event, item.index)">
+                        </p>
+                    </div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>B-5</td>
+                <td :class="[colorTranslation == true ? 'saved' : 'not-saved']">TRANSLATION</td>
+                <td>
+                    <div>
+                        <p v-for="item in description.translation" :key="item.index">
+                            <input type="checkbox" @input="saisirTranslation(item.index)" :value="item.status">{{
+                                item.titre }}
+                            <input v-if="item.status && item.content !== undefined" type="text" :value="item.content"
+                                @input="saisirContentTranslation($event, item.index)">
+                        </p>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>B-6</td>
+                <td :class="[colorChainesCablesElevation == true ? 'saved' : 'not-saved']">CHAINES OU CABLES D'ELEVATION</td>
+                <td>
+                    <div>
+                        <p v-for="item in description.chainesCablesElevation" :key="item.index">
+                            <input type="checkbox" @input="saisirChainesCablesElevation(item.index)"
+                                :value="item.status">{{ item.titre }}
+                        </p>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>B-6-1</td>
+                <td :class="[colorCaracteristiquesSuspenteOne == true ? 'saved' : 'not-saved']">Caractéristiques Suspente 1</td>
+                <td>
+                    <div>
+                        <p v-for="item in description.caracteristiquesSuspenteOne" :key="item.index">
+                            <input type="checkbox" @input="saisirCaracteristiquesSuspenteOne(item.index)"
+                                :value="item.status">
+                            {{ item.titre }}
+                        <ul v-if="item.status">
+                            <li v-for="el in item.tab" :key="el.index">
+                                <input type="checkbox"
+                                    @input="saisirSousCaracteristiquesSuspenteOne(item.index, el.index)">
+                                {{ el.titre }}
+                                <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
+                                    @input="saisirContentCaracteristiquesSuspenteOne($event, item.index, el.index)">
+                            </li>
+                        </ul>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>B-6-2</td>
+                <td :class="[colorCaracteristiquesSuspenteTow == true ? 'saved' : 'not-saved']">Caractéristiques Suspente 2</td>
+                <td>
+                    <div>
+                        <p v-for="item in description.caracteristiquesSuspenteTow" :key="item.index">
+                            <input type="checkbox" @input="saisirCaracteristiquesSuspenteTow(item.index)"
+                                :value="item.status">
+                            {{ item.titre }}
+                        <ul v-if="item.status">
+                            <li v-for="el in item.tab" :key="el.index">
+                                <input type="checkbox"
+                                    @input="saisirSousCaracteristiquesSuspenteTow(item.index, el.index)">
+                                {{ el.titre }}
+                                <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
+                                    @input="saisirContentCaracteristiquesSuspenteTow($event, item.index, el.index)">
+                            </li>
+                        </ul>
+                        </p>
+                    </div>
                 </td>
             </tr>
 
@@ -188,14 +170,23 @@
 </template>
 
 <script>
-import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions"
+import Descriptions from "@/requests/appareil_levage/famille4_lev4/Descriptions"
 import Observateurs from "@/requests/Observateurs"
 export default {
     name: 'renseignement-component',
     data() {
         return {
-            colorSuspentes : false,
-            colorCaracteristiques: false,
+
+
+
+            colorCaracteristiques : false,
+            colorMecanismes : false,
+            colorSourceEnergie : false,
+            colorTranslation : false,
+            colorChainesCablesElevation : false,
+            colorCaracteristiquesSuspenteOne : false,
+            colorCaracteristiquesSuspenteTow : false,
+
             counter_watched: 0,
             watched_sauvegarder: false,
             flagReset: false,
@@ -205,126 +196,305 @@ export default {
                 marquage: "",
 
                 chargeMaximaleUtile: "",
-                porteeMinimale: "",
-                distanceCentreGravite: "",
-                course: "Sans objet",
-                hauteurLevage: "Sans objet",
-                portee: "Sans objet",
-                porteFauxDeport: "Sans objet",
-                longueurCheminRoulement: "Sans objet",
-                dimensionPlateau: "Sans objet",
-                modeInstallation: "",
-                suiveModeInstallation: "",
+                hauteurElevation: "",
+                extensionPlateforme: "",
+                deversAutorise: "",
+                nombrePersonnes: "",
+                portee: "",
 
-                mecanisme: "",
-                suiveMecanisme: "",
 
-                suspentes: [
+                mecanismes: [
                     {
+                        index: 0,
+                        titre: "Elévation :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Hydraulique", status: false },
+                            { index: 1, titre: "Mécanique", status: false },
+                            { index: 2, titre: "Electro-hydraulique", status: false },
+                            { index: 3, titre: "Câbles", status: false },
+                            { index: 4, titre: "Chaînes", status: false },
+                            { index: 5, titre: "Sans objet", status: false }
+                        ]
+                    },
+                    {
+                        index: 1,
+                        titre: "Télescopage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Hydraulique", status: false },
+                            { index: 1, titre: "Mécanique", status: false },
+                            { index: 2, titre: "Electro-hydraulique", status: false },
+                            { index: 3, titre: "Câbles", status: false },
+                            { index: 4, titre: "Chaînes", status: false },
+                            { index: 5, titre: "Sans objet", status: false }
+                        ]
+                    },
+                    {
+                        index: 2,
+                        titre: "Orientation :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "en degrés :", status: false, content: " " },
+                            { index: 1, titre: "Sans objet", status: false }
+                        ]
+                    },
+                    {
+                        index: 3,
+                        titre: "Pendulaire :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Sans objet", status: false }
+                        ]
+                    },
+                    {
+                        index: 4,
+                        titre: "Rotation du poste de travail :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "poste fixe", status: false }
+                        ]
+                    },
+                ],
 
-                        hasCable: false,
-                        cable: "Câble :",
-                        hasDetailsCable: false,
-                        detailsCable: [
-                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                        ],
+                sourceEnergie: [
+                    { index: 0, titre: "Electrique", status: false },
+                    { index: 1, titre: "Thermique", status: false },
+                    { index: 2, titre: "Autre", status: false, content: " " },
+                ],
 
-                        hasChaineRouleau: false,
-                        chaineRouleau: "Chaîne(s) a rouleau ou mailles jointives :",
-                        hasDetailsChaineRouleau: false,
-                        detailsChaineRouleau: [
-                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                            { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                        ],
+                translation: [
+                    { index: 0, titre: "Electrique", status: false },
+                    { index: 1, titre: "Thermique", status: false },
+                    { index: 2, titre: "Manuelle", status: false },
+                    { index: 3, titre: "Autre", status: false, content: " " },
+                ],
 
-                        hasChaineMaillons: false,
-                        chaineMaillons: "Chaîne(s) à maillons calibrés :",
-                        hasDetailsChaineMaillons: false,
-                        detailsChaineMaillons: [
-                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                            { a: "Pas théorique :", valA: "", b: "Diamètre :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
-                        ],
+                chainesCablesElevation: [
+                    { index: 0, titre: "Sans objet", status: false },
+                    { index: 1, titre: "Elevation", status: false },
+                    { index: 2, titre: "Relevage", status: false },
+                    { index: 3, titre: "Téléscopage", status: false },
+                ],
 
-                        hasSangle: false,
-                        sangle: "Sangle de levage :",
-                        hasDetailsSangle: false,
-                        detailsSangle: [
-                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "", valC: "" },
-                            { a: "Section (mm2):", valA: "", b: "", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
-                        ],
+                caracteristiquesSuspenteOne: [
+                    {
+                        index: 0,
+                        titre: "Suspentes de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Nombre de chaînes ou câbles :", status: false, content: " " },
+                            { index: 1, titre: "Sans objet", status: false },
+                        ]
+                    },
+                    {
+                        index: 1,
+                        titre: "Câble(s) de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Composition :", status: false, content: " " },
+                            { index: 1, titre: "Diamètre théorique (mm) :", status: false, content: " " },
+                        ]
+                    },
+                    {
+                        index: 2,
+                        titre: "Chaînes(s) de levage / Caractéristiques :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Type de chaine :", status: false, content: " " },
+                            { index: 1, titre: "Pas théorique :", status: false, content: " " },
+                        ]
                     }
                 ],
 
+                caracteristiquesSuspenteTow: [
+                    {
+                        index: 0,
+                        titre: "Suspentes de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Nombre de chaînes ou câbles :", status: false, content: " " },
+                            { index: 1, titre: "Sans objet", status: false },
+                        ]
+                    },
+                    {
+                        index: 1,
+                        titre: "Câble(s) de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Composition :", status: false, content: " " },
+                            { index: 1, titre: "Diamètre théorique (mm) :", status: false, content: " " },
+                        ]
+                    },
+                    {
+                        index: 2,
+                        titre: "Chaînes(s) de levage / Caractéristiques :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Type de chaine :", status: false, content: " " },
+                            { index: 1, titre: "Pas théorique :", status: false, content: " " },
+                        ]
+                    }
+                ],
+
+                siPresence: "",
 
                 observateurId: ""
             },
 
             duplicate_description: {
-                
+
                 marquage: "",
 
                 chargeMaximaleUtile: "",
-                porteeMinimale: "",
-                distanceCentreGravite: "",
-                course: "Sans objet",
-                hauteurLevage: "Sans objet",
-                portee: "Sans objet",
-                porteFauxDeport: "Sans objet",
-                longueurCheminRoulement: "Sans objet",
-                dimensionPlateau: "Sans objet",
-                modeInstallation: "",
-                suiveModeInstallation: "",
+                hauteurElevation: "",
+                extensionPlateforme: "",
+                deversAutorise: "",
+                nombrePersonnes: "",
+                portee: "",
 
-                mecanisme: "",
-                suiveMecanisme: "",
-
-                suspentes: [
+                mecanismes: [
                     {
+                        index: 0,
+                        titre: "Elévation :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Hydraulique", status: false },
+                            { index: 1, titre: "Mécanique", status: false },
+                            { index: 2, titre: "Electro-hydraulique", status: false },
+                            { index: 3, titre: "Câbles", status: false },
+                            { index: 4, titre: "Chaînes", status: false },
+                            { index: 5, titre: "Sans objet", status: false }
+                        ]
+                    },
+                    {
+                        index: 1,
+                        titre: "Télescopage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Hydraulique", status: false },
+                            { index: 1, titre: "Mécanique", status: false },
+                            { index: 2, titre: "Electro-hydraulique", status: false },
+                            { index: 3, titre: "Câbles", status: false },
+                            { index: 4, titre: "Chaînes", status: false },
+                            { index: 5, titre: "Sans objet", status: false }
+                        ]
+                    },
+                    {
+                        index: 2,
+                        titre: "Orientation :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "en degrés :", status: false, content: " " },
+                            { index: 1, titre: "Sans objet", status: false }
+                        ]
+                    },
+                    {
+                        index: 3,
+                        titre: "Pendulaire :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Sans objet", status: false }
+                        ]
+                    },
+                    {
+                        index: 4,
+                        titre: "Rotation du poste de travail :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "poste fixe", status: false }
+                        ]
+                    },
+                ],
 
-                        hasCable: false,
-                        cable: "Câble :",
-                        hasDetailsCable: false,
-                        detailsCable: [
-                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                        ],
+                sourceEnergie: [
+                    { index: 0, titre: "Electrique", status: false },
+                    { index: 1, titre: "Thermique", status: false },
+                    { index: 2, titre: "Autre", status: false, content: " " },
+                ],
 
-                        hasChaineRouleau: false,
-                        chaineRouleau: "Chaîne(s) a rouleau ou mailles jointives :",
-                        hasDetailsChaineRouleau: false,
-                        detailsChaineRouleau: [
-                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                            { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                        ],
+                translation: [
+                    { index: 0, titre: "Electrique", status: false },
+                    { index: 1, titre: "Thermique", status: false },
+                    { index: 2, titre: "Manuelle", status: false },
+                    { index: 3, titre: "Autre", status: false, content: " " },
+                ],
 
-                        hasChaineMaillons: false,
-                        chaineMaillons: "Chaîne(s) à maillons calibrés :",
-                        hasDetailsChaineMaillons: false,
-                        detailsChaineMaillons: [
-                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                            { a: "Pas théorique :", valA: "", b: "Diamètre :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
-                        ],
+                chainesCablesElevation: [
+                    { index: 0, titre: "Sans objet", status: false },
+                    { index: 1, titre: "Elevation", status: false },
+                    { index: 2, titre: "Relevage", status: false },
+                    { index: 3, titre: "Téléscopage", status: false },
+                ],
 
-                        hasSangle: false,
-                        sangle: "Sangle de levage :",
-                        hasDetailsSangle: false,
-                        detailsSangle: [
-                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "", valC: "" },
-                            { a: "Section (mm2):", valA: "", b: "", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
-                        ],
+                caracteristiquesSuspenteOne: [
+                    {
+                        index: 0,
+                        titre: "Suspentes de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Nombre de chaînes ou câbles :", status: false, content: " " },
+                            { index: 1, titre: "Sans objet", status: false },
+                        ]
+                    },
+                    {
+                        index: 1,
+                        titre: "Câble(s) de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Composition :", status: false, content: " " },
+                            { index: 1, titre: "Diamètre théorique (mm) :", status: false, content: " " },
+                        ]
+                    },
+                    {
+                        index: 2,
+                        titre: "Chaînes(s) de levage / Caractéristiques :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Type de chaine :", status: false, content: " " },
+                            { index: 1, titre: "Pas théorique :", status: false, content: " " },
+                        ]
                     }
                 ],
 
+                caracteristiquesSuspenteTow: [
+                    {
+                        index: 0,
+                        titre: "Suspentes de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Nombre de chaînes ou câbles :", status: false, content: " " },
+                            { index: 1, titre: "Sans objet", status: false },
+                        ]
+                    },
+                    {
+                        index: 1,
+                        titre: "Câble(s) de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Composition :", status: false, content: " " },
+                            { index: 1, titre: "Diamètre théorique (mm) :", status: false, content: " " },
+                        ]
+                    },
+                    {
+                        index: 2,
+                        titre: "Chaînes(s) de levage / Caractéristiques :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Type de chaine :", status: false, content: " " },
+                            { index: 1, titre: "Pas théorique :", status: false, content: " " },
+                        ]
+                    }
+                ],
+
+                siPresence: "",
 
                 observateurId: ""
-            }
+            },
+
+
+
+
 
         }
     },
@@ -340,11 +510,12 @@ export default {
     watch: {
         description: {
             handler() {
+
                 const count = this.counter_watched++;
-                if (count != 0 && count != 1 && count != 2) {
+
+                if (count != 0 && count != 1) {
                     this.watched_sauvegarder = false;
                 }
-
                 this.notEmpty();
             },
             deep: true
@@ -353,40 +524,25 @@ export default {
 
     methods: {
 
-        checkeSuspentes() {
-            const arr = [
-                this.description["suspentes"][0]["hasCable"],
-                this.description["suspentes"][0]["hasChaineRouleau"],
-                this.description["suspentes"][0]["hasChaineMaillons"],
-                this.description["suspentes"][0]["hasSangle"],
-            ]
-
-            if(arr.includes(true)) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-
         checkCaracterstiques() {
 
             if (this.description.chargeMaximaleUtile == "") {
                 return false;
             }
 
-            if (this.description.porteeMinimale == "") {
+            if (this.description.hauteurElevation == "") {
                 return false;
             }
 
-            if (this.description.distanceCentreGravite == "") {
+            if (this.description.extensionPlateforme == "") {
                 return false;
             }
 
-            if (this.description.course == "") {
+            if (this.description.deversAutorise == "") {
                 return false;
             }
 
-            if (this.description.hauteurLevage == "") {
+            if (this.description.nombrePersonnes == "") {
                 return false;
             }
 
@@ -394,192 +550,227 @@ export default {
                 return false;
             }
 
-            if (this.description.porteFauxDeport == "") {
-                return false;
-            }
-
-            if (this.description.longueurCheminRoulement == "") {
-                return false;
-            }
-
-
-            if (this.description.dimensionPlateau == "") {
-                return false;
-            }
-
-            if (this.description.modeInstallation == "") {
-                return false;
-            }
-
             return true;
+        },
+
+        checkMecanismes() {
+
+
+            const arr = [
+                this.description.mecanismes[0].status,
+                this.description.mecanismes[1].status,
+                this.description.mecanismes[2].status,
+                this.description.mecanismes[3].status,
+                this.description.mecanismes[4].status
+            ]
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkSourceEnergie() {
+
+            const arr = [
+                this.description.sourceEnergie[0].status,
+                this.description.sourceEnergie[1].status,
+                this.description.sourceEnergie[2].status
+            ]
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkTranslation() {
+            const arr = [
+                this.description.translation[0].status,
+                this.description.translation[1].status,
+                this.description.translation[2].status,
+                this.description.translation[3].status
+            ]
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkChainesCablesElevation() {
+            const arr = [
+                this.description.chainesCablesElevation[0].status,
+                this.description.chainesCablesElevation[1].status,
+                this.description.chainesCablesElevation[2].status,
+                this.description.chainesCablesElevation[3].status
+            ]
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkCaracteristiquesSuspenteOne() {
+            
+            const arr = [
+                this.description.caracteristiquesSuspenteOne[0].status,
+                this.description.caracteristiquesSuspenteOne[1].status,
+                this.description.caracteristiquesSuspenteOne[2].status
+            ]
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkCaracteristiquesSuspenteTow() {
+
+            const arr = [
+                this.description.caracteristiquesSuspenteTow[0].status,
+                this.description.caracteristiquesSuspenteTow[1].status,
+                this.description.caracteristiquesSuspenteTow[2].status
+            ];
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
         },
 
         checkProperties() {
 
+            const arr = [
+                this.checkCaracterstiques(),
+                this.checkMecanismes(),
+                this.checkSourceEnergie(),
+                this.checkTranslation(),
+                this.checkChainesCablesElevation(),
+                this.checkCaracteristiquesSuspenteOne(),
+                this.checkCaracteristiquesSuspenteTow(),
+            ];
 
-            if (this.description.marquage == "") {
-                return false;
+            let checker = arr => arr.every(Boolean);
+
+
+            if(checker(arr) == true) {
+                return true
+            } else {
+                return false;  
             }
 
-
-            if (this.description.chargeMaximaleUtile == "") {
-                return false;
-            }
-
-            if (this.description.porteeMinimale == "") {
-                return false;
-            }
-
-            if (this.description.distanceCentreGravite == "") {
-                return false;
-            }
-
-            if (this.description.course == "") {
-                return false;
-            }
-
-            if (this.description.hauteurLevage == "") {
-                return false;
-            }
-
-            if (this.description.portee == "") {
-                return false;
-            }
-
-            if (this.description.porteFauxDeport == "") {
-                return false;
-            }
-
-            if (this.description.longueurCheminRoulement == "") {
-                return false;
-            }
-
-
-            if (this.description.dimensionPlateau == "") {
-                return false;
-            }
-
-            if (this.description.modeInstallation == "") {
-                return false;
-            }
-
-            if (this.description.mecanisme == "") {
-                return false;
-            }
-
-            return true;
         },
 
         notEmpty() {
-            this.$emit("changeColorDescription_famille1_lev1", this.checkProperties());
+
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorMecanismes = this.checkMecanismes();
+            this.colorSourceEnergie = this.checkSourceEnergie();
+            this.colorTranslation = this.checkTranslation();
+            this.colorChainesCablesElevation = this.checkChainesCablesElevation();
+            this.colorCaracteristiquesSuspenteOne = this.checkCaracteristiquesSuspenteOne();
+            this.colorCaracteristiquesSuspenteTow = this.checkCaracteristiquesSuspenteTow();
+
+            this.$emit("changeColorDescription_famille4_lev4", this.checkProperties());
         },
 
         saisirChargeMaximaleUtile(e) {
             this.description.chargeMaximaleUtile = e.target.value;
-
         },
 
-        saisirPorteeMinimale(e) {
-            this.description.porteeMinimale = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirHauteurElevation(e) {
+            this.description.hauteurElevation = e.target.value;
         },
 
-        saisirDistanceCentreGravite(e) {
-            this.description.distanceCentreGravite = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirExtensionPlateforme(e) {
+            this.description.extensionPlateforme = e.target.value;
         },
 
-        saisirCourse(e) {
-            this.description.course = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirDeversAutorise(e) {
+            this.description.deversAutorise = e.target.value;
         },
 
-        saisirHauteurLevage(e) {
-            this.description.hauteurLevage = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirNombrePersonnes(e) {
+            this.description.nombrePersonnes = e.target.value;
         },
 
         saisirPortee(e) {
             this.description.portee = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        saisirPorteFauxDeport(e) {
-            this.description.porteFauxDeport = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        saisirLongueurCheminRoulement(e) {
-            this.description.longueurCheminRoulement = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        saisirDimensionPlateau(e) {
-            this.description.dimensionPlateau = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
         },
 
 
-        saisirModeInstallation(e) {
-            this.description.modeInstallation = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirMecanisme(index) {
+            this.description.mecanismes[index].status = !this.description.mecanismes[index].status;
+            this.notEmpty();
         },
 
-
-        saisirSuiveModeInstallation(e) {
-            this.description.suiveModeInstallation = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirSousMecanisme(index, i) {
+            this.description.mecanismes[index].tab[i].status = !this.description.mecanismes[index].tab[i].status;
+            this.notEmpty();
         },
 
-        saisirMecanisme(e) {
-            this.description.mecanisme = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirContentMecanisme(e, index, i) {
+            this.description.mecanismes[index].tab[i].content = e.target.value;
+            this.notEmpty();
         },
 
-        saisirSuiveMecanisme(e) {
-            this.description.suiveMecanisme = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirSourceEnergie(index) {
+            this.description.sourceEnergie[index].status = !this.description.sourceEnergie[index].status;
+            this.notEmpty();
         },
 
-        saisirCable() {
-            this.description["suspentes"][0]["hasCable"] = Boolean(!this.description["suspentes"][0]["hasCable"]);
-            this.description["suspentes"][0]["hasDetailsCable"] = Boolean(!this.description["suspentes"][0]["hasDetailsCable"]);
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirContentSourceEnergie(e, index) {
+            this.description.sourceEnergie[index].content = e.target.value;
+            this.notEmpty();
         },
 
-        chaineRouleau() {
-            this.description["suspentes"][0]["hasChaineRouleau"] = Boolean(!this.description["suspentes"][0]["hasChaineRouleau"]);
-            this.description["suspentes"][0]["hasDetailsChaineRouleau"] = Boolean(!this.description["suspentes"][0]["hasDetailsChaineRouleau"]);
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirTranslation(index) {
+            this.description.translation[index].status = !this.description.translation[index].status;
+            this.notEmpty();
         },
 
-        chaineMaillons() {
-            this.description["suspentes"][0]["hasChaineMaillons"] = Boolean(!this.description["suspentes"][0]["hasChaineMaillons"]);
-            this.description["suspentes"][0]["hasDetailsChaineMaillons"] = Boolean(!this.description["suspentes"][0]["hasDetailsChaineMaillons"]);
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirContentTranslation(e, index) {
+            this.description.translation[index].content = e.target.value;
+            this.notEmpty();
         },
 
-        sangle() {
-            this.description["suspentes"][0]["hasSangle"] = Boolean(!this.description["suspentes"][0]["hasSangle"]);
-            this.description["suspentes"][0]["hasDetailsSangle"] = Boolean(!this.description["suspentes"][0]["hasDetailsSangle"]);
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirChainesCablesElevation(index) {
+            this.description.chainesCablesElevation[index].status = !this.description.chainesCablesElevation[index].status;
+            this.notEmpty();
         },
+
+        saisirCaracteristiquesSuspenteOne(index) {
+            this.description.caracteristiquesSuspenteOne[index].status = !this.description.caracteristiquesSuspenteOne[index].status;
+        },
+
+        saisirSousCaracteristiquesSuspenteOne(index, i) {
+            this.description.caracteristiquesSuspenteOne[index].tab[i].status = !this.description.caracteristiquesSuspenteOne[index].tab[i].status;
+        },
+
+        saisirContentCaracteristiquesSuspenteOne(e, index, i) {
+            this.description.caracteristiquesSuspenteOne[index].tab[i].content = e.target.value;
+        },
+
+        saisirCaracteristiquesSuspenteTow(index) {
+            this.description.caracteristiquesSuspenteTow[index].status = !this.description.caracteristiquesSuspenteTow[index].status;
+        },
+
+        saisirSousCaracteristiquesSuspenteTow(index, i) {
+            this.description.caracteristiquesSuspenteTow[index].tab[i].status = !this.description.caracteristiquesSuspenteTow[index].tab[i].status;
+        },
+
+        saisirContentCaracteristiquesSuspenteTow(e, index, i) {
+            this.description.caracteristiquesSuspenteTow[index].tab[i].content = e.target.value;
+        },
+
 
         sauvegarde() {
 
@@ -601,9 +792,8 @@ export default {
                     this.description = this.duplicate_description;
 
                     this.flagReset = false;
-                    this.colorCaracteristiques = this.checkCaracterstiques();
-                    this.colorSuspentes = this.checkeSuspentes();
-                    this.$emit("changeColorDescription_famille1_lev1", false);
+                    this.$emit("changeColorDescription_famille4_lev4", false);
+                    return this.notEmpty();
 
                 })
                 .catch((error) => {
@@ -637,10 +827,10 @@ export default {
                     this.description = result.data.description;
                 }
 
-                this.colorCaracteristiques = this.checkCaracterstiques();
-                this.colorSuspentes = this.checkeSuspentes();
                 this.watched_sauvegarder = true;
-                return this.notEmpty();
+
+                this.notEmpty();
+
             })
             .catch((error) => {
                 console.log(error)
@@ -650,7 +840,6 @@ export default {
 </script>
 
 <style scoped>
-
 .descriptions {
     margin-top: 10px;
     margin-bottom: 100px;
@@ -731,7 +920,8 @@ table>tr:nth-child(6)>td:nth-child(3) {
     color: red;
 }
 
-input , select {
+input,
+select {
     height: 25px;
     font-size: medium;
 }
@@ -743,7 +933,8 @@ td div p {
     align-items: center;
 }
 
-.sauvegarder , .reset {
+.sauvegarder,
+.reset {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -782,5 +973,4 @@ td div p {
     border: 0px;
     border-radius: 5px;
 }
-
 </style>

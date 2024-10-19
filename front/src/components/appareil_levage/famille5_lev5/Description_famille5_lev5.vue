@@ -188,7 +188,7 @@
 </template>
 
 <script>
-import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions"
+import Descriptions from "@/requests/appareil_levage/famille4_lev4 copy/Descriptions"
 import Observateurs from "@/requests/Observateurs"
 export default {
     name: 'renseignement-component',
@@ -471,7 +471,7 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorDescription_famille1_lev1", this.checkProperties());
+            this.$emit("changeColorDescription_famille5_lev5", this.checkProperties());
         },
 
         saisirChargeMaximaleUtile(e) {
@@ -603,7 +603,7 @@ export default {
                     this.flagReset = false;
                     this.colorCaracteristiques = this.checkCaracterstiques();
                     this.colorSuspentes = this.checkeSuspentes();
-                    this.$emit("changeColorDescription_famille1_lev1", false);
+                    this.$emit("changeColorDescription_famille5_lev5", false);
 
                 })
                 .catch((error) => {

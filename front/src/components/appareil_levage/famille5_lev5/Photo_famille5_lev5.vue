@@ -18,7 +18,7 @@
 </template>
   
 <script>
-import Photos from "@/requests/appareil_levage/famille1_lev1/Photos"
+import Photos from "@/requests/appareil_levage/famille4_lev4 copy/Photos"
 export default {
     name: 'photo-component',
     data() {
@@ -61,7 +61,7 @@ export default {
                 if(result) {
                     this.imgSrc = result.filename;
                     this.flagReset = true;
-                    this.$emit("changeColorPhoto_famille1_lev1", true);
+                    this.$emit("changeColorPhoto_famille5_lev5", true);
                 }
             })
             .catch((error) => {
@@ -77,7 +77,7 @@ export default {
                     this.flagReset = false;
                     this.file = null;
                     this.imgSrc = null;
-                    this.$emit("changeColorPhoto_famille1_lev1", false);
+                    this.$emit("changeColorPhoto_famille5_lev5", false);
                 }
 
             })
@@ -95,7 +95,7 @@ export default {
                     this.flagReset = true;
                     this.flagImg = true;
                     this.imgSrc = result.data.img;
-                    this.$emit("changeColorPhoto_famille1_lev1", true);
+                    this.$emit("changeColorPhoto_famille5_lev5", true);
                 }
             })
             .catch((error) => {

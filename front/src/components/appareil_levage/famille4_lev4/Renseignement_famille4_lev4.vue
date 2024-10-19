@@ -186,8 +186,8 @@
 
 <script>
 
-import Renseignement from "@/requests/appareil_levage/famille1_lev1/Renseignement"
-import Completed from "@/requests/appareil_levage/famille1_lev1/completed";
+import Renseignement from "@/requests/appareil_levage/famille4_lev4/Renseignement"
+import Completed from "@/requests/appareil_levage/famille4_lev4/completed";
 import Observateurs from "@/requests/Observateurs"
 import Insert from "@/components/models/Insert.vue"
 
@@ -305,7 +305,7 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorRenseignement_famille1_lev1", this.checkProperties())
+            this.$emit("changeColorRenseignement_famille4_lev4", this.checkProperties())
         },
 
         handelInsert(value) {
@@ -466,7 +466,7 @@ export default {
 
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
-                        this.$emit("changeColorRenseignement_famille_ac1", false);
+                        this.$emit("changeColorRenseignement_famille4_lev4", false);
                     }
                 })
                 .catch((error) => {
