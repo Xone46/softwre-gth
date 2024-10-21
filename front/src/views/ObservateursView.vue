@@ -127,9 +127,10 @@ export default {
             categories : [],
             marquage: [
                 "Appareil CE",
-                "Appareil Non CE",
+                "Sans Objet",
+                "Absence de marquage",
                 "Appareil Epsilon",
-                "Sans Objet"
+                "Non CE ni Epsilon",
             ],
 
             verifications: [

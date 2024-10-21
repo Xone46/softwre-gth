@@ -408,7 +408,7 @@
 </template>
 
 <script>
-import Examens from "@/requests/appareil_levage/famille4_lev4 copy/Examens"
+import Examens from "@/requests/appareil_levage/famille5_lev5/Examens"
 import Commentaires from "@/requests/commentaire";
 import Reserve from "@/components/models/Reserve.vue"
 

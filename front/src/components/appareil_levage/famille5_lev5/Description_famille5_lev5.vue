@@ -13,8 +13,9 @@
 
             <tr>
                 <td>B-2</td>
-                <td :class="[colorCaracteristiques == true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET
-                    DE CHARGE</td>
+                <td :class="[colorCaracteristiques == true ? 'saved' : 'not-saved']">
+                    CARACTERISTIQUES DIMENSIONNELLES ET DE CHARGE
+                </td>
                 <td>
                     <p>Charge maximale utile (kg) : <input type="text" @input="saisirChargeMaximaleUtile($event)"
                             :value="description.chargeMaximaleUtile"> A la portée minimale de (m) : <input type="text"
@@ -54,100 +55,6 @@
                 <td>B-4</td>
                 <td :class="[colorSuspentes == true ? 'saved' : 'not-saved']">SUSPENTES DE LEVAGE</td>
                 <td>
-                    <div>
-                        <p><input type="checkbox" @input="saisirCable"
-                                :checked='description["suspentes"][0]["hasCable"]'>Câble :</p>
-                        <p v-if='description["suspentes"][0]["hasCable"]'>
-                            Nombre : <input type="text" v-model="description['suspentes'][0]['detailsCable'][0]['valA']">
-                            Composition : <input type="text"
-                                v-model="description['suspentes'][0]['detailsCable'][0]['valB']">
-                            Diamètre (mm) : <input type="text"
-                                v-model="description['suspentes'][0]['detailsCable'][0]['valC']"></p>
-                        <p v-if='description["suspentes"][0]["hasCable"]'>
-                            Moufflage : <input type="text"
-                                v-model="description['suspentes'][0]['detailsCable'][1]['valA']">
-                            Nombre de brins : <input type="text"
-                                v-model="description['suspentes'][0]['detailsCable'][1]['valB']">
-                        </p>
-                    </div>
-
-                    <div>
-                        <p><input type="checkbox" @input="chaineRouleau"
-                                :checked='description["suspentes"][0]["hasChaineRouleau"]'>Chaîne(s) a rouleau ou
-                            mailles jointives :</p>
-                        <p v-if='description["suspentes"][0]["hasChaineRouleau"]'>
-                            Nombre : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineRouleau'][0]['valA']">
-                            Type : <select v-model="description['suspentes'][0]['detailsChaineRouleau'][0]['valB']">
-                                <option value=""></option>
-                                <option value="A rouleau">A rouleau</option>
-                                <option value="A rouleau">A maille jointive</option>
-                            </select>
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasChaineRouleau"]'>
-                            Pas théorique : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineRouleau'][1]['valA']">
-                            Combinaison : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineRouleau'][1]['valB']">
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasChaineRouleau"]'>
-                            Moufflage : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineRouleau'][2]['valA']">
-                            Nombre de brins : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineRouleau'][2]['valB']">
-                        </p>
-                    </div>
-
-                    <div>
-                        <p><input type="checkbox" @input="chaineMaillons"
-                                :checked='description["suspentes"][0]["hasChaineMaillons"]'>Chaîne(s) à maillons
-                            calibrés :</p>
-                        <p v-if='description["suspentes"][0]["hasChaineMaillons"]'>
-                            Nombre : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineMaillons'][0]['valA']">
-                            Type :
-                            <select v-model="description['suspentes'][0]['detailsChaineMaillons'][0]['valB']">
-                                <option value=""></option>
-                                <option value="A maillons courts">A maillons courts</option>
-                                <option value="A maillons longs">A maillons longs</option>
-                            </select>
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasChaineMaillons"]'>
-                            Pas: <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineMaillons'][1]['valA']">
-                            Diamètre :<input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineMaillons'][1]['valB']">
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasChaineMaillons"]'>
-                            Moufflage : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineMaillons'][2]['valA']">
-                            Nombre de brins : <input type="text"
-                                v-model="description['suspentes'][0]['detailsChaineMaillons'][2]['valB']">
-                        </p>
-                    </div>
-
-
-                    <div>
-                        <p><input type="checkbox" @input="sangle"
-                                :checked='description["suspentes"][0]["hasSangle"]'>Sangle de levage :</p>
-                        <p v-if='description["suspentes"][0]["hasSangle"]'>hasSangle
-                            Nombre : <input type="text" v-model="description['suspentes'][0]['detailsSangle'][0]['valA']">
-                            Composition :<input type="text"
-                                v-model="description['suspentes'][0]['detailsSangle'][0]['valB']">
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasSangle"]'>
-                            Section (mm2): <input type="text"
-                                v-model="description['suspentes'][0]['detailsSangle'][1]['valA']">
-                        </p>
-                        <p v-if='description["suspentes"][0]["hasSangle"]'>
-                            Moufflage : <input type="text"
-                                v-model="description['suspentes'][0]['detailsSangle'][2]['valA']">
-                            Nombre de brins : <input type="text"
-                                v-model="description['suspentes'][0]['detailsSangle'][2]['valB']">
-                        </p>
-
-                    </div>
-
                 </td>
             </tr>
 
@@ -155,17 +62,6 @@
                 <td>B-3</td>
                 <td :class="[description.mecanisme.length != 0 ? 'saved' : 'not-saved']">MECANISME ET MOUVEMENT</td>
                 <td>
-                    <p>
-                        <select @change="saisirMecanisme($event)" :value="description.mecanisme">
-                            <option value=""></option>
-                            <option value="Hydraulique">Hydraulique</option>
-                            <option value="Treuil">Treuil</option>
-                            <option value="Tambour">Tambour</option>
-                            <option value="Autre :">Autre</option>
-                        </select>
-                        <input type="text" v-if="description.mecanisme == 'Autre :'" :value="description.suiveMecanisme"
-                            @input="saisirSuiveMecanisme($event)">
-                    </p>
                 </td>
             </tr>
 
@@ -188,7 +84,7 @@
 </template>
 
 <script>
-import Descriptions from "@/requests/appareil_levage/famille4_lev4 copy/Descriptions"
+import Descriptions from "@/requests/appareil_levage/famille5_lev5/Descriptions"
 import Observateurs from "@/requests/Observateurs"
 export default {
     name: 'renseignement-component',

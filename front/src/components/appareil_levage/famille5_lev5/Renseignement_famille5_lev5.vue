@@ -56,13 +56,14 @@
                     <td :class="[renseignement.typeAppareil.length != 0 ? 'saved' : 'not-saved']">Type d'appareil:</td>
                     <td>
                         <select @change="saisirTypeAppareil($event)" :value="renseignement.typeAppareil">
-                            <option value="Poutres roulantes (non motorisée)">Poutres roulantes (non motorisée)</option>
-                            <option value="Palans manuels">Palans manuels</option>
-                            <option value="Grues d'atelier (non motorisée)">Grues d'atelier (non motorisée)</option>
-                            <option value="Sapines">Sapines</option>
-                            <option value="Potences (Non motorisées)">Potences (Non motorisées)</option>
-                            <option value="Treuils manuels">Treuils manuels</option>
-                            <option value="Crics et vérins">Crics et vérins</option>
+                            <option value="Pont élévateur à 4 colonnes">Pont élévateur à 4 colonnes</option>
+                            <option value="Pont élévateur à 2 colonnes">Pont élévateur à 2 colonnes</option>
+                            <option value="Pont élévateur à pantographe">Pont élévateur à pantographe</option>
+                            <option value="Pont élévateur à ciseau">Pont élévateur à ciseau</option>
+                            <option value="Pont élévateur à parallélogramme">Pont élévateur à parallélogramme</option>
+                            <option value="Pont élévateur à vérin porteur">Pont élévateur à vérin porteur</option>
+                            <option value="Pont élévateur à colonnes indépendantes">Pont élévateur à colonnes indépendantes</option>
+                            <option value="Pont élévateur mobile">Pont élévateur mobile</option>
                             <option value="Autre : ">Autre</option>
                         </select>
                     </td>
@@ -73,57 +74,46 @@
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.miseEnServiceRapport.length != 0 ? 'saved' : 'not-saved']">(Mise en
-                        service) Rapport de vérification avant mise ou remise en service: </td>
+                    <td :class="[renseignement.typeVerification.length != 0 ? 'saved' : 'not-saved']">Type de vérification: </td>
                     <td>
-                        <select @change="saisirMiseEnServiceRapport($event)"
-                            :value="renseignement.miseEnServiceRapport">
-                            <option value="Présenté">Présenté</option>
-                            <option value="Non présenté">Non présenté</option>
+                        <select @change="saisirTypeVerification($event)" :value="renseignement.typeVerification">
+                            <option v-for="(item) in listeTypeVerification" :key="item.index" :value="item.titre">{{ item.titre }}</option>
+                        </select>
+                    </td>
+
+                    
+                    <td v-if="renseignement.typeVerification == 'Autre motif :'">
+                            <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('typeAppareil')">voir</button>
+                    </td>
+
+                    <td v-if="renseignement.typeVerification == 'Date de dernière vérification périodique :'">
+                            <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('typeAppareil')">voir</button>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td :class="[renseignement.documentationTechniqueConstructeur.length != 0 ? 'saved' : 'not-saved']">Documentation technique constructeur (notice d'instructions, de montage, d'utilisation): </td>
+                    <td>
+                        <select @change="saisirDocumentationTechniqueConstructeur($event)" :value="renseignement.documentationTechniqueConstructeur">
+                            <option value="Fournie">Fournie</option>
+                            <option value="Non fournie">Non fournie</option>
                         </select>
                     </td>
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.miseEnServiceEpreuves.length != 0 ? 'saved' : 'not-saved']">(Mise en service) Epreuves: </td>
-                    <td>
-                        <select @change="saisirMiseEnServiceEpreuves($event)"
-                            :value="renseignement.miseEnServiceEpreuves">
-                            <option value="Réalisées le : ">Réalisées le</option>
-                            <option value="Absence de renseignement">Absence de renseignement</option>
-                        </select>
-                    </td>
-                    <td v-if="renseignement.miseEnServiceEpreuves == 'Réalisées le : '">
-                        <button :class="[renseignement.suiveMiseEnServiceEpreuves.length != 0 ? 'voir' : 'not-voir']"
-                            @click="handelInsert('miseEnServiceEpreuves')">voir</button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td :class="[renseignement.dateDerniereVerficationPeriodique.length != 0 ? 'saved' : 'not-saved']">
-                        Date de la dernière vérification périodique:
+                    <td :class="[renseignement.epreuves.length != 0 ? 'saved' : 'not-saved']">
+                        Epreuves:
                     </td>
 
                     <td>
-                        <select @change="saisirDateDerniereVerficationPeriodique($event)"
-                            :value="renseignement.dateDerniereVerficationPeriodique">
-                            <option value="Absence de renseignement">Absence de renseignement</option>
-                            <option value="Effectuée le : ">Effectuée le</option>
+                        <select @change="saisirEpreuves($event)"  :value="renseignement.epreuves">
+                            <option value="Réalisées dans le cadre de la mise ou remise en service de l'appareil">Réalisées dans le cadre de la mise ou remise en service de l’appareil</option>
+                            <option value="Non réalisées dans le cadre de cette mission">Non réalisées dans le cadre de cette mission</option>
                         </select>
                     </td>
 
-                    <td v-if="renseignement.dateDerniereVerficationPeriodique == 'Effectuée le : '">
-                        <button
-                            :class="[renseignement.suiveDateDerniereVerficationPeriodique.length != 0 ? 'voir' : 'not-voir']"
-                            @click="handelInsert('dateDerniereVerficationPeriodique')">voir</button>
-                    </td>
-
-                    <td v-if="renseignement.dateDerniereVerficationPeriodique == 'Effectuée le : '">
-                        <select @change="saisirRapport($event)" :value="renseignement.rapport">
-                            <option value="Rapport : Présenté">Rapport : Présenté</option>
-                            <option value="Rapport : Non présenté">Rapport : Non présenté</option>
-                        </select>
-                    </td>
                 </tr>
 
 
@@ -132,6 +122,8 @@
                     <td>
 
                         <select @change="saisirEssaischarge($event)" :value="renseignement.essaischarge">
+                            <option value="Réalisés lors des épreuves">Réalisés lors des épreuves
+                            </option>
                             <option value="Réalisé avec la Charge maximale utile">Réalisé avec la Charge maximale utile
                             </option>
                             <option value="Réalisé sous charge de (kg) : ">Réalisé sous charge de (kg)</option>
@@ -139,8 +131,7 @@
                                 les essais</option>
                             <option value="Absence de tableau des charges pour réaliser les essais">Absence de tableau
                                 des charges pour réaliser les essais</option>
-                            <option value="Non réalisé. Voir observation critique">Non réalisé. Voir observation
-                                critique</option>
+                            <option value="Non réalisé. (Voir observation critique)">Non réalisé. (Voir observation critique)</option>
                         </select>
                     </td>
                     <td v-if="renseignement.essaischarge == 'Réalisé sous charge de (kg) : '">
@@ -149,10 +140,24 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td :class="[renseignement.examenMontageInstallation.length != 0 ? 'saved' : 'not-saved']">
+                        Examen de montage et d'installation:
+                    </td>
+
+                    <td>
+                        <select @change="saisirExamenMontageInstallation($event)" :value="renseignement.examenMontageInstallation">
+                            <option value="Réalisées">Réalisées</option>
+                            <option value="Voir observation(s)">Voir observation(s)</option>
+                        </select>
+                    </td>
+
+                </tr>
+
 
                 <tr>
-                    <td :class="[renseignement.modification.length != 0 ? 'saved' : 'not-saved']">Modification(s)
-                        apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l’appareil examiné:</td>
+                    <td :class="[renseignement.modification.length != 0 ? 'saved' : 'not-saved']">
+                        Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l'appareil examiné:</td>
                     <td>
                         <select @change="saisirModification($event)" :value="renseignement.modification">
                             <option value="Sans objet">Sans objet</option>
@@ -164,6 +169,8 @@
                             @click="handelInsert('modification')">voir</button>
                     </td>
                 </tr>
+
+
 
 
             </table>
@@ -186,8 +193,8 @@
 
 <script>
 
-import Renseignement from "@/requests/appareil_levage/famille4_lev4 copy/Renseignement"
-import Completed from "@/requests/appareil_levage/famille4_lev4 copy/completed";
+import Renseignement from "@/requests/appareil_levage/famille5_lev5/Renseignement"
+import Completed from "@/requests/appareil_levage/famille5_lev5/completed";
 import Observateurs from "@/requests/Observateurs"
 import Insert from "@/components/models/Insert.vue"
 
@@ -199,7 +206,38 @@ export default {
             watched_sauvegarder: false,
             falgInsert: false,
             flagReset: false,
+            listeTypeVerification : [
+                { 
+                    index : 0,
+                    status : false,
+                    titre : "Mise en service"
+                },
+                { 
+                    index : 1,
+                    status : false,
+                    titre : "Préalable a la remise en service"
+                },
+                { 
+                    index : 2,
+                    status : false,
+                    titre : "A la suite d'un démontage et remontage"
+                },
+                { 
+                    index : 3,
+                    status : false,
+                    titre : "Autre motif :",
+                    content : " "
+                },
+                { 
+                    index : 4,
+                    status : false,
+                    titre : "Date de dernière vérification périodique :", 
+                    contsent : " "
+                },
+            ],
+
             renseignement: {
+
                 constructeur: "",
                 typeConstructeur: "",
                 anneeMiseService: "",
@@ -209,17 +247,17 @@ export default {
                 localisation: "",
                 typeAppareil: "",
                 suiveTypeAppareil: "",
-                miseEnServiceRapport: "",
-                miseEnServiceEpreuves: "",
-                suiveMiseEnServiceEpreuves: "",
-                dateDerniereVerficationPeriodique: "",
-                suiveDateDerniereVerficationPeriodique: "",
-                rapport: "",
+                typeVerification: "",
+                suiveTypeVerification : "",
+                documentationTechniqueConstructeur : "",
+                epreuves : "",
                 essaischarge: "",
-                suiveEssaischarge: "",
+                suiveEssaischarge : "",
+                examenMontageInstallation : "",
                 modification: "",
                 suiveModification: "",
                 observateurId: "",
+
             },
 
             renseignementId: null
@@ -253,60 +291,12 @@ export default {
         checkProperties() {
 
 
-            if (this.renseignement.constructeur == "") {
-                return false;
-            }
-
-            if (this.renseignement.typeConstructeur == "") {
-                return false;
-            }
-
-            if (this.renseignement.anneeMiseService == "") {
-                return false;
-            }
-
-            if (this.renseignement.numeroSerie == "") {
-                return false;
-            }
-
-            if (this.renseignement.numeroInterne == "") {
-                return false;
-            }
-
-            if (this.renseignement.localisation == "") {
-                return false;
-            }
-
-            if (this.renseignement.typeAppareil == "") {
-                return false;
-            }
-
-            if (this.renseignement.miseEnServiceRapport == "") {
-                return false;
-            }
-
-            if (this.renseignement.miseEnServiceEpreuves == "") {
-                return false;
-            }
-
-            if (this.renseignement.dateDerniereVerficationPeriodique == "") {
-                return false;
-            }
-
-            if (this.renseignement.essaischarge == "") {
-                return false;
-            }
-
-            if (this.renseignement.modification == "") {
-                return false;
-            }
-
-            return true;
         },
 
         notEmpty() {
             this.$emit("changeColorRenseignement_famille5_lev5", this.checkProperties())
         },
+
 
         handelInsert(value) {
 
@@ -318,14 +308,6 @@ export default {
                 this.valueInsert = this.renseignement.suiveTypeAppareil;
             }
 
-            if (value == "miseEnServiceEpreuves") {
-                this.valueInsert = this.renseignement.suiveMiseEnServiceEpreuves;
-            }
-
-            if (value == "dateDerniereVerficationPeriodique") {
-                this.valueInsert = this.renseignement.suiveDateDerniereVerficationPeriodique;
-            }
-
             if (value == "essaischarge") {
                 this.valueInsert = this.renseignement.suiveEssaischarge;
             }
@@ -333,6 +315,7 @@ export default {
             if (value == "modification") {
                 this.valueInsert = this.renseignement.suiveModification;
             }
+
 
             this.typeInsert = value;
             this.falgInsert = true;
@@ -369,27 +352,25 @@ export default {
             }
         },
 
-        saisirMiseEnServiceRapport(e) {
-            this.renseignement.miseEnServiceRapport = e.target.value;
-        },
+        saisirTypeVerification(e) {
 
-        saisirMiseEnServiceEpreuves(e) {
-            this.renseignement.miseEnServiceEpreuves = e.target.value;
-            if(this.renseignement.miseEnServiceEpreuves != "Réalisées le : ")  {
-                this.renseignement.suiveMiseEnServiceEpreuves = "";
+            this.renseignement.typeVerification = e.target.value;
+
+            if(this.renseignement.typeVerification != "Autre motif :")  {
+                this.renseignement.suiveTypeVerification = "";
+            }
+            
+            if(this.renseignement.typeVerification != "Date de dernière vérification périodique :")  {
+                this.renseignement.suiveTypeVerification = "";
             }
         },
 
-        saisirDateDerniereVerficationPeriodique(e) {
-            this.renseignement.dateDerniereVerficationPeriodique = e.target.value;
-            if(this.renseignement.dateDerniereVerficationPeriodique != "Effectuée le :")  {
-                this.renseignement.suiveDateDerniereVerficationPeriodique = "";
-            }
-             
+        saisirDocumentationTechniqueConstructeur(e) {
+            this.renseignement.documentationTechniqueConstructeur = e.target.value;
         },
 
-        saisirRapport(e) {
-            this.renseignement.rapport = e.target.value;
+        saisirEpreuves(e) {
+            this.renseignement.epreuves = e.target.value;
         },
 
         saisirEssaischarge(e) {
@@ -397,6 +378,10 @@ export default {
             if(this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
                 this.renseignement.suiveEssaischarge = "";
             }
+        },
+
+        saisirExamenMontageInstallation(e) {
+            this.renseignement.examenMontageInstallation = e.target.value;
         },
 
         saisirModification(e) {
@@ -415,14 +400,6 @@ export default {
 
             if (type == "typeAppareil") {
                 this.renseignement.suiveTypeAppareil = event;
-            }
-
-            if (type == "miseEnServiceEpreuves") {
-                this.renseignement.suiveMiseEnServiceEpreuves = event;
-            }
-
-            if (type == "dateDerniereVerficationPeriodique") {
-                this.renseignement.suiveDateDerniereVerficationPeriodique = event;
             }
 
             if (type == "essaischarge") {
@@ -453,20 +430,18 @@ export default {
                         this.renseignement.numeroInterne = "",
                         this.renseignement.typeAppareil = "",
                         this.renseignement.suiveTypeAppareil = "",
-                        this.renseignement.miseEnServiceRapport = "",
-                        this.renseignement.miseEnServiceEpreuves = "",
-                        this.renseignement.suiveMiseEnServiceEpreuves = "",
-                        this.renseignement.dateDerniereVerficationPeriodique = "",
-                        this.renseignement.suiveDateDerniereVerficationPeriodique = "",
-                        this.renseignement.rapport = "",
+                        this.renseignement.typeVerification = "",
+                        this.renseignement.documentationTechniqueConstructeur = "",
+                        this.renseignement.epreuves = "",
                         this.renseignement.essaischarge = "",
                         this.renseignement.suiveEssaischarge = "",
+                        this.renseignement.examenMontageInstallation = "",
                         this.renseignement.modification = "",
                         this.renseignement.suiveModification = "",
 
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
-                        this.$emit("changeColorRenseignement_famille_ac1", false);
+                        this.$emit("changeColorRenseignement_famille5_lev1", false);
                     }
                 })
                 .catch((error) => {
@@ -535,17 +510,16 @@ export default {
                             this.renseignement.localisation = result.data.renseignement.localisation;
                             this.renseignement.typeAppareil = result.data.renseignement.typeAppareil;
                             this.renseignement.suiveTypeAppareil = result.data.renseignement.suiveTypeAppareil;
-                            this.renseignement.miseEnServiceRapport = result.data.renseignement.miseEnServiceRapport;
-                            this.renseignement.miseEnServiceEpreuves = result.data.renseignement.miseEnServiceEpreuves;
-                            this.renseignement.suiveMiseEnServiceEpreuves = result.data.renseignement.suiveMiseEnServiceEpreuves;
-                            this.renseignement.dateDerniereVerficationPeriodique = result.data.renseignement.dateDerniereVerficationPeriodique;
-                            this.renseignement.suiveDateDerniereVerficationPeriodique = result.data.renseignement.suiveDateDerniereVerficationPeriodique;
-                            this.renseignement.rapport = result.data.renseignement.rapport;
+                            this.renseignement.typeVerification = result.data.renseignement.typeVerification;
+                            this.renseignement.documentationTechniqueConstructeur = result.data.renseignement.documentationTechniqueConstructeur;
+                            this.renseignement.epreuves = result.data.renseignement.epreuves;
                             this.renseignement.essaischarge = result.data.renseignement.essaischarge;
                             this.renseignement.suiveEssaischarge = result.data.renseignement.suiveEssaischarge;
+                            this.renseignement.examenMontageInstallation = result.data.renseignement.examenMontageInstallation;
                             this.renseignement.modification = result.data.renseignement.modification;
                             this.renseignement.suiveModification = result.data.renseignement.suiveModification;
                             this.renseignement.observateurId = result.data.renseignement.observateurId;
+
                         })
                         .catch((error) => {
                             console.log(error)

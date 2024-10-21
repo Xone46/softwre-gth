@@ -107,7 +107,7 @@
 </template>
 
 <script>
-import Conclusion from "@/requests/appareil_levage/famille4_lev4 copy/conclusion"
+import Conclusion from "@/requests/appareil_levage/famille5_lev5/conclusion"
 import Insert from "@/components/appareil_levage/famille5_lev5/models_famille5_lev5/Insert.vue"
 
 export default {

@@ -18,7 +18,7 @@
 </template>
   
 <script>
-import Photos from "@/requests/appareil_levage/famille4_lev4 copy/Photos"
+import Photos from "@/requests/appareil_levage/famille5_lev5/Photos"
 export default {
     name: 'photo-component',
     data() {
