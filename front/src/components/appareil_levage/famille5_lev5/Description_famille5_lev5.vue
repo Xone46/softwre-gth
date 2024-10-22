@@ -17,35 +17,27 @@
                     CARACTERISTIQUES DIMENSIONNELLES ET DE CHARGE
                 </td>
                 <td>
-                    <p>Charge maximale utile (kg) : <input type="text" @input="saisirChargeMaximaleUtile($event)"
-                            :value="description.chargeMaximaleUtile"> A la portée minimale de (m) : <input type="text"
-                            @input="saisirPorteeMinimale($event)" :value="description.porteeMinimale"></p>
-                    <p>Distance du centre de gravité (m) : <input type="text" :value="description.distanceCentreGravite"
-                            @input="saisirDistanceCentreGravite($event)"></p>
-                    <p>Course (m) : <input type="text" :value="description.course" @input="saisirCourse($event)"></p>
-                    <p>Hauteur de levage (m) : <input type="text" :value="description.hauteurLevage"
-                            @input="saisirHauteurLevage($event)"></p>
-                    <p>Portée (m) : <input type="text" :value="description.portee" @input="saisirPortee($event)"></p>
-                    <p>Porte a faux ou déport (m) : <input type="text" :value="description.porteFauxDeport"
-                            @input="saisirPorteFauxDeport($event)"></p>
-                    <p>Longueur de chemin de roulement (m) : <input type="text"
-                            :value="description.longueurCheminRoulement" @input="saisirLongueurCheminRoulement($event)">
+                    <p>Charge maximale utile (kg) :
+                        <input type="text" :value="description.chargeMaximaleUtile" @input="saisirChargeMaximaleUtile($event)">
                     </p>
-                    <p>Dimension du plateau (m) : <input type="text" :value="description.dimensionPlateau"
-                            @input="saisirDimensionPlateau($event)"></p>
-                    <p>
-                        Mode d'installation:
-                        <select @change="saisirModeInstallation($event)" :value="description.modeInstallation">
-                            <option value=""></option>
-                            <option value="Pont roulant">Pont roulant</option>
-                            <option value="Poutre roulante">Poutre roulante</option>
-                            <option value="Palan">Palan</option>
-                            <option value="Treuil">Treuil</option>
-                            <option value="Vérin">Vérin</option>
-                            <option value="Autre :">Autre</option>
-                        </select>
-                        <input type="text" v-if="description.modeInstallation == 'Autre :'"
-                            :value="description.suiveModeInstallation" @input="saisirSuiveModeInstallation($event)">
+ 
+                    <p>Hauteur de levée maximale (m) :
+                        <input type="text" :value="description.hauteurLeveeMaximale" @input="saisirHauteurLeveeMaximale($event)">
+                    </p>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>B-3</td>
+                <td :class="[colorMecanisme == true ? 'saved' : 'not-saved']">MECANISME</td>
+                <td>
+                    <p>Levage par :</p>
+
+                    <p v-for="(item, index) in description.levage" :key="index">
+                        <input type="checkbox" :value="item.status" @input="handelLevage(item.index)">
+                        {{  item.titre }}
+                        <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirLevage($event, index)">
                     </p>
 
                 </td>
@@ -53,15 +45,76 @@
 
             <tr>
                 <td>B-4</td>
-                <td :class="[colorSuspentes == true ? 'saved' : 'not-saved']">SUSPENTES DE LEVAGE</td>
+                <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
+                <td>
+                    <p v-for="(item, index) in description.sourceEnergie" :key="index">
+                        <input type="checkbox" :value="item.status" @input="handelSourceEnergie(item.index)">
+                        {{  item.titre }}
+                    </p>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td>B-5</td>
+                <td :class="[colorDispositifElevation == true ? 'saved' : 'not-saved']">Transmission de l'élévation</td>
+                <td>
+                    <input type="text" :value="description.dispositifElevation" @input="saisirDispositifElevation($event)">
+                </td>
+            </tr>
+
+            <tr>
+                <td>B-5-1</td>
+                <td :class="[colorTransmissionElevation == true ? 'saved' : 'not-saved']">Transmission de l'élévation</td>
+                <td>
+                    <p v-for="(item, index) in description.transmissionElevation" :key="index">
+                        <input type="checkbox" :value="item.status" @input="handelTransmissionElevation(item.index)">
+                        {{  item.titre }}
+                    </p>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td>B-5-2</td>
+                <td :class="[colorTransmissionElevation == true ? 'saved' : 'not-saved']">Organes de suspension</td>
                 <td>
                 </td>
             </tr>
 
             <tr>
-                <td>B-3</td>
-                <td :class="[description.mecanisme.length != 0 ? 'saved' : 'not-saved']">MECANISME ET MOUVEMENT</td>
+                <td>B-6</td>
+                <td :class="[colorSupoprtCharge == true ? 'saved' : 'not-saved']">SUPPORT DE CHARGE</td>
                 <td>
+                    <p v-for="(item, index) in description.supoprtCharge" :key="index">
+                        <input type="checkbox" :value="item.status" @input="handelSupoprtCharge(item.index)">
+                        {{ item.titre }}
+                        <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirSupoprtCharge($event, index)">
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>B-6</td>
+                <td :class="[colorSupoprtCharge == true ? 'saved' : 'not-saved']">SUPPORT DE CHARGE</td>
+                <td>
+                    <p v-for="(item, index) in description.supoprtCharge" :key="index">
+                        <input type="checkbox" :value="item.status" @input="handelSupoprtCharge(item.index)">
+                        {{ item.titre }}
+                        <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirSupoprtCharge($event, index)">
+                    </p>
+                </td>
+            </tr>
+
+            <tr>
+                <td>B-7</td>
+                <td :class="[colorLevageAuxiliaire == true ? 'saved' : 'not-saved']">LEVAGE AUXILIAIRE</td>
+                <td>
+                    <p v-for="(item, index) in description.levageAuxiliaire" :key="index">
+                        <input type="checkbox" :value="item.status" @input="handelLevageAuxiliaire(item.index)">
+                        {{ item.titre }}
+                        <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirLevageAuxiliaire($event, index)">
+                    </p>
                 </td>
             </tr>
 
@@ -92,6 +145,11 @@ export default {
         return {
             colorSuspentes : false,
             colorCaracteristiques: false,
+            colorMecanisme : false,
+            colorSourceEnergie : false,
+            colorDispositifElevation : false,
+            colorTransmissionElevation :false,
+            colorLevageAuxiliaire : false,
             counter_watched: 0,
             watched_sauvegarder: false,
             flagReset: false,
@@ -101,59 +159,41 @@ export default {
                 marquage: "",
 
                 chargeMaximaleUtile: "",
-                porteeMinimale: "",
-                distanceCentreGravite: "",
-                course: "Sans objet",
-                hauteurLevage: "Sans objet",
-                portee: "Sans objet",
-                porteFauxDeport: "Sans objet",
-                longueurCheminRoulement: "Sans objet",
-                dimensionPlateau: "Sans objet",
-                modeInstallation: "",
-                suiveModeInstallation: "",
+                hauteurLeveeMaximale: "",
 
-                mecanisme: "",
-                suiveMecanisme: "",
-
-                suspentes: [
-                    {
-
-                        hasCable: false,
-                        cable: "Câble :",
-                        hasDetailsCable: false,
-                        detailsCable: [
-                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                        ],
-
-                        hasChaineRouleau: false,
-                        chaineRouleau: "Chaîne(s) a rouleau ou mailles jointives :",
-                        hasDetailsChaineRouleau: false,
-                        detailsChaineRouleau: [
-                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                            { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                        ],
-
-                        hasChaineMaillons: false,
-                        chaineMaillons: "Chaîne(s) à maillons calibrés :",
-                        hasDetailsChaineMaillons: false,
-                        detailsChaineMaillons: [
-                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                            { a: "Pas théorique :", valA: "", b: "Diamètre :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
-                        ],
-
-                        hasSangle: false,
-                        sangle: "Sangle de levage :",
-                        hasDetailsSangle: false,
-                        detailsSangle: [
-                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "", valC: "" },
-                            { a: "Section (mm2):", valA: "", b: "", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
-                        ],
-                    }
+                levage : [
+                    { index : 0, titre : "Système «Vis/Ecrou»", status : false }, 
+                    { index : 1, titre : "Suspentes entraînées par vérin", status : false }, 
+                    { index : 2, titre : "Vérin(s) directs(s) Nombre :", status : false, content : " " }, 
+                    { index : 3, titre : "Autre :", status : false, content : " " }
                 ],
+
+                sourceEnergie :[
+                   { index : 0, titre : "Electrique", status : false }, 
+                   { index : 1, titre : "Hydraulique", status : false }, 
+                   { index : 2, titre : "Pneumatique", status : false }
+                ],
+
+                transmissionElevation : [
+                   { index : 0, titre : "Indépendante sur chaque colonne", status : false }, 
+                   { index : 1, titre : "Transmission entre chaque colonne par câbles ou chaînes", status : false }, 
+                   { index : 2, titre : "Transmission entre chaque colonne par arbres et cardans", status : false }
+                ],
+
+                supoprtCharge : [
+                   { index : 0, titre : "Plate forme suspendue a prise sous coque", status : false }, 
+                   { index : 1, titre : "Plate forme posée a prise sous coque", status : false }, 
+                   { index : 2, titre : "Bras orientables", status : false },
+                   { index : 3, titre : "Symétriques", status : false },
+                   { index : 4, titre : "Disymétriques", status : false },
+                   { index : 5, titre : "Prise sous coque", status : false },
+                   { index : 6, titre : "Télescopiques", status : false },
+                   { index : 7, titre : "Autre :", status : false, content : " " }
+                ],
+
+                dispositifElevation : "",
+
+
 
 
                 observateurId: ""
@@ -161,65 +201,7 @@ export default {
 
             duplicate_description: {
                 
-                marquage: "",
-
-                chargeMaximaleUtile: "",
-                porteeMinimale: "",
-                distanceCentreGravite: "",
-                course: "Sans objet",
-                hauteurLevage: "Sans objet",
-                portee: "Sans objet",
-                porteFauxDeport: "Sans objet",
-                longueurCheminRoulement: "Sans objet",
-                dimensionPlateau: "Sans objet",
-                modeInstallation: "",
-                suiveModeInstallation: "",
-
-                mecanisme: "",
-                suiveMecanisme: "",
-
-                suspentes: [
-                    {
-
-                        hasCable: false,
-                        cable: "Câble :",
-                        hasDetailsCable: false,
-                        detailsCable: [
-                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                        ],
-
-                        hasChaineRouleau: false,
-                        chaineRouleau: "Chaîne(s) a rouleau ou mailles jointives :",
-                        hasDetailsChaineRouleau: false,
-                        detailsChaineRouleau: [
-                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                            { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
-                        ],
-
-                        hasChaineMaillons: false,
-                        chaineMaillons: "Chaîne(s) à maillons calibrés :",
-                        hasDetailsChaineMaillons: false,
-                        detailsChaineMaillons: [
-                            { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
-                            { a: "Pas théorique :", valA: "", b: "Diamètre :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
-                        ],
-
-                        hasSangle: false,
-                        sangle: "Sangle de levage :",
-                        hasDetailsSangle: false,
-                        detailsSangle: [
-                            { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "", valC: "" },
-                            { a: "Section (mm2):", valA: "", b: "", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
-                        ],
-                    }
-                ],
-
-
-                observateurId: ""
+ 
             }
 
         }
@@ -250,231 +232,43 @@ export default {
     methods: {
 
         checkeSuspentes() {
-            const arr = [
-                this.description["suspentes"][0]["hasCable"],
-                this.description["suspentes"][0]["hasChaineRouleau"],
-                this.description["suspentes"][0]["hasChaineMaillons"],
-                this.description["suspentes"][0]["hasSangle"],
-            ]
 
-            if(arr.includes(true)) {
-                return true;
-            } else {
-                return false;
-            }
         },
 
         checkCaracterstiques() {
 
-            if (this.description.chargeMaximaleUtile == "") {
-                return false;
-            }
-
-            if (this.description.porteeMinimale == "") {
-                return false;
-            }
-
-            if (this.description.distanceCentreGravite == "") {
-                return false;
-            }
-
-            if (this.description.course == "") {
-                return false;
-            }
-
-            if (this.description.hauteurLevage == "") {
-                return false;
-            }
-
-            if (this.description.portee == "") {
-                return false;
-            }
-
-            if (this.description.porteFauxDeport == "") {
-                return false;
-            }
-
-            if (this.description.longueurCheminRoulement == "") {
-                return false;
-            }
-
-
-            if (this.description.dimensionPlateau == "") {
-                return false;
-            }
-
-            if (this.description.modeInstallation == "") {
-                return false;
-            }
-
-            return true;
         },
 
         checkProperties() {
 
-
-            if (this.description.marquage == "") {
-                return false;
-            }
-
-
-            if (this.description.chargeMaximaleUtile == "") {
-                return false;
-            }
-
-            if (this.description.porteeMinimale == "") {
-                return false;
-            }
-
-            if (this.description.distanceCentreGravite == "") {
-                return false;
-            }
-
-            if (this.description.course == "") {
-                return false;
-            }
-
-            if (this.description.hauteurLevage == "") {
-                return false;
-            }
-
-            if (this.description.portee == "") {
-                return false;
-            }
-
-            if (this.description.porteFauxDeport == "") {
-                return false;
-            }
-
-            if (this.description.longueurCheminRoulement == "") {
-                return false;
-            }
-
-
-            if (this.description.dimensionPlateau == "") {
-                return false;
-            }
-
-            if (this.description.modeInstallation == "") {
-                return false;
-            }
-
-            if (this.description.mecanisme == "") {
-                return false;
-            }
-
-            return true;
         },
 
         notEmpty() {
             this.$emit("changeColorDescription_famille5_lev5", this.checkProperties());
         },
 
-        saisirChargeMaximaleUtile(e) {
-            this.description.chargeMaximaleUtile = e.target.value;
-
+        handelLevage(index) {
+            this.description.levage[index].status = !this.description.levage[index].status;
         },
 
-        saisirPorteeMinimale(e) {
-            this.description.porteeMinimale = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirLevage(e, index) {
+            this.description.levage[index].content = e.target.value;
         },
 
-        saisirDistanceCentreGravite(e) {
-            this.description.distanceCentreGravite = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        handelSourceEnergie(index) {
+            this.description.sourceEnergie[index].status = !this.description.sourceEnergie[index].status;
         },
 
-        saisirCourse(e) {
-            this.description.course = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirDispositifElevation(e) {
+            this.description.dispositifElevation = e.target.value;
         },
 
-        saisirHauteurLevage(e) {
-            this.description.hauteurLevage = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        handelSupoprtCharge(index) {
+            this.description.supoprtCharge[index].status = !this.description.supoprtCharge[index].status;
         },
 
-        saisirPortee(e) {
-            this.description.portee = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        saisirPorteFauxDeport(e) {
-            this.description.porteFauxDeport = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        saisirLongueurCheminRoulement(e) {
-            this.description.longueurCheminRoulement = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        saisirDimensionPlateau(e) {
-            this.description.dimensionPlateau = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-
-        saisirModeInstallation(e) {
-            this.description.modeInstallation = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-
-        saisirSuiveModeInstallation(e) {
-            this.description.suiveModeInstallation = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        saisirMecanisme(e) {
-            this.description.mecanisme = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        saisirSuiveMecanisme(e) {
-            this.description.suiveMecanisme = e.target.value;
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        saisirCable() {
-            this.description["suspentes"][0]["hasCable"] = Boolean(!this.description["suspentes"][0]["hasCable"]);
-            this.description["suspentes"][0]["hasDetailsCable"] = Boolean(!this.description["suspentes"][0]["hasDetailsCable"]);
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        chaineRouleau() {
-            this.description["suspentes"][0]["hasChaineRouleau"] = Boolean(!this.description["suspentes"][0]["hasChaineRouleau"]);
-            this.description["suspentes"][0]["hasDetailsChaineRouleau"] = Boolean(!this.description["suspentes"][0]["hasDetailsChaineRouleau"]);
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        chaineMaillons() {
-            this.description["suspentes"][0]["hasChaineMaillons"] = Boolean(!this.description["suspentes"][0]["hasChaineMaillons"]);
-            this.description["suspentes"][0]["hasDetailsChaineMaillons"] = Boolean(!this.description["suspentes"][0]["hasDetailsChaineMaillons"]);
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
-        },
-
-        sangle() {
-            this.description["suspentes"][0]["hasSangle"] = Boolean(!this.description["suspentes"][0]["hasSangle"]);
-            this.description["suspentes"][0]["hasDetailsSangle"] = Boolean(!this.description["suspentes"][0]["hasDetailsSangle"]);
-            this.colorCaracteristiques = this.checkCaracterstiques();
-            this.colorSuspentes = this.checkeSuspentes();
+        saisirSupoprtCharge(e, index) {
+            this.description.supoprtCharge[index].content = e.target.value;
         },
 
         sauvegarde() {

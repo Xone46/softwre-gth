@@ -46,8 +46,8 @@
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.localisation.length != 0 ? 'saved' : 'not-saved']">Localisation de(s)
-                        l'appareil (s) lors de la visite:</td>
+                    <td :class="[renseignement.localisation.length != 0 ? 'saved' : 'not-saved']">
+                        Localisation de(s) l'appareil (s) lors de la visite:</td>
                     <td><input type="text" @input="saisirLocalistation($event)" :value="renseignement.localisation"
                             disabled></td>
                 </tr>
@@ -62,12 +62,17 @@
                             <option value="Pont élévateur à ciseau">Pont élévateur à ciseau</option>
                             <option value="Pont élévateur à parallélogramme">Pont élévateur à parallélogramme</option>
                             <option value="Pont élévateur à vérin porteur">Pont élévateur à vérin porteur</option>
-                            <option value="Pont élévateur à colonnes indépendantes">Pont élévateur à colonnes indépendantes</option>
+                            <option value="Pont élévateur à colonnes indépendantes (Nombre)">Pont élévateur à colonnes indépendantes (Nombre)</option>
                             <option value="Pont élévateur mobile">Pont élévateur mobile</option>
                             <option value="Autre : ">Autre</option>
                         </select>
                     </td>
                     <td v-if="renseignement.typeAppareil == 'Autre : '">
+                        <button :class="[renseignement.suiveTypeAppareil.length != 0 ? 'voir' : 'not-voir']"
+                            @click="handelInsert('typeAppareil')">voir</button>
+                    </td>
+
+                    <td v-if="renseignement.typeAppareil == 'Pont élévateur à colonnes indépendantes (Nombre)'">
                         <button :class="[renseignement.suiveTypeAppareil.length != 0 ? 'voir' : 'not-voir']"
                             @click="handelInsert('typeAppareil')">voir</button>
                     </td>
@@ -81,13 +86,12 @@
                         </select>
                     </td>
 
-                    
                     <td v-if="renseignement.typeVerification == 'Autre motif :'">
-                            <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('typeAppareil')">voir</button>
+                            <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('typeVerification')">voir</button>
                     </td>
 
                     <td v-if="renseignement.typeVerification == 'Date de dernière vérification périodique :'">
-                            <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('typeAppareil')">voir</button>
+                            <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('typeVerification')">voir</button>
                     </td>
 
                 </tr>
@@ -290,6 +294,59 @@ export default {
 
         checkProperties() {
 
+            if (this.renseignement.constructeur == "") {
+                return false;
+            }
+
+            if (this.renseignement.typeConstructeur == "") {
+                return false;
+            }
+
+            if (this.renseignement.anneeMiseService == "") {
+                return false;
+            }
+
+            if (this.renseignement.numeroSerie == "") {
+                return false;
+            }
+
+            if (this.renseignement.numeroInterne == "") {
+                return false;
+            }
+
+            if (this.renseignement.localisation == "") {
+                return false;
+            }
+
+            if (this.renseignement.typeAppareil == "") {
+                return false;
+            }
+
+            if (this.renseignement.typeVerification == "") {
+                return false;
+            }
+
+            if (this.renseignement.documentationTechniqueConstructeur == "") {
+                return false;
+            }
+
+            if (this.renseignement.epreuves == "") {
+                return false;
+            }
+
+            if (this.renseignement.essaischarge == "") {
+                return false;
+            }
+
+            if (this.renseignement.examenMontageInstallation == "") {
+                return false;
+            }
+
+            if (this.renseignement.modification == "") {
+                return false;
+            }
+
+            return true;
 
         },
 
@@ -299,10 +356,6 @@ export default {
 
 
         handelInsert(value) {
-
-            if (value == "numeroInterne") {
-                this.valueInsert = this.renseignement.suiveNumeroInterne;
-            }
 
             if (value == "typeAppareil") {
                 this.valueInsert = this.renseignement.suiveTypeAppareil;
@@ -314,6 +367,10 @@ export default {
 
             if (value == "modification") {
                 this.valueInsert = this.renseignement.suiveModification;
+            }
+
+            if (value == "typeVerification") {
+                this.valueInsert = this.renseignement.suiveTypeVerification;
             }
 
 
@@ -394,9 +451,6 @@ export default {
 
         valider(event, type) {
 
-            if (type == "numeroInterne") {
-                this.renseignement.suiveNumeroInterne = event;
-            }
 
             if (type == "typeAppareil") {
                 this.renseignement.suiveTypeAppareil = event;
@@ -408,6 +462,10 @@ export default {
 
             if (type == "modification") {
                 this.renseignement.suiveModification = event;
+            }
+
+            if (type == "typeVerification") {
+                this.renseignement.suiveTypeVerification = event;
             }
 
             this.falgInsert = false;
@@ -427,10 +485,10 @@ export default {
 
                         this.renseignement.typeConstructeur = "",
                         this.renseignement.anneeMiseService = "",
-                        this.renseignement.numeroInterne = "",
                         this.renseignement.typeAppareil = "",
                         this.renseignement.suiveTypeAppareil = "",
                         this.renseignement.typeVerification = "",
+                        this.renseignement.suiveTypeVerification = "",
                         this.renseignement.documentationTechniqueConstructeur = "",
                         this.renseignement.epreuves = "",
                         this.renseignement.essaischarge = "",
@@ -438,6 +496,7 @@ export default {
                         this.renseignement.examenMontageInstallation = "",
                         this.renseignement.modification = "",
                         this.renseignement.suiveModification = "",
+                        this.renseignement.observateurId = "",
 
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
@@ -501,16 +560,18 @@ export default {
 
                     Renseignement.select(this.observateurId)
                         .then((result) => {
+
                             this.renseignement.constructeur = result.data.renseignement.constructeur;
                             this.renseignement.typeConstructeur = result.data.renseignement.typeConstructeur;
                             this.renseignement.anneeMiseService = result.data.renseignement.anneeMiseService;
                             this.renseignement.numeroSerie = result.data.renseignement.numeroSerie;
                             this.renseignement.numeroInterne = result.data.renseignement.numeroInterne;
-                            this.renseignement.suiveNumeroInterne = result.data.renseignement.suiveNumeroInterne;
+                            this.renseignement.suiveNumeroInterne = result.data.suiveNumeroInterne;
                             this.renseignement.localisation = result.data.renseignement.localisation;
                             this.renseignement.typeAppareil = result.data.renseignement.typeAppareil;
                             this.renseignement.suiveTypeAppareil = result.data.renseignement.suiveTypeAppareil;
                             this.renseignement.typeVerification = result.data.renseignement.typeVerification;
+                            this.renseignement.suiveTypeVerification = result.data.renseignement.suiveTypeVerification;
                             this.renseignement.documentationTechniqueConstructeur = result.data.renseignement.documentationTechniqueConstructeur;
                             this.renseignement.epreuves = result.data.renseignement.epreuves;
                             this.renseignement.essaischarge = result.data.renseignement.essaischarge;
