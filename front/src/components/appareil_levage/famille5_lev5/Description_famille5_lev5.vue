@@ -57,7 +57,7 @@
 
             <tr>
                 <td>B-5</td>
-                <td :class="[colorDispositifElevation == true ? 'saved' : 'not-saved']">Transmission de l'élévation</td>
+                <td :class="[colorDispositifElevation == true ? 'saved' : 'not-saved']">DISPOSITIF D'ELEVATION</td>
                 <td>
                     <input type="text" :value="description.dispositifElevation" @input="saisirDispositifElevation($event)">
                 </td>
@@ -71,7 +71,6 @@
                         <input type="checkbox" :value="item.status" @input="handelTransmissionElevation(item.index)">
                         {{  item.titre }}
                     </p>
-
                 </td>
             </tr>
 
@@ -79,17 +78,33 @@
                 <td>B-5-2</td>
                 <td :class="[colorTransmissionElevation == true ? 'saved' : 'not-saved']">Organes de suspension</td>
                 <td>
-                </td>
-            </tr>
+                    <p>
+                        Nombre de chaînes ou câbles :
+                        <input type="text" :value="description.nombreChainesCables" @input="handelNombreChainesCables($event)">
+                    </p>
 
-            <tr>
-                <td>B-6</td>
-                <td :class="[colorSupoprtCharge == true ? 'saved' : 'not-saved']">SUPPORT DE CHARGE</td>
-                <td>
-                    <p v-for="(item, index) in description.supoprtCharge" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelSupoprtCharge(item.index)">
-                        {{ item.titre }}
-                        <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirSupoprtCharge($event, index)">
+                    <p v-for="(item, index) in description.organesSuspension" :key="index">
+                        <input type="checkbox" :value="item.status" @input="handelOrganesSuspension(item.index)">
+                        {{  item.titre }}
+                        <ul v-if="item.status">
+                            <li v-for="el in item.tab" :key="el.index">
+                                <input type="checkbox"
+                                    @input="handelSousOrganesSuspension(item.index, el.index)">
+                                {{ el.titre }}
+                                <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
+                                    @input="saisirSousOrganesSuspension($event, item.index, el.index)">
+                            </li>
+                        </ul>
+                    </p>
+
+                    <p>
+                        Charge de rupture (daN) :
+                        <input type="text" :value="description.chargeRupture" @input="saisirChargeRupture($event)">
+                    </p>
+
+                    <p>
+                        Coefficient d'utilisation :
+                        <input type="text" :value="description.coefficientUtilisation" @input="saisirCoefficientUtilisation($event)">
                     </p>
                 </td>
             </tr>
@@ -105,6 +120,7 @@
                     </p>
                 </td>
             </tr>
+
 
             <tr>
                 <td>B-7</td>
@@ -114,6 +130,16 @@
                         <input type="checkbox" :value="item.status" @input="handelLevageAuxiliaire(item.index)">
                         {{ item.titre }}
                         <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirLevageAuxiliaire($event, index)">
+                        <ul v-if="item.status">
+                            <li v-for="el in item.tab" :key="el.index">
+                                <input type="checkbox"
+                                    @input="handelSousLevageAuxiliaire(item.index, el.index)">
+                                {{ el.titre }}
+                                <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
+                                    @input="saisirSousLevageAuxiliaire($event, item.index, el.index)">
+                            </li>
+                        </ul>
+
                     </p>
                 </td>
             </tr>
@@ -180,6 +206,37 @@ export default {
                    { index : 2, titre : "Transmission entre chaque colonne par arbres et cardans", status : false }
                 ],
 
+                nombreChainesCables : "Sans Objet",
+
+                organesSuspension : [
+
+                    { 
+                        index : 0,
+                        titre : "Câble(s) de levage :",
+                        status : false,
+                        tab : [
+                            { index : 0, titre : "Composition :", content : " ", status : false },
+                            { index : 1, titre : "Diamètre théorique (mm) :", content : " ", status : false }
+                        ]
+                    },
+
+                    { 
+                        index : 1,
+                        titre : "Chaînes(s) de levage :",
+                        status : false,
+                        tab : [
+                            { index : 0, titre : "Caractéristiques :", content : " ", status : false },
+                            { index : 1, titre : "Type de chaine :", content : " ", status : false },
+                            { index : 2, titre : "Pas théorique :", content : " ", status : false }
+                        ]
+                    }
+
+                ],
+
+                chargeRupture : " ", 
+
+                coefficientUtilisation : "Inconnu (absence d'information",
+
                 supoprtCharge : [
                    { index : 0, titre : "Plate forme suspendue a prise sous coque", status : false }, 
                    { index : 1, titre : "Plate forme posée a prise sous coque", status : false }, 
@@ -189,6 +246,48 @@ export default {
                    { index : 5, titre : "Prise sous coque", status : false },
                    { index : 6, titre : "Télescopiques", status : false },
                    { index : 7, titre : "Autre :", status : false, content : " " }
+                ],
+
+                levageAuxiliaire : [
+                    { 
+                        index : 0,
+                        titre : "Sans objet",
+                        status : false
+                    },
+                    { 
+                        index : 1,
+                        titre : "Charge maximale utile (kg) :",
+                        status : false,
+                        tab : [
+                            { index : 0, titre : "Non précisée", status : false },
+                            { index : 1, titre : "Autre", content : " ", status : false }
+                        ]
+                    },
+                    { 
+                        index : 2,
+                        titre : "Mécanisme de levage par",
+                        status : false,
+                        tab : [
+                            { index : 0, titre : "Vérin direct", status : false },
+                            { index : 1, titre : "Autre", content : " ", status : false }
+                        ]
+                    },
+                    { 
+                        index : 3,
+                        titre : "Plate forme posée a",
+                        status : false,
+                        tab : [
+                            { index : 0, titre : "Prise sous coque", status : false },
+                            { index : 1, titre : "Prise sous essieux", status : false }
+                        ]
+                    },
+
+                    { 
+                        index : 4,
+                        titre : "Autre",
+                        status : false,
+                        content : " "
+                    }
                 ],
 
                 dispositifElevation : "",
@@ -263,12 +362,57 @@ export default {
             this.description.dispositifElevation = e.target.value;
         },
 
+        handelTransmissionElevation(index) {
+            this.description.transmissionElevation[index].status = !this.description.transmissionElevation[index].status;
+        },
+
+        handelNombreChainesCables(e) {
+            this.description.nombreChainesCables = e.target.value;
+        },
+
+        handelOrganesSuspension(index) {
+            this.description.organesSuspension[index].status = !this.description.organesSuspension[index].status;
+        },
+
+        handelSousOrganesSuspension(index, i) {
+            this.description.organesSuspension[index].tab[i].status = !this.description.organesSuspension[index].tab[i].status;
+        },
+
+        saisirSousOrganesSuspension(e, index , i) {
+            this.description.organesSuspension[index].tab[i].content = e.target.value;
+        },
+
+        saisirChargeRupture(e) {
+            this.description.chargeRupture = e.target.value;
+        },
+
+        saisirCoefficientUtilisation(e) {
+            this.description.coefficientUtilisation = e.target.value;
+        },
+
         handelSupoprtCharge(index) {
             this.description.supoprtCharge[index].status = !this.description.supoprtCharge[index].status;
         },
+        
 
         saisirSupoprtCharge(e, index) {
             this.description.supoprtCharge[index].content = e.target.value;
+        },
+
+        handelLevageAuxiliaire(index) {
+            this.description.levageAuxiliaire[index].status = !this.description.levageAuxiliaire[index].status;
+        },
+
+        saisirLevageAuxiliaire(e, index) {
+            this.description.levageAuxiliaire[index].conetent = e.target.value;
+        },
+
+        handelSousLevageAuxiliaire(index, i) {
+            this.description.levageAuxiliaire[index].tab[i].status = !this.description.levageAuxiliaire[index].tab[i].status;
+        },
+
+        saisirSousLevageAuxiliaire(e, index , i) {
+            this.description.levageAuxiliaire[index].tab[i].content = e.target.value;
         },
 
         sauvegarde() {
