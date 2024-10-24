@@ -4,11 +4,11 @@ const VUE_APP_API_BASE_URL = "http://localhost:5000/api/v1";
 
 class Examens {
 
-    static create(a, b, c, d, e, f, g, h, i, j, k, observateurId) {
+    static create(a, b, c, d, e, f, g, h, i, j, observateurId) {
         return new Promise((resolve, reject) => {
             axios.post(`${VUE_APP_API_BASE_URL}/appareil_levage-famille5_lev5/examens/create`,
                 {
-                    a, b, c, d, e, f, g, h, i, j, k, observateurId
+                    a, b, c, d, e, f, g, h, i, j, observateurId
                 },
                 {
                     headers: {

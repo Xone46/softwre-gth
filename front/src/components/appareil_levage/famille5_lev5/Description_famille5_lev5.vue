@@ -18,11 +18,11 @@
                 </td>
                 <td>
                     <p>Charge maximale utile (kg) :
-                        <input type="text" :value="description.chargeMaximaleUtile" @input="saisirChargeMaximaleUtile($event)">
+                        <input type="text" v-model="description.chargeMaximaleUtile">
                     </p>
  
                     <p>Hauteur de levée maximale (m) :
-                        <input type="text" :value="description.hauteurLeveeMaximale" @input="saisirHauteurLeveeMaximale($event)">
+                        <input type="text" v-model="description.hauteurLeveeMaximale">
                     </p>
                 </td>
             </tr>
@@ -59,7 +59,7 @@
                 <td>B-5</td>
                 <td :class="[colorDispositifElevation == true ? 'saved' : 'not-saved']">DISPOSITIF D'ELEVATION</td>
                 <td>
-                    <input type="text" :value="description.dispositifElevation" @input="saisirDispositifElevation($event)">
+                    <input type="text" v-model="description.dispositifElevation">
                 </td>
             </tr>
 
@@ -76,7 +76,7 @@
 
             <tr>
                 <td>B-5-2</td>
-                <td :class="[colorTransmissionElevation == true ? 'saved' : 'not-saved']">Organes de suspension</td>
+                <td :class="[colorOrganesSuspension == true ? 'saved' : 'not-saved']">Organes de suspension</td>
                 <td>
                     <p>
                         Nombre de chaînes ou câbles :
@@ -169,13 +169,16 @@ export default {
     name: 'renseignement-component',
     data() {
         return {
-            colorSuspentes : false,
+
             colorCaracteristiques: false,
-            colorMecanisme : false,
-            colorSourceEnergie : false,
-            colorDispositifElevation : false,
-            colorTransmissionElevation :false,
-            colorLevageAuxiliaire : false,
+            colorMecanisme: false,
+            colorSourceEnergie: false,
+            colorDispositifElevation: false,
+            colorTransmissionElevation: false,
+            colorOrganesSuspension: false,
+            colorSupoprtCharge: false,
+            colorLevageAuxiliaire: false,
+
             counter_watched: 0,
             watched_sauvegarder: false,
             flagReset: false,
@@ -184,125 +187,225 @@ export default {
 
                 marquage: "",
 
-                chargeMaximaleUtile: "",
+                chargeMaximaleUtile: "Non précisée",
                 hauteurLeveeMaximale: "",
 
-                levage : [
-                    { index : 0, titre : "Système «Vis/Ecrou»", status : false }, 
-                    { index : 1, titre : "Suspentes entraînées par vérin", status : false }, 
-                    { index : 2, titre : "Vérin(s) directs(s) Nombre :", status : false, content : " " }, 
-                    { index : 3, titre : "Autre :", status : false, content : " " }
+                levage: [
+                    { index: 0, titre: "Système «Vis/Ecrou»", status: false },
+                    { index: 1, titre: "Suspentes entraînées par vérin", status: false },
+                    { index: 2, titre: "Vérin(s) directs(s) Nombre :", status: false, content: " " },
+                    { index: 3, titre: "Autre :", status: false, content: " " }
                 ],
 
-                sourceEnergie :[
-                   { index : 0, titre : "Electrique", status : false }, 
-                   { index : 1, titre : "Hydraulique", status : false }, 
-                   { index : 2, titre : "Pneumatique", status : false }
+                sourceEnergie: [
+                    { index: 0, titre: "Electrique", status: false },
+                    { index: 1, titre: "Hydraulique", status: false },
+                    { index: 2, titre: "Pneumatique", status: false }
+                ],
+                
+                dispositifElevation: "",
+
+                transmissionElevation: [
+                    { index: 0, titre: "Indépendante sur chaque colonne", status: false },
+                    { index: 1, titre: "Transmission entre chaque colonne par câbles ou chaînes", status: false },
+                    { index: 2, titre: "Transmission entre chaque colonne par arbres et cardans", status: false }
                 ],
 
-                transmissionElevation : [
-                   { index : 0, titre : "Indépendante sur chaque colonne", status : false }, 
-                   { index : 1, titre : "Transmission entre chaque colonne par câbles ou chaînes", status : false }, 
-                   { index : 2, titre : "Transmission entre chaque colonne par arbres et cardans", status : false }
-                ],
+                nombreChainesCables: "Sans Objet",
+                chargeRupture: " ",
+                coefficientUtilisation: "Inconnu (absence d'information",
+                organesSuspension: [
 
-                nombreChainesCables : "Sans Objet",
-
-                organesSuspension : [
-
-                    { 
-                        index : 0,
-                        titre : "Câble(s) de levage :",
-                        status : false,
-                        tab : [
-                            { index : 0, titre : "Composition :", content : " ", status : false },
-                            { index : 1, titre : "Diamètre théorique (mm) :", content : " ", status : false }
+                    {
+                        index: 0,
+                        titre: "Câble(s) de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Composition :", content: " ", status: false },
+                            { index: 1, titre: "Diamètre théorique (mm) :", content: " ", status: false }
                         ]
                     },
 
-                    { 
-                        index : 1,
-                        titre : "Chaînes(s) de levage :",
-                        status : false,
-                        tab : [
-                            { index : 0, titre : "Caractéristiques :", content : " ", status : false },
-                            { index : 1, titre : "Type de chaine :", content : " ", status : false },
-                            { index : 2, titre : "Pas théorique :", content : " ", status : false }
+                    {
+                        index: 1,
+                        titre: "Chaînes(s) de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Caractéristiques :", content: " ", status: false },
+                            { index: 1, titre: "Type de chaine :", content: " ", status: false },
+                            { index: 2, titre: "Pas théorique :", content: " ", status: false }
                         ]
                     }
 
                 ],
 
-                chargeRupture : " ", 
-
-                coefficientUtilisation : "Inconnu (absence d'information",
-
-                supoprtCharge : [
-                   { index : 0, titre : "Plate forme suspendue a prise sous coque", status : false }, 
-                   { index : 1, titre : "Plate forme posée a prise sous coque", status : false }, 
-                   { index : 2, titre : "Bras orientables", status : false },
-                   { index : 3, titre : "Symétriques", status : false },
-                   { index : 4, titre : "Disymétriques", status : false },
-                   { index : 5, titre : "Prise sous coque", status : false },
-                   { index : 6, titre : "Télescopiques", status : false },
-                   { index : 7, titre : "Autre :", status : false, content : " " }
+                supoprtCharge: [
+                    { index: 0, titre: "Plate forme suspendue a prise sous coque", status: false },
+                    { index: 1, titre: "Plate forme posée a prise sous coque", status: false },
+                    { index: 2, titre: "Bras orientables", status: false },
+                    { index: 3, titre: "Symétriques", status: false },
+                    { index: 4, titre: "Disymétriques", status: false },
+                    { index: 5, titre: "Prise sous coque", status: false },
+                    { index: 6, titre: "Télescopiques", status: false },
+                    { index: 7, titre: "Autre :", status: false, content: " " }
                 ],
 
-                levageAuxiliaire : [
-                    { 
-                        index : 0,
-                        titre : "Sans objet",
-                        status : false
+                levageAuxiliaire: [
+                    {
+                        index: 0,
+                        titre: "Sans objet",
+                        status: false
                     },
-                    { 
-                        index : 1,
-                        titre : "Charge maximale utile (kg) :",
-                        status : false,
-                        tab : [
-                            { index : 0, titre : "Non précisée", status : false },
-                            { index : 1, titre : "Autre", content : " ", status : false }
+                    {
+                        index: 1,
+                        titre: "Charge maximale utile (kg) :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Non précisée", status: false },
+                            { index: 1, titre: "Autre", content: " ", status: false }
                         ]
                     },
-                    { 
-                        index : 2,
-                        titre : "Mécanisme de levage par",
-                        status : false,
-                        tab : [
-                            { index : 0, titre : "Vérin direct", status : false },
-                            { index : 1, titre : "Autre", content : " ", status : false }
+                    {
+                        index: 2,
+                        titre: "Mécanisme de levage par",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Vérin direct", status: false },
+                            { index: 1, titre: "Autre", content: " ", status: false }
                         ]
                     },
-                    { 
-                        index : 3,
-                        titre : "Plate forme posée a",
-                        status : false,
-                        tab : [
-                            { index : 0, titre : "Prise sous coque", status : false },
-                            { index : 1, titre : "Prise sous essieux", status : false }
+                    {
+                        index: 3,
+                        titre: "Plate forme posée a",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Prise sous coque", status: false },
+                            { index: 1, titre: "Prise sous essieux", status: false }
                         ]
                     },
 
-                    { 
-                        index : 4,
-                        titre : "Autre",
-                        status : false,
-                        content : " "
+                    {
+                        index: 4,
+                        titre: "Autre",
+                        status: false,
+                        content: " "
                     }
                 ],
-
-                dispositifElevation : "",
-
-
-
 
                 observateurId: ""
             },
 
             duplicate_description: {
-                
- 
-            }
 
+                marquage: "",
+
+                chargeMaximaleUtile: "Non précisée",
+                hauteurLeveeMaximale: "",
+
+                levage: [
+                    { index: 0, titre: "Système «Vis/Ecrou»", status: false },
+                    { index: 1, titre: "Suspentes entraînées par vérin", status: false },
+                    { index: 2, titre: "Vérin(s) directs(s) Nombre :", status: false, content: " " },
+                    { index: 3, titre: "Autre :", status: false, content: " " }
+                ],
+
+                sourceEnergie: [
+                    { index: 0, titre: "Electrique", status: false },
+                    { index: 1, titre: "Hydraulique", status: false },
+                    { index: 2, titre: "Pneumatique", status: false }
+                ],
+                
+                dispositifElevation: "",
+
+                transmissionElevation: [
+                    { index: 0, titre: "Indépendante sur chaque colonne", status: false },
+                    { index: 1, titre: "Transmission entre chaque colonne par câbles ou chaînes", status: false },
+                    { index: 2, titre: "Transmission entre chaque colonne par arbres et cardans", status: false }
+                ],
+
+                nombreChainesCables: "Sans Objet",
+                chargeRupture: " ",
+                coefficientUtilisation: "Inconnu (absence d'information",
+                organesSuspension: [
+
+                    {
+                        index: 0,
+                        titre: "Câble(s) de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Composition :", content: " ", status: false },
+                            { index: 1, titre: "Diamètre théorique (mm) :", content: " ", status: false }
+                        ]
+                    },
+
+                    {
+                        index: 1,
+                        titre: "Chaînes(s) de levage :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Caractéristiques :", content: " ", status: false },
+                            { index: 1, titre: "Type de chaine :", content: " ", status: false },
+                            { index: 2, titre: "Pas théorique :", content: " ", status: false }
+                        ]
+                    }
+
+                ],
+
+                supoprtCharge: [
+                    { index: 0, titre: "Plate forme suspendue a prise sous coque", status: false },
+                    { index: 1, titre: "Plate forme posée a prise sous coque", status: false },
+                    { index: 2, titre: "Bras orientables", status: false },
+                    { index: 3, titre: "Symétriques", status: false },
+                    { index: 4, titre: "Disymétriques", status: false },
+                    { index: 5, titre: "Prise sous coque", status: false },
+                    { index: 6, titre: "Télescopiques", status: false },
+                    { index: 7, titre: "Autre :", status: false, content: " " }
+                ],
+
+                levageAuxiliaire: [
+                    {
+                        index: 0,
+                        titre: "Sans objet",
+                        status: false
+                    },
+                    {
+                        index: 1,
+                        titre: "Charge maximale utile (kg) :",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Non précisée", status: false },
+                            { index: 1, titre: "Autre", content: " ", status: false }
+                        ]
+                    },
+                    {
+                        index: 2,
+                        titre: "Mécanisme de levage par",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Vérin direct", status: false },
+                            { index: 1, titre: "Autre", content: " ", status: false }
+                        ]
+                    },
+                    {
+                        index: 3,
+                        titre: "Plate forme posée a",
+                        status: false,
+                        tab: [
+                            { index: 0, titre: "Prise sous coque", status: false },
+                            { index: 1, titre: "Prise sous essieux", status: false }
+                        ]
+                    },
+
+                    {
+                        index: 4,
+                        titre: "Autre",
+                        status: false,
+                        content: " "
+                    }
+                ],
+
+                observateurId: ""
+            }
         }
     },
 
@@ -330,16 +433,163 @@ export default {
 
     methods: {
 
-        checkeSuspentes() {
-
-        },
 
         checkCaracterstiques() {
 
+            if (this.description.chargeMaximaleUtile == "") {
+                return false;
+            }
+
+            if (this.description.hauteurLeveeMaximale == "") {
+                return false;
+            }
+
+            return true;
+
         },
+
+        checkMecanisme() {
+            const arr = [
+                this.description.levage[0].status,
+                this.description.levage[1].status,
+                this.description.levage[2].status,
+                this.description.levage[3].status
+            ]
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkSourceEnergie() {
+
+            const arr = [
+                this.description.sourceEnergie[0].status,
+                this.description.sourceEnergie[1].status,
+                this.description.sourceEnergie[2].status
+            ]
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+
+        checkDispositifElevation() {
+            if(this.description.dispositifElevation == "") {
+                return false;
+            }
+            return true;
+        },
+
+        checkTransmissionElevation() {
+            const arr = [
+                this.description.transmissionElevation[0].status,
+                this.description.transmissionElevation[1].status,
+                this.description.transmissionElevation[2].status
+            ]
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkOrganesSuspension() {
+
+            const arr = [
+                this.description.organesSuspension[0].status,
+                this.description.organesSuspension[1].status
+            ];
+
+            if (arr.includes(true)) {
+
+                if (this.description.nombreChainesCables == "" || this.description.chargeRupture == "" || this.description.coefficientUtilisation == "") {
+                    return false;
+                } else {
+                    return true;
+                }
+
+
+            } else {
+                return false;
+            }
+        },
+
+        checkSupoprtCharge() {
+
+            const arr = [
+                this.description.supoprtCharge[0].status,
+                this.description.supoprtCharge[1].status,
+                this.description.supoprtCharge[2].status,
+                this.description.supoprtCharge[3].status,
+                this.description.supoprtCharge[4].status,
+                this.description.supoprtCharge[5].status,
+                this.description.supoprtCharge[6].status,
+                this.description.supoprtCharge[7].status
+            ];
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
+        checkLevageAuxiliaire() {
+
+            const arr = [
+                this.description.levageAuxiliaire[0].status,
+                this.description.levageAuxiliaire[1].status,
+                this.description.levageAuxiliaire[2].status,
+                this.description.levageAuxiliaire[3].status,
+                this.description.levageAuxiliaire[4].status
+            ];
+
+            if (arr.includes(true)) {
+                return true;
+            } else {
+                return false;
+            }
+        },
+
 
         checkProperties() {
 
+            this.colorCaracteristiques = this.checkCaracterstiques();
+            this.colorMecanisme = this.checkMecanisme();
+            this.colorSourceEnergie = this.checkSourceEnergie();
+            this.colorDispositifElevation = this.checkDispositifElevation();
+            this.colorTransmissionElevation = this.checkTransmissionElevation();
+            this.colorOrganesSuspension = this.checkOrganesSuspension();
+            this.colorSupoprtCharge = this.checkSupoprtCharge();
+            this.colorLevageAuxiliaire = this.checkLevageAuxiliaire();
+
+
+            const arr = [
+                this.colorCaracteristiques,
+                this.colorMecanisme,
+                this.colorSourceEnergie,
+                this.colorDispositifElevation,
+                this.colorTransmissionElevation,
+                this.colorOrganesSuspension,
+                this.colorSupoprtCharge,
+                this.colorLevageAuxiliaire
+            ];
+
+            for (let i = 0; i < arr.length; i++) {
+
+                if (arr[i] == false) {
+                    return false;
+                }
+
+                return true;
+            }
         },
 
         notEmpty() {
@@ -358,10 +608,6 @@ export default {
             this.description.sourceEnergie[index].status = !this.description.sourceEnergie[index].status;
         },
 
-        saisirDispositifElevation(e) {
-            this.description.dispositifElevation = e.target.value;
-        },
-
         handelTransmissionElevation(index) {
             this.description.transmissionElevation[index].status = !this.description.transmissionElevation[index].status;
         },
@@ -378,7 +624,7 @@ export default {
             this.description.organesSuspension[index].tab[i].status = !this.description.organesSuspension[index].tab[i].status;
         },
 
-        saisirSousOrganesSuspension(e, index , i) {
+        saisirSousOrganesSuspension(e, index, i) {
             this.description.organesSuspension[index].tab[i].content = e.target.value;
         },
 
@@ -393,7 +639,7 @@ export default {
         handelSupoprtCharge(index) {
             this.description.supoprtCharge[index].status = !this.description.supoprtCharge[index].status;
         },
-        
+
 
         saisirSupoprtCharge(e, index) {
             this.description.supoprtCharge[index].content = e.target.value;
@@ -411,7 +657,7 @@ export default {
             this.description.levageAuxiliaire[index].tab[i].status = !this.description.levageAuxiliaire[index].tab[i].status;
         },
 
-        saisirSousLevageAuxiliaire(e, index , i) {
+        saisirSousLevageAuxiliaire(e, index, i) {
             this.description.levageAuxiliaire[index].tab[i].content = e.target.value;
         },
 
@@ -429,14 +675,12 @@ export default {
         },
 
         reset() {
+
             Descriptions.reset(this.observateurId)
                 .then(() => {
 
                     this.description = this.duplicate_description;
-
                     this.flagReset = false;
-                    this.colorCaracteristiques = this.checkCaracterstiques();
-                    this.colorSuspentes = this.checkeSuspentes();
                     this.$emit("changeColorDescription_famille5_lev5", false);
 
                 })
@@ -471,8 +715,6 @@ export default {
                     this.description = result.data.description;
                 }
 
-                this.colorCaracteristiques = this.checkCaracterstiques();
-                this.colorSuspentes = this.checkeSuspentes();
                 this.watched_sauvegarder = true;
                 return this.notEmpty();
             })
@@ -484,7 +726,6 @@ export default {
 </script>
 
 <style scoped>
-
 .descriptions {
     margin-top: 10px;
     margin-bottom: 100px;
@@ -565,7 +806,8 @@ table>tr:nth-child(6)>td:nth-child(3) {
     color: red;
 }
 
-input , select {
+input,
+select {
     height: 25px;
     font-size: medium;
 }
@@ -577,7 +819,8 @@ td div p {
     align-items: center;
 }
 
-.sauvegarder , .reset {
+.sauvegarder,
+.reset {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -616,5 +859,4 @@ td div p {
     border: 0px;
     border-radius: 5px;
 }
-
 </style>
