@@ -60,6 +60,8 @@ class Examens {
         })
     }
 
+
+
     static updateStatus(observateurId, titreReserve) {
 
         return new Promise((resolve, reject) => {
@@ -91,6 +93,25 @@ class Examens {
                     statusCritique: statusCritique,
                     observateurId : observateurId
                 },
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
+
+    static deleteAllCommentairesExamen(observateurId) {
+
+        return new Promise((resolve, reject) => {
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille5_lev5/examens/deleteAllCommentairesExamen/${observateurId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json'

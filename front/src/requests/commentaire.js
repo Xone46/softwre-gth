@@ -85,6 +85,18 @@ class Commentaires {
         })
     }
 
+    static deleteByIndexAndRef(ref, number, titre, index, observateurId) {
+        return new Promise((resolve, reject) => {
+            axios.delete(`${VUE_APP_API_BASE_URL}/commentaires/${ref}/${number}/${titre}/${index}/${observateurId}`, config)
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
 
     static select(ref, number, titre, observateurId) {
 

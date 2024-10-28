@@ -12,32 +12,35 @@
                 <button @click="saisie">Saisie liber d'une observation</button>
             </div>
 
-            <h4 v-if="flagPhrases">Liste des modèles suggérés</h4>
-            <ul v-if="flagPhrases">
-                <li v-for="(item, index) in liste" :value="item.name" :key="index">
-                    <p>{{ item.name }}</p><span @click="choisir(item.name)">choisir</span>
-                </li>
-            </ul>
+            <!-- les modeles disponibles -->
+            <table v-if="flagPhrases">
+                <tr v-for="(item, index) in liste" :value="item.name" :key="index">
+                    <td>{{ item.name }}</td>
+                    <td><span @click="choisir(item.name)">choisir</span></td>
+                </tr>
+            </table >
 
-            <h4 v-if="flagSaisie">Saisie liber d'une observation</h4>
+            <!-- saisir libre -->
             <ul v-if="flagSaisie">
                 <textarea v-model="content" placeholder="Vous devez saisir un modèle"></textarea>
             </ul>
             <button v-if="flagSaisie" @click="ajouter">Ajouter</button>
 
 
+            <!-- liste sélectionnées -->
             <h4>Notes finales sélectionnées</h4>
-            <ul>
-                <li v-for="(item, index) in modelSelected" :value="item.name" :key="index + 100">
-                    <p>{{ item.name }}</p>
-                    <span @click="supprimer(item.name)">supprimer</span>
-                    <select v-model="item.status">
-                        <option value="critique">Critique</option>
-                        <option value="non critique">Non critique</option>
-                    </select>
-                </li>
-            </ul>
-
+            <table>
+                <tr v-for="(item, index) in modelSelected" :value="item.name" :key="index + 100">
+                    <td>{{ item.name }}</td>
+                    <td><span @click="supprimer(item.name)">supprimer</span></td>
+                    <td>
+                        <select v-model="item.status">
+                            <option value="critique">Critique</option>
+                            <option value="non critique">Non critique</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
 
             <div class="sauvegarder" v-if="modelSelected.length != 0">
                 <button @click="sauvegarder">Sauvegarde</button>
@@ -70,10 +73,10 @@ export default {
             modelSelected: [],
             commentaireId: "",
             liste: [
-                { name: "Avec un investissement colossal de 4,41 milliards de dirhams (MMDH), ce projet est divisé entre 2,35 milliards de dirhams pour", status: "" },
-                { name: "La station est conçue pour produire de l'eau dessalée, qui est ensuite équitablement répartie entre l'eau potable et l'eau destiné", status: "" },
-                { name: "hectares dans la plaine de Chtouka, en substituant l'eau de mer à l'eau souterraine, et profite ainsi à environ 1.500 exploitations agricoles locales.", status: "" },
-                { name: "première de ce type en Afrique, joue un rôle crucial en fournissant de l'eau potable à la région du Grand Agadir (Agadir Ida-Outanan et Inezgane Ait Melloul) ", status: "" },
+                { name: "Avec un investissement colossal de 4,41 milliards de dirhams (MMDH), ce projet est divisé entre 2,35 milliards de dirhams pour", status: "", etat : "not_saved" },
+                { name: "La station est conçue pour produire de l'eau dessalée, qui est ensuite équitablement répartie entre l'eau potable et l'eau destiné", status: "", etat: "not-saved" },
+                { name: "hectares dans la plaine de Chtouka, en substituant l'eau de mer à l'eau souterraine, et profite ainsi à environ 1.500 exploitations agricoles locales.", status: "", etat : "not_saved" },
+                { name: "première de ce type en Afrique, joue un rôle crucial en fournissant de l'eau potable à la région du Grand Agadir (Agadir Ida-Outanan et Inezgane Ait Melloul) ", status: "", etat : "not_saved" },
             ]
         }
     },
@@ -100,17 +103,14 @@ export default {
 
         sauvegarder() {
 
-
             Commentaires.create(this.observateurId, this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.modelSelected)
-                .then(() => {
-                  return this.$emit('valider', this.infoReserve);
-                    
+                .then((result) => {
+                    console.log(result);
+                    return this.$emit('valider', this.infoReserve);
                 })
                 .catch((error) => {
                     console.log(error);
                 });
-
-            
         },
 
         reset() {
@@ -132,7 +132,8 @@ export default {
 
                 this.modelSelected.push({
                     name : this.content,
-                    status : ""
+                    status : "",
+                    etat : "not_saved"
                 });
 
                 this.content = "";
@@ -145,19 +146,44 @@ export default {
 
             this.modelSelected.push({
                 name: value,
-                status: ""
+                status: "",
+                etat : "not_saved"
             });
 
         },
 
         supprimer(value) {
-            const index = this.modelSelected.findIndex((el) => el.name == value);
-            this.modelSelected.splice(index, 1);
 
-            this.liste.push({
-                name: value,
-                status: ""
-            });
+            const index = this.modelSelected.findIndex((el) => el.name == value);
+
+            if(this.modelSelected[index].etat == "not_saved") {
+
+                this.modelSelected.splice(index, 1);
+                this.liste.push({
+                    name: value,
+                    status: "",
+                    etat : "not_saved"
+                });
+
+            } else {
+
+                Commentaires.deleteByIndexAndRef(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], index, this.observateurId)
+                .then(() => {
+
+                    this.modelSelected.splice(index, 1);
+                    this.liste.push({
+                        name: value,
+                        status: "",
+                        etat : "not_saved"
+                    });
+
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+            }
+
+
         },
 
         phrases() {
@@ -179,6 +205,8 @@ export default {
 
     created() {
 
+        console.log(this.infoReserve)
+
         Commentaires.select(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.infoReserve[3])
             .then((result) => {
 
@@ -190,6 +218,7 @@ export default {
                 });
 
                 this.modelSelected = result.data.modelSelected;
+
             })
             .catch((error) => {
                 console.log(error);
