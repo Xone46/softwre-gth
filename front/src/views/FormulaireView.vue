@@ -81,7 +81,7 @@
                 <KeepAlive>
                     <Renseignement_famille1_lev1 v-if="flagRenseignement_famille1_lev1"
                         @changeColorRenseignement_famille1_lev1="changeColorRenseignement_famille1_lev1"
-                        :observateurId="formulaire.observateurId" />
+                        :observateurId="formulaire.observateurId"  />
                 </KeepAlive>
 
                 <KeepAlive>
@@ -310,7 +310,6 @@
             <div class="right">
                 <button @click="retour">Liste des interventions</button>
                 <button @click="visualiationReserve">Visualisation les réserves</button>
-                <!-- <button @click="terminer">Contrôle terminer</button> -->
             </div>
         </div>
 
@@ -388,6 +387,8 @@ export default {
     name: 'FormulaireView',
     data() {
         return {
+
+            counter_saved : 0,
 
             flag_famille1_lev1: false,
             flag_Menu_famille1_lev1: false,
@@ -543,6 +544,7 @@ export default {
     },
 
     methods: {
+
 
         emptyAccessoire_famille_ac1() {
             this.accessoires = [];

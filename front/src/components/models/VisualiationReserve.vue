@@ -8,29 +8,39 @@
                     <p class="non_critique" v-if="item.status == 'non critique'">{{  item.status  }}</p>
                     <span>{{  item.name  }}</span>
                     <p>{{  item.status  }}</p>
-                    <button @click="supprimer(item.ref, item.name,)">supprimer</button>
+                    <button @click="supprimer(item.titre, item.ref, item.name, index)">supprimer</button>
                 </li>
             </ul>
             <div class="buttons">
                 <button @click="quitter">Quitter</button>
             </div>
         </div>
+        <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
     </div>
 </template>
 
 <script>
 import Commentaires from '@/requests/commentaire';
+import Verified from '@/components/models/Verified.vue';
 
 export default {
     name: 'reserve-component',
     data() {
         return {
+
+            titre : null,
+            ref : null,
+            name : null,
+            indexCommentaire : null,
+
+            flagVerified : false,
             commentaires : [],
             listCritique : ["critique", "non critique"]
         }
     },
 
     components : {
+        Verified
     },
 
     props: {
@@ -38,20 +48,44 @@ export default {
     },
 
     methods: {
-        quitter() {
-            return this.$emit("quitter");
-        },
 
-        supprimer(ref, name, index) {
-            Commentaires.supprimer(ref, name, this.observateurId)
+        confirmer() {
+
+            Commentaires.supprimer(this.titre, this.ref, this.name, this.observateurId)
             .then((result) => {
                 if(result) {
-                    this.commentaires.splice(index, 1);
+                    this.commentaires.splice(this.indexCommentaire, 1);
+                    this.titre = null,
+                    this.ref = null,
+                    this.name = null,
+                    this.indexCommentaire = null,
+                    this.flagVerified = false;
                 }
             })
             .catch((error) => {
                 console.log(error);
             });
+        },
+
+        retirer() {
+            this.titre = null,
+            this.ref = null,
+            this.name = null,
+            this.indexCommentaire = null,
+            this.flagVerified = false;
+        },
+
+
+        quitter() {
+            return this.$emit("quitter");
+        },
+
+        supprimer(titre, ref, name, index) {
+            this.titre = titre,
+            this.ref = ref,
+            this.name = name,
+            this.indexCommentaire = index,
+            this.flagVerified = true;
         }
     },
 

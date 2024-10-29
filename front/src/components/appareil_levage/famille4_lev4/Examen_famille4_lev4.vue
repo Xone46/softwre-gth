@@ -1911,6 +1911,15 @@ export default {
 
                     this.watched_sauvegarder = true;
                     return this.notEmpty();
+                } else {
+                    // delete all commentaires connected by examen but not saved
+                    Examens.deleteAllCommentairesExamen(this.observateurId)
+                        .then(() => {
+                            console.log(true);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
                 }
 
                 return this.notEmpty();

@@ -32,10 +32,11 @@ class Commentaires {
         })
     }
 
-    static supprimer(ref, name, observateurId) {
+    static supprimer(titre, ref, name, observateurId) {
         return new Promise((resolve, reject) => {
             axios.post(`${VUE_APP_API_BASE_URL}/commentaires/supprimer`,
                 {
+                    titre,
                     ref,
                     name,
                     observateurId

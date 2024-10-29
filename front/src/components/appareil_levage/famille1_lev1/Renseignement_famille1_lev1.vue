@@ -195,6 +195,7 @@ export default {
     name: 'renseignement-component',
     data() {
         return {
+            oldCounter : null,
             counter_watched: 0,
             watched_sauvegarder: false,
             falgInsert: false,
@@ -251,7 +252,6 @@ export default {
     methods: {
 
         checkProperties() {
-
 
             if (this.renseignement.constructeur == "") {
                 return false;
@@ -440,7 +440,6 @@ export default {
             this.falgInsert = false;
         },
 
-
         reset() {
 
             Renseignement.reset(this.observateurId)
@@ -508,7 +507,6 @@ export default {
                                 this.renseignement.numeroInterne = "Avec Objet : ";
                                 this.renseignement.suiveNumeroInterne = result.data.numeroInterne;
                             }
-
 
                             if (result.data.numeroInterne == null || result.data.numeroInterne == "" ||  String(result.data.numeroInterne).toLocaleLowerCase() == "sans objet") {
                                 this.renseignement.numeroInterne = "Sans Objet";

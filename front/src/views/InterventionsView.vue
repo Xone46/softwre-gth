@@ -1,10 +1,8 @@
 <template>
   <div class="interventions">
-    
     <FormIntervention v-if="flagFormIntervention" :interventionId="interventionId"  @anuller="closeFormIntervention" @table="closeFormIntervention" @close="close"/>
     <TableIntervention v-if="flagTableIntervention" @nouveau="openFormIntervention" @modifier="modifier" @apercu="apercu" @relaodTableObservateur="relaodTableObservateur" @deleteTableIntervention="deleteTableIntervention" />
     <TableObservateur v-if="flagTableObservateur" :interventionId="interventionId" @modifierObservateur="modifierObservateur" />
-
   </div>
 </template>
 

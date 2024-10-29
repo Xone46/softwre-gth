@@ -105,6 +105,25 @@ class Examens {
         })
     }
 
+    
+    static deleteAllCommentairesExamen(observateurId) {
+
+        return new Promise((resolve, reject) => {
+            axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille2_lev2/examens/deleteAllCommentairesExamen/${observateurId}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
 }
 
 export default Examens;
