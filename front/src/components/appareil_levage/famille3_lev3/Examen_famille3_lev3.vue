@@ -1903,8 +1903,8 @@ export default {
                     this.watched_sauvegarder = true;
                     return this.notEmpty();
                 } else {
-                                        // delete all commentaires connected by examen but not saved
-                                        Examens.deleteAllCommentairesExamen(this.observateurId)
+                    // delete all commentaires connected by examen but not saved
+                    Examens.deleteAllCommentairesExamen(this.observateurId)
                         .then(() => {
                             console.log(true);
                         })

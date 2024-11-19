@@ -15,7 +15,9 @@
             </tr>
             <tr v-for="(item, index) in a" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkA(index, 'be', item.be)">
                 </td>
@@ -54,7 +56,9 @@
             </tr>
             <tr v-for="(item, index) in b" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkB(index, 'be', item.be)">
                 </td>
@@ -93,7 +97,9 @@
             </tr>
             <tr v-for="(item, index) in c" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkC(index, 'be', item.be)">
                 </td>
@@ -132,7 +138,9 @@
             </tr>
             <tr v-for="(item, index) in d" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkD(index, 'be', item.be)">
                 </td>
@@ -171,7 +179,9 @@
             </tr>
             <tr v-for="(item, index) in e" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkE(index, 'be', item.be)">
                 </td>
@@ -210,7 +220,9 @@
             </tr>
             <tr v-for="(item, index) in f" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkF(index, 'be', item.be)">
                 </td>
@@ -249,7 +261,9 @@
             </tr>
             <tr v-for="(item, index) in g" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkG(index, 'be', item.be)">
                 </td>
@@ -276,7 +290,7 @@
 
         <table>
             <tr>
-                <th>SUSPENTES TAMBOURS POULIES  DISPOSITIFS DE PREHENSION</th>
+                <th>SUSPENTES TAMBOURS POULIES DISPOSITIFS DE PREHENSION</th>
                 <th></th>
                 <th>BE</th>
                 <th>FC</th>
@@ -288,7 +302,9 @@
             </tr>
             <tr v-for="(item, index) in h" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkH(index, 'be', item.be)">
                 </td>
@@ -328,7 +344,9 @@
             </tr>
             <tr v-for="(item, index) in i" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkI(index, 'be', item.be)">
                 </td>
@@ -367,7 +385,9 @@
             </tr>
             <tr v-for="(item, index) in j" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkJ(index, 'be', item.be)">
                 </td>
@@ -406,7 +426,9 @@
             </tr>
             <tr v-for="(item, index) in k" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkK(index, 'be', item.be)">
                 </td>
@@ -441,7 +463,8 @@
             <button @click="reset">Reset</button>
         </div>
 
-        <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve" @annuler="annulerReserve"/>
+        <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve"
+            @annuler="annulerReserve" />
 
     </div>
 </template>
@@ -459,13 +482,13 @@ export default {
             counter_watched: 0,
             watched_sauvegarder: false,
             flagReset: false,
-            flagReserve : false,
-            infoReserve : [],
+            flagReserve: false,
+            infoReserve: [],
 
             a: [
-                { titre: "- Accès a la cabine et au poste de conduite", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
-                { titre: "- Accès aux chemins de roulement", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
-                { titre: "- Autres accès pour entretien et vérification", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
+                { titre: "- Accès a la cabine et au poste de conduite", nv: false, be: false, fc: false, sa: false, statusCritique: false, so: false, o: false },
+                { titre: "- Accès aux chemins de roulement", nv: false, be: false, fc: false, sa: false, statusCritique: false, so: false, o: false },
+                { titre: "- Autres accès pour entretien et vérification", nv: false, be: false, fc: false, sa: false, statusCritique: false, so: false, o: false },
             ],
 
             b: [
@@ -655,57 +678,57 @@ export default {
         validerReserve(value) {
 
             const indexA = this.a.findIndex((el) => el.titre == value[2]);
-            if(indexA != -1) {
+            if (indexA != -1) {
                 this.a[indexA]["o"] = true;
             }
 
             const indexB = this.b.findIndex((el) => el.titre == value[2]);
-            if(indexB != -1) {
+            if (indexB != -1) {
                 this.b[indexB]["o"] = true;
             }
 
             const indexC = this.c.findIndex((el) => el.titre == value[2]);
-            if(indexC != -1) {
+            if (indexC != -1) {
                 this.c[indexC]["o"] = true;
             }
 
             const indexD = this.d.findIndex((el) => el.titre == value[2]);
-            if(indexD != -1) {
+            if (indexD != -1) {
                 this.d[indexD]["o"] = true;
             }
 
             const indexE = this.e.findIndex((el) => el.titre == value[2]);
-            if(indexE != -1) {
+            if (indexE != -1) {
                 this.e[indexE]["o"] = true;
             }
 
             const indexF = this.f.findIndex((el) => el.titre == value[2]);
-            if(indexF != -1) {
+            if (indexF != -1) {
                 this.f[indexF]["o"] = true;
             }
 
             const indexG = this.g.findIndex((el) => el.titre == value[2]);
-            if(indexG != -1) {
+            if (indexG != -1) {
                 this.g[indexG]["o"] = true;
             }
 
             const indexH = this.h.findIndex((el) => el.titre == value[2]);
-            if(indexH != -1) {
+            if (indexH != -1) {
                 this.h[indexH]["o"] = true;
             }
 
             const indexI = this.i.findIndex((el) => el.titre == value[2]);
-            if(indexI != -1) {
+            if (indexI != -1) {
                 this.i[indexA]["o"] = true;
             }
 
             const indexJ = this.j.findIndex((el) => el.titre == value[2]);
-            if(indexJ != -1) {
+            if (indexJ != -1) {
                 this.j[indexJ]["o"] = true;
             }
 
             const indexK = this.k.findIndex((el) => el.titre == value[2]);
-            if(indexK != -1) {
+            if (indexK != -1) {
                 this.j[indexK]["o"] = true;
             }
 
@@ -716,7 +739,7 @@ export default {
             this.flagReserve = false;
         },
 
-        
+
         checkAObs(index) {
             this.infoReserve = ["A", index, this.a[index]["titre"], this.observateurId]
             this.flagReserve = true;
@@ -769,8 +792,8 @@ export default {
 
         checkA(index, type, bol) {
 
-            if(type == "be") {
-                if(this.a[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.a[index]["fc"] == true) {
                     this.a[index]["be"] = bol;
                     this.a[index]["sa"] = false;
                     this.a[index]["nv"] = false;
@@ -784,8 +807,8 @@ export default {
                     this.a[index]["so"] = false;
                     this.a[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.a[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.a[index]["be"] == true) {
                     this.a[index]["fc"] = bol;
                     this.a[index]["sa"] = false;
                     this.a[index]["nv"] = false;
@@ -799,21 +822,21 @@ export default {
                     this.a[index]["so"] = false;
                     this.a[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.a[index]["be"] = false;
                 this.a[index]["fc"] = false;
                 this.a[index]["sa"] = bol;
                 this.a[index]["nv"] = false;
                 this.a[index]["so"] = false;
                 this.a[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.a[index]["be"] = false;
                 this.a[index]["fc"] = false;
                 this.a[index]["sa"] = false;
                 this.a[index]["nv"] = bol;
                 this.a[index]["so"] = false;
                 this.a[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.a[index]["be"] = false;
                 this.a[index]["fc"] = false;
                 this.a[index]["sa"] = false;
@@ -821,18 +844,18 @@ export default {
                 this.a[index]["so"] = bol;
                 this.a[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.a[index]["be"] = false;
                 this.a[index]["fc"] = false;
@@ -846,8 +869,8 @@ export default {
 
 
         checkB(index, type, bol) {
-            if(type == "be") {
-                if(this.b[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.b[index]["fc"] == true) {
                     this.b[index]["be"] = bol;
                     this.b[index]["sa"] = false;
                     this.b[index]["nv"] = false;
@@ -861,8 +884,8 @@ export default {
                     this.b[index]["so"] = false;
                     this.b[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.b[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.b[index]["be"] == true) {
                     this.b[index]["fc"] = bol;
                     this.b[index]["sa"] = false;
                     this.b[index]["nv"] = false;
@@ -876,21 +899,21 @@ export default {
                     this.b[index]["so"] = false;
                     this.b[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.b[index]["be"] = false;
                 this.b[index]["fc"] = false;
                 this.b[index]["sa"] = bol;
                 this.b[index]["nv"] = false;
                 this.b[index]["so"] = false;
                 this.b[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.b[index]["be"] = false;
                 this.b[index]["fc"] = false;
                 this.b[index]["sa"] = false;
                 this.b[index]["nv"] = bol;
                 this.b[index]["so"] = false;
                 this.b[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.b[index]["be"] = false;
                 this.b[index]["fc"] = false;
                 this.b[index]["sa"] = false;
@@ -898,18 +921,18 @@ export default {
                 this.b[index]["so"] = bol;
                 this.b[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.b[index]["be"] = false;
                 this.b[index]["fc"] = false;
@@ -921,8 +944,8 @@ export default {
         },
 
         checkC(index, type, bol) {
-            if(type == "be") {
-                if(this.c[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.c[index]["fc"] == true) {
                     this.c[index]["be"] = bol;
                     this.c[index]["sa"] = false;
                     this.c[index]["nv"] = false;
@@ -936,8 +959,8 @@ export default {
                     this.c[index]["so"] = false;
                     this.c[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.c[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.c[index]["be"] == true) {
                     this.c[index]["fc"] = bol;
                     this.c[index]["sa"] = false;
                     this.c[index]["nv"] = false;
@@ -951,21 +974,21 @@ export default {
                     this.c[index]["so"] = false;
                     this.c[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.c[index]["be"] = false;
                 this.c[index]["fc"] = false;
                 this.c[index]["sa"] = bol;
                 this.c[index]["nv"] = false;
                 this.c[index]["so"] = false;
                 this.c[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.c[index]["be"] = false;
                 this.c[index]["fc"] = false;
                 this.c[index]["sa"] = false;
                 this.c[index]["nv"] = bol;
                 this.c[index]["so"] = false;
                 this.c[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.c[index]["be"] = false;
                 this.c[index]["fc"] = false;
                 this.c[index]["sa"] = false;
@@ -973,18 +996,18 @@ export default {
                 this.c[index]["so"] = bol;
                 this.c[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.c[index]["be"] = false;
                 this.c[index]["fc"] = false;
@@ -997,8 +1020,8 @@ export default {
 
         checkD(index, type, bol) {
 
-            if(type == "be") {
-                if(this.d[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.d[index]["fc"] == true) {
                     this.d[index]["be"] = bol;
                     this.d[index]["sa"] = false;
                     this.d[index]["nv"] = false;
@@ -1012,8 +1035,8 @@ export default {
                     this.d[index]["so"] = false;
                     this.d[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.d[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.d[index]["be"] == true) {
                     this.d[index]["fc"] = bol;
                     this.d[index]["sa"] = false;
                     this.d[index]["nv"] = false;
@@ -1027,21 +1050,21 @@ export default {
                     this.d[index]["so"] = false;
                     this.d[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.d[index]["be"] = false;
                 this.d[index]["fc"] = false;
                 this.d[index]["sa"] = bol;
                 this.d[index]["nv"] = false;
                 this.d[index]["so"] = false;
                 this.d[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.d[index]["be"] = false;
                 this.d[index]["fc"] = false;
                 this.d[index]["sa"] = false;
                 this.d[index]["nv"] = bol;
                 this.d[index]["so"] = false;
                 this.d[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.d[index]["be"] = false;
                 this.d[index]["fc"] = false;
                 this.d[index]["sa"] = false;
@@ -1049,18 +1072,18 @@ export default {
                 this.d[index]["so"] = bol;
                 this.d[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.d[index]["be"] = false;
                 this.d[index]["fc"] = false;
@@ -1073,8 +1096,8 @@ export default {
         },
 
         checkE(index, type, bol) {
-            if(type == "be") {
-                if(this.e[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.e[index]["fc"] == true) {
                     this.e[index]["be"] = bol;
                     this.e[index]["sa"] = false;
                     this.e[index]["nv"] = false;
@@ -1088,8 +1111,8 @@ export default {
                     this.e[index]["so"] = false;
                     this.e[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.e[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.e[index]["be"] == true) {
                     this.e[index]["fc"] = bol;
                     this.e[index]["sa"] = false;
                     this.e[index]["nv"] = false;
@@ -1103,21 +1126,21 @@ export default {
                     this.e[index]["so"] = false;
                     this.e[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.e[index]["be"] = false;
                 this.e[index]["fc"] = false;
                 this.e[index]["sa"] = bol;
                 this.e[index]["nv"] = false;
                 this.e[index]["so"] = false;
                 this.e[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.e[index]["be"] = false;
                 this.e[index]["fc"] = false;
                 this.e[index]["sa"] = false;
                 this.e[index]["nv"] = bol;
                 this.e[index]["so"] = false;
                 this.e[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.e[index]["be"] = false;
                 this.e[index]["fc"] = false;
                 this.e[index]["sa"] = false;
@@ -1125,18 +1148,18 @@ export default {
                 this.e[index]["so"] = bol;
                 this.e[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.e[index]["be"] = false;
                 this.e[index]["fc"] = false;
@@ -1148,8 +1171,8 @@ export default {
         },
 
         checkF(index, type, bol) {
-            if(type == "be") {
-                if(this.f[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.f[index]["fc"] == true) {
                     this.f[index]["be"] = bol;
                     this.f[index]["sa"] = false;
                     this.f[index]["nv"] = false;
@@ -1163,8 +1186,8 @@ export default {
                     this.f[index]["so"] = false;
                     this.f[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.f[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.f[index]["be"] == true) {
                     this.f[index]["fc"] = bol;
                     this.f[index]["sa"] = false;
                     this.f[index]["nv"] = false;
@@ -1178,21 +1201,21 @@ export default {
                     this.f[index]["so"] = false;
                     this.f[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.f[index]["be"] = false;
                 this.f[index]["fc"] = false;
                 this.f[index]["sa"] = bol;
                 this.f[index]["nv"] = false;
                 this.f[index]["so"] = false;
                 this.f[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.f[index]["be"] = false;
                 this.f[index]["fc"] = false;
                 this.f[index]["sa"] = false;
                 this.f[index]["nv"] = bol;
                 this.f[index]["so"] = false;
                 this.f[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.f[index]["be"] = false;
                 this.f[index]["fc"] = false;
                 this.f[index]["sa"] = false;
@@ -1200,18 +1223,18 @@ export default {
                 this.f[index]["so"] = bol;
                 this.f[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.f[index]["be"] = false;
                 this.f[index]["fc"] = false;
@@ -1224,8 +1247,8 @@ export default {
         },
 
         checkG(index, type, bol) {
-            if(type == "be") {
-                if(this.g[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.g[index]["fc"] == true) {
                     this.g[index]["be"] = bol;
                     this.g[index]["sa"] = false;
                     this.g[index]["nv"] = false;
@@ -1239,8 +1262,8 @@ export default {
                     this.g[index]["so"] = false;
                     this.g[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.g[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.g[index]["be"] == true) {
                     this.g[index]["fc"] = bol;
                     this.g[index]["sa"] = false;
                     this.g[index]["nv"] = false;
@@ -1254,21 +1277,21 @@ export default {
                     this.g[index]["so"] = false;
                     this.g[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.g[index]["be"] = false;
                 this.g[index]["fc"] = false;
                 this.g[index]["sa"] = bol;
                 this.g[index]["nv"] = false;
                 this.g[index]["so"] = false;
                 this.g[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.g[index]["be"] = false;
                 this.g[index]["fc"] = false;
                 this.g[index]["sa"] = false;
                 this.g[index]["nv"] = bol;
                 this.g[index]["so"] = false;
                 this.g[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.g[index]["be"] = false;
                 this.g[index]["fc"] = false;
                 this.g[index]["sa"] = false;
@@ -1276,18 +1299,18 @@ export default {
                 this.g[index]["so"] = bol;
                 this.g[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.g[index]["be"] = false;
                 this.g[index]["fc"] = false;
@@ -1299,8 +1322,8 @@ export default {
         },
 
         checkH(index, type, bol) {
-            if(type == "be") {
-                if(this.h[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.h[index]["fc"] == true) {
                     this.h[index]["be"] = bol;
                     this.h[index]["sa"] = false;
                     this.h[index]["nv"] = false;
@@ -1314,8 +1337,8 @@ export default {
                     this.h[index]["so"] = false;
                     this.h[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.h[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.h[index]["be"] == true) {
                     this.h[index]["fc"] = bol;
                     this.h[index]["sa"] = false;
                     this.h[index]["nv"] = false;
@@ -1329,21 +1352,21 @@ export default {
                     this.h[index]["so"] = false;
                     this.h[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.h[index]["be"] = false;
                 this.h[index]["fc"] = false;
                 this.h[index]["sa"] = bol;
                 this.h[index]["nv"] = false;
                 this.h[index]["so"] = false;
                 this.h[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.h[index]["be"] = false;
                 this.h[index]["fc"] = false;
                 this.h[index]["sa"] = false;
                 this.h[index]["nv"] = bol;
                 this.h[index]["so"] = false;
                 this.h[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.h[index]["be"] = false;
                 this.h[index]["fc"] = false;
                 this.h[index]["sa"] = false;
@@ -1351,18 +1374,18 @@ export default {
                 this.h[index]["so"] = bol;
                 this.h[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.h[index]["be"] = false;
                 this.h[index]["fc"] = false;
@@ -1375,8 +1398,8 @@ export default {
         },
 
         checkI(index, type, bol) {
-            if(type == "be") {
-                if(this.i[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.i[index]["fc"] == true) {
                     this.i[index]["be"] = bol;
                     this.i[index]["sa"] = false;
                     this.i[index]["nv"] = false;
@@ -1390,8 +1413,8 @@ export default {
                     this.i[index]["so"] = false;
                     this.i[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.i[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.i[index]["be"] == true) {
                     this.i[index]["fc"] = bol;
                     this.i[index]["sa"] = false;
                     this.i[index]["nv"] = false;
@@ -1405,21 +1428,21 @@ export default {
                     this.i[index]["so"] = false;
                     this.i[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.i[index]["be"] = false;
                 this.i[index]["fc"] = false;
                 this.i[index]["sa"] = bol;
                 this.i[index]["nv"] = false;
                 this.i[index]["so"] = false;
                 this.i[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.i[index]["be"] = false;
                 this.i[index]["fc"] = false;
                 this.i[index]["sa"] = false;
                 this.i[index]["nv"] = bol;
                 this.i[index]["so"] = false;
                 this.i[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.i[index]["be"] = false;
                 this.i[index]["fc"] = false;
                 this.i[index]["sa"] = false;
@@ -1427,18 +1450,18 @@ export default {
                 this.i[index]["so"] = bol;
                 this.i[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.i[index]["be"] = false;
                 this.i[index]["fc"] = false;
@@ -1451,8 +1474,8 @@ export default {
 
         checkJ(index, type, bol) {
 
-            if(type == "be") {
-                if(this.j[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.j[index]["fc"] == true) {
                     this.j[index]["be"] = bol;
                     this.j[index]["sa"] = false;
                     this.j[index]["nv"] = false;
@@ -1466,8 +1489,8 @@ export default {
                     this.j[index]["so"] = false;
                     this.j[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.j[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.j[index]["be"] == true) {
                     this.j[index]["fc"] = bol;
                     this.j[index]["sa"] = false;
                     this.j[index]["nv"] = false;
@@ -1481,21 +1504,21 @@ export default {
                     this.j[index]["so"] = false;
                     this.j[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.j[index]["be"] = false;
                 this.j[index]["fc"] = false;
                 this.j[index]["sa"] = bol;
                 this.j[index]["nv"] = false;
                 this.j[index]["so"] = false;
                 this.j[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.j[index]["be"] = false;
                 this.j[index]["fc"] = false;
                 this.j[index]["sa"] = false;
                 this.j[index]["nv"] = bol;
                 this.j[index]["so"] = false;
                 this.j[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.j[index]["be"] = false;
                 this.j[index]["fc"] = false;
                 this.j[index]["sa"] = false;
@@ -1503,18 +1526,18 @@ export default {
                 this.j[index]["so"] = bol;
                 this.j[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.j[index]["be"] = false;
                 this.j[index]["fc"] = false;
@@ -1527,8 +1550,8 @@ export default {
 
         checkK(index, type, bol) {
 
-            if(type == "be") {
-                if(this.k[index]["fc"] == true) {
+            if (type == "be") {
+                if (this.k[index]["fc"] == true) {
                     this.k[index]["be"] = bol;
                     this.k[index]["sa"] = false;
                     this.k[index]["nv"] = false;
@@ -1542,8 +1565,8 @@ export default {
                     this.k[index]["so"] = false;
                     this.k[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.k[index]["be"] == true) {
+            } else if (type == "fc") {
+                if (this.k[index]["be"] == true) {
                     this.k[index]["fc"] = bol;
                     this.k[index]["sa"] = false;
                     this.k[index]["nv"] = false;
@@ -1557,21 +1580,21 @@ export default {
                     this.k[index]["so"] = false;
                     this.k[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
+            } else if (type == 'sa') {
                 this.k[index]["be"] = false;
                 this.k[index]["fc"] = false;
                 this.k[index]["sa"] = bol;
                 this.k[index]["nv"] = false;
                 this.k[index]["so"] = false;
                 this.k[index]["o"] = false;
-            } else if(type == 'nv') {
+            } else if (type == 'nv') {
                 this.k[index]["be"] = false;
                 this.k[index]["fc"] = false;
                 this.k[index]["sa"] = false;
                 this.k[index]["nv"] = bol;
                 this.k[index]["so"] = false;
                 this.k[index]["o"] = false;
-            } else if(type == 'so') {
+            } else if (type == 'so') {
                 this.k[index]["be"] = false;
                 this.k[index]["fc"] = false;
                 this.k[index]["sa"] = false;
@@ -1579,18 +1602,18 @@ export default {
                 this.k[index]["so"] = bol;
                 this.k[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
                 this.k[index]["be"] = false;
                 this.k[index]["fc"] = false;
@@ -1607,115 +1630,115 @@ export default {
                     if (result.data) {
 
                         this.a.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.b.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.c.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.d.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.e.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.f.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.g.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.h.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.i.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.j.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.k.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
-  
+
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
                         this.$emit("changeColorExamen_famille2_lev2", false);
@@ -1728,99 +1751,99 @@ export default {
 
         checkProperties(a, b, c, d, e, f, g, h, i, j, k) {
 
-            for(let z = 0; z < a.length; z++) {
+            for (let z = 0; z < a.length; z++) {
                 const arr = [a[z].be, a[z].fc, a[z].nv, a[z].o, a[z].sa, a[z].so, a[z].statusCritique];
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let z = 0; z < b.length; z++) {
+            for (let z = 0; z < b.length; z++) {
 
                 const arr = [b[z].be, b[z].fc, b[z].nv, b[z].o, b[z].sa, b[z].so, b[z].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false
                 }
             }
 
-            for(let z = 0; z < c.length; z++) {
+            for (let z = 0; z < c.length; z++) {
 
                 const arr = [c[z].be, c[z].fc, c[z].nv, c[z].o, c[z].sa, c[z].so, c[z].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let z = 0; z < d.length; z++) {
+            for (let z = 0; z < d.length; z++) {
 
                 const arr = [d[z].be, d[z].fc, d[z].nv, d[z].o, d[z].sa, d[z].so, d[z].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let z = 0; z < e.length; z++) {
+            for (let z = 0; z < e.length; z++) {
 
                 const arr = [e[z].be, e[z].fc, e[z].nv, e[z].o, e[z].sa, e[z].so, e[z].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let z = 0; z < f.length; z++) {
+            for (let z = 0; z < f.length; z++) {
 
                 const arr = [f[z].be, f[z].fc, f[z].nv, f[z].o, f[z].sa, f[z].so, f[z].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let z = 0; z < g.length; z++) {
+            for (let z = 0; z < g.length; z++) {
 
                 const arr = [g[z].be, g[z].fc, g[z].nv, g[z].o, g[z].sa, g[z].so, g[z].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let z = 0; z < h.length; z++) {
+            for (let z = 0; z < h.length; z++) {
 
                 const arr = [h[z].be, h[z].fc, h[z].nv, h[z].o, h[z].sa, h[z].so, h[z].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let z = 0; z < i.length; z++) {
+            for (let z = 0; z < i.length; z++) {
 
                 const arr = [i[z].be, i[z].fc, i[z].nv, i[z].o, i[z].sa, i[z].so, i[z].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let z = 0; z < j.length; z++) {
+            for (let z = 0; z < j.length; z++) {
 
                 const arr = [j[z].be, j[z].fc, j[z].nv, j[z].o, j[z].sa, j[z].so, j[z].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let z = 0; z < k.length; z++) {
+            for (let z = 0; z < k.length; z++) {
 
                 const arr = [k[z].be, k[z].fc, k[z].nv, k[z].o, k[z].sa, k[z].so, k[z].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
@@ -1870,14 +1893,14 @@ export default {
                     this.watched_sauvegarder = true;
                     return this.notEmpty();
                 } else {
-                                        // delete all commentaires connected by examen but not saved
-                                        Examens.deleteAllCommentairesExamen(this.observateurId)
-                    .then(() => {
-                    console.log(true);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                    // delete all commentaires connected by examen but not saved
+                    Examens.deleteAllCommentairesExamen(this.observateurId)
+                        .then(() => {
+                            console.log(true);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
                 }
 
                 return this.notEmpty();
@@ -1927,7 +1950,8 @@ table tr th:nth-child(2) {
 }
 
 
-.sauvegarder , .reset {
+.sauvegarder,
+.reset {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -1975,13 +1999,12 @@ table tr th:nth-child(2) {
     color: red;
 }
 
-td > p {
-   color: red;
-   cursor: pointer;
+td>p {
+    color: red;
+    cursor: pointer;
 }
 
-td > p:hover {
+td>p:hover {
     color: #04AA6D;
 }
-
 </style>
