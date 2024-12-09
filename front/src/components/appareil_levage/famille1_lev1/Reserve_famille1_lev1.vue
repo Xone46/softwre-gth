@@ -12,6 +12,11 @@
         <div v-if="flagReset" class="reset">
             <button @click="reset">Reset</button>
         </div>
+
+        <div class="spinner" v-if="flagSpinner">
+            <Spinner />
+        </div>
+
     </div>
     
 </template>
@@ -30,7 +35,8 @@ export default {
             titreReserve : "",
             commentairesReserve : [],
             reserves : [],
-            flagTableModels : false
+            flagTableModels : false,
+            flagSpinner : false
         }
     },
 
@@ -194,7 +200,23 @@ table > tr:nth-child(6) > td:nth-child(3) {
 }
 
 
-
+.spinner {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 
 </style>

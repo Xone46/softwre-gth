@@ -19,6 +19,7 @@
   
 <script>
 import Photos from "@/requests/appareil_levage/famille1_lev1/Photos"
+
 export default {
     name: 'photo-component',
     data() {
@@ -30,6 +31,7 @@ export default {
     },
 
     components: {
+        
     },
 
     props : {
@@ -177,5 +179,23 @@ export default {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.spinner {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 </style>

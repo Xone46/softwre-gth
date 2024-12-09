@@ -404,6 +404,10 @@
 
         <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve" @annuler="annulerReserve"/>
 
+        <div class="spinner" v-if="flagSpinner">
+            <Spinner />
+        </div>
+
     </div>
 </template>
 
@@ -411,12 +415,13 @@
 import Examens from "@/requests/appareil_levage/famille1_lev1/Examens"
 import Commentaires from "@/requests/commentaire";
 import Reserve from "@/components/models/Reserve.vue"
+import Spinner from 'vue-simple-spinner'
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
-
+            flagSpinner : false,
             counter_watched: 0,
             watched_sauvegarder: false,
             flagReset: false,
@@ -493,7 +498,8 @@ export default {
     },
 
     components: {
-        Reserve
+        Reserve,
+        Spinner
     },
 
 
@@ -1676,7 +1682,7 @@ export default {
 
     created() {
 
-
+        this.flagSpinner = true;
         Examens.select(this.observateurId)
             .then((result) => {
 
@@ -1708,6 +1714,7 @@ export default {
                     });
                 }
 
+                this.flagSpinner = false;
                 return this.notEmpty();
 
             })
@@ -1810,6 +1817,24 @@ td > p {
 
 td > p:hover {
     color: #04AA6D;
+}
+
+.spinner {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 </style>

@@ -20,7 +20,7 @@
                     <th>Localisation</th>
                     <th>Accompagnateur Client</th>
                     <th>Accompagnateur Inspecteur</th>
-                    <th>marquage</th>
+                    <th>Marquage</th>
                     <th>L état de Vérification</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
@@ -36,8 +36,7 @@
                     <td>{{ observateur.accompagnateurClient }}</td>
                     <td>{{ observateur.accompagnateurInspecteur }}</td>
                     <td>{{ observateur.marquage }}</td>
-                    <td v-if="!observateur.etat"><button class="termine" @click="terminer(observateur._id)">Je
-                            termine</button></td>
+                    <td v-if="!observateur.etat"><button class="termine" @click="terminer(observateur._id)">Terminer</button></td>
                     <td v-if="observateur.etat">Déjà terminé</td>
                 </tr>
             </table>

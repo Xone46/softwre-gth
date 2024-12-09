@@ -183,6 +183,11 @@
             <button @click="reset">Reset</button>
         </div>
 
+        
+        <div class="spinner" v-if="flagSpinner">
+            <Spinner />
+        </div>
+
     </div>
 
 </template>
@@ -190,10 +195,12 @@
 <script>
 import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions"
 import Observateurs from "@/requests/Observateurs"
+
 export default {
     name: 'renseignement-component',
     data() {
         return {
+            flagSpinner : false,
             colorSuspentes : false,
             colorCaracteristiques: false,
             counter_watched: 0,
@@ -335,6 +342,7 @@ export default {
 
 
     components: {
+        
     },
 
     watch: {
@@ -616,7 +624,7 @@ export default {
 
     created() {
 
-
+        this.flagSpinner = true;
         this.description.observateurId = this.observateurId;
         this.duplicate_description.observateurId = this.observateurId;
 
@@ -641,6 +649,7 @@ export default {
                 this.colorCaracteristiques = this.checkCaracterstiques();
                 this.colorSuspentes = this.checkeSuspentes();
                 this.watched_sauvegarder = true;
+                this.flagSpinner = false;
                 return this.notEmpty();
             })
             .catch((error) => {
@@ -784,4 +793,22 @@ td div p {
     border-radius: 5px;
 }
 
+
+.spinner {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 </style>

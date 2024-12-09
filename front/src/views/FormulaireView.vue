@@ -317,6 +317,8 @@
             @quitter="handelQuitter" />
 
     </div>
+
+    
 </template>
 
 <script>
@@ -1100,19 +1102,19 @@ export default {
 }
 
 .formulaire .content .right button:nth-child(1) {
-    background-color: #645756;
+    background-color: #1020e5;
 }
 
 .formulaire .content .right button:nth-child(1):hover {
-    background-color: black;
+    background-color: #040e81;
 }
 
 .formulaire .content .right button:nth-child(2) {
-    background-color: #353497;
+    background-color: #e98116;
 }
 
 .formulaire .content .right button:nth-child(2):hover {
-    background-color: #363497d5;
+    background-color: #a15304;
 }
 
 

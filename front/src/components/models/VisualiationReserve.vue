@@ -1,21 +1,26 @@
 <template>
     <div class="visualiation">
-        <div class="parent">
-            <h4 class="titre">listes des observation saisies</h4>
-            <ul class="content">
-                <li v-for="(item, index) in commentaires" :key="index">
-                    <p class="critique" v-if="item.status == 'critique'" >{{  item.status  }} </p>
-                    <p class="non_critique" v-if="item.status == 'non critique'">{{  item.status  }}</p>
-                    <span>{{  item.name  }}</span>
-                    <p>{{  item.status  }}</p>
-                    <button @click="supprimer(item.titre, item.ref, item.name, index)">supprimer</button>
-                </li>
-            </ul>
+
+            <h1 v-if="commentaires.length == 0">Il n'y a pas de commentaires</h1>
+            <table id="customers" v-if="commentaires.length != 0">
+                <tr v-for="(item, index) in commentaires" :key="index">
+                    <td>
+                        <p class="critique" v-if="item.status == 'critique'" >{{  item.status  }} </p>
+                        <p class="non_critique" v-if="item.status == 'non critique'">{{  item.status  }}</p>
+                    </td>
+                    <td>{{  item.name  }}</td>
+                    <td>
+                        <button @click="supprimer(item.titre, item.ref, item.name, index)">supprimer</button>
+                    </td>
+                </tr>
+            </table>
+
             <div class="buttons">
                 <button @click="quitter">Quitter</button>
             </div>
-        </div>
+
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
+
     </div>
 </template>
 
@@ -102,6 +107,7 @@ export default {
                     });
                 }
             }
+
         })
         .catch((error) => {
             console.log(error);
@@ -114,6 +120,8 @@ export default {
 <style scoped>
 
 .visualiation {
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
     position: fixed;
@@ -129,101 +137,63 @@ export default {
     align-items: center;
 }
 
-.visualiation .parent {
-    height: 400px;
-    width: 1000px;
+.visualiation h1{
+    background-color: white;
+    color: red;
+    text-align: center;
+    padding: 20px;
+}
+
+
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  height: 300px;
+  overflow-y: auto;
+  background-color: white;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  color: white;
+}
+
+.buttons button {
+    background-color: red;
+    color: white;
+    font-size: large;
+    border: 0px;
+    border-radius: 25px;
     padding: 10px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 5px;
-}
-
-.visualiation .parent .titre {
-    width: 100%;
-    height: 50px;
-    margin: 0;
-    background-color: #0b0a68e6;
-    color: white;
-    border: 0px;
-    font-size: large;
-    padding: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.visualiation .parent .content {
-    overflow-y: auto;
-    margin: 0;
-    width: 90%;
-    height: 100%;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-
-ul > li {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;;
-    text-decoration: none;
-}
-
-ul > li > span {
-    font-size: large;
-    margin-left: 10px;
-}
-
-ul > li > .critique {
-    font-size: large;
-    background-color: red;
-    color: white;
-    height: fit-content;
-    width: fit-content;
-    padding: 5px;
-    border-radius: 5px;
-    margin-left: 10px;
-}
-
-ul > li > .non_critique {
-    font-size: large;
-    background-color: green;
-    color: white;
-    height: fit-content;
-    width: fit-content;
-    padding: 5px;
-    border-radius: 5px;
-    margin-left: 10px;
-}
-
-ul > li > button {
-    font-size: large;
-    background-color: red;
-    color: white;
+    margin: 5px;
     cursor: pointer;
-    border: 0px;
-    border-radius: 5px;
-    margin-left: 10px;
-    padding: 3px;
+    width: 100px;
 }
 
-
-.visualiation .parent .buttons button {
-    height: 40px;
-    width: 150px;
+table tr td button {
     background-color: red;
     color: white;
-    cursor: pointer;
+    font-size: large;
     border: 0px;
-    border-radius: 5px;
+    border-radius: 25px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    width: 100px;
 }
 
 </style>
