@@ -1,39 +1,36 @@
 <template>
     <div class="reserve">
 
-        <div class="head">
+        <div class="parent">
+
             <h3>{{ `${infoReserve[0] + '/' + infoReserve[1]}` }} {{ infoReserve[2] }}</h3>
-        </div>
 
-        <div class="content">
-
-            <div>
+            <div class="buttons-head">
                 <button @click="phrases">Phrases modèles disponibles</button>
                 <button @click="saisie">Saisie liber d'une observation</button>
             </div>
 
             <!-- les modeles disponibles -->
-            <table v-if="flagPhrases">
+            <table id="customers" v-if="flagPhrases">
                 <tr v-for="(item, index) in liste" :value="item.name" :key="index">
                     <td>{{ item.name }}</td>
-                    <td><span @click="choisir(item.name)">choisir</span></td>
+                    <td><button class="choisir" @click="choisir(item.name)">choisir</button></td>
                 </tr>
-            </table >
+            </table>
 
             <!-- saisir libre -->
-            <ul v-if="flagSaisie">
-                <textarea v-model="content" placeholder="Vous devez saisir un modèle"></textarea>
-            </ul>
-            <button v-if="flagSaisie" @click="ajouter">Ajouter</button>
-
+             <div class="saisir-libre">
+                <textarea v-if="flagSaisie" v-model="content" rows="20" placeholder="Vous devez saisir un modèle"></textarea>
+                <button class="ajouter" v-if="flagSaisie" @click="ajouter">Ajouter</button>
+             </div>
 
             <!-- liste sélectionnées -->
-            <h4>Notes finales sélectionnées</h4>
-            <table>
+            <h4 v-if="modelSelected.length != 0">Notes finales sélectionnées</h4>
+            <table id="customers">
                 <tr v-for="(item, index) in modelSelected" :value="item.name" :key="index + 100">
                     <td>{{ item.name }}</td>
-                    <td><span @click="supprimer(item.name)">supprimer</span></td>
                     <td>
+                        <button @click="supprimer(item.name)">supprimer</button>
                         <select v-model="item.status">
                             <option value="critique">Critique</option>
                             <option value="non critique">Non critique</option>
@@ -42,16 +39,10 @@
                 </tr>
             </table>
 
-            <div class="sauvegarder" v-if="modelSelected.length != 0">
-                <button @click="sauvegarder">Sauvegarde</button>
-            </div>
-
-            <div class="reset" v-if="commentaireId != ''">
-                <button @click="reset">Reset</button>
-            </div>
-
-            <div class="sortir">
-                <button @click="sortir">Sortir</button>
+            <div class="buttons-tail">
+                <button class="sauvegarder" v-if="modelSelected.length != 0" @click="sauvegarder">Sauvegarde</button>
+                <button class="reset" v-if="commentaireId != ''" @click="reset">Reset</button>
+                <button class="sortir" @click="sortir">Quitter</button>
             </div>
 
         </div>
@@ -73,10 +64,10 @@ export default {
             modelSelected: [],
             commentaireId: "",
             liste: [
-                { name: "Avec un investissement colossal de 4,41 milliards de dirhams (MMDH), ce projet est divisé entre 2,35 milliards de dirhams pour", status: "", etat : "not_saved" },
+                { name: "Avec un investissement colossal de 4,41 milliards de dirhams (MMDH), ce projet est divisé entre 2,35 milliards de dirhams pour", status: "", etat: "not_saved" },
                 { name: "La station est conçue pour produire de l'eau dessalée, qui est ensuite équitablement répartie entre l'eau potable et l'eau destiné", status: "", etat: "not-saved" },
-                { name: "hectares dans la plaine de Chtouka, en substituant l'eau de mer à l'eau souterraine, et profite ainsi à environ 1.500 exploitations agricoles locales.", status: "", etat : "not_saved" },
-                { name: "première de ce type en Afrique, joue un rôle crucial en fournissant de l'eau potable à la région du Grand Agadir (Agadir Ida-Outanan et Inezgane Ait Melloul) ", status: "", etat : "not_saved" },
+                { name: "hectares dans la plaine de Chtouka, en substituant l'eau de mer à l'eau souterraine, et profite ainsi à environ 1.500 exploitations agricoles locales.", status: "", etat: "not_saved" },
+                { name: "première de ce type en Afrique, joue un rôle crucial en fournissant de l'eau potable à la région du Grand Agadir (Agadir Ida-Outanan et Inezgane Ait Melloul) ", status: "", etat: "not_saved" },
             ]
         }
     },
@@ -130,13 +121,13 @@ export default {
 
         ajouter() {
 
-                this.modelSelected.push({
-                    name : this.content,
-                    status : "",
-                    etat : "not_saved"
-                });
+            this.modelSelected.push({
+                name: this.content,
+                status: "",
+                etat: "not_saved"
+            });
 
-                this.content = "";
+            this.content = "";
         },
 
         choisir(value) {
@@ -147,7 +138,7 @@ export default {
             this.modelSelected.push({
                 name: value,
                 status: "",
-                etat : "not_saved"
+                etat: "not_saved"
             });
 
         },
@@ -156,31 +147,31 @@ export default {
 
             const index = this.modelSelected.findIndex((el) => el.name == value);
 
-            if(this.modelSelected[index].etat == "not_saved") {
+            if (this.modelSelected[index].etat == "not_saved") {
 
                 this.modelSelected.splice(index, 1);
                 this.liste.push({
                     name: value,
                     status: "",
-                    etat : "not_saved"
+                    etat: "not_saved"
                 });
 
             } else {
 
                 Commentaires.deleteByIndexAndRef(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], index, this.observateurId)
-                .then(() => {
+                    .then(() => {
 
-                    this.modelSelected.splice(index, 1);
-                    this.liste.push({
-                        name: value,
-                        status: "",
-                        etat : "not_saved"
+                        this.modelSelected.splice(index, 1);
+                        this.liste.push({
+                            name: value,
+                            status: "",
+                            etat: "not_saved"
+                        });
+
+                    })
+                    .catch((error) => {
+                        console.log(error)
                     });
-
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
             }
 
 
@@ -204,8 +195,6 @@ export default {
     },
 
     created() {
-
-        console.log(this.infoReserve)
 
         Commentaires.select(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.infoReserve[3])
             .then((result) => {
@@ -247,125 +236,137 @@ export default {
     align-items: center;
 }
 
-.head {
-    width: 1000px;
-    height: auto;
-    background-color: #0b0a68e6;
-    color: white;
-    border: 0px;
-    border-radius: 10px;
-}
 
-.content {
-    width: 1000px;
-    height: 500px;
+.reserve .parent {
     background-color: white;
+    height: 90vh;
+    width: auto;
+    padding: 20px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.content div {
-    margin: 0;
-    padding: 0;
+
+.reserve .parent h3 {
+    color: #0000b3;
+    font-size: large;
+    padding: 5px;
+    border-bottom: 1px solid #0000b3;
 }
 
-
-.content div button {
-    margin: 5px;
-    width: fit-content;
-    background-color: #04AA6D;
-    cursor: pointer;
-    height: 40px;
-    padding: 10px;
-    color: white;
-    border: 0px;
-    border-radius: 5px;
-}
-
-.content div button:hover {
-    background-color: #086946;
-}
-
-.content ul {
-    margin: 0;
-    padding: 0;
+.reserve .parent .buttons-head {
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid #0000b3;
+    padding : 5px; 
+}
+
+.reserve .parent .buttons-head button {
+    background-color: #000076;
+    color: white;
+    padding: 10px;
+    width: fit-content;
+    font-size: large;
+    border-radius: 25px;
+    border: 0px;
+    cursor: pointer;
+    text-align: center;
+    margin: 5px;
+}
+
+.reserve .parent .buttons-head button:hover {
+    background-color: blue;
+}
+
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: justify;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+
+.reserve .parent .buttons-tail {
+    margin-top: 10px;
+}
+
+.saisir-libre {
+    width: 1000px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
 }
 
 textarea {
-    width: 950px;
-    margin: 5px;
-    height: 100px;
-}
-
-.content ul li {
     width: 100%;
-    height: 100%;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0;
     padding: 5px;
+    font-size: large;
 }
 
-.content ul li p {
-    font-size: 14px;
-    width: 800px;
-    text-align: start;
-    margin: 0;
-}
 
-.content ul li span {
-    font-size: 14px;
-    text-align: start;
-    margin: 0;
-    color: #0b0a68e6;
-    cursor: pointer;
-    margin-right: 5px;
-}
-
-.sauvegarder , .reset, .sortir {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5px;
-}
-
-.sauvegarder button{
-    background-color: green;
+.ajouter {
+    background-color: #000076;
     color: white;
-    height: 30px;
-    width: 200px;
+    padding: 10px;
+    width: 160px;
+    border-radius: 25px;
     border: 0px;
-    border-radius: 5px;
     cursor: pointer;
+    text-align: center;
+    margin: 3px;
 }
 
-.sauvegarder .reset {
-    background-color: rgb(240, 158, 7);
+.ajouter:hover {
+    background-color: blue;
+}
+
+
+.sortir {
+    background-color: rgba(255, 0, 0, 0.582);
     color: white;
-    height: 30px;
-    width: 200px;
+    padding: 10px;
+    width: 160px;
+    font-size: large;
+    border-radius: 25px;
     border: 0px;
-    border-radius: 5px;
     cursor: pointer;
 }
 
-.sauvegarder .sortir {
+
+.sortir:hover {
     background-color: red;
-    color: white;
-    height: 30px;
-    width: 200px;
-    border: 0px;
-    border-radius: 5px;
-    cursor: pointer;
 }
+
+.choisir {
+    background-color: #000076;
+    color: white;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 25px;
+    border: 0px;
+    cursor: pointer;
+    text-align: center;
+    margin: 3px;
+}
+
+.choisir:hover {
+    background-color: blue;
+}
+
 
 </style>

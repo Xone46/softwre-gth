@@ -1683,6 +1683,7 @@ export default {
     created() {
 
         this.flagSpinner = true;
+        
         Examens.select(this.observateurId)
             .then((result) => {
 
