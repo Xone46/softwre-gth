@@ -172,6 +172,11 @@ export default {
   color: white;
 }
 
+.buttons {
+    background-color: white;
+    width: 90%;
+}
+
 .buttons button {
     background-color: red;
     color: white;

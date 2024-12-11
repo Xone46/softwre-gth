@@ -193,8 +193,10 @@
 </template>
 
 <script>
+
 import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions"
 import Observateurs from "@/requests/Observateurs"
+import Spinner from 'vue-simple-spinner'
 
 export default {
     name: 'renseignement-component',
@@ -342,7 +344,7 @@ export default {
 
 
     components: {
-        
+        Spinner
     },
 
     watch: {
@@ -630,6 +632,8 @@ export default {
 
         Observateurs.selected(this.observateurId)
             .then((result) => {
+                // console.log(result);
+
                 this.description.marquage = result.data.marquage;
                 this.duplicate_description.marquage = result.data.marquage;
             })
@@ -640,16 +644,18 @@ export default {
 
         Descriptions.select(this.observateurId)
             .then((result) => {
-
+                
                 if (result.data.description != null) {
+                    this.flagSpinner = false;
                     this.flagReset = true;
                     this.description = result.data.description;
+                } else {
+                    this.flagSpinner = false;
                 }
 
                 this.colorCaracteristiques = this.checkCaracterstiques();
                 this.colorSuspentes = this.checkeSuspentes();
                 this.watched_sauvegarder = true;
-                this.flagSpinner = false;
                 return this.notEmpty();
             })
             .catch((error) => {

@@ -1683,9 +1683,10 @@ export default {
     created() {
 
         this.flagSpinner = true;
-        
+
         Examens.select(this.observateurId)
             .then((result) => {
+
 
 
                 if (result.data.examen != null) {
@@ -1701,10 +1702,12 @@ export default {
                     this.i = result.data.examen.i;
                     this.j = result.data.examen.j;
 
+                    this.flagSpinner = false;
                     this.watched_sauvegarder = true;
                     return this.notEmpty();
-                } else {
 
+                } else {
+                    this.flagSpinner = false;
                     // delete all commentaires connected by examen but not saved
                     Examens.deleteAllCommentairesExamen(this.observateurId)
                     .then(() => {
@@ -1715,7 +1718,6 @@ export default {
                     });
                 }
 
-                this.flagSpinner = false;
                 return this.notEmpty();
 
             })

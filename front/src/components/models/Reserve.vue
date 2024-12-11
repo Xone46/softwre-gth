@@ -30,7 +30,7 @@
                 <tr v-for="(item, index) in modelSelected" :value="item.name" :key="index + 100">
                     <td>{{ item.name }}</td>
                     <td>
-                        <button @click="supprimer(item.name)">supprimer</button>
+                        <button class="supprimer" @click="supprimer(item.name)">supprimer</button>
                         <select v-model="item.status">
                             <option value="critique">Critique</option>
                             <option value="non critique">Non critique</option>
@@ -220,6 +220,7 @@ export default {
 
 
 <style scoped>
+
 .reserve {
     width: 100%;
     height: 100%;
@@ -298,13 +299,23 @@ export default {
 
 #customers tr:hover {background-color: #ddd;}
 
+.reserve .parent h4 {
+    color: #0000b3;
+    font-size: large;
+    padding: 5px;
+    border-bottom: 1px solid #0000b3;
+}
 
 .reserve .parent .buttons-tail {
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center
 }
 
 .saisir-libre {
-    width: 1000px;
+    width: 100%;
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -320,7 +331,7 @@ textarea {
 
 
 .ajouter {
-    background-color: #000076;
+    background-color: #045a08;
     color: white;
     padding: 10px;
     width: 160px;
@@ -328,29 +339,14 @@ textarea {
     border: 0px;
     cursor: pointer;
     text-align: center;
-    margin: 3px;
+    margin-top: 10px;
 }
 
 .ajouter:hover {
-    background-color: blue;
+    background-color: rgb(19, 190, 4);
 }
 
 
-.sortir {
-    background-color: rgba(255, 0, 0, 0.582);
-    color: white;
-    padding: 10px;
-    width: 160px;
-    font-size: large;
-    border-radius: 25px;
-    border: 0px;
-    cursor: pointer;
-}
-
-
-.sortir:hover {
-    background-color: red;
-}
 
 .choisir {
     background-color: #000076;
@@ -362,10 +358,84 @@ textarea {
     cursor: pointer;
     text-align: center;
     margin: 3px;
+    margin: 5px;
 }
 
 .choisir:hover {
     background-color: blue;
+}
+
+.supprimer {
+    background-color: #ff0000;
+    color: white;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 25px;
+    border: 0px;
+    cursor: pointer;
+    text-align: center;
+    margin: 3px;
+    margin: 5px;
+}
+
+.supprimer:hover {
+    background-color: rgb(185, 15, 15);
+}
+
+.sauvegarder {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    width: 160px;
+    font-size: large;
+    border-radius: 25px;
+    border: 0px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.sauvegarder:hover {
+    background-color: rgb(6, 189, 6);
+}
+
+.reset {
+    background-color: rgb(255, 102, 0);
+    color: white;
+    padding: 10px;
+    width: 160px;
+    font-size: large;
+    border-radius: 25px;
+    border: 0px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.reset:hover {
+    background-color: rgb(161, 63, 6);
+}
+
+.sortir {
+    background-color: rgba(255, 2, 2, 0.582);
+    color: white;
+    padding: 10px;
+    width: 160px;
+    font-size: large;
+    border-radius: 25px;
+    border: 0px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.sortir:hover {
+    background-color: rgba(151, 1, 1, 0.582);
+}
+
+
+select {
+    border-radius: 25px;
+    border: 1px solid #000076;
+    height: 35px;
+    padding: 2px;
 }
 
 
