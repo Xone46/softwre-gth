@@ -40,6 +40,7 @@ export default {
     },
 
     retour() {
+        this.interventionId = null;
         this.$router.push("/dashboard").catch(()=>{});
     },
 
@@ -52,10 +53,13 @@ export default {
     },
 
     deleteTableIntervention() {
+
+      this.interventionId = null;
       this.flagTableObservateur = false;
       this.$nextTick(() => {
         this.flagTableObservateur = false;
       });
+
     },
 
     openFormIntervention() {
@@ -82,6 +86,7 @@ export default {
     },
 
     close() {
+      this.interventionId = null;
       this.flagTableIntervention = true;
       this.flagFormIntervention = false;
       this.flagTableObservateur = false;
@@ -90,6 +95,7 @@ export default {
   },
 
   created() {
+    this.interventionId = null;
   }
 }
 </script>

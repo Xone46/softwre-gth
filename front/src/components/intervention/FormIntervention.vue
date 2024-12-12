@@ -16,60 +16,44 @@
 
         <label for="Date d'intervention">
             <h3>Date d'intervention : <span class="start" v-if="interventions.date.length == 0">*</span></h3>
-            <input type="date" v-model="interventions.date">
+            <input type="date" :value="interventions.date" @input="event => interventions.date = event.target.value">
         </label>
 
         <label for="Numéro d'affaire">
             <h3>Numéro d'affaire : <span class="start" v-if="interventions.numeroAffaire.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.numeroAffaire">
+            <input type="text" :value="interventions.numeroAffaire" @input="event => interventions.numeroAffaire = event.target.value">
         </label>
 
 
         <label for="Etablissement">
             <h3>Établissement (Siège social): <span class="start" v-if="interventions.etablissement.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.etablissement">
+            <input type="text" :value="interventions.etablissement" @input="event => interventions.etablissement = String(event.target.value).toUpperCase">
         </label>
 
         <label for="Repère">
             <h3>Repère (Siège social): <span class="start" v-if="interventions.repere.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.repere">
+            <input type="text" :value="interventions.repere" @input="event => interventions.repere = event.target.value">
         </label>
 
         <label for="Adresse">
             <h3>Adresse (Siège social): <span class="start" v-if="interventions.adresse.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.adresse">
+            <input type="text" :value="interventions.adresse" @input="event => interventions.adresse = String(event.target.value).toUpperCase()">
         </label>
 
         <label for="Code Postal">
             <h3>Code Postal (Siège social): <span class="start" v-if="interventions.codePostal.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.codePostal">
+            <input type="text" :value="interventions.codePostal" @input="event => interventions.codePostal = event.target.value">
         </label>
 
         <label for="Ville">
             <h3>Ville (Siège social): <span class="start" v-if="interventions.ville.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.ville">
+            <input type="text" :value="interventions.ville" @input="event => interventions.ville = String(event.target.value).toUpperCase()">
         </label>
 
         <label for="Pays">
             <h3>Pays (Siège social): <span class="start" v-if="interventions.pays.length == 0">*</span></h3>
-            <input type="text" v-model="interventions.pays">
+            <input type="text" :value="interventions.pays" @input="event => interventions.pays = String(event.target.value).toUpperCase()">
         </label>
-
-        <label for="Numéro d'affaire">
-            <h3>Numéro de Site : <span class="start" v-if="interventions.site.length == 0">*</span></h3>
-            <input type="number" :value="interventions.site" @input="event => handelSite(event)">
-        </label>
-
-        
-
-        <label for="Coordonnée du site" v-if="interventions.site >= 2">
-            <div v-for="(item, index) in filterSite" :key="item">
-              <h3>Coordonnée du site {{ index + 1 }} :<span class="start" v-if="interventions.site.length == 0">*</span></h3>
-              <input type="text" :value="interventions.coordonnees[index]" @input="event => handelCoordonnee(event, index)">
-            </div>
-        </label>
-
-
 
         <label for="Métier">
             <h3>Métier : <span class="start" v-if="interventions.metier.length == 0">*</span></h3>
@@ -77,7 +61,18 @@
                 <option v-for="metier in metiers" :key="metier">{{ metier }}</option>
             </select>
         </label>
+
+        <label for="Numéro d'affaire">
+            <h3>Numéro de Site : <span class="start" v-if="interventions.site.length == 0">*</span></h3>
+            <input type="number" :value="interventions.site" @input="event => handelSite(event)">
+        </label>
         
+        <label class="coordonnee" for="Coordonnée du site" v-if="interventions.site >= 2">
+            <div v-for="(item, index) in Number(filterSite)" :key="item">
+              <h3>Coordonnée du site {{ index + 1 }} :<span class="start" v-if="interventions.site.length == 0">*</span></h3>
+              <input type="text" :value="interventions.coordonnees[index]" @input="event => handelCoordonnee(event, index)">
+            </div>
+        </label>
 
         <button v-if="interventionId == null" class="valider" @click="valider">Valider</button>
         <button class="valider" @click="modifier" v-else>Modifier</button>
@@ -108,7 +103,7 @@ export default {
                 ville : "",
                 pays : "",
                 metier : "",
-                coordonnees : [null, null]
+                coordonnees : [null, null, null, null, null, null, null, null, null, null]
             },
 
             metiers : [
@@ -165,7 +160,14 @@ export default {
         },
 
         valider() {
-            
+
+            // UpperCase Adresse
+            for(let i = 0; i < this.interventions.coordonnees.length; i++) {
+                if(this.interventions.coordonnees[i] != null) {
+                    this.interventions.coordonnees[i] = String(this.interventions.coordonnees[i]).toUpperCase()
+                }
+            }
+
             // voir est que exite plusiueur site
             if(this.interventions.coordonnees[0] == null && this.interventions.coordonnees[1] == null) {
                 this.interventions.coordonnees = [];
@@ -175,6 +177,7 @@ export default {
             if(this.interventions.numeroAffaire == "") {
                 this.interventions.numeroAffaire = `GXXX|XXX|XXX|XXX|${this.interventions.etablissement}`;
             }
+
 
             Interventions.create(this.interventions)
             .then((result) => {
@@ -193,6 +196,7 @@ export default {
 
         filterSite: function () {
             const num = Number(this.interventions.site);
+            console.log(num);
             return num;
         }
 
@@ -200,8 +204,7 @@ export default {
 
     created() {
 
-        
-        if(this.interventionId) {
+        if(this.interventionId != null) {
             Interventions.select(this.interventionId)
             .then((result) => {
                 this.interventions = result.data;
@@ -325,6 +328,16 @@ export default {
 
 .start {
     color: red;
+}
+
+
+#app > div > div > label.coordonnee {
+    display: flex;
+    flex-direction: column
+}
+
+#app > div > div > label.coordonnee > div > input {
+    width: 800px;
 }
 
 </style>
