@@ -233,6 +233,7 @@ export default {
 
     created() {
 
+
         if (this.interventionId) {
 
             Observateurs.select(this.interventionId)
@@ -263,6 +264,7 @@ export default {
                     }
                 });
         }
+
 
 
 

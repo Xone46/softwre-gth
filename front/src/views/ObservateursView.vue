@@ -43,7 +43,7 @@
             <select v-if="coordonnees.length >= 2" v-model="observateur.coordonnees">
                 <option v-for="item in coordonnees" :key="item">{{ item }}</option>
             </select>
-            <input v-if="observateur.coordonnees != ''" type="text" v-model="observateur.coordonnees" disabled>
+            <!-- <input v-if="observateur.coordonnees != ''" type="text" v-model="observateur.coordonnees" disabled> -->
         </label>
 
         <label for="Type d'Appareil">
@@ -55,7 +55,7 @@
 
         <label for="Equipement">
             <h3>Equipement : <span class="start" v-if="observateur.equipement.length == 0">*</span></h3>
-            <input type="test" v-model="observateur.equipement">
+            <input type="test" :value="observateur.equipement" @input="event => handelEquipement(event)">
         </label>
 
         <label for="Constructeur">
@@ -63,14 +63,14 @@
             <input type="text" v-model="observateur.constructeur">
         </label>
 
-        <label for="N° de Série ">
+        <label for="N° de Série">
             <h3>N° de Série : <span class="start" v-if="observateur.numeroSerie.length == 0">*</span></h3>
-            <input type="text" v-model="observateur.numeroSerie">
+            <input type="text" :value="observateur.numeroSerie" @input="event => handelNumeroSerie(event)">
         </label>
 
-        <label for="Etablissement">
+        <label for="N° Interne">
             <h3> N° Interne : <span class="start" v-if="observateur.numeroInterne.length == 0">*</span></h3>
-            <input type="text" v-model="observateur.numeroInterne">
+            <input type="text" :value="observateur.numeroInterne" @input="event => handelNumeroInterne(event)">
         </label>
 
         <label for="Localisation">
@@ -148,6 +148,18 @@ export default {
     },
 
     methods: {
+
+        handelEquipement(event) {
+            this.observateur.equipement = String(event.target.value).toUpperCase();
+        },
+
+        handelNumeroSerie(event) {
+            this.observateur.numeroSerie = String(event.target.value).toUpperCase();
+        },
+
+        handelNumeroInterne(event) {
+            this.observateur.numeroInterne = String(event.target.value).toUpperCase();
+        },
 
         modifier() {
             Observateurs.update(this.observateur, this.observateurId)

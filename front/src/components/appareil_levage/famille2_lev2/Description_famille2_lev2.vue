@@ -85,10 +85,11 @@
                         </li>
                     </ul>
 
-                    <p>
+                    <!-- <p>
                         Mouflage (nombre de brins) : <input type="text" @input="saisirMouflageLevageAuxilaire($event)"
                             :value="description.mouflageLevageAuxilaire">
-                    </p>
+                    </p> -->
+
                     <p>
                         Diamètre ou pas théorique de câble(s) ou de chaîne(s) (mm) : <input type="text"
                             @input="saisirDiametreLevageAuxilaire($event)" :value="description.diametreLevageAuxilaire">
@@ -218,7 +219,7 @@ export default {
                     }
                 ],
 
-                mouflageLevageAuxilaire: "",
+                // mouflageLevageAuxilaire: "",
                 diametreLevageAuxilaire: "",
 
 
@@ -328,7 +329,7 @@ export default {
                     }
                 ],
 
-                mouflageLevageAuxilaire: "",
+                // mouflageLevageAuxilaire: "",
                 diametreLevageAuxilaire: "",
 
 
@@ -603,19 +604,43 @@ export default {
                 this.description.levageAuxilaire[0].tab = [];
             }
 
-            this.colorLevageAuxilaire = this.checkeLevageAuxilaire();
+            if(this.description.levageAuxilaire[1].status == true) {
+                this.description.levageAuxilaire[1].tab.push({
+                    titre: "Mouflage (nombre de brins) :",
+                    status: false,
+                    content: ""
+                });
+            }
 
+            if(this.description.levageAuxilaire[0].status == true) {
+                for(let j = 0; j < this.description.levageAuxilaire[1].tab.length; j++) {
+                    if(this.description.levageAuxilaire[1].tab[j].titre == 'Mouflage (nombre de brins) :') {
+                        this.description.levageAuxilaire[1].tab.splice(j, 1);
+                    }
+                }
+            }
+
+            this.colorLevageAuxilaire = this.checkeLevageAuxilaire();
         },
 
         saisirSousLevageAuxilaire(e, index, i) {
             this.description.levageAuxilaire[index].tab[i].content = e.target.value;
+
+            if(this.description.levageAuxilaire[index].tab[i].content.length == 0) {
+                this.description.levageAuxilaire[index].tab[i].status = false;
+            }
+
+            if(this.description.levageAuxilaire[index].tab[i].content.length != 0) {
+                this.description.levageAuxilaire[index].tab[i].status = true;
+            }
+
             this.colorLevageAuxilaire = this.checkeLevageAuxilaire();
         },
 
-        saisirMouflageLevageAuxilaire(e) {
-            this.description.mouflageLevageAuxilaire = e.target.value;
-            this.colorLevageAuxilaire = this.checkeLevageAuxilaire();
-        },
+        // saisirMouflageLevageAuxilaire(e) {
+        //     this.description.mouflageLevageAuxilaire = e.target.value;
+        //     this.colorLevageAuxilaire = this.checkeLevageAuxilaire();
+        // },
 
         saisirDiametreLevageAuxilaire(e) {
             this.description.diametreLevageAuxilaire = e.target.value;
