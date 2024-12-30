@@ -7,7 +7,7 @@
             <tr>
                 <td>B-1</td>
                 <td :class="[description.marquage.length != 0 ? 'saved' : 'not-saved']">MARQUAGE</td>
-                <td>
+                <td class="first">
                     <input type="text" :value="description.marquage" disabled>
                 </td>
             </tr>
@@ -15,7 +15,7 @@
             <tr>
                 <td>B-2</td>
                 <td :class="[description.modeLevage.length != 0 ? 'saved' : 'not-saved']">MODE DE LEVAGE</td>
-                <td>
+                <td class="second">
                     <select @change="saisirModeLevage($event)" :value="description.modeLevage">
                         <option value=""></option>
                         <option value="Unique">Unique</option>
@@ -27,9 +27,8 @@
 
             <tr>
                 <td>B-3</td>
-                <td :class="[colorCaracteristiques == true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET
-                    DE CHARGE</td>
-                <td>
+                <td :class="[colorCaracteristiques == true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET DE CHARGE</td>
+                <td class="third">
                     <p>Charge maximale utile (kg) : <input type="text" @input="saisirChargeMaximaleUtile($event)"
                             :value="description.chargeMaximaleUtile"></p>
                     <p>Hauteur de levage (m) : <input type="text" @input="saisirHauteurDeLevage($event)"
@@ -71,16 +70,14 @@
             <tr>
                 <td>B-4</td>
                 <td :class="[colorLevageAuxilaire == true ? 'saved' : 'not-saved']">LEVAGE AUXILIAIRE</td>
-                <td>
+                <td class="fourth">
                     <ul v-for="(item, index) in description.levageAuxilaire" :key="index">
                         <li>
-                            {{ item.titre }}<input type="radio" name="levageAuxilaire"
-                                @input="saisirLevageAuxilaire(index)" :value="item.status">
+                            <input type="radio" name="levageAuxilaire" @input="saisirLevageAuxilaire(index)" :value="item.status">{{ item.titre }}
                         </li>
                         <li v-if="item.status && item.tab.length != 0">
                             <p v-for="(el, i) in item.tab" :key="i">
-                                {{ el.titre }} <input type="text" @input="saisirSousLevageAuxilaire($event, index, i)"
-                                    :value="el.content">
+                                <input type="text" @input="saisirSousLevageAuxilaire($event, index, i)" :value="el.content">{{ el.titre }}
                             </p>
                         </li>
                     </ul>
@@ -101,27 +98,25 @@
             <tr>
                 <td>B-5</td>
                 <td :class="[colorModeInstallation == true ? 'saved' : 'not-saved']">MODE D'INSTALLATION</td>
-                <td>
+                <td class="fifth">
                     <P v-for="(item, index) in description.modeInstallation" :key="index">
-                        {{ item.titre }}<input type="radio" name="modeInstallation"
-                            @input="saisirModeInstallation(index)" :value="item.status">
-                    <ul v-if="item.status">
-                        <li v-for="(el, i) in item.tab" :key="i">
-                            {{ el.titre }}<input type="radio" name="sousModeInstallation"
-                                @input="saisirSousModeInstallation(index, i)" :value="el.status">
-                        </li>
-                    </ul>
+                        <input type="radio" name="modeInstallation" @input="saisirModeInstallation(index)" :value="item.status"> {{ item.titre }}
+                        <ul v-if="item.status">
+                            <li v-for="(el, i) in item.tab" :key="i">
+                            <input type="radio" name="sousModeInstallation" @input="saisirSousModeInstallation(index, i)" :value="el.status">{{ el.titre }}
+                            </li>
+                        </ul>
                     </p>
-                    <p v-if="description.flagComplementModeInstallation"><input type="text"
-                            @input="saisirComplementModeInstallation($event)"
-                            :value="description.complementModeInstallation"></p>
+                    <p v-if="description.flagComplementModeInstallation">
+                        <input type="text" @input="saisirComplementModeInstallation($event)" :value="description.complementModeInstallation">
+                    </p>
                 </td>
             </tr>
 
             <tr>
                 <td>B-6</td>
                 <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
-                <td>
+                <td class="sixth">
                     <p v-for="(item, index) in description.sourceEnergie" :key="index">
                         {{ item.titre }}<input type="radio" name="sourceEnergie" @input="sisairSourceEnergie(index)">
                     <ul>
@@ -178,21 +173,21 @@ export default {
 
                 modeLevage: "",
 
-                chargeMaximaleUtile: "Sans objet",
-                hauteurDeLevage: "Sans objet",
-                course: "Sans objet",
-                hauteurLevage: "Sans objet",
-                portee: "Sans objet",
-                porteFaux: "Sans objet",
-                longueurCheminRoulement: "Sans objet",
+                chargeMaximaleUtile: "",
+                hauteurDeLevage: "",
+                course: "",
+                hauteurLevage: "",
+                portee: "",
+                porteFaux: "",
+                longueurCheminRoulement: "",
                 suspentesLevage: "",
-                mouflage: "Sans objet",
-                diametre: "Sans objet",
+                mouflage: "",
+                diametre: "",
 
 
                 levageAuxilaire: [
                     {
-                        titre: "Sans objet",
+                        titre: "Sans Objet",
                         status: false,
                         tab: []
                     },
@@ -288,21 +283,21 @@ export default {
 
                 modeLevage: "",
 
-                chargeMaximaleUtile: "Sans objet",
-                hauteurDeLevage: "Sans objet",
-                course: "Sans objet",
-                hauteurLevage: "Sans objet",
-                portee: "Sans objet",
-                porteFaux: "Sans objet",
-                longueurCheminRoulement: "Sans objet",
+                chargeMaximaleUtile: "",
+                hauteurDeLevage: "",
+                course: "",
+                hauteurLevage: "",
+                portee: "",
+                porteFaux: "",
+                longueurCheminRoulement: "",
                 suspentesLevage: "",
-                mouflage: "Sans objet",
-                diametre: "Sans objet",
+                mouflage: "",
+                diametre: "",
 
 
                 levageAuxilaire: [
                     {
-                        titre: "Sans objet",
+                        titre: "Sans Objet",
                         status: false,
                         tab: []
                     },
@@ -591,7 +586,7 @@ export default {
 
             this.description.levageAuxilaire[index].status = true
 
-            if (this.description.levageAuxilaire[index].titre == "Sans objet") {
+            if (this.description.levageAuxilaire[index].titre == "Sans Objet") {
                 this.description.levageAuxilaire[1].status = false;
                 for (let i = 0; i < this.description.levageAuxilaire[1].tab.length; i++) {
                     this.description.levageAuxilaire[1].tab[i].status = false;
@@ -818,6 +813,8 @@ export default {
 </script>
 
 <style scoped>
+
+/* Satrt Configuration Table */
 .descriptions {
     margin-top: 10px;
     margin-bottom: 100px;
@@ -845,51 +842,81 @@ td {
     padding-bottom: 10px;
 }
 
-
 table tr td:nth-child(1) {
     width: 40px;
 }
 
+/* End Configuration Table */
 
-table>tr:nth-child(3)>td:nth-child(3) {
+
+/* Start First */
+.descriptions table tr td.first {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.descriptions table tr td.first input {
+    width: 300px;
+}
+/* End First */
+
+
+/* Start Second */
+.descriptions table tr td.second {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.descriptions table tr td.second select {
+    width: 300px;
+}
+
+/* End Second */
+
+
+/* Start Third */
+
+.descriptions table tr td.third {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-table>tr:nth-child(3)>td:nth-child(3) label {
-    margin-top: 3px;
-    margin-bottom: 3px;
+.descriptions table tr td.third p {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
 
-table>tr:nth-child(4)>td:nth-child(3) {
+.descriptions table tr td.third p input {
+    width: 200px;
+}
+
+.descriptions table tr td.third p select {
+    width: 350px;
+}
+/* End Third */
+
+
+/* Start fourth */
+.descriptions table tr td.fourth {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-table>tr:nth-child(4)>td:nth-child(3) label {
-    margin-top: 3px;
-    margin-bottom: 3px;
+.descriptions table tr td.fourth ul li {
+    list-style: none;
 }
-
-table>tr:nth-child(5)>td:nth-child(3) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-table>tr:nth-child(6)>td:nth-child(3) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
+/* End fourth */
 
 
+/* Start Configration ALL */
 .saved {
     color: #04AA6D;
 }
@@ -901,14 +928,8 @@ table>tr:nth-child(6)>td:nth-child(3) {
 input,
 select {
     height: 25px;
+    width: 120px;
     font-size: medium;
-}
-
-td div p {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .sauvegarder,
@@ -951,4 +972,7 @@ td div p {
     border: 0px;
     border-radius: 5px;
 }
+/* End COnfigration ALL */
+
+
 </style>

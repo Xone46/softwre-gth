@@ -3,10 +3,11 @@
     <div class="descriptions">
 
         <table>
+
             <tr>
                 <td>B-1</td>
                 <td :class="[description.marquage.length != 0 ? 'saved' : 'not-saved']">MARQUAGE</td>
-                <td>
+                <td class="first">
                     <input type="text" :value="description.marquage" disabled>
                 </td>
             </tr>
@@ -15,9 +16,10 @@
                 <td>B-2</td>
                 <td :class="[colorCaracteristiques == true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET
                     DE CHARGE</td>
-                <td>
+                <td class="second">
                     <p>Charge maximale utile (kg) : <input type="text" @input="saisirChargeMaximaleUtile($event)"
-                            :value="description.chargeMaximaleUtile"> A la portée minimale de (m) : <input type="text"
+                            :value="description.chargeMaximaleUtile"></p> 
+                    <p>A la portée minimale de (m) : <input type="text"
                             @input="saisirPorteeMinimale($event)" :value="description.porteeMinimale"></p>
                     <p>Distance du centre de gravité (m) : <input type="text" :value="description.distanceCentreGravite"
                             @input="saisirDistanceCentreGravite($event)"></p>
@@ -53,7 +55,8 @@
             <tr>
                 <td>B-4</td>
                 <td :class="[colorSuspentes == true ? 'saved' : 'not-saved']">SUSPENTES DE LEVAGE</td>
-                <td>
+                <td class="third">
+
                     <div>
                         <p><input type="checkbox" @input="saisirCable"
                                 :checked='description["suspentes"][0]["hasCable"]'>Câble :</p>
@@ -154,7 +157,7 @@
             <tr>
                 <td>B-3</td>
                 <td :class="[description.mecanisme.length != 0 ? 'saved' : 'not-saved']">MECANISME ET MOUVEMENT</td>
-                <td>
+                <td class="fourth">
                     <p>
                         <select @change="saisirMecanisme($event)" :value="description.mecanisme">
                             <option value=""></option>
@@ -216,12 +219,12 @@ export default {
                 chargeMaximaleUtile: "",
                 porteeMinimale: "",
                 distanceCentreGravite: "",
-                course: "Sans objet",
-                hauteurLevage: "Sans objet",
-                portee: "Sans objet",
-                porteFauxDeport: "Sans objet",
-                longueurCheminRoulement: "Sans objet",
-                dimensionPlateau: "Sans objet",
+                course: "",
+                hauteurLevage: "",
+                portee: "",
+                porteFauxDeport: "",
+                longueurCheminRoulement: "",
+                dimensionPlateau: "",
                 modeInstallation: "",
                 suiveModeInstallation: "",
 
@@ -236,7 +239,7 @@ export default {
                         hasDetailsCable: false,
                         detailsCable: [
                             { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
+                            { a: "Moufflage :", valA: "", b: "Nombre de brins :", valB: "", c: "", valC: "" }
                         ],
 
                         hasChaineRouleau: false,
@@ -245,7 +248,7 @@ export default {
                         detailsChaineRouleau: [
                             { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
                             { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
+                            { a: "Moufflage :", valA: "", b: "Nombre de brins :", valB: "", c: "", valC: "" }
                         ],
 
                         hasChaineMaillons: false,
@@ -254,7 +257,7 @@ export default {
                         detailsChaineMaillons: [
                             { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
                             { a: "Pas théorique :", valA: "", b: "Diamètre :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
+                            { a: "Moufflage :", valA: "", b: "Nombre de brins :", valB: "", c: "", valC: "" },
                         ],
 
                         hasSangle: false,
@@ -263,7 +266,7 @@ export default {
                         detailsSangle: [
                             { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "", valC: "" },
                             { a: "Section (mm2):", valA: "", b: "", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
+                            { a: "Moufflage :", valA: "", b: "Nombre de brins :", valB: "", c: "", valC: "" },
                         ],
                     }
                 ],
@@ -279,12 +282,12 @@ export default {
                 chargeMaximaleUtile: "",
                 porteeMinimale: "",
                 distanceCentreGravite: "",
-                course: "Sans objet",
-                hauteurLevage: "Sans objet",
-                portee: "Sans objet",
-                porteFauxDeport: "Sans objet",
-                longueurCheminRoulement: "Sans objet",
-                dimensionPlateau: "Sans objet",
+                course: "",
+                hauteurLevage: "",
+                portee: "",
+                porteFauxDeport: "",
+                longueurCheminRoulement: "",
+                dimensionPlateau: "",
                 modeInstallation: "",
                 suiveModeInstallation: "",
 
@@ -299,7 +302,7 @@ export default {
                         hasDetailsCable: false,
                         detailsCable: [
                             { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "Diamètre (mm) :", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
+                            { a: "Moufflage :", valA: "", b: "Nombre de brins :", valB: "", c: "", valC: "" }
                         ],
 
                         hasChaineRouleau: false,
@@ -308,7 +311,7 @@ export default {
                         detailsChaineRouleau: [
                             { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
                             { a: "Pas théorique :", valA: "", b: "Combinaison :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans objet", b: "Nombre de brins :", valB: "", c: "", valC: "" }
+                            { a: "Moufflage :", valA: "", b: "Nombre de brins :", valB: "", c: "", valC: "" }
                         ],
 
                         hasChaineMaillons: false,
@@ -317,7 +320,7 @@ export default {
                         detailsChaineMaillons: [
                             { a: "Nombre :", valA: "", b: "Type :", valB: "", c: "", valC: "" },
                             { a: "Pas théorique :", valA: "", b: "Diamètre :", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
+                            { a: "Moufflage :", valA: "", b: "Nombre de brins :", valB: "", c: "", valC: "" },
                         ],
 
                         hasSangle: false,
@@ -326,7 +329,7 @@ export default {
                         detailsSangle: [
                             { a: "Nombre :", valA: "", b: "Composition :", valB: "", c: "", valC: "" },
                             { a: "Section (mm2):", valA: "", b: "", valB: "", c: "", valC: "" },
-                            { a: "Moufflage :", valA: "Sans Objet", b: "Nombre de brins :", valB: "", c: "", valC: "" },
+                            { a: "Moufflage :", valA: "", b: "Nombre de brins :", valB: "", c: "", valC: "" },
                         ],
                     }
                 ],
@@ -667,77 +670,80 @@ export default {
 
 <style scoped>
 
+/* Start Cofiguration All */
 .descriptions {
     margin-top: 10px;
     margin-bottom: 100px;
     width: inherit;
 }
-
-
 .descriptions table {
     border-collapse: collapse;
     border: none;
 }
 
-tr {
-    border-top: 1px solid black;
-}
-
-tr:first-child {
-    border-top: none;
-}
-
-td {
-    text-align: start;
-    border: none !important;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-
-table tr td:nth-child(1) {
+.descriptions table tr td:nth-child(1) {
+    font-size: x-large;
     width: 40px;
 }
 
+.descriptions table tr td:nth-child(2) {
+    font-size: large;
+}
+/* End Configuration All */
 
-table>tr:nth-child(3)>td:nth-child(3) {
+
+/* Strat First  */
+.descriptions table tr td.first {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+/* End First */
+
+
+/* Strat Second  */
+.descriptions table tr td.second {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+/* End Second */
+
+
+/* Strat Third  */
+.descriptions table tr td.third {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-table>tr:nth-child(3)>td:nth-child(3) label {
-    margin-top: 3px;
-    margin-bottom: 3px;
-}
-
-table>tr:nth-child(4)>td:nth-child(3) {
+.descriptions table tr td.third div {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-table>tr:nth-child(4)>td:nth-child(3) label {
-    margin-top: 3px;
-    margin-bottom: 3px;
-}
-
-table>tr:nth-child(5)>td:nth-child(3) {
+.descriptions table tr td.third div p {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
 }
+/* End Third */
 
-table>tr:nth-child(6)>td:nth-child(3) {
+/* Strat Fourth  */
+.descriptions table tr td.fourth {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
-    align-items: flex-start;
 }
+/* End Fourth */
 
+
+/* Start Configuration */
 
 .saved {
     color: #04AA6D;
@@ -749,14 +755,8 @@ table>tr:nth-child(6)>td:nth-child(3) {
 
 input , select {
     height: 25px;
+    width: 120px;
     font-size: medium;
-}
-
-td div p {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .sauvegarder , .reset {
@@ -789,7 +789,6 @@ td div p {
     cursor: pointer;
 }
 
-
 .reset button {
     background-color: red;
     color: white;
@@ -798,7 +797,6 @@ td div p {
     border: 0px;
     border-radius: 5px;
 }
-
 
 .spinner {
     margin: 0;
@@ -817,4 +815,8 @@ td div p {
     justify-content: center;
     align-items: center;
 }
+
+/* End Configuration */
+
+
 </style>
