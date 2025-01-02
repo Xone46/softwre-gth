@@ -77,7 +77,7 @@
                         </li>
                         <li v-if="item.status && item.tab.length != 0">
                             <p v-for="(el, i) in item.tab" :key="i">
-                                <input type="text" @input="saisirSousLevageAuxilaire($event, index, i)" :value="el.content">{{ el.titre }}
+                                {{ el.titre }} <input type="text" @input="saisirSousLevageAuxilaire($event, index, i)" :value="el.content">
                             </p>
                         </li>
                     </ul>
@@ -107,7 +107,7 @@
                             </li>
                         </ul>
                     </p>
-                    <p v-if="description.flagComplementModeInstallation">
+                    <p class="autre" v-if="description.flagComplementModeInstallation">
                         <input type="text" @input="saisirComplementModeInstallation($event)" :value="description.complementModeInstallation">
                     </p>
                 </td>
@@ -118,14 +118,13 @@
                 <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
                 <td class="sixth">
                     <p v-for="(item, index) in description.sourceEnergie" :key="index">
-                        {{ item.titre }}<input type="radio" name="sourceEnergie" @input="sisairSourceEnergie(index)">
-                    <ul>
-                        <li v-for="(el, i) in item.tab" :key="i">{{ el.titre }}<input type="radio"
-                                name="sousSourceEnergie" @input="sisairSousSourceEnergie(index, i)"></li>
-                    </ul>
+                        <input type="radio" name="sourceEnergie" @input="sisairSourceEnergie(index)">{{ item.titre }}
+                        <ul>
+                            <li v-for="(el, i) in item.tab" :key="i"><input type="radio" name="sousSourceEnergie" @input="sisairSousSourceEnergie(index, i)">{{ el.titre }}</li>
+                        </ul>
                     </p>
-                    <p v-if="description.flagcomplementSourceEnergie"><input type="text"
-                            @input="sisairComplementSourceEnergie($event)" :value="description.complementSourceEnergie">
+                    <p v-if="description.flagcomplementSourceEnergie">
+                        <input type="text" @input="sisairComplementSourceEnergie($event)" :value="description.complementSourceEnergie">
                     </p>
                 </td>
             </tr>
@@ -910,11 +909,125 @@ table tr td:nth-child(1) {
     align-items: flex-start;
 }
 
-.descriptions table tr td.fourth ul li {
+.descriptions table tr td.fourth ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 0;
+}
+
+.descriptions table tr td.fourth ul li:nth-child(1) {
     list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.descriptions table tr td.fourth ul li:nth-child(2) {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+}
+
+.descriptions table tr td.fourth ul li input {
+    margin: 0;
 }
 /* End fourth */
 
+
+
+/* Start fifth */
+.descriptions table tr td.fifth  {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.descriptions table tr td.fifth p  {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+
+}
+
+.descriptions table tr td.fifth p.autre  {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.descriptions table tr td.fifth p.autre input {
+    width: 300px;
+}
+
+.descriptions table tr td.fifth p ul {
+    margin: 0;
+    padding: 0;
+}
+
+.descriptions table tr td.fifth p ul li {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* End fifth */
+
+
+/* Start sixth */
+.descriptions table tr td.sixth {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+}
+
+.descriptions table tr td.sixth p {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+.descriptions table tr td.sixth p ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0;
+    padding: 0;
+}
+
+.descriptions table tr td.sixth p ul li {
+    list-style: none;
+}
+/* End sixth */
 
 /* Start Configration ALL */
 .saved {
