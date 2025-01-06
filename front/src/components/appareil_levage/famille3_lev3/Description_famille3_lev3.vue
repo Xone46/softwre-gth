@@ -1176,7 +1176,90 @@ table tr td:nth-child(1) {
   padding: 0;
   margin-top: 0;
 }
+
+.descriptions table tr td.sixth p ul {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin-top: 0;
+}
+
+.descriptions table tr td.sixth p ul li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
 /* End sixth */
+
+/* Start seventh */
+.descriptions table tr td.seventh  {
+  padding: 0;
+  margin-top: 0;
+}
+
+.descriptions table tr td.seventh div  {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin-top: 0;
+}
+
+.descriptions table tr td.seventh div p {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+
+.descriptions table tr td.seventh div p ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+.descriptions table tr td.seventh div p li {
+    list-style: none;
+}
+
+/* End seventh */
+
+/* Start eighth */
+.descriptions table tr td.eighth  {
+  padding: 0;
+  margin-top: 0;
+}
+
+.descriptions table tr td.eighth div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+}
+
+.descriptions table tr td.eighth div p {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* End eighth */
 
 
 
@@ -1222,4 +1305,8 @@ table tr td:nth-child(1) {
 }
 
 /* End buttons */
+
+tr {
+    border-bottom: 1pt solid black;
+}
 </style>

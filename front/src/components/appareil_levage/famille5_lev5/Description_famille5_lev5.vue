@@ -6,7 +6,7 @@
             <tr>
                 <td>B-1</td>
                 <td :class="[description.marquage.length != 0 ? 'saved' : 'not-saved']">MARQUAGE</td>
-                <td>
+                <td class="first">
                     <input type="text" :value="description.marquage" disabled>
                 </td>
             </tr>
@@ -16,7 +16,7 @@
                 <td :class="[colorCaracteristiques == true ? 'saved' : 'not-saved']">
                     CARACTERISTIQUES DIMENSIONNELLES ET DE CHARGE
                 </td>
-                <td>
+                <td class="second">
                     <p>Charge maximale utile (kg) :
                         <input type="text" v-model="description.chargeMaximaleUtile">
                     </p>
@@ -31,7 +31,7 @@
             <tr>
                 <td>B-3</td>
                 <td :class="[colorMecanisme == true ? 'saved' : 'not-saved']">MECANISME</td>
-                <td>
+                <td class="third">
                     <p>Levage par :</p>
 
                     <p v-for="(item, index) in description.levage" :key="index">
@@ -46,7 +46,7 @@
             <tr>
                 <td>B-4</td>
                 <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
-                <td>
+                <td class="fourth">
                     <p v-for="(item, index) in description.sourceEnergie" :key="index">
                         <input type="checkbox" :value="item.status" @input="handelSourceEnergie(item.index)">
                         {{  item.titre }}
@@ -58,7 +58,7 @@
             <tr>
                 <td>B-5</td>
                 <td :class="[colorDispositifElevation == true ? 'saved' : 'not-saved']">DISPOSITIF D'ELEVATION</td>
-                <td>
+                <td class="fifth">
                     <input type="text" v-model="description.dispositifElevation">
                 </td>
             </tr>
@@ -66,7 +66,7 @@
             <tr>
                 <td>B-5-1</td>
                 <td :class="[colorTransmissionElevation == true ? 'saved' : 'not-saved']">Transmission de l'élévation</td>
-                <td>
+                <td class="fifth-first">
                     <p v-for="(item, index) in description.transmissionElevation" :key="index">
                         <input type="checkbox" :value="item.status" @input="handelTransmissionElevation(item.index)">
                         {{  item.titre }}
@@ -77,7 +77,7 @@
             <tr>
                 <td>B-5-2</td>
                 <td :class="[colorOrganesSuspension == true ? 'saved' : 'not-saved']">Organes de suspension</td>
-                <td>
+                <td class="fifth-second">
                     <p>
                         Nombre de chaînes ou câbles :
                         <input type="text" :value="description.nombreChainesCables" @input="handelNombreChainesCables($event)">
@@ -112,7 +112,7 @@
             <tr>
                 <td>B-6</td>
                 <td :class="[colorSupoprtCharge == true ? 'saved' : 'not-saved']">SUPPORT DE CHARGE</td>
-                <td>
+                <td class="sixth">
                     <p v-for="(item, index) in description.supoprtCharge" :key="index">
                         <input type="checkbox" :value="item.status" @input="handelSupoprtCharge(item.index)">
                         {{ item.titre }}
@@ -125,7 +125,7 @@
             <tr>
                 <td>B-7</td>
                 <td :class="[colorLevageAuxiliaire == true ? 'saved' : 'not-saved']">LEVAGE AUXILIAIRE</td>
-                <td>
+                <td class="seventh">
                     <p v-for="(item, index) in description.levageAuxiliaire" :key="index">
                         <input type="checkbox" :value="item.status" @input="handelLevageAuxiliaire(item.index)">
                         {{ item.titre }}
@@ -726,12 +726,27 @@ export default {
 </script>
 
 <style scoped>
+
+.saved {
+    color: #04AA6D;
+}
+
+.not-saved {
+    color: red;
+}
+
+input,
+select {
+    height: 25px;
+    font-size: medium;
+}
+
+/* Start Configration body */
 .descriptions {
     margin-top: 10px;
     margin-bottom: 100px;
     width: inherit;
 }
-
 
 .descriptions table {
     border-collapse: collapse;
@@ -753,72 +768,242 @@ td {
     padding-bottom: 10px;
 }
 
-
 table tr td:nth-child(1) {
     width: 40px;
 }
+/* End Configration body */
 
 
-table>tr:nth-child(3)>td:nth-child(3) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+/* Start first */
+.descriptions table tr td.first {
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+/* End first */
+
+/* Start Second */
+.descriptions table tr td.second {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
 }
 
-table>tr:nth-child(3)>td:nth-child(3) label {
-    margin-top: 3px;
-    margin-bottom: 3px;
+.descriptions table tr td.second p {
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+/* End Second */
+
+/* Start third */
+.descriptions table tr td.third {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
 }
 
-table>tr:nth-child(4)>td:nth-child(3) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+.descriptions table tr td.third p {
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
 }
 
-table>tr:nth-child(4)>td:nth-child(3) label {
-    margin-top: 3px;
-    margin-bottom: 3px;
+.descriptions table tr td.third div p ul {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
 }
 
-table>tr:nth-child(5)>td:nth-child(3) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+.descriptions table tr td.third div p ul li {
+  list-style: none;
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin-top: 0;
+}
+/* End third */
+
+/* Start fourth */
+.descriptions table tr td.fourth  {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
 }
 
-table>tr:nth-child(6)>td:nth-child(3) {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+.descriptions table tr td.fourth p {
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+/* End fourth */
+
+/* Start fifth */
+.descriptions table tr td.fifth  {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 3px;
+}
+/* End fifth */
+
+/* Start fifth-first */
+.descriptions table tr td.fifth-first  {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
 }
 
 
-.saved {
-    color: #04AA6D;
+.descriptions table tr td.fifth-first p {
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+/* End fifth-first */
+
+/* Start fifth-second */
+.descriptions table tr td.fifth-second  {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
 }
 
-.not-saved {
-    color: red;
+
+.descriptions table tr td.fifth-second p {
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
-input,
-select {
-    height: 25px;
-    font-size: medium;
+.descriptions table tr td.fifth-second p ul {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
 }
 
-td div p {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+.descriptions table tr td.fifth-second p ul li {
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+/* End fifth-second */
+
+/* Start sixth */
+.descriptions table tr td.sixth  {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
 }
 
+.descriptions table tr td.sixth p {
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+/* End sixth */
+
+/* Start sixth */
+.descriptions table tr td.seventh  {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+.descriptions table tr td.seventh p {
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.descriptions table tr td.seventh p ul {
+  display : flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0;
+  margin: 0;
+}
+
+.descriptions table tr td.seventh p ul li {
+  list-style: none;
+  display : flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+/* End sixth */
+
+
+
+
+
+
+
+
+/* Start buttons */
 .sauvegarder,
 .reset {
     width: 100%;
@@ -850,7 +1035,6 @@ td div p {
     cursor: pointer;
 }
 
-
 .reset button {
     background-color: red;
     color: white;
@@ -859,4 +1043,10 @@ td div p {
     border: 0px;
     border-radius: 5px;
 }
+/* End buttons */
+
+tr {
+    border-bottom: 1pt solid black;
+}
+
 </style>

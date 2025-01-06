@@ -73,7 +73,7 @@
                 <td class="fourth">
                     <ul v-for="(item, index) in description.levageAuxilaire" :key="index">
                         <li>
-                            <input type="radio" name="levageAuxilaire" @input="saisirLevageAuxilaire(index)" :value="item.status">{{ item.titre }}
+                            <input type="radio" name="levageAuxilaire" @input="saisirLevageAuxilaire(index)" :value="item.status" :checked="item.status">{{ item.titre }}
                         </li>
                         <li v-if="item.status && item.tab.length != 0">
                             <p v-for="(el, i) in item.tab" :key="i">
@@ -81,11 +81,6 @@
                             </p>
                         </li>
                     </ul>
-
-                    <!-- <p>
-                        Mouflage (nombre de brins) : <input type="text" @input="saisirMouflageLevageAuxilaire($event)"
-                            :value="description.mouflageLevageAuxilaire">
-                    </p> -->
 
                     <p>
                         Diamètre ou pas théorique de câble(s) ou de chaîne(s) (mm) : <input type="text"
@@ -100,10 +95,10 @@
                 <td :class="[colorModeInstallation == true ? 'saved' : 'not-saved']">MODE D'INSTALLATION</td>
                 <td class="fifth">
                     <P v-for="(item, index) in description.modeInstallation" :key="index">
-                        <input type="radio" name="modeInstallation" @input="saisirModeInstallation(index)" :value="item.status"> {{ item.titre }}
+                        <input type="radio" name="modeInstallation" @input="saisirModeInstallation(index)" :value="item.status" :checked="item.status"> {{ item.titre }}
                         <ul v-if="item.status">
                             <li v-for="(el, i) in item.tab" :key="i">
-                            <input type="radio" name="sousModeInstallation" @input="saisirSousModeInstallation(index, i)" :value="el.status">{{ el.titre }}
+                            <input type="radio" name="sousModeInstallation" @input="saisirSousModeInstallation(index, i)" :value="el.status" :checked="el.status">{{ el.titre }}
                             </li>
                         </ul>
                     </p>
@@ -118,9 +113,9 @@
                 <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
                 <td class="sixth">
                     <p v-for="(item, index) in description.sourceEnergie" :key="index">
-                        <input type="radio" name="sourceEnergie" @input="sisairSourceEnergie(index)">{{ item.titre }}
+                        <input type="radio" name="sourceEnergie" @input="sisairSourceEnergie(index)" :checked="item.status">{{ item.titre }}
                         <ul>
-                            <li v-for="(el, i) in item.tab" :key="i"><input type="radio" name="sousSourceEnergie" @input="sisairSousSourceEnergie(index, i)">{{ el.titre }}</li>
+                            <li v-for="(el, i) in item.tab" :key="i"><input type="radio" name="sousSourceEnergie" @input="sisairSousSourceEnergie(index, i)" :checked="el.status">{{ el.titre }}</li>
                         </ul>
                     </p>
                     <p v-if="description.flagcomplementSourceEnergie">
@@ -143,6 +138,10 @@
             <button @click="reset">Reset</button>
         </div>
 
+        <div class="spinner" v-if="flagSpinner">
+            <Spinner />
+        </div>
+
     </div>
 
 </template>
@@ -150,11 +149,14 @@
 <script>
 import Descriptions from "@/requests/appareil_levage/famille2_lev2/Descriptions"
 import Observateurs from "@/requests/Observateurs"
+import Spinner from 'vue-simple-spinner'
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
+
+            flagSpinner : false,
 
             colorSuspentes: false,
             colorCaracteristiques: false,
@@ -174,8 +176,6 @@ export default {
 
                 chargeMaximaleUtile: "",
                 hauteurDeLevage: "",
-                course: "",
-                hauteurLevage: "",
                 portee: "",
                 porteFaux: "",
                 longueurCheminRoulement: "",
@@ -284,8 +284,6 @@ export default {
 
                 chargeMaximaleUtile: "",
                 hauteurDeLevage: "",
-                course: "",
-                hauteurLevage: "",
                 portee: "",
                 porteFaux: "",
                 longueurCheminRoulement: "",
@@ -394,6 +392,7 @@ export default {
 
 
     components: {
+        Spinner
     },
 
     watch: {
@@ -470,18 +469,6 @@ export default {
                 return false;
             }
 
-            if (this.description.course == "") {
-                return false;
-            }
-
-            if (this.description.course == "") {
-                return false;
-            }
-
-            if (this.description.hauteurLevage == "") {
-                return false;
-            }
-
             if (this.description.portee == "") {
                 return false;
             }
@@ -493,7 +480,6 @@ export default {
             if (this.description.longueurCheminRoulement == "") {
                 return false;
             }
-
 
             if (this.description.suspentesLevage == "") {
                 return false;
@@ -676,6 +662,7 @@ export default {
                 this.description.flagComplementModeInstallation = true;
             } else {
                 this.description.flagComplementModeInstallation = false;
+                this.description.complementModeInstallation = "";
             }
 
             this.colorModeInstallation = this.checkModeInstallation();
@@ -775,7 +762,7 @@ export default {
 
     created() {
 
-
+        this.flagSpinner = true;
         this.description.observateurId = this.observateurId;
         this.duplicate_description.observateurId = this.observateurId;
 
@@ -802,6 +789,7 @@ export default {
                 this.colorLevageAuxilaire = this.checkeLevageAuxilaire();
                 this.colorCaracteristiques = this.checkCaracterstiques();
                 this.watched_sauvegarder = true;
+                this.flagSpinner = false;
                 return this.notEmpty();
             })
             .catch((error) => {
@@ -1087,5 +1075,7 @@ select {
 }
 /* End COnfigration ALL */
 
-
+tr {
+    border-bottom: 1pt solid black;
+}
 </style>

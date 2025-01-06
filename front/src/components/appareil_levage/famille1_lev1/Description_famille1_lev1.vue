@@ -18,9 +18,9 @@
                     DE CHARGE</td>
                 <td class="second">
                     <p>Charge maximale utile (kg) : <input type="text" @input="saisirChargeMaximaleUtile($event)"
-                            :value="description.chargeMaximaleUtile"></p> 
-                    <p>A la portée minimale de (m) : <input type="text"
-                            @input="saisirPorteeMinimale($event)" :value="description.porteeMinimale"></p>
+                            :value="description.chargeMaximaleUtile"></p>
+                    <p>A la portée minimale de (m) : <input type="text" @input="saisirPorteeMinimale($event)"
+                            :value="description.porteeMinimale"></p>
                     <p>Distance du centre de gravité (m) : <input type="text" :value="description.distanceCentreGravite"
                             @input="saisirDistanceCentreGravite($event)"></p>
                     <p>Course (m) : <input type="text" :value="description.course" @input="saisirCourse($event)"></p>
@@ -61,7 +61,8 @@
                         <p><input type="checkbox" @input="saisirCable"
                                 :checked='description["suspentes"][0]["hasCable"]'>Câble :</p>
                         <p v-if='description["suspentes"][0]["hasCable"]'>
-                            Nombre : <input type="text" v-model="description['suspentes'][0]['detailsCable'][0]['valA']">
+                            Nombre : <input type="text"
+                                v-model="description['suspentes'][0]['detailsCable'][0]['valA']">
                             Composition : <input type="text"
                                 v-model="description['suspentes'][0]['detailsCable'][0]['valB']">
                             Diamètre (mm) : <input type="text"
@@ -134,7 +135,8 @@
                         <p><input type="checkbox" @input="sangle"
                                 :checked='description["suspentes"][0]["hasSangle"]'>Sangle de levage :</p>
                         <p v-if='description["suspentes"][0]["hasSangle"]'>hasSangle
-                            Nombre : <input type="text" v-model="description['suspentes'][0]['detailsSangle'][0]['valA']">
+                            Nombre : <input type="text"
+                                v-model="description['suspentes'][0]['detailsSangle'][0]['valA']">
                             Composition :<input type="text"
                                 v-model="description['suspentes'][0]['detailsSangle'][0]['valB']">
                         </p>
@@ -186,7 +188,7 @@
             <button @click="reset">Reset</button>
         </div>
 
-        
+
         <div class="spinner" v-if="flagSpinner">
             <Spinner />
         </div>
@@ -205,8 +207,8 @@ export default {
     name: 'renseignement-component',
     data() {
         return {
-            flagSpinner : false,
-            colorSuspentes : false,
+            flagSpinner: false,
+            colorSuspentes: false,
             colorCaracteristiques: false,
             counter_watched: 0,
             watched_sauvegarder: false,
@@ -276,7 +278,7 @@ export default {
             },
 
             duplicate_description: {
-                
+
                 marquage: "",
 
                 chargeMaximaleUtile: "",
@@ -353,7 +355,7 @@ export default {
     watch: {
         description: {
             handler() {
-            
+
                 const count = this.counter_watched++;
                 if (count != 0 && count != 1 && count != 2) {
                     this.watched_sauvegarder = false;
@@ -375,7 +377,7 @@ export default {
                 this.description["suspentes"][0]["hasSangle"],
             ]
 
-            if(arr.includes(true)) {
+            if (arr.includes(true)) {
                 return true;
             } else {
                 return false;
@@ -647,7 +649,7 @@ export default {
 
         Descriptions.select(this.observateurId)
             .then((result) => {
-                
+
                 if (result.data.description != null) {
                     this.flagSpinner = false;
                     this.flagReset = true;
@@ -669,13 +671,13 @@ export default {
 </script>
 
 <style scoped>
-
 /* Start Cofiguration All */
 .descriptions {
     margin-top: 10px;
     margin-bottom: 100px;
     width: inherit;
 }
+
 .descriptions table {
     border-collapse: collapse;
     border: none;
@@ -689,6 +691,7 @@ export default {
 .descriptions table tr td:nth-child(2) {
     font-size: large;
 }
+
 /* End Configuration All */
 
 
@@ -698,6 +701,7 @@ export default {
     flex-direction: row;
     justify-content: flex-start;
 }
+
 /* End First */
 
 
@@ -708,6 +712,7 @@ export default {
     justify-content: flex-start;
     align-items: flex-start;
 }
+
 /* End Second */
 
 
@@ -732,6 +737,7 @@ export default {
     justify-content: flex-start;
     align-items: center;
 }
+
 /* End Third */
 
 /* Strat Fourth  */
@@ -740,6 +746,7 @@ export default {
     flex-direction: row;
     justify-content: flex-start;
 }
+
 /* End Fourth */
 
 
@@ -753,13 +760,15 @@ export default {
     color: red;
 }
 
-input , select {
+input,
+select {
     height: 25px;
     width: 120px;
     font-size: medium;
 }
 
-.sauvegarder , .reset {
+.sauvegarder,
+.reset {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -819,4 +828,7 @@ input , select {
 /* End Configuration */
 
 
+tr {
+    border-bottom: 1pt solid black;
+}
 </style>
