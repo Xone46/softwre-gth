@@ -35,7 +35,7 @@
                     <p>Levage par :</p>
 
                     <p v-for="(item, index) in description.levage" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelLevage(item.index)">
+                        <input type="checkbox" :value="item.status" @input="handelLevage(item.index)" :checked="item.status">
                         {{  item.titre }}
                         <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirLevage($event, index)">
                     </p>
@@ -48,7 +48,7 @@
                 <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
                 <td class="fourth">
                     <p v-for="(item, index) in description.sourceEnergie" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelSourceEnergie(item.index)">
+                        <input type="checkbox" :value="item.status" @input="handelSourceEnergie(item.index)" :checked="item.status">
                         {{  item.titre }}
                     </p>
 
@@ -68,7 +68,7 @@
                 <td :class="[colorTransmissionElevation == true ? 'saved' : 'not-saved']">Transmission de l'élévation</td>
                 <td class="fifth-first">
                     <p v-for="(item, index) in description.transmissionElevation" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelTransmissionElevation(item.index)">
+                        <input type="checkbox" :value="item.status" @input="handelTransmissionElevation(item.index)" :checked="item.status">
                         {{  item.titre }}
                     </p>
                 </td>
@@ -84,12 +84,12 @@
                     </p>
 
                     <p v-for="(item, index) in description.organesSuspension" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelOrganesSuspension(item.index)">
+                        <input type="checkbox" :value="item.status" @input="handelOrganesSuspension(item.index)" :checked="item.status">
                         {{  item.titre }}
                         <ul v-if="item.status">
                             <li v-for="el in item.tab" :key="el.index">
                                 <input type="checkbox"
-                                    @input="handelSousOrganesSuspension(item.index, el.index)">
+                                    @input="handelSousOrganesSuspension(item.index, el.index)" :checked="el.status">
                                 {{ el.titre }}
                                 <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
                                     @input="saisirSousOrganesSuspension($event, item.index, el.index)">
@@ -114,7 +114,7 @@
                 <td :class="[colorSupoprtCharge == true ? 'saved' : 'not-saved']">SUPPORT DE CHARGE</td>
                 <td class="sixth">
                     <p v-for="(item, index) in description.supoprtCharge" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelSupoprtCharge(item.index)">
+                        <input type="checkbox" :value="item.status" @input="handelSupoprtCharge(item.index)" :checked="item.status">
                         {{ item.titre }}
                         <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirSupoprtCharge($event, index)">
                     </p>
@@ -127,19 +127,18 @@
                 <td :class="[colorLevageAuxiliaire == true ? 'saved' : 'not-saved']">LEVAGE AUXILIAIRE</td>
                 <td class="seventh">
                     <p v-for="(item, index) in description.levageAuxiliaire" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelLevageAuxiliaire(item.index)">
+                        <input type="checkbox" :value="item.status" @input="handelLevageAuxiliaire(item.index)" :checked="item.status">
                         {{ item.titre }}
                         <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirLevageAuxiliaire($event, index)">
                         <ul v-if="item.status">
                             <li v-for="el in item.tab" :key="el.index">
                                 <input type="checkbox"
-                                    @input="handelSousLevageAuxiliaire(item.index, el.index)">
+                                    @input="handelSousLevageAuxiliaire(item.index, el.index)" :checked="el.status">
                                 {{ el.titre }}
                                 <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
                                     @input="saisirSousLevageAuxiliaire($event, item.index, el.index)">
                             </li>
                         </ul>
-
                     </p>
                 </td>
             </tr>
@@ -158,6 +157,10 @@
             <button @click="reset">Reset</button>
         </div>
 
+        <div class="spinner" v-if="flagSpinner">
+            <Spinner />
+        </div>
+
     </div>
 
 </template>
@@ -165,10 +168,15 @@
 <script>
 import Descriptions from "@/requests/appareil_levage/famille5_lev5/Descriptions"
 import Observateurs from "@/requests/Observateurs"
+import Spinner from 'vue-simple-spinner'
+
+
 export default {
     name: 'renseignement-component',
     data() {
         return {
+
+            flagSpinner : false,
 
             colorCaracteristiques: false,
             colorMecanisme: false,
@@ -187,7 +195,7 @@ export default {
 
                 marquage: "",
 
-                chargeMaximaleUtile: "Non précisée",
+                chargeMaximaleUtile: "",
                 hauteurLeveeMaximale: "",
 
                 levage: [
@@ -211,9 +219,9 @@ export default {
                     { index: 2, titre: "Transmission entre chaque colonne par arbres et cardans", status: false }
                 ],
 
-                nombreChainesCables: "Sans Objet",
+                nombreChainesCables: "",
                 chargeRupture: " ",
-                coefficientUtilisation: "Inconnu (absence d'information",
+                coefficientUtilisation: "",
                 organesSuspension: [
 
                     {
@@ -253,17 +261,14 @@ export default {
                 levageAuxiliaire: [
                     {
                         index: 0,
-                        titre: "Sans objet",
+                        titre: "Sans Objet",
                         status: false
                     },
                     {
                         index: 1,
                         titre: "Charge maximale utile (kg) :",
                         status: false,
-                        tab: [
-                            { index: 0, titre: "Non précisée", status: false },
-                            { index: 1, titre: "Autre", content: " ", status: false }
-                        ]
+                        content: " "
                     },
                     {
                         index: 2,
@@ -299,7 +304,7 @@ export default {
 
                 marquage: "",
 
-                chargeMaximaleUtile: "Non précisée",
+                chargeMaximaleUtile: "",
                 hauteurLeveeMaximale: "",
 
                 levage: [
@@ -323,9 +328,9 @@ export default {
                     { index: 2, titre: "Transmission entre chaque colonne par arbres et cardans", status: false }
                 ],
 
-                nombreChainesCables: "Sans Objet",
+                nombreChainesCables: "",
                 chargeRupture: " ",
-                coefficientUtilisation: "Inconnu (absence d'information",
+                coefficientUtilisation: "",
                 organesSuspension: [
 
                     {
@@ -372,10 +377,7 @@ export default {
                         index: 1,
                         titre: "Charge maximale utile (kg) :",
                         status: false,
-                        tab: [
-                            { index: 0, titre: "Non précisée", status: false },
-                            { index: 1, titre: "Autre", content: " ", status: false }
-                        ]
+                        content: null
                     },
                     {
                         index: 2,
@@ -400,7 +402,7 @@ export default {
                         index: 4,
                         titre: "Autre",
                         status: false,
-                        content: " "
+                        content: null
                     }
                 ],
 
@@ -415,6 +417,7 @@ export default {
 
 
     components: {
+        Spinner
     },
 
     watch: {
@@ -650,7 +653,7 @@ export default {
         },
 
         saisirLevageAuxiliaire(e, index) {
-            this.description.levageAuxiliaire[index].conetent = e.target.value;
+            this.description.levageAuxiliaire[index].content = e.target.value;
         },
 
         handelSousLevageAuxiliaire(index, i) {

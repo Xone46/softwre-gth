@@ -42,10 +42,10 @@
                 <td class="third">
                     <div>
                         <p v-for="item in description.mecanismes" :key="item.index">
-                            <input type="checkbox" @input="saisirMecanisme(item.index)" :value="item.status">{{item.titre}}
+                            <input type="checkbox" @input="saisirMecanisme(item.index)" :value="item.status" :checked="item.status">{{item.titre}}
                             <ul v-if="item.status">
                                 <li v-for="el in item.tab" :key="el.index">
-                                    <input type="checkbox" @input="saisirSousMecanisme(item.index, el.index)">
+                                    <input type="checkbox" @input="saisirSousMecanisme(item.index, el.index)" :checked="el.status">
                                     {{ el.titre }}
                                     <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
                                         @input="saisirContentMecanisme($event, item.index, el.index)">
@@ -62,7 +62,7 @@
                 <td class="fourth">
                     <div>
                         <p v-for="item in description.sourceEnergie" :key="item.index">
-                            <input type="checkbox" @input="saisirSourceEnergie(item.index)" :value="item.status">{{
+                            <input type="checkbox" @input="saisirSourceEnergie(item.index)" :value="item.status" :checked="item.status">{{
                             item.titre}}
                         </p>
                     </div>
@@ -75,7 +75,7 @@
                 <td class="fifth">
                     <div>
                         <p v-for="item in description.translation" :key="item.index">
-                            <input type="checkbox" @input="saisirTranslation(item.index)" :value="item.status">{{
+                            <input type="checkbox" @input="saisirTranslation(item.index)" :value="item.status" :checked="item.status">{{
                             item.titre}}
                         </p>
                     </div>
@@ -89,17 +89,17 @@
                     <div>
                         <p v-for="item in description.dispositifsElevation" :key="item.index">
                             <input type="checkbox" @input="saisirDispositifsElevation(item.index)"
-                                :value="item.status">{{ item.titre }}
+                                :value="item.status" :checked="item.status">{{ item.titre }}
                         <ul v-if="item.status">
                             <li v-for="el in item.tab" :key="el.index">
-                                <input type="checkbox" @input="saisirSousDispositifsElevation(item.index, el.index)">
+                                <input type="checkbox" @input="saisirSousDispositifsElevation(item.index, el.index)" :checked="el.status">
                                 {{ el.titre }}
                                 <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
                                     @input="saisirContentDispositifsElevation($event, item.index, el.index)">
                                 <ul v-if="el.status && el.content === undefined">
                                     <li v-for="elem in el.sous_tab" :key="elem.index">
                                         <input type="checkbox"
-                                            @input="saisirSousSousDispositifsElevation(item.index, el.index, elem.index)">
+                                            @input="saisirSousSousDispositifsElevation(item.index, el.index, elem.index)" :checked="elem.status">
                                         {{ elem.titre }}
                                         <input v-if="elem.status && elem.content !== undefined" type="text"
                                             @input="saisirContentSousSousDispositifsElevation($event, item.index, el.index, elem.index)"
@@ -119,11 +119,11 @@
                 <td class="seventh">
                     <div>
                         <p v-for="item in description.dispositifPrehension" :key="item.index">
-                            <input type="checkbox" @input="saisirDispositifPrehension(item.index)" :value="item.status">
+                            <input type="checkbox" @input="saisirDispositifPrehension(item.index)" :value="item.status" :checked="item.status">
                             {{ item.titre }}
                         <ul v-if="item.status && item.tab !== undefined">
                             <li v-for="el in item.tab" :key="el.index">
-                                <input type="checkbox" @input="saisirSousrDispositifPrehension(item.index, el.index)">
+                                <input type="checkbox" @input="saisirSousrDispositifPrehension(item.index, el.index)" :checked="el.status">
                                 {{ el.titre }}
                                 <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
                                     @input="saisirContentDispositifPrehension($event, item.index, el.index)">
@@ -141,7 +141,7 @@
                     <div>
                         <p v-for="item in description.equipementsInterchangable" :key="item.index">
                             <input type="checkbox" @input="saisirEquipementsInterchangable(item.index)"
-                                :value="item.status">
+                                :value="item.status" :checked="item.status">
                             {{ item.titre }}
                             <input v-if="item.status" type="text" :value="item.content"
                                 @input="saisirContentEquipementsInterchangable($event, item.index)">
@@ -170,6 +170,10 @@
             <button @click="reset">Reset</button>
         </div>
 
+        <div class="spinner" v-if="flagSpinner">
+            <Spinner />
+        </div>
+
     </div>
 
 </template>
@@ -178,11 +182,14 @@
 
 import Descriptions from "@/requests/appareil_levage/famille3_lev3/Descriptions"
 import Observateurs from "@/requests/Observateurs"
+import Spinner from 'vue-simple-spinner'
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
+
+            flagSpinner : false,
 
             colorCaracteristiques: false,
             colorMecanismes: false,
@@ -651,6 +658,7 @@ export default {
 
 
     components: {
+        Spinner
     },
 
     watch: {
@@ -970,6 +978,7 @@ export default {
 
         this.description.observateurId = this.observateurId;
         this.duplicate_description.observateurId = this.observateurId;
+        this.flagSpinner = true;
 
         Observateurs.selected(this.observateurId)
             .then((result) => {
@@ -990,7 +999,7 @@ export default {
                 }
 
                 this.watched_sauvegarder = true;
-
+                this.flagSpinner = false;
                 return this.notEmpty();
             })
             .catch((error) => {
