@@ -20,7 +20,7 @@
                     <p>Charge maximale utile (kg) :
                         <input type="text" v-model="description.chargeMaximaleUtile">
                     </p>
- 
+
                     <p>Hauteur de levée maximale (m) :
                         <input type="text" v-model="description.hauteurLeveeMaximale">
                     </p>
@@ -33,11 +33,12 @@
                 <td :class="[colorMecanisme == true ? 'saved' : 'not-saved']">MECANISME</td>
                 <td class="third">
                     <p>Levage par :</p>
-
                     <p v-for="(item, index) in description.levage" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelLevage(item.index)" :checked="item.status">
-                        {{  item.titre }}
-                        <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirLevage($event, index)">
+                        <input type="checkbox" :value="item.status" @input="handelLevage(item.index)"
+                            :checked="item.status">
+                        {{ item.titre }}
+                        <input v-if="item.status && (item.titre == 'Autre :' || item.titre == 'Vérin(s) directs(s) Nombre :') " type="text" :value="item.content"
+                            @input="saisirLevage($event, index)">
                     </p>
 
                 </td>
@@ -48,8 +49,9 @@
                 <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
                 <td class="fourth">
                     <p v-for="(item, index) in description.sourceEnergie" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelSourceEnergie(item.index)" :checked="item.status">
-                        {{  item.titre }}
+                        <input type="checkbox" :value="item.status" @input="handelSourceEnergie(item.index)"
+                            :checked="item.status">
+                        {{ item.titre }}
                     </p>
 
                 </td>
@@ -65,11 +67,13 @@
 
             <tr>
                 <td>B-5-1</td>
-                <td :class="[colorTransmissionElevation == true ? 'saved' : 'not-saved']">Transmission de l'élévation</td>
+                <td :class="[colorTransmissionElevation == true ? 'saved' : 'not-saved']">Transmission de l'élévation
+                </td>
                 <td class="fifth-first">
                     <p v-for="(item, index) in description.transmissionElevation" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelTransmissionElevation(item.index)" :checked="item.status">
-                        {{  item.titre }}
+                        <input type="checkbox" :value="item.status" @input="handelTransmissionElevation(item.index)"
+                            :checked="item.status">
+                        {{ item.titre }}
                     </p>
                 </td>
             </tr>
@@ -80,21 +84,23 @@
                 <td class="fifth-second">
                     <p>
                         Nombre de chaînes ou câbles :
-                        <input type="text" :value="description.nombreChainesCables" @input="handelNombreChainesCables($event)">
+                        <input type="text" :value="description.nombreChainesCables"
+                            @input="handelNombreChainesCables($event)">
                     </p>
 
                     <p v-for="(item, index) in description.organesSuspension" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelOrganesSuspension(item.index)" :checked="item.status">
-                        {{  item.titre }}
-                        <ul v-if="item.status">
-                            <li v-for="el in item.tab" :key="el.index">
-                                <input type="checkbox"
-                                    @input="handelSousOrganesSuspension(item.index, el.index)" :checked="el.status">
-                                {{ el.titre }}
-                                <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
-                                    @input="saisirSousOrganesSuspension($event, item.index, el.index)">
-                            </li>
-                        </ul>
+                        <input type="checkbox" :value="item.status" @input="handelOrganesSuspension(item.index)"
+                            :checked="item.status">
+                        {{ item.titre }}
+                    <ul v-if="item.status">
+                        <li v-for="el in item.tab" :key="el.index">
+                            <input type="checkbox" @input="handelSousOrganesSuspension(item.index, el.index)"
+                                :checked="el.status">
+                            {{ el.titre }}
+                            <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
+                                @input="saisirSousOrganesSuspension($event, item.index, el.index)">
+                        </li>
+                    </ul>
                     </p>
 
                     <p>
@@ -104,7 +110,8 @@
 
                     <p>
                         Coefficient d'utilisation :
-                        <input type="text" :value="description.coefficientUtilisation" @input="saisirCoefficientUtilisation($event)">
+                        <input type="text" :value="description.coefficientUtilisation"
+                            @input="saisirCoefficientUtilisation($event)">
                     </p>
                 </td>
             </tr>
@@ -114,9 +121,11 @@
                 <td :class="[colorSupoprtCharge == true ? 'saved' : 'not-saved']">SUPPORT DE CHARGE</td>
                 <td class="sixth">
                     <p v-for="(item, index) in description.supoprtCharge" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelSupoprtCharge(item.index)" :checked="item.status">
+                        <input type="checkbox" :value="item.status" @input="handelSupoprtCharge(item.index)"
+                            :checked="item.status">
                         {{ item.titre }}
-                        <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirSupoprtCharge($event, index)">
+                        <input v-if="item.status && item.titre == 'Autre :'" type="text" :value="item.content"
+                            @input="saisirSupoprtCharge($event, index)">
                     </p>
                 </td>
             </tr>
@@ -126,21 +135,23 @@
                 <td>B-7</td>
                 <td :class="[colorLevageAuxiliaire == true ? 'saved' : 'not-saved']">LEVAGE AUXILIAIRE</td>
                 <td class="seventh">
+
                     <p v-for="(item, index) in description.levageAuxiliaire" :key="index">
-                        <input type="checkbox" :value="item.status" @input="handelLevageAuxiliaire(item.index)" :checked="item.status">
-                        {{ item.titre }}
-                        <input v-if="item.status && item.content != undefined" type="text" :value="item.content" @input="saisirLevageAuxiliaire($event, index)">
-                        <ul v-if="item.status">
+                        <input type="checkbox" :value="item.status" @input="handelLevageAuxiliaire(item.index)" :checked="item.status"> {{ item.titre }}
+                        <input v-if="item.status && (item.titre == 'Autre :' || item.titre == 'Charge maximale utile (kg) :')" type="text" :value="item.content" @input="saisirLevageAuxiliaire($event, index)">
+
+                        <ul v-if="item.status && item.titre != 'Autre :' && item.titre != 'Charge maximale utile (kg) :'">
                             <li v-for="el in item.tab" :key="el.index">
-                                <input type="checkbox"
-                                    @input="handelSousLevageAuxiliaire(item.index, el.index)" :checked="el.status">
+                                <input type="checkbox" @input="handelSousLevageAuxiliaire(item.index, el.index)"
+                                    :checked="el.status">
                                 {{ el.titre }}
-                                <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
+                                <input v-if="el.status" type="text" :value="el.content"
                                     @input="saisirSousLevageAuxiliaire($event, item.index, el.index)">
                             </li>
                         </ul>
                     </p>
                 </td>
+
             </tr>
 
 
@@ -176,7 +187,7 @@ export default {
     data() {
         return {
 
-            flagSpinner : false,
+            flagSpinner: false,
 
             colorCaracteristiques: false,
             colorMecanisme: false,
@@ -199,10 +210,10 @@ export default {
                 hauteurLeveeMaximale: "",
 
                 levage: [
-                    { index: 0, titre: "Système «Vis/Ecrou»", status: false },
-                    { index: 1, titre: "Suspentes entraînées par vérin", status: false },
-                    { index: 2, titre: "Vérin(s) directs(s) Nombre :", status: false, content: " " },
-                    { index: 3, titre: "Autre :", status: false, content: " " }
+                    { index: 0, titre: "Système «Vis/Ecrou»", content : " ", status: false },
+                    { index: 1, titre: "Suspentes entraînées par vérin", content : " ", status: false },
+                    { index: 2, titre: "Vérin(s) directs(s) Nombre :", content: " " , status: false },
+                    { index: 3, titre: "Autre :", content: " ", status: false }
                 ],
 
                 sourceEnergie: [
@@ -210,7 +221,7 @@ export default {
                     { index: 1, titre: "Hydraulique", status: false },
                     { index: 2, titre: "Pneumatique", status: false }
                 ],
-                
+
                 dispositifElevation: "",
 
                 transmissionElevation: [
@@ -248,21 +259,22 @@ export default {
                 ],
 
                 supoprtCharge: [
-                    { index: 0, titre: "Plate forme suspendue a prise sous coque", status: false },
-                    { index: 1, titre: "Plate forme posée a prise sous coque", status: false },
-                    { index: 2, titre: "Bras orientables", status: false },
-                    { index: 3, titre: "Symétriques", status: false },
-                    { index: 4, titre: "Disymétriques", status: false },
-                    { index: 5, titre: "Prise sous coque", status: false },
-                    { index: 6, titre: "Télescopiques", status: false },
-                    { index: 7, titre: "Autre :", status: false, content: " " }
+                    { index: 0, titre: "Plate forme suspendue a prise sous coque", content: " ", status: false },
+                    { index: 1, titre: "Plate forme posée a prise sous coque", content: " ", status: false },
+                    { index: 2, titre: "Bras orientables", content: " ", status: false },
+                    { index: 3, titre: "Symétriques", content: " ", status: false },
+                    { index: 4, titre: "Disymétriques", content: " ", status: false },
+                    { index: 5, titre: "Prise sous coque", content: " ", status: false },
+                    { index: 6, titre: "Télescopiques", content: " ", status: false },
+                    { index: 7, titre: "Autre :", content: " ", status: false }
                 ],
 
                 levageAuxiliaire: [
                     {
                         index: 0,
                         titre: "Sans Objet",
-                        status: false
+                        status: false,
+                        content : " "
                     },
                     {
                         index: 1,
@@ -277,7 +289,8 @@ export default {
                         tab: [
                             { index: 0, titre: "Vérin direct", status: false },
                             { index: 1, titre: "Autre", content: " ", status: false }
-                        ]
+                        ],
+                        content : " "
                     },
                     {
                         index: 3,
@@ -286,12 +299,13 @@ export default {
                         tab: [
                             { index: 0, titre: "Prise sous coque", status: false },
                             { index: 1, titre: "Prise sous essieux", status: false }
-                        ]
+                        ],
+                        content : " "
                     },
 
                     {
                         index: 4,
-                        titre: "Autre",
+                        titre: "Autre :",
                         status: false,
                         content: " "
                     }
@@ -308,10 +322,10 @@ export default {
                 hauteurLeveeMaximale: "",
 
                 levage: [
-                    { index: 0, titre: "Système «Vis/Ecrou»", status: false },
-                    { index: 1, titre: "Suspentes entraînées par vérin", status: false },
-                    { index: 2, titre: "Vérin(s) directs(s) Nombre :", status: false, content: " " },
-                    { index: 3, titre: "Autre :", status: false, content: " " }
+                    { index: 0, titre: "Système «Vis/Ecrou»", content : " ", status: false },
+                    { index: 1, titre: "Suspentes entraînées par vérin", content : " ", status: false },
+                    { index: 2, titre: "Vérin(s) directs(s) Nombre :", content: " " , status: false },
+                    { index: 3, titre: "Autre :", content: " ", status: false }
                 ],
 
                 sourceEnergie: [
@@ -319,7 +333,7 @@ export default {
                     { index: 1, titre: "Hydraulique", status: false },
                     { index: 2, titre: "Pneumatique", status: false }
                 ],
-                
+
                 dispositifElevation: "",
 
                 transmissionElevation: [
@@ -357,27 +371,28 @@ export default {
                 ],
 
                 supoprtCharge: [
-                    { index: 0, titre: "Plate forme suspendue a prise sous coque", status: false },
-                    { index: 1, titre: "Plate forme posée a prise sous coque", status: false },
-                    { index: 2, titre: "Bras orientables", status: false },
-                    { index: 3, titre: "Symétriques", status: false },
-                    { index: 4, titre: "Disymétriques", status: false },
-                    { index: 5, titre: "Prise sous coque", status: false },
-                    { index: 6, titre: "Télescopiques", status: false },
-                    { index: 7, titre: "Autre :", status: false, content: " " }
+                    { index: 0, titre: "Plate forme suspendue a prise sous coque", content: " ", status: false },
+                    { index: 1, titre: "Plate forme posée a prise sous coque", content: " ", status: false },
+                    { index: 2, titre: "Bras orientables", content: " ", status: false },
+                    { index: 3, titre: "Symétriques", content: " ", status: false },
+                    { index: 4, titre: "Disymétriques", content: " ", status: false },
+                    { index: 5, titre: "Prise sous coque", content: " ", status: false },
+                    { index: 6, titre: "Télescopiques", content: " ", status: false },
+                    { index: 7, titre: "Autre :", content: " ", status: false }
                 ],
 
                 levageAuxiliaire: [
                     {
                         index: 0,
-                        titre: "Sans objet",
-                        status: false
+                        titre: "Sans Objet",
+                        status: false,
+                        content : " "
                     },
                     {
                         index: 1,
                         titre: "Charge maximale utile (kg) :",
                         status: false,
-                        content: null
+                        content: " "
                     },
                     {
                         index: 2,
@@ -386,7 +401,8 @@ export default {
                         tab: [
                             { index: 0, titre: "Vérin direct", status: false },
                             { index: 1, titre: "Autre", content: " ", status: false }
-                        ]
+                        ],
+                        content : " "
                     },
                     {
                         index: 3,
@@ -395,14 +411,15 @@ export default {
                         tab: [
                             { index: 0, titre: "Prise sous coque", status: false },
                             { index: 1, titre: "Prise sous essieux", status: false }
-                        ]
+                        ],
+                        content : " "
                     },
 
                     {
                         index: 4,
-                        titre: "Autre",
+                        titre: "Autre :",
                         status: false,
-                        content: null
+                        content: " "
                     }
                 ],
 
@@ -483,7 +500,7 @@ export default {
 
 
         checkDispositifElevation() {
-            if(this.description.dispositifElevation == "") {
+            if (this.description.dispositifElevation == "") {
                 return false;
             }
             return true;
@@ -729,7 +746,6 @@ export default {
 </script>
 
 <style scoped>
-
 .saved {
     color: #04AA6D;
 }
@@ -774,229 +790,239 @@ td {
 table tr td:nth-child(1) {
     width: 40px;
 }
+
 /* End Configration body */
 
 
 /* Start first */
 .descriptions table tr td.first {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
+
 /* End first */
 
 /* Start Second */
 .descriptions table tr td.second {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.second p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 5px;
-  margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
+
 /* End Second */
 
 /* Start third */
 .descriptions table tr td.third {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.third p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.third div p ul {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.third div p ul li {
-  list-style: none;
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 0;
 }
+
 /* End third */
 
 /* Start fourth */
-.descriptions table tr td.fourth  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+.descriptions table tr td.fourth {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.fourth p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
+
 /* End fourth */
 
 /* Start fifth */
-.descriptions table tr td.fifth  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 3px;
+.descriptions table tr td.fifth {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 3px;
 }
+
 /* End fifth */
 
 /* Start fifth-first */
-.descriptions table tr td.fifth-first  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+.descriptions table tr td.fifth-first {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 
 .descriptions table tr td.fifth-first p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
+
 /* End fifth-first */
 
 /* Start fifth-second */
-.descriptions table tr td.fifth-second  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+.descriptions table tr td.fifth-second {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 
 .descriptions table tr td.fifth-second p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  margin-left: 0;
-  margin-right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .descriptions table tr td.fifth-second p ul {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.fifth-second p ul li {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
+
 /* End fifth-second */
 
 /* Start sixth */
-.descriptions table tr td.sixth  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+.descriptions table tr td.sixth {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.sixth p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
+
 /* End sixth */
 
 /* Start sixth */
-.descriptions table tr td.seventh  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+.descriptions table tr td.seventh {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.seventh p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.seventh p ul {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.seventh p ul li {
-  list-style: none;
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
+
 /* End sixth */
 
 
@@ -1046,10 +1072,10 @@ table tr td:nth-child(1) {
     border: 0px;
     border-radius: 5px;
 }
+
 /* End buttons */
 
 tr {
     border-bottom: 1pt solid black;
 }
-
 </style>

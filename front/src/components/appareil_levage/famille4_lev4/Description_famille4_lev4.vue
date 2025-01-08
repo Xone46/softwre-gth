@@ -15,7 +15,8 @@
 
             <tr>
                 <td>B-2</td>
-                <td :class="[colorCaracteristiques === true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET
+                <td :class="[colorCaracteristiques === true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES
+                    ET
                     DE CHARGE</td>
                 <td class="second">
                     <p>Charge maximale utile (kg) : <input type="text" :value="description.chargeMaximaleUtile"
@@ -45,13 +46,15 @@
                 <td class="third">
                     <div>
                         <p v-for="item in description.mecanismes" :key="item.index">
-                            <input type="checkbox" @input="saisirMecanisme(item.index)" :value="item.status" :checked="item.status">{{
-                                item.titre }}
+                            <input type="checkbox" @input="saisirMecanisme(item.index)" :value="item.status"
+                                :checked="item.status">{{
+                                    item.titre }}
                         <ul v-if="item.status">
                             <li v-for="el in item.tab" :key="el.index">
-                                <input type="checkbox" @input="saisirSousMecanisme(item.index, el.index)" :checked="el.status">
+                                <input type="checkbox" @input="saisirSousMecanisme(item.index, el.index)"
+                                    :checked="el.status">
                                 {{ el.titre }}
-                                <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
+                                <input v-if="el.status && el.titre == 'en degrés :'" type="text" :value="el.content"
                                     @input="saisirContentMecanisme($event, item.index, el.index)">
                             </li>
                         </ul>
@@ -67,8 +70,9 @@
                 <td class="fourth">
                     <div>
                         <p v-for="item in description.sourceEnergie" :key="item.index">
-                            <input type="checkbox" @input="saisirSourceEnergie(item.index)" :value="item.status" :checked="item.status">{{
-                                item.titre }}
+                            <input type="checkbox" @input="saisirSourceEnergie(item.index)" :value="item.status"
+                                :checked="item.status">{{
+                                    item.titre }}
                             <input v-if="item.status && item.content !== undefined" type="text" :value="item.content"
                                 @input="saisirContentSourceEnergie($event, item.index)">
                         </p>
@@ -83,8 +87,9 @@
                 <td class="fifth">
                     <div>
                         <p v-for="item in description.translation" :key="item.index">
-                            <input type="checkbox" @input="saisirTranslation(item.index)" :value="item.status" :checked="item.status">{{
-                                item.titre }}
+                            <input type="checkbox" @input="saisirTranslation(item.index)" :value="item.status"
+                                :checked="item.status">{{
+                                    item.titre }}
                             <input v-if="item.status && item.content !== undefined" type="text" :value="item.content"
                                 @input="saisirContentTranslation($event, item.index)">
                         </p>
@@ -94,7 +99,8 @@
 
             <tr>
                 <td>B-6</td>
-                <td :class="[colorChainesCablesElevation == true ? 'saved' : 'not-saved']">CHAINES OU CABLES D'ELEVATION</td>
+                <td :class="[colorChainesCablesElevation == true ? 'saved' : 'not-saved']">CHAINES OU CABLES D'ELEVATION
+                </td>
                 <td class="sixth">
                     <div>
                         <p v-for="item in description.chainesCablesElevation" :key="item.index">
@@ -107,7 +113,8 @@
 
             <tr>
                 <td>B-6-1</td>
-                <td :class="[colorCaracteristiquesSuspenteOne == true ? 'saved' : 'not-saved']">Caractéristiques Suspente 1</td>
+                <td :class="[colorCaracteristiquesSuspenteOne == true ? 'saved' : 'not-saved']">Caractéristiques
+                    Suspente 1</td>
                 <td class="sixth-first">
                     <div>
                         <p v-for="item in description.caracteristiquesSuspenteOne" :key="item.index">
@@ -117,7 +124,8 @@
                         <ul v-if="item.status">
                             <li v-for="el in item.tab" :key="el.index">
                                 <input type="checkbox"
-                                    @input="saisirSousCaracteristiquesSuspenteOne(item.index, el.index)" :checked="el.status">
+                                    @input="saisirSousCaracteristiquesSuspenteOne(item.index, el.index)"
+                                    :checked="el.status">
                                 {{ el.titre }}
                                 <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
                                     @input="saisirContentCaracteristiquesSuspenteOne($event, item.index, el.index)">
@@ -130,7 +138,8 @@
 
             <tr>
                 <td>B-6-2</td>
-                <td :class="[colorCaracteristiquesSuspenteTow == true ? 'saved' : 'not-saved']">Caractéristiques Suspente 2</td>
+                <td :class="[colorCaracteristiquesSuspenteTow == true ? 'saved' : 'not-saved']">Caractéristiques
+                    Suspente 2</td>
                 <td class="sixth-second">
                     <div>
                         <p v-for="item in description.caracteristiquesSuspenteTow" :key="item.index">
@@ -140,7 +149,8 @@
                         <ul v-if="item.status">
                             <li v-for="el in item.tab" :key="el.index">
                                 <input type="checkbox"
-                                    @input="saisirSousCaracteristiquesSuspenteTow(item.index, el.index)" :checked="el.status">
+                                    @input="saisirSousCaracteristiquesSuspenteTow(item.index, el.index)"
+                                    :checked="el.status">
                                 {{ el.titre }}
                                 <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
                                     @input="saisirContentCaracteristiquesSuspenteTow($event, item.index, el.index)">
@@ -185,15 +195,15 @@ export default {
     data() {
         return {
 
-            flagSpinner : false,
+            flagSpinner: false,
 
-            colorCaracteristiques : false,
-            colorMecanismes : false,
-            colorSourceEnergie : false,
-            colorTranslation : false,
-            colorChainesCablesElevation : false,
-            colorCaracteristiquesSuspenteOne : false,
-            colorCaracteristiquesSuspenteTow : false,
+            colorCaracteristiques: false,
+            colorMecanismes: false,
+            colorSourceEnergie: false,
+            colorTranslation: false,
+            colorChainesCablesElevation: false,
+            colorCaracteristiquesSuspenteOne: false,
+            colorCaracteristiquesSuspenteTow: false,
 
             counter_watched: 0,
             watched_sauvegarder: false,
@@ -217,12 +227,12 @@ export default {
                         titre: "Elévation :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Hydraulique", status: false },
-                            { index: 1, titre: "Mécanique", status: false },
-                            { index: 2, titre: "Electro-hydraulique", status: false },
-                            { index: 3, titre: "Câbles", status: false },
-                            { index: 4, titre: "Chaînes", status: false },
-                            { index: 5, titre: "Sans objet", status: false }
+                            { index: 0, titre: "Hydraulique", status: false, content: " " },
+                            { index: 1, titre: "Mécanique", status: false, content: " " },
+                            { index: 2, titre: "Electro-hydraulique", status: false, content: " " },
+                            { index: 3, titre: "Câbles", status: false, content: " " },
+                            { index: 4, titre: "Chaînes", status: false, content: " " },
+                            { index: 5, titre: "Sans objet", status: false, content: " " }
                         ]
                     },
                     {
@@ -230,12 +240,12 @@ export default {
                         titre: "Télescopage :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Hydraulique", status: false },
-                            { index: 1, titre: "Mécanique", status: false },
-                            { index: 2, titre: "Electro-hydraulique", status: false },
-                            { index: 3, titre: "Câbles", status: false },
-                            { index: 4, titre: "Chaînes", status: false },
-                            { index: 5, titre: "Sans objet", status: false }
+                            { index: 0, titre: "Hydraulique", status: false, content: " " },
+                            { index: 1, titre: "Mécanique", status: false, content: " " },
+                            { index: 2, titre: "Electro-hydraulique", status: false, content: " " },
+                            { index: 3, titre: "Câbles", status: false, content: " " },
+                            { index: 4, titre: "Chaînes", status: false, content: " " },
+                            { index: 5, titre: "Sans objet", status: false, content: " " }
                         ]
                     },
                     {
@@ -244,7 +254,7 @@ export default {
                         status: false,
                         tab: [
                             { index: 0, titre: "en degrés :", status: false, content: " " },
-                            { index: 1, titre: "Sans objet", status: false }
+                            { index: 1, titre: "Sans objet", status: false, content: " " }
                         ]
                     },
                     {
@@ -252,7 +262,7 @@ export default {
                         titre: "Pendulaire :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Sans objet", status: false }
+                            { index: 0, titre: "Sans objet", status: false, content: " " }
                         ]
                     },
                     {
@@ -260,7 +270,7 @@ export default {
                         titre: "Rotation du poste de travail :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "poste fixe", status: false }
+                            { index: 0, titre: "poste fixe", status: false, content: " " }
                         ]
                     },
                 ],
@@ -361,18 +371,19 @@ export default {
                 nombrePersonnes: "",
                 portee: "",
 
+
                 mecanismes: [
                     {
                         index: 0,
                         titre: "Elévation :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Hydraulique", status: false },
-                            { index: 1, titre: "Mécanique", status: false },
-                            { index: 2, titre: "Electro-hydraulique", status: false },
-                            { index: 3, titre: "Câbles", status: false },
-                            { index: 4, titre: "Chaînes", status: false },
-                            { index: 5, titre: "Sans objet", status: false }
+                            { index: 0, titre: "Hydraulique", status: false, content: " " },
+                            { index: 1, titre: "Mécanique", status: false, content: " " },
+                            { index: 2, titre: "Electro-hydraulique", status: false, content: " " },
+                            { index: 3, titre: "Câbles", status: false, content: " " },
+                            { index: 4, titre: "Chaînes", status: false, content: " " },
+                            { index: 5, titre: "Sans objet", status: false, content: " " }
                         ]
                     },
                     {
@@ -380,12 +391,12 @@ export default {
                         titre: "Télescopage :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Hydraulique", status: false },
-                            { index: 1, titre: "Mécanique", status: false },
-                            { index: 2, titre: "Electro-hydraulique", status: false },
-                            { index: 3, titre: "Câbles", status: false },
-                            { index: 4, titre: "Chaînes", status: false },
-                            { index: 5, titre: "Sans objet", status: false }
+                            { index: 0, titre: "Hydraulique", status: false, content: " " },
+                            { index: 1, titre: "Mécanique", status: false, content: " " },
+                            { index: 2, titre: "Electro-hydraulique", status: false, content: " " },
+                            { index: 3, titre: "Câbles", status: false, content: " " },
+                            { index: 4, titre: "Chaînes", status: false, content: " " },
+                            { index: 5, titre: "Sans objet", status: false, content: " " }
                         ]
                     },
                     {
@@ -394,7 +405,7 @@ export default {
                         status: false,
                         tab: [
                             { index: 0, titre: "en degrés :", status: false, content: " " },
-                            { index: 1, titre: "Sans objet", status: false }
+                            { index: 1, titre: "Sans objet", status: false, content: " " }
                         ]
                     },
                     {
@@ -402,7 +413,7 @@ export default {
                         titre: "Pendulaire :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Sans objet", status: false }
+                            { index: 0, titre: "Sans objet", status: false, content: " " }
                         ]
                     },
                     {
@@ -410,7 +421,7 @@ export default {
                         titre: "Rotation du poste de travail :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "poste fixe", status: false }
+                            { index: 0, titre: "poste fixe", status: false, content: " " }
                         ]
                     },
                 ],
@@ -499,11 +510,6 @@ export default {
 
                 observateurId: ""
             },
-
-
-
-
-
         }
     },
 
@@ -626,7 +632,7 @@ export default {
         },
 
         checkCaracteristiquesSuspenteOne() {
-            
+
             const arr = [
                 this.description.caracteristiquesSuspenteOne[0].status,
                 this.description.caracteristiquesSuspenteOne[1].status,
@@ -670,10 +676,10 @@ export default {
             let checker = arr => arr.every(Boolean);
 
 
-            if(checker(arr) == true) {
+            if (checker(arr) == true) {
                 return true
             } else {
-                return false;  
+                return false;
             }
 
         },
@@ -795,6 +801,7 @@ export default {
         },
 
         reset() {
+            console.log("reset")
             Descriptions.reset(this.observateurId)
                 .then(() => {
 
@@ -850,7 +857,6 @@ export default {
 </script>
 
 <style scoped>
-
 .saved {
     color: #04AA6D;
 }
@@ -895,143 +901,149 @@ td {
 table tr td:nth-child(1) {
     width: 40px;
 }
+
 /* End Configration body */
 
 
 /* Start first */
 .descriptions table tr td.first {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
+
 /* End first */
 
 /* Start Second */
 .descriptions table tr td.second {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.second p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 5px;
-  margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
+
 /* End Second */
 
 /* Start third */
 .descriptions table tr td.third div {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.third div p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.third div p ul {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.third div p ul li {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 0;
 }
+
 /* End third */
 
 /* Start fourth */
-.descriptions table tr td.fourth  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin-top: 0;
+.descriptions table tr td.fourth {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.fourth p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 0;
 }
+
 /* End fourth */
 
 /* Start fifth */
-.descriptions table tr td.fifth  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin-top: 0;
+.descriptions table tr td.fifth {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.fifth p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 0;
 }
+
 /* End fifth */
 
 /* Start sixth */
-.descriptions table tr td.sixth  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin-top: 0;
+.descriptions table tr td.sixth {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.sixth p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.sixth p ul {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.sixth p ul li {
@@ -1043,39 +1055,40 @@ table tr td:nth-child(1) {
     justify-content: flex-start;
     align-items: center;
 }
+
 /* End sixth */
 
 /* Start sixth-first */
 .descriptions table tr td.sixth-first {
-  padding: 0;
-  margin-top: 0;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.sixth-first div {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.sixth-first div p {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.sixth-first div p ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.sixth-first p ul li {
@@ -1087,41 +1100,42 @@ table tr td:nth-child(1) {
     margin: 0;
     padding: 0;
 }
+
 /* End sixth-first */
 
 
 
 /* Start sixth-second */
 .descriptions table tr td.sixth-second {
-  padding: 0;
-  margin-top: 0;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.sixth-second div {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.sixth-second div p {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.sixth-second div p ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.sixth-second p ul li {
@@ -1133,6 +1147,7 @@ table tr td:nth-child(1) {
     margin: 0;
     padding: 0;
 }
+
 /* End sixth-second */
 
 
@@ -1182,5 +1197,4 @@ table tr td:nth-child(1) {
 tr {
     border-bottom: 1pt solid black;
 }
-
 </style>

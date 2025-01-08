@@ -42,15 +42,17 @@
                 <td class="third">
                     <div>
                         <p v-for="item in description.mecanismes" :key="item.index">
-                            <input type="checkbox" @input="saisirMecanisme(item.index)" :value="item.status" :checked="item.status">{{item.titre}}
-                            <ul v-if="item.status">
-                                <li v-for="el in item.tab" :key="el.index">
-                                    <input type="checkbox" @input="saisirSousMecanisme(item.index, el.index)" :checked="el.status">
-                                    {{ el.titre }}
-                                    <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
-                                        @input="saisirContentMecanisme($event, item.index, el.index)">
-                                </li>
-                            </ul>
+                            <input type="checkbox" @input="saisirMecanisme(item.index)" :value="item.status"
+                                :checked="item.status">{{ item.titre }}
+                        <ul v-if="item.status">
+                            <li v-for="el in item.tab" :key="el.index">
+                                <input type="checkbox" @input="saisirSousMecanisme(item.index, el.index)"
+                                    :checked="el.status">
+                                {{ el.titre }}
+                                <input v-if="el.status && el.titre == 'Nombre de vérins :'" type="text"
+                                    :value="el.content" @input="saisirContentMecanisme($event, item.index, el.index)">
+                            </li>
+                        </ul>
                         </p>
                     </div>
                 </td>
@@ -62,8 +64,9 @@
                 <td class="fourth">
                     <div>
                         <p v-for="item in description.sourceEnergie" :key="item.index">
-                            <input type="checkbox" @input="saisirSourceEnergie(item.index)" :value="item.status" :checked="item.status">{{
-                            item.titre}}
+                            <input type="checkbox" @input="saisirSourceEnergie(item.index)" :value="item.status"
+                                :checked="item.status">{{
+                                    item.titre }}
                         </p>
                     </div>
                 </td>
@@ -75,8 +78,9 @@
                 <td class="fifth">
                     <div>
                         <p v-for="item in description.translation" :key="item.index">
-                            <input type="checkbox" @input="saisirTranslation(item.index)" :value="item.status" :checked="item.status">{{
-                            item.titre}}
+                            <input type="checkbox" @input="saisirTranslation(item.index)" :value="item.status"
+                                :checked="item.status">{{
+                                    item.titre }}
                         </p>
                     </div>
                 </td>
@@ -88,20 +92,26 @@
                 <td class="sixth">
                     <div>
                         <p v-for="item in description.dispositifsElevation" :key="item.index">
-                            <input type="checkbox" @input="saisirDispositifsElevation(item.index)"
-                                :value="item.status" :checked="item.status">{{ item.titre }}
+                            <input type="checkbox" @input="saisirDispositifsElevation(item.index)" :value="item.status"
+                                :checked="item.status">{{ item.titre }}
                         <ul v-if="item.status">
                             <li v-for="el in item.tab" :key="el.index">
-                                <input type="checkbox" @input="saisirSousDispositifsElevation(item.index, el.index)" :checked="el.status">
+                                <input type="checkbox" @input="saisirSousDispositifsElevation(item.index, el.index)"
+                                    :checked="el.status">
                                 {{ el.titre }}
-                                <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
+                                <input
+                                    v-if="el.status && (el.titre == 'Nombre :' || el.titre == 'Diamètre théorique :' || el.titre == 'Diamètre mesuré :' || el.titre == 'Dimension théorique :')"
+                                    type="text" :value="el.content"
                                     @input="saisirContentDispositifsElevation($event, item.index, el.index)">
                                 <ul v-if="el.status && el.content === undefined">
                                     <li v-for="elem in el.sous_tab" :key="elem.index">
                                         <input type="checkbox"
-                                            @input="saisirSousSousDispositifsElevation(item.index, el.index, elem.index)" :checked="elem.status">
+                                            @input="saisirSousSousDispositifsElevation(item.index, el.index, elem.index)"
+                                            :checked="elem.status">
                                         {{ elem.titre }}
-                                        <input v-if="elem.status && elem.content !== undefined" type="text"
+                                        <input
+                                            v-if="elem.status && (elem.titre == 'Combinaison :' || elem.titre == 'Nombre :' || elem.titre == 'Pas théorique :')"
+                                            type="text"
                                             @input="saisirContentSousSousDispositifsElevation($event, item.index, el.index, elem.index)"
                                             :value="elem.content">
                                     </li>
@@ -119,16 +129,22 @@
                 <td class="seventh">
                     <div>
                         <p v-for="item in description.dispositifPrehension" :key="item.index">
-                            <input type="checkbox" @input="saisirDispositifPrehension(item.index)" :value="item.status" :checked="item.status">
+                            <input type="checkbox" @input="saisirDispositifPrehension(item.index)" :value="item.status"
+                                :checked="item.status">
                             {{ item.titre }}
-                        <ul v-if="item.status && item.tab !== undefined">
-                            <li v-for="el in item.tab" :key="el.index">
-                                <input type="checkbox" @input="saisirSousrDispositifPrehension(item.index, el.index)" :checked="el.status">
-                                {{ el.titre }}
-                                <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
-                                    @input="saisirContentDispositifPrehension($event, item.index, el.index)">
-                            </li>
-                        </ul>
+
+                            <input v-if="item.status && item.titre == 'Autre :'" type="text" :value="item.content"
+                            @input="dispositifPrehensionAutre($event, item.index)">
+
+                            <ul v-if="item.status && item.tab !== undefined">
+                                <li v-for="el in item.tab" :key="el.index">
+                                    <input type="checkbox" @input="saisirSousrDispositifPrehension(item.index, el.index)"
+                                        :checked="el.status">
+                                    {{ el.titre }}
+                                    <input v-if="el.status && el.content !== undefined" type="text" :value="el.content"
+                                        @input="saisirContentDispositifPrehension($event, item.index, el.index)">
+                                </li>
+                            </ul>
                         </p>
                     </div>
                 </td>
@@ -143,20 +159,16 @@
                             <input type="checkbox" @input="saisirEquipementsInterchangable(item.index)"
                                 :value="item.status" :checked="item.status">
                             {{ item.titre }}
-                            <input v-if="item.status" type="text" :value="item.content"
+                            <input v-if="item.status && item.titre == 'Autre :'" type="text" :value="item.content"
                                 @input="saisirContentEquipementsInterchangable($event, item.index)">
                         </p>
                     </div>
                     <div>
                         <p>Si présence : Identification de l'équipement concerné : <input type="text"
-                                v-model="description.mecanismes.siPresence"></p>
+                                :value="description.siPresence" @input="saisirSiPresence($event)"></p>
                     </div>
                 </td>
             </tr>
-
-
-
-
 
         </table>
 
@@ -189,7 +201,7 @@ export default {
     data() {
         return {
 
-            flagSpinner : false,
+            flagSpinner: false,
 
             colorCaracteristiques: false,
             colorMecanismes: false,
@@ -214,8 +226,8 @@ export default {
                         status: false,
                         tab: [
                             { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
-                            { index: 1, titre: "Sans Chaines", status: false },
-                            { index: 2, titre: "Sans Câbles", status: false }
+                            { index: 1, titre: "Sans Chaines", status: false, content: " " },
+                            { index: 2, titre: "Sans Câbles", status: false, content: " " }
                         ]
                     },
                     {
@@ -224,7 +236,7 @@ export default {
                         status: false,
                         tab: [
                             { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
-                            { index: 1, titre: "Sans", status: false }
+                            { index: 1, titre: "Sans", status: false, content: " " }
                         ]
                     },
                     {
@@ -233,7 +245,7 @@ export default {
                         status: false,
                         tab: [
                             { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
-                            { index: 1, titre: "Sans", status: false }
+                            { index: 1, titre: "Sans", status: false, content: " " }
                         ]
                     },
                 ],
@@ -258,10 +270,10 @@ export default {
                         titre: "Mat :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Simple", status: false },
-                            { index: 1, titre: "Duplex", status: false },
-                            { index: 2, titre: "Triplex", status: false },
-                            { index: 3, titre: "Quadruple", status: false },
+                            { index: 0, titre: "Simple", status: false, content: " " },
+                            { index: 1, titre: "Duplex", status: false, content: " " },
+                            { index: 2, titre: "Triplex", status: false, content: " " },
+                            { index: 3, titre: "Quadruple", status: false, content: " " },
                             { index: 4, titre: "Autre", status: false, content: " " },
                         ]
                     },
@@ -275,9 +287,9 @@ export default {
                                 titre: "Chaines de levée libre :",
                                 status: false,
                                 sous_tab: [
-                                    { index: 0, titre: "Sans objet", status: false },
-                                    { index: 1, titre: "A maille jointives", status: false },
-                                    { index: 2, titre: "A rouleau", status: false },
+                                    { index: 0, titre: "Sans objet", status: false, content: " " },
+                                    { index: 1, titre: "A maille jointives", status: false, content: " " },
+                                    { index: 2, titre: "A rouleau", status: false, content: " " },
                                     { index: 3, titre: "Combinaison :", status: false, content: " " },
                                     { index: 4, titre: "Nombre :", status: false, content: " " },
                                     { index: 5, titre: "Pas théorique :", status: false, content: " " },
@@ -288,9 +300,9 @@ export default {
                                 titre: "Chaines de levée mât :",
                                 status: false,
                                 sous_tab: [
-                                    { index: 0, titre: "Sans objet", status: false },
-                                    { index: 1, titre: "A maille jointives", status: false },
-                                    { index: 2, titre: "A rouleau", status: false },
+                                    { index: 0, titre: "Sans objet", status: false, content: " " },
+                                    { index: 1, titre: "A maille jointives", status: false, content: " " },
+                                    { index: 2, titre: "A rouleau", status: false, content: " " },
                                     { index: 3, titre: "Combinaison :", status: false, content: " " },
                                     { index: 4, titre: "Nombre :", status: false, content: " " },
                                     { index: 5, titre: "Pas théorique :", status: false, content: " " },
@@ -307,6 +319,7 @@ export default {
                                 index: 0,
                                 titre: "Sans objet",
                                 status: false,
+                                content: " "
                             },
                             {
                                 index: 1,
@@ -363,7 +376,8 @@ export default {
                             { index: 0, titre: "Nombre de bras :", status: false, content: " " },
                             { index: 1, titre: "Longueur (m) :", status: false, content: " " },
                             { index: 2, titre: "CMU X 2(Kg) :", status: false, content: " " },
-                        ]
+                        ],
+                        content : " "
                     },
                     {
                         index: 1,
@@ -373,12 +387,14 @@ export default {
                             { index: 0, titre: "Nombre de bras :", status: false, content: " " },
                             { index: 1, titre: "Longueur (m) :", status: false, content: " " },
                             { index: 2, titre: "CMU X 2(Kg) :", status: false, content: " " },
-                        ]
+                        ],
+                        content : " "
                     },
                     {
                         index: 2,
                         titre: "Autre :",
                         status: false,
+                        content: " "
                     }
                 ],
 
@@ -388,26 +404,31 @@ export default {
                         index: 0,
                         titre: "Sans",
                         status: false,
+                        contsnt: " "
                     },
                     {
                         index: 1,
                         titre: "Potence",
                         status: false,
+                        content: " "
                     },
                     {
                         index: 2,
                         titre: "Tablier a déplacement latéral",
                         status: false,
+                        content: " "
                     },
                     {
                         index: 3,
                         titre: "Rallonges de fourches",
                         status: false,
+                        content: " "
                     },
                     {
                         index: 4,
                         titre: "Tablier rotatif",
                         status: false,
+                        content: " "
                     },
                     {
                         index: 5,
@@ -421,7 +442,6 @@ export default {
 
                 observateurId: ""
             },
-
 
             duplicate_description: {
 
@@ -440,8 +460,8 @@ export default {
                         status: false,
                         tab: [
                             { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
-                            { index: 1, titre: "Sans Chaines", status: false },
-                            { index: 2, titre: "Sans Câbles", status: false }
+                            { index: 1, titre: "Sans Chaines", status: false, content: " " },
+                            { index: 2, titre: "Sans Câbles", status: false, content: " " }
                         ]
                     },
                     {
@@ -450,7 +470,7 @@ export default {
                         status: false,
                         tab: [
                             { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
-                            { index: 1, titre: "Sans", status: false }
+                            { index: 1, titre: "Sans", status: false, content: " " }
                         ]
                     },
                     {
@@ -459,7 +479,7 @@ export default {
                         status: false,
                         tab: [
                             { index: 0, titre: "Nombre de vérins :", status: false, content: " " },
-                            { index: 1, titre: "Sans", status: false }
+                            { index: 1, titre: "Sans", status: false, content: " " }
                         ]
                     },
                 ],
@@ -484,10 +504,10 @@ export default {
                         titre: "Mat :",
                         status: false,
                         tab: [
-                            { index: 0, titre: "Simple", status: false },
-                            { index: 1, titre: "Duplex", status: false },
-                            { index: 2, titre: "Triplex", status: false },
-                            { index: 3, titre: "Quadruple", status: false },
+                            { index: 0, titre: "Simple", status: false, content: " " },
+                            { index: 1, titre: "Duplex", status: false, content: " " },
+                            { index: 2, titre: "Triplex", status: false, content: " " },
+                            { index: 3, titre: "Quadruple", status: false, content: " " },
                             { index: 4, titre: "Autre", status: false, content: " " },
                         ]
                     },
@@ -501,9 +521,9 @@ export default {
                                 titre: "Chaines de levée libre :",
                                 status: false,
                                 sous_tab: [
-                                    { index: 0, titre: "Sans objet", status: false },
-                                    { index: 1, titre: "A maille jointives", status: false },
-                                    { index: 2, titre: "A rouleau", status: false },
+                                    { index: 0, titre: "Sans objet", status: false, content: " " },
+                                    { index: 1, titre: "A maille jointives", status: false, content: " " },
+                                    { index: 2, titre: "A rouleau", status: false, content: " " },
                                     { index: 3, titre: "Combinaison :", status: false, content: " " },
                                     { index: 4, titre: "Nombre :", status: false, content: " " },
                                     { index: 5, titre: "Pas théorique :", status: false, content: " " },
@@ -514,11 +534,11 @@ export default {
                                 titre: "Chaines de levée mât :",
                                 status: false,
                                 sous_tab: [
-                                    { index: 0, titre: "Sans objet", status: false },
-                                    { index: 1, titre: "A maille jointives", status: false },
-                                    { index: 2, titre: "A rouleau", status: false },
+                                    { index: 0, titre: "Sans objet", status: false, content: " " },
+                                    { index: 1, titre: "A maille jointives", status: false, content: " " },
+                                    { index: 2, titre: "A rouleau", status: false, content: " " },
                                     { index: 3, titre: "Combinaison :", status: false, content: " " },
-                                    { index: 4, titre: "Nombre :", status: false, content: "" },
+                                    { index: 4, titre: "Nombre :", status: false, content: " " },
                                     { index: 5, titre: "Pas théorique :", status: false, content: " " },
                                 ]
                             }
@@ -533,6 +553,7 @@ export default {
                                 index: 0,
                                 titre: "Sans objet",
                                 status: false,
+                                content: " "
                             },
                             {
                                 index: 1,
@@ -605,6 +626,7 @@ export default {
                         index: 2,
                         titre: "Autre :",
                         status: false,
+                        content: " "
                     }
                 ],
 
@@ -614,26 +636,31 @@ export default {
                         index: 0,
                         titre: "Sans",
                         status: false,
+                        contsnt: " "
                     },
                     {
                         index: 1,
                         titre: "Potence",
                         status: false,
+                        content: " "
                     },
                     {
                         index: 2,
                         titre: "Tablier a déplacement latéral",
                         status: false,
+                        content: " "
                     },
                     {
                         index: 3,
                         titre: "Rallonges de fourches",
                         status: false,
+                        content: " "
                     },
                     {
                         index: 4,
                         titre: "Tablier rotatif",
                         status: false,
+                        content: " "
                     },
                     {
                         index: 5,
@@ -643,11 +670,10 @@ export default {
                     }
                 ],
 
-                siPresence: " ",
+                siPresence: "",
 
                 observateurId: ""
             },
-
 
         }
     },
@@ -817,8 +843,8 @@ export default {
                 this.checkEquipementsInterchangable(),
             ];
 
-            for(let i = 0; i < arr.length; i++) {
-                if(arr[i] == false) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] == false) {
                     return false;
                 }
 
@@ -921,6 +947,10 @@ export default {
             this.notEmpty();
         },
 
+        dispositifPrehensionAutre(e, index) {
+            this.description.dispositifPrehension[index].content = e.target.value;
+        },
+
         saisirSousrDispositifPrehension(index, i) {
             this.description.dispositifPrehension[index].tab[i].status = !this.description.dispositifPrehension[index].tab[i].status;
             this.notEmpty();
@@ -939,6 +969,11 @@ export default {
         saisirContentEquipementsInterchangable(e, index) {
             const value = e.target.value;
             this.description.equipementsInterchangable[index].content = value;
+            this.notEmpty();
+        },
+
+        saisirSiPresence(e) {
+            this.description.siPresence = e.target.value;
             this.notEmpty();
         },
 
@@ -992,7 +1027,7 @@ export default {
 
         Descriptions.select(this.observateurId)
             .then((result) => {
-
+                console.log(result.data.description)
                 if (result.data.description != null) {
                     this.flagReset = true;
                     this.description = result.data.description;
@@ -1010,7 +1045,6 @@ export default {
 </script>
 
 <style scoped>
-
 .saved {
     color: #04AA6D;
 }
@@ -1055,144 +1089,150 @@ td {
 table tr td:nth-child(1) {
     width: 40px;
 }
+
 /* End Configration body */
 
 
 /* Start first */
 .descriptions table tr td.first {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
 }
+
 /* End first */
 
 /* Start Second */
 .descriptions table tr td.second {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.second p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 5px;
-  margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
+
 /* End Second */
 
 /* Start third */
 .descriptions table tr td.third div {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.third div p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 5px;
-  margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .descriptions table tr td.third div p ul {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.third div p ul li {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 0;
 }
+
 /* End third */
 
 /* Start fourth */
-.descriptions table tr td.fourth  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin-top: 0;
+.descriptions table tr td.fourth {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.fourth p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 0;
 }
+
 /* End fourth */
 
 /* Start fifth */
-.descriptions table tr td.fifth  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin-top: 0;
+.descriptions table tr td.fifth {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.fifth p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 0;
 }
+
 /* End fifth */
 
 /* Start sixth */
-.descriptions table tr td.sixth  {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin-top: 0;
+.descriptions table tr td.sixth {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.sixth p {
-  display : flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.sixth p ul {
-  display : flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.sixth p ul li {
@@ -1204,38 +1244,39 @@ table tr td:nth-child(1) {
     justify-content: flex-start;
     align-items: center;
 }
+
 /* End sixth */
 
 /* Start seventh */
-.descriptions table tr td.seventh  {
-  padding: 0;
-  margin-top: 0;
+.descriptions table tr td.seventh {
+    padding: 0;
+    margin-top: 0;
 }
 
-.descriptions table tr td.seventh div  {
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin-top: 0;
+.descriptions table tr td.seventh div {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.seventh div p {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 
 .descriptions table tr td.seventh div p ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
 .descriptions table tr td.seventh div p li {
@@ -1245,9 +1286,9 @@ table tr td:nth-child(1) {
 /* End seventh */
 
 /* Start eighth */
-.descriptions table tr td.eighth  {
-  padding: 0;
-  margin-top: 0;
+.descriptions table tr td.eighth {
+    padding: 0;
+    margin-top: 0;
 }
 
 .descriptions table tr td.eighth div {
