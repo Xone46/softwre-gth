@@ -468,6 +468,8 @@
         <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve"
             @annuler="annulerReserve" />
 
+        <Loading v-if="flagLoading" />
+
     </div>
 </template>
 
@@ -475,12 +477,14 @@
 import Examens from "@/requests/appareil_levage/famille3_lev3/Examens"
 import Commentaires from "@/requests/commentaire";
 import Reserve from "@/components/models/Reserve.vue"
+import Loading from "@/components/models/Loading.vue";
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
 
+            flagLoading : false,
             counter_watched: 0,
             watched_sauvegarder: false,
             flagReset: false,
@@ -584,7 +588,8 @@ export default {
     },
 
     components: {
-        Reserve
+        Reserve,
+        Loading
     },
 
 
@@ -1880,6 +1885,7 @@ export default {
 
     created() {
 
+        this.flagLoading = true;
         Examens.select(this.observateurId)
             .then((result) => {
 
@@ -1897,6 +1903,7 @@ export default {
                     this.j = result.data.examen.j;
                     this.k = result.data.examen.k;
 
+                    this.flagLoading = false;
                     this.watched_sauvegarder = true;
                     return this.notEmpty();
                 } else {
@@ -1908,6 +1915,7 @@ export default {
                         .catch((error) => {
                             console.log(error);
                         });
+                    this.flagLoading = false;
                 }
 
                 return this.notEmpty();

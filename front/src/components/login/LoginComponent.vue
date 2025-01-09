@@ -19,7 +19,7 @@
 
       <label for="Mot de pass">
         <h3>Mot de pass <span class="start" v-if="password.length == 0">*</span></h3>
-        <input type="password" v-model="password">
+        <input type="password" v-model="password" v-on:keyup.enter="connexion">
       </label>
 
       <button class="connexion" @click="connexion">Connexion</button>

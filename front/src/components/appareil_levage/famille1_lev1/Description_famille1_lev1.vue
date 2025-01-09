@@ -189,9 +189,7 @@
         </div>
 
 
-        <div class="spinner" v-if="flagSpinner">
-            <Spinner />
-        </div>
+        <Loading v-if="flagLoading" />
 
     </div>
 
@@ -201,13 +199,13 @@
 
 import Descriptions from "@/requests/appareil_levage/famille1_lev1/Descriptions"
 import Observateurs from "@/requests/Observateurs"
-import Spinner from 'vue-simple-spinner'
+import Loading from '@/components/models/Loading.vue'
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
-            flagSpinner: false,
+            flagLoading: false,
             colorSuspentes: false,
             colorCaracteristiques: false,
             counter_watched: 0,
@@ -349,7 +347,7 @@ export default {
 
 
     components: {
-        Spinner
+        Loading
     },
 
     watch: {
@@ -631,14 +629,12 @@ export default {
 
     created() {
 
-        this.flagSpinner = true;
+        this.flagLoading = true;
         this.description.observateurId = this.observateurId;
         this.duplicate_description.observateurId = this.observateurId;
 
         Observateurs.selected(this.observateurId)
             .then((result) => {
-                // console.log(result);
-
                 this.description.marquage = result.data.marquage;
                 this.duplicate_description.marquage = result.data.marquage;
             })
@@ -650,12 +646,13 @@ export default {
         Descriptions.select(this.observateurId)
             .then((result) => {
 
+
                 if (result.data.description != null) {
-                    this.flagSpinner = false;
+                    this.flagLoading = false;
                     this.flagReset = true;
                     this.description = result.data.description;
                 } else {
-                    this.flagSpinner = false;
+                    this.flagLoading = false;
                 }
 
                 this.colorCaracteristiques = this.checkCaracterstiques();

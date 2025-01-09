@@ -20,8 +20,8 @@
 
             <!-- saisir libre -->
              <div class="saisir-libre">
-                <textarea v-if="flagSaisie" v-model="content" rows="20" placeholder="Vous devez saisir un modèle"></textarea>
-                <button class="ajouter" v-if="flagSaisie" @click="ajouter">Ajouter</button>
+                <textarea v-if="flagSaisie" v-model="content" rows="20" placeholder="Vous devez saisir votre commentaire"></textarea>
+                <button class="ajouter" v-if="flagSaisie" @click="ajouter">Ajouter commentaire</button>
              </div>
 
             <!-- liste sélectionnées -->
@@ -42,7 +42,7 @@
             <div class="buttons-tail">
                 <button class="sauvegarder" v-if="modelSelected.length != 0" @click="sauvegarder">Sauvegarde</button>
                 <button class="reset" v-if="commentaireId != ''" @click="reset">Reset</button>
-                <button class="sortir" @click="sortir">Quitter</button>
+                <button class="sortir" @click="sortir">Sortir</button>
             </div>
 
         </div>
@@ -145,6 +145,8 @@ export default {
 
         supprimer(value) {
 
+            console.log(value.length);
+
             const index = this.modelSelected.findIndex((el) => el.name == value);
 
             if (this.modelSelected[index].etat == "not_saved") {
@@ -240,8 +242,8 @@ export default {
 
 .reserve .parent {
     background-color: white;
-    height: 90vh;
-    width: auto;
+    height: 1000px;
+    width: 1000px;
     padding: 20px;
     overflow-y: auto;
     display: flex;

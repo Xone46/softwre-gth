@@ -168,9 +168,7 @@
             <button @click="reset">Reset</button>
         </div>
 
-        <div class="spinner" v-if="flagSpinner">
-            <Spinner />
-        </div>
+        <Loading v-if="flagLoading" />
 
     </div>
 
@@ -179,7 +177,7 @@
 <script>
 import Descriptions from "@/requests/appareil_levage/famille5_lev5/Descriptions"
 import Observateurs from "@/requests/Observateurs"
-import Spinner from 'vue-simple-spinner'
+import Loading from '@/components/models/Loading.vue'
 
 
 export default {
@@ -187,7 +185,7 @@ export default {
     data() {
         return {
 
-            flagSpinner: false,
+            flagLoading: false,
 
             colorCaracteristiques: false,
             colorMecanisme: false,
@@ -434,7 +432,7 @@ export default {
 
 
     components: {
-        Spinner
+        Loading
     },
 
     watch: {
@@ -713,7 +711,7 @@ export default {
 
     created() {
 
-
+        this.flagLoading = true;
         this.description.observateurId = this.observateurId;
         this.duplicate_description.observateurId = this.observateurId;
 
@@ -735,6 +733,7 @@ export default {
                     this.description = result.data.description;
                 }
 
+                this.flagLoading = false;
                 this.watched_sauvegarder = true;
                 return this.notEmpty();
             })

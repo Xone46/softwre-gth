@@ -404,24 +404,25 @@
 
         <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve" @annuler="annulerReserve"/>
 
-        <div class="spinner" v-if="flagSpinner">
-            <Spinner />
-        </div>
+
+        <Loading v-if="flagLoading" />
+
 
     </div>
 </template>
 
 <script>
 import Examens from "@/requests/appareil_levage/famille1_lev1/Examens"
-import Commentaires from "@/requests/commentaire";
+import Commentaires from "@/requests/commentaire"
 import Reserve from "@/components/models/Reserve.vue"
-import Spinner from 'vue-simple-spinner'
+import Loading from '@/components/models/Loading.vue'
+
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
-            flagSpinner : false,
+            flagLoading : false,
             counter_watched: 0,
             watched_sauvegarder: false,
             flagReset: false,
@@ -499,7 +500,7 @@ export default {
 
     components: {
         Reserve,
-        Spinner
+        Loading
     },
 
 
@@ -644,8 +645,54 @@ export default {
             this.flagReserve = false;
         },
 
-        annulerReserve() {
+        annulerReserve(value) {
+
             this.flagReserve = false;
+
+            if("A" == value[0]) {
+                this.a[value[1]].o = false;
+            }
+
+            if("B" == value[0]) {
+                this.b[value[1]].o = false;
+            }
+
+            if("C" == value[0]) {
+                this.c[value[1]].o = false;
+            }
+
+            if("D" == value[0]) {
+                this.d[value[1]].o = false;
+            }
+
+            if("E" == value[0]) {
+                this.e[value[1]].o = false;
+            }
+
+            if("F" == value[0]) {
+                this.f[value[1]].o = false;
+            }
+
+            if("G" == value[0]) {
+                this.g[value[1]].o = false;
+            }
+
+            if("H" == value[0]) {
+                this.h[value[1]].o = false;
+            }
+
+            if("I" == value[0]) {
+                this.i[value[1]].o = false;
+            }
+
+            if("J" == value[0]) {
+                this.j[value[1]].o = false;
+            }
+
+            // if("k" == value[0]) {
+            //     this.k[value[1]].o = false;
+            // }
+
         },
 
         
@@ -1682,7 +1729,7 @@ export default {
 
     created() {
 
-        this.flagSpinner = true;
+        this.flagLoading = true;
 
         Examens.select(this.observateurId)
             .then((result) => {
@@ -1702,12 +1749,12 @@ export default {
                     this.i = result.data.examen.i;
                     this.j = result.data.examen.j;
 
-                    this.flagSpinner = false;
+                    this.flagLoading = false;
                     this.watched_sauvegarder = true;
                     return this.notEmpty();
 
                 } else {
-                    this.flagSpinner = false;
+                    this.flagLoading = false;
                     // delete all commentaires connected by examen but not saved
                     Examens.deleteAllCommentairesExamen(this.observateurId)
                     .then(() => {

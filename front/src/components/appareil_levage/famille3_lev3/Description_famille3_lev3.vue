@@ -182,9 +182,8 @@
             <button @click="reset">Reset</button>
         </div>
 
-        <div class="spinner" v-if="flagSpinner">
-            <Spinner />
-        </div>
+        <Loading v-if="flagLoading" />
+
 
     </div>
 
@@ -194,14 +193,14 @@
 
 import Descriptions from "@/requests/appareil_levage/famille3_lev3/Descriptions"
 import Observateurs from "@/requests/Observateurs"
-import Spinner from 'vue-simple-spinner'
+import Loading from '@/components/models/Loading.vue'
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
 
-            flagSpinner: false,
+            flagLoading: true,
 
             colorCaracteristiques: false,
             colorMecanismes: false,
@@ -684,7 +683,7 @@ export default {
 
 
     components: {
-        Spinner
+        Loading
     },
 
     watch: {
@@ -1013,7 +1012,7 @@ export default {
 
         this.description.observateurId = this.observateurId;
         this.duplicate_description.observateurId = this.observateurId;
-        this.flagSpinner = true;
+        this.flagLoading = true;
 
         Observateurs.selected(this.observateurId)
             .then((result) => {
@@ -1027,14 +1026,13 @@ export default {
 
         Descriptions.select(this.observateurId)
             .then((result) => {
-                console.log(result.data.description)
                 if (result.data.description != null) {
                     this.flagReset = true;
                     this.description = result.data.description;
                 }
 
                 this.watched_sauvegarder = true;
-                this.flagSpinner = false;
+                this.flagLoading = false;
                 return this.notEmpty();
             })
             .catch((error) => {

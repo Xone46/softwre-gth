@@ -425,6 +425,9 @@
         <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve"
             @annuler="annulerReserve" />
 
+        <Loading v-if="flagLoading" />
+
+
     </div>
 </template>
 
@@ -432,12 +435,14 @@
 import Examens from "@/requests/appareil_levage/famille5_lev5/Examens"
 import Commentaires from "@/requests/commentaire";
 import Reserve from "@/components/models/Reserve.vue"
+import Loading from "@/components/models/Loading.vue";
 
 export default {
     name: 'renseignement-component',
     data() {
         return {
 
+            flagLoading: false,
             counter_watched: 0,
             watched_sauvegarder: false,
             flagReset: false,
@@ -524,7 +529,8 @@ export default {
     },
 
     components: {
-        Reserve
+        Reserve,
+        Loading
     },
 
 
@@ -1707,11 +1713,10 @@ export default {
 
     created() {
 
+        this.flagLoading = true;
         Examens.select(this.observateurId)
             .then((result) => {
 
-
-                console.log(result)
 
                 if (result.data.examen != null) {
 
@@ -1726,23 +1731,23 @@ export default {
                     this.i = result.data.examen.i;
                     this.j = result.data.examen.j;
 
+                    this.flagLoading = false;
                     this.watched_sauvegarder = true;
                     return this.notEmpty();
                 } else {
 
                     // delete all commentaires connected by examen but not saved
                     Examens.deleteAllCommentairesExamen(this.observateurId)
-                    .then(() => {
-                    console.log(true);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
-
-                    
+                        .then(() => {
+                            console.log(true);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                    this.flagLoading = false;
                 }
 
-
+                this.flagLoading = false;
                 return this.notEmpty();
 
             })

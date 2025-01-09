@@ -15,8 +15,8 @@
                     <th>Mission</th>
                     <th>Metier</th>
                     <th>Constructeur</th>
-                    <th>N° De Série</th>
-                    <th>N° Interne</th>
+                    <th>N°Série</th>
+                    <th>N°Interne</th>
                     <th>Localisation</th>
                     <!-- <th>Accompagnateur Client</th> -->
                     <!-- <th>Accompagnateur Inspecteur</th> -->
