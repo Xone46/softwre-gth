@@ -41,7 +41,7 @@
 
             <div class="buttons-tail">
                 <button class="sauvegarder" v-if="modelSelected.length != 0" @click="sauvegarder">Sauvegarde</button>
-                <button class="reset" v-if="commentaireId != ''" @click="reset">Reset</button>
+                <button class="reset" v-if="commentaireId != '' && modelSelected.length >= 1" @click="reset">Reset</button>
                 <button class="sortir" @click="sortir">Sortir</button>
             </div>
 
@@ -95,8 +95,7 @@ export default {
         sauvegarder() {
 
             Commentaires.create(this.observateurId, this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.modelSelected)
-                .then((result) => {
-                    console.log(result);
+                .then(() => {
                     return this.$emit('valider', this.infoReserve);
                 })
                 .catch((error) => {
@@ -116,7 +115,14 @@ export default {
         },
 
         sortir() {
-            return this.$emit('annuler', this.infoReserve);
+
+            if(this.modelSelected.length == 0) {
+                return this.$emit('annuler', this.infoReserve);
+            }
+
+            if(this.modelSelected.length >= 1) {
+                return this.$emit('sortir');
+            }
         },
 
         ajouter() {
@@ -144,8 +150,6 @@ export default {
         },
 
         supprimer(value) {
-
-            console.log(value.length);
 
             const index = this.modelSelected.findIndex((el) => el.name == value);
 

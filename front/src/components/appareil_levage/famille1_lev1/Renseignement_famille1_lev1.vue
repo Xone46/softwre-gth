@@ -248,7 +248,7 @@ export default {
         renseignement: {
             handler() {
                 const count = this.counter_watched++;
-                if (count != 0 && count != 1) {
+                if (count != 0) {
                     this.watched_sauvegarder = false;
                 }
 
@@ -472,7 +472,7 @@ export default {
                             this.renseignement.modification = "",
                             this.renseignement.suiveModification = "",
 
-                            this.flagReset = false;
+                        this.flagReset = false;
                         this.watched_sauvegarder = false;
                         this.$emit("changeColorRenseignement_famille1_lev1", false);
                     }
@@ -524,6 +524,8 @@ export default {
                                 this.renseignement.suiveNumeroInterne = "";
                             }
 
+                            this.watched_sauvegarder = false;
+
                         })
                         .catch((error) => {
                             console.log(error);
@@ -555,13 +557,14 @@ export default {
                             this.renseignement.modification = result.data.renseignement.modification;
                             this.renseignement.suiveModification = result.data.renseignement.suiveModification;
                             this.renseignement.observateurId = result.data.renseignement.observateurId;
+                            this.watched_sauvegarder = true;
+
                         })
                         .catch((error) => {
                             console.log(error)
                         });
                 }
 
-                this.watched_sauvegarder = true;
                 this.flagSpinner = false;
                 return this.notEmpty();
             })
@@ -575,6 +578,7 @@ export default {
 </script>
 
 <style scoped>
+
 .descriptions table {
     border-collapse: collapse;
     border: none;
@@ -642,6 +646,10 @@ td button {
     cursor: pointer;
 }
 
+.sauvegarder .watch:hover {
+    background-color: rgb(2, 49, 2);
+}
+
 .sauvegarder .not-watch {
     background-color: red;
     color: white;
@@ -652,6 +660,9 @@ td button {
     cursor: pointer;
 }
 
+.sauvegarder .not-watch:hover {
+    background-color: rgb(84, 1, 1);
+}
 
 .reset button {
     background-color: red;
@@ -660,6 +671,11 @@ td button {
     width: 200px;
     border: 0px;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
 }
 
 

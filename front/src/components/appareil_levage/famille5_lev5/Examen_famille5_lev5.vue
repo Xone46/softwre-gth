@@ -423,7 +423,7 @@
         </div>
 
         <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve"
-            @annuler="annulerReserve" />
+            @annuler="annulerReserve" @sortir="sortir"/>
 
         <Loading v-if="flagLoading" />
 
@@ -675,10 +675,56 @@ export default {
             this.flagReserve = false;
         },
 
-        annulerReserve() {
+        annulerReserve(value) {
+
             this.flagReserve = false;
+
+            if ("A" == value[0]) {
+                this.a[value[1]].o = false;
+            }
+
+            if ("B" == value[0]) {
+                this.b[value[1]].o = false;
+            }
+
+            if ("C" == value[0]) {
+                this.c[value[1]].o = false;
+            }
+
+            if ("D" == value[0]) {
+                this.d[value[1]].o = false;
+            }
+
+            if ("E" == value[0]) {
+                this.e[value[1]].o = false;
+            }
+
+            if ("F" == value[0]) {
+                this.f[value[1]].o = false;
+            }
+
+            if ("G" == value[0]) {
+                this.g[value[1]].o = false;
+            }
+
+            if ("H" == value[0]) {
+                this.h[value[1]].o = false;
+            }
+
+            if ("I" == value[0]) {
+                this.i[value[1]].o = false;
+            }
+
+            if ("J" == value[0]) {
+                this.j[value[1]].o = false;
+            }
+
         },
 
+
+        sortir() {
+            this.flagReserve = false;
+        },
 
         checkAObs(index) {
             this.infoReserve = ["A", index, this.a[index]["titre"], this.observateurId]
@@ -1816,6 +1862,10 @@ table tr th:nth-child(2) {
     cursor: pointer;
 }
 
+.sauvegarder .watch:hover {
+    background-color: rgb(2, 49, 2);
+}
+
 .sauvegarder .not-watch {
     background-color: red;
     color: white;
@@ -1826,6 +1876,10 @@ table tr th:nth-child(2) {
     cursor: pointer;
 }
 
+.sauvegarder .not-watch:hover {
+    background-color: rgb(84, 1, 1);
+}
+
 
 .reset button {
     background-color: red;
@@ -1834,6 +1888,10 @@ table tr th:nth-child(2) {
     width: 200px;
     border: 0px;
     border-radius: 5px;
+}
+
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
 }
 
 .saved {

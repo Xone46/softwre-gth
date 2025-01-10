@@ -181,6 +181,10 @@ export default {
     cursor: pointer;
 }
 
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
+}
+
 .spinner {
     margin: 0;
     padding: 0;

@@ -172,14 +172,12 @@
             </table>
         </div>
 
-        <div class="sauvegarder">
+        <div class="buttons">
             <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
                 {{ watched_sauvegarder == true ? "Déjà enregistré" : "Non enregistré" }}
             </button>
-        </div>
 
-        <div class="reset">
-            <button @click="reset">Reset</button>
+            <button class="reset" @click="reset">Reset</button>
         </div>
 
         <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider" @annuler="annuler" />
@@ -241,7 +239,7 @@ export default {
         renseignement: {
             handler() {
                 const count = this.counter_watched++;
-                if (count != 0 && count != 1) {
+                if (count != 0) {
                     this.watched_sauvegarder = false;
                 }
 
@@ -453,7 +451,6 @@ export default {
 
                         this.renseignement.typeConstructeur = "",
                         this.renseignement.anneeMiseService = "",
-                        this.renseignement.numeroInterne = "",
                         this.renseignement.typeAppareil = "",
                         this.renseignement.suiveTypeAppareil = "",
                         this.renseignement.miseEnServiceRapport = "",
@@ -518,6 +515,8 @@ export default {
                                 this.renseignement.suiveNumeroInterne = "";
                             }
 
+                            this.watched_sauvegarder = false;
+
                         })
                         .catch((error) => {
                             console.log(error);
@@ -549,6 +548,8 @@ export default {
                             this.renseignement.modification = result.data.renseignement.modification;
                             this.renseignement.suiveModification = result.data.renseignement.suiveModification;
                             this.renseignement.observateurId = result.data.renseignement.observateurId;
+                            this.watched_sauvegarder = true;
+
                         })
                         .catch((error) => {
                             console.log(error)
@@ -599,6 +600,11 @@ input , select {
     font-size: large;
 }
 
+td:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+}
+
 td button {
     height: 30px;
     width : 80px;
@@ -614,52 +620,6 @@ td button {
     background-color: red;
 }
 
-.sauvegarder , .reset {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5px;
-    margin-top: 5px;
-}
-
-.sauvegarder .watch {
-    background-color: green;
-    color: white;
-    height: 30px;
-    width: 200px;
-    border: 0px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.sauvegarder .not-watch {
-    background-color: red;
-    color: white;
-    height: 30px;
-    width: 200px;
-    border: 0px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-
-.reset button {
-    background-color: red;
-    color: white;
-    height: 30px;
-    width: 200px;
-    border: 0px;
-    border-radius: 5px;
-}
-
-
-td:nth-child(2) {
-    display: flex;
-    flex-direction: column;
-}
-
 .saved {
     color: #04AA6D;
 }
@@ -667,5 +627,68 @@ td:nth-child(2) {
 .not-saved {
     color: red;
 }
+
+
+
+.watch {
+    background-color: green;
+    color: white;
+    height: 200px;
+    width: 200px;
+    border: 0px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 2px;
+    font-size: x-large;
+}
+
+.not-watch {
+    background-color: red;
+    color: white;
+    height: 200px;
+    width: 200px;
+    border: 0px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 2px;
+    font-size: x-large;
+}
+
+.sauvegarder .watch:hover {
+    background-color: rgb(2, 49, 2);
+}
+
+.not-watch:hover {
+    background-color: rgb(162, 1, 1);
+    color: white;
+    height: 200px;
+    width: 200px;
+    border: 0px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 2px;
+    font-size: x-large;
+}
+
+.sauvegarder .not-watch:hover {
+    background-color: rgb(84, 1, 1);
+}
+
+.reset {
+    background-color: red;
+    color: white;
+    height: 200px;
+    width: 200px;
+    border: 0px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 2px;
+    font-size: x-large;
+}
+
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
+}
+
 
 </style>

@@ -1172,6 +1172,10 @@ table tr td:nth-child(1) {
     cursor: pointer;
 }
 
+.sauvegarder .watch:hover {
+    background-color: rgb(2, 49, 2);
+}
+
 .sauvegarder .not-watch {
     background-color: red;
     color: white;
@@ -1182,6 +1186,10 @@ table tr td:nth-child(1) {
     cursor: pointer;
 }
 
+.sauvegarder .not-watch:hover {
+    background-color: rgb(84, 1, 1);
+}
+
 .reset button {
     background-color: red;
     color: white;
@@ -1189,6 +1197,10 @@ table tr td:nth-child(1) {
     width: 200px;
     border: 0px;
     border-radius: 5px;
+}
+
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
 }
 
 /* End buttons */

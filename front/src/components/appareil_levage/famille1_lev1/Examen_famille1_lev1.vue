@@ -402,7 +402,7 @@
             <button @click="reset">Reset</button>
         </div>
 
-        <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve" @annuler="annulerReserve"/>
+        <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve" @annuler="annulerReserve" @sortir="sortir"/>
 
 
         <Loading v-if="flagLoading" />
@@ -505,9 +505,10 @@ export default {
 
 
     watch: {
+
+                
         a: {
             handler() {
-                this.watched_sauvegarder = false;
                 this.notEmpty();
             },
             deep: true
@@ -515,7 +516,6 @@ export default {
 
         b: {
             handler() {
-                this.watched_sauvegarder = false;
                 this.notEmpty();
             },
             deep: true
@@ -523,7 +523,6 @@ export default {
 
         c: {
             handler() {
-                this.watched_sauvegarder = false;
                 this.notEmpty();
             },
             deep: true
@@ -531,7 +530,6 @@ export default {
 
         d: {
             handler() {
-                this.watched_sauvegarder = false;
                 this.notEmpty();
             },
             deep: true
@@ -539,7 +537,6 @@ export default {
 
         e: {
             handler() {
-                this.watched_sauvegarder = false;
                 this.notEmpty();
             },
             deep: true
@@ -547,7 +544,6 @@ export default {
 
         f: {
             handler() {
-                this.watched_sauvegarder = false;
                 this.notEmpty();
             },
             deep: true
@@ -555,7 +551,6 @@ export default {
 
         g: {
             handler() {
-                this.watched_sauvegarder = false;
                 this.notEmpty();
             },
             deep: true
@@ -563,7 +558,6 @@ export default {
 
         h: {
             handler() {
-                this.watched_sauvegarder = false;
                 this.notEmpty();
             },
             deep: true
@@ -571,7 +565,6 @@ export default {
 
         i: {
             handler() {
-                this.watched_sauvegarder = false;
                 this.notEmpty();
             },
             deep: true
@@ -579,7 +572,6 @@ export default {
 
         j: {
             handler() {
-                this.watched_sauvegarder = false;
                 this.notEmpty();
             },
             deep: true
@@ -693,6 +685,11 @@ export default {
             //     this.k[value[1]].o = false;
             // }
 
+        },
+
+
+        sortir() {
+            this.flagReserve = false;  
         },
 
         
@@ -1712,6 +1709,7 @@ export default {
         },
 
         sauvegarde() {
+
             Examens.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.observateurId)
                 .then((result) => {
                     if (result) {
@@ -1734,9 +1732,9 @@ export default {
         Examens.select(this.observateurId)
             .then((result) => {
 
-
-
                 if (result.data.examen != null) {
+
+                    this.flagLoading = false;
 
                     this.a = result.data.examen.a;
                     this.b = result.data.examen.b;
@@ -1749,20 +1747,22 @@ export default {
                     this.i = result.data.examen.i;
                     this.j = result.data.examen.j;
 
-                    this.flagLoading = false;
                     this.watched_sauvegarder = true;
-                    return this.notEmpty();
+                    console.log(this.watched_sauvegarder)
 
                 } else {
+
                     this.flagLoading = false;
                     // delete all commentaires connected by examen but not saved
                     Examens.deleteAllCommentairesExamen(this.observateurId)
                     .then(() => {
-                    console.log(true);
+                        console.log(true);
                     })
                     .catch((error) => {
                         console.log(error);
                     });
+
+                    this.watched_sauvegarder = false;
                 }
 
                 return this.notEmpty();
@@ -1832,6 +1832,10 @@ table tr th:nth-child(2) {
     cursor: pointer;
 }
 
+.sauvegarder .watch:hover {
+    background-color: rgb(2, 49, 2);
+}
+
 .sauvegarder .not-watch {
     background-color: red;
     color: white;
@@ -1842,6 +1846,9 @@ table tr th:nth-child(2) {
     cursor: pointer;
 }
 
+.sauvegarder .not-watch:hover {
+    background-color: rgb(84, 1, 1);
+}
 
 .reset button {
     background-color: red;
@@ -1850,6 +1857,10 @@ table tr th:nth-child(2) {
     width: 200px;
     border: 0px;
     border-radius: 5px;
+}
+
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
 }
 
 .saved {

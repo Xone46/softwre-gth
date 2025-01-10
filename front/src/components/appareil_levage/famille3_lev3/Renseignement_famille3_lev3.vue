@@ -238,7 +238,7 @@ export default {
         renseignement: {
             handler() {
                 const count = this.counter_watched++;
-                if (count != 0 && count != 1) {
+                if (count != 0) {
                     this.watched_sauvegarder = false;
                 }
 
@@ -450,7 +450,6 @@ export default {
 
                         this.renseignement.typeConstructeur = "",
                         this.renseignement.anneeMiseService = "",
-                        this.renseignement.numeroInterne = "",
                         this.renseignement.typeAppareil = "",
                         this.renseignement.suiveTypeAppareil = "",
                         this.renseignement.miseEnServiceRapport = "",
@@ -515,6 +514,9 @@ export default {
                                 this.renseignement.suiveNumeroInterne = "";
                             }
 
+                            this.watched_sauvegarder = false;
+
+
                         })
                         .catch((error) => {
                             console.log(error);
@@ -546,13 +548,14 @@ export default {
                             this.renseignement.modification = result.data.renseignement.modification;
                             this.renseignement.suiveModification = result.data.renseignement.suiveModification;
                             this.renseignement.observateurId = result.data.renseignement.observateurId;
+                            this.watched_sauvegarder = true;
+
                         })
                         .catch((error) => {
                             console.log(error)
                         });
                 }
 
-                this.watched_sauvegarder = true;
                 return this.notEmpty();
             })
             .catch((error) => {
@@ -631,6 +634,10 @@ td button {
     cursor: pointer;
 }
 
+.sauvegarder .watch:hover {
+    background-color: rgb(2, 49, 2);
+}
+
 .sauvegarder .not-watch {
     background-color: red;
     color: white;
@@ -641,6 +648,9 @@ td button {
     cursor: pointer;
 }
 
+.sauvegarder .not-watch:hover {
+    background-color: rgb(84, 1, 1);
+}
 
 .reset button {
     background-color: red;
@@ -651,6 +661,13 @@ td button {
     border-radius: 5px;
 }
 
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
+}
+
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
+}
 
 td:nth-child(2) {
     display: flex;

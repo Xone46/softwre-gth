@@ -178,4 +178,9 @@ export default {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
+}
+
 </style>

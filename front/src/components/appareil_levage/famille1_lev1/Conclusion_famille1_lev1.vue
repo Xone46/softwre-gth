@@ -114,7 +114,17 @@ export default {
     name: 'conclusion-component',
     data() {
         return {
-            counter_watched: 0,
+
+            counter_watched_a: 0,
+            counter_watched_b: 0,
+            counter_watched_c: 0,
+            counter_watched_d: 0,
+            counter_watched_e: 0,
+            counter_watched_f: 0,
+            counter_watched_g: 0,
+            counter_watched_poids: 0,
+            counter_watched_commentaire: 0,
+
             watched_sauvegarder: false,
             falgInsert: false,
             typeInsert: ``,
@@ -146,7 +156,15 @@ export default {
 
         a: {
             handler() {
-                this.watched_sauvegarder = false;
+
+                if(this.a == ""){
+                    this.watched_sauvegarder = false;
+                }
+
+                if ((this.counter_watched_a++) != 0) {
+                    this.watched_sauvegarder = false;
+                }
+
                 this.notEmpty();
             },
             deep: true
@@ -154,7 +172,15 @@ export default {
 
         b: {
             handler() {
-                this.watched_sauvegarder = false;
+
+                if(this.b == ""){
+                    this.watched_sauvegarder = false;
+                }
+
+                if ((this.counter_watched_b++) != 0) {
+                    this.watched_sauvegarder = false;
+                }
+
                 this.notEmpty();
             },
             deep: true
@@ -162,7 +188,15 @@ export default {
 
         c: {
             handler() {
-                this.watched_sauvegarder = false;
+
+                if(this.c == ""){
+                    this.watched_sauvegarder = false;
+                }
+
+                if ((this.counter_watched_c++) != 0) {
+                    this.watched_sauvegarder = false;
+                }
+
                 this.notEmpty();
             },
             deep: true
@@ -170,7 +204,15 @@ export default {
 
         d: {
             handler() {
-                this.watched_sauvegarder = false;
+
+                if(this.c == ""){
+                    this.watched_sauvegarder = false;
+                }
+
+                if ((this.counter_watched_d++) != 0) {
+                    this.watched_sauvegarder = false;
+                }
+
                 this.notEmpty();
             },
             deep: true
@@ -178,7 +220,15 @@ export default {
 
         e: {
             handler() {
-                this.watched_sauvegarder = false;
+
+                if(this.e == ""){
+                    this.watched_sauvegarder = false;
+                }
+
+                if ((this.counter_watched_e++) != 0) {
+                    this.watched_sauvegarder = false;
+                }
+
                 this.notEmpty();
             },
             deep: true
@@ -186,7 +236,15 @@ export default {
 
         f: {
             handler() {
-                this.watched_sauvegarder = false;
+
+                if(this.f == ""){
+                    this.watched_sauvegarder = false;
+                }
+
+                if ((this.counter_watched_f++) != 0) {
+                    this.watched_sauvegarder = false;
+                }
+
                 this.notEmpty();
             },
             deep: true
@@ -194,7 +252,15 @@ export default {
 
         g: {
             handler() {
-                this.watched_sauvegarder = false;
+
+                if(this.g == ""){
+                    this.watched_sauvegarder = false;
+                }
+
+                if ((this.counter_watched_g++) != 0) {
+                    this.watched_sauvegarder = false;
+                }
+
                 this.notEmpty();
             },
             deep: true
@@ -225,7 +291,15 @@ export default {
 
         poids: {
             handler() {
-                this.watched_sauvegarder = false;
+
+                if(this.poids == ""){
+                    this.watched_sauvegarder = false;
+                }
+
+                if ((this.counter_watched_poids++) != 0) {
+                    this.watched_sauvegarder = false;
+                }
+
                 this.notEmpty();
             },
             deep: true
@@ -233,7 +307,15 @@ export default {
 
         commentaire: {
             handler() {
-                this.watched_sauvegarder = false;
+
+                if(this.commentaire == ""){
+                    this.watched_sauvegarder = false;
+                }
+
+                if ((this.counter_watched_commentaire++) != 0) {
+                    this.watched_sauvegarder = false;
+                }
+
                 this.notEmpty();
             },
             deep: true
@@ -407,6 +489,7 @@ export default {
 
         Conclusion.select(this.observateurId)
             .then((result) => {
+                
                 if (result.data != null) {
                     this.poids = result.data.poids;
                     this.commentaire = result.data.commentaire;
@@ -490,6 +573,10 @@ export default {
     cursor: pointer;
 }
 
+.sauvegarder .watch:hover {
+    background-color: rgb(2, 49, 2);
+}
+
 .sauvegarder .not-watch {
     background-color: red;
     color: white;
@@ -500,6 +587,10 @@ export default {
     cursor: pointer;
 }
 
+.sauvegarder .not-watch:hover {
+    background-color: rgb(84, 1, 1);
+}
+
 
 .reset button {
     background-color: red;
@@ -508,6 +599,10 @@ export default {
     width: 200px;
     border: 0px;
     border-radius: 5px;
+}
+
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
 }
 
 .saved {

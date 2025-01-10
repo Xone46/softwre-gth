@@ -1093,12 +1093,14 @@ export default {
 .formulaire .content .right button {
     padding: 10px;
     color: white;
-    border: 0px;
     margin: 3px;
     cursor: pointer;
-    border-radius: 5px;
-    width: 250px;
-    font-size: medium;
+    background-color: #1020e5;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    font-size: x-large;
+    border: 0px;
 }
 
 .formulaire .content .right button:nth-child(1) {

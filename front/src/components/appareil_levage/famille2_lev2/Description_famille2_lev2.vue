@@ -1053,6 +1053,10 @@ select {
     cursor: pointer;
 }
 
+.sauvegarder .watch:hover {
+    background-color: rgb(2, 49, 2);
+}
+
 .sauvegarder .not-watch {
     background-color: red;
     color: white;
@@ -1063,6 +1067,9 @@ select {
     cursor: pointer;
 }
 
+.sauvegarder .not-watch:hover {
+    background-color: rgb(84, 1, 1);
+}
 
 .reset button {
     background-color: red;
@@ -1072,6 +1079,11 @@ select {
     border: 0px;
     border-radius: 5px;
 }
+
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
+}
+
 /* End COnfigration ALL */
 
 tr {
