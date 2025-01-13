@@ -13,9 +13,11 @@
                 <th>O</th>
                 <th></th>
             </tr>
-            <tr v-for="(item, index) in a" :key="index">
+            <tr v-for="(item, index) in examen.a" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkA(index, 'be', item.be)">
                 </td>
@@ -52,9 +54,11 @@
                 <th>O</th>
                 <th></th>
             </tr>
-            <tr v-for="(item, index) in b" :key="index">
+            <tr v-for="(item, index) in examen.b" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkB(index, 'be', item.be)">
                 </td>
@@ -91,9 +95,11 @@
                 <th>O</th>
                 <th></th>
             </tr>
-            <tr v-for="(item, index) in c" :key="index">
+            <tr v-for="(item, index) in examen.c" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkC(index, 'be', item.be)">
                 </td>
@@ -130,9 +136,11 @@
                 <th>O</th>
                 <th></th>
             </tr>
-            <tr v-for="(item, index) in d" :key="index">
+            <tr v-for="(item, index) in examen.d" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkD(index, 'be', item.be)">
                 </td>
@@ -169,9 +177,11 @@
                 <th>O</th>
                 <th></th>
             </tr>
-            <tr v-for="(item, index) in e" :key="index">
+            <tr v-for="(item, index) in examen.e" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkE(index, 'be', item.be)">
                 </td>
@@ -208,9 +218,11 @@
                 <th>O</th>
                 <th></th>
             </tr>
-            <tr v-for="(item, index) in f" :key="index">
+            <tr v-for="(item, index) in examen.f" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkF(index, 'be', item.be)">
                 </td>
@@ -247,9 +259,11 @@
                 <th>O</th>
                 <th></th>
             </tr>
-            <tr v-for="(item, index) in g" :key="index">
+            <tr v-for="(item, index) in examen.g" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkG(index, 'be', item.be)">
                 </td>
@@ -286,9 +300,11 @@
                 <th>O</th>
                 <th></th>
             </tr>
-            <tr v-for="(item, index) in h" :key="index">
+            <tr v-for="(item, index) in examen.h" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkH(index, 'be', item.be)">
                 </td>
@@ -326,9 +342,11 @@
                 <th>O</th>
                 <th></th>
             </tr>
-            <tr v-for="(item, index) in i" :key="index">
+            <tr v-for="(item, index) in examen.i" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkI(index, 'be', item.be)">
                 </td>
@@ -365,9 +383,11 @@
                 <th>O</th>
                 <th></th>
             </tr>
-            <tr v-for="(item, index) in j" :key="index">
+            <tr v-for="(item, index) in examen.j" :key="index">
                 <td></td>
-                <td :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']" >{{ item.titre }}</td>
+                <td
+                    :class="[(item.be == true || item.fc == true || item.sa == true || item.nv == true || item.so == true || item.o == true) ? 'saved' : 'not-saved']">
+                    {{ item.titre }}</td>
                 <td>
                     <input type="checkbox" v-model="item.be" @change="checkJ(index, 'be', item.be)">
                 </td>
@@ -402,7 +422,8 @@
             <button @click="reset">Reset</button>
         </div>
 
-        <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve" @annuler="annulerReserve" @sortir="sortir"/>
+        <Reserve v-if="flagReserve" :infoReserve="infoReserve" :observateurId="observateurId" @valider="validerReserve"
+            @annuler="annulerReserve" @sortir="sortir" />
 
 
         <Loading v-if="flagLoading" />
@@ -422,74 +443,78 @@ export default {
     name: 'renseignement-component',
     data() {
         return {
-            flagLoading : false,
+            flagLoading: false,
             counter_watched: 0,
             watched_sauvegarder: false,
             flagReset: false,
-            flagReserve : false,
-            infoReserve : [],
+            flagReserve: false,
+            infoReserve: [],
 
-            a: [
-                { titre: "- Distance a obstacles fixes ou entre appareils", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
-                { titre: "- Lignes électriques ou éléments sous tension", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
-                { titre: "- Effet du vent hors service", nv : false,  be : false, fc : false, sa : false, statusCritique : false, so : false, o : false },
-            ],
+            examen: {
+                a: [
+                    { titre: "- Distance a obstacles fixes ou entre appareils", nv: false, be: false, fc: false, sa: false, statusCritique: false, so: false, o: false },
+                    { titre: "- Lignes électriques ou éléments sous tension", nv: false, be: false, fc: false, sa: false, statusCritique: false, so: false, o: false },
+                    { titre: "- Effet du vent hors service", nv: false, be: false, fc: false, sa: false, statusCritique: false, so: false, o: false },
+                ],
 
-            b: [
-                { titre: "- Accès au poste de travail", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
-            ],
+                b: [
+                    { titre: "- Accès au poste de travail", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                ],
 
-            c: [
-                { titre: "- Assemblages, fixations, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Organes de roulement (pneumatiques, bandages, galets)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Ossature, contrepoids", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
-            ],
+                c: [
+                    { titre: "- Assemblages, fixations, liaisons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Organes de roulement (pneumatiques, bandages, galets)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Ossature, contrepoids", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                ],
 
-            d: [
-                { titre: "- Structure", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Fixation lest ou contrepoids", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Organes de roulement et de guidage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Assemblage, fixations, liaisons, articulations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Equipage mobile, support de charge", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Plate-forme, nacelle, sellette", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
-            ],
+                d: [
+                    { titre: "- Structure", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Fixation lest ou contrepoids", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Organes de roulement et de guidage", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Assemblage, fixations, liaisons, articulations", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Equipage mobile, support de charge", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Plate-forme, nacelle, sellette", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                ],
 
-            e: [
-                { titre: "- Protection contre les chutes de hauteur de l'opérateur à partir du poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
-            ],
+                e: [
+                    { titre: "- Protection contre les chutes de hauteur de l'opérateur à partir du poste de conduite", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                ],
 
-            f: [
-                { titre: "- Chaîne de manoeuvre", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Organe de manœuvre (chaîne, levier, timon)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-            ],
+                f: [
+                    { titre: "- Chaîne de manoeuvre", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Organe de manœuvre (chaîne, levier, timon)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                ],
 
-            g: [
-                { titre: "- Suspentes (câbles, chaînes, sangles)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Attaches", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Mouffle, crochet : linguet de sécurité u dispositif équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Autres dispositifs de préhension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
-            ],
+                g: [
+                    { titre: "- Suspentes (câbles, chaînes, sangles)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Tambour, poulies, noix, pignons", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Attaches", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Mouffle, crochet : linguet de sécurité u dispositif équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Autres dispositifs de préhension", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                ],
 
-            h: [
-                { titre: "- Vérins, canalisations, distributeurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Organes de transmission, accouplements", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Freins des mouvements concourant au levage (arrêt et maintien)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Limitation de la vitesse (absence d'emballement)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Freins des mouvements horizontaux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Freins d'immobilisation en translation (hors service)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Protection des organes mobiles de transmission", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-            ],
+                h: [
+                    { titre: "- Vérins, canalisations, distributeurs", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Organes de transmission, accouplements", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Freins des mouvements concourant au levage (arrêt et maintien)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Limitation de la vitesse (absence d'emballement)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Freins des mouvements horizontaux", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Freins d'immobilisation en translation (hors service)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Protection des organes mobiles de transmission", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                ],
 
-            i: [
-                { titre: "- Parachute ou dispositif équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-            ],
+                i: [
+                    { titre: "- Parachute ou dispositif équivalent", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                ],
 
-            j: [
-                { titre: "- Indication de l'appareil", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Affichage capacité, tableau des charges", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
-                { titre: "- Consignes de sécurité et d'utilisation (lisibilité)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
-            ]
+                j: [
+                    { titre: "- Indication de l'appareil", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Affichage capacité, tableau des charges", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false },
+                    { titre: "- Consignes de sécurité et d'utilisation (lisibilité)", be: false, fc: false, sa: false, nv: false, so: false, o: false, statusCritique: false }
+                ]
+            }
+
+
 
         }
     },
@@ -506,77 +531,17 @@ export default {
 
     watch: {
 
+        examen: {
+            handler() {
                 
-        a: {
-            handler() {
+                if((this.counter_watched++) > 0) {
+                    this.watched_sauvegarder = false;
+                }
+
                 this.notEmpty();
             },
             deep: true
-        },
-
-        b: {
-            handler() {
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        c: {
-            handler() {
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        d: {
-            handler() {
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        e: {
-            handler() {
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        f: {
-            handler() {
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        g: {
-            handler() {
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        h: {
-            handler() {
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        i: {
-            handler() {
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        j: {
-            handler() {
-                this.notEmpty();
-            },
-            deep: true
-        },
-
+        }
     },
 
 
@@ -584,54 +549,54 @@ export default {
 
         validerReserve(value) {
 
-            const indexA = this.a.findIndex((el) => el.titre == value[2]);
-            if(indexA != -1) {
-                this.a[indexA]["o"] = true;
+            const indexA = this.examen.a.findIndex((el) => el.titre == value[2]);
+            if (indexA != -1) {
+                this.examen.a[indexA]["o"] = true;
             }
 
-            const indexB = this.b.findIndex((el) => el.titre == value[2]);
-            if(indexB != -1) {
-                this.b[indexB]["o"] = true;
+            const indexB = this.examen.b.findIndex((el) => el.titre == value[2]);
+            if (indexB != -1) {
+                this.examen.b[indexB]["o"] = true;
             }
 
-            const indexC = this.c.findIndex((el) => el.titre == value[2]);
-            if(indexC != -1) {
-                this.c[indexC]["o"] = true;
+            const indexC = this.examen.c.findIndex((el) => el.titre == value[2]);
+            if (indexC != -1) {
+                this.examen.c[indexC]["o"] = true;
             }
 
-            const indexD = this.d.findIndex((el) => el.titre == value[2]);
-            if(indexD != -1) {
-                this.d[indexD]["o"] = true;
+            const indexD = this.examen.d.findIndex((el) => el.titre == value[2]);
+            if (indexD != -1) {
+                this.examen.d[indexD]["o"] = true;
             }
 
-            const indexE = this.e.findIndex((el) => el.titre == value[2]);
-            if(indexE != -1) {
-                this.e[indexE]["o"] = true;
+            const indexE = this.examen.e.findIndex((el) => el.titre == value[2]);
+            if (indexE != -1) {
+                this.examen.e[indexE]["o"] = true;
             }
 
-            const indexF = this.f.findIndex((el) => el.titre == value[2]);
-            if(indexF != -1) {
-                this.f[indexF]["o"] = true;
+            const indexF = this.examen.f.findIndex((el) => el.titre == value[2]);
+            if (indexF != -1) {
+                this.examen.f[indexF]["o"] = true;
             }
 
-            const indexG = this.g.findIndex((el) => el.titre == value[2]);
-            if(indexG != -1) {
-                this.g[indexG]["o"] = true;
+            const indexG = this.examen.g.findIndex((el) => el.titre == value[2]);
+            if (indexG != -1) {
+                this.examen.g[indexG]["o"] = true;
             }
 
-            const indexH = this.h.findIndex((el) => el.titre == value[2]);
-            if(indexH != -1) {
-                this.h[indexH]["o"] = true;
+            const indexH = this.examen.h.findIndex((el) => el.titre == value[2]);
+            if (indexH != -1) {
+                this.examen.h[indexH]["o"] = true;
             }
 
-            const indexI = this.i.findIndex((el) => el.titre == value[2]);
-            if(indexI != -1) {
-                this.i[indexA]["o"] = true;
+            const indexI = this.examen.i.findIndex((el) => el.titre == value[2]);
+            if (indexI != -1) {
+                this.examen.i[indexA]["o"] = true;
             }
 
-            const indexJ = this.j.findIndex((el) => el.titre == value[2]);
-            if(indexJ != -1) {
-                this.j[indexJ]["o"] = true;
+            const indexJ = this.examen.j.findIndex((el) => el.titre == value[2]);
+            if (indexJ != -1) {
+                this.examen.j[indexJ]["o"] = true;
             }
 
             this.flagReserve = false;
@@ -641,44 +606,44 @@ export default {
 
             this.flagReserve = false;
 
-            if("A" == value[0]) {
-                this.a[value[1]].o = false;
+            if ("A" == value[0]) {
+                this.examen.a[value[1]].o = false;
             }
 
-            if("B" == value[0]) {
-                this.b[value[1]].o = false;
+            if ("B" == value[0]) {
+                this.examen.b[value[1]].o = false;
             }
 
-            if("C" == value[0]) {
-                this.c[value[1]].o = false;
+            if ("C" == value[0]) {
+                this.examen.c[value[1]].o = false;
             }
 
-            if("D" == value[0]) {
-                this.d[value[1]].o = false;
+            if ("D" == value[0]) {
+                this.examen.d[value[1]].o = false;
             }
 
-            if("E" == value[0]) {
-                this.e[value[1]].o = false;
+            if ("E" == value[0]) {
+                this.examen.e[value[1]].o = false;
             }
 
-            if("F" == value[0]) {
-                this.f[value[1]].o = false;
+            if ("F" == value[0]) {
+                this.examen.f[value[1]].o = false;
             }
 
-            if("G" == value[0]) {
-                this.g[value[1]].o = false;
+            if ("G" == value[0]) {
+                this.examen.g[value[1]].o = false;
             }
 
-            if("H" == value[0]) {
-                this.h[value[1]].o = false;
+            if ("H" == value[0]) {
+                this.examen.h[value[1]].o = false;
             }
 
-            if("I" == value[0]) {
-                this.i[value[1]].o = false;
+            if ("I" == value[0]) {
+                this.examen.i[value[1]].o = false;
             }
 
-            if("J" == value[0]) {
-                this.j[value[1]].o = false;
+            if ("J" == value[0]) {
+                this.examen.j[value[1]].o = false;
             }
 
             // if("k" == value[0]) {
@@ -689,810 +654,810 @@ export default {
 
 
         sortir() {
-            this.flagReserve = false;  
+            this.flagReserve = false;
         },
 
-        
+
         checkAObs(index) {
-            this.infoReserve = ["A", index, this.a[index]["titre"], this.observateurId]
+            this.infoReserve = ["A", index, this.examen.a[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkBObs(index) {
-            this.infoReserve = ["B", index, this.b[index]["titre"], this.observateurId]
+            this.infoReserve = ["B", index, this.examen.b[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkCObs(index) {
-            this.infoReserve = ["C", index, this.c[index]["titre"], this.observateurId]
+            this.infoReserve = ["C", index, this.examen.c[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkDObs(index) {
-            this.infoReserve = ["D", index, this.d[index]["titre"], this.observateurId]
+            this.infoReserve = ["D", index, this.examen.d[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkEObs(index) {
-            this.infoReserve = ["E", index, this.e[index]["titre"], this.observateurId]
+            this.infoReserve = ["E", index, this.examen.e[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkFObs(index) {
-            this.infoReserve = ["F", index, this.f[index]["titre"], this.observateurId]
+            this.infoReserve = ["F", index, this.examen.f[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkGObs(index) {
-            this.infoReserve = ["G", index, this.g[index]["titre"], this.observateurId]
+            this.infoReserve = ["G", index, this.examen.g[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkHObs(index) {
-            this.infoReserve = ["H", index, this.h[index]["titre"], this.observateurId]
+            this.infoReserve = ["H", index, this.examen.h[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkIObs(index) {
-            this.infoReserve = ["I", index, this.i[index]["titre"], this.observateurId]
+            this.infoReserve = ["I", index, this.examen.i[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkJObs(index) {
-            this.infoReserve = ["J", index, this.j[index]["titre"], this.observateurId]
+            this.infoReserve = ["J", index, this.examen.j[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
 
         checkA(index, type, bol) {
 
-            if(type == "be") {
-                if(this.a[index]["fc"] == true) {
-                    this.a[index]["be"] = bol;
-                    this.a[index]["sa"] = false;
-                    this.a[index]["nv"] = false;
-                    this.a[index]["so"] = false;
-                    this.a[index]["o"] = false;
+            if (type == "be") {
+                if (this.examen.a[index]["fc"] == true) {
+                    this.examen.a[index]["be"] = bol;
+                    this.examen.a[index]["sa"] = false;
+                    this.examen.a[index]["nv"] = false;
+                    this.examen.a[index]["so"] = false;
+                    this.examen.a[index]["o"] = false;
                 } else {
-                    this.a[index]["be"] = bol;
-                    this.a[index]["fc"] = false;
-                    this.a[index]["sa"] = false;
-                    this.a[index]["nv"] = false;
-                    this.a[index]["so"] = false;
-                    this.a[index]["o"] = false;
+                    this.examen.a[index]["be"] = bol;
+                    this.examen.a[index]["fc"] = false;
+                    this.examen.a[index]["sa"] = false;
+                    this.examen.a[index]["nv"] = false;
+                    this.examen.a[index]["so"] = false;
+                    this.examen.a[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.a[index]["be"] == true) {
-                    this.a[index]["fc"] = bol;
-                    this.a[index]["sa"] = false;
-                    this.a[index]["nv"] = false;
-                    this.a[index]["so"] = false;
-                    this.a[index]["o"] = false;
+            } else if (type == "fc") {
+                if (this.examen.a[index]["be"] == true) {
+                    this.examen.a[index]["fc"] = bol;
+                    this.examen.a[index]["sa"] = false;
+                    this.examen.a[index]["nv"] = false;
+                    this.examen.a[index]["so"] = false;
+                    this.examen.a[index]["o"] = false;
                 } else {
-                    this.a[index]["be"] = false;
-                    this.a[index]["fc"] = bol;
-                    this.a[index]["sa"] = false;
-                    this.a[index]["nv"] = false;
-                    this.a[index]["so"] = false;
-                    this.a[index]["o"] = false;
+                    this.examen.a[index]["be"] = false;
+                    this.examen.a[index]["fc"] = bol;
+                    this.examen.a[index]["sa"] = false;
+                    this.examen.a[index]["nv"] = false;
+                    this.examen.a[index]["so"] = false;
+                    this.examen.a[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
-                this.a[index]["be"] = false;
-                this.a[index]["fc"] = false;
-                this.a[index]["sa"] = bol;
-                this.a[index]["nv"] = false;
-                this.a[index]["so"] = false;
-                this.a[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.a[index]["be"] = false;
-                this.a[index]["fc"] = false;
-                this.a[index]["sa"] = false;
-                this.a[index]["nv"] = bol;
-                this.a[index]["so"] = false;
-                this.a[index]["o"] = false;
-            } else if(type == 'so') {
-                this.a[index]["be"] = false;
-                this.a[index]["fc"] = false;
-                this.a[index]["sa"] = false;
-                this.a[index]["nv"] = false;
-                this.a[index]["so"] = bol;
-                this.a[index]["o"] = false;
+            } else if (type == 'sa') {
+                this.examen.a[index]["be"] = false;
+                this.examen.a[index]["fc"] = false;
+                this.examen.a[index]["sa"] = bol;
+                this.examen.a[index]["nv"] = false;
+                this.examen.a[index]["so"] = false;
+                this.examen.a[index]["o"] = false;
+            } else if (type == 'nv') {
+                this.examen.a[index]["be"] = false;
+                this.examen.a[index]["fc"] = false;
+                this.examen.a[index]["sa"] = false;
+                this.examen.a[index]["nv"] = bol;
+                this.examen.a[index]["so"] = false;
+                this.examen.a[index]["o"] = false;
+            } else if (type == 'so') {
+                this.examen.a[index]["be"] = false;
+                this.examen.a[index]["fc"] = false;
+                this.examen.a[index]["sa"] = false;
+                this.examen.a[index]["nv"] = false;
+                this.examen.a[index]["so"] = bol;
+                this.examen.a[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
-                this.a[index]["be"] = false;
-                this.a[index]["fc"] = false;
-                this.a[index]["sa"] = false;
-                this.a[index]["nv"] = false;
-                this.a[index]["so"] = false;
-                this.a[index]["o"] = bol;
+                this.examen.a[index]["be"] = false;
+                this.examen.a[index]["fc"] = false;
+                this.examen.a[index]["sa"] = false;
+                this.examen.a[index]["nv"] = false;
+                this.examen.a[index]["so"] = false;
+                this.examen.a[index]["o"] = bol;
             }
 
         },
 
 
         checkB(index, type, bol) {
-            if(type == "be") {
-                if(this.b[index]["fc"] == true) {
-                    this.b[index]["be"] = bol;
-                    this.b[index]["sa"] = false;
-                    this.b[index]["nv"] = false;
-                    this.b[index]["so"] = false;
-                    this.b[index]["o"] = false;
+            if (type == "be") {
+                if (this.examen.b[index]["fc"] == true) {
+                    this.examen.b[index]["be"] = bol;
+                    this.examen.b[index]["sa"] = false;
+                    this.examen.b[index]["nv"] = false;
+                    this.examen.b[index]["so"] = false;
+                    this.examen.b[index]["o"] = false;
                 } else {
-                    this.b[index]["be"] = bol;
-                    this.b[index]["fc"] = false;
-                    this.b[index]["sa"] = false;
-                    this.b[index]["nv"] = false;
-                    this.b[index]["so"] = false;
-                    this.b[index]["o"] = false;
+                    this.examen.b[index]["be"] = bol;
+                    this.examen.b[index]["fc"] = false;
+                    this.examen.b[index]["sa"] = false;
+                    this.examen.b[index]["nv"] = false;
+                    this.examen.b[index]["so"] = false;
+                    this.examen.b[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.b[index]["be"] == true) {
-                    this.b[index]["fc"] = bol;
-                    this.b[index]["sa"] = false;
-                    this.b[index]["nv"] = false;
-                    this.b[index]["so"] = false;
-                    this.b[index]["o"] = false;
+            } else if (type == "fc") {
+                if (this.examen.b[index]["be"] == true) {
+                    this.examen.b[index]["fc"] = bol;
+                    this.examen.b[index]["sa"] = false;
+                    this.examen.b[index]["nv"] = false;
+                    this.examen.b[index]["so"] = false;
+                    this.examen.b[index]["o"] = false;
                 } else {
-                    this.b[index]["be"] = false;
-                    this.b[index]["fc"] = bol;
-                    this.b[index]["sa"] = false;
-                    this.b[index]["nv"] = false;
-                    this.b[index]["so"] = false;
-                    this.b[index]["o"] = false;
+                    this.examen.b[index]["be"] = false;
+                    this.examen.b[index]["fc"] = bol;
+                    this.examen.b[index]["sa"] = false;
+                    this.examen.b[index]["nv"] = false;
+                    this.examen.b[index]["so"] = false;
+                    this.examen.b[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
-                this.b[index]["be"] = false;
-                this.b[index]["fc"] = false;
-                this.b[index]["sa"] = bol;
-                this.b[index]["nv"] = false;
-                this.b[index]["so"] = false;
-                this.b[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.b[index]["be"] = false;
-                this.b[index]["fc"] = false;
-                this.b[index]["sa"] = false;
-                this.b[index]["nv"] = bol;
-                this.b[index]["so"] = false;
-                this.b[index]["o"] = false;
-            } else if(type == 'so') {
-                this.b[index]["be"] = false;
-                this.b[index]["fc"] = false;
-                this.b[index]["sa"] = false;
-                this.b[index]["nv"] = false;
-                this.b[index]["so"] = bol;
-                this.b[index]["o"] = false;
+            } else if (type == 'sa') {
+                this.examen.b[index]["be"] = false;
+                this.examen.b[index]["fc"] = false;
+                this.examen.b[index]["sa"] = bol;
+                this.examen.b[index]["nv"] = false;
+                this.examen.b[index]["so"] = false;
+                this.examen.b[index]["o"] = false;
+            } else if (type == 'nv') {
+                this.examen.b[index]["be"] = false;
+                this.examen.b[index]["fc"] = false;
+                this.examen.b[index]["sa"] = false;
+                this.examen.b[index]["nv"] = bol;
+                this.examen.b[index]["so"] = false;
+                this.examen.b[index]["o"] = false;
+            } else if (type == 'so') {
+                this.examen.b[index]["be"] = false;
+                this.examen.b[index]["fc"] = false;
+                this.examen.b[index]["sa"] = false;
+                this.examen.b[index]["nv"] = false;
+                this.examen.b[index]["so"] = bol;
+                this.examen.b[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
-                this.b[index]["be"] = false;
-                this.b[index]["fc"] = false;
-                this.b[index]["sa"] = false;
-                this.b[index]["nv"] = false;
-                this.b[index]["so"] = false;
-                this.b[index]["o"] = bol;
+                this.examen.b[index]["be"] = false;
+                this.examen.b[index]["fc"] = false;
+                this.examen.b[index]["sa"] = false;
+                this.examen.b[index]["nv"] = false;
+                this.examen.b[index]["so"] = false;
+                this.examen.b[index]["o"] = bol;
             }
         },
 
         checkC(index, type, bol) {
-            if(type == "be") {
-                if(this.c[index]["fc"] == true) {
-                    this.c[index]["be"] = bol;
-                    this.c[index]["sa"] = false;
-                    this.c[index]["nv"] = false;
-                    this.c[index]["so"] = false;
-                    this.c[index]["o"] = false;
+            if (type == "be") {
+                if (this.examen.c[index]["fc"] == true) {
+                    this.examen.c[index]["be"] = bol;
+                    this.examen.c[index]["sa"] = false;
+                    this.examen.c[index]["nv"] = false;
+                    this.examen.c[index]["so"] = false;
+                    this.examen.c[index]["o"] = false;
                 } else {
-                    this.c[index]["be"] = bol;
-                    this.c[index]["fc"] = false;
-                    this.c[index]["sa"] = false;
-                    this.c[index]["nv"] = false;
-                    this.c[index]["so"] = false;
-                    this.c[index]["o"] = false;
+                    this.examen.c[index]["be"] = bol;
+                    this.examen.c[index]["fc"] = false;
+                    this.examen.c[index]["sa"] = false;
+                    this.examen.c[index]["nv"] = false;
+                    this.examen.c[index]["so"] = false;
+                    this.examen.c[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.c[index]["be"] == true) {
-                    this.c[index]["fc"] = bol;
-                    this.c[index]["sa"] = false;
-                    this.c[index]["nv"] = false;
-                    this.c[index]["so"] = false;
-                    this.c[index]["o"] = false;
+            } else if (type == "fc") {
+                if (this.examen.c[index]["be"] == true) {
+                    this.examen.c[index]["fc"] = bol;
+                    this.examen.c[index]["sa"] = false;
+                    this.examen.c[index]["nv"] = false;
+                    this.examen.c[index]["so"] = false;
+                    this.examen.c[index]["o"] = false;
                 } else {
-                    this.c[index]["be"] = false;
-                    this.c[index]["fc"] = bol;
-                    this.c[index]["sa"] = false;
-                    this.c[index]["nv"] = false;
-                    this.c[index]["so"] = false;
-                    this.c[index]["o"] = false;
+                    this.examen.c[index]["be"] = false;
+                    this.examen.c[index]["fc"] = bol;
+                    this.examen.c[index]["sa"] = false;
+                    this.examen.c[index]["nv"] = false;
+                    this.examen.c[index]["so"] = false;
+                    this.examen.c[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
-                this.c[index]["be"] = false;
-                this.c[index]["fc"] = false;
-                this.c[index]["sa"] = bol;
-                this.c[index]["nv"] = false;
-                this.c[index]["so"] = false;
-                this.c[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.c[index]["be"] = false;
-                this.c[index]["fc"] = false;
-                this.c[index]["sa"] = false;
-                this.c[index]["nv"] = bol;
-                this.c[index]["so"] = false;
-                this.c[index]["o"] = false;
-            } else if(type == 'so') {
-                this.c[index]["be"] = false;
-                this.c[index]["fc"] = false;
-                this.c[index]["sa"] = false;
-                this.c[index]["nv"] = false;
-                this.c[index]["so"] = bol;
-                this.c[index]["o"] = false;
+            } else if (type == 'sa') {
+                this.examen.c[index]["be"] = false;
+                this.examen.c[index]["fc"] = false;
+                this.examen.c[index]["sa"] = bol;
+                this.examen.c[index]["nv"] = false;
+                this.examen.c[index]["so"] = false;
+                this.examen.c[index]["o"] = false;
+            } else if (type == 'nv') {
+                this.examen.c[index]["be"] = false;
+                this.examen.c[index]["fc"] = false;
+                this.examen.c[index]["sa"] = false;
+                this.examen.c[index]["nv"] = bol;
+                this.examen.c[index]["so"] = false;
+                this.examen.c[index]["o"] = false;
+            } else if (type == 'so') {
+                this.examen.c[index]["be"] = false;
+                this.examen.c[index]["fc"] = false;
+                this.examen.c[index]["sa"] = false;
+                this.examen.c[index]["nv"] = false;
+                this.examen.c[index]["so"] = bol;
+                this.examen.c[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
-                this.c[index]["be"] = false;
-                this.c[index]["fc"] = false;
-                this.c[index]["sa"] = false;
-                this.c[index]["nv"] = false;
-                this.c[index]["so"] = false;
-                this.c[index]["o"] = bol;
+                this.examen.c[index]["be"] = false;
+                this.examen.c[index]["fc"] = false;
+                this.examen.c[index]["sa"] = false;
+                this.examen.c[index]["nv"] = false;
+                this.examen.c[index]["so"] = false;
+                this.examen.c[index]["o"] = bol;
             }
         },
 
         checkD(index, type, bol) {
 
-            if(type == "be") {
-                if(this.d[index]["fc"] == true) {
-                    this.d[index]["be"] = bol;
-                    this.d[index]["sa"] = false;
-                    this.d[index]["nv"] = false;
-                    this.d[index]["so"] = false;
-                    this.d[index]["o"] = false;
+            if (type == "be") {
+                if (this.examen.d[index]["fc"] == true) {
+                    this.examen.d[index]["be"] = bol;
+                    this.examen.d[index]["sa"] = false;
+                    this.examen.d[index]["nv"] = false;
+                    this.examen.d[index]["so"] = false;
+                    this.examen.d[index]["o"] = false;
                 } else {
-                    this.d[index]["be"] = bol;
-                    this.d[index]["fc"] = false;
-                    this.d[index]["sa"] = false;
-                    this.d[index]["nv"] = false;
-                    this.d[index]["so"] = false;
-                    this.d[index]["o"] = false;
+                    this.examen.d[index]["be"] = bol;
+                    this.examen.d[index]["fc"] = false;
+                    this.examen.d[index]["sa"] = false;
+                    this.examen.d[index]["nv"] = false;
+                    this.examen.d[index]["so"] = false;
+                    this.examen.d[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.d[index]["be"] == true) {
-                    this.d[index]["fc"] = bol;
-                    this.d[index]["sa"] = false;
-                    this.d[index]["nv"] = false;
-                    this.d[index]["so"] = false;
-                    this.d[index]["o"] = false;
+            } else if (type == "fc") {
+                if (this.examen.d[index]["be"] == true) {
+                    this.examen.d[index]["fc"] = bol;
+                    this.examen.d[index]["sa"] = false;
+                    this.examen.d[index]["nv"] = false;
+                    this.examen.d[index]["so"] = false;
+                    this.examen.d[index]["o"] = false;
                 } else {
-                    this.d[index]["be"] = false;
-                    this.d[index]["fc"] = bol;
-                    this.d[index]["sa"] = false;
-                    this.d[index]["nv"] = false;
-                    this.d[index]["so"] = false;
-                    this.d[index]["o"] = false;
+                    this.examen.d[index]["be"] = false;
+                    this.examen.d[index]["fc"] = bol;
+                    this.examen.d[index]["sa"] = false;
+                    this.examen.d[index]["nv"] = false;
+                    this.examen.d[index]["so"] = false;
+                    this.examen.d[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
-                this.d[index]["be"] = false;
-                this.d[index]["fc"] = false;
-                this.d[index]["sa"] = bol;
-                this.d[index]["nv"] = false;
-                this.d[index]["so"] = false;
-                this.d[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.d[index]["be"] = false;
-                this.d[index]["fc"] = false;
-                this.d[index]["sa"] = false;
-                this.d[index]["nv"] = bol;
-                this.d[index]["so"] = false;
-                this.d[index]["o"] = false;
-            } else if(type == 'so') {
-                this.d[index]["be"] = false;
-                this.d[index]["fc"] = false;
-                this.d[index]["sa"] = false;
-                this.d[index]["nv"] = false;
-                this.d[index]["so"] = bol;
-                this.d[index]["o"] = false;
+            } else if (type == 'sa') {
+                this.examen.d[index]["be"] = false;
+                this.examen.d[index]["fc"] = false;
+                this.examen.d[index]["sa"] = bol;
+                this.examen.d[index]["nv"] = false;
+                this.examen.d[index]["so"] = false;
+                this.examen.d[index]["o"] = false;
+            } else if (type == 'nv') {
+                this.examen.d[index]["be"] = false;
+                this.examen.d[index]["fc"] = false;
+                this.examen.d[index]["sa"] = false;
+                this.examen.d[index]["nv"] = bol;
+                this.examen.d[index]["so"] = false;
+                this.examen.d[index]["o"] = false;
+            } else if (type == 'so') {
+                this.examen.d[index]["be"] = false;
+                this.examen.d[index]["fc"] = false;
+                this.examen.d[index]["sa"] = false;
+                this.examen.d[index]["nv"] = false;
+                this.examen.d[index]["so"] = bol;
+                this.examen.d[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
-                this.d[index]["be"] = false;
-                this.d[index]["fc"] = false;
-                this.d[index]["sa"] = false;
-                this.d[index]["nv"] = false;
-                this.d[index]["so"] = false;
-                this.d[index]["o"] = bol;
+                this.examen.d[index]["be"] = false;
+                this.examen.d[index]["fc"] = false;
+                this.examen.d[index]["sa"] = false;
+                this.examen.d[index]["nv"] = false;
+                this.examen.d[index]["so"] = false;
+                this.examen.d[index]["o"] = bol;
             }
 
         },
 
         checkE(index, type, bol) {
-            if(type == "be") {
-                if(this.e[index]["fc"] == true) {
-                    this.e[index]["be"] = bol;
-                    this.e[index]["sa"] = false;
-                    this.e[index]["nv"] = false;
-                    this.e[index]["so"] = false;
-                    this.e[index]["o"] = false;
+            if (type == "be") {
+                if (this.examen.e[index]["fc"] == true) {
+                    this.examen.e[index]["be"] = bol;
+                    this.examen.e[index]["sa"] = false;
+                    this.examen.e[index]["nv"] = false;
+                    this.examen.e[index]["so"] = false;
+                    this.examen.e[index]["o"] = false;
                 } else {
-                    this.e[index]["be"] = bol;
-                    this.e[index]["fc"] = false;
-                    this.e[index]["sa"] = false;
-                    this.e[index]["nv"] = false;
-                    this.e[index]["so"] = false;
-                    this.e[index]["o"] = false;
+                    this.examen.e[index]["be"] = bol;
+                    this.examen.e[index]["fc"] = false;
+                    this.examen.e[index]["sa"] = false;
+                    this.examen.e[index]["nv"] = false;
+                    this.examen.e[index]["so"] = false;
+                    this.examen.e[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.e[index]["be"] == true) {
-                    this.e[index]["fc"] = bol;
-                    this.e[index]["sa"] = false;
-                    this.e[index]["nv"] = false;
-                    this.e[index]["so"] = false;
-                    this.e[index]["o"] = false;
+            } else if (type == "fc") {
+                if (this.examen.e[index]["be"] == true) {
+                    this.examen.e[index]["fc"] = bol;
+                    this.examen.e[index]["sa"] = false;
+                    this.examen.e[index]["nv"] = false;
+                    this.examen.e[index]["so"] = false;
+                    this.examen.e[index]["o"] = false;
                 } else {
-                    this.e[index]["be"] = false;
-                    this.e[index]["fc"] = bol;
-                    this.e[index]["sa"] = false;
-                    this.e[index]["nv"] = false;
-                    this.e[index]["so"] = false;
-                    this.e[index]["o"] = false;
+                    this.examen.e[index]["be"] = false;
+                    this.examen.e[index]["fc"] = bol;
+                    this.examen.e[index]["sa"] = false;
+                    this.examen.e[index]["nv"] = false;
+                    this.examen.e[index]["so"] = false;
+                    this.examen.e[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
-                this.e[index]["be"] = false;
-                this.e[index]["fc"] = false;
-                this.e[index]["sa"] = bol;
-                this.e[index]["nv"] = false;
-                this.e[index]["so"] = false;
-                this.e[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.e[index]["be"] = false;
-                this.e[index]["fc"] = false;
-                this.e[index]["sa"] = false;
-                this.e[index]["nv"] = bol;
-                this.e[index]["so"] = false;
-                this.e[index]["o"] = false;
-            } else if(type == 'so') {
-                this.e[index]["be"] = false;
-                this.e[index]["fc"] = false;
-                this.e[index]["sa"] = false;
-                this.e[index]["nv"] = false;
-                this.e[index]["so"] = bol;
-                this.e[index]["o"] = false;
+            } else if (type == 'sa') {
+                this.examen.e[index]["be"] = false;
+                this.examen.e[index]["fc"] = false;
+                this.examen.e[index]["sa"] = bol;
+                this.examen.e[index]["nv"] = false;
+                this.examen.e[index]["so"] = false;
+                this.examen.e[index]["o"] = false;
+            } else if (type == 'nv') {
+                this.examen.e[index]["be"] = false;
+                this.examen.e[index]["fc"] = false;
+                this.examen.e[index]["sa"] = false;
+                this.examen.e[index]["nv"] = bol;
+                this.examen.e[index]["so"] = false;
+                this.examen.e[index]["o"] = false;
+            } else if (type == 'so') {
+                this.examen.e[index]["be"] = false;
+                this.examen.e[index]["fc"] = false;
+                this.examen.e[index]["sa"] = false;
+                this.examen.e[index]["nv"] = false;
+                this.examen.e[index]["so"] = bol;
+                this.examen.e[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
-                this.e[index]["be"] = false;
-                this.e[index]["fc"] = false;
-                this.e[index]["sa"] = false;
-                this.e[index]["nv"] = false;
-                this.e[index]["so"] = false;
-                this.e[index]["o"] = bol;
+                this.examen.e[index]["be"] = false;
+                this.examen.e[index]["fc"] = false;
+                this.examen.e[index]["sa"] = false;
+                this.examen.e[index]["nv"] = false;
+                this.examen.e[index]["so"] = false;
+                this.examen.e[index]["o"] = bol;
             }
         },
 
         checkF(index, type, bol) {
-            if(type == "be") {
-                if(this.f[index]["fc"] == true) {
-                    this.f[index]["be"] = bol;
-                    this.f[index]["sa"] = false;
-                    this.f[index]["nv"] = false;
-                    this.f[index]["so"] = false;
-                    this.f[index]["o"] = false;
+            if (type == "be") {
+                if (this.examen.f[index]["fc"] == true) {
+                    this.examen.f[index]["be"] = bol;
+                    this.examen.f[index]["sa"] = false;
+                    this.examen.f[index]["nv"] = false;
+                    this.examen.f[index]["so"] = false;
+                    this.examen.f[index]["o"] = false;
                 } else {
-                    this.f[index]["be"] = bol;
-                    this.f[index]["fc"] = false;
-                    this.f[index]["sa"] = false;
-                    this.f[index]["nv"] = false;
-                    this.f[index]["so"] = false;
-                    this.f[index]["o"] = false;
+                    this.examen.f[index]["be"] = bol;
+                    this.examen.f[index]["fc"] = false;
+                    this.examen.f[index]["sa"] = false;
+                    this.examen.f[index]["nv"] = false;
+                    this.examen.f[index]["so"] = false;
+                    this.examen.f[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.f[index]["be"] == true) {
-                    this.f[index]["fc"] = bol;
-                    this.f[index]["sa"] = false;
-                    this.f[index]["nv"] = false;
-                    this.f[index]["so"] = false;
-                    this.f[index]["o"] = false;
+            } else if (type == "fc") {
+                if (this.examen.f[index]["be"] == true) {
+                    this.examen.f[index]["fc"] = bol;
+                    this.examen.f[index]["sa"] = false;
+                    this.examen.f[index]["nv"] = false;
+                    this.examen.f[index]["so"] = false;
+                    this.examen.f[index]["o"] = false;
                 } else {
-                    this.f[index]["be"] = false;
-                    this.f[index]["fc"] = bol;
-                    this.f[index]["sa"] = false;
-                    this.f[index]["nv"] = false;
-                    this.f[index]["so"] = false;
-                    this.f[index]["o"] = false;
+                    this.examen.f[index]["be"] = false;
+                    this.examen.f[index]["fc"] = bol;
+                    this.examen.f[index]["sa"] = false;
+                    this.examen.f[index]["nv"] = false;
+                    this.examen.f[index]["so"] = false;
+                    this.examen.f[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
-                this.f[index]["be"] = false;
-                this.f[index]["fc"] = false;
-                this.f[index]["sa"] = bol;
-                this.f[index]["nv"] = false;
-                this.f[index]["so"] = false;
-                this.f[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.f[index]["be"] = false;
-                this.f[index]["fc"] = false;
-                this.f[index]["sa"] = false;
-                this.f[index]["nv"] = bol;
-                this.f[index]["so"] = false;
-                this.f[index]["o"] = false;
-            } else if(type == 'so') {
-                this.f[index]["be"] = false;
-                this.f[index]["fc"] = false;
-                this.f[index]["sa"] = false;
-                this.f[index]["nv"] = false;
-                this.f[index]["so"] = bol;
-                this.f[index]["o"] = false;
+            } else if (type == 'sa') {
+                this.examen.f[index]["be"] = false;
+                this.examen.f[index]["fc"] = false;
+                this.examen.f[index]["sa"] = bol;
+                this.examen.f[index]["nv"] = false;
+                this.examen.f[index]["so"] = false;
+                this.examen.f[index]["o"] = false;
+            } else if (type == 'nv') {
+                this.examen.f[index]["be"] = false;
+                this.examen.f[index]["fc"] = false;
+                this.examen.f[index]["sa"] = false;
+                this.examen.f[index]["nv"] = bol;
+                this.examen.f[index]["so"] = false;
+                this.examen.f[index]["o"] = false;
+            } else if (type == 'so') {
+                this.examen.f[index]["be"] = false;
+                this.examen.f[index]["fc"] = false;
+                this.examen.f[index]["sa"] = false;
+                this.examen.f[index]["nv"] = false;
+                this.examen.f[index]["so"] = bol;
+                this.examen.f[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
-                this.f[index]["be"] = false;
-                this.f[index]["fc"] = false;
-                this.f[index]["sa"] = false;
-                this.f[index]["nv"] = false;
-                this.f[index]["so"] = false;
-                this.f[index]["o"] = bol;
+                this.examen.f[index]["be"] = false;
+                this.examen.f[index]["fc"] = false;
+                this.examen.f[index]["sa"] = false;
+                this.examen.f[index]["nv"] = false;
+                this.examen.f[index]["so"] = false;
+                this.examen.f[index]["o"] = bol;
             }
 
         },
 
         checkG(index, type, bol) {
-            if(type == "be") {
-                if(this.g[index]["fc"] == true) {
-                    this.g[index]["be"] = bol;
-                    this.g[index]["sa"] = false;
-                    this.g[index]["nv"] = false;
-                    this.g[index]["so"] = false;
-                    this.g[index]["o"] = false;
+            if (type == "be") {
+                if (this.examen.g[index]["fc"] == true) {
+                    this.examen.g[index]["be"] = bol;
+                    this.examen.g[index]["sa"] = false;
+                    this.examen.g[index]["nv"] = false;
+                    this.examen.g[index]["so"] = false;
+                    this.examen.g[index]["o"] = false;
                 } else {
-                    this.g[index]["be"] = bol;
-                    this.g[index]["fc"] = false;
-                    this.g[index]["sa"] = false;
-                    this.g[index]["nv"] = false;
-                    this.g[index]["so"] = false;
-                    this.g[index]["o"] = false;
+                    this.examen.g[index]["be"] = bol;
+                    this.examen.g[index]["fc"] = false;
+                    this.examen.g[index]["sa"] = false;
+                    this.examen.g[index]["nv"] = false;
+                    this.examen.g[index]["so"] = false;
+                    this.examen.g[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.g[index]["be"] == true) {
-                    this.g[index]["fc"] = bol;
-                    this.g[index]["sa"] = false;
-                    this.g[index]["nv"] = false;
-                    this.g[index]["so"] = false;
-                    this.g[index]["o"] = false;
+            } else if (type == "fc") {
+                if (this.examen.g[index]["be"] == true) {
+                    this.examen.g[index]["fc"] = bol;
+                    this.examen.g[index]["sa"] = false;
+                    this.examen.g[index]["nv"] = false;
+                    this.examen.g[index]["so"] = false;
+                    this.examen.g[index]["o"] = false;
                 } else {
-                    this.g[index]["be"] = false;
-                    this.g[index]["fc"] = bol;
-                    this.g[index]["sa"] = false;
-                    this.g[index]["nv"] = false;
-                    this.g[index]["so"] = false;
-                    this.g[index]["o"] = false;
+                    this.examen.g[index]["be"] = false;
+                    this.examen.g[index]["fc"] = bol;
+                    this.examen.g[index]["sa"] = false;
+                    this.examen.g[index]["nv"] = false;
+                    this.examen.g[index]["so"] = false;
+                    this.examen.g[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
-                this.g[index]["be"] = false;
-                this.g[index]["fc"] = false;
-                this.g[index]["sa"] = bol;
-                this.g[index]["nv"] = false;
-                this.g[index]["so"] = false;
-                this.g[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.g[index]["be"] = false;
-                this.g[index]["fc"] = false;
-                this.g[index]["sa"] = false;
-                this.g[index]["nv"] = bol;
-                this.g[index]["so"] = false;
-                this.g[index]["o"] = false;
-            } else if(type == 'so') {
-                this.g[index]["be"] = false;
-                this.g[index]["fc"] = false;
-                this.g[index]["sa"] = false;
-                this.g[index]["nv"] = false;
-                this.g[index]["so"] = bol;
-                this.g[index]["o"] = false;
+            } else if (type == 'sa') {
+                this.examen.g[index]["be"] = false;
+                this.examen.g[index]["fc"] = false;
+                this.examen.g[index]["sa"] = bol;
+                this.examen.g[index]["nv"] = false;
+                this.examen.g[index]["so"] = false;
+                this.examen.g[index]["o"] = false;
+            } else if (type == 'nv') {
+                this.examen.g[index]["be"] = false;
+                this.examen.g[index]["fc"] = false;
+                this.examen.g[index]["sa"] = false;
+                this.examen.g[index]["nv"] = bol;
+                this.examen.g[index]["so"] = false;
+                this.examen.g[index]["o"] = false;
+            } else if (type == 'so') {
+                this.examen.g[index]["be"] = false;
+                this.examen.g[index]["fc"] = false;
+                this.examen.g[index]["sa"] = false;
+                this.examen.g[index]["nv"] = false;
+                this.examen.g[index]["so"] = bol;
+                this.examen.g[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
-                this.g[index]["be"] = false;
-                this.g[index]["fc"] = false;
-                this.g[index]["sa"] = false;
-                this.g[index]["nv"] = false;
-                this.g[index]["so"] = false;
-                this.g[index]["o"] = bol;
+                this.examen.g[index]["be"] = false;
+                this.examen.g[index]["fc"] = false;
+                this.examen.g[index]["sa"] = false;
+                this.examen.g[index]["nv"] = false;
+                this.examen.g[index]["so"] = false;
+                this.examen.g[index]["o"] = bol;
             }
         },
 
         checkH(index, type, bol) {
-            if(type == "be") {
-                if(this.h[index]["fc"] == true) {
-                    this.h[index]["be"] = bol;
-                    this.h[index]["sa"] = false;
-                    this.h[index]["nv"] = false;
-                    this.h[index]["so"] = false;
-                    this.h[index]["o"] = false;
+            if (type == "be") {
+                if (this.examen.h[index]["fc"] == true) {
+                    this.examen.h[index]["be"] = bol;
+                    this.examen.h[index]["sa"] = false;
+                    this.examen.h[index]["nv"] = false;
+                    this.examen.h[index]["so"] = false;
+                    this.examen.h[index]["o"] = false;
                 } else {
-                    this.h[index]["be"] = bol;
-                    this.h[index]["fc"] = false;
-                    this.h[index]["sa"] = false;
-                    this.h[index]["nv"] = false;
-                    this.h[index]["so"] = false;
-                    this.h[index]["o"] = false;
+                    this.examen.h[index]["be"] = bol;
+                    this.examen.h[index]["fc"] = false;
+                    this.examen.h[index]["sa"] = false;
+                    this.examen.h[index]["nv"] = false;
+                    this.examen.h[index]["so"] = false;
+                    this.examen.h[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.h[index]["be"] == true) {
-                    this.h[index]["fc"] = bol;
-                    this.h[index]["sa"] = false;
-                    this.h[index]["nv"] = false;
-                    this.h[index]["so"] = false;
-                    this.h[index]["o"] = false;
+            } else if (type == "fc") {
+                if (this.examen.h[index]["be"] == true) {
+                    this.examen.h[index]["fc"] = bol;
+                    this.examen.h[index]["sa"] = false;
+                    this.examen.h[index]["nv"] = false;
+                    this.examen.h[index]["so"] = false;
+                    this.examen.h[index]["o"] = false;
                 } else {
-                    this.h[index]["be"] = false;
-                    this.h[index]["fc"] = bol;
-                    this.h[index]["sa"] = false;
-                    this.h[index]["nv"] = false;
-                    this.h[index]["so"] = false;
-                    this.h[index]["o"] = false;
+                    this.examen.h[index]["be"] = false;
+                    this.examen.h[index]["fc"] = bol;
+                    this.examen.h[index]["sa"] = false;
+                    this.examen.h[index]["nv"] = false;
+                    this.examen.h[index]["so"] = false;
+                    this.examen.h[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
-                this.h[index]["be"] = false;
-                this.h[index]["fc"] = false;
-                this.h[index]["sa"] = bol;
-                this.h[index]["nv"] = false;
-                this.h[index]["so"] = false;
-                this.h[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.h[index]["be"] = false;
-                this.h[index]["fc"] = false;
-                this.h[index]["sa"] = false;
-                this.h[index]["nv"] = bol;
-                this.h[index]["so"] = false;
-                this.h[index]["o"] = false;
-            } else if(type == 'so') {
-                this.h[index]["be"] = false;
-                this.h[index]["fc"] = false;
-                this.h[index]["sa"] = false;
-                this.h[index]["nv"] = false;
-                this.h[index]["so"] = bol;
-                this.h[index]["o"] = false;
+            } else if (type == 'sa') {
+                this.examen.h[index]["be"] = false;
+                this.examen.h[index]["fc"] = false;
+                this.examen.h[index]["sa"] = bol;
+                this.examen.h[index]["nv"] = false;
+                this.examen.h[index]["so"] = false;
+                this.examen.h[index]["o"] = false;
+            } else if (type == 'nv') {
+                this.examen.h[index]["be"] = false;
+                this.examen.h[index]["fc"] = false;
+                this.examen.h[index]["sa"] = false;
+                this.examen.h[index]["nv"] = bol;
+                this.examen.h[index]["so"] = false;
+                this.examen.h[index]["o"] = false;
+            } else if (type == 'so') {
+                this.examen.h[index]["be"] = false;
+                this.examen.h[index]["fc"] = false;
+                this.examen.h[index]["sa"] = false;
+                this.examen.h[index]["nv"] = false;
+                this.examen.h[index]["so"] = bol;
+                this.examen.h[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
-                this.h[index]["be"] = false;
-                this.h[index]["fc"] = false;
-                this.h[index]["sa"] = false;
-                this.h[index]["nv"] = false;
-                this.h[index]["so"] = false;
-                this.h[index]["o"] = bol;
+                this.examen.h[index]["be"] = false;
+                this.examen.h[index]["fc"] = false;
+                this.examen.h[index]["sa"] = false;
+                this.examen.h[index]["nv"] = false;
+                this.examen.h[index]["so"] = false;
+                this.examen.h[index]["o"] = bol;
             }
 
         },
 
         checkI(index, type, bol) {
-            if(type == "be") {
-                if(this.i[index]["fc"] == true) {
-                    this.i[index]["be"] = bol;
-                    this.i[index]["sa"] = false;
-                    this.i[index]["nv"] = false;
-                    this.i[index]["so"] = false;
-                    this.i[index]["o"] = false;
+            if (type == "be") {
+                if (this.examen.i[index]["fc"] == true) {
+                    this.examen.i[index]["be"] = bol;
+                    this.examen.i[index]["sa"] = false;
+                    this.examen.i[index]["nv"] = false;
+                    this.examen.i[index]["so"] = false;
+                    this.examen.i[index]["o"] = false;
                 } else {
-                    this.i[index]["be"] = bol;
-                    this.i[index]["fc"] = false;
-                    this.i[index]["sa"] = false;
-                    this.i[index]["nv"] = false;
-                    this.i[index]["so"] = false;
-                    this.i[index]["o"] = false;
+                    this.examen.i[index]["be"] = bol;
+                    this.examen.i[index]["fc"] = false;
+                    this.examen.i[index]["sa"] = false;
+                    this.examen.i[index]["nv"] = false;
+                    this.examen.i[index]["so"] = false;
+                    this.examen.i[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.i[index]["be"] == true) {
-                    this.i[index]["fc"] = bol;
-                    this.i[index]["sa"] = false;
-                    this.i[index]["nv"] = false;
-                    this.i[index]["so"] = false;
-                    this.i[index]["o"] = false;
+            } else if (type == "fc") {
+                if (this.examen.i[index]["be"] == true) {
+                    this.examen.i[index]["fc"] = bol;
+                    this.examen.i[index]["sa"] = false;
+                    this.examen.i[index]["nv"] = false;
+                    this.examen.i[index]["so"] = false;
+                    this.examen.i[index]["o"] = false;
                 } else {
-                    this.i[index]["be"] = false;
-                    this.i[index]["fc"] = bol;
-                    this.i[index]["sa"] = false;
-                    this.i[index]["nv"] = false;
-                    this.i[index]["so"] = false;
-                    this.i[index]["o"] = false;
+                    this.examen.i[index]["be"] = false;
+                    this.examen.i[index]["fc"] = bol;
+                    this.examen.i[index]["sa"] = false;
+                    this.examen.i[index]["nv"] = false;
+                    this.examen.i[index]["so"] = false;
+                    this.examen.i[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
-                this.i[index]["be"] = false;
-                this.i[index]["fc"] = false;
-                this.i[index]["sa"] = bol;
-                this.i[index]["nv"] = false;
-                this.i[index]["so"] = false;
-                this.i[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.i[index]["be"] = false;
-                this.i[index]["fc"] = false;
-                this.i[index]["sa"] = false;
-                this.i[index]["nv"] = bol;
-                this.i[index]["so"] = false;
-                this.i[index]["o"] = false;
-            } else if(type == 'so') {
-                this.i[index]["be"] = false;
-                this.i[index]["fc"] = false;
-                this.i[index]["sa"] = false;
-                this.i[index]["nv"] = false;
-                this.i[index]["so"] = bol;
-                this.i[index]["o"] = false;
+            } else if (type == 'sa') {
+                this.examen.i[index]["be"] = false;
+                this.examen.i[index]["fc"] = false;
+                this.examen.i[index]["sa"] = bol;
+                this.examen.i[index]["nv"] = false;
+                this.examen.i[index]["so"] = false;
+                this.examen.i[index]["o"] = false;
+            } else if (type == 'nv') {
+                this.examen.i[index]["be"] = false;
+                this.examen.i[index]["fc"] = false;
+                this.examen.i[index]["sa"] = false;
+                this.examen.i[index]["nv"] = bol;
+                this.examen.i[index]["so"] = false;
+                this.examen.i[index]["o"] = false;
+            } else if (type == 'so') {
+                this.examen.i[index]["be"] = false;
+                this.examen.i[index]["fc"] = false;
+                this.examen.i[index]["sa"] = false;
+                this.examen.i[index]["nv"] = false;
+                this.examen.i[index]["so"] = bol;
+                this.examen.i[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
-                this.i[index]["be"] = false;
-                this.i[index]["fc"] = false;
-                this.i[index]["sa"] = false;
-                this.i[index]["nv"] = false;
-                this.i[index]["so"] = false;
-                this.i[index]["o"] = bol;
+                this.examen.i[index]["be"] = false;
+                this.examen.i[index]["fc"] = false;
+                this.examen.i[index]["sa"] = false;
+                this.examen.i[index]["nv"] = false;
+                this.examen.i[index]["so"] = false;
+                this.examen.i[index]["o"] = bol;
             }
         },
 
         checkJ(index, type, bol) {
 
-            if(type == "be") {
-                if(this.j[index]["fc"] == true) {
-                    this.j[index]["be"] = bol;
-                    this.j[index]["sa"] = false;
-                    this.j[index]["nv"] = false;
-                    this.j[index]["so"] = false;
-                    this.j[index]["o"] = false;
+            if (type == "be") {
+                if (this.examen.j[index]["fc"] == true) {
+                    this.examen.j[index]["be"] = bol;
+                    this.examen.j[index]["sa"] = false;
+                    this.examen.j[index]["nv"] = false;
+                    this.examen.j[index]["so"] = false;
+                    this.examen.j[index]["o"] = false;
                 } else {
-                    this.j[index]["be"] = bol;
-                    this.j[index]["fc"] = false;
-                    this.j[index]["sa"] = false;
-                    this.j[index]["nv"] = false;
-                    this.j[index]["so"] = false;
-                    this.j[index]["o"] = false;
+                    this.examen.j[index]["be"] = bol;
+                    this.examen.j[index]["fc"] = false;
+                    this.examen.j[index]["sa"] = false;
+                    this.examen.j[index]["nv"] = false;
+                    this.examen.j[index]["so"] = false;
+                    this.examen.j[index]["o"] = false;
                 }
-            } else if(type == "fc") {
-                if(this.j[index]["be"] == true) {
-                    this.j[index]["fc"] = bol;
-                    this.j[index]["sa"] = false;
-                    this.j[index]["nv"] = false;
-                    this.j[index]["so"] = false;
-                    this.j[index]["o"] = false;
+            } else if (type == "fc") {
+                if (this.examen.j[index]["be"] == true) {
+                    this.examen.j[index]["fc"] = bol;
+                    this.examen.j[index]["sa"] = false;
+                    this.examen.j[index]["nv"] = false;
+                    this.examen.j[index]["so"] = false;
+                    this.examen.j[index]["o"] = false;
                 } else {
-                    this.j[index]["be"] = false;
-                    this.j[index]["fc"] = bol;
-                    this.j[index]["sa"] = false;
-                    this.j[index]["nv"] = false;
-                    this.j[index]["so"] = false;
-                    this.j[index]["o"] = false;
+                    this.examen.j[index]["be"] = false;
+                    this.examen.j[index]["fc"] = bol;
+                    this.examen.j[index]["sa"] = false;
+                    this.examen.j[index]["nv"] = false;
+                    this.examen.j[index]["so"] = false;
+                    this.examen.j[index]["o"] = false;
                 }
-            } else if(type == 'sa') {
-                this.j[index]["be"] = false;
-                this.j[index]["fc"] = false;
-                this.j[index]["sa"] = bol;
-                this.j[index]["nv"] = false;
-                this.j[index]["so"] = false;
-                this.j[index]["o"] = false;
-            } else if(type == 'nv') {
-                this.j[index]["be"] = false;
-                this.j[index]["fc"] = false;
-                this.j[index]["sa"] = false;
-                this.j[index]["nv"] = bol;
-                this.j[index]["so"] = false;
-                this.j[index]["o"] = false;
-            } else if(type == 'so') {
-                this.j[index]["be"] = false;
-                this.j[index]["fc"] = false;
-                this.j[index]["sa"] = false;
-                this.j[index]["nv"] = false;
-                this.j[index]["so"] = bol;
-                this.j[index]["o"] = false;
+            } else if (type == 'sa') {
+                this.examen.j[index]["be"] = false;
+                this.examen.j[index]["fc"] = false;
+                this.examen.j[index]["sa"] = bol;
+                this.examen.j[index]["nv"] = false;
+                this.examen.j[index]["so"] = false;
+                this.examen.j[index]["o"] = false;
+            } else if (type == 'nv') {
+                this.examen.j[index]["be"] = false;
+                this.examen.j[index]["fc"] = false;
+                this.examen.j[index]["sa"] = false;
+                this.examen.j[index]["nv"] = bol;
+                this.examen.j[index]["so"] = false;
+                this.examen.j[index]["o"] = false;
+            } else if (type == 'so') {
+                this.examen.j[index]["be"] = false;
+                this.examen.j[index]["fc"] = false;
+                this.examen.j[index]["sa"] = false;
+                this.examen.j[index]["nv"] = false;
+                this.examen.j[index]["so"] = bol;
+                this.examen.j[index]["o"] = false;
             }
-            else if(type == 'o') {
+            else if (type == 'o') {
                 // check false for delete observation conncte with title
-                if(bol == false) {
+                if (bol == false) {
                     const ref = "A";
                     Commentaires.deleteByRefAndObservateurId(ref, this.observateurId)
-                    .then((result) => {
-                        console.log(result)
-                    })
-                    .catch((error) => {
-                        console.log(error.message);
-                    });
-                } 
+                        .then((result) => {
+                            console.log(result)
+                        })
+                        .catch((error) => {
+                            console.log(error.message);
+                        });
+                }
 
-                this.j[index]["be"] = false;
-                this.j[index]["fc"] = false;
-                this.j[index]["sa"] = false;
-                this.j[index]["nv"] = false;
-                this.j[index]["so"] = false;
-                this.j[index]["o"] = bol;
+                this.examen.j[index]["be"] = false;
+                this.examen.j[index]["fc"] = false;
+                this.examen.j[index]["sa"] = false;
+                this.examen.j[index]["nv"] = false;
+                this.examen.j[index]["so"] = false;
+                this.examen.j[index]["o"] = bol;
             }
         },
 
@@ -1501,106 +1466,106 @@ export default {
                 .then((result) => {
                     if (result.data) {
 
-                        this.a.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                        this.examen.a.forEach((element) => {
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
-                        this.b.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                        this.examen.b.forEach((element) => {
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
-                        this.c.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                        this.examen.c.forEach((element) => {
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
-                        this.d.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                        this.examen.d.forEach((element) => {
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
-                        this.e.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                        this.examen.e.forEach((element) => {
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.f.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.g.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.h.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.i.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
 
                         this.j.forEach((element) => {
-                                element.be = false;
-                                element.fc = false;
-                                element.sa = false;
-                                element.nv = false;
-                                element.so = false;
-                                element.o = false;
-                            }
+                            element.be = false;
+                            element.fc = false;
+                            element.sa = false;
+                            element.nv = false;
+                            element.so = false;
+                            element.o = false;
+                        }
                         );
-  
+
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
                         this.$emit("changeColorExamen_famille1_lev1", false);
@@ -1613,90 +1578,90 @@ export default {
 
         checkProperties(a, b, c, d, e, f, g, h, i, j) {
 
-            for(let i = 0; i < a.length; i++) {
+            for (let i = 0; i < a.length; i++) {
                 const arr = [a[i].be, a[i].fc, a[i].nv, a[i].o, a[i].sa, a[i].so, a[i].statusCritique];
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let i = 0; i < b.length; i++) {
+            for (let i = 0; i < b.length; i++) {
 
                 const arr = [b[i].be, b[i].fc, b[i].nv, b[i].o, b[i].sa, b[i].so, b[i].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false
                 }
             }
 
-            for(let i = 0; i < c.length; i++) {
+            for (let i = 0; i < c.length; i++) {
 
                 const arr = [c[i].be, c[i].fc, c[i].nv, c[i].o, c[i].sa, c[i].so, c[i].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let i = 0; i < d.length; i++) {
+            for (let i = 0; i < d.length; i++) {
 
                 const arr = [d[i].be, d[i].fc, d[i].nv, d[i].o, d[i].sa, d[i].so, d[i].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let i = 0; i < e.length; i++) {
+            for (let i = 0; i < e.length; i++) {
 
                 const arr = [e[i].be, e[i].fc, e[i].nv, e[i].o, e[i].sa, e[i].so, e[i].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let i = 0; i < f.length; i++) {
+            for (let i = 0; i < f.length; i++) {
 
                 const arr = [f[i].be, f[i].fc, f[i].nv, f[i].o, f[i].sa, f[i].so, f[i].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let i = 0; i < g.length; i++) {
+            for (let i = 0; i < g.length; i++) {
 
                 const arr = [g[i].be, g[i].fc, g[i].nv, g[i].o, g[i].sa, g[i].so, g[i].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let i = 0; i < h.length; i++) {
+            for (let i = 0; i < h.length; i++) {
 
                 const arr = [h[i].be, h[i].fc, h[i].nv, h[i].o, h[i].sa, h[i].so, h[i].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let i = 0; i < i.length; i++) {
+            for (let i = 0; i < i.length; i++) {
 
                 const arr = [i[i].be, i[i].fc, i[i].nv, i[i].o, i[i].sa, i[i].so, i[i].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for(let i = 0; i < j.length; i++) {
+            for (let i = 0; i < j.length; i++) {
 
                 const arr = [j[i].be, j[i].fc, j[i].nv, j[i].o, j[i].sa, j[i].so, j[i].statusCritique];
 
-                if(!arr.includes(true)) {
+                if (!arr.includes(true)) {
                     return false;
                 }
             }
@@ -1705,12 +1670,12 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorExamen_famille1_lev1", this.checkProperties(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j));
+            this.$emit("changeColorExamen_famille1_lev1", this.checkProperties(this.examen.a, this.examen.b, this.examen.c, this.examen.d, this.examen.e, this.examen.f, this.examen.g, this.examen.h, this.examen.i, this.examen.j));
         },
 
         sauvegarde() {
 
-            Examens.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.h, this.i, this.j, this.observateurId)
+            Examens.create(this.examen.a, this.examen.b, this.examen.c, this.examen.d, this.examen.e, this.examen.f, this.examen.g, this.examen.h, this.examen.i, this.examen.j, this.observateurId)
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
@@ -1736,31 +1701,30 @@ export default {
 
                     this.flagLoading = false;
 
-                    this.a = result.data.examen.a;
-                    this.b = result.data.examen.b;
-                    this.c = result.data.examen.c;
-                    this.d = result.data.examen.d;
-                    this.e = result.data.examen.e;
-                    this.f = result.data.examen.f;
-                    this.g = result.data.examen.g;
-                    this.h = result.data.examen.h;
-                    this.i = result.data.examen.i;
-                    this.j = result.data.examen.j;
+                    this.examen.a = result.data.examen.a;
+                    this.examen.b = result.data.examen.b;
+                    this.examen.c = result.data.examen.c;
+                    this.examen.d = result.data.examen.d;
+                    this.examen.e = result.data.examen.e;
+                    this.examen.f = result.data.examen.f;
+                    this.examen.g = result.data.examen.g;
+                    this.examen.h = result.data.examen.h;
+                    this.examen.i = result.data.examen.i;
+                    this.examen.j = result.data.examen.j;
 
                     this.watched_sauvegarder = true;
-                    console.log(this.watched_sauvegarder)
 
                 } else {
 
                     this.flagLoading = false;
                     // delete all commentaires connected by examen but not saved
                     Examens.deleteAllCommentairesExamen(this.observateurId)
-                    .then(() => {
-                        console.log(true);
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    });
+                        .then(() => {
+                            console.log(true);
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
 
                     this.watched_sauvegarder = false;
                 }
@@ -1812,7 +1776,8 @@ table tr th:nth-child(2) {
 }
 
 
-.sauvegarder , .reset {
+.sauvegarder,
+.reset {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -1871,12 +1836,12 @@ table tr th:nth-child(2) {
     color: red;
 }
 
-td > p {
-   color: red;
-   cursor: pointer;
+td>p {
+    color: red;
+    cursor: pointer;
 }
 
-td > p:hover {
+td>p:hover {
     color: #04AA6D;
 }
 
@@ -1897,5 +1862,4 @@ td > p:hover {
     justify-content: center;
     align-items: center;
 }
-
 </style>

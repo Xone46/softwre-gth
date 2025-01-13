@@ -742,7 +742,7 @@ export default {
 
                     this.description = this.duplicate_description;
 
-                    this.flagReset = false;
+                    this.flagLoading = false;
                     this.colorSourceEnergie = this.checkSourceEnergie();
                     this.colorModeInstallation = this.checkModeInstallation();
                     this.colorLevageAuxilaire = this.checkeLevageAuxilaire();
@@ -779,9 +779,9 @@ export default {
             .then((result) => {
 
                 if (result.data.description != null) {
-                    this.flagReset = true;
                     this.description = result.data.description;
-                }
+                } 
+
 
                 this.colorSourceEnergie = this.checkSourceEnergie();
                 this.colorModeInstallation = this.checkModeInstallation();

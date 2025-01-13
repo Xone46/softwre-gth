@@ -5,10 +5,10 @@
         <h1 class="observation">Observations complémentaires</h1>
 
         <div class="alignment">
-            <input type="checkbox" :checked="(a != '')" @input="saisirA($event)"
+            <input type="checkbox" :checked="(conclusion.a != '')" @input="saisirA($event)"
                 value="Les essais ont été réalisés avec les charges mises à disposition">
             <label>
-                Les essais ont été réalisés avec les charges mises à disposition {{ poids == "" ? "......." : poids }}
+                Les essais ont été réalisés avec les charges mises à disposition {{ conclusion.poids == "" ? "......." : conclusion.poids }}
                 Kg
             </label>
         </div>
@@ -28,7 +28,7 @@
         </div>
 
         <div class="alignment">
-            <input type="checkbox" :checked="(b != '')" @input="saisirB($event)"
+            <input type="checkbox" :checked="(conclusion.b != '')" @input="saisirB($event)"
                 value="L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu de réaliser les essais correspondants avant utilisation de l'appareil.">
             <label>L'absence de charges n'ayant pas permis la réalisation des essais de fonctionnement, il y aura lieu
                 de réaliser
@@ -37,7 +37,7 @@
         </div>
 
         <div class="alignment">
-            <input type="checkbox" :checked="(c != '')" @input="saisirC($event)"
+            <input type="checkbox" :checked="(conclusion.c != '')" @input="saisirC($event)"
                 value="Absence de tableau des charges pour réaliser les essais, il y aura lieu de réaliser les essais correspondants à la capacité nominale de l'appareil.">
             <label>Absence de tableau des charges pour réaliser les essais, il y aura lieu de réaliser les essais
                 correspondants à
@@ -48,7 +48,7 @@
 
         <h1 class="conclusion">Conclusion</h1>
         <div class="alignment">
-            <input type="checkbox" :checked="(d != '')" @input="saisirD($event)"
+            <input type="checkbox" :checked="(conclusion.d != '')" @input="saisirD($event)"
                 value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation ni d'anomalie.">
             <label>La vérification de l'état de conservation et les essais de
                 fonctionnement réalisés dans les limites de la présente mission n'ont pas fait apparaître d'observation
@@ -57,7 +57,7 @@
         </div>
 
         <div class="alignment">
-            <input type="checkbox" :checked="(e != '')" @input="saisirE($event)" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la
+            <input type="checkbox" :checked="(conclusion.e != '')" @input="saisirE($event)" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la
                 présente mission font apparaitre des observations ne s'opposant pas a l'utilisation de l'appareil
                 auxquelles il convient de remédier.">
             <label>La vérification de l'état de conservation et les
@@ -68,7 +68,7 @@
         </div>
 
         <div class="alignment">
-            <input type="checkbox" :checked="(f != '')" @input="saisirF($event)" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la
+            <input type="checkbox" :checked="(conclusion.f != '')" @input="saisirF($event)" value="La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites de la
                 présente mission font apparaitre des observations s'opposant à l'utilisation de l'appareil auxquelles il
                 convient de remédier.">
             <label>La vérification de l'état de conservation et les essais de fonctionnement réalisés dans les limites
@@ -79,16 +79,16 @@
         </div>
 
         <div class="alignment">
-            <input type="checkbox" :checked="(g != '')" @input="saisirG($event)" value="Commentaire complémentaire :">
+            <input type="checkbox" :checked="(conclusion.g != '')" @input="saisirG($event)" value="Commentaire complémentaire :">
             <label>Commentaire complémentaire :
             </label>
         </div>
 
         <div class="alignment">
-            <label>{{ this.commentaire }}</label>
+            <label>{{ this.conclusion.commentaire }}</label>
         </div>
 
-        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider"
+        <Insert v-if="conclusion.falgInsert" :typeInsert="conclusion.typeInsert" :valueInsert="conclusion.valueInsert" @valider="valider"
             @annuler="annuler" />
 
         <div class="sauvegarder">
@@ -115,36 +115,31 @@ export default {
     data() {
         return {
 
-            counter_watched_a: 0,
-            counter_watched_b: 0,
-            counter_watched_c: 0,
-            counter_watched_d: 0,
-            counter_watched_e: 0,
-            counter_watched_f: 0,
-            counter_watched_g: 0,
-            counter_watched_poids: 0,
-            counter_watched_commentaire: 0,
-
+            counter_watched: 0,
             watched_sauvegarder: false,
-            falgInsert: false,
-            typeInsert: ``,
-            valueInsert: "",
-            poids: ``,
-            commentaire: '',
-            a: "",
-            child: [
-                {
-                    content: "a) Le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.",
-                }
-                , {
-                    content: "b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.",
-                }],
-            b: "",
-            c: "",
-            d: "",
-            e: "",
-            f: "",
-            g: ""
+            conclusion : {
+                falgInsert: false,
+                typeInsert: ``,
+                valueInsert: "",
+                poids: ``,
+                commentaire: '',
+                a: "",
+                child: [
+                    {
+                        content: "a) Le chef d'établissement doit définir les mesures organisationnelles et techniques visant à restreindre provisoirement l'utilisation de l'appareil à la valeur de ces charges.",
+                    }
+                    , {
+                        content: "b) Avant toute utilisation de l'appareil à une charge supérieure à nos essais, il y aura lieu de réaliser des essais de fonctionnement correspondants à la capacité nominale de l'appareil ainsi que l'essai de surcharge.",
+                    }],
+                b: "",
+                c: "",
+                d: "",
+                e: "",
+                f: "",
+                g: ""
+            }
+
+
         }
     },
 
@@ -154,165 +149,10 @@ export default {
 
     watch: {
 
-        a: {
+        conclusion: {
             handler() {
 
-                if(this.a == ""){
-                    this.watched_sauvegarder = false;
-                }
-
-                if ((this.counter_watched_a++) != 0) {
-                    this.watched_sauvegarder = false;
-                }
-
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        b: {
-            handler() {
-
-                if(this.b == ""){
-                    this.watched_sauvegarder = false;
-                }
-
-                if ((this.counter_watched_b++) != 0) {
-                    this.watched_sauvegarder = false;
-                }
-
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        c: {
-            handler() {
-
-                if(this.c == ""){
-                    this.watched_sauvegarder = false;
-                }
-
-                if ((this.counter_watched_c++) != 0) {
-                    this.watched_sauvegarder = false;
-                }
-
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        d: {
-            handler() {
-
-                if(this.c == ""){
-                    this.watched_sauvegarder = false;
-                }
-
-                if ((this.counter_watched_d++) != 0) {
-                    this.watched_sauvegarder = false;
-                }
-
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        e: {
-            handler() {
-
-                if(this.e == ""){
-                    this.watched_sauvegarder = false;
-                }
-
-                if ((this.counter_watched_e++) != 0) {
-                    this.watched_sauvegarder = false;
-                }
-
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        f: {
-            handler() {
-
-                if(this.f == ""){
-                    this.watched_sauvegarder = false;
-                }
-
-                if ((this.counter_watched_f++) != 0) {
-                    this.watched_sauvegarder = false;
-                }
-
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        g: {
-            handler() {
-
-                if(this.g == ""){
-                    this.watched_sauvegarder = false;
-                }
-
-                if ((this.counter_watched_g++) != 0) {
-                    this.watched_sauvegarder = false;
-                }
-
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        falgInsert: {
-            handler() {
-                this.watched_sauvegarder = false;
-                this.notEmpty();
-            },
-            deep: true
-        },
-        typeInsert: {
-            handler() {
-                this.watched_sauvegarder = false;
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        valueInsert: {
-            handler() {
-                this.watched_sauvegarder = false;
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        poids: {
-            handler() {
-
-                if(this.poids == ""){
-                    this.watched_sauvegarder = false;
-                }
-
-                if ((this.counter_watched_poids++) != 0) {
-                    this.watched_sauvegarder = false;
-                }
-
-                this.notEmpty();
-            },
-            deep: true
-        },
-
-        commentaire: {
-            handler() {
-
-                if(this.commentaire == ""){
-                    this.watched_sauvegarder = false;
-                }
-
-                if ((this.counter_watched_commentaire++) != 0) {
+                if((this.counter_watched++) > 0) {
                     this.watched_sauvegarder = false;
                 }
 
@@ -331,16 +171,16 @@ export default {
         checkProperties() {
 
             const arrOne = [
-                this.a != "" ? true : false,
-                this.b != "" ? true : false,
-                this.c != "" ? true : false
+                this.conclusion.a != "" ? true : false,
+                this.conclusion.b != "" ? true : false,
+                this.conclusion.c != "" ? true : false
             ];
 
             const arrTow = [
-                this.d != "" ? true : false,
-                this.e != "" ? true : false,
-                this.f != "" ? true : false,
-                this.g != "" ? true : false
+                this.conclusion.d != "" ? true : false,
+                this.conclusion.e != "" ? true : false,
+                this.conclusion.f != "" ? true : false,
+                this.conclusion.g != "" ? true : false
             ];
 
 
@@ -355,100 +195,100 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties());
+            this.$emit("changeColorConclusion_famille3_lev3", this.checkProperties());
         },
 
 
         valider(event, type) {
 
             if (type == "poids") {
-                this.poids = event;
-                this.a = this.a.concat(' ', `${this.poids} kg.`);
+                this.conclusion.poids = event;
+                this.conclusion.a = this.conclusion.a.concat(' ', `${this.conclusion.poids} kg.`);
             }
 
             if (type == "commentaire") {
-                this.commentaire = event;
-                this.g = this.g.concat(' ', this.commentaire);
+                this.conclusion.commentaire = event;
+                this.conclusion.g = this.conclusion.g.concat(' ', this.conclusion.commentaire);
             }
 
-            this.falgInsert = false;
+            this.conclusion.falgInsert = false;
         },
 
         annuler() {
-            this.falgInsert = false;
+            this.conclusion.falgInsert = false;
         },
 
         saisirA(event) {
-            if (this.a != "") {
-                this.a = "";
-                this.falgInsert = false;
-                this.poids = "";
+            if (this.conclusion.a != "") {
+                this.conclusion.a = "";
+                this.conclusion.falgInsert = false;
+                this.conclusion.poids = "";
             } else {
-                this.a = event.target.value;
-                this.typeInsert = "poids";
-                this.valueInsert = this.poids
-                this.falgInsert = true;
+                this.conclusion.a = event.target.value;
+                this.conclusion.typeInsert = "poids";
+                this.conclusion.valueInsert = this.conclusion.poids
+                this.conclusion.falgInsert = true;
             }
         },
 
         saisirB(event) {
-            if (this.b != "") {
-                this.b = "";
+            if (this.conclusion.b != "") {
+                this.conclusion.b = "";
             } else {
-                this.b = event.target.value;
+                this.conclusion.b = event.target.value;
             }
         },
 
         saisirC(event) {
-            if (this.c != "") {
-                this.c = "";
+            if (this.conclusion.c != "") {
+                this.conclusion.c = "";
             } else {
-                this.c = event.target.value;
+                this.conclusion.c = event.target.value;
             }
         },
 
         saisirD(event) {
-            if (this.d != "") {
-                this.d = "";
+            if (this.conclusion.d != "") {
+                this.conclusion.d = "";
             } else {
-                this.d = event.target.value;
+                this.conclusion.d = event.target.value;
             }
         },
 
         saisirE(event) {
 
-            if (this.e != "") {
-                this.e = "";
+            if (this.conclusion.e != "") {
+                this.conclusion.e = "";
             } else {
-                this.e = event.target.value;
+                this.conclusion.e = event.target.value;
             }
         },
 
         saisirF(event) {
 
-            if (this.f != "") {
-                this.f = "";
+            if (this.conclusion.f != "") {
+                this.conclusion.f = "";
             } else {
-                this.f = event.target.value;
+                this.conclusion.f = event.target.value;
             }
         },
 
         saisirG(event) {
 
-            if (this.g != "") {
-                this.g = "";
-                this.falgInsert = false;
-                this.commentaire = "";
+            if (this.conclusion.g != "") {
+                this.conclusion.g = "";
+                this.conclusion.falgInsert = false;
+                this.conclusion.commentaire = "";
             } else {
-                this.g = event.target.value;
-                this.typeInsert = "commentaire";
-                this.valueInsert = this.commentaire
-                this.falgInsert = true;
+                this.conclusion.g = event.target.value;
+                this.conclusion.typeInsert = "commentaire";
+                this.conclusion.valueInsert = this.conclusion.commentaire
+                this.conclusion.falgInsert = true;
             }
         },
 
         sauvegarde() {
-            Conclusion.create(this.a, this.b, this.c, this.d, this.e, this.f, this.g, this.poids, this.commentaire, this.observateurId, this.child)
+            Conclusion.create(this.conclusion.a, this.conclusion.b, this.conclusion.c, this.conclusion.d, this.conclusion.e, this.conclusion.f, this.conclusion.g, this.conclusion.poids, this.conclusion.commentaire, this.conclusion.observateurId, this.conclusion.child)
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
@@ -460,23 +300,23 @@ export default {
         },
 
         reset() {
-            Conclusion.reset(this.observateurId)
+            Conclusion.reset(this.conclusion.observateurId)
                 .then(() => {
 
-                    this.falgInsert = false;
-                    this.typeInsert = ``;
-                    this.poids = ``;
-                    this.commentaire = '';
-                    this.a = "";
-                    this.b = "";
-                    this.c = "";
-                    this.d = "";
-                    this.e = "";
-                    this.f = "";
-                    this.g = "";
+                    this.conclusion.falgInsert = false;
+                    this.conclusion.typeInsert = ``;
+                    this.conclusion.poids = ``;
+                    this.conclusion.commentaire = '';
+                    this.conclusion.a = "";
+                    this.conclusion.b = "";
+                    this.conclusion.c = "";
+                    this.conclusion.d = "";
+                    this.conclusion.e = "";
+                    this.conclusion.f = "";
+                    this.conclusion.g = "";
 
                     this.watched_sauvegarder = false;
-                    this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties());
+                    this.$emit("changeColorConclusion_famille3_lev3", this.checkProperties());
 
                 })
                 .catch((error) => {
@@ -491,17 +331,22 @@ export default {
             .then((result) => {
                 
                 if (result.data != null) {
-                    this.poids = result.data.poids;
-                    this.commentaire = result.data.commentaire;
-                    this.a = result.data.a;
-                    this.b = result.data.b;
-                    this.c = result.data.c;
-                    this.d = result.data.d;
-                    this.e = result.data.e;
-                    this.f = result.data.f;
-                    this.g = result.data.g;
-                    this.childA = result.data.childA;
+                    this.conclusion.poids = result.data.poids;
+                    this.conclusion.commentaire = result.data.commentaire;
+                    this.conclusion.a = result.data.a;
+                    this.conclusion.b = result.data.b;
+                    this.conclusion.c = result.data.c;
+                    this.conclusion.d = result.data.d;
+                    this.conclusion.e = result.data.e;
+                    this.conclusion.f = result.data.f;
+                    this.conclusion.g = result.data.g;
+                    this.conclusion.child = result.data.child;
                     this.watched_sauvegarder = true;
+                    return this.notEmpty();
+                }
+
+                if(result.data == null) {
+                    this.watched_sauvegarder = false;
                     return this.notEmpty();
                 }
             })
