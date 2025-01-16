@@ -288,7 +288,7 @@ export default {
         },
 
         sauvegarde() {
-            Conclusion.create(this.conclusion.a, this.conclusion.b, this.conclusion.c, this.conclusion.d, this.conclusion.e, this.conclusion.f, this.conclusion.g, this.conclusion.poids, this.conclusion.commentaire, this.conclusion.observateurId, this.conclusion.child)
+            Conclusion.create(this.conclusion.a, this.conclusion.b, this.conclusion.c, this.conclusion.d, this.conclusion.e, this.conclusion.f, this.conclusion.g, this.conclusion.poids, this.conclusion.commentaire, this.observateurId, this.conclusion.child)
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
@@ -327,9 +327,13 @@ export default {
 
     created() {
 
+        console.log(this.observateurId)
+
         Conclusion.select(this.observateurId)
             .then((result) => {
-                
+
+                console.log(result.data);
+
                 if (result.data != null) {
                     this.conclusion.poids = result.data.poids;
                     this.conclusion.commentaire = result.data.commentaire;

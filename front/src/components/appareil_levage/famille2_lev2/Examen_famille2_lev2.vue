@@ -609,6 +609,8 @@ export default {
 
         validerReserve(value) {
 
+            console.log(value)
+
             const indexA = this.examen.a.findIndex((el) => el.titre == value[2]);
             if (indexA != -1) {
                 this.examen.a[indexA]["o"] = true;
@@ -651,7 +653,7 @@ export default {
 
             const indexI = this.examen.i.findIndex((el) => el.titre == value[2]);
             if (indexI != -1) {
-                this.examen.i[indexA]["o"] = true;
+                this.examen.i[indexI]["o"] = true;
             }
 
             const indexJ = this.examen.j.findIndex((el) => el.titre == value[2]);
@@ -724,51 +726,51 @@ export default {
 
 
         checkAObs(index) {
-            this.examen.infoReserve = ["A", index, this.examen.a[index]["titre"], this.observateurId]
+            this.infoReserve = ["A", index, this.examen.a[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkBObs(index) {
-            this.examen.infoReserve = ["B", index, this.examen.b[index]["titre"], this.observateurId]
+            this.infoReserve = ["B", index, this.examen.b[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkCObs(index) {
-            this.examen.infoReserve = ["C", index, this.examen.c[index]["titre"], this.observateurId]
+            this.infoReserve = ["C", index, this.examen.c[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkDObs(index) {
-            this.examen.infoReserve = ["D", index, this.examen.d[index]["titre"], this.observateurId]
+            this.infoReserve = ["D", index, this.examen.d[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkEObs(index) {
-            this.examen.infoReserve = ["E", index, this.e[index]["titre"], this.observateurId]
+            this.infoReserve = ["E", index, this.examen.e[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkFObs(index) {
-            this.examen.infoReserve = ["F", index, this.f[index]["titre"], this.observateurId]
+            this.infoReserve = ["F", index, this.examen.f[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkGObs(index) {
-            this.examen.infoReserve = ["G", index, this.examen.g[index]["titre"], this.observateurId]
+            this.infoReserve = ["G", index, this.examen.g[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkHObs(index) {
-            this.examen.infoReserve = ["H", index, this.examen.h[index]["titre"], this.observateurId]
+            this.infoReserve = ["H", index, this.examen.h[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkIObs(index) {
-            this.examen.infoReserve = ["I", index, this.examen.i[index]["titre"], this.observateurId]
+            this.infoReserve = ["I", index, this.examen.i[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkJObs(index) {
-            this.examen.infoReserve = ["J", index, this.examen.j[index]["titre"], this.observateurId]
+            this.infoReserve = ["J", index, this.examen.j[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkKObs(index) {
-            this.examen.infoReserve = ["K", index, this.examen.j[index]["titre"], this.observateurId]
+            this.infoReserve = ["K", index, this.examen.j[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 

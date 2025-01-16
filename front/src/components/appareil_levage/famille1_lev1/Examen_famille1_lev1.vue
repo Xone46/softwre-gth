@@ -530,10 +530,9 @@ export default {
 
 
     watch: {
-
         examen: {
             handler() {
-                
+
                 if((this.counter_watched++) > 0) {
                     this.watched_sauvegarder = false;
                 }
@@ -591,7 +590,7 @@ export default {
 
             const indexI = this.examen.i.findIndex((el) => el.titre == value[2]);
             if (indexI != -1) {
-                this.examen.i[indexA]["o"] = true;
+                this.examen.i[indexI]["o"] = true;
             }
 
             const indexJ = this.examen.j.findIndex((el) => el.titre == value[2]);

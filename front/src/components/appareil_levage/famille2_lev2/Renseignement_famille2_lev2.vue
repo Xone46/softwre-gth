@@ -172,12 +172,14 @@
             </table>
         </div>
 
-        <div class="buttons">
+        <div class="sauvegarder">
             <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
                 {{ watched_sauvegarder == true ? "Déjà enregistré" : "Non enregistré" }}
             </button>
+        </div>
 
-            <button class="reset" @click="reset">Reset</button>
+        <div class="reset">
+            <button @click="reset">Reset</button>
         </div>
 
         <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider" @annuler="annuler" />
@@ -620,6 +622,66 @@ td button {
     background-color: red;
 }
 
+
+.sauvegarder,
+.reset {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    margin-top: 5px;
+}
+
+.sauvegarder .watch {
+    background-color: green;
+    color: white;
+    height: 30px;
+    width: 200px;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sauvegarder .watch:hover {
+    background-color: rgb(2, 49, 2);
+}
+
+.sauvegarder .not-watch {
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: 200px;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.sauvegarder .not-watch:hover {
+    background-color: rgb(84, 1, 1);
+}
+
+.reset button {
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: 200px;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset button:hover {
+    background-color: rgb(84, 1, 1);
+}
+
+
+td:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+}
+
 .saved {
     color: #04AA6D;
 }
@@ -627,68 +689,5 @@ td button {
 .not-saved {
     color: red;
 }
-
-
-
-.watch {
-    background-color: green;
-    color: white;
-    height: 200px;
-    width: 200px;
-    border: 0px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 2px;
-    font-size: x-large;
-}
-
-.not-watch {
-    background-color: red;
-    color: white;
-    height: 200px;
-    width: 200px;
-    border: 0px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 2px;
-    font-size: x-large;
-}
-
-.sauvegarder .watch:hover {
-    background-color: rgb(2, 49, 2);
-}
-
-.not-watch:hover {
-    background-color: rgb(162, 1, 1);
-    color: white;
-    height: 200px;
-    width: 200px;
-    border: 0px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 2px;
-    font-size: x-large;
-}
-
-.sauvegarder .not-watch:hover {
-    background-color: rgb(84, 1, 1);
-}
-
-.reset {
-    background-color: red;
-    color: white;
-    height: 200px;
-    width: 200px;
-    border: 0px;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 2px;
-    font-size: x-large;
-}
-
-.reset button:hover {
-    background-color: rgb(84, 1, 1);
-}
-
 
 </style>

@@ -583,7 +583,6 @@ export default {
             }
 
 
-
         }
     },
 
@@ -658,7 +657,7 @@ export default {
 
             const indexI = this.examen.i.findIndex((el) => el.titre == value[2]);
             if (indexI != -1) {
-                this.examen.i[indexA]["o"] = true;
+                this.examen.i[indexI]["o"] = true;
             }
 
             const indexJ = this.examen.j.findIndex((el) => el.titre == value[2]);
@@ -666,9 +665,9 @@ export default {
                 this.examen.j[indexJ]["o"] = true;
             }
 
-            const indexK = this.k.findIndex((el) => el.titre == value[2]);
+            const indexK = this.examen.k.findIndex((el) => el.titre == value[2]);
             if (indexK != -1) {
-                this.examen.j[indexJ]["o"] = true;
+                this.examen.k[indexK]["o"] = true;
             }
 
             this.flagReserve = false;
@@ -731,51 +730,51 @@ export default {
 
 
         checkAObs(index) {
-            this.examen.infoReserve = ["A", index, this.examen.a[index]["titre"], this.observateurId]
+            this.infoReserve = ["A", index, this.examen.a[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkBObs(index) {
-            this.examen.infoReserve = ["B", index, this.examen.b[index]["titre"], this.observateurId]
+            this.infoReserve = ["B", index, this.examen.b[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkCObs(index) {
-            this.examen.infoReserve = ["C", index, this.examen.c[index]["titre"], this.observateurId]
+            this.infoReserve = ["C", index, this.examen.c[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkDObs(index) {
-            this.examen.infoReserve = ["D", index, this.examen.d[index]["titre"], this.observateurId]
+            this.infoReserve = ["D", index, this.examen.d[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkEObs(index) {
-            this.examen.infoReserve = ["E", index, this.examen.e[index]["titre"], this.observateurId]
+            this.infoReserve = ["E", index, this.examen.e[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkFObs(index) {
-            this.examen.infoReserve = ["F", index, this.examen.f[index]["titre"], this.observateurId]
+            this.infoReserve = ["F", index, this.examen.f[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
         checkGObs(index) {
-            this.examen.infoReserve = ["G", index, this.examen.g[index]["titre"], this.observateurId]
+            this.infoReserve = ["G", index, this.examen.g[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkHObs(index) {
-            this.examen.infoReserve = ["H", index, this.examen.h[index]["titre"], this.observateurId]
+            this.infoReserve = ["H", index, this.examen.h[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkIObs(index) {
-            this.examen.infoReserve = ["I", index, this.examen.i[index]["titre"], this.observateurId]
+            this.infoReserve = ["I", index, this.examen.i[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkJObs(index) {
-            this.examen.infoReserve = ["J", index, this.examen.j[index]["titre"], this.observateurId]
+            this.infoReserve = ["J", index, this.examen.j[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
         checkKObs(index) {
-            this.examen.infoReserve = ["K", index, this.k[index]["titre"], this.observateurId]
+            this.infoReserve = ["K", index, this.examen.k[index]["titre"], this.observateurId]
             this.flagReserve = true;
         },
 
@@ -1313,7 +1312,7 @@ export default {
 
         checkH(index, type, bol) {
             if (type == "be") {
-                if (this.h[index]["fc"] == true) {
+                if (this.examen.h[index]["fc"] == true) {
                     this.examen.h[index]["be"] = bol;
                     this.examen.h[index]["sa"] = false;
                     this.examen.h[index]["nv"] = false;
@@ -1328,7 +1327,7 @@ export default {
                     this.examen.h[index]["o"] = false;
                 }
             } else if (type == "fc") {
-                if (this.h[index]["be"] == true) {
+                if (this.examen.h[index]["be"] == true) {
                     this.examen.h[index]["fc"] = bol;
                     this.examen.h[index]["sa"] = false;
                     this.examen.h[index]["nv"] = false;
@@ -1541,56 +1540,56 @@ export default {
         checkK(index, type, bol) {
 
             if (type == "be") {
-                if (this.k[index]["fc"] == true) {
-                    this.k[index]["be"] = bol;
-                    this.k[index]["sa"] = false;
-                    this.k[index]["nv"] = false;
-                    this.k[index]["so"] = false;
-                    this.k[index]["o"] = false;
+                if (this.examen.k[index]["fc"] == true) {
+                    this.examen.k[index]["be"] = bol;
+                    this.examen.k[index]["sa"] = false;
+                    this.examen.k[index]["nv"] = false;
+                    this.examen.k[index]["so"] = false;
+                    this.examen.k[index]["o"] = false;
                 } else {
-                    this.k[index]["be"] = bol;
-                    this.k[index]["fc"] = false;
-                    this.k[index]["sa"] = false;
-                    this.k[index]["nv"] = false;
-                    this.k[index]["so"] = false;
-                    this.k[index]["o"] = false;
+                    this.examen.k[index]["be"] = bol;
+                    this.examen.k[index]["fc"] = false;
+                    this.examen.k[index]["sa"] = false;
+                    this.examen.k[index]["nv"] = false;
+                    this.examen.k[index]["so"] = false;
+                    this.examen.k[index]["o"] = false;
                 }
             } else if (type == "fc") {
-                if (this.k[index]["be"] == true) {
-                    this.k[index]["fc"] = bol;
-                    this.k[index]["sa"] = false;
-                    this.k[index]["nv"] = false;
-                    this.k[index]["so"] = false;
-                    this.k[index]["o"] = false;
+                if (this.examen.k[index]["be"] == true) {
+                    this.examen.k[index]["fc"] = bol;
+                    this.examen.k[index]["sa"] = false;
+                    this.examen.k[index]["nv"] = false;
+                    this.examen.k[index]["so"] = false;
+                    this.examen.k[index]["o"] = false;
                 } else {
-                    this.k[index]["be"] = false;
-                    this.k[index]["fc"] = bol;
-                    this.k[index]["sa"] = false;
-                    this.k[index]["nv"] = false;
-                    this.k[index]["so"] = false;
-                    this.k[index]["o"] = false;
+                    this.examen.k[index]["be"] = false;
+                    this.examen.k[index]["fc"] = bol;
+                    this.examen.k[index]["sa"] = false;
+                    this.examen.k[index]["nv"] = false;
+                    this.examen.k[index]["so"] = false;
+                    this.examen.k[index]["o"] = false;
                 }
             } else if (type == 'sa') {
-                this.k[index]["be"] = false;
-                this.k[index]["fc"] = false;
-                this.k[index]["sa"] = bol;
-                this.k[index]["nv"] = false;
-                this.k[index]["so"] = false;
-                this.k[index]["o"] = false;
+                this.examen.k[index]["be"] = false;
+                this.examen.k[index]["fc"] = false;
+                this.examen.k[index]["sa"] = bol;
+                this.examen.k[index]["nv"] = false;
+                this.examen.k[index]["so"] = false;
+                this.examen.k[index]["o"] = false;
             } else if (type == 'nv') {
-                this.k[index]["be"] = false;
-                this.k[index]["fc"] = false;
-                this.k[index]["sa"] = false;
-                this.k[index]["nv"] = bol;
-                this.k[index]["so"] = false;
-                this.k[index]["o"] = false;
+                this.examen.k[index]["be"] = false;
+                this.examen.k[index]["fc"] = false;
+                this.examen.k[index]["sa"] = false;
+                this.examen.k[index]["nv"] = bol;
+                this.examen.k[index]["so"] = false;
+                this.examen.k[index]["o"] = false;
             } else if (type == 'so') {
-                this.k[index]["be"] = false;
-                this.k[index]["fc"] = false;
-                this.k[index]["sa"] = false;
-                this.k[index]["nv"] = false;
-                this.k[index]["so"] = bol;
-                this.k[index]["o"] = false;
+                this.examen.k[index]["be"] = false;
+                this.examen.k[index]["fc"] = false;
+                this.examen.k[index]["sa"] = false;
+                this.examen.k[index]["nv"] = false;
+                this.examen.k[index]["so"] = bol;
+                this.examen.k[index]["o"] = false;
             }
             else if (type == 'o') {
                 // check false for delete observation conncte with title
@@ -1605,12 +1604,12 @@ export default {
                         });
                 }
 
-                this.k[index]["be"] = false;
-                this.k[index]["fc"] = false;
-                this.k[index]["sa"] = false;
-                this.k[index]["nv"] = false;
-                this.k[index]["so"] = false;
-                this.k[index]["o"] = bol;
+                this.examen.k[index]["be"] = false;
+                this.examen.k[index]["fc"] = false;
+                this.examen.k[index]["sa"] = false;
+                this.examen.k[index]["nv"] = false;
+                this.examen.k[index]["so"] = false;
+                this.examen.k[index]["o"] = bol;
             }
         },
 
