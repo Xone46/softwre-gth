@@ -1390,7 +1390,7 @@ export default {
         checkJ(index, type, bol) {
 
             if (type == "be") {
-                if (this.j[index]["fc"] == true) {
+                if (this.examen.j[index]["fc"] == true) {
                     this.examen.j[index]["be"] = bol;
                     this.examen.j[index]["sa"] = false;
                     this.examen.j[index]["nv"] = false;
@@ -1405,7 +1405,7 @@ export default {
                     this.examen.j[index]["o"] = false;
                 }
             } else if (type == "fc") {
-                if (this.j[index]["be"] == true) {
+                if (this.examen.j[index]["be"] == true) {
                     this.examen.j[index]["fc"] = bol;
                     this.examen.j[index]["sa"] = false;
                     this.examen.j[index]["nv"] = false;

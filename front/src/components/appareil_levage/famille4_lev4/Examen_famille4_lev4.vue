@@ -186,7 +186,7 @@
                     <input type="checkbox" v-model="item.be" @change="checkE(index, 'be', item.be)">
                 </td>
                 <td>
-                    <input type="checkbox" disabledv-model="item.fc" @change="checkE(index, 'fc', item.fc)">
+                    <input type="checkbox" disabled v-model="item.fc" @change="checkE(index, 'fc', item.fc)">
                 </td>
                 <td>
                     <input type="checkbox" disabled v-model="item.sa" @change="checkE(index, 'sa', item.sa)">
@@ -1095,6 +1095,7 @@ export default {
         },
 
         checkE(index, type, bol) {
+            console.log(index, type, bol)
             if (type == "be") {
                 if (this.examen.e[index]["fc"] == true) {
                     this.examen.e[index]["be"] = bol;

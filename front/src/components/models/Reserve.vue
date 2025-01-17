@@ -94,12 +94,13 @@ export default {
 
         sauvegarder() {
 
+            console.log(this.observateurId, this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.modelSelected)
             Commentaires.create(this.observateurId, this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.modelSelected)
                 .then(() => {
                     return this.$emit('valider', this.infoReserve);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    console.log(error.message);
                 });
         },
 

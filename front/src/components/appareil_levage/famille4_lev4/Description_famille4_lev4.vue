@@ -524,10 +524,10 @@ export default {
     watch: {
         description: {
             handler() {
-
                 const count = this.counter_watched++;
-
-                if (count != 0 && count != 1) {
+                if (count == 2) {
+                    this.watched_sauvegarder = true;
+                } else if(count > 2) {
                     this.watched_sauvegarder = false;
                 }
                 this.notEmpty();
@@ -803,13 +803,10 @@ export default {
 
             Descriptions.reset(this.observateurId)
                 .then(() => {
-
                     this.description = this.duplicate_description;
-
                     this.flagReset = false;
                     this.$emit("changeColorDescription_famille4_lev4", false);
                     return this.notEmpty();
-
                 })
                 .catch((error) => {
                     console.log(error);
@@ -819,7 +816,6 @@ export default {
 
 
     created() {
-
 
         this.flagLoading = true;
         this.description.observateurId = this.observateurId;
@@ -841,9 +837,9 @@ export default {
                 if (result.data.description != null) {
                     this.flagReset = true;
                     this.description = result.data.description;
+                    this.watched_sauvegarder = true;
                 }
 
-                this.watched_sauvegarder = true;
                 this.flagLoading = false;
                 this.notEmpty();
 
