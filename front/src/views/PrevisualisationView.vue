@@ -23,7 +23,7 @@
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
                     <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
-                    <td>{{ new Date(observateur.date).toLocaleDateString() }}</td>
+                    <td>{{ new Date(observateur.date).toLocaleDateString() }} </td>
                     <td>{{ observateur.typeVerification }}</td>
                     <td>{{ observateur.typeAppareil[1] }}</td>
                     <td>{{ observateur.constructeur }}</td>

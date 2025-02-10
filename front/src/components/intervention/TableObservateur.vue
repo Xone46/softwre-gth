@@ -112,12 +112,16 @@ export default {
         },
 
         terminer(observateurId) {
+            
+            console.log("terminer")
 
             Observateurs.terminer(observateurId)
                 .then((result) => {
+                    console.log(result)
                     if(result.data.msg) {
                         const index = this.observateurs.findIndex((el) => el._id == observateurId);
-                        this.observateurs.splice(index, 1);
+                        this.observateurs[index].etat = true;
+                        // this.observateurs.splice(index, 1);
                     }
                 })
                 .catch((error) => {

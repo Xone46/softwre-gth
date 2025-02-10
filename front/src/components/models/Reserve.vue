@@ -52,6 +52,7 @@
 
 <script>
 import Commentaires from "@/requests/commentaire"
+import Reserve from "@/requests/Reserve"
 
 export default {
     name: 'reserve-component',
@@ -63,12 +64,13 @@ export default {
             content: "",
             modelSelected: [],
             commentaireId: "",
-            liste: [
-                { name: "Avec un investissement colossal de 4,41 milliards de dirhams (MMDH), ce projet est divisé entre 2,35 milliards de dirhams pour", status: "", etat: "not_saved" },
-                { name: "La station est conçue pour produire de l'eau dessalée, qui est ensuite équitablement répartie entre l'eau potable et l'eau destiné", status: "", etat: "not-saved" },
-                { name: "hectares dans la plaine de Chtouka, en substituant l'eau de mer à l'eau souterraine, et profite ainsi à environ 1.500 exploitations agricoles locales.", status: "", etat: "not_saved" },
-                { name: "première de ce type en Afrique, joue un rôle crucial en fournissant de l'eau potable à la région du Grand Agadir (Agadir Ida-Outanan et Inezgane Ait Melloul) ", status: "", etat: "not_saved" },
-            ]
+            // liste: [
+            //     { name: "Avec un investissement colossal de 4,41 milliards de dirhams (MMDH), ce projet est divisé entre 2,35 milliards de dirhams pour", status: "", etat: "not_saved" },
+            //     { name: "La station est conçue pour produire de l'eau dessalée, qui est ensuite équitablement répartie entre l'eau potable et l'eau destiné", status: "", etat: "not-saved" },
+            //     { name: "hectares dans la plaine de Chtouka, en substituant l'eau de mer à l'eau souterraine, et profite ainsi à environ 1.500 exploitations agricoles locales.", status: "", etat: "not_saved" },
+            //     { name: "première de ce type en Afrique, joue un rôle crucial en fournissant de l'eau potable à la région du Grand Agadir (Agadir Ida-Outanan et Inezgane Ait Melloul) ", status: "", etat: "not_saved" },
+            // ],
+            liste: []
         }
     },
 
@@ -203,7 +205,6 @@ export default {
 
     created() {
 
-        
         Commentaires.select(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.infoReserve[3])
             .then((result) => {
 
@@ -220,6 +221,15 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
+        
+        Reserve.read()
+        .then((result) => {
+            this.liste = result.data;
+            // console.log(result)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
 
 
