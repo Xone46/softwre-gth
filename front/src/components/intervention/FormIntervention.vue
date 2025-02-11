@@ -2,7 +2,10 @@
     <div class="form-intervention">
 
         <div class="retour">
-            <button @click="retour">Retour</button>
+            <button @click="retour">
+                <font-awesome-icon icon="list" />
+                <span>Sites d'intervtion</span>
+            </button>
         </div>
 
         <h3 v-if="interventionId == null">Création d'une nouvelle d'intervention</h3>
@@ -31,10 +34,10 @@
             <input type="text" :value="interventions.etablissement" @input="event => handelEtablissement(event)">
         </label>
 
-        <label for="Repère">
+        <!-- <label for="Repère">
             <h3>Repère (Siège social): <span class="start" v-if="interventions.repere.length == 0">*</span></h3>
             <input type="text" :value="interventions.repere" @input="event => handelRepere(event)">
-        </label>
+        </label> -->
 
         <label for="Adresse">
             <h3>Adresse (Siège social): <span class="start" v-if="interventions.adresse.length == 0">*</span></h3>
@@ -252,38 +255,47 @@ export default {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
 }
 
-.retour {
+.form-intervention .retour {
     width: 100%;
     display: flex;
-    margin: 0;
-    padding: 0;
     flex-direction: row;
     justify-content: flex-end;
-    align-items: center,
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
-.retour button {
-    padding: 10px;
-    width: 100px;
+.form-intervention .retour button {
+    padding: 0;
+    margin: 0;
+    width: 200px;
     height: 40px;
-    color: white;
-    margin-top: 0;
-    margin-bottom: 0;
+    color: hsl(0, 0%, 87%);
     border: 0px;
     border-radius: 5px;
-    background-color: #e21608;
+    background-color: rgba(255, 0, 0, 0.637);
     cursor: pointer;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.form-intervention .retour button:hover {
+    color: white;
+    background-color: red;
 }
 
 .form-intervention h3 {
     padding: 0;
     margin: 0;
 }
-
 
 .form-intervention ul {
     margin: 0;

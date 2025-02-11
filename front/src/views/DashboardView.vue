@@ -1,14 +1,16 @@
 <template>
   <div class="dashboard">
-    <img src="@/assets/person.png" alt="">
-    <p class="inspecteur">{{ nom }} {{ prenom }}</p>
-    <button @click="interventions">Interventions en cours</button>
-    <!-- <button @click="transferer">Transférer des minutes</button> -->
-    <button @click="previsualisation">Prévisualisation rapports ({{ conterTransfer }})</button>
-    <button @click="modification">Modification rapport</button>
-    <button @click="sauvgarde">Sauvgarde de secours</button>
-    <button class="deconnexion" @click="deconnexion">Déconnexion</button>
-    <Succes v-if="flagSucces" />
+    <div class="dashboard-cover">
+      <img src="@/assets/person.png" alt="">
+      <p class="inspecteur">{{ nom }} {{ prenom }}</p>
+      <button @click="interventions">Interventions en cours</button>
+      <!-- <button @click="transferer">Transférer des minutes</button> -->
+      <button @click="previsualisation">Prévisualisation rapports ({{ conterTransfer }})</button>
+      <button @click="modification">Modification rapport</button>
+      <button @click="sauvgarde">Sauvgarde de secours</button>
+      <button class="deconnexion" @click="deconnexion">Déconnexion</button>
+      <Succes v-if="flagSucces" />
+    </div>
   </div>
 </template>
 
@@ -95,48 +97,88 @@ export default {
 
 <style scoped>
 .dashboard {
+  margin: 0;
+  padding: 0;
   height: 100vh;
   width: 100%;
+  background-image: url("@/assets/jamal.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dashboard-cover {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #00007696;
 }
 
-.dashboard img {
+.dashboard-cover img {
   margin: 5px;
-  width: 80px;
-  height: 80px;
+  width: 200px;
+  height: 200px;
 }
 
-.dashboard button {
-  padding: 10px;
-  margin: 5px;
-  width: 250px;
-  height: 40px;
-  border: 0px;
-  background-color: #39498f;
+.dashboard-cover .inspecteur {
   color: white;
+  font-size: x-large;
+  font-weight: 800;
+}
+
+.dashboard-cover button {
+  margin: 5px;
+  width: 400px;
+  height: 60px;
+  border: 0px;
   cursor: pointer;
   border-radius: 5px;
-  font-size: medium;
+  font-size: larger;
+  text-align: center;
+  color: white;
 }
 
-.dashboard button:hover {
+.dashboard-cover button:hover {
   background-color: #243064;
+  border: 2px solid white;
+  color: white;
+  font-size: x-large;
+  transition: 2s;
 }
 
-.dashboard .deconnexion {
+
+.dashboard-cover button:nth-child(3) {
+  background-color: #1dbd2a;
+}
+
+.dashboard-cover button:nth-child(4) {
+  background-color: #ff3b00;
+}
+
+.dashboard-cover button:nth-child(5) {
+  background-color: #0095ff;
+}
+
+.dashboard-cover button:nth-child(6) {
+  background-color: #780080;
+}
+
+
+.dashboard-cover .deconnexion {
   margin: 5px;
-  width: fit-content;
+  margin-top: 10px;
   height: 40px;
-  border: 0px;
+  width: 200px;
   background-color: rgb(218, 52, 52);
   color: white;
   cursor: pointer;
+  font-size: large;
 }
 
-.dashboard .deconnexion:hover {
+.dashboard-cover .deconnexion:hover {
   background-color: red;
+  font-size: large;
 }
 </style>

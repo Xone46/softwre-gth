@@ -49,7 +49,7 @@
                     Aperçu le Pré-rapport
                 </button>
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="editer">
-                    Editer le Pré-rapport
+                    Editer
                 </button>
             </div>
 
@@ -281,6 +281,7 @@ export default {
 
 .table-objet-observateur {
     height: auto;
+    background-color: #aaa;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -303,8 +304,8 @@ export default {
 
 .table {
     padding: 0px;
-    width: 100%;
-    height: 300px;
+    width: auto;
+    height: auto;
 }
 
 .table-data {
@@ -324,7 +325,7 @@ export default {
     padding: 8px;
 }
 
-.table-data tr:nth-child(even) {
+.table-data tr {
     background-color: #f2f2f2;
 }
 
@@ -337,7 +338,7 @@ export default {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #04AA6D;
+    background-color: #040faa;
     color: white;
 }
 
@@ -352,14 +353,19 @@ export default {
 .actions button {
     margin-left: 5px;
     margin-right: 5px;
-    padding: 10px;
+    padding: 15px;
     color: white;
     border: 0px;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: larger;
 }
 
+.actions button:hover {
+    border: 1px solid white;
+    transition: 1s;
+}
 
 .actions .left button:nth-child(1) {
     background-color: #04AA6D;

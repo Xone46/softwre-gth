@@ -79,7 +79,7 @@ export default {
               sessionStorage.setItem("id", result.data.id);
               sessionStorage.setItem("nom", result.data.nom);
               sessionStorage.setItem("prenom", result.data.prenom);
-              this.$router.push("/dashboard").catch(()=>{});
+              this.$router.push("/dashboard").catch(() => { });
 
             }
           }
@@ -113,7 +113,6 @@ export default {
 </script>
 
 <style scoped>
-
 .login {
   height: 100%;
   width: 100%;
@@ -149,7 +148,7 @@ export default {
   align-items: flex-start;
 }
 
-.login .form ul li  {
+.login .form ul li {
   color: red;
 }
 
@@ -170,25 +169,25 @@ export default {
 
 .login .form label input {
   width: 400px;
-  height: 30px;
+  height: 40px;
   padding: 5px;
   margin: 3px;
 }
 
 .login .form button {
-  padding: 10px;
-  width: 100px;
-  height: 40px;
-  color: white;
   margin-top: 5px;
   margin-bottom: 5px;
-  border: 0px;
+  color: white;
   border-radius: 5px;
+  font-size: larger;
+  width: 250px;
+  height: 35px;
+  border: 0;
 }
 
 .connexion {
   background-color: #04AA6D;
-  cursor: pointer;
+
 }
 
 .connexion:hover {
