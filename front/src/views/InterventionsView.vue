@@ -82,7 +82,7 @@ export default {
     closeFormIntervention() {
       this.flagTableIntervention = true;
       this.flagFormIntervention = false;
-      this.flagTableObservateur = true;
+      this.flagTableObservateur = false;
     },
 
     close() {

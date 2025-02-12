@@ -24,9 +24,9 @@
                     <th>L'etat de verification</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
-                    <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
+                    <td><input type="checkbox" v-if="!observateur.etat" v-model="observateursSelect" :value="observateur._id"></td>
                     <td>{{ new Date(observateur.date).toLocaleDateString() }}</td>
-                    <td>{{ observateur.typeVerification }}</td>
+                    <td :title="observateur.typeVerification">{{ observateur.typeVerification.length > 20 ? String(observateur.typeVerification).substring(0, 25) + '...' : String(observateur.typeVerification) }}</td>
                     <td>{{ observateur.typeAppareil[1] }}</td>
                     <td>{{ observateur.metier }}</td>
                     <td>{{ observateur.constructeur }}</td>
@@ -36,14 +36,15 @@
                     <!-- <td>{{ observateur.accompagnateurClient }}</td> -->
                     <!-- <td>{{ observateur.accompagnateurInspecteur }}</td> -->
                     <td>{{ observateur.marquage }}</td>
-                    <td v-if="!observateur.etat"><button class="termine" @click="terminer(observateur._id)">Terminer</button></td>
-                    <td v-if="observateur.etat">Déjà terminé</td>
+                    <td v-if="!observateur.etat"><button class="termine"
+                            @click="terminer(observateur._id)">Envoyer</button></td>
+                    <td v-if="observateur.etat">Déjà Envoyé</td>
                 </tr>
             </table>
         </div>
 
         <div class="actions">
-            
+
             <div class="left">
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">
                     Aperçu le Pré-rapport
@@ -112,17 +113,20 @@ export default {
         },
 
         terminer(observateurId) {
-            
-            console.log("terminer")
+
 
             Observateurs.terminer(observateurId)
                 .then((result) => {
-                    console.log(result)
-                    if(result.data.msg) {
+                  
+                    if (result.data.msg == true) {
                         const index = this.observateurs.findIndex((el) => el._id == observateurId);
                         this.observateurs[index].etat = true;
-                        // this.observateurs.splice(index, 1);
                     }
+
+                    if(result.data.msg == false) {
+                        alert("Le contrôle n'est pas entièrement terminé. Veuillez examiner toutes les entrées.")
+                    }
+
                 })
                 .catch((error) => {
                     this.flagInvertesment = true;
@@ -143,12 +147,12 @@ export default {
                 Observateurs.cacher(this.observateursSelect[0])
                     .then((result) => {
 
-                        if(result.data.msg == true) {
+                        if (result.data.msg == true) {
                             const index = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
                             this.observateurs.splice(index, 1);
                         }
 
-                        if(result.data.msg == false) {
+                        if (result.data.msg == false) {
                             this.flagError = true;
                             this.msgError = result.data.content;
                         }
@@ -302,13 +306,10 @@ export default {
     align-items: center;
 }
 
-.table {
+.table-data {
     padding: 0px;
     width: auto;
     height: auto;
-}
-
-.table-data {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     display: block;
@@ -319,29 +320,32 @@ export default {
     white-space: nowrap;
 }
 
+
+.table-data tr {
+    background-color: white;
+}
+
+.table-data tr:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+.table-data th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    background-color: #040faa;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
 .table-data td,
 .table-data th {
     border: 1px solid #ddd;
     padding: 8px;
 }
-
-.table-data tr {
-    background-color: #f2f2f2;
-}
-
-.table-data tr:hover {
-    background-color: #ddd;
-    cursor: pointer;
-}
-
-.table-data th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #040faa;
-    color: white;
-}
-
 
 .actions {
     display: flex;
@@ -360,6 +364,7 @@ export default {
     border-radius: 5px;
     margin-bottom: 10px;
     font-size: larger;
+    color: white;
 }
 
 .actions button:hover {
@@ -368,11 +373,11 @@ export default {
 }
 
 .actions .left button:nth-child(1) {
-    background-color: #04AA6D;
+    background-color: #eecb05;
 }
 
 .actions .left button:nth-child(2) {
-    background-color: #0300c7;
+    background-color: #0368ec;
 }
 
 /* .actions .right button:nth-child(1) {
@@ -394,5 +399,7 @@ export default {
     border: 0px;
     cursor: pointer;
     padding: 5px;
+    border-radius: 5px;
 }
+
 </style>

@@ -37,7 +37,7 @@
                     <td>{{ intervention.site }}</td>
                     <td>{{ intervention.etablissement }}</td>
                     <!-- <td>{{ intervention.repere }}</td> -->
-                    <td>{{ intervention.adresse }}</td>
+                    <td :title="intervention.adresse">{{ intervention.adresse.length > 20 ? String(intervention.adresse).substring(0, 25) + '...' : String(intervention.adresse) }}</td>
                     <td>{{ intervention.codePostal }}</td>
                     <td>{{ intervention.ville }}</td>
                     <td>{{ intervention.pays }}</td>
@@ -189,6 +189,7 @@ export default {
 </script>
 
 <style scoped>
+
 .table-intervention {
     background-color: #aaa;
     height: auto;
@@ -230,6 +231,7 @@ export default {
     align-items: center;
     padding: 10px;
 }
+
 .retour button:hover {
     color: white;
     background-color: red;
@@ -255,22 +257,20 @@ export default {
     align-items: center;
 }
 
-.table {
+.table-data {
     padding: 0px;
     width: auto;
     height: auto;
-}
-
-.table-data {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
-.table-data td,
-.table-data th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
 
 .table-data tr {
     background-color: white;
@@ -282,11 +282,20 @@ export default {
 }
 
 .table-data th {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-align: left;
     background-color: #040faa;
     color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.table-data td,
+.table-data th {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
 .actions {

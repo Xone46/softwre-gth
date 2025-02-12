@@ -1,6 +1,7 @@
 <template>
     <div class="form-intervention">
 
+        <!-- Button retour -->
         <div class="retour">
             <button @click="retour">
                 <font-awesome-icon icon="list" />
@@ -8,6 +9,7 @@
             </button>
         </div>
 
+        <!-- Titre  -->
         <h3 v-if="interventionId == null">Création d'une nouvelle d'intervention</h3>
         <h3 v-else>Modification d'intervention</h3>
 
@@ -17,71 +19,73 @@
         </ul>
         <!-- Fin errors -->
 
-        <label for="Date d'intervention">
-            <h3>Date d'intervention : <span class="start" v-if="interventions.date.length == 0">*</span></h3>
-            <input type="date" :value="interventions.date" @input="event => interventions.date = event.target.value">
-        </label>
 
-        <label for="Numéro d'affaire">
-            <h3>Numéro d'affaire : <span class="start" v-if="interventions.numeroAffaire.length == 0">*</span></h3>
-            <input type="text" :value="interventions.numeroAffaire" @input="event => handelNumeroAffaire(event)">
-        </label>
+        <!-- Start from -->
+        <div class="form">
+
+            <label for="Date d'intervention">
+                <h3>Date d'intervention : <span class="start" v-if="interventions.date.length == 0">*</span></h3>
+                <input type="date" :value="interventions.date"
+                    @input="event => interventions.date = event.target.value">
+            </label>
+
+            <label for="Numéro d'affaire">
+                <h3>Numéro d'affaire : <span class="start" v-if="interventions.numeroAffaire.length == 0">*</span></h3>
+                <input type="text" :value="interventions.numeroAffaire" @input="event => handelNumeroAffaire(event)">
+            </label>
 
 
-        <label for="Etablissement">
-            <h3>Établissement (Siège social): <span class="start"
-                    v-if="interventions.etablissement.length == 0">*</span></h3>
-            <input type="text" :value="interventions.etablissement" @input="event => handelEtablissement(event)">
-        </label>
+            <label for="Etablissement">
+                <h3>Établissement (Siège social): <span class="start"
+                        v-if="interventions.etablissement.length == 0">*</span></h3>
+                <input type="text" :value="interventions.etablissement" @input="event => handelEtablissement(event)">
+            </label>
 
-        <!-- <label for="Repère">
-            <h3>Repère (Siège social): <span class="start" v-if="interventions.repere.length == 0">*</span></h3>
-            <input type="text" :value="interventions.repere" @input="event => handelRepere(event)">
-        </label> -->
 
-        <label for="Adresse">
-            <h3>Adresse (Siège social): <span class="start" v-if="interventions.adresse.length == 0">*</span></h3>
-            <input type="text" :value="interventions.adresse" @input="event => handelAdresse(event)">
-        </label>
+            <label for="Adresse">
+                <h3>Adresse (Siège social): <span class="start" v-if="interventions.adresse.length == 0">*</span></h3>
+                <input type="text" :value="interventions.adresse" @input="event => handelAdresse(event)">
+            </label>
 
-        <label for="Code Postal">
-            <h3>Code Postal (Siège social): <span class="start" v-if="interventions.codePostal.length == 0">*</span>
-            </h3>
-            <input type="text" :value="interventions.codePostal"
-                @input="event => interventions.codePostal = event.target.value">
-        </label>
-
-        <label for="Ville">
-            <h3>Ville (Siège social): <span class="start" v-if="interventions.ville.length == 0">*</span></h3>
-            <input type="text" :value="interventions.ville" @input="event => handelVille(event)">
-        </label>
-
-        <label for="Pays">
-            <h3>Pays (Siège social): <span class="start" v-if="interventions.pays.length == 0">*</span></h3>
-            <input type="text" :value="interventions.pays" @input="event => handelPays(event)">
-        </label>
-
-        <label for="Métier">
-            <h3>Métier : <span class="start" v-if="interventions.metier.length == 0">*</span></h3>
-            <select v-model="interventions.metier">
-                <option v-for="metier in metiers" :key="metier">{{ metier }}</option>
-            </select>
-        </label>
-
-        <label for="Numéro d'affaire">
-            <h3>Numéro de Site : <span class="start" v-if="interventions.site.length == 0">*</span></h3>
-            <input type="number" :value="interventions.site" @input="event => handelSite(event)">
-        </label>
-
-        <label class="coordonnee" for="Coordonnée du site" v-if="interventions.site >= 2">
-            <div v-for="(item, index) in Number(filterSite)" :key="item">
-                <h3>
-                    Coordonnée du site {{ index + 1 }} :<span class="start"
-                        v-if="interventions.site.length == 0">*</span>
+            <label for="Code Postal">
+                <h3>Code Postal (Siège social): <span class="start" v-if="interventions.codePostal.length == 0">*</span>
                 </h3>
-                <input type="text" :value="interventions.coordonnees[index]" @input="event => handelCoordonnee(event, index)">
-            </div>
-        </label>
+                <input type="text" :value="interventions.codePostal"
+                    @input="event => interventions.codePostal = event.target.value">
+            </label>
+
+            <label for="Ville">
+                <h3>Ville (Siège social): <span class="start" v-if="interventions.ville.length == 0">*</span></h3>
+                <input type="text" :value="interventions.ville" @input="event => handelVille(event)">
+            </label>
+
+            <label for="Pays">
+                <h3>Pays (Siège social): <span class="start" v-if="interventions.pays.length == 0">*</span></h3>
+                <input type="text" :value="interventions.pays" @input="event => handelPays(event)">
+            </label>
+
+            <label for="Métier">
+                <h3>Métier : <span class="start" v-if="interventions.metier.length == 0">*</span></h3>
+                <select v-model="interventions.metier">
+                    <option v-for="metier in metiers" :key="metier">{{ metier }}</option>
+                </select>
+            </label>
+
+            <label for="Numéro d'affaire">
+                <h3>Numéro de Site : <span class="start" v-if="interventions.site.length == 0">*</span></h3>
+                <input type="number" :value="interventions.site" @input="event => handelSite(event)">
+            </label>
+
+            <label class="coordonnee" for="Coordonnée du site" v-if="interventions.site >= 2">
+                <div v-for="(item, index) in Number(filterSite)" :key="item">
+                    <h3>
+                        <span>Coordonnée du site {{ index + 1 }} :</span>
+                        <span class="start" v-if="interventions.site.length == 0">*</span>
+                        <input type="text" :value="interventions.coordonnees[index]" @input="event => handelCoordonnee(event, index)">
+                    </h3>
+                </div>
+            </label>
+        </div>
 
         <button v-if="interventionId == null" class="valider" @click="valider">Valider</button>
         <button class="valider" @click="modifier" v-else>Modifier</button>
@@ -144,15 +148,12 @@ export default {
         },
 
         handelEtablissement(event) {
-            this.interventions.etablissement = String(event.target.value).toUpperCase();
+            this.interventions.etablissement = String(event.target.value);
         },
 
-        handelRepere(event) {
-            this.interventions.repere = String(event.target.value).toUpperCase();
-        },
 
         handelAdresse(event) {
-            this.interventions.adresse = String(event.target.value).toUpperCase();
+            this.interventions.adresse = String(event.target.value);
         },
 
         handelVille(event) {
@@ -205,8 +206,7 @@ export default {
 
 
             Interventions.create(this.interventions)
-                .then((result) => {
-                    console.log(result)
+                .then(() => {
                     return this.$emit("table");
                 })
                 .catch((error) => {
@@ -249,13 +249,14 @@ export default {
 </script>
 
 <style scoped>
+
 .form-intervention {
     margin: 0;
     padding: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
@@ -295,12 +296,14 @@ export default {
 .form-intervention h3 {
     padding: 0;
     margin: 0;
+    margin-bottom: 10px;
+    font-size: larger;
 }
 
 .form-intervention ul {
     margin: 0;
-    list-style: none;
     padding: 0;
+    list-style: none;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -326,9 +329,14 @@ export default {
 .form-intervention label input,
 .form-intervention label select {
     height: 30px;
-    width: 900px;
+    width: 600px;
+    padding-left: 3px;
     margin-top: 5px;
     margin-bottom: 5px;
+    border: 0px;
+    border-bottom: 1px solid rgb(52, 53, 53);
+    background-color: #e9e8e8;
+    outline: 0;
 }
 
 .form-intervention button {
@@ -367,12 +375,16 @@ export default {
 }
 
 
-#app>div>div>label.coordonnee {
+label.coordonnee {
     display: flex;
-    flex-direction: column
+    flex-direction: column;
 }
 
-#app>div>div>label.coordonnee>div>input {
-    width: 800px;
+div.form {
+    padding-left: 10px;
+    padding-right: 10px;
+    border-left: 1px solid #1020e5;
+    border-right: 1px solid #1020e5;
 }
+
 </style>
