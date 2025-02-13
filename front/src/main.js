@@ -4,11 +4,11 @@ import router from './router'
 import store from './store'
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHome, faList, faEnvelope, faTrash, faPencil, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faList, faEnvelope, faTrash, faPencil, faEye, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 // Add icons to the library
-library.add(faHome, faEnvelope, faList, faTrash, faPencil, faEye);
+library.add(faHome, faEnvelope, faList, faTrash, faPencil, faEye, faPlus);
 
 // Register the FontAwesomeIcon component globally
 Vue.component('font-awesome-icon', FontAwesomeIcon);

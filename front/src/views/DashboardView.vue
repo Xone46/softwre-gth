@@ -101,7 +101,7 @@ export default {
   padding: 0;
   height: 100vh;
   width: 100%;
-  background-image: url("@/assets/jamal.jpeg");
+  background-image: url("@/assets/ind1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -113,7 +113,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #00007696;
+  background-color: #00000093;
 }
 
 .dashboard-cover img {
@@ -138,6 +138,7 @@ export default {
   font-size: larger;
   text-align: center;
   color: white;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .dashboard-cover button:hover {
@@ -150,7 +151,7 @@ export default {
 
 
 .dashboard-cover button:nth-child(3) {
-  background-color: #1dbd2a;
+  background-color: #74C365;
 }
 
 .dashboard-cover button:nth-child(4) {

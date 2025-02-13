@@ -47,19 +47,25 @@
 
             <div class="left">
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">
-                    Aperçu le Pré-rapport
+                    <font-awesome-icon icon="eye" />
+                    <span>Aperçu le Pré-rapport</span>
                 </button>
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="editer">
-                    Editer
+                    <font-awesome-icon icon="list" />
+                    <span>Éditer</span>
                 </button>
             </div>
 
             <div class="right">
                 <!-- <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="cacher">Cacher</button> -->
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1"
-                    @click="modifier">Modifier</button>
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1"
-                    @click="supprimer">Supprimer</button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="modifier">
+                    <font-awesome-icon icon="pencil" />
+                    <span>Modifier</span>
+                </button>
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="supprimer">
+                    <font-awesome-icon icon="trash" />
+                    <span>Supprimer</span>
+                </button>
             </div>
 
         </div>
@@ -284,20 +290,21 @@ export default {
 <style scoped>
 
 .table-objet-observateur {
-    height: auto;
-    background-color: #aaa;
+    height: 50%;
+    background-color: #e7e7e74f;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    border-bottom: 5px solid black;
 }
 
 .sites {
     padding: 0;
     margin: 0;
     width: 95%;
-    height: 150px;
+    height: 250px;
     overflow-x: auto;
     overflow-y: auto;
     display: flex;
@@ -334,7 +341,7 @@ export default {
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: left;
-    background-color: #040faa;
+    background-color: #35353d;
     color: white;
     position: sticky;
     top: 0;
@@ -366,6 +373,11 @@ export default {
     font-size: larger;
     color: white;
 }
+
+.actions button span {
+    margin-left: 3px;
+}
+
 
 .actions button:hover {
     border: 1px solid white;

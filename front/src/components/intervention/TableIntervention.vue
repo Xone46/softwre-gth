@@ -47,14 +47,26 @@
         </div>
 
         <div class="actions">
-            <button class="nouveau" @click="$emit('nouveau')" v-show="interventionsSelect.length === 0">Nouveau Site
-                (Intervention)</button>
-            <button class="ajouter" v-show="!flagInvertesment && interventionsSelect.length === 1"
-                @click="ajouter">Ajouter (Appareil, équipement, installation)</button>
-            <button class="modifier" v-show="!flagInvertesment && interventionsSelect.length === 1"
-                @click="modifier">Modifier</button>
-            <button class="supprimer" v-show="!flagInvertesment && interventionsSelect.length === 1"
-                @click="supprimer">Supprimer</button>
+
+            <button class="nouveau" @click="$emit('nouveau')" v-show="interventionsSelect.length === 0">
+                <font-awesome-icon icon="plus" />
+                <span>Nouveau Site (Intervention)</span>
+            </button>
+
+            <button class="ajouter" v-show="!flagInvertesment && interventionsSelect.length === 1" @click="ajouter">
+                <font-awesome-icon icon="plus" />
+                <span>Ajouter (Appareil, équipement, installation)</span>
+            </button>
+
+            <button class="modifier" v-show="!flagInvertesment && interventionsSelect.length === 1" @click="modifier">
+                <font-awesome-icon icon="pencil" />
+                <span>Modifier</span>
+            </button>
+
+            <button class="supprimer" v-show="!flagInvertesment && interventionsSelect.length === 1" @click="supprimer">
+                <font-awesome-icon icon="trash" />
+                <span>Supprimer</span>
+            </button>
         </div>
 
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
@@ -96,11 +108,19 @@ export default {
 
         selectIntervention() {
 
-            if (this.interventionsSelect.length === 0) {
-                this.$emit('deleteTableIntervention');
+            if(this.interventionsSelect.length >= 2) {
+                this.interventionsSelect = [];
+                alert("Il faut choisir un seul value svp")
             } else {
-                this.apercu();
+
+                if (this.interventionsSelect.length === 0) {
+                    this.$emit('deleteTableIntervention');
+                } else {
+                    this.apercu();
+                }
             }
+
+
 
         },
 
@@ -191,8 +211,8 @@ export default {
 <style scoped>
 
 .table-intervention {
-    background-color: #aaa;
-    height: auto;
+    background-color: #e7e7e74f;
+    height: 50%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -200,7 +220,8 @@ export default {
     align-items: center;
     margin: 0;
     padding: 0;
-    border-bottom: 5px solid white;
+    border-bottom: 5px solid black;
+    border-top: 5px solid black;
 }
 
 
@@ -212,6 +233,7 @@ export default {
     align-items: center;
     margin: 0;
     padding: 0;
+    margin-top: 2px;
 }
 
 .retour button {
@@ -248,7 +270,7 @@ export default {
     padding: 0;
     margin: 0;
     width: 95%;
-    height: 150px;
+    height: 250px;
     overflow-x: auto;
     overflow-y: auto;
     display: flex;
@@ -285,7 +307,7 @@ export default {
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: left;
-    background-color: #040faa;
+    background-color: #35353d;
     color: white;
     position: sticky;
     top: 0;
@@ -307,14 +329,25 @@ export default {
 .actions button {
     margin-left: 5px;
     margin-right: 5px;
-    padding: 15px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 10px;
     color: white;
     border: 0px;
     cursor: pointer;
     border-radius: 5px;
-    margin-bottom: 10px;
     font-size: larger;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
+
+.actions button span {
+    margin-left: 2px;
+}
+
+
 
 .actions button:hover {
     border: 1px solid white;

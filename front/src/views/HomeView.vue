@@ -103,6 +103,10 @@ export default {
 
 <style scoped>
 .home {
+  background-image: url("@/assets/zelig.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;    
+    background-color: rgba(0, 0, 255, 0.514);
   height: 100vh;
   width: 100%;
   margin: 0;
