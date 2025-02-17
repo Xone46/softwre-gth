@@ -1,87 +1,93 @@
 <template>
+
     <div class="formulaire">
 
-        <h3>{{ formulaire.typeAppareil[1] }}</h3>
+        <div class="formulaire-header">
 
-        <!-- Start Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
-        <Menu_famille1_lev1 v-if="flag_Menu_famille1_lev1" :observateurId="formulaire.observateurId"
-            @renseignement="renseignement_famille1_lev1" @description="description_famille1_lev1"
-            @examen="examen_famille1_lev1" @conclusion="conclusion_famille1_lev1" @photo="photo_famille1_lev1"
-            :colorRenseignement_famille1_lev1="colorRenseignement_famille1_lev1"
-            :colorDescription_famille1_lev1="colorDescription_famille1_lev1"
-            :colorExamen_famille1_lev1="colorExamen_famille1_lev1"
-            :colorConclusion_famille1_lev1="colorConclusion_famille1_lev1"
-            :colorPhoto_famille1_lev1="colorPhoto_famille1_lev1" />
-        <!-- Fin Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
+            <!-- Titre -->
+            <h3>{{ formulaire.typeAppareil[1] }}</h3>
 
-
-        <!-- Start Famille 2-LEV2 -->
-        <Menu_famille2_lev2 v-if="flag_Menu_famille2_lev2" :observateurId="formulaire.observateurId"
-            @renseignement="renseignement_famille2_lev2" @description="description_famille2_lev2"
-            @examen="examen_famille2_lev2" @conclusion="conclusion_famille2_lev2" @photo="photo_famille2_lev2"
-            :colorRenseignement_famille2_lev2="colorRenseignement_famille2_lev2"
-            :colorDescription_famille2_lev2="colorDescription_famille2_lev2"
-            :colorExamen_famille2_lev2="colorExamen_famille2_lev2"
-            :colorConclusion_famille2_lev2="colorConclusion_famille2_lev2"
-            :colorPhoto_famille2_lev2="colorPhoto_famille2_lev2" />
-        <!-- Fin Famille 2-LEV2 -->
-
-        <!-- Start Famille 3-LEV3 -->
-        <Menu_famille3_lev3 v-if="flag_Menu_famille3_lev3" :observateurId="formulaire.observateurId"
-            @renseignement="renseignement_famille3_lev3" @description="description_famille3_lev3"
-            @examen="examen_famille3_lev3" @conclusion="conclusion_famille3_lev3" @photo="photo_famille3_lev3"
-            :colorRenseignement_famille3_lev3="colorRenseignement_famille3_lev3"
-            :colorDescription_famille3_lev3="colorDescription_famille3_lev3"
-            :colorExamen_famille3_lev3="colorExamen_famille3_lev3"
-            :colorConclusion_famille3_lev3="colorConclusion_famille3_lev3"
-            :colorPhoto_famille3_lev3="colorPhoto_famille3_lev3" />
-        <!-- Fin Famille 3-LEV3 -->
-
-        <!-- Start Famille 4-LEV4 -->
-        <Menu_famille4_lev4 v-if="flag_Menu_famille4_lev4" :observateurId="formulaire.observateurId"
-            @renseignement="renseignement_famille4_lev4" @description="description_famille4_lev4"
-            @examen="examen_famille4_lev4" @conclusion="conclusion_famille4_lev4" @photo="photo_famille4_lev4"
-            :colorRenseignement_famille4_lev4="colorRenseignement_famille4_lev4"
-            :colorDescription_famille4_lev4="colorDescription_famille4_lev4"
-            :colorExamen_famille4_lev4="colorExamen_famille4_lev4"
-            :colorConclusion_famille4_lev4="colorConclusion_famille4_lev4"
-            :colorPhoto_famille4_lev4="colorPhoto_famille4_lev4" />
-        <!-- Fin Famille 4-LEV4 -->
+            <!-- Start Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
+            <Menu_famille1_lev1 v-if="flag_Menu_famille1_lev1" :observateurId="formulaire.observateurId"
+                @renseignement="renseignement_famille1_lev1" @description="description_famille1_lev1"
+                @examen="examen_famille1_lev1" @conclusion="conclusion_famille1_lev1" @photo="photo_famille1_lev1"
+                :colorRenseignement_famille1_lev1="colorRenseignement_famille1_lev1"
+                :colorDescription_famille1_lev1="colorDescription_famille1_lev1"
+                :colorExamen_famille1_lev1="colorExamen_famille1_lev1"
+                :colorConclusion_famille1_lev1="colorConclusion_famille1_lev1"
+                :colorPhoto_famille1_lev1="colorPhoto_famille1_lev1" />
+            <!-- Fin Famille 1-LEV1_(Appareils de levage mus a bras)_Minute VGP' -->
 
 
-        <!-- Start Famille 5-LEV5 -->
-        <Menu_famille5_lev5 v-if="flag_Menu_famille5_lev5" :observateurId="formulaire.observateurId"
-            @renseignement="renseignement_famille5_lev5" @description="description_famille5_lev5"
-            @examen="examen_famille5_lev5" @conclusion="conclusion_famille5_lev5" @photo="photo_famille5_lev5"
-            :colorRenseignement_famille5_lev5="colorRenseignement_famille5_lev5"
-            :colorDescription_famille5_lev5="colorDescription_famille5_lev5"
-            :colorExamen_famille5_lev5="colorExamen_famille5_lev5"
-            :colorConclusion_famille5_lev5="colorConclusion_famille5_lev5"
-            :colorPhoto_famille5_lev5="colorPhoto_famille5_lev5" />
-        <!-- Fin Famille 5-LEV5 -->
+            <!-- Start Famille 2-LEV2 -->
+            <Menu_famille2_lev2 v-if="flag_Menu_famille2_lev2" :observateurId="formulaire.observateurId"
+                @renseignement="renseignement_famille2_lev2" @description="description_famille2_lev2"
+                @examen="examen_famille2_lev2" @conclusion="conclusion_famille2_lev2" @photo="photo_famille2_lev2"
+                :colorRenseignement_famille2_lev2="colorRenseignement_famille2_lev2"
+                :colorDescription_famille2_lev2="colorDescription_famille2_lev2"
+                :colorExamen_famille2_lev2="colorExamen_famille2_lev2"
+                :colorConclusion_famille2_lev2="colorConclusion_famille2_lev2"
+                :colorPhoto_famille2_lev2="colorPhoto_famille2_lev2" />
+            <!-- Fin Famille 2-LEV2 -->
+
+            <!-- Start Famille 3-LEV3 -->
+            <Menu_famille3_lev3 v-if="flag_Menu_famille3_lev3" :observateurId="formulaire.observateurId"
+                @renseignement="renseignement_famille3_lev3" @description="description_famille3_lev3"
+                @examen="examen_famille3_lev3" @conclusion="conclusion_famille3_lev3" @photo="photo_famille3_lev3"
+                :colorRenseignement_famille3_lev3="colorRenseignement_famille3_lev3"
+                :colorDescription_famille3_lev3="colorDescription_famille3_lev3"
+                :colorExamen_famille3_lev3="colorExamen_famille3_lev3"
+                :colorConclusion_famille3_lev3="colorConclusion_famille3_lev3"
+                :colorPhoto_famille3_lev3="colorPhoto_famille3_lev3" />
+            <!-- Fin Famille 3-LEV3 -->
+
+            <!-- Start Famille 4-LEV4 -->
+            <Menu_famille4_lev4 v-if="flag_Menu_famille4_lev4" :observateurId="formulaire.observateurId"
+                @renseignement="renseignement_famille4_lev4" @description="description_famille4_lev4"
+                @examen="examen_famille4_lev4" @conclusion="conclusion_famille4_lev4" @photo="photo_famille4_lev4"
+                :colorRenseignement_famille4_lev4="colorRenseignement_famille4_lev4"
+                :colorDescription_famille4_lev4="colorDescription_famille4_lev4"
+                :colorExamen_famille4_lev4="colorExamen_famille4_lev4"
+                :colorConclusion_famille4_lev4="colorConclusion_famille4_lev4"
+                :colorPhoto_famille4_lev4="colorPhoto_famille4_lev4" />
+            <!-- Fin Famille 4-LEV4 -->
 
 
-        <!-- Start Famille-AC1 -->
-        <Menu_famille_ac1 v-if="flag_Menu_famille_ac1" :observateurId="formulaire.observateurId"
-            @accessoire="accessoire_famille_ac1" @fiche="fiche_famille_ac1" @photo="photo_famille_ac1"
-            @renseignement="renseignement_famille_ac1" @verfication="verfication_famille_ac1"
-            :colorRenseignement_famille_ac1="colorRenseignement_famille_ac1"
-            :colorAccessoire_famille_ac1="colorAccessoire_famille_ac1" :colorFiche_famille_ac1="colorFiche_famille_ac1"
-            :colorPhoto_famille_ac1="colorPhoto_famille_ac1" />
-        <!-- Fin Famille-AC1 -->
+            <!-- Start Famille 5-LEV5 -->
+            <Menu_famille5_lev5 v-if="flag_Menu_famille5_lev5" :observateurId="formulaire.observateurId"
+                @renseignement="renseignement_famille5_lev5" @description="description_famille5_lev5"
+                @examen="examen_famille5_lev5" @conclusion="conclusion_famille5_lev5" @photo="photo_famille5_lev5"
+                :colorRenseignement_famille5_lev5="colorRenseignement_famille5_lev5"
+                :colorDescription_famille5_lev5="colorDescription_famille5_lev5"
+                :colorExamen_famille5_lev5="colorExamen_famille5_lev5"
+                :colorConclusion_famille5_lev5="colorConclusion_famille5_lev5"
+                :colorPhoto_famille5_lev5="colorPhoto_famille5_lev5" />
+            <!-- Fin Famille 5-LEV5 -->
 
-        <h3></h3>
+
+            <!-- Start Famille-AC1 -->
+            <Menu_famille_ac1 v-if="flag_Menu_famille_ac1" :observateurId="formulaire.observateurId"
+                @accessoire="accessoire_famille_ac1" @fiche="fiche_famille_ac1" @photo="photo_famille_ac1"
+                @renseignement="renseignement_famille_ac1" @verfication="verfication_famille_ac1"
+                :colorRenseignement_famille_ac1="colorRenseignement_famille_ac1"
+                :colorAccessoire_famille_ac1="colorAccessoire_famille_ac1"
+                :colorFiche_famille_ac1="colorFiche_famille_ac1" :colorPhoto_famille_ac1="colorPhoto_famille_ac1" />
+            <!-- Fin Famille-AC1 -->
+        </div>
 
 
         <div class="content">
 
+            <div class="left">
+            </div>
+
             <!-- famille1_lev1 -->
-            <div class="left" v-if="flag_famille1_lev1">
+            <div class="centre" v-if="flag_famille1_lev1">
 
                 <KeepAlive>
                     <Renseignement_famille1_lev1 v-if="flagRenseignement_famille1_lev1"
                         @changeColorRenseignement_famille1_lev1="changeColorRenseignement_famille1_lev1"
-                        :observateurId="formulaire.observateurId"  />
+                        :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
@@ -117,7 +123,7 @@
             </div>
 
             <!-- famille2_lev2 -->
-            <div class="left" v-if="flag_famille2_lev2">
+            <div class="centre" v-if="flag_famille2_lev2">
 
                 <KeepAlive>
                     <Renseignement_famille2_lev2 v-if="flagRenseignement_famille2_lev2"
@@ -158,7 +164,7 @@
             </div>
 
             <!-- famille3_lev3 -->
-            <div class="left" v-if="flag_famille3_lev3">
+            <div class="centre" v-if="flag_famille3_lev3">
 
                 <KeepAlive>
                     <Renseignement_famille3_lev3 v-if="flagRenseignement_famille3_lev3"
@@ -199,7 +205,7 @@
             </div>
 
             <!-- famille4_lev4 -->
-            <div class="left" v-if="flag_famille4_lev4">
+            <div class="centre" v-if="flag_famille4_lev4">
 
                 <KeepAlive>
                     <Renseignement_famille4_lev4 v-if="flagRenseignement_famille4_lev4"
@@ -240,7 +246,7 @@
             </div>
 
             <!-- famille5_lev5 -->
-            <div class="left" v-if="flag_famille5_lev5">
+            <div class="centre" v-if="flag_famille5_lev5">
 
                 <KeepAlive>
                     <Renseignement_famille5_lev5 v-if="flagRenseignement_famille5_lev5"
@@ -281,7 +287,7 @@
             </div>
 
             <!-- Famille AC1 -->
-            <div class="left" v-if="flag_famille_ac1">
+            <div class="centre" v-if="flag_famille_ac1">
 
                 <KeepAlive>
                     <Renseignement_famille_ac1 v-if="flagRenseignement_famille_ac1"
@@ -311,14 +317,21 @@
                 <button @click="retour">Liste des interventions</button>
                 <button @click="visualiationReserve">Visualisation les réserves</button>
             </div>
+
         </div>
 
-        <VisualiationReserve :observateurId="formulaire.observateurId" v-if="flagVisualiationReserve"
-            @quitter="handelQuitter" />
+        <!-- <div class="formulaire-bottom">
+            <ul>
+                <li>© {{ currentYear }} Groupe GTHCONSULT</li>
+                <li>Bienvenue, nous vous informer que ce logiciel privée pour à la société GTHCONSULT , et chaque utilisation illégale peut conduire à un problème juridique</li>
+                <li>© 2025 Groupe GTHCONSULT</li>
+            </ul>
+        </div> -->
+
+        <VisualiationReserve :observateurId="formulaire.observateurId" v-if="flagVisualiationReserve" @quitter="handelQuitter" />
 
     </div>
 
-    
 </template>
 
 <script>
@@ -390,7 +403,9 @@ export default {
     data() {
         return {
 
-            counter_saved : 0,
+            currentYear : null,
+
+            counter_saved: 0,
 
             flag_famille1_lev1: false,
             flag_Menu_famille1_lev1: false,
@@ -623,7 +638,7 @@ export default {
         // ------------------------------------------------------------------
 
 
-        
+
         // All functions for Change color famille3_lev3 ---------------------------
         async changeColorRenseignement_famille3_lev3(value) {
             this.colorRenseignement_famille3_lev3 = value;
@@ -1016,6 +1031,8 @@ export default {
 
     created() {
 
+        this.currentYear = new Date().getFullYear();
+
         this.formulaire.observateurId = this.$route.params.id;
         this.formulaire.typeAppareil = this.$route.params.typeAppareil;
         this.formulaire.interventionId = this.$route.params.interventionId;
@@ -1064,11 +1081,12 @@ export default {
 </script>
 
 <style scoped>
+
 .formulaire {
-    padding: 0;
-    margin: 0;
-    height: 100%;
     width: 100%;
+    height: 100%;
+    overflow: hidden; /* Hide scrollbars */
+    box-sizing: content-box; /* So the width will be 100% + 17px */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -1076,55 +1094,92 @@ export default {
 }
 
 
-.formulaire h3 {
+.formulaire .formulaire-header {
     width: 100%;
-    background-color: #141293;
-    color: white;
-    padding: 10px;
+    height: auto;
+    border: 5px solid #141293;
+    position: sticky;
+    top: 0;
+    background-color: white;
 }
 
-
-.formulaire .content .right {
-    display: flex;
-    flex-direction: column;
-}
-
-.formulaire .content .right button {
-    padding: 10px;
-    color: white;
-    margin: 3px;
-    cursor: pointer;
-    background-color: #1020e5;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    font-size: x-large;
-    border: 0px;
-}
-
-.formulaire .content .right button:nth-child(1) {
-    background-color: #1020e5;
-}
-
-.formulaire .content .right button:nth-child(1):hover {
-    background-color: #040e81;
-}
-
-.formulaire .content .right button:nth-child(2) {
-    background-color: #e98116;
-}
-
-.formulaire .content .right button:nth-child(2):hover {
-    background-color: #a15304;
-}
-
-
-.content {
-    width: 100%;
-    margin: 0;
+.formulaire .content {
+    height: 100%;
+    width : auto;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
 }
+
+.formulaire .content .left {
+    width: 10%;
+    height: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+.formulaire .content .centre {
+    padding: 0;
+    margin: 0;
+    width: 80%;
+    height: inherit;
+    overflow-y: auto;
+}
+
+.formulaire .content .right {
+    width : 10%;
+    height: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+.formulaire .content .right button {
+    border-radius: 50%;
+    color: white;
+    width : 120px;
+    height : 120px;
+    border: 0;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-size: medium;
+}
+
+.formulaire .content .right button:nth-child(1) {
+    background-color: #ff3b00;
+}
+
+.formulaire .content .right button:nth-child(1):hover {
+    background-color: #d63302;
+    font-size: large;
+    transition: 1s;
+}
+
+
+.formulaire .content .right button:nth-child(2) {
+    background-color: #0095ff;
+}
+
+.formulaire .content .right button:nth-child(2):hover {
+    background-color: #046db8;
+    font-size: large;
+    transition: 1s;
+}
+
+/* 
+.formulaire .formulaire-bottom {
+    background-color: #141293;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+.formulaire .formulaire-bottom ul li {
+    list-style: none;
+} */
+
+
+
+
 </style>

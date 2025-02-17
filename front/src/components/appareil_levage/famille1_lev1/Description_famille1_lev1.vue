@@ -2,6 +2,13 @@
 
     <div class="descriptions">
 
+        <div class="sauvegarder">
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
+                {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
+            </button>
+            <button @click="reset">Initialiser</button>
+        </div>
+
         <table>
 
             <tr>
@@ -177,17 +184,6 @@
 
 
         </table>
-
-        <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
-                {{ watched_sauvegarder == true ? "Déjà enregistré" : "Non enregistré" }}
-            </button>
-        </div>
-
-        <div class="reset">
-            <button @click="reset">Reset</button>
-        </div>
-
 
         <Loading v-if="flagLoading" />
 
@@ -678,11 +674,13 @@ export default {
 .descriptions table {
     border-collapse: collapse;
     border: none;
+    overflow: scroll;
 }
 
 .descriptions table tr td:nth-child(1) {
     font-size: x-large;
     width: 40px;
+    border-right: 1px solid black;
 }
 
 .descriptions table tr td:nth-child(2) {
@@ -764,15 +762,22 @@ select {
     font-size: medium;
 }
 
-.sauvegarder,
-.reset {
+.sauvegarder {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 5px;
     margin-top: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #141293;
+    /* overflow-y: auto; */
+}
+
+.sauvegarder button {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .sauvegarder .watch {
@@ -803,7 +808,7 @@ select {
     background-color: rgb(84, 1, 1);
 }
 
-.reset button {
+.sauvegarder button {
     background-color: red;
     color: white;
     height: 30px;
@@ -812,7 +817,7 @@ select {
     border-radius: 5px;
 }
 
-.reset button:hover {
+.sauvegarder button:hover {
     background-color: rgb(84, 1, 1);
 }
 

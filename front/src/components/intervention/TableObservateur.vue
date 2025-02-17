@@ -297,7 +297,6 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 5px solid black;
 }
 
 .sites {

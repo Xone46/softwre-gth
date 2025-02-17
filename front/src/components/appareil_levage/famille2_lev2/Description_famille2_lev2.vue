@@ -130,12 +130,12 @@
 
         <div class="sauvegarder">
             <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
-                {{ watched_sauvegarder == true ? "Déjà enregistré" : "Non enregistré" }}
+                {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
             </button>
         </div>
 
-        <div class="reset">
-            <button @click="reset">Reset</button>
+       <div class="reset">
+            <button @click="reset">Initialiser</button>
         </div>
 
         <Loading v-if="flagLoading" />
@@ -830,6 +830,7 @@ td {
 
 table tr td:nth-child(1) {
     width: 40px;
+    border-right: 1px solid black;
 }
 
 /* End Configuration Table */

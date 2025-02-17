@@ -106,8 +106,8 @@
             </button>
         </div>
 
-        <div class="reset">
-            <button @click="reset">Reset</button>
+       <div class="reset">
+            <button @click="reset">Initialiser</button>
         </div>
 
         <Insert v-if="falgInsert" :typeInsert="typeInsert" @valider="valider" @annuler="annuler" />
