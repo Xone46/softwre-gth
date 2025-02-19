@@ -19,10 +19,11 @@
             </table>
 
             <!-- saisir libre -->
-             <div class="saisir-libre">
-                <textarea v-if="flagSaisie" v-model="content" rows="20" placeholder="Vous devez saisir votre commentaire"></textarea>
+            <div class="saisir-libre">
+                <textarea v-if="flagSaisie" v-model="content" rows="20"
+                    placeholder="Vous devez saisir votre commentaire"></textarea>
                 <button class="ajouter" v-if="flagSaisie" @click="ajouter">Ajouter commentaire</button>
-             </div>
+            </div>
 
             <!-- liste sélectionnées -->
             <h4 v-if="modelSelected.length != 0">Notes finales sélectionnées</h4>
@@ -41,7 +42,8 @@
 
             <div class="buttons-tail">
                 <button class="sauvegarder" v-if="modelSelected.length != 0" @click="sauvegarder">Sauvegarde</button>
-                <button class="reset" v-if="commentaireId != '' && modelSelected.length >= 1" @click="reset">Reset</button>
+                <button class="reset" v-if="commentaireId != '' && modelSelected.length >= 1"
+                    @click="reset">Reset</button>
                 <button class="sortir" @click="sortir">Sortir</button>
             </div>
 
@@ -96,7 +98,6 @@ export default {
 
         sauvegarder() {
 
-            console.log(this.observateurId, this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.modelSelected)
             Commentaires.create(this.observateurId, this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.modelSelected)
                 .then(() => {
                     return this.$emit('valider', this.infoReserve);
@@ -119,11 +120,11 @@ export default {
 
         sortir() {
 
-            if(this.modelSelected.length == 0) {
+            if (this.modelSelected.length == 0) {
                 return this.$emit('annuler', this.infoReserve);
             }
 
-            if(this.modelSelected.length >= 1) {
+            if (this.modelSelected.length >= 1) {
                 return this.$emit('sortir');
             }
         },
@@ -221,15 +222,15 @@ export default {
             .catch((error) => {
                 console.log(error);
             });
-        
+
         Reserve.read()
-        .then((result) => {
-            this.liste = result.data;
-            // console.log(result)
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+            .then((result) => {
+                this.liste = result.data;
+                // console.log(result)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
 
@@ -238,7 +239,6 @@ export default {
 
 
 <style scoped>
-
 .reserve {
     width: 100%;
     height: 100%;
@@ -253,69 +253,82 @@ export default {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    padding: 0;
+    margin: 0;
 }
 
 
 .reserve .parent {
     background-color: white;
-    height: 1000px;
-    width: 1000px;
-    padding: 20px;
+    height: 90vh;
+    width: 70%;
+    margin: 0;
+    padding: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    border: 3px solid black;
 }
 
 
 .reserve .parent h3 {
-    color: #0000b3;
+    background-color: #35353d;
+    color: white;
     font-size: large;
     padding: 5px;
-    border-bottom: 1px solid #0000b3;
+    margin: 0;
 }
 
 .reserve .parent .buttons-head {
     width: 100%;
+    margin: 0;
+    padding: 5px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    border-bottom: 1px solid #0000b3;
-    padding : 5px; 
+    background-color: #ddd;
 }
 
 .reserve .parent .buttons-head button {
-    background-color: #000076;
+    background-color: #ff3b00;
     color: white;
+    border: 0;
+    margin: 0;
+    margin-left: 5px;
+    margin-right: 5px;
     padding: 10px;
     width: fit-content;
-    font-size: large;
-    border-radius: 25px;
-    border: 0px;
+    border-radius: 15px;
     cursor: pointer;
-    text-align: center;
-    margin: 5px;
 }
 
 .reserve .parent .buttons-head button:hover {
-    background-color: blue;
+    background-color: #04AA6D;
+    transition: 1s;
 }
 
 #customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 #customers td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: justify;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: justify;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
-#customers tr:hover {background-color: #ddd;}
+#customers tr:hover {
+    background-color: #ddd;
+}
 
 .reserve .parent h4 {
     color: #0000b3;
@@ -455,6 +468,4 @@ select {
     height: 35px;
     padding: 2px;
 }
-
-
 </style>
