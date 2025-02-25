@@ -1,7 +1,7 @@
 <template>
     <div class="photos">
 
-        <h1 v-if="!flagReset">Veuillez entrer une photo</h1>
+        <h1 v-if="!flagReset">Veuillez saisir votre photo</h1>
 
         <p class="display-button" v-if="flagReset" @click="displayImage">Clique ici pour voir Image</p>
         <input  type="file" multiple="multiple" class="form-control" placeholder="Format Photo" ref="file" @change="previewFile"/>
@@ -19,6 +19,7 @@
   
 <script>
 import Photos from "@/requests/appareil_levage/famille2_lev2/Photos"
+
 export default {
     name: 'photo-component',
     data() {
@@ -30,6 +31,7 @@ export default {
     },
 
     components: {
+        
     },
 
     props : {
@@ -107,8 +109,7 @@ export default {
   
 <style scoped>
 .photos {
-    width: 1000px;
-    height: 100%;
+    width: 100%;
     margin-top: 10px;
     margin-left: 0;
     margin-right: 0;
@@ -121,7 +122,6 @@ export default {
 
 .photos input {
     width: 60%;
-    height: 150px;
     background-color: white;
     border: 3px solid #04AA6D;
     border-radius: 10px;
@@ -152,8 +152,8 @@ export default {
 }
 
 .display-button {
-    background-color: #04AA6D;
-    color: white;
+    border: 1px solid #04AA6D;
+    color: #04AA6D;
     padding: 10px;
     cursor: pointer;
     border-radius: 10px;
@@ -183,4 +183,21 @@ export default {
     background-color: rgb(84, 1, 1);
 }
 
+.spinner {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 </style>

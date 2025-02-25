@@ -11,7 +11,7 @@
             </div>
 
             <!-- les modeles disponibles -->
-            <table id="customers" v-if="flagPhrases">
+            <table class="modeles-disponibles" v-if="flagPhrases">
                 <tr v-for="(item, index) in liste" :value="item.name" :key="index">
                     <td>{{ item.name }}</td>
                     <td><button class="choisir" @click="choisir(item.name)">choisir</button></td>
@@ -19,19 +19,19 @@
             </table>
 
             <!-- saisir libre -->
-            <div class="saisir-libre">
+            <div class="saisir-libre" v-if="flagSaisie">
                 <textarea v-if="flagSaisie" v-model="content" rows="20"
                     placeholder="Vous devez saisir votre commentaire"></textarea>
                 <button class="ajouter" v-if="flagSaisie" @click="ajouter">Ajouter commentaire</button>
             </div>
 
             <!-- liste sélectionnées -->
-            <h4 v-if="modelSelected.length != 0">Notes finales sélectionnées</h4>
-            <table id="customers">
+            <table class="modeles-selectiones">
                 <tr v-for="(item, index) in modelSelected" :value="item.name" :key="index + 100">
                     <td>{{ item.name }}</td>
                     <td>
                         <button class="supprimer" @click="supprimer(item.name)">supprimer</button>
+                        <button class="supprimer" @click="edit(item.name)">edit</button>
                         <select v-model="item.status">
                             <option value="critique">Critique</option>
                             <option value="non critique">Non critique</option>
@@ -43,8 +43,8 @@
             <div class="buttons-tail">
                 <button class="sauvegarder" v-if="modelSelected.length != 0" @click="sauvegarder">Sauvegarde</button>
                 <button class="reset" v-if="commentaireId != '' && modelSelected.length >= 1"
-                    @click="reset">Reset</button>
-                <button class="sortir" @click="sortir">Sortir</button>
+                    @click="reset">Initialiser</button>
+                <button class="quitter" @click="sortir">Quitter</button>
             </div>
 
         </div>
@@ -148,9 +148,15 @@ export default {
             this.modelSelected.push({
                 name: value,
                 status: "",
-                etat: "not_saved"
+                etat: "not_saved",
+                disabled: false
             });
 
+        },
+
+        edit(value) {
+            const index = this.liste.findIndex((el) => el.name == value);
+            this.modelSelected[index].disabled = !this.modelSelected[index].disabled;
         },
 
         supprimer(value) {
@@ -163,7 +169,8 @@ export default {
                 this.liste.push({
                     name: value,
                     status: "",
-                    etat: "not_saved"
+                    etat: "not_saved",
+                    disabled: false
                 });
 
             } else {
@@ -175,7 +182,8 @@ export default {
                         this.liste.push({
                             name: value,
                             status: "",
-                            etat: "not_saved"
+                            etat: "not_saved",
+                            disabled: false
                         });
 
                     })
@@ -206,31 +214,43 @@ export default {
 
     created() {
 
+        Reserve.read()
+            .then((result) => {
+                this.liste = result.data;
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
         Commentaires.select(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.infoReserve[3])
             .then((result) => {
 
                 this.commentaireId = result.data._id;
 
-                result.data.modelSelected.forEach((el) => {
-                    const index = this.liste.findIndex(val => val == el.name)
-                    this.liste.splice(index, 1);
-                });
 
-                this.modelSelected = result.data.modelSelected;
+                if(result.data.modelSelected) {
+
+                    result.data.modelSelected.forEach((el) => {
+                        const index = this.liste.findIndex(val => val == el.name)
+                        this.liste.splice(index, 1);
+                    });
+
+                    for(let i = 0; i < result.data.modelSelected.length; i++) {
+                        result.data.modelSelected[i].disabled = false;
+                        this.modelSelected.push(result.data.modelSelected[i])
+                    }
+
+                }
+
+
+
 
             })
             .catch((error) => {
                 console.log(error);
             });
 
-        Reserve.read()
-            .then((result) => {
-                this.liste = result.data;
-                // console.log(result)
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+
     }
 
 
@@ -261,6 +281,7 @@ export default {
 .reserve .parent {
     background-color: white;
     height: 90vh;
+    position: relative;
     width: 70%;
     margin: 0;
     padding: 0;
@@ -275,6 +296,7 @@ export default {
 
 .reserve .parent h3 {
     background-color: #35353d;
+    height: 5%;
     color: white;
     font-size: large;
     padding: 5px;
@@ -283,6 +305,7 @@ export default {
 
 .reserve .parent .buttons-head {
     width: 100%;
+    height: 5%;
     margin: 0;
     padding: 5px;
     display: flex;
@@ -310,162 +333,176 @@ export default {
     transition: 1s;
 }
 
-#customers {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-#customers td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: justify;
-}
-
-#customers tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-#customers tr:hover {
-    background-color: #ddd;
-}
-
-.reserve .parent h4 {
-    color: #0000b3;
-    font-size: large;
-    padding: 5px;
-    border-bottom: 1px solid #0000b3;
-}
-
-.reserve .parent .buttons-tail {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center
-}
 
 .saisir-libre {
     width: 100%;
-    margin: 10px;
+    height: 40%;
+    margin: 0;
+    margin-top: 5px;
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
 }
 
-textarea {
-    width: 100%;
+.saisir-libre textarea {
+    width: 90%;
+    height: 100%;
+    margin: 0;
     padding: 5px;
     font-size: large;
+    outline: 0;
 }
 
-
-.ajouter {
-    background-color: #045a08;
-    color: white;
-    padding: 10px;
-    width: 160px;
-    border-radius: 25px;
-    border: 0px;
-    cursor: pointer;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.ajouter:hover {
-    background-color: rgb(19, 190, 4);
-}
-
-
-
-.choisir {
-    background-color: #000076;
-    color: white;
-    padding: 10px;
+.saisir-libre .ajouter {
     width: fit-content;
-    border-radius: 25px;
-    border: 0px;
-    cursor: pointer;
-    text-align: center;
-    margin: 3px;
-    margin: 5px;
-}
-
-.choisir:hover {
-    background-color: blue;
-}
-
-.supprimer {
-    background-color: #ff0000;
-    color: white;
     padding: 10px;
-    width: fit-content;
-    border-radius: 25px;
-    border: 0px;
+    background-color: #04AA6D;
+    color: white;
+    border: 0;
+    margin: 0;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-radius: 15px;
     cursor: pointer;
-    text-align: center;
-    margin: 3px;
-    margin: 5px;
 }
 
-.supprimer:hover {
-    background-color: rgb(185, 15, 15);
-}
-
-.sauvegarder {
+.saisir-libre .ajouter:hover {
     background-color: green;
-    color: white;
-    padding: 10px;
-    width: 160px;
-    font-size: large;
-    border-radius: 25px;
-    border: 0px;
+}
+
+
+.modeles-selectiones {
+    width: 100%;
+    display: block;
+    height: 40%;
+    overflow-y: scroll;
+    background-color: #dddddd;
+}
+
+
+.modeles-selectiones tr {
+    background-color: antiquewhite;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: auto;
+}
+
+.modeles-selectiones tr:hover {
+    background-color: #f2f2f2;
     cursor: pointer;
-    margin-top: 5px;
 }
 
-.sauvegarder:hover {
-    background-color: rgb(6, 189, 6);
+.modeles-selectiones>tr>td:nth-child(1) {
+    width: 90%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
 
-.reset {
-    background-color: rgb(255, 102, 0);
+
+.modeles-selectiones>tr>td:nth-child(2) {
+    width: auto;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.modeles-selectiones>tr>td:nth-child(2)>button:nth-child(1) {
+    width: fit-content;
+    background-color: red;
     color: white;
-    padding: 10px;
-    width: 160px;
-    font-size: large;
-    border-radius: 25px;
-    border: 0px;
-    cursor: pointer;
-    margin-top: 5px;
+    border: 0;
+    padding: 5px;
+    margin: 0;
+    border-radius: 15px;
+    margin-left: 3px;
+    text-align: start;
 }
 
-.reset:hover {
-    background-color: rgb(161, 63, 6);
-}
-
-.sortir {
-    background-color: rgba(255, 2, 2, 0.582);
+.modeles-selectiones>tr>td:nth-child(2)>button:nth-child(2) {
+    width: fit-content;
+    background-color: #04AA6D;
     color: white;
-    padding: 10px;
-    width: 160px;
-    font-size: large;
-    border-radius: 25px;
-    border: 0px;
+    border: 0;
+    padding: 5px;
+    margin: 0;
+    border-radius: 15px;
+    margin-left: 3px;
+}
+
+
+
+.modeles-disponibles {
+    margin-top: 10px;
+    display: block;
+    height: 40%;
+    width: 100%;
+    overflow-y: scroll;
+    background-color: white;
+}
+
+
+.modeles-disponibles tr {
+    background-color: antiquewhite;
+    padding: 0;
+    margin: 0;
+    height: auto;
+    width: 100%;
+}
+
+.modeles-disponibles tr:hover {
+    background-color: #f2f2f2;
     cursor: pointer;
-    margin-top: 5px;
-}
-
-.sortir:hover {
-    background-color: rgba(151, 1, 1, 0.582);
 }
 
 
-select {
-    border-radius: 25px;
-    border: 1px solid #000076;
-    height: 35px;
-    padding: 2px;
+
+.buttons-tail {
+    position: absolute;
+    width: 100%;
+    height: 5%;
+    margin: 0;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    bottom: 0;
+}
+
+.buttons-tail button {
+    color: white;
+    border: 0;
+    margin: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 10px;
+    width: fit-content;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+
+
+.buttons-tail .quitter {
+    background-color: red;
+    transition: 1s;
+}
+
+.buttons-tail .initialiser {
+    background-color: #ff3b00;
+    transition: 1s;
+}
+
+.buttons-tail .sauvegarder {
+    background-color: #04AA6D;
+    transition: 1s;
 }
 </style>

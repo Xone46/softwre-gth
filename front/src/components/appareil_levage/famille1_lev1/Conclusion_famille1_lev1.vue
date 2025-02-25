@@ -2,6 +2,11 @@
 
     <div class="conclusion">
 
+        <div class="sauvegarder">
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">{{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}</button>
+            <button @click="reset">Initialiser</button>
+        </div>
+
         <h1 class="observation">Observations complémentaires</h1>
 
         <div class="alignment">
@@ -91,15 +96,7 @@
         <Insert v-if="conclusion.falgInsert" :typeInsert="conclusion.typeInsert" :valueInsert="conclusion.valueInsert" @valider="valider"
             @annuler="annuler" />
 
-        <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
-                {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
-            </button>
-        </div>
 
-       <div class="reset">
-            <button @click="reset">Initialiser</button>
-        </div>
 
 
     </div>
@@ -401,14 +398,21 @@ export default {
     margin-left: 20px;
 }
 
-.sauvegarder , .reset {
+.sauvegarder {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 5px;
     margin-top: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #141293;
+}
+
+.sauvegarder button {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .sauvegarder .watch {
@@ -439,15 +443,20 @@ export default {
     background-color: rgb(84, 1, 1);
 }
 
-
-.reset button {
+.sauvegarder button {
     background-color: red;
     color: white;
     height: 30px;
     width: 200px;
     border: 0px;
     border-radius: 5px;
+    cursor: pointer;
 }
+
+.sauvegarder button:hover {
+    background-color: rgb(84, 1, 1);
+}
+
 
 .reset button:hover {
     background-color: rgb(84, 1, 1);

@@ -1,6 +1,15 @@
 <template>
     <div>
         <div class="descriptions">
+
+
+            <div class="sauvegarder">
+                <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
+                    {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
+                </button>
+                <button @click="reset">Initialiser</button>
+            </div>
+
             <table border="1">
 
                 <tr>
@@ -85,7 +94,8 @@
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.miseEnServiceEpreuves.length != 0 ? 'saved' : 'not-saved']">(Mise en service) Epreuves: </td>
+                    <td :class="[renseignement.miseEnServiceEpreuves.length != 0 ? 'saved' : 'not-saved']">(Mise en
+                        service) Epreuves: </td>
                     <td>
                         <select @change="saisirMiseEnServiceEpreuves($event)"
                             :value="renseignement.miseEnServiceEpreuves">
@@ -175,11 +185,12 @@
             </button>
         </div>
 
-       <div class="reset">
+        <div class="reset">
             <button @click="reset">Initialiser</button>
         </div>
 
-        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider" @annuler="annuler" />
+        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider"
+            @annuler="annuler" />
 
     </div>
 </template>
@@ -364,7 +375,7 @@ export default {
 
         saisirTypeAppareil(e) {
             this.renseignement.typeAppareil = e.target.value;
-            if(this.renseignement.typeAppareil != "Autre")  {
+            if (this.renseignement.typeAppareil != "Autre") {
                 this.renseignement.suiveTypeAppareil = "";
             }
         },
@@ -375,17 +386,17 @@ export default {
 
         saisirMiseEnServiceEpreuves(e) {
             this.renseignement.miseEnServiceEpreuves = e.target.value;
-            if(this.renseignement.miseEnServiceEpreuves != "Réalisées le : ")  {
+            if (this.renseignement.miseEnServiceEpreuves != "Réalisées le : ") {
                 this.renseignement.suiveMiseEnServiceEpreuves = "";
             }
         },
 
         saisirDateDerniereVerficationPeriodique(e) {
             this.renseignement.dateDerniereVerficationPeriodique = e.target.value;
-            if(this.renseignement.dateDerniereVerficationPeriodique != "Effectuée le :")  {
+            if (this.renseignement.dateDerniereVerficationPeriodique != "Effectuée le :") {
                 this.renseignement.suiveDateDerniereVerficationPeriodique = "";
             }
-             
+
         },
 
         saisirRapport(e) {
@@ -394,14 +405,14 @@ export default {
 
         saisirEssaischarge(e) {
             this.renseignement.essaischarge = e.target.value;
-            if(this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
+            if (this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
                 this.renseignement.suiveEssaischarge = "";
             }
         },
 
         saisirModification(e) {
             this.renseignement.modification = e.target.value;
-            if(this.renseignement.modification == "Description : ") {
+            if (this.renseignement.modification == "Description : ") {
                 this.renseignement.suiveModification = "";
             }
         },
@@ -449,21 +460,21 @@ export default {
                     if (result.data == true) {
 
                         this.renseignement.typeConstructeur = "",
-                        this.renseignement.anneeMiseService = "",
-                        this.renseignement.typeAppareil = "",
-                        this.renseignement.suiveTypeAppareil = "",
-                        this.renseignement.miseEnServiceRapport = "",
-                        this.renseignement.miseEnServiceEpreuves = "",
-                        this.renseignement.suiveMiseEnServiceEpreuves = "",
-                        this.renseignement.dateDerniereVerficationPeriodique = "",
-                        this.renseignement.suiveDateDerniereVerficationPeriodique = "",
-                        this.renseignement.rapport = "",
-                        this.renseignement.essaischarge = "",
-                        this.renseignement.suiveEssaischarge = "",
-                        this.renseignement.modification = "",
-                        this.renseignement.suiveModification = "",
+                            this.renseignement.anneeMiseService = "",
+                            this.renseignement.typeAppareil = "",
+                            this.renseignement.suiveTypeAppareil = "",
+                            this.renseignement.miseEnServiceRapport = "",
+                            this.renseignement.miseEnServiceEpreuves = "",
+                            this.renseignement.suiveMiseEnServiceEpreuves = "",
+                            this.renseignement.dateDerniereVerficationPeriodique = "",
+                            this.renseignement.suiveDateDerniereVerficationPeriodique = "",
+                            this.renseignement.rapport = "",
+                            this.renseignement.essaischarge = "",
+                            this.renseignement.suiveEssaischarge = "",
+                            this.renseignement.modification = "",
+                            this.renseignement.suiveModification = "",
 
-                        this.flagReset = false;
+                            this.flagReset = false;
                         this.watched_sauvegarder = false;
                         this.$emit("changeColorRenseignement_famille4_lev4", false);
                     }
@@ -509,7 +520,7 @@ export default {
                             }
 
 
-                            if (result.data.numeroInterne == null || result.data.numeroInterne == "" ||  String(result.data.numeroInterne).toLocaleLowerCase() == "sans objet") {
+                            if (result.data.numeroInterne == null || result.data.numeroInterne == "" || String(result.data.numeroInterne).toLocaleLowerCase() == "sans objet") {
                                 this.renseignement.numeroInterne = "Sans Objet";
                                 this.renseignement.suiveNumeroInterne = "";
                             }
@@ -568,7 +579,6 @@ export default {
 </script>
 
 <style scoped>
-
 .descriptions table {
     border-collapse: collapse;
     border: none;
@@ -593,7 +603,8 @@ td {
     font-size: larger;
 }
 
-input , select {
+input,
+select {
     height: 30px;
     padding: 5px;
     font-size: large;
@@ -601,7 +612,7 @@ input , select {
 
 td button {
     height: 30px;
-    width : 80px;
+    width: 80px;
     border: 0px;
     color: white;
 }
@@ -614,14 +625,21 @@ td button {
     background-color: red;
 }
 
-.sauvegarder , .reset {
+.sauvegarder {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 5px;
     margin-top: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #141293;
+}
+
+.sauvegarder button {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .sauvegarder .watch {
@@ -652,19 +670,19 @@ td button {
     background-color: rgb(84, 1, 1);
 }
 
-.reset button {
+.sauvegarder button {
     background-color: red;
     color: white;
     height: 30px;
     width: 200px;
     border: 0px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-.reset button:hover {
+.sauvegarder button:hover {
     background-color: rgb(84, 1, 1);
 }
-
 
 td:nth-child(2) {
     display: flex;
@@ -678,5 +696,4 @@ td:nth-child(2) {
 .not-saved {
     color: red;
 }
-
 </style>

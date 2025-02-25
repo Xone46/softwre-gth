@@ -3,9 +3,7 @@
     <div class="descriptions">
 
         <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
-                {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
-            </button>
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">{{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}</button>
             <button @click="reset">Initialiser</button>
         </div>
 
@@ -349,7 +347,6 @@ export default {
     watch: {
         description: {
             handler() {
-
                 const count = this.counter_watched++;
                 if (count != 0 && count != 1 && count != 2) {
                     this.watched_sauvegarder = false;
@@ -481,6 +478,7 @@ export default {
         },
 
         notEmpty() {
+            console.log(this.checkProperties())
             this.$emit("changeColorDescription_famille1_lev1", this.checkProperties());
         },
 

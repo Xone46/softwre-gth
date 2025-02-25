@@ -1,6 +1,15 @@
 <template>
     <div>
         <div class="descriptions">
+
+
+            <div class="sauvegarder">
+                <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
+                    {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
+                </button>
+                <button @click="reset">Initialiser</button>
+            </div>
+
             <table border="1">
 
                 <tr>
@@ -62,7 +71,8 @@
                             <option value="Pont élévateur à ciseau">Pont élévateur à ciseau</option>
                             <option value="Pont élévateur à parallélogramme">Pont élévateur à parallélogramme</option>
                             <option value="Pont élévateur à vérin porteur">Pont élévateur à vérin porteur</option>
-                            <option value="Pont élévateur à colonnes indépendantes (Nombre)">Pont élévateur à colonnes indépendantes (Nombre)</option>
+                            <option value="Pont élévateur à colonnes indépendantes (Nombre)">Pont élévateur à colonnes
+                                indépendantes (Nombre)</option>
                             <option value="Pont élévateur mobile">Pont élévateur mobile</option>
                             <option value="Autre : ">Autre</option>
                         </select>
@@ -79,27 +89,33 @@
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.typeVerification.length != 0 ? 'saved' : 'not-saved']">Type de vérification: </td>
+                    <td :class="[renseignement.typeVerification.length != 0 ? 'saved' : 'not-saved']">Type de
+                        vérification: </td>
                     <td>
                         <select @change="saisirTypeVerification($event)" :value="renseignement.typeVerification">
-                            <option v-for="(item) in listeTypeVerification" :key="item.index" :value="item.titre">{{ item.titre }}</option>
+                            <option v-for="(item) in listeTypeVerification" :key="item.index" :value="item.titre">{{
+                                item.titre }}</option>
                         </select>
                     </td>
 
                     <td v-if="renseignement.typeVerification == 'Autre motif :'">
-                            <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('typeVerification')">voir</button>
+                        <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']"
+                            @click="handelInsert('typeVerification')">voir</button>
                     </td>
 
                     <td v-if="renseignement.typeVerification == 'Date de dernière vérification périodique :'">
-                            <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']" @click="handelInsert('typeVerification')">voir</button>
+                        <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']"
+                            @click="handelInsert('typeVerification')">voir</button>
                     </td>
 
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.documentationTechniqueConstructeur.length != 0 ? 'saved' : 'not-saved']">Documentation technique constructeur (notice d'instructions, de montage, d'utilisation): </td>
+                    <td :class="[renseignement.documentationTechniqueConstructeur.length != 0 ? 'saved' : 'not-saved']">
+                        Documentation technique constructeur (notice d'instructions, de montage, d'utilisation): </td>
                     <td>
-                        <select @change="saisirDocumentationTechniqueConstructeur($event)" :value="renseignement.documentationTechniqueConstructeur">
+                        <select @change="saisirDocumentationTechniqueConstructeur($event)"
+                            :value="renseignement.documentationTechniqueConstructeur">
                             <option value="Fournie">Fournie</option>
                             <option value="Non fournie">Non fournie</option>
                         </select>
@@ -112,9 +128,11 @@
                     </td>
 
                     <td>
-                        <select @change="saisirEpreuves($event)"  :value="renseignement.epreuves">
-                            <option value="Réalisées dans le cadre de la mise ou remise en service de l'appareil">Réalisées dans le cadre de la mise ou remise en service de l’appareil</option>
-                            <option value="Non réalisées dans le cadre de cette mission">Non réalisées dans le cadre de cette mission</option>
+                        <select @change="saisirEpreuves($event)" :value="renseignement.epreuves">
+                            <option value="Réalisées dans le cadre de la mise ou remise en service de l'appareil">
+                                Réalisées dans le cadre de la mise ou remise en service de l’appareil</option>
+                            <option value="Non réalisées dans le cadre de cette mission">Non réalisées dans le cadre de
+                                cette mission</option>
                         </select>
                     </td>
 
@@ -135,7 +153,8 @@
                                 les essais</option>
                             <option value="Absence de tableau des charges pour réaliser les essais">Absence de tableau
                                 des charges pour réaliser les essais</option>
-                            <option value="Non réalisé. (Voir observation critique)">Non réalisé. (Voir observation critique)</option>
+                            <option value="Non réalisé. (Voir observation critique)">Non réalisé. (Voir observation
+                                critique)</option>
                         </select>
                     </td>
                     <td v-if="renseignement.essaischarge == 'Réalisé sous charge de (kg) : '">
@@ -150,7 +169,8 @@
                     </td>
 
                     <td>
-                        <select @change="saisirExamenMontageInstallation($event)" :value="renseignement.examenMontageInstallation">
+                        <select @change="saisirExamenMontageInstallation($event)"
+                            :value="renseignement.examenMontageInstallation">
                             <option value="Réalisées">Réalisées</option>
                             <option value="Voir observation(s)">Voir observation(s)</option>
                         </select>
@@ -161,7 +181,8 @@
 
                 <tr>
                     <td :class="[renseignement.modification.length != 0 ? 'saved' : 'not-saved']">
-                        Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l'appareil examiné:</td>
+                        Modification(s) apportée(s) ou autre(s) remarque(s) éventuelle(s) concernant l'appareil examiné:
+                    </td>
                     <td>
                         <select @change="saisirModification($event)" :value="renseignement.modification">
                             <option value="Sans objet">Sans objet</option>
@@ -180,17 +201,8 @@
             </table>
         </div>
 
-        <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
-                {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
-            </button>
-        </div>
-
-       <div class="reset">
-            <button @click="reset">Initialiser</button>
-        </div>
-
-        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider" @annuler="annuler" />
+        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider"
+            @annuler="annuler" />
 
     </div>
 </template>
@@ -210,33 +222,33 @@ export default {
             watched_sauvegarder: false,
             falgInsert: false,
             flagReset: false,
-            listeTypeVerification : [
-                { 
-                    index : 0,
-                    status : false,
-                    titre : "Mise en service"
+            listeTypeVerification: [
+                {
+                    index: 0,
+                    status: false,
+                    titre: "Mise en service"
                 },
-                { 
-                    index : 1,
-                    status : false,
-                    titre : "Préalable a la remise en service"
+                {
+                    index: 1,
+                    status: false,
+                    titre: "Préalable a la remise en service"
                 },
-                { 
-                    index : 2,
-                    status : false,
-                    titre : "A la suite d'un démontage et remontage"
+                {
+                    index: 2,
+                    status: false,
+                    titre: "A la suite d'un démontage et remontage"
                 },
-                { 
-                    index : 3,
-                    status : false,
-                    titre : "Autre motif :",
-                    content : " "
+                {
+                    index: 3,
+                    status: false,
+                    titre: "Autre motif :",
+                    content: " "
                 },
-                { 
-                    index : 4,
-                    status : false,
-                    titre : "Date de dernière vérification périodique :", 
-                    contsent : " "
+                {
+                    index: 4,
+                    status: false,
+                    titre: "Date de dernière vérification périodique :",
+                    contsent: " "
                 },
             ],
 
@@ -252,12 +264,12 @@ export default {
                 typeAppareil: "",
                 suiveTypeAppareil: "",
                 typeVerification: "",
-                suiveTypeVerification : "",
-                documentationTechniqueConstructeur : "",
-                epreuves : "",
+                suiveTypeVerification: "",
+                documentationTechniqueConstructeur: "",
+                epreuves: "",
                 essaischarge: "",
-                suiveEssaischarge : "",
-                examenMontageInstallation : "",
+                suiveEssaischarge: "",
+                examenMontageInstallation: "",
                 modification: "",
                 suiveModification: "",
                 observateurId: "",
@@ -404,7 +416,7 @@ export default {
 
         saisirTypeAppareil(e) {
             this.renseignement.typeAppareil = e.target.value;
-            if(this.renseignement.typeAppareil != "Autre")  {
+            if (this.renseignement.typeAppareil != "Autre") {
                 this.renseignement.suiveTypeAppareil = "";
             }
         },
@@ -413,11 +425,11 @@ export default {
 
             this.renseignement.typeVerification = e.target.value;
 
-            if(this.renseignement.typeVerification != "Autre motif :")  {
+            if (this.renseignement.typeVerification != "Autre motif :") {
                 this.renseignement.suiveTypeVerification = "";
             }
-            
-            if(this.renseignement.typeVerification != "Date de dernière vérification périodique :")  {
+
+            if (this.renseignement.typeVerification != "Date de dernière vérification périodique :") {
                 this.renseignement.suiveTypeVerification = "";
             }
         },
@@ -432,7 +444,7 @@ export default {
 
         saisirEssaischarge(e) {
             this.renseignement.essaischarge = e.target.value;
-            if(this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
+            if (this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
                 this.renseignement.suiveEssaischarge = "";
             }
         },
@@ -443,7 +455,7 @@ export default {
 
         saisirModification(e) {
             this.renseignement.modification = e.target.value;
-            if(this.renseignement.modification == "Description : ") {
+            if (this.renseignement.modification == "Description : ") {
                 this.renseignement.suiveModification = "";
             }
         },
@@ -484,21 +496,21 @@ export default {
                     if (result.data == true) {
 
                         this.renseignement.typeConstructeur = "",
-                        this.renseignement.anneeMiseService = "",
-                        this.renseignement.typeAppareil = "",
-                        this.renseignement.suiveTypeAppareil = "",
-                        this.renseignement.typeVerification = "",
-                        this.renseignement.suiveTypeVerification = "",
-                        this.renseignement.documentationTechniqueConstructeur = "",
-                        this.renseignement.epreuves = "",
-                        this.renseignement.essaischarge = "",
-                        this.renseignement.suiveEssaischarge = "",
-                        this.renseignement.examenMontageInstallation = "",
-                        this.renseignement.modification = "",
-                        this.renseignement.suiveModification = "",
-                        this.renseignement.observateurId = "",
+                            this.renseignement.anneeMiseService = "",
+                            this.renseignement.typeAppareil = "",
+                            this.renseignement.suiveTypeAppareil = "",
+                            this.renseignement.typeVerification = "",
+                            this.renseignement.suiveTypeVerification = "",
+                            this.renseignement.documentationTechniqueConstructeur = "",
+                            this.renseignement.epreuves = "",
+                            this.renseignement.essaischarge = "",
+                            this.renseignement.suiveEssaischarge = "",
+                            this.renseignement.examenMontageInstallation = "",
+                            this.renseignement.modification = "",
+                            this.renseignement.suiveModification = "",
+                            this.renseignement.observateurId = "",
 
-                        this.flagReset = false;
+                            this.flagReset = false;
                         this.watched_sauvegarder = false;
                         this.$emit("changeColorRenseignement_famille5_lev1", false);
                     }
@@ -544,7 +556,7 @@ export default {
                             }
 
 
-                            if (result.data.numeroInterne == null || result.data.numeroInterne == "" ||  String(result.data.numeroInterne).toLocaleLowerCase() == "sans objet") {
+                            if (result.data.numeroInterne == null || result.data.numeroInterne == "" || String(result.data.numeroInterne).toLocaleLowerCase() == "sans objet") {
                                 this.renseignement.numeroInterne = "Sans Objet";
                                 this.renseignement.suiveNumeroInterne = "";
                             }
@@ -603,7 +615,6 @@ export default {
 </script>
 
 <style scoped>
-
 .descriptions table {
     border-collapse: collapse;
     border: none;
@@ -628,7 +639,8 @@ td {
     font-size: larger;
 }
 
-input , select {
+input,
+select {
     height: 30px;
     padding: 5px;
     font-size: large;
@@ -636,7 +648,7 @@ input , select {
 
 td button {
     height: 30px;
-    width : 80px;
+    width: 80px;
     border: 0px;
     color: white;
 }
@@ -649,14 +661,21 @@ td button {
     background-color: red;
 }
 
-.sauvegarder , .reset {
+.sauvegarder {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 5px;
     margin-top: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #141293;
+}
+
+.sauvegarder button {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .sauvegarder .watch {
@@ -687,22 +706,17 @@ td button {
     background-color: rgb(84, 1, 1);
 }
 
-
-.reset button {
+.sauvegarder button {
     background-color: red;
     color: white;
     height: 30px;
     width: 200px;
     border: 0px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
-
-.reset button:hover {
-    background-color: rgb(84, 1, 1);
-}
-
-.reset button:hover {
+.sauvegarder button:hover {
     background-color: rgb(84, 1, 1);
 }
 
@@ -718,5 +732,4 @@ td:nth-child(2) {
 .not-saved {
     color: red;
 }
-
 </style>

@@ -2,6 +2,11 @@
 
     <div class="descriptions">
 
+        <div class="sauvegarder">
+            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">{{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}</button>
+            <button @click="reset">Initialiser</button>
+        </div>
+
         <table>
 
             <tr>
@@ -127,16 +132,6 @@
 
 
         </table>
-
-        <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
-                {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
-            </button>
-        </div>
-
-       <div class="reset">
-            <button @click="reset">Initialiser</button>
-        </div>
 
         <Loading v-if="flagLoading" />
         
@@ -398,7 +393,7 @@ export default {
         description: {
             handler() {
                 const count = this.counter_watched++;
-                if (count != 0 && count != 1 && count != 2) {
+                if (count == 0 || count == 1) {
                     this.watched_sauvegarder = false;
                 }
 
@@ -1033,15 +1028,22 @@ select {
     font-size: medium;
 }
 
-.sauvegarder,
-.reset {
+.sauvegarder {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 5px;
     margin-top: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #141293;
+    /* overflow-y: auto; */
+}
+
+.sauvegarder button {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .sauvegarder .watch {
@@ -1057,7 +1059,7 @@ select {
 .sauvegarder .watch:hover {
     background-color: rgb(2, 49, 2);
 }
- 
+
 .sauvegarder .not-watch {
     background-color: red;
     color: white;
@@ -1072,7 +1074,7 @@ select {
     background-color: rgb(84, 1, 1);
 }
 
-.reset button {
+.sauvegarder button {
     background-color: red;
     color: white;
     height: 30px;
@@ -1081,10 +1083,9 @@ select {
     border-radius: 5px;
 }
 
-.reset button:hover {
+.sauvegarder button:hover {
     background-color: rgb(84, 1, 1);
 }
-
 /* End COnfigration ALL */
 
 tr {

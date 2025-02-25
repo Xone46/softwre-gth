@@ -1,6 +1,12 @@
 <template>
     <div>
         <div class="descriptions">
+
+            <div class="sauvegarder">
+                <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">{{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}</button>
+                <button @click="reset">Initialiser</button>
+            </div>
+
             <table border="1">
 
                 <tr>
@@ -172,15 +178,7 @@
             </table>
         </div>
 
-        <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
-                {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
-            </button>
-        </div>
 
-       <div class="reset">
-            <button @click="reset">Initialiser</button>
-        </div>
 
         <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider" @annuler="annuler" />
 
@@ -623,15 +621,21 @@ td button {
 }
 
 
-.sauvegarder,
-.reset {
+.sauvegarder {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin-top: 5px;
     margin-top: 5px;
+    padding: 5px;
+    border-bottom: 1px solid #141293;
+}
+
+.sauvegarder button {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .sauvegarder .watch {
@@ -662,7 +666,7 @@ td button {
     background-color: rgb(84, 1, 1);
 }
 
-.reset button {
+.sauvegarder button {
     background-color: red;
     color: white;
     height: 30px;
@@ -672,10 +676,9 @@ td button {
     cursor: pointer;
 }
 
-.reset button:hover {
+.sauvegarder button:hover {
     background-color: rgb(84, 1, 1);
 }
-
 
 td:nth-child(2) {
     display: flex;
