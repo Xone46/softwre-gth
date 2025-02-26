@@ -359,7 +359,7 @@ export default {
 
 <style scoped>
 .conclusion {
-    width: 100%;
+    width: auto;
     margin-top: 10px;
     margin-left: 0;
     margin-right: 0;

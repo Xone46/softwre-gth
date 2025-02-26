@@ -1920,7 +1920,7 @@ export default {
 <style scoped>
 .examen {
     margin-top: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
     width: inherit;
 }
 

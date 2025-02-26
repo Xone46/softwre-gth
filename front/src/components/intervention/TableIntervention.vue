@@ -223,7 +223,6 @@ export default {
     border-top: 5px solid black;
 }
 
-
 .retour {
     width: 100%;
     display: flex;

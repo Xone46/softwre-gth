@@ -6,8 +6,8 @@
             <h3>{{ `${infoReserve[0] + '/' + infoReserve[1]}` }} {{ infoReserve[2] }}</h3>
 
             <div class="buttons-head">
-                <button @click="phrases">Phrases modèles disponibles</button>
-                <button @click="saisie">Saisie liber d'une observation</button>
+                <button @click="phrases">Les modèles disponibles</button>
+                <button @click="saisie">Saisie d'une observation</button>
             </div>
 
             <!-- les modeles disponibles -->
@@ -20,18 +20,21 @@
 
             <!-- saisir libre -->
             <div class="saisir-libre" v-if="flagSaisie">
-                <textarea v-if="flagSaisie" v-model="content" rows="20"
-                    placeholder="Vous devez saisir votre commentaire"></textarea>
+                <textarea v-if="flagSaisie" :value="content" @input="$event => handelContent($event)" rows="20" placeholder="Vous devez saisir votre commentaire"></textarea>
                 <button class="ajouter" v-if="flagSaisie" @click="ajouter">Ajouter commentaire</button>
             </div>
 
             <!-- liste sélectionnées -->
             <table class="modeles-selectiones">
                 <tr v-for="(item, index) in modelSelected" :value="item.name" :key="index + 100">
-                    <td>{{ item.name }}</td>
+                    <td v-show="item.disabled == false">{{ item.name }}</td>
+                    <td v-show="item.disabled == true"><textarea :value="item.name"
+                            @input="$event => handelEdit($event, index)"></textarea></td>
                     <td>
                         <button class="supprimer" @click="supprimer(item.name)">supprimer</button>
-                        <button class="supprimer" @click="edit(item.name)">edit</button>
+                        <button class="edit" v-show="item.disabled == false" @click="edit(item.name)">edit</button>
+                        <button v-show="item.disabled == true" class="sauvegarderComment"
+                            @click="sauvegarderComment(item.name)">sauvegarder</button>
                         <select v-model="item.status">
                             <option value="critique">Critique</option>
                             <option value="non critique">Non critique</option>
@@ -95,6 +98,9 @@ export default {
 
     methods: {
 
+        handelContent(event) {
+            this.content = event.target.value;
+        },
 
         sauvegarder() {
 
@@ -134,7 +140,8 @@ export default {
             this.modelSelected.push({
                 name: this.content,
                 status: "",
-                etat: "not_saved"
+                etat: "not_saved",
+                disabled : false
             });
 
             this.content = "";
@@ -155,8 +162,17 @@ export default {
         },
 
         edit(value) {
-            const index = this.liste.findIndex((el) => el.name == value);
-            this.modelSelected[index].disabled = !this.modelSelected[index].disabled;
+            const index = this.modelSelected.findIndex((el) => el.name == value);
+            this.modelSelected[index].disabled = true;
+        },
+
+        sauvegarderComment(value) {
+            const index = this.modelSelected.findIndex((el) => el.name == value);
+            this.modelSelected[index].disabled = false;
+        },
+
+        handelEdit(event, index) {
+            this.modelSelected[index].name = event.target.value;
         },
 
         supprimer(value) {
@@ -209,48 +225,44 @@ export default {
             return this.$emit('annuler');
         },
 
+        handelReserve() {
+
+            this.liste = []
+            this.commentaireId = "";
+            this.modelSelected = [];
+
+            Reserve.read()
+                .then((result) => {
+                    this.liste = result.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+            Commentaires.select(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.infoReserve[3])
+                .then((result) => {
+
+                    this.commentaireId = result.data._id;
+
+                    if (result.data.modelSelected) {
+                        result.data.modelSelected.forEach((el) => {
+                            const index = this.liste.findIndex(val => val == el.name)
+                            this.liste.splice(index, 1);
+                        });
+                    }
+
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+
+        }
+
 
     },
 
     created() {
-
-        Reserve.read()
-            .then((result) => {
-                this.liste = result.data;
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-        Commentaires.select(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.infoReserve[3])
-            .then((result) => {
-
-                this.commentaireId = result.data._id;
-
-
-                if(result.data.modelSelected) {
-
-                    result.data.modelSelected.forEach((el) => {
-                        const index = this.liste.findIndex(val => val == el.name)
-                        this.liste.splice(index, 1);
-                    });
-
-                    for(let i = 0; i < result.data.modelSelected.length; i++) {
-                        result.data.modelSelected[i].disabled = false;
-                        this.modelSelected.push(result.data.modelSelected[i])
-                    }
-
-                }
-
-
-
-
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-
+        this.handelReserve();
     }
 
 
@@ -395,25 +407,34 @@ export default {
     cursor: pointer;
 }
 
-.modeles-selectiones>tr>td:nth-child(1) {
-    width: 90%;
+.modeles-selectiones>tr>td:nth-child(1),
+.modeles-selectiones>tr>td:nth-child(2) {
+    width: 100%;
     margin: 0;
     padding: 0;
     text-align: left;
 }
 
-
-.modeles-selectiones>tr>td:nth-child(2) {
-    width: auto;
+.modeles-selectiones>tr>td:nth-child(1) textarea {
+    width: inherit;
     margin: 0;
     padding: 0;
+}
+
+
+.modeles-selectiones>tr>td:nth-child(3) {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
 }
 
-.modeles-selectiones>tr>td:nth-child(2)>button:nth-child(1) {
+.modeles-selectiones>tr>td:nth-child(3)>button {
+    cursor: pointer;
+}
+
+
+.modeles-selectiones>tr>td:nth-child(3)>button.supprimer {
     width: fit-content;
     background-color: red;
     color: white;
@@ -425,9 +446,11 @@ export default {
     text-align: start;
 }
 
-.modeles-selectiones>tr>td:nth-child(2)>button:nth-child(2) {
+
+.modeles-selectiones>tr>td:nth-child(3)>button.edit {
     width: fit-content;
-    background-color: #04AA6D;
+    background-color: #ff3b00;
+
     color: white;
     border: 0;
     padding: 5px;
@@ -437,6 +460,16 @@ export default {
 }
 
 
+.modeles-selectiones>tr>td:nth-child(3)>button.sauvegarderComment {
+    width: fit-content;
+    background-color: #04AA6D;
+    color: white;
+    border: 0;
+    padding: 5px;
+    margin: 0;
+    border-radius: 15px;
+    margin-left: 3px;
+}
 
 .modeles-disponibles {
     margin-top: 10px;
@@ -453,12 +486,22 @@ export default {
     padding: 0;
     margin: 0;
     height: auto;
-    width: 100%;
 }
 
 .modeles-disponibles tr:hover {
     background-color: #f2f2f2;
     cursor: pointer;
+}
+
+.modeles-disponibles tr td:nth-child(1) {
+    width: 100%;
+}
+
+.modeles-disponibles tr td:nth-child(2) button {
+    background-color: #04AA6D;
+    color: white;
+    border: 0;
+    border-radius: 15px;
 }
 
 

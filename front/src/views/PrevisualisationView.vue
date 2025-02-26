@@ -1,7 +1,15 @@
 <template>
     <div class="observations">
-        <button class="retour" @click="retour">Retour</button>
+
+        <div class="retour">
+            <button @click="retour">
+                <font-awesome-icon icon="home" />
+                <span>Menu principal</span>
+            </button>
+        </div>
+
         <h2>Liste des [ Appareil(s), équipement(s) ou installation(s) ] Terminés</h2>
+
         <Spinner v-if="flagSpinner" />
         <Invertesment :msgInvertesment="msgInvertesment" v-if="flagInvertesment" />
         <Error :msg="msgError" v-if="flagError" @annuller="annuller" />
@@ -19,7 +27,7 @@
                     <th>Localisation</th>
                     <th>Accompagnateur</th>
                     <th>Type de Vérification</th>
-                    <th>L'etat de Vérification</th>
+                    <!-- <th>L'etat de Vérification</th> -->
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
                     <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
@@ -32,16 +40,18 @@
                     <td>{{ observateur.localisation }}</td>
                     <td>{{ observateur.accompagnateurInspecteur }}</td>
                     <td>{{ observateur.marquage }}</td>
-                    <td v-if="observateur.etat">Verrouillé</td>
+                    <!-- <td v-if="observateur.etat">Verrouillé</td> -->
                 </tr>
             </table>
         </div>
 
         <div class="actions">
             <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">Aperçu le
-                Rapport</button>
-            <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="send">Transférer pour la
-                validation</button>
+                rapport</button>
+            <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="send">Transférer le
+                rapport</button>
+            <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="remettre">Remettre le
+                rapport</button>
         </div>
 
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
@@ -71,7 +81,7 @@ export default {
             flagSpinner: true,
             flagInvertesment: false,
             msgInvertesment: null,
-            msgError : null
+            msgError: null
         }
     },
 
@@ -127,6 +137,26 @@ export default {
             this.flagVerified = false;
         },
 
+        remettre() {
+            this.flagSpinner = true;
+            Observateurs.remettre(this.observateursSelect[0])
+                .then((result) => {
+                    if (result.data) {
+                        this.flagSpinner = false
+                        const index = this.observateurs.filter((el) => el._id == this.observateursSelect[0]);
+                        if(index != -1) {
+                            this.observateurs.splice(index, 1);
+                            this.observateursSelect = [];
+                        }
+                    } else {
+                        this.flagSpinner = false
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+
         apercu() {
             this.flagSpinner = true;
             Observateurs.apercu(this.observateursSelect[0], sessionStorage.getItem("id"))
@@ -147,29 +177,29 @@ export default {
             const interventionId = this.observateurs[findObservateur]["interventionId"];
             // check online or offline
             await fetch("https://api.ipify.org/?format=json")
-            .then(async (res) => {
+                .then(async (res) => {
 
-                if (res.status == 200) {
-                    const response = await fetch("https://api.ipify.org/?format=json");
-                    const { ip } = await response.json();
-                    // send rapport with info Inspecteur ville et pays
-                    Observateurs.send(this.observateursSelect[0], sessionStorage.getItem("id"), ip, interventionId)
-                        .then((result) => {
-                            if (result) {
-                                this.flagSpinner = false
-                            }
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                        });
-                }
+                    if (res.status == 200) {
+                        const response = await fetch("https://api.ipify.org/?format=json");
+                        const { ip } = await response.json();
+                        // send rapport with info Inspecteur ville et pays
+                        Observateurs.send(this.observateursSelect[0], sessionStorage.getItem("id"), ip, interventionId)
+                            .then((result) => {
+                                if (result) {
+                                    this.flagSpinner = false
+                                }
+                            })
+                            .catch((error) => {
+                                console.log(error);
+                            });
+                    }
 
-            })
-            .catch(() => {
-                this.flagSpinner = false;
-                this.flagError = true;
-                this.msgError = "il n'existe pas l'internet pour vous envoyons le rapport";
-            });
+                })
+                .catch(() => {
+                    this.flagSpinner = false;
+                    this.flagError = true;
+                    this.msgError = "il n'existe pas l'internet pour vous envoyons le rapport";
+                });
 
         }
     },
@@ -236,6 +266,9 @@ export default {
 }
 
 .table-data {
+    padding: 0px;
+    width: auto;
+    height: auto;
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     display: block;
@@ -246,27 +279,31 @@ export default {
     white-space: nowrap;
 }
 
-.table-data td,
-.table-data th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
 
-.table-data tr:nth-child(even) {
-    background-color: #f2f2f2;
+.table-data tr {
+    background-color: white;
 }
 
 .table-data tr:hover {
-    background-color: #ddd;
+    background-color: #f2f2f2;
     cursor: pointer;
 }
 
 .table-data th {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-align: left;
-    background-color: #04AA6D;
+    background-color: #35353d;
     color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.table-data td,
+.table-data th {
+    border: 1px solid #ddd;
+    padding: 8px;
 }
 
 .actions {
@@ -287,14 +324,66 @@ export default {
     cursor: pointer;
     border-radius: 5px;
     margin-top: 10px;
+    cursor: pointer;
+    transition: 1s;
 }
 
 .actions button:nth-child(1) {
     background-color: #04AA6D;
 }
 
+.actions button:nth-child(1):hover {
+    background-color: green;
+}
+
 
 .actions button:nth-child(2) {
     background-color: #f3a108;
+}
+
+.actions button:nth-child(2):hover {
+    background-color: orange;
+}
+
+.actions button:nth-child(3) {
+    background-color: #f33708;
+}
+
+.actions button:nth-child(3):hover {
+    background-color: red;
+}
+
+.retour {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    margin-top: 2px;
+}
+
+.retour button {
+    padding: 0;
+    margin: 0;
+    width: 200px;
+    height: 40px;
+    color: hsl(0, 0%, 87%);
+    border: 0px;
+    border-radius: 5px;
+    background-color: rgba(255, 0, 0, 0.637);
+    cursor: pointer;
+    font-size: larger;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.retour button:hover {
+    color: white;
+    background-color: red;
 }
 </style>

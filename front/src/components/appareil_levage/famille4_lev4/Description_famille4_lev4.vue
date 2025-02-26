@@ -868,7 +868,7 @@ select {
 /* Start Configration body */
 .descriptions {
     margin-top: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
     width: inherit;
 }
 

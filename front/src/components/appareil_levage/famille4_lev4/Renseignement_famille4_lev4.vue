@@ -179,16 +179,6 @@
             </table>
         </div>
 
-        <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
-                {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
-            </button>
-        </div>
-
-        <div class="reset">
-            <button @click="reset">Initialiser</button>
-        </div>
-
         <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider"
             @annuler="annuler" />
 

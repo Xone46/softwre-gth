@@ -130,6 +130,22 @@ class Observateurs {
         })
     }
 
+    static remettre(observateurId) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/observateurs/remettre/${observateurId}`, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
     static apercu(observateurId, inspecteurId) {
 
         return new Promise((resolve, reject) => {

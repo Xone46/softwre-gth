@@ -690,11 +690,22 @@ export default {
             handler() {
 
                 const count = this.counter_watched++;
-                if (count != 0 && count != 1 && count != 2) {
+
+                console.log(count)
+                
+                if (count == 0 || count == 1) {
                     this.watched_sauvegarder = false;
                 }
 
-                // this.notEmpty();
+                if(count == 2) {
+                    this.watched_sauvegarder = true;
+                }
+                
+                if(count > 2) {
+                    this.watched_sauvegarder = false;
+                }
+
+                this.notEmpty();
             },
             deep: true
         }
@@ -1059,7 +1070,7 @@ select {
 /* Start Configration body */
 .descriptions {
     margin-top: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
     width: inherit;
 }
 

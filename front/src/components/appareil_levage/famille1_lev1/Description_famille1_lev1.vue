@@ -348,7 +348,15 @@ export default {
         description: {
             handler() {
                 const count = this.counter_watched++;
-                if (count != 0 && count != 1 && count != 2) {
+                if (count == 0 || count == 1) {
+                    this.watched_sauvegarder = false;
+                }
+
+                if(count == 2) {
+                    this.watched_sauvegarder = true;
+                }
+                
+                if(count > 2) {
                     this.watched_sauvegarder = false;
                 }
 
@@ -478,7 +486,6 @@ export default {
         },
 
         notEmpty() {
-            console.log(this.checkProperties())
             this.$emit("changeColorDescription_famille1_lev1", this.checkProperties());
         },
 
@@ -665,7 +672,7 @@ export default {
 /* Start Cofiguration All */
 .descriptions {
     margin-top: 10px;
-    margin-bottom: 100px;
+    margin-bottom: 150px;
     width: inherit;
 }
 
