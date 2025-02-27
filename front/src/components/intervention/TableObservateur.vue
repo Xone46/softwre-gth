@@ -21,7 +21,7 @@
                     <!-- <th>Accompagnateur Client</th> -->
                     <!-- <th>Accompagnateur Inspecteur</th> -->
                     <th>Marquage</th>
-                    <th>L'etat de verification</th>
+                    <th>Status de verification</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
                     <td><input type="checkbox" v-if="!observateur.etat" v-model="observateursSelect" :value="observateur._id"></td>
@@ -36,9 +36,13 @@
                     <!-- <td>{{ observateur.accompagnateurClient }}</td> -->
                     <!-- <td>{{ observateur.accompagnateurInspecteur }}</td> -->
                     <td>{{ observateur.marquage }}</td>
-                    <td v-if="!observateur.etat"><button class="termine"
-                            @click="terminer(observateur._id)">Envoyer</button></td>
-                    <td v-if="observateur.etat">Déjà Envoyé</td>
+                    <td v-if="!observateur.etat">
+                        <!-- <button class="termine" @click="terminer(observateur._id)">Envoyer</button> -->
+                        <font-awesome-icon icon="clock" class="clock" />
+                    </td>
+                    <td v-if="observateur.etat">
+                        <font-awesome-icon icon="thumbs-up" class="thumbs-up" />
+                    </td>
                 </tr>
             </table>
         </div>
@@ -46,26 +50,36 @@
         <div class="actions">
 
             <div class="left">
+
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">
                     <font-awesome-icon icon="eye" />
                     <span>Aperçu le Pré-rapport</span>
                 </button>
+
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="editer">
                     <font-awesome-icon icon="list" />
                     <span>Éditer</span>
                 </button>
+
             </div>
 
             <div class="right">
-                <!-- <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="cacher">Cacher</button> -->
+
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="modifier">
                     <font-awesome-icon icon="pencil" />
                     <span>Modifier</span>
                 </button>
+
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="supprimer">
                     <font-awesome-icon icon="trash" />
                     <span>Supprimer</span>
                 </button>
+
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="sauvgerder">
+                    <font-awesome-icon icon="circle-check" />
+                    <span>Terminer</span>
+                </button>
+
             </div>
 
         </div>
@@ -118,28 +132,6 @@ export default {
             this.msgError = "";
         },
 
-        terminer(observateurId) {
-
-
-            Observateurs.terminer(observateurId)
-                .then((result) => {
-                  
-                    if (result.data.msg == true) {
-                        const index = this.observateurs.findIndex((el) => el._id == observateurId);
-                        this.observateurs[index].etat = true;
-                    }
-
-                    if(result.data.msg == false) {
-                        alert("Le contrôle n'est pas entièrement terminé. Veuillez examiner toutes les entrées.")
-                    }
-
-                })
-                .catch((error) => {
-                    this.flagInvertesment = true;
-                    this.msgInvertesment = error.response.data.msg;
-                });
-
-        },
 
         modifier() {
             if (this.observateursSelect.length === 1) {
@@ -182,6 +174,27 @@ export default {
                     }
                 }
             }
+        },
+
+        sauvgerder() {
+
+            Observateurs.terminer(this.observateursSelect[0])
+                .then((result) => {
+                  
+                    if (result.data.msg == true) {
+                        const index = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
+                        this.observateurs[index].etat = true;
+                    }
+
+                    if(result.data.msg == false) {
+                        alert("Le contrôle n'est pas entièrement terminé. Veuillez examiner toutes les entrées.")
+                    }
+
+                })
+                .catch((error) => {
+                    this.flagInvertesment = true;
+                    this.msgInvertesment = error.response.data.msg;
+                });
         },
 
         supprimer() {
@@ -403,14 +416,16 @@ export default {
     background-color: #e21608;
 }
 
-
-.termine {
+.actions .right button:nth-child(3) {
     background-color: #04AA6D;
-    color: white;
-    border: 0px;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 5px;
+}
+
+.clock {
+    color: #e21608;
+}
+
+.thumbs-up {
+    color: #04AA6D;
 }
 
 </style>

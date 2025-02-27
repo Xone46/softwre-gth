@@ -14,7 +14,9 @@
             <table class="modeles-disponibles" v-if="flagPhrases">
                 <tr v-for="(item, index) in liste" :value="item.name" :key="index">
                     <td>{{ item.name }}</td>
-                    <td><button class="choisir" @click="choisir(item.name)">choisir</button></td>
+                    <td>
+                        <button class="choisir" @click="choisir(item.name)"><font-awesome-icon icon="circle-check" /></button>
+                    </td>
                 </tr>
             </table>
 
@@ -31,10 +33,9 @@
                     <td v-show="item.disabled == true"><textarea :value="item.name"
                             @input="$event => handelEdit($event, index)"></textarea></td>
                     <td>
-                        <button class="supprimer" @click="supprimer(item.name)">supprimer</button>
-                        <button class="edit" v-show="item.disabled == false" @click="edit(item.name)">edit</button>
-                        <button v-show="item.disabled == true" class="sauvegarderComment"
-                            @click="sauvegarderComment(item.name)">sauvegarder</button>
+                        <button class="supprimer" @click="supprimer(item.name)"><font-awesome-icon icon="trash" /></button>
+                        <button class="edit" v-show="item.disabled == false" @click="edit(item.name)"><font-awesome-icon icon="pencil" /></button>
+                        <button v-show="item.disabled == true" class="sauvegarderComment" @click="sauvegarderComment(item.name)"><font-awesome-icon icon="circle-check" /></button>
                         <select v-model="item.status">
                             <option value="critique">Critique</option>
                             <option value="non critique">Non critique</option>
@@ -45,8 +46,7 @@
 
             <div class="buttons-tail">
                 <button class="sauvegarder" v-if="modelSelected.length != 0" @click="sauvegarder">Sauvegarde</button>
-                <button class="reset" v-if="commentaireId != '' && modelSelected.length >= 1"
-                    @click="reset">Initialiser</button>
+                <button class="reset" v-if="commentaireId != '' && modelSelected.length >= 1" @click="reset">Initialiser</button>
                 <button class="quitter" @click="sortir">Quitter</button>
             </div>
 
@@ -231,6 +231,7 @@ export default {
             this.commentaireId = "";
             this.modelSelected = [];
 
+            // liste commentaires General ALL
             Reserve.read()
                 .then((result) => {
                     this.liste = result.data;
@@ -239,6 +240,7 @@ export default {
                     console.log(error);
                 });
 
+            // Mon Commentaire
             Commentaires.select(this.infoReserve[0], this.infoReserve[1], this.infoReserve[2], this.infoReserve[3])
                 .then((result) => {
 
@@ -502,9 +504,8 @@ export default {
     color: white;
     border: 0;
     border-radius: 15px;
+    cursor: pointer;
 }
-
-
 
 .buttons-tail {
     position: absolute;

@@ -1,14 +1,16 @@
 <template>
     <div class="examen">
-
-                
-        <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
-                {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
-            </button>
-            <button @click="reset">Initialiser</button>
-        </div>
         
+        <div class="sauvegarder">
+            <button @click="sauvegarde" :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" >
+                <font-awesome-icon v-if="watched_sauvegarder == false" icon="lock-open" />
+                <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
+            </button>
+
+            <button @click="reset" v-if="watched_sauvegarder == true">
+                <font-awesome-icon icon="trash" />
+            </button>
+        </div>
 
         <table>
             <tr>

@@ -3,8 +3,14 @@
     <div class="conclusion">
 
         <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">{{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}</button>
-            <button @click="reset">Initialiser</button>
+            <button @click="sauvegarde" :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" >
+                <font-awesome-icon v-if="watched_sauvegarder == false" icon="lock-open" />
+                <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
+            </button>
+
+            <button @click="reset" v-if="watched_sauvegarder == true">
+                <font-awesome-icon icon="trash" />
+            </button>
         </div>
 
         <h1 class="observation">Observations complémentaires</h1>
@@ -13,8 +19,7 @@
             <input type="checkbox" :checked="(conclusion.a != '')" @input="saisirA($event)"
                 value="Les essais ont été réalisés avec les charges mises à disposition">
             <label>
-                Les essais ont été réalisés avec les charges mises à disposition {{ conclusion.poids == "" ? "......." : conclusion.poids }}
-                Kg
+                Les essais ont été réalisés avec les charges mises à disposition {{ conclusion.poids == "" ? "......." : conclusion.poids }} Kg
             </label>
         </div>
 
@@ -285,9 +290,11 @@ export default {
         },
 
         sauvegarde() {
+            console.log("sauvgarder")
             // a, b, c, d, e, f, g, poids, commentaire, observateurId, child
             Conclusion.create(this.conclusion.a, this.conclusion.b, this.conclusion.c, this.conclusion.d, this.conclusion.e, this.conclusion.f, this.conclusion.g, this.conclusion.poids, this.conclusion.commentaire, this.observateurId, this.conclusion.child)
                 .then((result) => {
+                    console.log(result)
                     if (result) {
                         this.watched_sauvegarder = true;
                     }
@@ -298,9 +305,10 @@ export default {
         },
 
         reset() {
-            Conclusion.reset(this.conclusion.observateurId)
-                .then(() => {
-
+            
+            Conclusion.reset(this.observateurId)
+                .then((result) => {
+                    console.log(result)
                     this.conclusion.falgInsert = false;
                     this.conclusion.typeInsert = ``;
                     this.conclusion.poids = ``;
@@ -328,7 +336,6 @@ export default {
         Conclusion.select(this.observateurId)
             .then((result) => {
 
-                console.log(result)
                 
                 if (result.data != null) {
                     this.conclusion.poids = result.data.poids;

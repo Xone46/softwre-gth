@@ -3,8 +3,14 @@
         <div class="descriptions">
 
             <div class="sauvegarder">
-                <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">{{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}</button>
-                <button @click="reset">Initialiser</button>
+                <button @click="sauvegarde" :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']">
+                    <font-awesome-icon v-if="watched_sauvegarder == false" icon="lock-open" />
+                    <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
+                </button>
+
+                <button @click="reset" v-if="watched_sauvegarder == true">
+                    <font-awesome-icon icon="trash" />
+                </button>
             </div>
 
             <table border="1">
@@ -65,7 +71,8 @@
                             <option value="Ponts roulants">Ponts roulants</option>
                             <option value="Portiques">Portiques</option>
                             <option value="Semi portiques">Semi portiques</option>
-                            <option value="Palans fixes ou mobiles (motorisés)">Palans fixes ou mobiles (motorisés)</option>
+                            <option value="Palans fixes ou mobiles (motorisés)">Palans fixes ou mobiles (motorisés)
+                            </option>
                             <option value="Ponts gerbeurs">Ponts gerbeurs</option>
                             <option value="Grues potences">Grues potences</option>
                             <option value="Grues vélocipèdes">Grues vélocipèdes</option>
@@ -94,7 +101,8 @@
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.miseEnServiceEpreuves.length != 0 ? 'saved' : 'not-saved']">(Mise en service) Epreuves: </td>
+                    <td :class="[renseignement.miseEnServiceEpreuves.length != 0 ? 'saved' : 'not-saved']">(Mise en
+                        service) Epreuves: </td>
                     <td>
                         <select @change="saisirMiseEnServiceEpreuves($event)"
                             :value="renseignement.miseEnServiceEpreuves">
@@ -180,7 +188,8 @@
 
 
 
-        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider" @annuler="annuler" />
+        <Insert v-if="falgInsert" :typeInsert="typeInsert" :valueInsert="valueInsert" @valider="valider"
+            @annuler="annuler" />
 
     </div>
 </template>
@@ -365,7 +374,7 @@ export default {
 
         saisirTypeAppareil(e) {
             this.renseignement.typeAppareil = e.target.value;
-            if(this.renseignement.typeAppareil != "Autre")  {
+            if (this.renseignement.typeAppareil != "Autre") {
                 this.renseignement.suiveTypeAppareil = "";
             }
         },
@@ -376,17 +385,17 @@ export default {
 
         saisirMiseEnServiceEpreuves(e) {
             this.renseignement.miseEnServiceEpreuves = e.target.value;
-            if(this.renseignement.miseEnServiceEpreuves != "Réalisées le : ")  {
+            if (this.renseignement.miseEnServiceEpreuves != "Réalisées le : ") {
                 this.renseignement.suiveMiseEnServiceEpreuves = "";
             }
         },
 
         saisirDateDerniereVerficationPeriodique(e) {
             this.renseignement.dateDerniereVerficationPeriodique = e.target.value;
-            if(this.renseignement.dateDerniereVerficationPeriodique != "Effectuée le :")  {
+            if (this.renseignement.dateDerniereVerficationPeriodique != "Effectuée le :") {
                 this.renseignement.suiveDateDerniereVerficationPeriodique = "";
             }
-             
+
         },
 
         saisirRapport(e) {
@@ -395,14 +404,14 @@ export default {
 
         saisirEssaischarge(e) {
             this.renseignement.essaischarge = e.target.value;
-            if(this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
+            if (this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
                 this.renseignement.suiveEssaischarge = "";
             }
         },
 
         saisirModification(e) {
             this.renseignement.modification = e.target.value;
-            if(this.renseignement.modification == "Description : ") {
+            if (this.renseignement.modification == "Description : ") {
                 this.renseignement.suiveModification = "";
             }
         },
@@ -450,21 +459,21 @@ export default {
                     if (result.data == true) {
 
                         this.renseignement.typeConstructeur = "",
-                        this.renseignement.anneeMiseService = "",
-                        this.renseignement.typeAppareil = "",
-                        this.renseignement.suiveTypeAppareil = "",
-                        this.renseignement.miseEnServiceRapport = "",
-                        this.renseignement.miseEnServiceEpreuves = "",
-                        this.renseignement.suiveMiseEnServiceEpreuves = "",
-                        this.renseignement.dateDerniereVerficationPeriodique = "",
-                        this.renseignement.suiveDateDerniereVerficationPeriodique = "",
-                        this.renseignement.rapport = "",
-                        this.renseignement.essaischarge = "",
-                        this.renseignement.suiveEssaischarge = "",
-                        this.renseignement.modification = "",
-                        this.renseignement.suiveModification = "",
+                            this.renseignement.anneeMiseService = "",
+                            this.renseignement.typeAppareil = "",
+                            this.renseignement.suiveTypeAppareil = "",
+                            this.renseignement.miseEnServiceRapport = "",
+                            this.renseignement.miseEnServiceEpreuves = "",
+                            this.renseignement.suiveMiseEnServiceEpreuves = "",
+                            this.renseignement.dateDerniereVerficationPeriodique = "",
+                            this.renseignement.suiveDateDerniereVerficationPeriodique = "",
+                            this.renseignement.rapport = "",
+                            this.renseignement.essaischarge = "",
+                            this.renseignement.suiveEssaischarge = "",
+                            this.renseignement.modification = "",
+                            this.renseignement.suiveModification = "",
 
-                        this.flagReset = false;
+                            this.flagReset = false;
                         this.watched_sauvegarder = false;
                         this.$emit("changeColorRenseignement_famille2_lev2", false);
                     }
@@ -510,7 +519,7 @@ export default {
                             }
 
 
-                            if (result.data.numeroInterne == null || result.data.numeroInterne == "" ||  String(result.data.numeroInterne).toLocaleLowerCase() == "sans objet") {
+                            if (result.data.numeroInterne == null || result.data.numeroInterne == "" || String(result.data.numeroInterne).toLocaleLowerCase() == "sans objet") {
                                 this.renseignement.numeroInterne = "Sans Objet";
                                 this.renseignement.suiveNumeroInterne = "";
                             }
@@ -569,7 +578,6 @@ export default {
 </script>
 
 <style scoped>
-
 .descriptions table {
     border-collapse: collapse;
     border: none;
@@ -594,7 +602,8 @@ td {
     font-size: larger;
 }
 
-input , select {
+input,
+select {
     height: 30px;
     padding: 5px;
     font-size: large;
@@ -607,7 +616,7 @@ td:nth-child(2) {
 
 td button {
     height: 30px;
-    width : 80px;
+    width: 80px;
     border: 0px;
     color: white;
 }
@@ -692,5 +701,4 @@ td:nth-child(2) {
 .not-saved {
     color: red;
 }
-
 </style>

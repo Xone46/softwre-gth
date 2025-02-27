@@ -3,10 +3,16 @@
     <div class="descriptions">
 
         <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">{{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}</button>
-            <button @click="reset">Initialiser</button>
-        </div>
+            <button @click="sauvegarde" :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" >
+                <font-awesome-icon v-if="watched_sauvegarder == false" icon="lock-open" />
+                <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
+            </button>
 
+            <button @click="reset" v-if="watched_sauvegarder == true">
+                <font-awesome-icon icon="trash" />
+            </button>
+        </div>
+        
         <table>
 
             <tr>
@@ -32,7 +38,8 @@
 
             <tr>
                 <td>B-3</td>
-                <td :class="[colorCaracteristiques == true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET DE CHARGE</td>
+                <td :class="[colorCaracteristiques == true ? 'saved' : 'not-saved']">CARACTERISTIQUES DIMENSIONNELLES ET
+                    DE CHARGE</td>
                 <td class="third">
                     <p>Charge maximale utile (kg) : <input type="text" @input="saisirChargeMaximaleUtile($event)"
                             :value="description.chargeMaximaleUtile"></p>
@@ -78,11 +85,13 @@
                 <td class="fourth">
                     <ul v-for="(item, index) in description.levageAuxilaire" :key="index">
                         <li>
-                            <input type="radio" name="levageAuxilaire" @input="saisirLevageAuxilaire(index)" :value="item.status" :checked="item.status">{{ item.titre }}
+                            <input type="radio" name="levageAuxilaire" @input="saisirLevageAuxilaire(index)"
+                                :value="item.status" :checked="item.status">{{ item.titre }}
                         </li>
                         <li v-if="item.status && item.tab.length != 0">
                             <p v-for="(el, i) in item.tab" :key="i">
-                                {{ el.titre }} <input type="text" @input="saisirSousLevageAuxilaire($event, index, i)" :value="el.content">
+                                {{ el.titre }} <input type="text" @input="saisirSousLevageAuxilaire($event, index, i)"
+                                    :value="el.content">
                             </p>
                         </li>
                     </ul>
@@ -100,15 +109,19 @@
                 <td :class="[colorModeInstallation == true ? 'saved' : 'not-saved']">MODE D'INSTALLATION</td>
                 <td class="fifth">
                     <P v-for="(item, index) in description.modeInstallation" :key="index">
-                        <input type="radio" name="modeInstallation" @input="saisirModeInstallation(index)" :value="item.status" :checked="item.status"> {{ item.titre }}
-                        <ul v-if="item.status">
-                            <li v-for="(el, i) in item.tab" :key="i">
-                            <input type="radio" name="sousModeInstallation" @input="saisirSousModeInstallation(index, i)" :value="el.status" :checked="el.status">{{ el.titre }}
-                            </li>
-                        </ul>
+                        <input type="radio" name="modeInstallation" @input="saisirModeInstallation(index)"
+                            :value="item.status" :checked="item.status"> {{ item.titre }}
+                    <ul v-if="item.status">
+                        <li v-for="(el, i) in item.tab" :key="i">
+                            <input type="radio" name="sousModeInstallation"
+                                @input="saisirSousModeInstallation(index, i)" :value="el.status" :checked="el.status">{{
+                            el.titre }}
+                        </li>
+                    </ul>
                     </p>
                     <p class="autre" v-if="description.flagComplementModeInstallation">
-                        <input type="text" @input="saisirComplementModeInstallation($event)" :value="description.complementModeInstallation">
+                        <input type="text" @input="saisirComplementModeInstallation($event)"
+                            :value="description.complementModeInstallation">
                     </p>
                 </td>
             </tr>
@@ -118,13 +131,16 @@
                 <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
                 <td class="sixth">
                     <p v-for="(item, index) in description.sourceEnergie" :key="index">
-                        <input type="radio" name="sourceEnergie" @input="sisairSourceEnergie(index)" :checked="item.status">{{ item.titre }}
-                        <ul>
-                            <li v-for="(el, i) in item.tab" :key="i"><input type="radio" name="sousSourceEnergie" @input="sisairSousSourceEnergie(index, i)" :checked="el.status">{{ el.titre }}</li>
-                        </ul>
+                        <input type="radio" name="sourceEnergie" @input="sisairSourceEnergie(index)"
+                            :checked="item.status">{{ item.titre }}
+                    <ul>
+                        <li v-for="(el, i) in item.tab" :key="i"><input type="radio" name="sousSourceEnergie"
+                                @input="sisairSousSourceEnergie(index, i)" :checked="el.status">{{ el.titre }}</li>
+                    </ul>
                     </p>
                     <p v-if="description.flagcomplementSourceEnergie">
-                        <input type="text" @input="sisairComplementSourceEnergie($event)" :value="description.complementSourceEnergie">
+                        <input type="text" @input="sisairComplementSourceEnergie($event)"
+                            :value="description.complementSourceEnergie">
                     </p>
                 </td>
             </tr>
@@ -134,7 +150,7 @@
         </table>
 
         <Loading v-if="flagLoading" />
-        
+
 
     </div>
 
@@ -150,7 +166,7 @@ export default {
     data() {
         return {
 
-            flagLoading : false,
+            flagLoading: false,
 
             colorSuspentes: false,
             colorCaracteristiques: false,
@@ -417,11 +433,11 @@ export default {
                 this.description.sourceEnergie[6].status
             ];
 
-            if(arr.includes(true)) {
+            if (arr.includes(true)) {
                 return true;
             } else {
                 return false;
-            } 
+            }
         },
 
         checkModeInstallation() {
@@ -430,12 +446,12 @@ export default {
                 this.description.modeInstallation[1].status
             ];
 
-            if(arr.includes(true)) {
+            if (arr.includes(true)) {
                 return true;
             } else {
                 return false;
             }
-            
+
         },
 
         checkeLevageAuxilaire() {
@@ -445,12 +461,12 @@ export default {
                 this.description.levageAuxilaire[1].status
             ];
 
-            if(arr.includes(true)) {
+            if (arr.includes(true)) {
                 return true;
             } else {
                 return false;
             }
-            
+
         },
 
         checkCaracterstiques() {
@@ -499,8 +515,8 @@ export default {
                 this.checkCaracterstiques()
             ];
 
-            for(let i = 0; i < arr.length; i++) {
-                if(arr[i] == false) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] == false) {
                     return false;
                 }
 
@@ -578,7 +594,7 @@ export default {
                 this.description.levageAuxilaire[0].tab = [];
             }
 
-            if(this.description.levageAuxilaire[1].status == true) {
+            if (this.description.levageAuxilaire[1].status == true) {
                 this.description.levageAuxilaire[1].tab.push({
                     titre: "Mouflage (nombre de brins) :",
                     status: false,
@@ -586,9 +602,9 @@ export default {
                 });
             }
 
-            if(this.description.levageAuxilaire[0].status == true) {
-                for(let j = 0; j < this.description.levageAuxilaire[1].tab.length; j++) {
-                    if(this.description.levageAuxilaire[1].tab[j].titre == 'Mouflage (nombre de brins) :') {
+            if (this.description.levageAuxilaire[0].status == true) {
+                for (let j = 0; j < this.description.levageAuxilaire[1].tab.length; j++) {
+                    if (this.description.levageAuxilaire[1].tab[j].titre == 'Mouflage (nombre de brins) :') {
                         this.description.levageAuxilaire[1].tab.splice(j, 1);
                     }
                 }
@@ -600,11 +616,11 @@ export default {
         saisirSousLevageAuxilaire(e, index, i) {
             this.description.levageAuxilaire[index].tab[i].content = e.target.value;
 
-            if(this.description.levageAuxilaire[index].tab[i].content.length == 0) {
+            if (this.description.levageAuxilaire[index].tab[i].content.length == 0) {
                 this.description.levageAuxilaire[index].tab[i].status = false;
             }
 
-            if(this.description.levageAuxilaire[index].tab[i].content.length != 0) {
+            if (this.description.levageAuxilaire[index].tab[i].content.length != 0) {
                 this.description.levageAuxilaire[index].tab[i].status = true;
             }
 
@@ -775,7 +791,7 @@ export default {
 
                 if (result.data.description != null) {
                     this.description = result.data.description;
-                } 
+                }
 
 
                 this.colorSourceEnergie = this.checkSourceEnergie();
@@ -794,7 +810,6 @@ export default {
 </script>
 
 <style scoped>
-
 /* Satrt Configuration Table */
 .descriptions {
     margin-top: 10px;
@@ -841,6 +856,7 @@ table tr td:nth-child(1) {
 .descriptions table tr td.first input {
     width: 300px;
 }
+
 /* End First */
 
 
@@ -881,6 +897,7 @@ table tr td:nth-child(1) {
 .descriptions table tr td.third p select {
     width: 350px;
 }
+
 /* End Third */
 
 
@@ -925,19 +942,20 @@ table tr td:nth-child(1) {
 .descriptions table tr td.fourth ul li input {
     margin: 0;
 }
+
 /* End fourth */
 
 
 
 /* Start fifth */
-.descriptions table tr td.fifth  {
+.descriptions table tr td.fifth {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 }
 
-.descriptions table tr td.fifth p  {
+.descriptions table tr td.fifth p {
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -948,7 +966,7 @@ table tr td:nth-child(1) {
 
 }
 
-.descriptions table tr td.fifth p.autre  {
+.descriptions table tr td.fifth p.autre {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1010,6 +1028,7 @@ table tr td:nth-child(1) {
 .descriptions table tr td.sixth p ul li {
     list-style: none;
 }
+
 /* End sixth */
 
 /* Start Configration ALL */
@@ -1086,6 +1105,7 @@ select {
 .sauvegarder button:hover {
     background-color: rgb(84, 1, 1);
 }
+
 /* End COnfigration ALL */
 
 tr {

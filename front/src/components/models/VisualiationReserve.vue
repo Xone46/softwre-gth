@@ -1,22 +1,33 @@
 <template>
     <div class="visualiation">
 
-            <h1 v-if="commentaires.length == 0">Il n'y a pas de commentaires</h1>
-            <table id="customers" v-if="commentaires.length != 0">
-                <tr v-for="(item, index) in commentaires" :key="index">
-                    <td>
-                        <p class="critique" v-if="item.status == 'critique'" >{{  item.status  }} </p>
-                        <p class="non_critique" v-if="item.status == 'non critique'">{{  item.status  }}</p>
-                    </td>
-                    <td>{{  item.name  }}</td>
-                    <td>
-                        <button @click="supprimer(item.titre, item.ref, item.name, index)">supprimer</button>
-                    </td>
-                </tr>
-            </table>
 
-            <div class="buttons">
-                <button @click="quitter">Quitter</button>
+            <div class="sites">
+
+                <h1 v-if="commentaires.length == 0">Il n'y a pas de commentaires</h1>
+
+                <table class="table-data" v-if="commentaires.length != 0">
+                    <tr>
+                        <th>Observation</th>
+                        <th>Mode</th>
+                    </tr>
+                    <tr v-for="(item, index) in commentaires" :key="index">
+                        <td>{{  item.name  }}</td>
+                        <td>
+                            <p class="critique" v-if="item.status == 'critique'" >{{  item.status  }} </p>
+                            <p class="non_critique" v-if="item.status == 'non critique'">{{  item.status  }}</p>
+                        </td>
+                        <!-- <td>
+                            <button @click="supprimer(item.titre, item.ref, item.name, index)">supprimer</button>
+                        </td> -->
+                    </tr>
+                </table>
+
+                <div class="buttons">
+                    <button @click="quitter">
+                        <font-awesome-icon icon="xmark" />
+                    </button>
+                </div>
             </div>
 
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
@@ -137,68 +148,84 @@ export default {
     align-items: center;
 }
 
-.visualiation h1{
-    background-color: white;
-    color: red;
+
+.sites {
+    padding: 0;
+    margin: 0;
+    max-width: 60%;
+    height: auto;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #ddd;
+}
+
+.visualiation .sites h1 {
+    margin: 0;
+    padding: 0;
+    color: black;
+    width: inherit;
     text-align: center;
-    padding: 20px;
+}
+
+.table-data {
+    padding: 0px;
+    width: auto;
+    height: auto;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 
-
-#customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 90%;
-  height: 300px;
-  overflow-y: auto;
-  background-color: white;
+.table-data tr {
+    background-color: white;
 }
 
-#customers td, #customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
+.table-data tr:hover {
+    background-color: #f2f2f2;
+    cursor: pointer;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+.table-data th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: left;
+    background-color: #35353d;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
 
-#customers tr:hover {background-color: #ddd;}
-
-#customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  color: white;
+.table-data td,
+.table-data th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
 
 .buttons {
-    background-color: white;
-    width: 90%;
+    width: inherit;
 }
 
 .buttons button {
     background-color: red;
     color: white;
-    font-size: large;
     border: 0px;
-    border-radius: 25px;
+    border-radius: 10px;
     padding: 10px;
     margin: 5px;
     cursor: pointer;
-    width: 100px;
+    width: fit-content;
 }
 
-table tr td button {
-    background-color: red;
-    color: white;
-    font-size: large;
-    border: 0px;
-    border-radius: 25px;
-    padding: 10px;
-    margin: 5px;
-    cursor: pointer;
-    width: 100px;
-}
 
 </style>

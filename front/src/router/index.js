@@ -6,6 +6,7 @@ import InterventionsView from '../views/InterventionsView.vue'
 import ObservateursView from '../views/ObservateursView.vue'
 import FormulaireView from '@/views/FormulaireView.vue'
 import Previsualisation from '@/views/PrevisualisationView.vue'
+import Sauvgarder from '@/views/SauvgarderView.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/previsualisation',
     name: 'previsualisation',
     component: Previsualisation
+  },
+  {
+    path: '/sauvgarder',
+    name: 'sauvgarder',
+    component: Sauvgarder
   }
 
 ]

@@ -7,7 +7,7 @@
       <!-- <button @click="transferer">Transférer des minutes</button> -->
       <button @click="previsualisation">Prévisualisation rapports ({{ conterTransfer }})</button>
       <button @click="modification">Modification rapport</button>
-      <button @click="sauvgarde">Sauvgarde de secours</button>
+      <button @click="sauvgarder">Sauvgarder de secours</button>
       <button class="deconnexion" @click="deconnexion">Déconnexion</button>
       <Succes v-if="flagSucces" />
     </div>
@@ -17,7 +17,7 @@
 <script>
 import Succes from "@/components/models/Succes.vue"
 import Observateurs from "@/requests/Observateurs"
-import Chekin from "@/requests/Chekin"
+// import Chekin from "@/requests/Chekin"
 
 export default {
   name: 'DashboardView',
@@ -50,22 +50,24 @@ export default {
       this.$router.push("/modification").catch(() => { });
     },
 
-    sauvgarde() {
+    sauvgarder() {
 
-      Chekin.sauvgarde(sessionStorage.getItem("id"))
-        .then((result) => {
+      this.$router.push("/sauvgarder").catch(() => { });
 
-          if (result.data) {
-            this.flagSucces = true;
-            setTimeout(() => {
-              this.flagSucces = false;
-            }, 8000);
-          }
+      // Chekin.sauvgarde(sessionStorage.getItem("id"))
+      //   .then((result) => {
 
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
+      //     if (result.data) {
+      //       this.flagSucces = true;
+      //       setTimeout(() => {
+      //         this.flagSucces = false;
+      //       }, 8000);
+      //     }
+
+      //   })
+      //   .catch((error) => {
+      //     console.log(error.message);
+      //   });
 
     },
 

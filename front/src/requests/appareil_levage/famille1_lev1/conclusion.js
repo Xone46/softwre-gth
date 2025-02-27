@@ -37,6 +37,7 @@ class Conclusions {
     }
 
     static reset(observateurId) {
+        console.log(observateurId)
         return new Promise((resolve, reject) => {
             axios.delete(`${VUE_APP_API_BASE_URL}/appareil_levage-famille1_lev1/conclusions/reset/${observateurId}`, config)
                 .then(response => {

@@ -2,14 +2,18 @@
 
     <div class="conclusion">
 
-        
-        <div class="sauvegarder">
-            <button :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" @click="sauvegarde">
-                {{ watched_sauvegarder == true ? "Déjà envoyé" : "Envoyer" }}
+
+       <div class="sauvegarder">
+            <button @click="sauvegarde" :class="[watched_sauvegarder == true ? 'watch' : 'not-watch']" >
+                <font-awesome-icon v-if="watched_sauvegarder == false" icon="lock-open" />
+                <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
             </button>
-            <button @click="reset">Initialiser</button>
+
+            <button @click="reset" v-if="watched_sauvegarder == true">
+                <font-awesome-icon icon="trash" />
+            </button>
         </div>
-        
+
 
         <h1 class="observation">Observations complémentaires</h1>
 
@@ -17,7 +21,8 @@
             <input type="checkbox" :checked="(conclusion.a != '')" @input="saisirA($event)"
                 value="Les essais ont été réalisés avec les charges mises à disposition">
             <label>
-                Les essais ont été réalisés avec les charges mises à disposition {{ conclusion.poids == "" ? "......." : conclusion.poids }}
+                Les essais ont été réalisés avec les charges mises à disposition {{ conclusion.poids == "" ? "......." :
+                conclusion.poids }}
                 Kg
             </label>
         </div>
@@ -88,7 +93,8 @@
         </div>
 
         <div class="alignment">
-            <input type="checkbox" :checked="(conclusion.g != '')" @input="saisirG($event)" value="Commentaire complémentaire :">
+            <input type="checkbox" :checked="(conclusion.g != '')" @input="saisirG($event)"
+                value="Commentaire complémentaire :">
             <label>Commentaire complémentaire :
             </label>
         </div>
@@ -97,8 +103,8 @@
             <label>{{ this.conclusion.commentaire }}</label>
         </div>
 
-        <Insert v-if="conclusion.falgInsert" :typeInsert="conclusion.typeInsert" :valueInsert="conclusion.valueInsert" @valider="valider"
-            @annuler="annuler" />
+        <Insert v-if="conclusion.falgInsert" :typeInsert="conclusion.typeInsert" :valueInsert="conclusion.valueInsert"
+            @valider="valider" @annuler="annuler" />
 
 
 
@@ -118,7 +124,7 @@ export default {
 
             counter_watched: 0,
             watched_sauvegarder: false,
-            conclusion : {
+            conclusion: {
                 falgInsert: false,
                 typeInsert: ``,
                 valueInsert: "",
@@ -153,7 +159,7 @@ export default {
         conclusion: {
             handler() {
 
-                if((this.counter_watched++) > 0) {
+                if ((this.counter_watched++) > 0) {
                     this.watched_sauvegarder = false;
                 }
 
@@ -301,7 +307,7 @@ export default {
         },
 
         reset() {
-            Conclusion.reset(this.conclusion.observateurId)
+            Conclusion.reset(this.observateurId)
                 .then(() => {
 
                     this.conclusion.falgInsert = false;
@@ -330,7 +336,7 @@ export default {
 
         Conclusion.select(this.observateurId)
             .then((result) => {
-                
+
                 if (result.data != null) {
                     this.conclusion.poids = result.data.poids;
                     this.conclusion.commentaire = result.data.commentaire;
@@ -346,7 +352,7 @@ export default {
                     return this.notEmpty();
                 }
 
-                if(result.data == null) {
+                if (result.data == null) {
                     this.watched_sauvegarder = false;
                     return this.notEmpty();
                 }
@@ -461,6 +467,7 @@ export default {
 .reset button:hover {
     background-color: rgb(84, 1, 1);
 }
+
 .saved {
     color: #04AA6D;
 }
@@ -487,6 +494,4 @@ export default {
     justify-content: center;
     align-items: center;
 }
-
-
 </style>
