@@ -8,12 +8,27 @@ const config = {
     }
 };
 
-class Backup {
+class Bd {
 
 
-    static sauvgarde(inspecteurId) {
+    static sauvgarder() {
         return new Promise((resolve, reject) => {
-            axios.get(`${VUE_APP_API_BASE_URL}/backups/saved`,
+            axios.get(`${VUE_APP_API_BASE_URL}/bd/sauvgarder`,
+                 config
+                )
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+
+        })
+    }
+
+    static restorer() {
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/bd/restorer`,
                  config
                 )
                 .then(response => {
@@ -28,4 +43,4 @@ class Backup {
 
 }
 
-export default Backup;
+export default Bd;

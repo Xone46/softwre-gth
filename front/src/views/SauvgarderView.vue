@@ -8,7 +8,7 @@
             </button>
         </div>
 
-        <h2>Liste des Backups</h2>
+        <h2>Liste des Backups précédents</h2>
 
         <Spinner v-if="flagSpinner" />
         <Invertesment :msgInvertesment="msgInvertesment" v-if="flagInvertesment" />
@@ -30,7 +30,8 @@
         </div>
 
         <div class="actions">
-            <button @click="apercu">restore</button>
+            <button @click="restorer">restorer</button>
+            <button @click="sauvgarder">sauvgarder</button>
         </div>
         
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
@@ -40,7 +41,7 @@
 
 <script>
 
-// import Observateurs from "@/requests/Observateurs"
+import Bd from "@/requests/bd"
 import Spinner from 'vue-simple-spinner'
 import Invertesment from "@/components/models/Invertesment.vue"
 import Error from "@/components/models/Error.vue"
@@ -57,7 +58,7 @@ export default {
             flagVerified: false,
             backups: [],
             backupsSelect: [],
-            flagSpinner: true,
+            flagSpinner: false,
             flagInvertesment: false,
             msgInvertesment: null,
             msgError: null
@@ -77,25 +78,47 @@ export default {
 
     methods: {
 
-        annuller() {
-            this.flagError = false;
+        restorer() {
+            Bd.restorer()
+            .then((result) => {
+                console.log(result)
+            })
+            .catch((error) => {
+                console.log(error)
+            });        
+        },
+
+        sauvgarder() {
+            console.log("sauvgarder")
+            Bd.sauvgarder()
+            .then((result) => {
+                console.log(result)
+            })
+            .catch((error) => {
+                console.log(error)
+            });
         },
 
         retour() {
+
             this.$router.push("/dashboard").catch(() => { });
+
         },
 
-
         supprimer() {
+
             if (this.observateursSelect.length === 1) {
                 this.flagVerified = true;
             }
+
         }
     }
 }
+
 </script>
 
 <style scoped>
+
 .observations {
     width: 100%;
 }
@@ -196,29 +219,21 @@ export default {
 }
 
 .actions button:nth-child(1) {
-    background-color: #04AA6D;
-}
-
-.actions button:nth-child(1):hover {
-    background-color: green;
-}
-
-
-.actions button:nth-child(2) {
     background-color: #f3a108;
 }
 
-.actions button:nth-child(2):hover {
+.actions button:nth-child(1):hover {
     background-color: orange;
 }
 
-.actions button:nth-child(3) {
-    background-color: #f33708;
+.actions button:nth-child(2) {
+    background-color: #04AA6D;
 }
 
-.actions button:nth-child(3):hover {
-    background-color: red;
+.actions button:nth-child(2):hover {
+    background-color: green;
 }
+
 
 .retour {
     width: 100%;
