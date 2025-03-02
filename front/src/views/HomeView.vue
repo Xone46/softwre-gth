@@ -1,14 +1,18 @@
 <template>
   <div class="home">
 
-    <img v-if="!falgAuth" src="@/assets/logo.png" alt="logo">
+    <div class="home-cover">
 
-    <div v-if="flagSpinner" class="spinner">
-      <Spinner message="Veuillez patienter, logiciel se connectera aux serveurs GTHCONSULT" />
+      <img v-if="!falgAuth" src="@/assets/logo.png" alt="logo">
+
+      <div v-if="flagSpinner" class="spinner">
+        <Spinner message="Veuillez patienter, logiciel se connectera aux serveurs GTHCONSULT" />
+      </div>
+
+      <button class="ressayer" v-if="flagDemarrer" @click="demarrer">Démarrer</button>
+      <Login v-if="falgAuth" @quitter="quitter" />
+
     </div>
-
-    <button class="ressayer" v-if="flagDemarrer" @click="demarrer">Démarrer</button>
-    <Login v-if="falgAuth" @quitter="quitter" />
 
   </div>
 </template>
@@ -65,28 +69,28 @@ export default {
 
             Chekin.status(ip)
               .then((result) => {
-                  if (result.data) {
-                    this.flagDemarrer = false;
-                    this.flagSpinner = false;
-                    this.falgAuth = true;
-                    sessionStorage.setItem("connection", true);
-                  }
+                if (result.data) {
+                  this.flagDemarrer = false;
+                  this.flagSpinner = false;
+                  this.falgAuth = true;
+                  sessionStorage.setItem("connection", true);
+                }
               })
               .catch((error) => {
-                  if (error.message) {
-                    this.flagDemarrer = false;
-                    this.flagSpinner = false;
-                    this.falgAuth = false;
-                  }
+                if (error.message) {
+                  this.flagDemarrer = false;
+                  this.flagSpinner = false;
+                  this.falgAuth = false;
+                }
               });
 
           }
         })
         .catch(() => {
-            this.flagDemarrer = false;
-            this.flagSpinner = false;
-            this.falgAuth = true;
-            sessionStorage.setItem("connection", false);
+          this.flagDemarrer = false;
+          this.flagSpinner = false;
+          this.falgAuth = true;
+          sessionStorage.setItem("connection", false);
         });
 
 
@@ -103,18 +107,24 @@ export default {
 
 <style scoped>
 .home {
-  background-image: url("@/assets/zelig.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;    
-    background-color: rgba(0, 0, 255, 0.514);
-  height: 100vh;
-  width: 100%;
   margin: 0;
   padding: 0;
+  height: 100vh;
+  width: 100%;
+  background-image: url("@/assets/zelig.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.home-cover {
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #a9a4a493;
 }
 
 .home img {
@@ -148,4 +158,9 @@ export default {
     padding: 1rem 2rem;
   }
 }
+
+.spinner {
+  color: rgb(19, 2, 65);
+}
+
 </style>

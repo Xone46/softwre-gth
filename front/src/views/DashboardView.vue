@@ -98,6 +98,7 @@ export default {
 </script>
 
 <style scoped>
+
 .dashboard {
   margin: 0;
   padding: 0;

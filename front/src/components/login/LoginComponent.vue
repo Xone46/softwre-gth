@@ -172,6 +172,8 @@ export default {
   height: 40px;
   padding: 5px;
   margin: 3px;
+  outline: 0;
+  border: 1px solid #000000
 }
 
 .login .form button {

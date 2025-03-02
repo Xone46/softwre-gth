@@ -30,10 +30,14 @@
                     <!-- <th>L'etat de Vérification</th> -->
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
-                    <td><input type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
+                    <td><input v-if="observateur.cache == false" type="checkbox" v-model="observateursSelect" :value="observateur._id"></td>
                     <td>{{ new Date(observateur.date).toLocaleDateString() }} </td>
-                    <td>{{ observateur.typeVerification }}</td>
-                    <td>{{ observateur.typeAppareil[1] }}</td>
+                    <td :title="observateur.typeVerification">{{ observateur.typeVerification.length > 10 ?
+                        String(observateur.typeVerification).substring(0, 10) + '...' :
+                        String(observateur.typeVerification) }}</td>
+                    <td :title="observateur.typeAppareil[1]">{{ observateur.typeAppareil[1].length > 10 ?
+                        String(observateur.typeAppareil[1]).substring(0, 10) + '...' :
+                        String(observateur.typeAppareil[1]) }}</td>
                     <td>{{ observateur.constructeur }}</td>
                     <td>{{ observateur.numeroSerie }}</td>
                     <td>{{ observateur.numeroInterne }}</td>
@@ -186,6 +190,8 @@ export default {
                         Observateurs.send(this.observateursSelect[0], sessionStorage.getItem("id"), ip, interventionId)
                             .then((result) => {
                                 if (result) {
+                                    const index = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
+                                    this.observateurs[index].cache = true;
                                     this.flagSpinner = false
                                 }
                             })

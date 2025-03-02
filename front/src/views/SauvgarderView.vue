@@ -17,23 +17,22 @@
         <div class="sites" v-if="!flagSpinner && !flagInvertesment">
             <table class="table-data">
                 <tr>
-                    <th></th>
+                    <th>Compteur</th>
                     <th>Date</th>
                     <th>nom</th>
                 </tr>
-                <tr v-for="backup in backups" :key="backup._id">
-                    <td><input type="checkbox" v-model="observateursSelect" :value="backup._id"></td>
-                    <td>{{ new Date(backup.date).toLocaleDateString() }} </td>
-                    <td>{{ backup.nom }}</td>
+                <tr v-for="(backup, index) in backups" :key="backup._id">
+                    <td>{{ index + 1 }} </td>
+                    <td>{{ new Date(backup.date) }} </td>
+                    <td>{{ backup._id }}</td>
                 </tr>
             </table>
         </div>
 
         <div class="actions">
-            <button @click="restorer">restorer</button>
-            <button @click="sauvgarder">sauvgarder</button>
+            <button @click="sauvgarder">Sauvegarder nouvelle backup</button>
         </div>
-        
+
         <Verified v-if="flagVerified" @confirmer="confirmer" @retirer="retirer" />
 
     </div>
@@ -51,10 +50,8 @@ export default {
     name: 'ObservationView',
     data() {
         return {
-
             errors: [],
             flagError: false,
-
             flagVerified: false,
             backups: [],
             backupsSelect: [],
@@ -78,47 +75,36 @@ export default {
 
     methods: {
 
-        restorer() {
-            Bd.restorer()
-            .then((result) => {
-                console.log(result)
-            })
-            .catch((error) => {
-                console.log(error)
-            });        
-        },
-
         sauvgarder() {
-            console.log("sauvgarder")
             Bd.sauvgarder()
-            .then((result) => {
-                console.log(result)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
+                .then((result) => {
+                    this.backups.push(result.data)
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
         },
 
         retour() {
-
             this.$router.push("/dashboard").catch(() => { });
-
         },
+    },
 
-        supprimer() {
-
-            if (this.observateursSelect.length === 1) {
-                this.flagVerified = true;
-            }
-
-        }
+    created() {
+        Bd.read()
+            .then((result) => {
+                this.backups= result.data.backups
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
+
 }
 
 </script>
 
 <style scoped>
-
 .observations {
     width: 100%;
 }

@@ -18,23 +18,27 @@
                     <th>N°Série</th>
                     <th>N°Interne</th>
                     <th>Localisation</th>
-                    <!-- <th>Accompagnateur Client</th> -->
-                    <!-- <th>Accompagnateur Inspecteur</th> -->
                     <th>Marquage</th>
-                    <th>Status de verification</th>
+                    <th>Status</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
-                    <td><input type="checkbox" v-if="!observateur.etat" v-model="observateursSelect" :value="observateur._id"></td>
+                    <td><input type="radio" v-if="!observateur.etat"
+                            @change="handelObservateursSelect(observateur._id, observateur.typeAppareil[0])"
+                            :value="observateur._id" name="observateurId"></td>
                     <td>{{ new Date(observateur.date).toLocaleDateString() }}</td>
-                    <td :title="observateur.typeVerification">{{ observateur.typeVerification.length > 20 ? String(observateur.typeVerification).substring(0, 25) + '...' : String(observateur.typeVerification) }}</td>
-                    <td>{{ observateur.typeAppareil[1] }}</td>
-                    <td>{{ observateur.metier }}</td>
+                    <td :title="observateur.typeVerification">{{ observateur.typeVerification.length > 10 ?
+                        String(observateur.typeVerification).substring(0, 10) + '...' :
+                        String(observateur.typeVerification) }}</td>
+                    <td :title="observateur.typeAppareil[1]">{{ observateur.typeAppareil[1].length > 10 ?
+                        String(observateur.typeAppareil[1]).substring(0, 10) + '...' :
+                        String(observateur.typeAppareil[1]) }}</td>
+                    <td :title="observateur.metier">{{ observateur.metier.length > 10 ?
+                        String(observateur.metier).substring(0, 10) + '...' : String(observateur.metier) }}</td>
                     <td>{{ observateur.constructeur }}</td>
                     <td>{{ observateur.numeroSerie }}</td>
                     <td>{{ observateur.numeroInterne }}</td>
                     <td>{{ observateur.localisation }}</td>
-                    <!-- <td>{{ observateur.accompagnateurClient }}</td> -->
-                    <!-- <td>{{ observateur.accompagnateurInspecteur }}</td> -->
+
                     <td>{{ observateur.marquage }}</td>
                     <td v-if="!observateur.etat">
                         <!-- <button class="termine" @click="terminer(observateur._id)">Envoyer</button> -->
@@ -51,7 +55,8 @@
 
             <div class="left">
 
-                <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="apercu">
+                <button v-if="!flagInvertesment && this.observateursSelect.length === 1 && flagApercuRapport == true"
+                    @click="apercu">
                     <font-awesome-icon icon="eye" />
                     <span>Aperçu le Pré-rapport</span>
                 </button>
@@ -93,6 +98,11 @@
 
 <script>
 
+import FamilleCompletedOneLevOne from "@/requests/appareil_levage/famille1_lev1/completed"
+import FamilleCompletedTowLevTow from "@/requests/appareil_levage/famille2_lev2/completed"
+import FamilleCompletedTreeLevTree from "@/requests/appareil_levage/famille3_lev3/completed"
+import FamilleCompletedFourLevFour from "@/requests/appareil_levage/famille4_lev4/completed"
+import FamilleCompletedFiveLevFive from "@/requests/appareil_levage/famille5_lev5/completed"
 import Observateurs from "@/requests/Observateurs"
 import Spinner from 'vue-simple-spinner'
 import Invertesment from "@/components/models/Invertesment.vue"
@@ -103,6 +113,7 @@ export default {
     name: 'table-observateur',
     data() {
         return {
+            flagApercuRapport: false,
             flagVerified: false,
             observateurs: [],
             observateursSelect: [],
@@ -126,6 +137,78 @@ export default {
     },
 
     methods: {
+
+        handelObservateursSelect(observateurId, typeAppareil) {
+
+            this.observateursSelect = [];
+            this.observateursSelect.push(observateurId)
+            this.flagApercuRapport = false;
+
+            if (typeAppareil == "Famille 1 LEV1") {
+
+                FamilleCompletedOneLevOne.checkRenseignement(this.observateursSelect[0])
+                    .then((result) => {
+                        if (result.data == true) {
+                            this.flagApercuRapport = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            }
+
+            if (typeAppareil == "Famille 2 LEV2") {
+
+                FamilleCompletedTowLevTow.checkRenseignement(this.observateursSelect[0])
+                    .then((result) => {
+                        if (result.data == true) {
+                            this.flagApercuRapport = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            }
+
+            if (typeAppareil == "Famille 3 LEV3") {
+
+                FamilleCompletedTreeLevTree.checkRenseignement(this.observateursSelect[0])
+                    .then((result) => {
+                        if (result.data == true) {
+                            this.flagApercuRapport = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            }
+
+            if (typeAppareil == "Famille 4 LEV4") {
+
+                FamilleCompletedFourLevFour.checkRenseignement(this.observateursSelect[0])
+                    .then((result) => {
+                        if (result.data == true) {
+                            this.flagApercuRapport = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            }
+
+            if (typeAppareil == "Famille 5 LEV5") {
+
+                FamilleCompletedFiveLevFive.checkRenseignement(this.observateursSelect[0])
+                    .then((result) => {
+                        if (result.data == true) {
+                            this.flagApercuRapport = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            }
+        },
 
         annuller() {
             this.flagError = false;
@@ -180,13 +263,13 @@ export default {
 
             Observateurs.terminer(this.observateursSelect[0])
                 .then((result) => {
-                  
+
                     if (result.data.msg == true) {
                         const index = this.observateurs.findIndex((el) => el._id == this.observateursSelect[0]);
                         this.observateurs[index].etat = true;
                     }
 
-                    if(result.data.msg == false) {
+                    if (result.data.msg == false) {
                         alert("Le contrôle n'est pas entièrement terminé. Veuillez examiner toutes les entrées.")
                     }
 
@@ -301,7 +384,6 @@ export default {
 </script>
 
 <style scoped>
-
 .table-objet-observateur {
     height: 50%;
     background-color: #e7e7e74f;
@@ -427,5 +509,4 @@ export default {
 .thumbs-up {
     color: #04AA6D;
 }
-
 </style>

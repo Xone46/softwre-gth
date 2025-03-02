@@ -41,6 +41,21 @@ class Bd {
         })
     }
 
+    static read() {
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/bd/read`,
+                 config
+                )
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+
+        })
+    }
+
 }
 
 export default Bd;

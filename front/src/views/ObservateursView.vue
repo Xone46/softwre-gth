@@ -28,9 +28,9 @@
             <label for="Type de Vérification">
                 <h3>Type de Vérification : <span class="start" v-if="observateur.typeVerification.length == 0">*</span></h3>
                 <ul>
-                    <li v-for="item in verifications" :key="item.name">
+                    <li v-for="(item, index) in verifications" :key="item.name">
                         <div>
-                            <input type="radio" name="typeVerification" @input="event => handelTypeVerification(event)">
+                            <input type="radio" name="typeVerification" @input="handelTypeVerification(index)">
                             <h5>{{ item.name }}</h5>
                         </div>
                     </li>
@@ -169,20 +169,21 @@ export default {
 
     methods: {
 
-        handelTypeVerification(event) {
-            this.observateur.typeVerification = String(event.target.value);
+        handelTypeVerification(index) {
+            this.observateur.typeVerification = "";
+            this.observateur.typeVerification = this.verifications[index].name;
         },
 
         handelEquipement(event) {
-            this.observateur.equipement = String(event.target.value).toUpperCase();
+            this.observateur.equipement = String(event.target.value);
         },
 
         handelNumeroSerie(event) {
-            this.observateur.numeroSerie = String(event.target.value).toUpperCase();
+            this.observateur.numeroSerie = String(event.target.value);
         },
 
         handelNumeroInterne(event) {
-            this.observateur.numeroInterne = String(event.target.value).toUpperCase();
+            this.observateur.numeroInterne = String(event.target.value);
         },
 
         modifier() {
