@@ -316,17 +316,9 @@
             <div class="right">
                 <button @click="retour">Liste des interventions</button>
                 <button @click="visualiationReserve">Visualisation les réserves</button>
+                <Terminer :observateurId="this.formulaire.observateurId" :typeAppareil="this.formulaire.typeAppareil" />
             </div>
-
         </div>
-
-        <!-- <div class="formulaire-bottom">
-            <ul>
-                <li>© {{ currentYear }} Groupe GTHCONSULT</li>
-                <li>Bienvenue, nous vous informer que ce logiciel privée pour à la société GTHCONSULT , et chaque utilisation illégale peut conduire à un problème juridique</li>
-                <li>© 2025 Groupe GTHCONSULT</li>
-            </ul>
-        </div> -->
 
         <VisualiationReserve :observateurId="formulaire.observateurId" v-if="flagVisualiationReserve" @quitter="handelQuitter" />
 
@@ -398,10 +390,17 @@ import Menu_famille_ac1 from "@/components/menu/accessoire_levage/Menu_famille_a
 import VisualiationReserve from "@/components/models/VisualiationReserve.vue"
 // Fin Models ---------------------------------------------------------------
 
+
+// Start Terminer -------------------------------------------------------------
+import Terminer from "@/components/terminer/Terminer.vue"
+// Fin Terminer ---------------------------------------------------------------
+
 export default {
     name: 'FormulaireView',
     data() {
         return {
+
+            flagTerminer : false,
 
             currentYear : null,
 
@@ -556,7 +555,9 @@ export default {
         Menu_famille3_lev3,
         Menu_famille4_lev4,
         Menu_famille5_lev5,
-        Menu_famille_ac1
+        Menu_famille_ac1,
+
+        Terminer
 
     },
 
@@ -576,7 +577,7 @@ export default {
         },
 
         terminer() {
-            this.$router.push("/terminer").catch(() => { });
+            console.log("terminer");
         },
 
         visualiationReserve() {
@@ -1167,17 +1168,6 @@ export default {
     transition: 1s;
 }
 
-/* 
-.formulaire .formulaire-bottom {
-    background-color: #141293;
-    color: white;
-    width: 100%;
-    text-align: center;
-}
-
-.formulaire .formulaire-bottom ul li {
-    list-style: none;
-} */
 
 
 

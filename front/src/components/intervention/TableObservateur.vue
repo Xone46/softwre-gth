@@ -22,7 +22,7 @@
                     <th>Status</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
-                    <td><input type="radio" v-if="!observateur.etat"
+                    <td><input type="radio"
                             @change="handelObservateursSelect(observateur._id, observateur.typeAppareil[0])"
                             :value="observateur._id" name="observateurId"></td>
                     <td>{{ new Date(observateur.date).toLocaleDateString() }}</td>
@@ -79,11 +79,11 @@
                     <font-awesome-icon icon="trash" />
                     <span>Supprimer</span>
                 </button>
-
+<!-- 
                 <button v-if="!flagInvertesment && this.observateursSelect.length === 1" @click="sauvgerder">
                     <font-awesome-icon icon="circle-check" />
                     <span>Terminer</span>
-                </button>
+                </button> -->
 
             </div>
 

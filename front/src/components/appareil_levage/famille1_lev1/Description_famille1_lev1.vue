@@ -355,6 +355,8 @@ export default {
         description: {
             handler() {
                 const count = this.counter_watched++;
+                console.log(count)
+                
                 if (count == 0 || count == 1) {
                     this.watched_sauvegarder = false;
                 }
@@ -665,7 +667,7 @@ export default {
 
                 this.colorCaracteristiques = this.checkCaracterstiques();
                 this.colorSuspentes = this.checkeSuspentes();
-                this.watched_sauvegarder = true;
+                this.watched_sauvegarder = false;
                 return this.notEmpty();
             })
             .catch((error) => {

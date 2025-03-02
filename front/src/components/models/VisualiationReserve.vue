@@ -8,10 +8,15 @@
 
                 <table class="table-data" v-if="commentaires.length != 0">
                     <tr>
+                        <th colspan="3">Visualisation des réserve</th>
+                    </tr>
+                    <tr>
+                        <th>Numéro</th>
                         <th>Observation</th>
-                        <th>Mode</th>
+                        <th>Suite à donner</th>
                     </tr>
                     <tr v-for="(item, index) in commentaires" :key="index">
+                        <td>{{  index +  1  }}</td>
                         <td>{{  item.name  }}</td>
                         <td>
                             <p class="critique" v-if="item.status == 'critique'" >{{  item.status  }} </p>
@@ -197,7 +202,6 @@ export default {
 .table-data th {
     padding-top: 10px;
     padding-bottom: 10px;
-    text-align: left;
     background-color: #35353d;
     color: white;
     position: sticky;
@@ -205,11 +209,16 @@ export default {
     z-index: 1;
 }
 
-.table-data td,
-.table-data th {
+.table-data td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+}
+
+.table-data th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
 }
 
 .buttons {
