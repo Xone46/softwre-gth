@@ -1,6 +1,9 @@
 <template>
     <div class="terminer">
-        <button @click="terminer">Terminer</button>
+        <button @click="terminer">
+            <font-awesome-icon icon="thumbs-up" class="thumbs-up" />
+            Terminer
+        </button>
     </div>
 </template>
 
@@ -133,26 +136,30 @@ export default {
 
 
 <style scoped>
+
 .terminer {
-    width: auto;
-    height: auto;
+    width : 100%;
+    height: inherit;
+    padding: 0;
+    margin: 0;
 }
 
-
 .terminer button {
-    background-color: #74C365;
-    border-radius: 50%;
     color: white;
-    width: 120px;
-    height: 120px;
+    width : 100%;
+    height : auto;
     border: 0;
     padding: 10px;
     margin-top: 10px;
     cursor: pointer;
     font-size: medium;
+    text-align: left;
+    background-color: #74C365;
 }
+
 
 .terminer button:hover {
     background-color: green;
 }
+
 </style>

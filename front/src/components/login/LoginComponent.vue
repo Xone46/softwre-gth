@@ -135,7 +135,7 @@ export default {
 }
 
 .login .form img {
-  height: 60px;
+  height: 80px;
 }
 
 .login .form ul {
@@ -165,6 +165,7 @@ export default {
   text-align: start;
   width: 400px;
   margin: 3px;
+  color: white;
 }
 
 .login .form label input {
@@ -208,6 +209,6 @@ export default {
 }
 
 .start {
-  color: red;
+  color: white;
 }
 </style>

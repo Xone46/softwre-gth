@@ -7,9 +7,9 @@
                 <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
             </button>
 
-            <button @click="reset" v-if="watched_sauvegarder == true">
-                <font-awesome-icon icon="trash" />
-            </button>
+                <button class="reset" @click="reset" v-if="watched_sauvegarder == true">
+                    <font-awesome-icon icon="trash" />
+                </button>
         </div>
         
 
@@ -1966,7 +1966,6 @@ table tr th:nth-child(2) {
     margin-top: 5px;
     margin-top: 5px;
     padding: 5px;
-    border-bottom: 1px solid #141293;
 }
 
 .sauvegarder button {
@@ -1978,7 +1977,7 @@ table tr th:nth-child(2) {
     background-color: green;
     color: white;
     height: 30px;
-    width: 200px;
+    width: fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
@@ -1992,7 +1991,7 @@ table tr th:nth-child(2) {
     background-color: red;
     color: white;
     height: 30px;
-    width: 200px;
+    width:  fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
@@ -2002,17 +2001,19 @@ table tr th:nth-child(2) {
     background-color: rgb(84, 1, 1);
 }
 
-.sauvegarder button {
+.sauvegarder .reset {
     background-color: red;
     color: white;
     height: 30px;
-    width: 200px;
+    width: fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.sauvegarder button:hover {
+.sauvegarder .reset:hover {
     background-color: rgb(84, 1, 1);
 }
 

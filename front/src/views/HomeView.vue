@@ -5,8 +5,8 @@
 
       <img v-if="!falgAuth" src="@/assets/logo.png" alt="logo">
 
-      <div v-if="flagSpinner" class="spinner">
-        <Spinner message="Veuillez patienter, logiciel se connectera aux serveurs GTHCONSULT" />
+      <div v-if="flagSpinner" >
+        <Spinner class="spinner" message="Veuillez patienter, logiciel se connectera aux serveurs GTHCONSULT" />
       </div>
 
       <button class="ressayer" v-if="flagDemarrer" @click="demarrer">Démarrer</button>
@@ -124,7 +124,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #a9a4a493;
+  background-color: #020204ab;
 }
 
 .home img {
@@ -160,7 +160,7 @@ export default {
 }
 
 .spinner {
-  color: rgb(19, 2, 65);
+  color: white;
 }
 
 </style>

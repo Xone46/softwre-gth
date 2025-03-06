@@ -8,9 +8,9 @@
                 <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
             </button>
 
-            <button @click="reset" v-if="watched_sauvegarder == true">
-                <font-awesome-icon icon="trash" />
-            </button>
+                <button class="reset" @click="reset" v-if="watched_sauvegarder == true">
+                    <font-awesome-icon icon="trash" />
+                </button>
         </div>
         
         <table>
@@ -131,10 +131,10 @@
                 <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
                 <td class="sixth">
                     <p v-for="(item, index) in description.sourceEnergie" :key="index">
-                        <input type="radio" name="sourceEnergie" @input="sisairSourceEnergie(index)"
+                        <input type="checkbox" name="sourceEnergie" @input="sisairSourceEnergie(index)"
                             :checked="item.status">{{ item.titre }}
                     <ul>
-                        <li v-for="(el, i) in item.tab" :key="i"><input type="radio" name="sousSourceEnergie"
+                        <li v-for="(el, i) in item.tab" :key="i"><input type="checkbox" name="sousSourceEnergie"
                                 @input="sisairSousSourceEnergie(index, i)" :checked="el.status">{{ el.titre }}</li>
                     </ul>
                     </p>
@@ -1069,7 +1069,7 @@ select {
     background-color: green;
     color: white;
     height: 30px;
-    width: 200px;
+    width: fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
@@ -1083,7 +1083,7 @@ select {
     background-color: red;
     color: white;
     height: 30px;
-    width: 200px;
+    width:  fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;

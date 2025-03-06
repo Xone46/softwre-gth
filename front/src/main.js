@@ -4,13 +4,13 @@ import router from './router'
 import store from './store'
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faHome, faList, faEnvelope, faTrash, faPencil, faEye, faPlus, faRotateRight, faThumbsUp, faLockOpen, faLock, faClock, faCircleCheck, faXmark  } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faList, faEnvelope, faTrash, faPencil, faEye, faPlus, faRotateRight, faThumbsUp, faLockOpen, faLock, faClock, faCircleCheck, faXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 library.add(faCircleCheck);
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 // Add icons to the library
-library.add(faHome, faEnvelope, faList, faTrash, faPencil, faEye, faPlus, faRotateRight, faThumbsUp, faLockOpen, faLock, faClock, faCircleCheck, faXmark  );
+library.add(faHome, faEnvelope, faList, faTrash, faPencil, faEye, faPlus, faRotateRight, faThumbsUp, faLockOpen, faLock, faClock, faCircleCheck, faXmark, faMagnifyingGlass);
 
 
 // Register the FontAwesomeIcon component globally

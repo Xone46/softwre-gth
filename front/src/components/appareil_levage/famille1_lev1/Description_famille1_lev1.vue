@@ -8,9 +8,9 @@
                 <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
             </button>
 
-            <button @click="reset" v-if="watched_sauvegarder == true">
-                <font-awesome-icon icon="trash" />
-            </button>
+                <button class="reset" @click="reset" v-if="watched_sauvegarder == true">
+                    <font-awesome-icon icon="trash" />
+                </button>
         </div>
 
 
@@ -798,7 +798,7 @@ select {
     background-color: green;
     color: white;
     height: 30px;
-    width: 200px;
+    width: fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
@@ -812,7 +812,7 @@ select {
     background-color: red;
     color: white;
     height: 30px;
-    width: 200px;
+    width:  fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;

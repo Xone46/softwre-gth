@@ -8,7 +8,7 @@
                     <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
                 </button>
 
-                <button @click="reset" v-if="watched_sauvegarder == true">
+                <button class="reset" @click="reset" v-if="watched_sauvegarder == true">
                     <font-awesome-icon icon="trash" />
                 </button>
             </div>
@@ -460,7 +460,6 @@ export default {
 
                         this.renseignement.typeConstructeur = "",
                             this.renseignement.anneeMiseService = "",
-                            this.renseignement.numeroInterne = "",
                             this.renseignement.typeAppareil = "",
                             this.renseignement.suiveTypeAppareil = "",
                             this.renseignement.miseEnServiceRapport = "",
@@ -506,6 +505,7 @@ export default {
 
         Completed.checkRenseignement(this.observateurId)
             .then((result) => {
+                console.log(result)
 
                 if (result.data == false) {
 
@@ -635,7 +635,6 @@ td button {
     margin-top: 5px;
     margin-top: 5px;
     padding: 5px;
-    border-bottom: 1px solid #141293;
 }
 
 .sauvegarder button {
@@ -647,10 +646,12 @@ td button {
     background-color: green;
     color: white;
     height: 30px;
-    width: 200px;
+    width: fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .sauvegarder .watch:hover {
@@ -661,27 +662,31 @@ td button {
     background-color: red;
     color: white;
     height: 30px;
-    width: 200px;
+    width:  fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .sauvegarder .not-watch:hover {
     background-color: rgb(84, 1, 1);
 }
 
-.sauvegarder button {
+.sauvegarder .reset {
     background-color: red;
     color: white;
     height: 30px;
-    width: 200px;
+    width: fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.sauvegarder button:hover {
+.sauvegarder .reset:hover {
     background-color: rgb(84, 1, 1);
 }
 

@@ -23,6 +23,19 @@ class Completeds {
         })
     }
 
+    static checkAll(observateurId) {
+
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille5_lev5/completeds/checkAll/${observateurId}`, config)
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
     static read() {
         return new Promise((resolve, reject) => {
             axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille5_lev5/completeds`, config)

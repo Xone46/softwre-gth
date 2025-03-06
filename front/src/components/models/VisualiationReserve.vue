@@ -11,9 +11,9 @@
                         <th colspan="3">Visualisation des réserve</th>
                     </tr>
                     <tr>
-                        <th>Numéro</th>
-                        <th>Observation</th>
-                        <th>Suite à donner</th>
+                        <th>N° Obs</th>
+                        <th>Liste des observations</th>
+                        <th>Status</th>
                     </tr>
                     <tr v-for="(item, index) in commentaires" :key="index">
                         <td>{{  index +  1  }}</td>

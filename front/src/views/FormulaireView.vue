@@ -314,13 +314,24 @@
             </div>
 
             <div class="right">
-                <button @click="retour">Liste des interventions</button>
-                <button @click="visualiationReserve">Visualisation les réserves</button>
-                <Terminer :observateurId="this.formulaire.observateurId" :typeAppareil="this.formulaire.typeAppareil" />
+
+                <button @click="retour">
+                    <font-awesome-icon icon="list" />
+                    La liste des interventions
+                </button>
+
+                <button @click="visualiationReserve">
+                    <font-awesome-icon icon="magnifying-glass" />
+                    La liste des réserves
+                </button>
+
+                <Terminer v-if="flagTerminer" :observateurId="this.formulaire.observateurId" :typeAppareil="this.formulaire.typeAppareil" />
+
             </div>
         </div>
 
-        <VisualiationReserve :observateurId="formulaire.observateurId" v-if="flagVisualiationReserve" @quitter="handelQuitter" />
+        <VisualiationReserve :observateurId="formulaire.observateurId" v-if="flagVisualiationReserve"
+            @quitter="handelQuitter" />
 
     </div>
 
@@ -395,14 +406,22 @@ import VisualiationReserve from "@/components/models/VisualiationReserve.vue"
 import Terminer from "@/components/terminer/Terminer.vue"
 // Fin Terminer ---------------------------------------------------------------
 
+// Start Completed
+import FamilleCompletedOneLevOne from "@/requests/appareil_levage/famille1_lev1/completed"
+import FamilleCompletedTowLevTow from "@/requests/appareil_levage/famille2_lev2/completed"
+import FamilleCompletedTreeLevTree from "@/requests/appareil_levage/famille3_lev3/completed"
+import FamilleCompletedFourLevFour from "@/requests/appareil_levage/famille4_lev4/completed"
+import FamilleCompletedFiveLevFive from "@/requests/appareil_levage/famille5_lev5/completed"
+// Fin Completed
+
 export default {
     name: 'FormulaireView',
     data() {
         return {
 
-            flagTerminer : false,
+            flagTerminer: false,
 
-            currentYear : null,
+            currentYear: null,
 
             counter_saved: 0,
 
@@ -1038,34 +1057,116 @@ export default {
         this.formulaire.typeAppareil = this.$route.params.typeAppareil;
         this.formulaire.interventionId = this.$route.params.interventionId;
 
+
+
+
+
         if (this.$route.params.typeAppareil[0] == "Famille 1 LEV1") {
+
+            // content
             this.flag_famille1_lev1 = true;
+            // menu
             this.flag_Menu_famille1_lev1 = true;
-            this.colorRenseignement_famille1_lev1 = true;
+
+            FamilleCompletedOneLevOne.checkAll(this.formulaire.observateurId)
+                .then((result) => {
+                    // colors
+                    this.colorRenseignement_famille1_lev1 = result.data.completed[0].renseignement;
+                    this.colorDescription_famille1_lev1 = result.data.completed[0].description;
+                    this.colorExamen_famille1_lev1 = result.data.completed[0].examen;
+                    this.colorConclusion_famille1_lev1 = result.data.completed[0].conclusion;
+                    this.colorPhoto_famille1_lev1 = result.data.completed[0].photo;
+                    if(result.data.status == true) {
+                        this.flagTerminer = true;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+
+
         }
 
         if (this.$route.params.typeAppareil[0] == "Famille 2 LEV2") {
             this.flag_famille2_lev2 = true;
             this.flag_Menu_famille2_lev2 = true;
-            this.colorRenseignement_famille2_lev2 = true;
+
+            FamilleCompletedTowLevTow.checkAll(this.formulaire.observateurId)
+                .then((result) => {
+                    this.colorRenseignement_famille2_lev2 = result.data.completed[0].renseignement;
+                    this.colorDescription_famille2_lev2 = result.data.completed[0].description;
+                    this.colorExamen_famille2_lev2 = result.data.completed[0].examen;
+                    this.colorConclusion_famille2_lev2 = result.data.completed[0].conclusion;
+                    this.colorPhoto_famille2_lev2 = result.data.completed[0].photo;
+                    if(result.data.status == true) {
+                        this.flagTerminer = true;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
         }
 
         if (this.$route.params.typeAppareil[0] == "Famille 3 LEV3") {
             this.flag_famille3_lev3 = true;
             this.flag_Menu_famille3_lev3 = true;
-            this.colorRenseignement_famille3_lev3 = true;
+
+            FamilleCompletedTreeLevTree.checkAll(this.formulaire.observateurId)
+                .then((result) => {
+                    this.colorRenseignement_famille3_lev3 = result.data.completed[0].renseignement;
+                    this.colorDescription_famille3_lev3 = result.data.completed[0].description;
+                    this.colorExamen_famille3_lev3 = result.data.completed[0].examen;
+                    this.colorConclusion_famille3_lev3 = result.data.completed[0].conclusion;
+                    this.colorPhoto_famille3_lev3 = result.data.completed[0].photo;
+                    if(result.data.status == true) {
+                        this.flagTerminer = true;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
         }
 
         if (this.$route.params.typeAppareil[0] == "Famille 4 LEV4") {
+
             this.flag_famille4_lev4 = true;
             this.flag_Menu_famille4_lev4 = true;
-            this.colorRenseignement_famille4_lev4 = true;
+
+            FamilleCompletedFourLevFour.checkAll(this.formulaire.observateurId)
+                .then((result) => {
+                    this.colorRenseignement_famille4_lev4 = result.data.completed[0].renseignement;
+                    this.colorDescription_famille4_lev4 = result.data.completed[0].description;
+                    this.colorExamen_famille4_lev4 = result.data.completed[0].examen;
+                    this.colorConclusion_famille4_lev4 = result.data.completed[0].conclusion;
+                    this.colorPhoto_famille4_lev4 = result.data.completed[0].photo;
+                    if(result.data.status == true) {
+                        this.flagTerminer = true;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
         }
 
         if (this.$route.params.typeAppareil[0] == "Famille 5 LEV5") {
+
             this.flag_famille5_lev5 = true;
             this.flag_Menu_famille5_lev5 = true;
-            this.colorRenseignement_famille5_lev5 = true;
+
+            FamilleCompletedFiveLevFive.checkAll(this.formulaire.observateurId)
+                .then((result) => {
+                    this.colorRenseignement_famille5_lev5 = result.data.completed[0].renseignement;
+                    this.colorDescription_famille5_lev5 = result.data.completed[0].description;
+                    this.colorExamen_famille5_lev5 = result.data.completed[0].examen;
+                    this.colorConclusion_famille5_lev5 = result.data.completed[0].conclusion;
+                    this.colorPhoto_famille5_lev5 = result.data.completed[0].photo;
+                    if(result.data.status == true) {
+                        this.flagTerminer = true;
+                    }
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
         }
 
 
@@ -1082,12 +1183,13 @@ export default {
 </script>
 
 <style scoped>
-
 .formulaire {
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Hide scrollbars */
-    box-sizing: content-box; /* So the width will be 100% + 17px */
+    overflow: hidden;
+    /* Hide scrollbars */
+    box-sizing: content-box;
+    /* So the width will be 100% + 17px */
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -1106,7 +1208,7 @@ export default {
 
 .formulaire .content {
     height: 100%;
-    width : auto;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -1114,37 +1216,46 @@ export default {
 }
 
 .formulaire .content .left {
-    width: 10%;
+    width: 15%;
     height: inherit;
     padding: 0;
     margin: 0;
+    overflow-y: hidden;
 }
 
 .formulaire .content .centre {
-    padding: 0;
+    padding: 0p;
     margin: 0;
-    width: 80%;
+    width: 70%;
     height: inherit;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .formulaire .content .right {
-    width : 10%;
+    width: 15%;
     height: inherit;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 
 .formulaire .content .right button {
-    border-radius: 50%;
     color: white;
-    width : 120px;
-    height : 120px;
+    width: 100%;
+    height: auto;
     border: 0;
     padding: 10px;
     margin-top: 10px;
     cursor: pointer;
     font-size: medium;
+    text-align: left;
+
 }
 
 .formulaire .content .right button:nth-child(1) {
@@ -1153,7 +1264,6 @@ export default {
 
 .formulaire .content .right button:nth-child(1):hover {
     background-color: #d63302;
-    font-size: large;
     transition: 1s;
 }
 
@@ -1164,12 +1274,6 @@ export default {
 
 .formulaire .content .right button:nth-child(2):hover {
     background-color: #046db8;
-    font-size: large;
     transition: 1s;
 }
-
-
-
-
-
 </style>

@@ -7,7 +7,7 @@
         <input  type="file" multiple="multiple" class="form-control" placeholder="Format Photo" ref="file" @change="previewFile"/>
 
         <div v-if="!flagReset" class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+            <button @click="sauvegarde">Téléverser </button>
         </div>
 
         <div v-if="flagReset" class="reset">

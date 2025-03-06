@@ -22,6 +22,18 @@ class Completeds {
         })
     }
 
+    static checkAll(observateurId) {
+        return new Promise((resolve, reject) => {
+            axios.get(`${VUE_APP_API_BASE_URL}/appareil_levage-famille2_lev2/completeds/checkAll/${observateurId}`, config)
+                .then(response => {
+                    resolve(response);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        })
+    }
+
     static read() {
         console.log("completeds tow")
         return new Promise((resolve, reject) => {

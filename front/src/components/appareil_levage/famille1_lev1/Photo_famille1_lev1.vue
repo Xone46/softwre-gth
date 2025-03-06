@@ -7,7 +7,7 @@
         <input  type="file" multiple="multiple" class="form-control" placeholder="Format Photo" ref="file" @change="previewFile"/>
 
         <div v-if="!flagReset" class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+            <button @click="sauvegarde">Téléverser </button>
         </div>
 
         <div v-if="flagReset" class="reset">
@@ -142,7 +142,7 @@ export default {
 }
 
 .sauvegarde button {
-    background-color: #040faa;
+    background-color: #04AA6D;
     color: white;
     margin: 3px;
     border: 0px;

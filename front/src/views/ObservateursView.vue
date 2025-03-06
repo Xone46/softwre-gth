@@ -30,7 +30,7 @@
                 <ul>
                     <li v-for="(item, index) in verifications" :key="item.name">
                         <div>
-                            <input type="radio" name="typeVerification" @input="handelTypeVerification(index)">
+                            <input type="radio" name="typeVerification" :checked="item.status" @input="handelTypeVerification(index)">
                             <h5>{{ item.name }}</h5>
                         </div>
                     </li>
@@ -171,6 +171,10 @@ export default {
 
         handelTypeVerification(index) {
             this.observateur.typeVerification = "";
+            for(let i = 0; i < this.verifications.length; i++) {
+                this.verifications[i].status = false;
+            }
+            this.verifications[index].status = true;
             this.observateur.typeVerification = this.verifications[index].name;
         },
 
@@ -255,10 +259,13 @@ export default {
         if (this.observateurId) {
             Observateurs.selected(this.observateurId)
                 .then((result) => {
-                    console.log(result)
-                    // console.log(result.data.typeAppareil)
                     this.observateur = result.data;
                     this.observateur.date = result.data.date.split('T')[0];
+                    for(let i = 0; i < this.verifications.length; i++) {
+                        if(this.verifications[i].name == result.data.typeVerification) {
+                            this.verifications[i].status = true;
+                        }
+                    }
                 })
                 .catch((error) => {
                     console.log(error);

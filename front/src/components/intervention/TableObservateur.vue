@@ -22,9 +22,7 @@
                     <th>Status</th>
                 </tr>
                 <tr v-for="observateur in observateurs" :key="observateur._id">
-                    <td><input type="radio"
-                            @change="handelObservateursSelect(observateur._id, observateur.typeAppareil[0])"
-                            :value="observateur._id" name="observateurId"></td>
+                    <td><input v-if="observateur.cache == false" type="radio" @change="handelObservateursSelect(observateur._id, observateur.typeAppareil[0])" :value="observateur._id" name="observateurId"></td>
                     <td>{{ new Date(observateur.date).toLocaleDateString() }}</td>
                     <td :title="observateur.typeVerification">{{ observateur.typeVerification.length > 10 ?
                         String(observateur.typeVerification).substring(0, 10) + '...' :
@@ -146,9 +144,10 @@ export default {
 
             if (typeAppareil == "Famille 1 LEV1") {
 
-                FamilleCompletedOneLevOne.checkRenseignement(this.observateursSelect[0])
+                FamilleCompletedOneLevOne.checkAll(this.observateursSelect[0])
                     .then((result) => {
-                        if (result.data == true) {
+                        console.log(result.data)
+                        if (result.data.status == true) {
                             this.flagApercuRapport = true;
                         }
                     })
@@ -159,9 +158,9 @@ export default {
 
             if (typeAppareil == "Famille 2 LEV2") {
 
-                FamilleCompletedTowLevTow.checkRenseignement(this.observateursSelect[0])
+                FamilleCompletedTowLevTow.checkAll(this.observateursSelect[0])
                     .then((result) => {
-                        if (result.data == true) {
+                        if (result.data.status == true) {
                             this.flagApercuRapport = true;
                         }
                     })
@@ -172,9 +171,9 @@ export default {
 
             if (typeAppareil == "Famille 3 LEV3") {
 
-                FamilleCompletedTreeLevTree.checkRenseignement(this.observateursSelect[0])
+                FamilleCompletedTreeLevTree.checkAll(this.observateursSelect[0])
                     .then((result) => {
-                        if (result.data == true) {
+                        if (result.data.status == true) {
                             this.flagApercuRapport = true;
                         }
                     })
@@ -185,9 +184,9 @@ export default {
 
             if (typeAppareil == "Famille 4 LEV4") {
 
-                FamilleCompletedFourLevFour.checkRenseignement(this.observateursSelect[0])
+                FamilleCompletedFourLevFour.checkAll(this.observateursSelect[0])
                     .then((result) => {
-                        if (result.data == true) {
+                        if (result.data.status == true) {
                             this.flagApercuRapport = true;
                         }
                     })
@@ -198,9 +197,9 @@ export default {
 
             if (typeAppareil == "Famille 5 LEV5") {
 
-                FamilleCompletedFiveLevFive.checkRenseignement(this.observateursSelect[0])
+                FamilleCompletedFiveLevFive.checkAll(this.observateursSelect[0])
                     .then((result) => {
-                        if (result.data == true) {
+                        if (result.data.status == true) {
                             this.flagApercuRapport = true;
                         }
                     })
@@ -359,9 +358,7 @@ export default {
                         this.flagSpinner = false;
                         this.flagInvertesment = false;
                         response.data.observateurs.forEach((el) => {
-                            if (Boolean(el.cache) === false) {
                                 this.observateurs.push(el);
-                            }
                         });
                     }
 

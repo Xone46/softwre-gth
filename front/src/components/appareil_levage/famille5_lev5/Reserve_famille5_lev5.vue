@@ -6,7 +6,7 @@
         <TableReserve :observateurId="observateurId" @apercu="apercu" />
 
         <div v-if="!flagReset" class="sauvegarde">
-            <button @click="sauvegarde">Sauvegarde de Secours</button>
+            <button @click="sauvegarde">Téléverser </button>
         </div>
 
         <div v-if="flagReset" class="reset">

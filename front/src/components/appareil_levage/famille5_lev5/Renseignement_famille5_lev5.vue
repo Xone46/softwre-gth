@@ -8,7 +8,7 @@
                     <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
                 </button>
 
-                <button @click="reset" v-if="watched_sauvegarder == true">
+                <button class="reset" @click="reset" v-if="watched_sauvegarder == true">
                     <font-awesome-icon icon="trash" />
                 </button>
             </div>
@@ -673,7 +673,6 @@ td button {
     margin-top: 5px;
     margin-top: 5px;
     padding: 5px;
-    border-bottom: 1px solid #141293;
 }
 
 .sauvegarder button {
@@ -685,7 +684,7 @@ td button {
     background-color: green;
     color: white;
     height: 30px;
-    width: 200px;
+    width: fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
@@ -699,7 +698,7 @@ td button {
     background-color: red;
     color: white;
     height: 30px;
-    width: 200px;
+    width:  fit-content;
     border: 0px;
     border-radius: 5px;
     cursor: pointer;
@@ -709,19 +708,7 @@ td button {
     background-color: rgb(84, 1, 1);
 }
 
-.sauvegarder button {
-    background-color: red;
-    color: white;
-    height: 30px;
-    width: 200px;
-    border: 0px;
-    border-radius: 5px;
-    cursor: pointer;
-}
 
-.sauvegarder button:hover {
-    background-color: rgb(84, 1, 1);
-}
 
 td:nth-child(2) {
     display: flex;
