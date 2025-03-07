@@ -297,6 +297,9 @@ export default {
                     console.log(result)
                     if (result) {
                         this.watched_sauvegarder = true;
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer");
+                        }
                     }
                 })
                 .catch((error) => {
@@ -323,7 +326,7 @@ export default {
 
                     this.watched_sauvegarder = false;
                     this.$emit("changeColorConclusion_famille1_lev1", this.checkProperties());
-
+                    this.$emit("resetTerminer");
                 })
                 .catch((error) => {
                     console.log(error);

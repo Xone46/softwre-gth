@@ -64,6 +64,7 @@ export default {
                     this.imgSrc = result.filename;
                     this.flagReset = true;
                     this.$emit("changeColorPhoto_famille2_lev2", true);
+                    this.$emit("handelTerminer");
                 }
             })
             .catch((error) => {
@@ -80,6 +81,7 @@ export default {
                     this.file = null;
                     this.imgSrc = null;
                     this.$emit("changeColorPhoto_famille2_lev2", false);
+                    this.$emit("resetTerminer");
                 }
 
             })

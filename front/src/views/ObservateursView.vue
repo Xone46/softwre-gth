@@ -155,8 +155,8 @@ export default {
 
             verifications: [
                 { status: false, name: "Mise en service" },
-                { status: false, name: "Préalable à la mise en service à la suite d'un démontage et remontage" },
-                { status: false, name: "Préalable à la remise en service pour autre motif" },
+                // { status: false, name: "Préalable à la mise en service à la suite d'un démontage et remontage" },
+                // { status: false, name: "Préalable à la remise en service pour autre motif" },
                 { status: false, name: "Périodique" }
             ],
 
@@ -335,7 +335,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     width: 100%;
 }
 

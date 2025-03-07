@@ -131,16 +131,13 @@
                 <td :class="[colorSourceEnergie == true ? 'saved' : 'not-saved']">SOURCE D'ENERGIE</td>
                 <td class="sixth">
                     <p v-for="(item, index) in description.sourceEnergie" :key="index">
-                        <input type="checkbox" name="sourceEnergie" @input="sisairSourceEnergie(index)"
-                            :checked="item.status">{{ item.titre }}
-                    <ul>
-                        <li v-for="(el, i) in item.tab" :key="i"><input type="checkbox" name="sousSourceEnergie"
-                                @input="sisairSousSourceEnergie(index, i)" :checked="el.status">{{ el.titre }}</li>
-                    </ul>
+                        <input type="checkbox" @input="sisairSourceEnergie(index)" :checked="item.status">{{ item.titre }}
+                        <ul>
+                            <li v-for="(el, i) in item.tab" :key="i"><input type="checkbox" @input="sisairSousSourceEnergie(index, i)" :checked="el.status">{{ el.titre }}</li>
+                        </ul>
                     </p>
                     <p v-if="description.flagcomplementSourceEnergie">
-                        <input type="text" @input="sisairComplementSourceEnergie($event)"
-                            :value="description.complementSourceEnergie">
+                        <input type="text" @input="sisairComplementSourceEnergie($event)" :value="description.complementSourceEnergie">
                     </p>
                 </td>
             </tr>
@@ -409,7 +406,17 @@ export default {
         description: {
             handler() {
                 const count = this.counter_watched++;
+                console.log(count)
+                
                 if (count == 0 || count == 1) {
+                    this.watched_sauvegarder = false;
+                }
+
+                if(count == 2) {
+                    this.watched_sauvegarder = true;
+                }
+                
+                if(count > 2) {
                     this.watched_sauvegarder = false;
                 }
 
@@ -432,6 +439,7 @@ export default {
                 this.description.sourceEnergie[5].status,
                 this.description.sourceEnergie[6].status
             ];
+
 
             if (arr.includes(true)) {
                 return true;
@@ -687,29 +695,42 @@ export default {
         sisairSourceEnergie(index) {
 
             if (index == 6) {
-                this.description.flagcomplementSourceEnergie = true;
-            } else {
-                this.description.flagcomplementSourceEnergie = false;
-                this.description.complementSourceEnergie = "";
-            }
 
-
-            for (let i = 0; i < this.description.sourceEnergie.length; i++) {
-
-                if (this.description.sourceEnergie[i].index == index) {
-                    this.description.sourceEnergie[i].status = true;
+                if(this.description.sourceEnergie[index].status == false) {
+                    this.description.sourceEnergie[index].status = true;
+                    this.description.flagcomplementSourceEnergie = true;
+                    this.description.complementSourceEnergie = "";
                 } else {
+                    this.description.sourceEnergie[index].status = false;
+                    this.description.flagcomplementSourceEnergie = false;
+                    this.description.complementSourceEnergie = "";
+                } 
 
-                    this.description.sourceEnergie[i].status = false;
+            } else {
+   
+                if(this.description.sourceEnergie[index].status == false) {
+                    this.description.sourceEnergie[index].status = true;
+                } else {
+                    this.description.sourceEnergie[index].status = false;
+                } 
 
-                    if (this.description.sourceEnergie[i].tab.length == 2) {
-                        this.description.sourceEnergie[i].tab[0].status = false;
-                        this.description.sourceEnergie[i].tab[1].status = false;
-                    }
-
-                }
             }
 
+            // for (let i = 0; i < this.description.sourceEnergie.length; i++) {
+
+            //     if (this.description.sourceEnergie[i].index == index) {
+            //         this.description.sourceEnergie[i].status = true;
+            //     } else {
+
+            //         this.description.sourceEnergie[i].status = false;
+
+            //         if (this.description.sourceEnergie[i].tab.length == 2) {
+            //             this.description.sourceEnergie[i].tab[0].status = false;
+            //             this.description.sourceEnergie[i].tab[1].status = false;
+            //         }
+
+            //     }
+            // }
 
             this.colorSourceEnergie = this.checkSourceEnergie();
 
@@ -739,6 +760,9 @@ export default {
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer");
+                        }
                     }
                 })
                 .catch((error) => {
@@ -759,7 +783,7 @@ export default {
                     this.colorLevageAuxilaire = this.checkeLevageAuxilaire();
                     this.colorCaracteristiques = this.checkCaracterstiques();
                     this.$emit("changeColorDescription_famille2_lev2", false);
-
+                    this.$emit("resetTerminer");
                 })
                 .catch((error) => {
                     console.log(error);
@@ -888,10 +912,13 @@ table tr td:nth-child(1) {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    margin: 0;
+    margin-top: 1px;
+    font-size: small;
 }
 
 .descriptions table tr td.third p input {
-    width: 200px;
+    width: 120px;
 }
 
 .descriptions table tr td.third p select {
@@ -927,6 +954,7 @@ table tr td:nth-child(1) {
     align-items: center;
     margin: 0;
     padding: 0;
+    font-size: small;
 }
 
 .descriptions table tr td.fourth ul li:nth-child(2) {
@@ -937,10 +965,20 @@ table tr td:nth-child(1) {
     align-items: flex-start;
     margin: 0;
     padding: 0;
+    font-size: small;
+}
+
+.descriptions table tr td.fourth ul li p {
+    margin: 0;
+    margin-top: 1px;
 }
 
 .descriptions table tr td.fourth ul li input {
     margin: 0;
+}
+
+.descriptions table tr td.fourth p {
+    font-size: small;
 }
 
 /* End fourth */
@@ -963,7 +1001,7 @@ table tr td:nth-child(1) {
     align-items: center;
     margin: 0;
     padding: 0;
-
+    font-size: small;
 }
 
 .descriptions table tr td.fifth p.autre {
@@ -1014,6 +1052,7 @@ table tr td:nth-child(1) {
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 0;
+    font-size: small;
 }
 
 .descriptions table tr td.sixth p ul {
@@ -1023,6 +1062,10 @@ table tr td:nth-child(1) {
     align-items: flex-start;
     margin: 0;
     padding: 0;
+}
+
+.descriptions table tr td.sixth p input[type="text"] {
+    width: 250px;
 }
 
 .descriptions table tr td.sixth p ul li {
@@ -1040,10 +1083,10 @@ table tr td:nth-child(1) {
     color: red;
 }
 
-input,
+input[type="text"],
 select {
     height: 25px;
-    width: 120px;
+    width: 100px;
     font-size: medium;
 }
 
@@ -1093,18 +1136,22 @@ select {
     background-color: rgb(84, 1, 1);
 }
 
-.sauvegarder button {
+.sauvegarder .reset {
     background-color: red;
     color: white;
     height: 30px;
-    width: 200px;
+    width: fit-content;
     border: 0px;
     border-radius: 5px;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.sauvegarder button:hover {
+.sauvegarder .reset:hover {
     background-color: rgb(84, 1, 1);
 }
+
 
 /* End COnfigration ALL */
 

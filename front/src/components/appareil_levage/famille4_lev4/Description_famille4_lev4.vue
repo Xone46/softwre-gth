@@ -792,7 +792,10 @@ export default {
             Descriptions.create(this.description)
                 .then((result) => {
                     if (result) {
-                        this.watched_sauvegarder = true;
+                        this.watched_sauvegarder = true;                        
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer")
+                        }
                     }
                 })
                 .catch((error) => {

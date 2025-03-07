@@ -12,6 +12,7 @@
                     <font-awesome-icon icon="trash" />
                 </button>
             </div>
+
             <table border="1">
 
                 <tr>
@@ -476,6 +477,7 @@ export default {
                             this.flagReset = false;
                         this.watched_sauvegarder = false;
                         this.$emit("changeColorRenseignement_famille1_lev1", false);
+                        this.$emit("resetTerminer");
                     }
                 })
                 .catch((error) => {
@@ -490,6 +492,9 @@ export default {
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer");
+                        }
                     }
                 })
                 .catch((error) => {

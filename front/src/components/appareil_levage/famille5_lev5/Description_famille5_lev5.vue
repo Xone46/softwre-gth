@@ -439,9 +439,7 @@ export default {
     watch: {
         description: {
             handler() {
-
-                const count = this.counter_watched++;
-
+                const count = this.counter_watched++;                
                 if (count == 0 || count == 1) {
                     this.watched_sauvegarder = false;
                 }
@@ -696,6 +694,9 @@ export default {
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer");
+                        }
                     }
                 })
                 .catch((error) => {

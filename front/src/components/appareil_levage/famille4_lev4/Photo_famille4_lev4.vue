@@ -64,6 +64,7 @@ export default {
                     this.imgSrc = result.filename;
                     this.flagReset = true;
                     this.$emit("changeColorPhoto_famille4_lev4", true);
+                    this.$emit("handelTerminer"); 
                 }
             })
             .catch((error) => {

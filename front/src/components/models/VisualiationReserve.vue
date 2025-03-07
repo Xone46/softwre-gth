@@ -155,16 +155,17 @@ export default {
 
 
 .sites {
-    padding: 0;
+    padding: 10px;
     margin: 0;
     max-width: 60%;
     height: auto;
     overflow-y: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    background-color: #ddd;
+    background-color: white;
+    border-radius: 10px;
 }
 
 .visualiation .sites h1 {
@@ -173,6 +174,7 @@ export default {
     color: black;
     width: inherit;
     text-align: center;
+    font-size: large;
 }
 
 .table-data {

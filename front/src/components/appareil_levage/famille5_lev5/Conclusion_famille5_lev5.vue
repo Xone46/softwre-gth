@@ -293,6 +293,9 @@ export default {
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer")
+                        }
                     }
                 })
                 .catch((error) => {

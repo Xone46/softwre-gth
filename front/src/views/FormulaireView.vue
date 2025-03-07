@@ -87,30 +87,40 @@
                 <KeepAlive>
                     <Renseignement_famille1_lev1 v-if="flagRenseignement_famille1_lev1"
                         @changeColorRenseignement_famille1_lev1="changeColorRenseignement_famille1_lev1"
+                        @handelTerminer="handelTerminer"   
+                        @resetTerminer="resetTerminer" 
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Description_famille1_lev1 v-if="flagDescription_famille1_lev1"
                         @changeColorDescription_famille1_lev1="changeColorDescription_famille1_lev1"
+                        @handelTerminer="handelTerminer"    
+                        @resetTerminer="resetTerminer" 
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Examen_famille1_lev1 v-if="flagExamen_famille1_lev1"
                         @changeColorExamen_famille1_lev1="changeColorExamen_famille1_lev1"
+                        @handelTerminer="handelTerminer"  
+                        @resetTerminer="resetTerminer"   
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Photo_famille1_lev1 v-if="flagPhoto_famille1_lev1"
                         @changeColorPhoto_famille1_lev1="changeColorPhoto_famille1_lev1"
+                        @handelTerminer="handelTerminer" 
+                        @resetTerminer="resetTerminer"    
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Conclusion_famille1_lev1 v-if="flagConclusion_famille1_lev1"
                         @changeColorConclusion_famille1_lev1="changeColorConclusion_famille1_lev1"
+                        @handelTerminer="handelTerminer" 
+                        @resetTerminer="resetTerminer"    
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
@@ -128,30 +138,40 @@
                 <KeepAlive>
                     <Renseignement_famille2_lev2 v-if="flagRenseignement_famille2_lev2"
                         @changeColorRenseignement_famille2_lev2="changeColorRenseignement_famille2_lev2"
+                        @handelTerminer="handelTerminer" 
+                        @resetTerminer="resetTerminer"    
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Description_famille2_lev2 v-if="flagDescription_famille2_lev2"
                         @changeColorDescription_famille2_lev2="changeColorDescription_famille2_lev2"
+                        @handelTerminer="handelTerminer"    
+                        @resetTerminer="resetTerminer" 
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Examen_famille2_lev2 v-if="flagExamen_famille2_lev2"
                         @changeColorExamen_famille2_lev2="changeColorExamen_famille2_lev2"
+                        @handelTerminer="handelTerminer" 
+                        @resetTerminer="resetTerminer"    
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Photo_famille2_lev2 v-if="flagPhoto_famille2_lev2"
                         @changeColorPhoto_famille2_lev2="changeColorPhoto_famille2_lev2"
+                        @handelTerminer="handelTerminer" 
+                        @resetTerminer="resetTerminer"    
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Conclusion_famille2_lev2 v-if="flagConclusion_famille2_lev2"
                         @changeColorConclusion_famille2_lev2="changeColorConclusion_famille2_lev2"
+                        @handelTerminer="handelTerminer" 
+                        @resetTerminer="resetTerminer"    
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
@@ -169,30 +189,40 @@
                 <KeepAlive>
                     <Renseignement_famille3_lev3 v-if="flagRenseignement_famille3_lev3"
                         @changeColorRenseignement_famille3_lev3="changeColorRenseignement_famille3_lev3"
+                        @handelTerminer="handelTerminer"
+                        @resetTerminer="resetTerminer" 
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Description_famille3_lev3 v-if="flagDescription_famille3_lev3"
                         @changeColorDescription_famille3_lev3="changeColorDescription_famille3_lev3"
+                        @handelTerminer="handelTerminer" 
+                        @resetTerminer="resetTerminer"    
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Examen_famille3_lev3 v-if="flagExamen_famille3_lev3"
                         @changeColorExamen_famille3_lev3="changeColorExamen_famille3_lev3"
+                        @handelTerminer="handelTerminer"   
+                        @resetTerminer="resetTerminer"  
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Photo_famille3_lev3 v-if="flagPhoto_famille3_lev3"
                         @changeColorPhoto_famille3_lev3="changeColorPhoto_famille3_lev3"
+                        @handelTerminer="handelTerminer"   
+                        @resetTerminer="resetTerminer"  
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Conclusion_famille3_lev3 v-if="flagConclusion_famille3_lev3"
                         @changeColorConclusion_famille3_lev3="changeColorConclusion_famille3_lev3"
+                        @handelTerminer="handelTerminer"  
+                        @resetTerminer="resetTerminer"   
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
@@ -210,36 +240,47 @@
                 <KeepAlive>
                     <Renseignement_famille4_lev4 v-if="flagRenseignement_famille4_lev4"
                         @changeColorRenseignement_famille4_lev4="changeColorRenseignement_famille4_lev4"
+                        @handelTerminer="handelTerminer"    
+                        @resetTerminer="resetTerminer" 
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Description_famille4_lev4 v-if="flagDescription_famille4_lev4"
                         @changeColorDescription_famille4_lev4="changeColorDescription_famille4_lev4"
+                        @handelTerminer="handelTerminer"  
+                        @resetTerminer="resetTerminer"  
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Examen_famille4_lev4 v-if="flagExamen_famille4_lev4"
                         @changeColorExamen_famille4_lev4="changeColorExamen_famille4_lev4"
+                        @handelTerminer="handelTerminer"  
+                        @resetTerminer="resetTerminer"   
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Photo_famille4_lev4 v-if="flagPhoto_famille4_lev4"
                         @changeColorPhoto_famille4_lev4="changeColorPhoto_famille4_lev4"
+                        @handelTerminer="handelTerminer"  
+                        @resetTerminer="resetTerminer"   
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Conclusion_famille4_lev4 v-if="flagConclusion_famille4_lev4"
                         @changeColorConclusion_famille4_lev4="changeColorConclusion_famille4_lev4"
+                        @handelTerminer="handelTerminer" 
+                        @resetTerminer="resetTerminer"    
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Reserve_famille4_lev4 v-if="flagReserve_famille4_lev4"
                         @changeColorReserve_famille4_lev4="changeColorReserve_famille4_lev4"
+                        @handelTerminer="handelTerminer"    
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
@@ -251,30 +292,40 @@
                 <KeepAlive>
                     <Renseignement_famille5_lev5 v-if="flagRenseignement_famille5_lev5"
                         @changeColorRenseignement_famille5_lev5="changeColorRenseignement_famille5_lev5"
+                        @handelTerminer="handelTerminer"
+                        @resetTerminer="resetTerminer" 
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Description_famille5_lev5 v-if="flagDescription_famille5_lev5"
                         @changeColorDescription_famille5_lev5="changeColorDescription_famille5_lev5"
+                        @handelTerminer="handelTerminer"    
+                        @resetTerminer="resetTerminer" 
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Examen_famille5_lev5 v-if="flagExamen_famille5_lev5"
                         @changeColorExamen_famille5_lev5="changeColorExamen_famille5_lev5"
+                        @handelTerminer="handelTerminer"  
+                        @resetTerminer="resetTerminer"   
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Photo_famille5_lev5 v-if="flagPhoto_famille5_lev5"
                         @changeColorPhoto_famille5_lev5="changeColorPhoto_famille5_lev5"
+                        @handelTerminer="handelTerminer" 
+                        @resetTerminer="resetTerminer"    
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
                 <KeepAlive>
                     <Conclusion_famille5_lev5 v-if="flagConclusion_famille5_lev5"
                         @changeColorConclusion_famille5_lev5="changeColorConclusion_famille5_lev5"
+                        @handelTerminer="handelTerminer"  
+                        @resetTerminer="resetTerminer"   
                         :observateurId="formulaire.observateurId" />
                 </KeepAlive>
 
@@ -325,7 +376,8 @@
                     La liste des réserves
                 </button>
 
-                <Terminer v-if="flagTerminer" :observateurId="this.formulaire.observateurId" :typeAppareil="this.formulaire.typeAppareil" />
+                <Terminer v-if="flagTerminer" :observateurId="this.formulaire.observateurId"
+                    :typeAppareil="this.formulaire.typeAppareil" />
 
             </div>
         </div>
@@ -1045,137 +1097,140 @@ export default {
             this.flagPhoto_famille_ac1 = false;
             this.flagRenseignement_famille_ac1 = false;
             this.flagFiche_famille_ac1 = true;
+        },
+
+        resetTerminer() {
+            this.flagTerminer = false;
+        },
+
+        handelTerminer() {
+
+            this.flagTerminer = false;
+
+            if (this.$route.params.typeAppareil[0] == "Famille 1 LEV1") {
+
+                // content
+                this.flag_famille1_lev1 = true;
+                // menu
+                this.flag_Menu_famille1_lev1 = true;
+
+                FamilleCompletedOneLevOne.checkAll(this.formulaire.observateurId)
+                    .then((result) => {
+                        // colors
+                        this.colorRenseignement_famille1_lev1 = result.data.completed[0].renseignement;
+                        this.colorDescription_famille1_lev1 = result.data.completed[0].description;
+                        this.colorExamen_famille1_lev1 = result.data.completed[0].examen;
+                        this.colorConclusion_famille1_lev1 = result.data.completed[0].conclusion;
+                        this.colorPhoto_famille1_lev1 = result.data.completed[0].photo;
+                        if (result.data.status == true) {
+                            this.flagTerminer = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+
+
+            }
+
+            if (this.$route.params.typeAppareil[0] == "Famille 2 LEV2") {
+                this.flag_famille2_lev2 = true;
+                this.flag_Menu_famille2_lev2 = true;
+
+                FamilleCompletedTowLevTow.checkAll(this.formulaire.observateurId)
+                    .then((result) => {
+                        this.colorRenseignement_famille2_lev2 = result.data.completed[0].renseignement;
+                        this.colorDescription_famille2_lev2 = result.data.completed[0].description;
+                        this.colorExamen_famille2_lev2 = result.data.completed[0].examen;
+                        this.colorConclusion_famille2_lev2 = result.data.completed[0].conclusion;
+                        this.colorPhoto_famille2_lev2 = result.data.completed[0].photo;
+                        if (result.data.status == true) {
+                            this.flagTerminer = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            }
+
+            if (this.$route.params.typeAppareil[0] == "Famille 3 LEV3") {
+                this.flag_famille3_lev3 = true;
+                this.flag_Menu_famille3_lev3 = true;
+
+                FamilleCompletedTreeLevTree.checkAll(this.formulaire.observateurId)
+                    .then((result) => {
+                        this.colorRenseignement_famille3_lev3 = result.data.completed[0].renseignement;
+                        this.colorDescription_famille3_lev3 = result.data.completed[0].description;
+                        this.colorExamen_famille3_lev3 = result.data.completed[0].examen;
+                        this.colorConclusion_famille3_lev3 = result.data.completed[0].conclusion;
+                        this.colorPhoto_famille3_lev3 = result.data.completed[0].photo;
+                        if (result.data.status == true) {
+                            this.flagTerminer = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            }
+
+            if (this.$route.params.typeAppareil[0] == "Famille 4 LEV4") {
+
+                this.flag_famille4_lev4 = true;
+                this.flag_Menu_famille4_lev4 = true;
+
+                FamilleCompletedFourLevFour.checkAll(this.formulaire.observateurId)
+                    .then((result) => {
+                        this.colorRenseignement_famille4_lev4 = result.data.completed[0].renseignement;
+                        this.colorDescription_famille4_lev4 = result.data.completed[0].description;
+                        this.colorExamen_famille4_lev4 = result.data.completed[0].examen;
+                        this.colorConclusion_famille4_lev4 = result.data.completed[0].conclusion;
+                        this.colorPhoto_famille4_lev4 = result.data.completed[0].photo;
+                        if (result.data.status == true) {
+                            this.flagTerminer = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            }
+
+            if (this.$route.params.typeAppareil[0] == "Famille 5 LEV5") {
+
+                this.flag_famille5_lev5 = true;
+                this.flag_Menu_famille5_lev5 = true;
+
+                FamilleCompletedFiveLevFive.checkAll(this.formulaire.observateurId)
+                    .then((result) => {
+                        this.colorRenseignement_famille5_lev5 = result.data.completed[0].renseignement;
+                        this.colorDescription_famille5_lev5 = result.data.completed[0].description;
+                        this.colorExamen_famille5_lev5 = result.data.completed[0].examen;
+                        this.colorConclusion_famille5_lev5 = result.data.completed[0].conclusion;
+                        this.colorPhoto_famille5_lev5 = result.data.completed[0].photo;
+                        if (result.data.status == true) {
+                            this.flagTerminer = true;
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                    });
+            }
+
+
+            if (this.$route.params.typeAppareil[0] == "Famille AC1") {
+                this.flag_famille_ac1 = false;
+                this.flag_Menu_famille_ac1 = false;
+                this.colorRenseignement_famille_ac1 = true;
+            }
         }
 
     },
 
     created() {
-
         this.currentYear = new Date().getFullYear();
-
         this.formulaire.observateurId = this.$route.params.id;
         this.formulaire.typeAppareil = this.$route.params.typeAppareil;
         this.formulaire.interventionId = this.$route.params.interventionId;
-
-
-
-
-
-        if (this.$route.params.typeAppareil[0] == "Famille 1 LEV1") {
-
-            // content
-            this.flag_famille1_lev1 = true;
-            // menu
-            this.flag_Menu_famille1_lev1 = true;
-
-            FamilleCompletedOneLevOne.checkAll(this.formulaire.observateurId)
-                .then((result) => {
-                    // colors
-                    this.colorRenseignement_famille1_lev1 = result.data.completed[0].renseignement;
-                    this.colorDescription_famille1_lev1 = result.data.completed[0].description;
-                    this.colorExamen_famille1_lev1 = result.data.completed[0].examen;
-                    this.colorConclusion_famille1_lev1 = result.data.completed[0].conclusion;
-                    this.colorPhoto_famille1_lev1 = result.data.completed[0].photo;
-                    if(result.data.status == true) {
-                        this.flagTerminer = true;
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
-
-
-        }
-
-        if (this.$route.params.typeAppareil[0] == "Famille 2 LEV2") {
-            this.flag_famille2_lev2 = true;
-            this.flag_Menu_famille2_lev2 = true;
-
-            FamilleCompletedTowLevTow.checkAll(this.formulaire.observateurId)
-                .then((result) => {
-                    this.colorRenseignement_famille2_lev2 = result.data.completed[0].renseignement;
-                    this.colorDescription_famille2_lev2 = result.data.completed[0].description;
-                    this.colorExamen_famille2_lev2 = result.data.completed[0].examen;
-                    this.colorConclusion_famille2_lev2 = result.data.completed[0].conclusion;
-                    this.colorPhoto_famille2_lev2 = result.data.completed[0].photo;
-                    if(result.data.status == true) {
-                        this.flagTerminer = true;
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
-        }
-
-        if (this.$route.params.typeAppareil[0] == "Famille 3 LEV3") {
-            this.flag_famille3_lev3 = true;
-            this.flag_Menu_famille3_lev3 = true;
-
-            FamilleCompletedTreeLevTree.checkAll(this.formulaire.observateurId)
-                .then((result) => {
-                    this.colorRenseignement_famille3_lev3 = result.data.completed[0].renseignement;
-                    this.colorDescription_famille3_lev3 = result.data.completed[0].description;
-                    this.colorExamen_famille3_lev3 = result.data.completed[0].examen;
-                    this.colorConclusion_famille3_lev3 = result.data.completed[0].conclusion;
-                    this.colorPhoto_famille3_lev3 = result.data.completed[0].photo;
-                    if(result.data.status == true) {
-                        this.flagTerminer = true;
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
-        }
-
-        if (this.$route.params.typeAppareil[0] == "Famille 4 LEV4") {
-
-            this.flag_famille4_lev4 = true;
-            this.flag_Menu_famille4_lev4 = true;
-
-            FamilleCompletedFourLevFour.checkAll(this.formulaire.observateurId)
-                .then((result) => {
-                    this.colorRenseignement_famille4_lev4 = result.data.completed[0].renseignement;
-                    this.colorDescription_famille4_lev4 = result.data.completed[0].description;
-                    this.colorExamen_famille4_lev4 = result.data.completed[0].examen;
-                    this.colorConclusion_famille4_lev4 = result.data.completed[0].conclusion;
-                    this.colorPhoto_famille4_lev4 = result.data.completed[0].photo;
-                    if(result.data.status == true) {
-                        this.flagTerminer = true;
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
-        }
-
-        if (this.$route.params.typeAppareil[0] == "Famille 5 LEV5") {
-
-            this.flag_famille5_lev5 = true;
-            this.flag_Menu_famille5_lev5 = true;
-
-            FamilleCompletedFiveLevFive.checkAll(this.formulaire.observateurId)
-                .then((result) => {
-                    this.colorRenseignement_famille5_lev5 = result.data.completed[0].renseignement;
-                    this.colorDescription_famille5_lev5 = result.data.completed[0].description;
-                    this.colorExamen_famille5_lev5 = result.data.completed[0].examen;
-                    this.colorConclusion_famille5_lev5 = result.data.completed[0].conclusion;
-                    this.colorPhoto_famille5_lev5 = result.data.completed[0].photo;
-                    if(result.data.status == true) {
-                        this.flagTerminer = true;
-                    }
-                })
-                .catch((error) => {
-                    console.log(error)
-                });
-        }
-
-
-        if (this.$route.params.typeAppareil[0] == "Famille AC1") {
-            this.flag_famille_ac1 = false;
-            this.flag_Menu_famille_ac1 = false;
-            this.colorRenseignement_famille_ac1 = true;
-        }
-
+        this.handelTerminer();
     }
 
 }

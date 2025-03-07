@@ -8,7 +8,7 @@
                     <font-awesome-icon v-if="watched_sauvegarder == true" icon="lock" />
                 </button>
 
-                <button @click="reset" v-if="watched_sauvegarder == true">
+                <button class="reset" @click="reset" v-if="watched_sauvegarder == true">
                     <font-awesome-icon icon="trash" />
                 </button>
             </div>
@@ -483,6 +483,9 @@ export default {
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer")
+                        }
                     }
                 })
                 .catch((error) => {

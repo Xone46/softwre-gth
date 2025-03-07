@@ -1656,7 +1656,7 @@ export default {
                         }
                         );
 
-                        this.e.forEach((element) => {
+                        this.examen.e.forEach((element) => {
                             element.be = false;
                             element.fc = false;
                             element.sa = false;
@@ -1666,7 +1666,7 @@ export default {
                         }
                         );
 
-                        this.f.forEach((element) => {
+                        this.examen.f.forEach((element) => {
                             element.be = false;
                             element.fc = false;
                             element.sa = false;
@@ -1729,6 +1729,7 @@ export default {
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
                         this.$emit("changeColorExamen_famille2_lev2", false);
+                        this.$emit("resetTerminer");
                     }
                 })
                 .catch((error) => {
@@ -1736,7 +1737,19 @@ export default {
                 });
         },
 
-        checkProperties(a, b, c, d, e, f, g, h, i, j, k) {
+        checkProperties() {
+
+            const a = this.examen.a;
+            const b = this.examen.b;
+            const c = this.examen.c;
+            const d = this.examen.d;
+            const e = this.examen.e;
+            const f = this.examen.f;
+            const g = this.examen.g;
+            const h = this.examen.h
+            const i = this.examen.i;
+            const j = this.examen.j;
+            const k = this.examen.k;
 
             for (let z = 0; z < a.length; z++) {
                 const arr = [a[z].be, a[z].fc, a[z].nv, a[z].o, a[z].sa, a[z].so, a[z].statusCritique];
@@ -1839,7 +1852,7 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorExamen_famille2_lev2", this.checkProperties(this.examen.a, this.examen.b, this.examen.c, this.examen.d, this.examen.e, this.examen.f, this.examen.g, this.examen.h, this.examen.i, this.examen.j, this.examen.k));
+            this.$emit("changeColorExamen_famille2_lev2", this.checkProperties());
         },
 
         sauvegarde() {
@@ -1847,6 +1860,9 @@ export default {
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer");
+                        }
                     }
                 })
                 .catch((error) => {

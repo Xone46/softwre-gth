@@ -530,6 +530,9 @@ export default {
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer");
+                        }
                     }
                 })
                 .catch((error) => {
@@ -708,7 +711,21 @@ td button {
     background-color: rgb(84, 1, 1);
 }
 
+.sauvegarder .reset {
+    background-color: red;
+    color: white;
+    height: 30px;
+    width: fit-content;
+    border: 0px;
+    border-radius: 5px;
+    cursor: pointer;
+    padding-left: 10px;
+    padding-right: 10px;
+}
 
+.sauvegarder .reset:hover {
+    background-color: rgb(84, 1, 1);
+}
 
 td:nth-child(2) {
     display: flex;

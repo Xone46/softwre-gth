@@ -1518,7 +1518,7 @@ export default {
                         }
                         );
 
-                        this.f.forEach((element) => {
+                        this.examen.f.forEach((element) => {
                             element.be = false;
                             element.fc = false;
                             element.sa = false;
@@ -1528,7 +1528,7 @@ export default {
                         }
                         );
 
-                        this.g.forEach((element) => {
+                        this.examen.g.forEach((element) => {
                             element.be = false;
                             element.fc = false;
                             element.sa = false;
@@ -1538,7 +1538,7 @@ export default {
                         }
                         );
 
-                        this.h.forEach((element) => {
+                        this.examen.h.forEach((element) => {
                             element.be = false;
                             element.fc = false;
                             element.sa = false;
@@ -1548,7 +1548,7 @@ export default {
                         }
                         );
 
-                        this.i.forEach((element) => {
+                        this.examen.i.forEach((element) => {
                             element.be = false;
                             element.fc = false;
                             element.sa = false;
@@ -1558,7 +1558,7 @@ export default {
                         }
                         );
 
-                        this.j.forEach((element) => {
+                        this.examen.j.forEach((element) => {
                             element.be = false;
                             element.fc = false;
                             element.sa = false;
@@ -1571,6 +1571,7 @@ export default {
                         this.flagReset = false;
                         this.watched_sauvegarder = false;
                         this.$emit("changeColorExamen_famille1_lev1", false);
+                        this.$emit("resetTerminer");
                     }
                 })
                 .catch((error) => {
@@ -1578,90 +1579,101 @@ export default {
                 });
         },
 
-        checkProperties(a, b, c, d, e, f, g, h, i, j) {
+        checkProperties() {
 
-            for (let i = 0; i < a.length; i++) {
-                const arr = [a[i].be, a[i].fc, a[i].nv, a[i].o, a[i].sa, a[i].so, a[i].statusCritique];
+            const a  = this.examen.a; 
+            const b  = this.examen.b; 
+            const c  = this.examen.c; 
+            const d  = this.examen.d; 
+            const e  = this.examen.e; 
+            const f  = this.examen.f; 
+            const g  = this.examen.g; 
+            const h  = this.examen.h; 
+            const i  = this.examen.i; 
+            const j  = this.examen.j; 
+
+            for (let w = 0; w < a.length; w++) {
+                const arr = [a[w].be, a[w].fc, a[w].nv, a[w].o, a[w].sa, a[w].so, a[w].statusCritique];
                 if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for (let i = 0; i < b.length; i++) {
+            for (let w = 0; w < b.length; w++) {
 
-                const arr = [b[i].be, b[i].fc, b[i].nv, b[i].o, b[i].sa, b[i].so, b[i].statusCritique];
+                const arr = [b[w].be, b[w].fc, b[w].nv, b[w].o, b[w].sa, b[w].so, b[w].statusCritique];
 
                 if (!arr.includes(true)) {
                     return false
                 }
             }
 
-            for (let i = 0; i < c.length; i++) {
+            for (let w = 0; w < c.length; w++) {
 
-                const arr = [c[i].be, c[i].fc, c[i].nv, c[i].o, c[i].sa, c[i].so, c[i].statusCritique];
-
-                if (!arr.includes(true)) {
-                    return false;
-                }
-            }
-
-            for (let i = 0; i < d.length; i++) {
-
-                const arr = [d[i].be, d[i].fc, d[i].nv, d[i].o, d[i].sa, d[i].so, d[i].statusCritique];
+                const arr = [c[w].be, c[w].fc, c[w].nv, c[w].o, c[w].sa, c[w].so, c[w].statusCritique];
 
                 if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for (let i = 0; i < e.length; i++) {
+            for (let w = 0; w < d.length; w++) {
 
-                const arr = [e[i].be, e[i].fc, e[i].nv, e[i].o, e[i].sa, e[i].so, e[i].statusCritique];
-
-                if (!arr.includes(true)) {
-                    return false;
-                }
-            }
-
-            for (let i = 0; i < f.length; i++) {
-
-                const arr = [f[i].be, f[i].fc, f[i].nv, f[i].o, f[i].sa, f[i].so, f[i].statusCritique];
+                const arr = [d[w].be, d[w].fc, d[w].nv, d[w].o, d[w].sa, d[w].so, d[w].statusCritique];
 
                 if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for (let i = 0; i < g.length; i++) {
+            for (let w = 0; w < e.length; w++) {
 
-                const arr = [g[i].be, g[i].fc, g[i].nv, g[i].o, g[i].sa, g[i].so, g[i].statusCritique];
-
-                if (!arr.includes(true)) {
-                    return false;
-                }
-            }
-
-            for (let i = 0; i < h.length; i++) {
-
-                const arr = [h[i].be, h[i].fc, h[i].nv, h[i].o, h[i].sa, h[i].so, h[i].statusCritique];
+                const arr = [e[w].be, e[w].fc, e[w].nv, e[w].o, e[w].sa, e[w].so, e[w].statusCritique];
 
                 if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for (let i = 0; i < i.length; i++) {
+            for (let w = 0; w < f.length; w++) {
 
-                const arr = [i[i].be, i[i].fc, i[i].nv, i[i].o, i[i].sa, i[i].so, i[i].statusCritique];
+                const arr = [f[w].be, f[w].fc, f[w].nv, f[w].o, f[w].sa, f[w].so, f[w].statusCritique];
 
                 if (!arr.includes(true)) {
                     return false;
                 }
             }
 
-            for (let i = 0; i < j.length; i++) {
+            for (let w = 0; w < g.length; w++) {
 
-                const arr = [j[i].be, j[i].fc, j[i].nv, j[i].o, j[i].sa, j[i].so, j[i].statusCritique];
+                const arr = [g[w].be, g[w].fc, g[w].nv, g[w].o, g[w].sa, g[w].so, g[w].statusCritique];
+
+                if (!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for (let w = 0; w < h.length; w++) {
+
+                const arr = [h[w].be, h[w].fc, h[w].nv, h[w].o, h[w].sa, h[w].so, h[w].statusCritique];
+
+                if (!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for (let w = 0; w < i.length; w++) {
+
+                const arr = [i[w].be, i[w].fc, i[w].nv, i[w].o, i[w].sa, i[w].so, i[w].statusCritique];
+
+                if (!arr.includes(true)) {
+                    return false;
+                }
+            }
+
+            for (let w = 0; w < j.length; w++) {
+
+                const arr = [j[w].be, j[w].fc, j[w].nv, j[w].o, j[w].sa, j[w].so, j[w].statusCritique];
 
                 if (!arr.includes(true)) {
                     return false;
@@ -1672,7 +1684,7 @@ export default {
         },
 
         notEmpty() {
-            this.$emit("changeColorExamen_famille1_lev1", this.checkProperties(this.examen.a, this.examen.b, this.examen.c, this.examen.d, this.examen.e, this.examen.f, this.examen.g, this.examen.h, this.examen.i, this.examen.j));
+            this.$emit("changeColorExamen_famille1_lev1", this.checkProperties());
         },
 
         sauvegarde() {
@@ -1681,6 +1693,9 @@ export default {
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer");
+                        }
                     }
                 })
                 .catch((error) => {

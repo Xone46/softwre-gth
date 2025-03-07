@@ -998,6 +998,9 @@ export default {
                 .then((result) => {
                     if (result) {
                         this.watched_sauvegarder = true;
+                        if(this.checkProperties() == true) {
+                            this.$emit("handelTerminer");
+                        }
                     }
                 })
                 .catch((error) => {
@@ -1011,6 +1014,7 @@ export default {
                     this.description = this.duplicate_description;
                     this.flagReset = false;
                     this.color = this.$emit("changeColorDescription_famille3_lev3", false);
+                    this.$emit("resetTerminer");
                     return this.notEmpty();
 
                 })
