@@ -65,7 +65,7 @@
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.typeAppareil.length != 0 ? 'saved' : 'not-saved']">Type d'appareil:</td>
+                    <td :class="[renseignement.typeAppareil.length != 0 ? 'saved' : 'not-saved']">Type d'appareil : </td>
                     <td>
                         <select @change="saisirTypeAppareil($event)" :value="renseignement.typeAppareil">
                             <option value="Poutres roulantes (non motorisée)">Poutres roulantes (non motorisée)</option>
@@ -369,7 +369,10 @@ export default {
 
         saisirTypeAppareil(e) {
             this.renseignement.typeAppareil = e.target.value;
-            if (this.renseignement.typeAppareil != "Autre") {
+            if (this.renseignement.typeAppareil == "Autre : ") {
+                this.renseignement.suiveTypeAppareil = "";
+                this.handelInsert('typeAppareil');
+            } else {
                 this.renseignement.suiveTypeAppareil = "";
             }
         },
@@ -380,14 +383,20 @@ export default {
 
         saisirMiseEnServiceEpreuves(e) {
             this.renseignement.miseEnServiceEpreuves = e.target.value;
-            if (this.renseignement.miseEnServiceEpreuves != "Réalisées le : ") {
+            if (this.renseignement.miseEnServiceEpreuves == "Réalisées le : ") {
+                this.renseignement.suiveMiseEnServiceEpreuves = "";
+                this.handelInsert('miseEnServiceEpreuves');
+            } else {
                 this.renseignement.suiveMiseEnServiceEpreuves = "";
             }
         },
 
         saisirDateDerniereVerficationPeriodique(e) {
             this.renseignement.dateDerniereVerficationPeriodique = e.target.value;
-            if (this.renseignement.dateDerniereVerficationPeriodique != "Effectuée le :") {
+            if (this.renseignement.dateDerniereVerficationPeriodique == "Effectuée le : ") {
+                this.renseignement.suiveDateDerniereVerficationPeriodique = "";
+                this.handelInsert('dateDerniereVerficationPeriodique');
+            } else {
                 this.renseignement.suiveDateDerniereVerficationPeriodique = "";
             }
 
@@ -401,12 +410,18 @@ export default {
             this.renseignement.essaischarge = e.target.value;
             if (this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
                 this.renseignement.suiveEssaischarge = "";
+                this.handelInsert('essaischarge');
+            } else {
+                this.renseignement.suiveEssaischarge = "";
             }
         },
 
         saisirModification(e) {
             this.renseignement.modification = e.target.value;
             if (this.renseignement.modification == "Description : ") {
+                this.renseignement.suiveModification = "";
+                this.handelInsert('modification');
+            } else {
                 this.renseignement.suiveModification = "";
             }
         },

@@ -389,6 +389,8 @@ export default {
             this.renseignement.miseEnServiceEpreuves = e.target.value;
             if (this.renseignement.miseEnServiceEpreuves != "Réalisées le : ") {
                 this.renseignement.suiveMiseEnServiceEpreuves = "";
+            } else {
+                this.handelInsert('miseEnServiceEpreuves');
             }
         },
 
@@ -397,7 +399,6 @@ export default {
             if (this.renseignement.dateDerniereVerficationPeriodique != "Effectuée le :") {
                 this.renseignement.suiveDateDerniereVerficationPeriodique = "";
             }
-
         },
 
         saisirRapport(e) {
@@ -408,6 +409,9 @@ export default {
             this.renseignement.essaischarge = e.target.value;
             if (this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
                 this.renseignement.suiveEssaischarge = "";
+                this.handelInsert('essaischarge');
+            } else {
+                this.renseignement.suiveEssaischarge = "";
             }
         },
 
@@ -415,6 +419,7 @@ export default {
             this.renseignement.modification = e.target.value;
             if (this.renseignement.modification == "Description : ") {
                 this.renseignement.suiveModification = "";
+                this.handelInsert('modification');
             }
         },
 

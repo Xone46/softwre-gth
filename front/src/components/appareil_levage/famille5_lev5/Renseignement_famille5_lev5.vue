@@ -65,7 +65,7 @@
                 </tr>
 
                 <tr>
-                    <td :class="[renseignement.typeAppareil.length != 0 ? 'saved' : 'not-saved']">Type d'appareil:</td>
+                    <td :class="[renseignement.typeAppareil.length != 0 ? 'saved' : 'not-saved']">Type d'appareil : </td>
                     <td>
                         <select @change="saisirTypeAppareil($event)" :value="renseignement.typeAppareil">
                             <option value="Pont élévateur à 4 colonnes">Pont élévateur à 4 colonnes</option>
@@ -74,8 +74,7 @@
                             <option value="Pont élévateur à ciseau">Pont élévateur à ciseau</option>
                             <option value="Pont élévateur à parallélogramme">Pont élévateur à parallélogramme</option>
                             <option value="Pont élévateur à vérin porteur">Pont élévateur à vérin porteur</option>
-                            <option value="Pont élévateur à colonnes indépendantes (Nombre)">Pont élévateur à colonnes
-                                indépendantes (Nombre)</option>
+                            <option value="Pont élévateur à colonnes indépendantes (Nombre) : ">Pont élévateur à colonnes indépendantes (Nombre)</option>
                             <option value="Pont élévateur mobile">Pont élévateur mobile</option>
                             <option value="Autre : ">Autre</option>
                         </select>
@@ -85,7 +84,7 @@
                             @click="handelInsert('typeAppareil')">voir</button>
                     </td>
 
-                    <td v-if="renseignement.typeAppareil == 'Pont élévateur à colonnes indépendantes (Nombre)'">
+                    <td v-if="renseignement.typeAppareil == 'Pont élévateur à colonnes indépendantes (Nombre) : '">
                         <button :class="[renseignement.suiveTypeAppareil.length != 0 ? 'voir' : 'not-voir']"
                             @click="handelInsert('typeAppareil')">voir</button>
                     </td>
@@ -101,12 +100,12 @@
                         </select>
                     </td>
 
-                    <td v-if="renseignement.typeVerification == 'Autre motif :'">
+                    <td v-if="renseignement.typeVerification == 'Autre motif : '">
                         <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']"
                             @click="handelInsert('typeVerification')">voir</button>
                     </td>
 
-                    <td v-if="renseignement.typeVerification == 'Date de dernière vérification périodique :'">
+                    <td v-if="renseignement.typeVerification == 'Date de dernière vérification périodique : '">
                         <button :class="[renseignement.suiveTypeVerification.length != 0 ? 'voir' : 'not-voir']"
                             @click="handelInsert('typeVerification')">voir</button>
                     </td>
@@ -143,7 +142,7 @@
 
 
                 <tr>
-                    <td :class="[renseignement.essaischarge.length != 0 ? 'saved' : 'not-saved']">Essais en charge:</td>
+                    <td :class="[renseignement.essaischarge.length != 0 ? 'saved' : 'not-saved']">Essais en charge : </td>
                     <td>
 
                         <select @change="saisirEssaischarge($event)" :value="renseignement.essaischarge">
@@ -244,13 +243,13 @@ export default {
                 {
                     index: 3,
                     status: false,
-                    titre: "Autre motif :",
+                    titre: "Autre motif : ",
                     content: " "
                 },
                 {
                     index: 4,
                     status: false,
-                    titre: "Date de dernière vérification périodique :",
+                    titre: "Date de dernière vérification périodique : ",
                     contsent: " "
                 },
             ],
@@ -419,8 +418,9 @@ export default {
 
         saisirTypeAppareil(e) {
             this.renseignement.typeAppareil = e.target.value;
-            if (this.renseignement.typeAppareil != "Autre") {
+            if (this.renseignement.typeAppareil == "Autre : " || this.renseignement.typeAppareil == "Pont élévateur à colonnes indépendantes (Nombre) : ") {
                 this.renseignement.suiveTypeAppareil = "";
+                this.handelInsert('typeAppareil')
             }
         },
 
@@ -428,11 +428,17 @@ export default {
 
             this.renseignement.typeVerification = e.target.value;
 
-            if (this.renseignement.typeVerification != "Autre motif :") {
+            if (this.renseignement.typeVerification == "Autre motif : ") {
+                this.renseignement.suiveTypeVerification = "";
+                this.handelInsert('typeVerification');
+            } else {
                 this.renseignement.suiveTypeVerification = "";
             }
 
-            if (this.renseignement.typeVerification != "Date de dernière vérification périodique :") {
+            if (this.renseignement.typeVerification == "Date de dernière vérification périodique : ") {
+                this.renseignement.suiveTypeVerification = "";
+                this.handelInsert('typeVerification');
+            } else {
                 this.renseignement.suiveTypeVerification = "";
             }
         },
@@ -449,6 +455,9 @@ export default {
             this.renseignement.essaischarge = e.target.value;
             if (this.renseignement.essaischarge == "Réalisé sous charge de (kg) : ") {
                 this.renseignement.suiveEssaischarge = "";
+                this.handelInsert('essaischarge');
+            } else {
+                this.renseignement.suiveEssaischarge = "";
             }
         },
 
@@ -460,6 +469,9 @@ export default {
             this.renseignement.modification = e.target.value;
             if (this.renseignement.modification == "Description : ") {
                 this.renseignement.suiveModification = "";
+                this.handelInsert('modification');
+            } else {
+                this.renseignement.suiveModification = ""; 
             }
         },
 
