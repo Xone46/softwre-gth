@@ -293,7 +293,7 @@ export default {
                     if (result) {
                         this.watched_sauvegarder = true;
                         if(this.checkProperties() == true) {
-                            this.$emit("handelTerminer")
+                            this.$emit("handelTerminer");
                         }
                     }
                 })

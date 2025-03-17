@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <div class="dashboard" :style="{ backgroundImage: `url(${bgImage})` }">
     <div class="dashboard-cover">
       <img src="@/assets/person.png" alt="">
       <p class="inspecteur">{{ nom }} {{ prenom }}</p>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import bgImage from '@/assets/ind1.jpg';
 import Succes from "@/components/models/Succes.vue"
 import Observateurs from "@/requests/Observateurs"
 // import Chekin from "@/requests/Chekin"
@@ -26,7 +27,9 @@ export default {
       flagSucces: false,
       nom: null,
       prenom: null,
-      conterTransfer: 0
+      conterTransfer: 0,
+      bgImage
+
     }
   },
   components: {
@@ -104,7 +107,6 @@ export default {
   padding: 0;
   height: 100vh;
   width: 100%;
-  background-image: url("@/assets/ind1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }

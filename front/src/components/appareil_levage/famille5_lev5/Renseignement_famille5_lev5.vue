@@ -74,7 +74,7 @@
                             <option value="Pont élévateur à ciseau">Pont élévateur à ciseau</option>
                             <option value="Pont élévateur à parallélogramme">Pont élévateur à parallélogramme</option>
                             <option value="Pont élévateur à vérin porteur">Pont élévateur à vérin porteur</option>
-                            <option value="Pont élévateur à colonnes indépendantes (Nombre) : ">Pont élévateur à colonnes indépendantes (Nombre)</option>
+                            <option value="Pont élévateur à colonnes indépendantes (Nombre) : ">Pont élévateur à colonnes indépendantes (Nombre) :</option>
                             <option value="Pont élévateur mobile">Pont élévateur mobile</option>
                             <option value="Autre : ">Autre</option>
                         </select>

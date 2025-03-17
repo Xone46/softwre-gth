@@ -446,7 +446,7 @@ export default {
 
                 if(count == 2) {
                     this.watched_sauvegarder = true;
-                }
+                } 
                 
                 if(count > 2) {
                     this.watched_sauvegarder = false;

@@ -1,11 +1,11 @@
 <template>
-  <div class="home">
+  <div class="home" :style="{ backgroundImage: `url(${bgImage})` }">
 
     <div class="home-cover">
 
       <img v-if="!falgAuth" src="@/assets/logo.png" alt="logo">
 
-      <div v-if="flagSpinner" >
+      <div v-if="flagSpinner">
         <Spinner class="spinner" message="Veuillez patienter, logiciel se connectera aux serveurs GTHCONSULT" />
       </div>
 
@@ -19,6 +19,7 @@
 
 <script>
 // @ is an alias to /src
+import bgImage from '@/assets/zelig.jpg';
 import Login from '@/components/login/LoginComponent.vue'
 import Chekin from "@/requests/Chekin"
 import Spinner from 'vue-simple-spinner'
@@ -33,6 +34,7 @@ export default {
       falgAuth: false,
       counter: 0,
       online: null,
+      bgImage
     }
   },
   components: {
@@ -111,7 +113,6 @@ export default {
   padding: 0;
   height: 100vh;
   width: 100%;
-  background-image: url("@/assets/zelig.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -162,5 +163,4 @@ export default {
 .spinner {
   color: white;
 }
-
 </style>

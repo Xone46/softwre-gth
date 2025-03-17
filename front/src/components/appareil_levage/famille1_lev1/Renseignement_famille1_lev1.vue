@@ -396,7 +396,10 @@ export default {
 
         saisirDateDerniereVerficationPeriodique(e) {
             this.renseignement.dateDerniereVerficationPeriodique = e.target.value;
-            if (this.renseignement.dateDerniereVerficationPeriodique != "Effectuée le :") {
+            if (this.renseignement.dateDerniereVerficationPeriodique == "Effectuée le : ") {
+                this.renseignement.suiveDateDerniereVerficationPeriodique = "";
+                this.handelInsert('dateDerniereVerficationPeriodique');
+            } else {
                 this.renseignement.suiveDateDerniereVerficationPeriodique = "";
             }
         },
